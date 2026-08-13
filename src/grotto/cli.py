@@ -1,0 +1,146 @@
+"""Command-line interface for grotto Phase 2 evaluation tooling.
+
+Examples
+--------
+  # Full audit of one palette as JSON/YAML/text + self-contained HTML/SVG
+  grotto palette themes/fixtures/eval-night-full.yaml --out out/
+
+  # Cross-variant stability report for a day/evening/night trio
+  grotto stability themes/fixtures/eval-day.yaml \
+      themes/fixtures/eval-evening.yaml themes/fixtures/eval-night.yaml --out out/
+
+The CLI loads spec/roles.yaml, spec/distance-matrix.yaml and
+spec/environments.yaml from the repo root (override with --roles / --distances
+/ --environments).  All inputs may be evaluation fixtures or reference themes;
+none are treated as candidate palettes.
+"""
+
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+from .environments import Environments
+from .report import palette_report_dict, write_report, to_json
+from .render import palette_html_report, palette_svg_strip, stability_html_report
+from .spec import DistanceSpec, Palette, RoleSpec, load
+from .stability import DEFAULT_MAX_HUE_DRIFT, cross_variant_report
+
+
+def _load_specs(args) -> tuple[RoleSpec, DistanceSpec, Environments]:
+    roles = RoleSpec.load(args.roles)
+    dists = DistanceSpec.load(args.distances, roles)
+    env = Environments.load(args.environments)
+    return roles, dists, env
+
+
+def _stem(path: str) -> str:
+    return Path(path).stem
+
+
+def cmd_palette(args) -> int:
+    roles, dists, env = _load_specs(args)
+    palette = load(args.palette)
+    report = palette_report_dict(palette, roles, dists, env, display=args.display)
+    out = Path(args.out)
+    stem = _stem(args.palette)
+    paths = write_report(report, out, f"{stem}.report")
+    # visual
+    html = palette_html_report(palette, roles, dists, env)
+    svg = palette_svg_strip(palette, roles)
+    html_path = out / f"{stem}.html"
+    svg_path = out / f"{stem}.svg"
+    out.mkdir(parents=True, exist_ok=True)
+    html_path.write_text(html, encoding="utf-8")
+    svg_path.write_text(svg, encoding="utf-8")
+    print(f"[palette] {palette.name} ({palette.variant})")
+    print(f"  colors audited : {len(palette)}")
+    print(f"  distance check : {report['distance_matrix']['n_errors']} error(s), "
+          f"{report['distance_matrix']['n_warnings']} warning(s)")
+    if report.get("spectral") and "melanopic_ratio" in report.get("spectral", {}):
+        print(f"  mel ratio      : {report['spectral']['melanopic_ratio']:.3f} "
+              f"({args.display}, nominal, exploratory)")
+    for kind, p in paths.items():
+        print(f"  report {kind:5s}: {p}")
+    print(f"  html           : {html_path}")
+    print(f"  svg            : {svg_path}")
+    return 0
+
+
+def cmd_stability(args) -> int:
+    roles, dists, env = _load_specs(args)
+    variants: dict[str, Palette] = {}
+    for vp in args.variants:
+        pal = load(vp)
+        if pal.variant not in variants:
+            variants[pal.variant] = pal
+        else:
+            # allow explicit ordering by filename if variant names collide
+            variants[_stem(vp)] = pal
+    report = cross_variant_report(
+        variants, roles, max_hue_drift_deg=args.max_hue_drift
+    )
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    json_path = out / "stability.report.json"
+    html_path = out / "stability.html"
+    json_path.write_text(to_json(report.to_dict()), encoding="utf-8")
+    html_path.write_text(stability_html_report(report, roles), encoding="utf-8")
+    print(f"[stability] variants: {', '.join(report.variants)}")
+    print(f"  status               : {'PASS' if report.ok else 'ATTENTION'}")
+    print(f"  drift violations     : {len(report.drift_violations)} "
+          f"(threshold {report.max_hue_drift_threshold:.0f} deg)")
+    print(f"  hue-order inversions : {len(report.hue_order_inversions)}")
+    print(f"  chroma-rank inversions: {len(report.chroma_rank_inversions)}")
+    print(f"  report json          : {json_path}")
+    print(f"  html                 : {html_path}")
+    return 0
+
+
+def cmd_specimens(args) -> int:
+    from . import specimens as S
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    for lang in S.REQUIRED_LANGUAGES:
+        sp = S.specimen(lang)
+        (out / sp.filename).write_text(sp.plaintext(), encoding="utf-8")
+        print(f"[specimen] {sp.filename} ({sp.label}, {sp.line_count()} lines)")
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    ap = argparse.ArgumentParser(prog="grotto", description="grotto Phase 2 evaluation tooling")
+    ap.add_argument("--roles", default="spec/roles.yaml")
+    ap.add_argument("--distances", default="spec/distance-matrix.yaml")
+    ap.add_argument("--environments", default="spec/environments.yaml")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+
+    p_pal = sub.add_parser("palette", help="audit one palette (JSON/YAML/text + HTML/SVG)")
+    p_pal.add_argument("palette")
+    p_pal.add_argument("--out", default="out")
+    p_pal.add_argument("--display", default="led-lcd", choices=("led-lcd", "oled"))
+    p_pal.set_defaults(func=cmd_palette)
+
+    p_stab = sub.add_parser("stability", help="cross-variant stability for a variant trio")
+    p_stab.add_argument("variants", nargs="+", help="day/evening/night palette files")
+    p_stab.add_argument("--out", default="out")
+    p_stab.add_argument("--max-hue-drift", type=float, default=DEFAULT_MAX_HUE_DRIFT)
+    p_stab.set_defaults(func=cmd_stability)
+
+    p_sp = sub.add_parser("specimens", help="write plaintext code specimens")
+    p_sp.add_argument("--out", default="out/specimens")
+    p_sp.set_defaults(func=cmd_specimens)
+
+    return ap
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = build_parser()
+    args = ap.parse_args(argv)
+    return args.func(args)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

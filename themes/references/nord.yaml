@@ -1,0 +1,66 @@
+name: nord
+variant: dark
+source_url: https://raw.githubusercontent.com/nordtheme/nord/develop/src/nord.css
+fetched_note: >
+  Palette from src/nord.css (`--nord0`..`--nord15` CSS custom properties) on the
+  default `develop` branch. Each color's documented usage (copied from the CSS
+  doc-comments) drives the role mapping below. Nord is a single 16-color palette
+  used for both the light and dark shadings of its ports; this file records the
+  dark shading (nord0..nord2 as backgrounds, nord4..nord6 as foregrounds).
+
+# raw named palette exactly as nord.css defines it
+palette:
+    nord0: '#2e3440'   # Polar Night base
+    nord1: '#3b4252'   # Polar Night
+    nord2: '#434c5e'   # Polar Night
+    nord3: '#4c566a'   # Polar Night
+    nord4: '#d8dee9'   # Snow Storm
+    nord5: '#e5e9f0'   # Snow Storm
+    nord6: '#eceff4'   # Snow Storm
+    nord7: '#8fbcbb'   # Frost
+    nord8: '#88c0d0'   # Frost (accent)
+    nord9: '#81a1c1'   # Frost
+    nord10: '#5e81ac'  # Frost
+    nord11: '#bf616a'  # Aurora (red)
+    nord12: '#d08770'  # Aurora (orange)
+    nord13: '#ebcb8b'  # Aurora (yellow)
+    nord14: '#a3be8c'  # Aurora (green)
+    nord15: '#b48ead'  # Aurora (purple)
+
+# roles mapped from nord.css documented usage comments:
+#   nord0 -> texts/backgrounds/carets/structuring chars
+#   nord1 -> lighter background (status bars)
+#   nord2 -> line highlighting; UI selection/highlight
+#   nord3 -> comments, invisibles, indent/wrap guides
+#   nord4 -> text, variables, constants, attributes
+#   nord6 -> punctuations, carets, structuring chars
+#   nord7 -> classes, types, documentation tags
+#   nord8 -> accent; primary UI; methods/functions
+#   nord9 -> keywords, operators, tags, units, punctuation
+#   nord10 -> doctypes, import/include/require, preprocessor, at-rules
+#   nord11 -> errors, git/diff deletion, linter
+#   nord12 -> annotations
+#   nord13 -> escape chars, regex, markup entities; warnings; diff renames
+#   nord14 -> strings, attribute values; git/diff additions; success
+#   nord15 -> numbers
+roles:
+    bg: '#2e3440'           # nord0
+    bg_elevated: '#3b4252'  # nord1  (lighter background for status bars/panels)
+    fg: '#d8dee9'           # nord4  (main text/variables/constants/attributes)
+    fg_secondary: null      # nord4 is the sole foreground; no distinct secondary fg documented
+    comment: '#4c566a'      # nord3
+    punctuation: '#eceff4'  # nord6  (punctuations/structuring chars)
+    selection: '#434c5e'    # nord2  (UI selection/highlight)
+    keyword: '#81a1c1'      # nord9  (keywords/operators/tags)
+    string: '#a3be8c'       # nord14 (strings/attribute values)
+    number: '#b48ead'       # nord15 (numbers)
+    constant: '#d8dee9'     # nord4  (constants/attributes documented under nord4)
+    type: '#8fbcbb'         # nord7  (classes/types/doc tags)
+    function: '#88c0d0'     # nord8  (methods/functions; accent)
+    builtin: null           # no distinct builtin documented (functions covered by nord8)
+    error: '#bf616a'        # nord11
+    warning: '#ebcb8b'      # nord13 (warnings)
+    info: null              # no 'info' usage documented in the palette spec
+    success: '#a3be8c'      # nord14 (success visualizations; same as string)
+    diff_added: '#a3be8c'   # nord14 (git/diff additions)
+    diff_removed: '#bf616a' # nord11 (git/diff deletion)

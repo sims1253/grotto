@@ -1,0 +1,146 @@
+# Grotto
+
+A perceptually engineered, *adaptive* coding colour system. Grotto does not ship
+a finished theme yet. It ships **a stated, measured, falsifiable design system**
+together with the evaluation tooling that holds the system to its own rules.
+
+> No palette is finalised here. `DESIGN.md` is the Phase 1 specification; this
+> repository currently contains the Phase 1 spec plus the **Phase 2 evaluation
+> tooling**. Final candidate palettes are later work, and every palette in this
+> repo is explicitly labelled a non-candidate (evaluation fixture or reference).
+
+The honest framing, the evidence base, and the challenges to the original brief
+live in [`DESIGN.md`](DESIGN.md) and [`RESEARCH.md`](RESEARCH.md). Read those
+first: several of the project's most important conclusions are *negative* (the
+review found no evidence selecting one syntax palette over another; "blue
+light" is an underspecified control variable; coverage fraction alone does not
+determine emitted light in dark themes).
+
+## What is here
+
+```
+spec/roles.yaml            L1  semantics     -- what each role MEANS (no colour)
+spec/distance-matrix.yaml  L1  constraints   -- which distinctions are obligatory
+spec/environments.yaml     L2  parameters    -- contrast bands, backgrounds, stability
+themes/references/*.yaml        reference themes (Nord, Solarized, ...), hex, non-candidate
+themes/fixtures/*.yaml          evaluation fixtures, OKLCH-first, non-candidate
+src/grotto/                     implementation + evaluation tooling
+tests/                          cross-validated test suite
+out/                            generated reports (reproducible)
+```
+
+The evaluation tooling depends only on L1/L2 and never reaches into editor
+bindings. No layer reaches downward: L1 has no hex values; the tooling has no
+editor scope names.
+
+## Install
+
+```bash
+uv sync                 # creates the venv and installs grotto + deps (coloraide, numpy, pyyaml)
+uv run pytest           # run the suite
+```
+
+`grotto` is also installed as a console script (`uv run grotto ...`).
+
+## CLI
+
+All commands read `spec/roles.yaml`, `spec/distance-matrix.yaml` and
+`spec/environments.yaml` from the repo root (override with `--roles` /
+`--distances` / `--environments`). Inputs may be fixtures or reference themes;
+none are treated as candidate palettes.
+
+```bash
+# Audit one palette: JSON + YAML + text report, plus a self-contained HTML
+# page (swatches, contrast, distance-matrix, CVD, spectral, CVD-toggleable
+# specimens) and an SVG swatch strip.
+uv run grotto palette themes/fixtures/eval-night-full.yaml --out out/fixture-night
+
+# Cross-variant stability for a day/evening/night trio (DESIGN.md D-5).
+uv run grotto stability themes/fixtures/eval-day.yaml \
+    themes/fixtures/eval-evening.yaml themes/fixtures/eval-night.yaml --out out/fixture-trio
+
+# Write the plaintext code specimens (Python, Rust, TS, shell, JSON, YAML, Markdown, R).
+uv run grotto specimens --out out/specimens
+
+# A reference theme works too (editor 'variant: dark' is accepted):
+uv run grotto palette themes/references/nord.yaml --out out/nord
+```
+
+Reports are **reproducible**: identical inputs produce byte-identical output
+(no wall-clock timestamp); a content hash of the inputs is embedded for
+provenance.
+
+## Python API
+
+```python
+from grotto.spec import RoleSpec, DistanceSpec, load, audit_palette, check
+from grotto.environments import Environments
+from grotto.contrast import contrast_report       # WCAG 2.x, APCA Lc, OKLab dL
+from grotto.distance import delta_e_ok, breakdown # dE_OK + per-channel breakdown
+from grotto.cvd import simulate, check_pair       # Brettel dichromacy / Machado anomaly
+from grotto.spectral import melanopic, screen_melanopic  # nominal-display, exploratory
+from grotto.stability import cross_variant_report # cross-variant semantic reporting
+from grotto.report import palette_report_dict, to_json
+from grotto.render import palette_html_report, palette_svg_strip
+
+roles  = RoleSpec.load("spec/roles.yaml")
+dists  = DistanceSpec.load("spec/distance-matrix.yaml", roles)
+env    = Environments.load("spec/environments.yaml")
+pal    = load("themes/fixtures/eval-night-full.yaml")   # OKLCH-first or hex
+
+audit_palette(pal, roles)        # per-role OKLCH/OKLab/hex + sRGB & P3 gamut status
+check(pal, roles, dists)         # distance-matrix + CVD violations
+contrast_report(pal["fg"], pal.bg)
+cross_variant_report({"day": p_day, "night": p_night}, roles)
+```
+
+## The metrics and their limits
+
+Grotto reports several metrics *together* and treats disagreement as signal.
+
+| Metric | Module | Status / caveat |
+|---|---|---|
+| OKLCH / OKLab / sRGB hex | `color` | auditable from published matrices; cross-validated against `coloraide`. OKLab is not hue-linear in the blue/purple sector (R-8). |
+| sRGB & Display-P3 gamut status + mapping | `color` | excursion reported explicitly; chroma lost to mapping is recorded, never silently clipped (DESIGN.md §5). |
+| WCAG 2.x ratio | `contrast` | current W3C Recommendation and the compliance claim. Its equation is polarity-independent and does not model font rendering (R-11). |
+| APCA Lc | `contrast` | **Independent work in progress, not a W3C Recommendation or current WCAG criterion.** Used only as an experimental design signal. |
+| OKLab ΔL | `contrast` | cheap, polarity-aware ordering check. |
+| dE_OK + channel breakdown | `distance` | Euclidean OKLab; decomposed into lightness/chroma/hue. Lightness is often a more robust redundant cue, but no channel guarantees CVD separation. |
+| CVD simulation (protan/deutan/tritan) | `cvd` | dichromacy via Brettel 1997, anomaly via Machado 2009, tritan always Brettel. **Population-average dichromat models** — they detect collapse, they do not reproduce an individual's experience (R-9). |
+| Cross-variant stability | `stability` | hue drift, family/hue ordering, salience rank, chroma rank. Cross-variant dE is informational **only** (Day↔Night inverts lightness by design). |
+| Melanopic, area-weighted | `spectral` | **exploratory, nominal-display, within-model ranking only.** An sRGB triple does not determine a spectral power distribution; this never claims actual retinal exposure (R-4, R-5). |
+
+D-3 is enforced at load time: every role with `cvd_priority: critical` must
+declare a `redundant_channels` entry, because **hue is never the sole carrier of
+critical meaning.** The loader rejects a spec that violates this.
+
+## Canonical inputs are perceptual-space-first
+
+Fixtures and (future) candidates are authored in **OKLCH**; hex is the
+serialised form. The loader gamut-maps each coordinate to sRGB and records any
+chroma lost, so a colour the display cannot make is surfaced as a design bug,
+not a rounding detail.
+
+```yaml
+# themes/fixtures/eval-night-full.yaml  (NON-candidate fixture)
+format: oklch
+candidate: false
+colors:
+  bg:    {L: 0.205, C: 0.007, h: 70}
+  focus: {L: 0.720, C: 0.190, h: 245}   # deliberately past sRGB -> gamut-mapped
+```
+
+## Status
+
+Phases implemented: **Phase 1** (specification, `DESIGN.md` / `RESEARCH.md` /
+`spec/`) and **Phase 2** (evaluation tooling: colour/contrast/distance/CVD/
+spectral metrics, palette loading/validation, cross-variant reporting,
+specimens, reproducible reports and self-contained visual render, tests).
+
+Not done here: the environment transform (`model.py`, Phase 4), final candidate
+palettes (Phase 5), and human evaluation (Phase 7). Reference themes are inputs
+only; no conclusions are drawn about them here (that is Phase 3 work).
+
+## License
+
+See [LICENSE](LICENSE).

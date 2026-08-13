@@ -1,0 +1,8 @@
+{
+  "service": "rolling",
+  "version": 3,
+  "decay": 0.92,
+  "enabled": true,
+  "samples": [1, 2, 3],
+  "notes": "Exponentially-smoothed mean."
+}

@@ -1,0 +1,1834 @@
+schema: grotto.palette-report
+schema_version: phase2
+palette:
+  name: grotto-eval-fixture-night-full
+  variant: night
+  source: oklch
+  is_candidate: false
+  note: 'EVALUATION FIXTURE ONLY. NOT A CANDIDATE PALETTE. Round-number OKLCH placeholders covering the
+    full role set; chosen to exercise every metric, not to look good or satisfy the distance matrix.
+
+    '
+  n_roles: 40
+provenance:
+  input_hash: ef64e4f80b0d5cae
+  roles_spec_version: 1
+  distance_spec_version: 1
+  environments_version: 1
+  missing_spec_roles: []
+colors:
+  bg:
+    role: bg
+    hex: '#191714'
+    oklch:
+      L: 0.205
+      C: 0.007
+      h: 70.0
+    oklab:
+      L: 0.205
+      a: 0.002394
+      b: 0.006578
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  bg_elevated:
+    role: bg_elevated
+    hex: '#211e1b'
+    oklch:
+      L: 0.238
+      C: 0.008
+      h: 70.0
+    oklab:
+      L: 0.238
+      a: 0.002736
+      b: 0.007518
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  bg_overlay:
+    role: bg_overlay
+    hex: '#282521'
+    oklch:
+      L: 0.265
+      C: 0.009
+      h: 70.0
+    oklab:
+      L: 0.265
+      a: 0.003078
+      b: 0.008457
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  fg:
+    role: fg
+    hex: '#d3d1ca'
+    oklch:
+      L: 0.86
+      C: 0.01
+      h: 90.0
+    oklab:
+      L: 0.86
+      a: 0.0
+      b: 0.01
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  fg_secondary:
+    role: fg_secondary
+    hex: '#a19e98'
+    oklch:
+      L: 0.7
+      C: 0.01
+      h: 90.0
+    oklab:
+      L: 0.7
+      a: 0.0
+      b: 0.01
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  fg_muted:
+    role: fg_muted
+    hex: '#65635d'
+    oklch:
+      L: 0.5
+      C: 0.01
+      h: 90.0
+    oklab:
+      L: 0.5
+      a: 0.0
+      b: 0.01
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  comment:
+    role: comment
+    hex: '#887e74'
+    oklch:
+      L: 0.6
+      C: 0.02
+      h: 70.0
+    oklab:
+      L: 0.6
+      a: 0.00684
+      b: 0.018794
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  docstring:
+    role: docstring
+    hex: '#ab9c8b'
+    oklch:
+      L: 0.7
+      C: 0.03
+      h: 70.0
+    oklab:
+      L: 0.7
+      a: 0.010261
+      b: 0.028191
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  punctuation:
+    role: punctuation
+    hex: '#a4a4a4'
+    oklch:
+      L: 0.72
+      C: 0.0
+      h: 0.0
+    oklab:
+      L: 0.72
+      a: 0.0
+      b: 0.0
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  operator:
+    role: operator
+    hex: '#c4c4c4'
+    oklch:
+      L: 0.82
+      C: 0.0
+      h: 0.0
+    oklab:
+      L: 0.82
+      a: 0.0
+      b: 0.0
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  line_number:
+    role: line_number
+    hex: '#555555'
+    oklch:
+      L: 0.45
+      C: 0.0
+      h: 0.0
+    oklab:
+      L: 0.45
+      a: 0.0
+      b: 0.0
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  line_number_active:
+    role: line_number_active
+    hex: '#aeaeae'
+    oklch:
+      L: 0.75
+      C: 0.0
+      h: 0.0
+    oklab:
+      L: 0.75
+      a: 0.0
+      b: 0.0
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  ui_inactive:
+    role: ui_inactive
+    hex: '#3a3a3a'
+    oklch:
+      L: 0.35
+      C: 0.0
+      h: 0.0
+    oklab:
+      L: 0.35
+      a: 0.0
+      b: 0.0
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  active_line:
+    role: active_line
+    hex: '#211d19'
+    oklch:
+      L: 0.235
+      C: 0.01
+      h: 70.0
+    oklab:
+      L: 0.235
+      a: 0.00342
+      b: 0.009397
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  selection:
+    role: selection
+    hex: '#2a4b66'
+    oklch:
+      L: 0.4
+      C: 0.06
+      h: 245.0
+    oklab:
+      L: 0.4
+      a: -0.025357
+      b: -0.054378
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  focus:
+    role: focus
+    hex: '#3bacff'
+    oklch:
+      L: 0.72
+      C: 0.19
+      h: 245.0
+    oklab:
+      L: 0.72
+      a: -0.080297
+      b: -0.172198
+    gamut:
+      in_srgb: false
+      in_p3: false
+      srgb_excursion: 0.192637
+      p3_excursion: 0.043112
+    chroma_lost: 0.033712
+    source: oklch
+  keyword:
+    role: keyword
+    hex: '#aa8dde'
+    oklch:
+      L: 0.7
+      C: 0.12
+      h: 300.0
+    oklab:
+      L: 0.7
+      a: 0.06
+      b: -0.103923
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  string:
+    role: string
+    hex: '#93c794'
+    oklch:
+      L: 0.78
+      C: 0.09
+      h: 145.0
+    oklab:
+      L: 0.78
+      a: -0.073724
+      b: 0.051622
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  number:
+    role: number
+    hex: '#d6b174'
+    oklch:
+      L: 0.78
+      C: 0.09
+      h: 80.0
+    oklab:
+      L: 0.78
+      a: 0.015628
+      b: 0.088633
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  constant:
+    role: constant
+    hex: '#ceab72'
+    oklch:
+      L: 0.76
+      C: 0.085
+      h: 80.0
+    oklab:
+      L: 0.76
+      a: 0.01476
+      b: 0.083709
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  type:
+    role: type
+    hex: '#76c8c7'
+    oklch:
+      L: 0.78
+      C: 0.08
+      h: 195.0
+    oklab:
+      L: 0.78
+      a: -0.077274
+      b: -0.020706
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  function:
+    role: function
+    hex: '#8cc4f4'
+    oklch:
+      L: 0.8
+      C: 0.09
+      h: 245.0
+    oklab:
+      L: 0.8
+      a: -0.038036
+      b: -0.081568
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  parameter:
+    role: parameter
+    hex: '#cdcac3'
+    oklch:
+      L: 0.84
+      C: 0.01
+      h: 90.0
+    oklab:
+      L: 0.84
+      a: 0.0
+      b: 0.01
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  property:
+    role: property
+    hex: '#bcc5cd'
+    oklch:
+      L: 0.82
+      C: 0.015
+      h: 245.0
+    oklab:
+      L: 0.82
+      a: -0.006339
+      b: -0.013595
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  builtin:
+    role: builtin
+    hex: '#ce9d98'
+    oklch:
+      L: 0.74
+      C: 0.06
+      h: 25.0
+    oklab:
+      L: 0.74
+      a: 0.054378
+      b: 0.025357
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  decorator:
+    role: decorator
+    hex: '#c9ad7e'
+    oklch:
+      L: 0.76
+      C: 0.07
+      h: 80.0
+    oklab:
+      L: 0.76
+      a: 0.012155
+      b: 0.068937
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  namespace:
+    role: namespace
+    hex: '#83bdbd'
+    oklch:
+      L: 0.76
+      C: 0.06
+      h: 195.0
+    oklab:
+      L: 0.76
+      a: -0.057956
+      b: -0.015529
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  tag:
+    role: tag
+    hex: '#98bcdc'
+    oklch:
+      L: 0.78
+      C: 0.06
+      h: 245.0
+    oklab:
+      L: 0.78
+      a: -0.025357
+      b: -0.054378
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  error:
+    role: error
+    hex: '#e3645e'
+    oklch:
+      L: 0.66
+      C: 0.16
+      h: 25.0
+    oklab:
+      L: 0.66
+      a: 0.145009
+      b: 0.067619
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  warning:
+    role: warning
+    hex: '#f0b135'
+    oklch:
+      L: 0.8
+      C: 0.15
+      h: 80.0
+    oklab:
+      L: 0.8
+      a: 0.026047
+      b: 0.147721
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  info:
+    role: info
+    hex: '#86beee'
+    oklch:
+      L: 0.78
+      C: 0.09
+      h: 245.0
+    oklab:
+      L: 0.78
+      a: -0.038036
+      b: -0.081568
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  success:
+    role: success
+    hex: '#84c485'
+    oklch:
+      L: 0.76
+      C: 0.11
+      h: 145.0
+    oklab:
+      L: 0.76
+      a: -0.090107
+      b: 0.063093
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  diff_added:
+    role: diff_added
+    hex: '#213321'
+    oklch:
+      L: 0.3
+      C: 0.04
+      h: 145.0
+    oklab:
+      L: 0.3
+      a: -0.032766
+      b: 0.022943
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  diff_removed:
+    role: diff_removed
+    hex: '#402624'
+    oklch:
+      L: 0.3
+      C: 0.04
+      h: 25.0
+    oklab:
+      L: 0.3
+      a: 0.036252
+      b: 0.016905
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  diff_changed:
+    role: diff_changed
+    hex: '#382c15'
+    oklch:
+      L: 0.3
+      C: 0.04
+      h: 80.0
+    oklab:
+      L: 0.3
+      a: 0.006946
+      b: 0.039392
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  search_match:
+    role: search_match
+    hex: '#75603b'
+    oklch:
+      L: 0.5
+      C: 0.06
+      h: 80.0
+    oklab:
+      L: 0.5
+      a: 0.010419
+      b: 0.059088
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  search_match_current:
+    role: search_match_current
+    hex: '#c5953b'
+    oklch:
+      L: 0.7
+      C: 0.12
+      h: 80.0
+    oklab:
+      L: 0.7
+      a: 0.020838
+      b: 0.118177
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  breakpoint:
+    role: breakpoint
+    hex: '#e3645e'
+    oklch:
+      L: 0.66
+      C: 0.16
+      h: 25.0
+    oklab:
+      L: 0.66
+      a: 0.145009
+      b: 0.067619
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  debug_current:
+    role: debug_current
+    hex: '#6c5019'
+    oklch:
+      L: 0.45
+      C: 0.08
+      h: 80.0
+    oklab:
+      L: 0.45
+      a: 0.013892
+      b: 0.078785
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+  deprecated:
+    role: deprecated
+    hex: '#808080'
+    oklch:
+      L: 0.6
+      C: 0.0
+      h: 0.0
+    oklab:
+      L: 0.6
+      a: 0.0
+      b: 0.0
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: oklch
+contrast_vs_bg:
+  bg_elevated:
+    target_band: minimal
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.0785
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: 0.0
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.031498
+  bg_overlay:
+    target_band: low
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.1728
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: 0.0
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.060511
+  fg:
+    target_band: comfortable
+    measured_band: high
+    band_match: false
+    wcag_ratio: 11.706
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -77.5963
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.654516
+  fg_secondary:
+    target_band: low
+    measured_band: low
+    band_match: true
+    wcag_ratio: 6.6947
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -48.8838
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.49421
+  fg_muted:
+    target_band: minimal
+    measured_band: minimal
+    band_match: true
+    wcag_ratio: 2.978
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: -20.7433
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.293824
+  comment:
+    target_band: low
+    measured_band: null
+    band_match: false
+    wcag_ratio: 4.5003
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -33.5102
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.393293
+  docstring:
+    target_band: comfortable
+    measured_band: low
+    band_match: false
+    wcag_ratio: 6.6949
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -48.8972
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.495237
+  punctuation:
+    target_band: low
+    measured_band: low
+    band_match: true
+    wcag_ratio: 7.1761
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -51.9544
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.512922
+  operator:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 10.2558
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -69.9082
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.614536
+  line_number:
+    target_band: minimal
+    measured_band: null
+    band_match: false
+    wcag_ratio: 2.3994
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: -15.0749
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.243751
+  line_number_active:
+    target_band: comfortable
+    measured_band: null
+    band_match: false
+    wcag_ratio: 8.0625
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -57.3966
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.545042
+  ui_inactive:
+    target_band: minimal
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.5726
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: 0.0
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.142677
+  active_line:
+    target_band: minimal
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.0685
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: 0.0
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.02807
+  parameter:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 10.9303
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -73.5346
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.633638
+  property:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 10.2269
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -69.7532
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.613083
+  deprecated:
+    target_band: low
+    measured_band: null
+    band_match: false
+    wcag_ratio: 4.5292
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -33.7236
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.394088
+  keyword:
+    target_band: comfortable
+    measured_band: low
+    band_match: false
+    wcag_ratio: 6.4514
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -47.4016
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.495182
+  string:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 9.2314
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -64.2921
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.57399
+  number:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 8.8589
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -62.1655
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.573824
+  constant:
+    target_band: comfortable
+    measured_band: null
+    band_match: false
+    wcag_ratio: 8.256
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -58.6297
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.553699
+  type:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 9.2477
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -64.4597
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.574629
+  function:
+    target_band: high
+    measured_band: comfortable
+    band_match: false
+    wcag_ratio: 9.6401
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -66.6204
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.593513
+  builtin:
+    target_band: comfortable
+    measured_band: low
+    band_match: false
+    wcag_ratio: 7.5814
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -54.5512
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.534609
+  decorator:
+    target_band: comfortable
+    measured_band: null
+    band_match: false
+    wcag_ratio: 8.3154
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -58.9556
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.55507
+  namespace:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 8.5
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -60.0751
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.552902
+  tag:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 8.9965
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -62.9201
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.574161
+  error:
+    target_band: high
+    measured_band: low
+    band_match: false
+    wcag_ratio: 5.3243
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -40.2765
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.453329
+  warning:
+    target_band: high
+    measured_band: comfortable
+    band_match: false
+    wcag_ratio: 9.4083
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -65.473
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.593644
+  info:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 9.0406
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -63.2372
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.574879
+  success:
+    target_band: comfortable
+    measured_band: comfortable
+    band_match: true
+    wcag_ratio: 8.7017
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -61.2932
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.554988
+  diff_added:
+    target_band: minimal
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.3289
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: 0.0
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.093713
+  diff_removed:
+    target_band: minimal
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.2953
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: 0.0
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.095176
+  diff_changed:
+    target_band: minimal
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.3111
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: 0.0
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.094841
+  search_match:
+    target_band: low
+    measured_band: minimal
+    band_match: false
+    wcag_ratio: 2.975
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: -20.7821
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.294953
+  search_match_current:
+    target_band: comfortable
+    measured_band: low
+    band_match: false
+    wcag_ratio: 6.5896
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -48.3889
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.493318
+  selection:
+    target_band: low
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.9563
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: -10.3559
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.194341
+  focus:
+    target_band: high
+    measured_band: low
+    band_match: false
+    wcag_ratio: 7.2666
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -52.9835
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.51345
+  breakpoint:
+    target_band: high
+    measured_band: low
+    band_match: false
+    wcag_ratio: 5.3243
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -40.2765
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.453329
+  debug_current:
+    target_band: low
+    measured_band: null
+    band_match: false
+    wcag_ratio: 2.3843
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: -15.0748
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.244425
+distance_matrix:
+  thresholds:
+    must_distinguish:
+      normal_vision: 0.13
+      cvd_dichromat: 0.09
+      note: 'The CVD floor is lower than the normal-vision floor because we accept that a dichromat sees
+        a *reduced* difference; we only require that the difference does not vanish.  Pairs that cannot
+        meet this must carry a redundant channel, declared in roles.yaml.
+
+        '
+    should_distinguish:
+      normal_vision: 0.08
+      cvd_dichromat: null
+    same_family:
+      max_distance: 0.14
+      min_distance: 0.03
+    differentiated_by:
+      max_distance: 0.05
+      requires_channel: true
+  violations:
+  - severity: error
+    constraint: must_distinguish(error, builtin)
+    condition: normal
+    measured_de: 0.129233
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, string)
+    condition: protan@1.0
+    measured_de: 0.088691
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(warning, number)
+    condition: normal
+    measured_de: 0.063438
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, number)
+    condition: protan@1.0
+    measured_de: 0.058318
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, number)
+    condition: deutan@1.0
+    measured_de: 0.066247
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, number)
+    condition: tritan@1.0
+    measured_de: 0.044609
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(warning, constant)
+    condition: normal
+    measured_de: 0.076349
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, constant)
+    condition: protan@1.0
+    measured_de: 0.067727
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, constant)
+    condition: deutan@1.0
+    measured_de: 0.078376
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, constant)
+    condition: tritan@1.0
+    measured_de: 0.058696
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(warning, decorator)
+    condition: normal
+    measured_de: 0.088209
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, decorator)
+    condition: protan@1.0
+    measured_de: 0.078947
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, decorator)
+    condition: tritan@1.0
+    measured_de: 0.066772
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(diff_added, diff_removed)
+    condition: normal
+    measured_de: 0.069013
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(diff_added, diff_removed)
+    condition: protan@1.0
+    measured_de: 0.033021
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(diff_added, diff_removed)
+    condition: deutan@1.0
+    measured_de: 0.004007
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(diff_added, diff_removed)
+    condition: tritan@1.0
+    measured_de: 0.056546
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(diff_added, diff_changed)
+    condition: normal
+    measured_de: 0.0414
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(diff_added, diff_changed)
+    condition: protan@1.0
+    measured_de: 0.019489
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(diff_added, diff_changed)
+    condition: deutan@1.0
+    measured_de: 0.021295
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(diff_added, diff_changed)
+    condition: tritan@1.0
+    measured_de: 0.041069
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(diff_removed, diff_changed)
+    condition: normal
+    measured_de: 0.038929
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(diff_removed, diff_changed)
+    condition: protan@1.0
+    measured_de: 0.031565
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(diff_removed, diff_changed)
+    condition: deutan@1.0
+    measured_de: 0.02114
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(diff_removed, diff_changed)
+    condition: tritan@1.0
+    measured_de: 0.015729
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(selection, diff_added)
+    condition: normal
+    measured_de: 0.127166
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(active_line, diff_added)
+    condition: normal
+    measured_de: 0.076248
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(active_line, diff_added)
+    condition: protan@1.0
+    measured_de: 0.083274
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(active_line, diff_added)
+    condition: deutan@1.0
+    measured_de: 0.064409
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(active_line, diff_added)
+    condition: tritan@1.0
+    measured_de: 0.071912
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(active_line, diff_removed)
+    condition: normal
+    measured_de: 0.074969
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(active_line, diff_removed)
+    condition: protan@1.0
+    measured_de: 0.05257
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(active_line, diff_removed)
+    condition: deutan@1.0
+    measured_de: 0.068357
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(active_line, diff_removed)
+    condition: tritan@1.0
+    measured_de: 0.073452
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: warning
+    constraint: should_distinguish(string, type)
+    condition: normal
+    measured_de: 0.07181
+    threshold_de: 0.08
+    has_redundant_channel: false
+  - severity: warning
+    constraint: should_distinguish(function, type)
+    condition: normal
+    measured_de: 0.075535
+    threshold_de: 0.08
+    has_redundant_channel: false
+  - severity: warning
+    constraint: should_distinguish(bg, bg_elevated)
+    condition: normal
+    measured_de: 0.031532
+    threshold_de: 0.08
+    has_redundant_channel: false
+  - severity: warning
+    constraint: should_distinguish(bg_elevated, bg_overlay)
+    condition: normal
+    measured_de: 0.029059
+    threshold_de: 0.08
+    has_redundant_channel: false
+  - severity: warning
+    constraint: same_family(number, constant)
+    condition: lower
+    measured_de: 0.020692
+    threshold_de: 0.03
+    has_redundant_channel: false
+  - severity: warning
+    constraint: same_family(number, decorator)
+    condition: lower
+    measured_de: 0.026767
+    threshold_de: 0.03
+    has_redundant_channel: false
+  - severity: warning
+    constraint: same_family(type, namespace)
+    condition: lower
+    measured_de: 0.029863
+    threshold_de: 0.03
+    has_redundant_channel: false
+  - severity: warning
+    constraint: same_family(diff_added, success)
+    condition: upper
+    measured_de: 0.466645
+    threshold_de: 0.14
+    has_redundant_channel: true
+  - severity: warning
+    constraint: same_family(diff_removed, error)
+    condition: upper
+    measured_de: 0.377683
+    threshold_de: 0.14
+    has_redundant_channel: true
+  - severity: warning
+    constraint: same_family(warning, search_match)
+    condition: upper
+    measured_de: 0.31206
+    threshold_de: 0.14
+    has_redundant_channel: true
+  - severity: warning
+    constraint: differentiated_by(comment, docstring) via lightness
+    condition: upper
+    measured_de: 0.10251
+    threshold_de: 0.05
+    has_redundant_channel: true
+  - severity: warning
+    constraint: differentiated_by(line_number, line_number_active) via lightness
+    condition: upper
+    measured_de: 0.301291
+    threshold_de: 0.05
+    has_redundant_channel: true
+  - severity: warning
+    constraint: differentiated_by(deprecated, fg) via strikethrough
+    condition: upper
+    measured_de: 0.260612
+    threshold_de: 0.05
+    has_redundant_channel: true
+  n_errors: 10
+  n_warnings: 37
+  non_goals:
+  - claim: Every syntax role gets a unique hue.
+    reason: 'Produces rainbow highlighting, exhausts the perceptual budget, and degrades badly under CVD.
+      We use ~5 hue families for ~14 syntax roles and spend the remainder on salience.
+
+      '
+  - claim: Local variables should be coloured.
+    reason: 'Most frequent token class, least informative distinction. Colouring them means the majority
+      of chromatic pixels carry no information.
+
+      '
+  - claim: All pairwise distances should be maximised.
+    reason: 'Distance is zero-sum inside a bounded gamut. Maximising everything flattens the semantic
+      structure that the grouping above encodes.
+
+      '
+  - claim: Punctuation should match its enclosing construct.
+    reason: 'Rainbow-bracket-style coding raises the noise floor across a major area class to disambiguate
+      a structure that indentation already conveys.
+
+      '
+cvd:
+  note: dichromacy (severity 1.0) via Brettel 1997; anomaly (severity 0.6) via Machado 2009; tritan always
+    Brettel. Population-average dichromat models; they detect collapse, they do not reproduce an individual's
+    experience (RESEARCH.md R-9).
+  must_distinguish_pairs:
+  - a: error
+    b: string
+    normal_de: 0.250052
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.231232
+        anomaly_de_0.6: 0.188985
+      deutan:
+        dichromat_de_1.0: 0.118082
+        anomaly_de_0.6: 0.130169
+      tritan:
+        dichromat_de_1.0: 0.236131
+        anomaly_de_0.6: 0.238196
+  - a: error
+    b: builtin
+    normal_de: 0.129233
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.137602
+        anomaly_de_0.6: 0.119315
+      deutan:
+        dichromat_de_1.0: 0.091395
+        anomaly_de_0.6: 0.091871
+      tritan:
+        dichromat_de_1.0: 0.13196
+        anomaly_de_0.6: 0.128823
+  - a: error
+    b: keyword
+    normal_de: 0.196034
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.183017
+        anomaly_de_0.6: 0.186394
+      deutan:
+        dichromat_de_1.0: 0.181673
+        anomaly_de_0.6: 0.182421
+      tritan:
+        dichromat_de_1.0: 0.166808
+        anomaly_de_0.6: 0.163219
+  - a: error
+    b: warning
+    normal_de: 0.199646
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.220998
+        anomaly_de_0.6: 0.195724
+      deutan:
+        dichromat_de_1.0: 0.152583
+        anomaly_de_0.6: 0.164452
+      tritan:
+        dichromat_de_1.0: 0.1598
+        anomaly_de_0.6: 0.164782
+  - a: error
+    b: fg
+    normal_de: 0.254855
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.28178
+        anomaly_de_0.6: 0.255129
+      deutan:
+        dichromat_de_1.0: 0.206655
+        anomaly_de_0.6: 0.20918
+      tritan:
+        dichromat_de_1.0: 0.256914
+        anomaly_de_0.6: 0.254175
+  - a: warning
+    b: string
+    normal_de: 0.140555
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.088691
+        anomaly_de_0.6: 0.09503
+      deutan:
+        dichromat_de_1.0: 0.108561
+        anomaly_de_0.6: 0.10333
+      tritan:
+        dichromat_de_1.0: 0.136395
+        anomaly_de_0.6: 0.135356
+  - a: warning
+    b: number
+    normal_de: 0.063438
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.058318
+        anomaly_de_0.6: 0.063242
+      deutan:
+        dichromat_de_1.0: 0.066247
+        anomaly_de_0.6: 0.06364
+      tritan:
+        dichromat_de_1.0: 0.044609
+        anomaly_de_0.6: 0.043281
+  - a: warning
+    b: constant
+    normal_de: 0.076349
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.067727
+        anomaly_de_0.6: 0.073
+      deutan:
+        dichromat_de_1.0: 0.078376
+        anomaly_de_0.6: 0.078606
+      tritan:
+        dichromat_de_1.0: 0.058696
+        anomaly_de_0.6: 0.058971
+  - a: warning
+    b: decorator
+    normal_de: 0.088209
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.078947
+        anomaly_de_0.6: 0.085873
+      deutan:
+        dichromat_de_1.0: 0.090877
+        anomaly_de_0.6: 0.08901
+      tritan:
+        dichromat_de_1.0: 0.066772
+        anomaly_de_0.6: 0.065887
+  - a: error
+    b: success
+    normal_de: 0.255881
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.217943
+        anomaly_de_0.6: 0.176821
+      deutan:
+        dichromat_de_1.0: 0.09635
+        anomaly_de_0.6: 0.113503
+      tritan:
+        dichromat_de_1.0: 0.232625
+        anomaly_de_0.6: 0.237332
+  - a: diff_added
+    b: diff_removed
+    normal_de: 0.069013
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.033021
+        anomaly_de_0.6: 0.027493
+      deutan:
+        dichromat_de_1.0: 0.004007
+        anomaly_de_0.6: 0.015254
+      tritan:
+        dichromat_de_1.0: 0.056546
+        anomaly_de_0.6: 0.057292
+  - a: diff_added
+    b: diff_changed
+    normal_de: 0.0414
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.019489
+        anomaly_de_0.6: 0.018176
+      deutan:
+        dichromat_de_1.0: 0.021295
+        anomaly_de_0.6: 0.020673
+      tritan:
+        dichromat_de_1.0: 0.041069
+        anomaly_de_0.6: 0.040242
+  - a: diff_removed
+    b: diff_changed
+    normal_de: 0.038929
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.031565
+        anomaly_de_0.6: 0.030292
+      deutan:
+        dichromat_de_1.0: 0.02114
+        anomaly_de_0.6: 0.024406
+      tritan:
+        dichromat_de_1.0: 0.015729
+        anomaly_de_0.6: 0.020253
+  - a: selection
+    b: search_match
+    normal_de: 0.155405
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.136746
+        anomaly_de_0.6: 0.136678
+      deutan:
+        dichromat_de_1.0: 0.151871
+        anomaly_de_0.6: 0.15757
+      tritan:
+        dichromat_de_1.0: 0.136894
+        anomaly_de_0.6: 0.138278
+  - a: selection
+    b: search_match_current
+    normal_de: 0.348303
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.320864
+        anomaly_de_0.6: 0.320129
+      deutan:
+        dichromat_de_1.0: 0.346638
+        anomaly_de_0.6: 0.352881
+      tritan:
+        dichromat_de_1.0: 0.330897
+        anomaly_de_0.6: 0.330567
+  - a: search_match
+    b: search_match_current
+    normal_de: 0.207383
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.199053
+        anomaly_de_0.6: 0.19942
+      deutan:
+        dichromat_de_1.0: 0.208313
+        anomaly_de_0.6: 0.208256
+      tritan:
+        dichromat_de_1.0: 0.204754
+        anomaly_de_0.6: 0.203755
+  - a: selection
+    b: diff_added
+    normal_de: 0.127166
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.123412
+        anomaly_de_0.6: 0.132105
+      deutan:
+        dichromat_de_1.0: 0.127071
+        anomaly_de_0.6: 0.124295
+      tritan:
+        dichromat_de_1.0: 0.101845
+        anomaly_de_0.6: 0.107155
+  - a: selection
+    b: diff_removed
+    normal_de: 0.136726
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.138432
+        anomaly_de_0.6: 0.13844
+      deutan:
+        dichromat_de_1.0: 0.12384
+        anomaly_de_0.6: 0.12133
+      tritan:
+        dichromat_de_1.0: 0.13168
+        anomaly_de_0.6: 0.130292
+  - a: selection
+    b: active_line
+    normal_de: 0.180333
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.186092
+        anomaly_de_0.6: 0.189011
+      deutan:
+        dichromat_de_1.0: 0.178018
+        anomaly_de_0.6: 0.174915
+      tritan:
+        dichromat_de_1.0: 0.173691
+        anomaly_de_0.6: 0.173876
+  - a: active_line
+    b: diff_added
+    normal_de: 0.076248
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.083274
+        anomaly_de_0.6: 0.074468
+      deutan:
+        dichromat_de_1.0: 0.064409
+        anomaly_de_0.6: 0.065996
+      tritan:
+        dichromat_de_1.0: 0.071912
+        anomaly_de_0.6: 0.069822
+  - a: active_line
+    b: diff_removed
+    normal_de: 0.074969
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.05257
+        anomaly_de_0.6: 0.058744
+      deutan:
+        dichromat_de_1.0: 0.068357
+        anomaly_de_0.6: 0.06838
+      tritan:
+        dichromat_de_1.0: 0.073452
+        anomaly_de_0.6: 0.075198
+  - a: fg
+    b: bg
+    normal_de: 0.654527
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.655708
+        anomaly_de_0.6: 0.655708
+      deutan:
+        dichromat_de_1.0: 0.655708
+        anomaly_de_0.6: 0.655708
+      tritan:
+        dichromat_de_1.0: 0.653845
+        anomaly_de_0.6: 0.653673
+  - a: comment
+    b: bg
+    normal_de: 0.393502
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.391362
+        anomaly_de_0.6: 0.390034
+      deutan:
+        dichromat_de_1.0: 0.395399
+        anomaly_de_0.6: 0.396306
+      tritan:
+        dichromat_de_1.0: 0.391955
+        anomaly_de_0.6: 0.393229
+  - a: fg_muted
+    b: bg
+    normal_de: 0.293846
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.295028
+        anomaly_de_0.6: 0.295028
+      deutan:
+        dichromat_de_1.0: 0.295028
+        anomaly_de_0.6: 0.295028
+      tritan:
+        dichromat_de_1.0: 0.292896
+        anomaly_de_0.6: 0.29265
+  - a: error
+    b: bg
+    normal_de: 0.479382
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.377229
+        anomaly_de_0.6: 0.413214
+      deutan:
+        dichromat_de_1.0: 0.467533
+        anomaly_de_0.6: 0.465336
+      tritan:
+        dichromat_de_1.0: 0.480808
+        anomaly_de_0.6: 0.481064
+  - a: focus
+    b: bg
+    normal_de: 0.538715
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.546566
+        anomaly_de_0.6: 0.557093
+      deutan:
+        dichromat_de_1.0: 0.53757
+        anomaly_de_0.6: 0.530088
+      tritan:
+        dichromat_de_1.0: 0.523646
+        anomaly_de_0.6: 0.527246
+spectral:
+  display: led-lcd
+  coverage_kind: code
+  coverage:
+    '#191714': 0.74
+    '#211e1b': 0.08
+    '#d3d1ca': 0.07
+    '#887e74': 0.035
+    '#a4a4a4': 0.025
+    '#aa8dde': 0.012
+    '#93c794': 0.018
+    '#8cc4f4': 0.01
+    '#76c8c7': 0.006
+    '#d6b174': 0.004
+  photopic_relative: 0.091673
+  melanopic_relative: 0.090977
+  melanopic_ratio: 0.992405
+  top_melanopic_contributors:
+  - hex: '#d3d1ca'
+    share: 0.466961
+  - hex: '#a4a4a4'
+    share: 0.102014
+  - hex: '#8cc4f4'
+    share: 0.085866
+  - hex: '#93c794'
+    share: 0.076949
+  - hex: '#aa8dde'
+    share: 0.075387
+  - hex: '#887e74'
+    share: 0.071793
+  - hex: '#191714'
+    share: 0.061371
+  - hex: '#76c8c7'
+    share: 0.037632
+  caveat: Exploratory nominal-display model; within-model ranking only. An sRGB triple does not determine
+    a spectral power distribution; this never claims actual retinal exposure (RESEARCH.md R-4, R-5).

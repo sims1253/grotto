@@ -1,0 +1,88 @@
+name: solarized
+variant: dark
+source_url: https://ethanschoonover.com/solarized/
+source_url_syntax: https://raw.githubusercontent.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+fetched_note: >
+  The 16-color palette is the canonical Solarized palette from
+  ethanschoonover.com/solarized (the monotones base03..base3 + the 8 accents
+  yellow/orange/red/magenta/violet/blue/cyan/green). Hex values were read from
+  the site HTML and are identical to those defined in Ethan Schoonover's official
+  vim colorscheme (altercation/vim-colors-solarized). The canonical `green` is
+  #859900 (the site value); note the vim file ships an "experimental" #719e07
+  override that is NOT used here. Solarized's design is a single palette that
+  serves both a dark and a light mode by swapping the monotone pairs (the website
+  documents the base03:bg <-> base0:text and base02:highlight <-> base1 pairing),
+  so both role mappings are recorded below. Syntax roles (keyword=green,
+  string/number/constant=cyan, type=yellow, function=blue, ...) come from the
+  official vim colorscheme's standard group definitions.
+
+# the 16-color canonical palette + accent (verbatim)
+palette:
+    base03: '#002b36'   # monotone (darkest; dark bg)
+    base02: '#073642'   # monotone (dark bg highlight / selection)
+    base01: '#586e75'   # monotone (dark comment / optional content)
+    base00: '#657b83'   # monotone (light body text)
+    base0: '#839496'    # monotone (dark body text)
+    base1: '#93a1a1'    # monotone (dark emphasis / light comment)
+    base2: '#eee8d5'    # monotone (light bg highlight / selection)
+    base3: '#fdf6e3'    # monotone (light bg)
+    yellow: '#b58900'   # accent (Type)
+    orange: '#cb4b16'   # accent (PreProc / Title)
+    red: '#dc322f'      # accent (Error / Special / WarningMsg / DiffDelete)
+    magenta: '#d33682'  # accent (Todo)
+    violet: '#6c71c4'   # accent (Underlined / links)
+    blue: '#268bd2'     # accent (Identifier / Function / DiffText) -- primary accent
+    cyan: '#2aa198'     # accent (Constant / String / Number)
+    green: '#859900'    # accent (Statement / Keyword / DiffAdd)
+
+accent: '#268bd2'   # solarized's recommended/primary accent is blue
+
+# DARK mode roles. Syntax mapping from the official vim colorscheme standard
+# groups (Statement=green, Constant=cyan [String/Number/Character/Boolean
+# inherit Constant], Type=yellow, Identifier/Function=blue, PreProc=orange,
+# Special/Error=red, Underlined=violet, Todo=magenta, Comment=base01).
+roles:
+    bg: '#002b36'           # base03
+    bg_elevated: null       # solarized is intentionally flat; base02 (#073642) is the highlight/selection bg only
+    fg: '#839496'           # base0  (body text; website notes body text is base0, not base00)
+    fg_secondary: '#93a1a1' # base1  (emphasis text)
+    comment: '#586e75'      # base01 (Comment group)
+    punctuation: null       # no punctuation token; inherits body text (base0 #839496)
+    selection: '#073642'    # base02 (highlight background; CursorLine/Folded also use base02)
+    keyword: '#859900'      # green (Statement; Keyword/Conditional/Repeat/Operator inherit)
+    string: '#2aa198'       # cyan  (Constant -> String)
+    number: '#2aa198'       # cyan  (Constant -> Number)
+    constant: '#2aa198'     # cyan  (Constant; String/Number/Character/Boolean/Float inherit)
+    type: '#b58900'         # yellow (Type)
+    function: '#268bd2'     # blue  (Identifier -> Function)
+    builtin: null           # no distinct builtin in the core standard groups
+    error: '#dc322f'        # red   (Error / Special)
+    warning: '#dc322f'      # red   (WarningMsg; same as error in the official theme)
+    info: null              # no documented info color in the core groups
+    success: null           # no success semantic (DiffAdd uses green #859900)
+    diff_added: '#859900'   # green (DiffAdd; diffAdded -> Statement)
+    diff_removed: '#dc322f' # red   (DiffDelete)
+
+# LIGHT mode roles -- same accent mapping, monotone pair swapped (base03<->base3,
+# base02<->base2, base01<->base1, base00<->base0) as the official vim theme does.
+roles_light:
+    bg: '#fdf6e3'           # base3
+    bg_elevated: null       # flat; base2 (#eee8d5) is the highlight/selection bg only
+    fg: '#657b83'           # base00 (body text in light mode)
+    fg_secondary: '#586e75' # base01 (emphasis)
+    comment: '#93a1a1'      # base1  (Comment)
+    punctuation: null       # inherits body text (base00 #657b83)
+    selection: '#eee8d5'    # base2
+    keyword: '#859900'      # green
+    string: '#2aa198'       # cyan
+    number: '#2aa198'       # cyan
+    constant: '#2aa198'     # cyan
+    type: '#b58900'         # yellow
+    function: '#268bd2'     # blue
+    builtin: null
+    error: '#dc322f'        # red
+    warning: '#dc322f'      # red (WarningMsg)
+    info: null
+    success: null
+    diff_added: '#859900'   # green
+    diff_removed: '#dc322f' # red

@@ -1,0 +1,844 @@
+schema: grotto.palette-report
+schema_version: phase2
+palette:
+  name: nord
+  variant: dark
+  source: hex
+  is_candidate: false
+  note: ''
+  n_roles: 17
+provenance:
+  input_hash: 21bf160ad6cb1efe
+  roles_spec_version: 1
+  distance_spec_version: 1
+  environments_version: 1
+  missing_spec_roles:
+  - active_line
+  - bg_overlay
+  - breakpoint
+  - builtin
+  - debug_current
+  - decorator
+  - deprecated
+  - diff_changed
+  - docstring
+  - fg_muted
+  - fg_secondary
+  - focus
+  - info
+  - line_number
+  - line_number_active
+  - namespace
+  - operator
+  - parameter
+  - property
+  - search_match
+  - search_match_current
+  - tag
+  - ui_inactive
+colors:
+  bg:
+    role: bg
+    hex: '#2e3440'
+    oklch:
+      L: 0.324374
+      C: 0.022945
+      h: 264.182039
+    oklab:
+      L: 0.324374
+      a: -0.002326
+      b: -0.022826
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  bg_elevated:
+    role: bg_elevated
+    hex: '#3b4252'
+    oklch:
+      L: 0.379212
+      C: 0.028973
+      h: 266.470527
+    oklab:
+      L: 0.379212
+      a: -0.001784
+      b: -0.028918
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  fg:
+    role: fg
+    hex: '#d8dee9'
+    oklch:
+      L: 0.899258
+      C: 0.016374
+      h: 262.749271
+    oklab:
+      L: 0.899258
+      a: -0.002067
+      b: -0.016243
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  comment:
+    role: comment
+    hex: '#4c566a'
+    oklch:
+      L: 0.45229
+      C: 0.035214
+      h: 264.131203
+    oklab:
+      L: 0.45229
+      a: -0.003601
+      b: -0.035029
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  punctuation:
+    role: punctuation
+    hex: '#eceff4'
+    oklch:
+      L: 0.951276
+      C: 0.007445
+      h: 260.731582
+    oklab:
+      L: 0.951276
+      a: -0.001199
+      b: -0.007348
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  selection:
+    role: selection
+    hex: '#434c5e'
+    oklch:
+      L: 0.415739
+      C: 0.032367
+      h: 264.131219
+    oklab:
+      L: 0.415739
+      a: -0.00331
+      b: -0.032197
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  keyword:
+    role: keyword
+    hex: '#81a1c1'
+    oklch:
+      L: 0.696516
+      C: 0.059108
+      h: 248.687195
+    oklab:
+      L: 0.696516
+      a: -0.021483
+      b: -0.055066
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  string:
+    role: string
+    hex: '#a3be8c'
+    oklch:
+      L: 0.76827
+      C: 0.074899
+      h: 131.063077
+    oklab:
+      L: 0.76827
+      a: -0.049201
+      b: 0.056473
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  number:
+    role: number
+    hex: '#b48ead'
+    oklch:
+      L: 0.692072
+      C: 0.062496
+      h: 332.664902
+    oklab:
+      L: 0.692072
+      a: 0.055518
+      b: -0.028698
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  constant:
+    role: constant
+    hex: '#d8dee9'
+    oklch:
+      L: 0.899258
+      C: 0.016374
+      h: 262.749271
+    oklab:
+      L: 0.899258
+      a: -0.002067
+      b: -0.016243
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  type:
+    role: type
+    hex: '#8fbcbb'
+    oklch:
+      L: 0.762873
+      C: 0.0477
+      h: 194.490957
+    oklab:
+      L: 0.762873
+      a: -0.046183
+      b: -0.011936
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  function:
+    role: function
+    hex: '#88c0d0'
+    oklch:
+      L: 0.774643
+      C: 0.062249
+      h: 217.469037
+    oklab:
+      L: 0.774643
+      a: -0.049406
+      b: -0.037868
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  error:
+    role: error
+    hex: '#bf616a'
+    oklch:
+      L: 0.6061
+      C: 0.120594
+      h: 15.341872
+    oklab:
+      L: 0.6061
+      a: 0.116297
+      b: 0.031907
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  warning:
+    role: warning
+    hex: '#ebcb8b'
+    oklch:
+      L: 0.854862
+      C: 0.089234
+      h: 84.093333
+    oklab:
+      L: 0.854862
+      a: 0.009183
+      b: 0.08876
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  success:
+    role: success
+    hex: '#a3be8c'
+    oklch:
+      L: 0.76827
+      C: 0.074899
+      h: 131.063077
+    oklab:
+      L: 0.76827
+      a: -0.049201
+      b: 0.056473
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  diff_added:
+    role: diff_added
+    hex: '#a3be8c'
+    oklch:
+      L: 0.76827
+      C: 0.074899
+      h: 131.063077
+    oklab:
+      L: 0.76827
+      a: -0.049201
+      b: 0.056473
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+  diff_removed:
+    role: diff_removed
+    hex: '#bf616a'
+    oklch:
+      L: 0.6061
+      C: 0.120594
+      h: 15.341872
+    oklab:
+      L: 0.6061
+      a: 0.116297
+      b: 0.031907
+    gamut:
+      in_srgb: true
+      in_p3: true
+      srgb_excursion: 0.0
+      p3_excursion: 0.0
+    chroma_lost: 0.0
+    source: hex
+contrast_vs_bg:
+  bg_elevated:
+    target_band: minimal
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.2413
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: 0.0
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.054838
+  fg:
+    target_band: comfortable
+    measured_band: high
+    band_match: false
+    wcag_ratio: 9.2452
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -80.2925
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.574883
+  comment:
+    target_band: low
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.693
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: -10.318
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.127916
+  punctuation:
+    target_band: low
+    measured_band: maximal
+    band_match: false
+    wcag_ratio: 10.8359
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -91.1529
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.626902
+  selection:
+    target_band: low
+    measured_band: null
+    band_match: false
+    wcag_ratio: 1.4476
+    wcag_aa_body: false
+    wcag_aa_large: false
+    apca_lc: 0.0
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.091365
+  keyword:
+    target_band: comfortable
+    measured_band: low
+    band_match: false
+    wcag_ratio: 4.6398
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -43.5705
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.372142
+  string:
+    target_band: comfortable
+    measured_band: null
+    band_match: false
+    wcag_ratio: 6.1267
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -56.59
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.443895
+  number:
+    target_band: comfortable
+    measured_band: low
+    band_match: false
+    wcag_ratio: 4.409
+    wcag_aa_body: false
+    wcag_aa_large: true
+    apca_lc: -41.4071
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.367697
+  constant:
+    target_band: comfortable
+    measured_band: high
+    band_match: false
+    wcag_ratio: 9.2452
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -80.2925
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.574883
+  type:
+    target_band: comfortable
+    measured_band: null
+    band_match: false
+    wcag_ratio: 5.9943
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -55.4991
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.438499
+  function:
+    target_band: high
+    measured_band: null
+    band_match: false
+    wcag_ratio: 6.2433
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -57.5988
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.450269
+  error:
+    target_band: high
+    measured_band: minimal
+    band_match: false
+    wcag_ratio: 3.053
+    wcag_aa_body: false
+    wcag_aa_large: true
+    apca_lc: -27.8982
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.281725
+  warning:
+    target_band: high
+    measured_band: comfortable
+    band_match: false
+    wcag_ratio: 7.9979
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -71.315
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.530488
+  success:
+    target_band: comfortable
+    measured_band: null
+    band_match: false
+    wcag_ratio: 6.1267
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -56.59
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.443895
+  diff_added:
+    target_band: minimal
+    measured_band: null
+    band_match: false
+    wcag_ratio: 6.1267
+    wcag_aa_body: true
+    wcag_aa_large: true
+    apca_lc: -56.59
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.443895
+  diff_removed:
+    target_band: minimal
+    measured_band: minimal
+    band_match: true
+    wcag_ratio: 3.053
+    wcag_aa_body: false
+    wcag_aa_large: true
+    apca_lc: -27.8982
+    apca_note: independent work in progress; not a W3C Recommendation or current WCAG criterion
+    oklab_dl: 0.281725
+distance_matrix:
+  thresholds:
+    must_distinguish:
+      normal_vision: 0.13
+      cvd_dichromat: 0.09
+      note: 'The CVD floor is lower than the normal-vision floor because we accept that a dichromat sees
+        a *reduced* difference; we only require that the difference does not vanish.  Pairs that cannot
+        meet this must carry a redundant channel, declared in roles.yaml.
+
+        '
+    should_distinguish:
+      normal_vision: 0.08
+      cvd_dichromat: null
+    same_family:
+      max_distance: 0.14
+      min_distance: 0.03
+    differentiated_by:
+      max_distance: 0.05
+      requires_channel: true
+  violations:
+  - severity: error
+    constraint: must_distinguish(warning, string)
+    condition: normal
+    measured_de: 0.109313
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, string)
+    condition: protan@1.0
+    measured_de: 0.064276
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(warning, constant)
+    condition: normal
+    measured_de: 0.114557
+    threshold_de: 0.13
+    has_redundant_channel: true
+  - severity: warning
+    constraint: must_distinguish(warning, constant)
+    condition: tritan@1.0
+    measured_de: 0.073623
+    threshold_de: 0.09
+    has_redundant_channel: true
+  - severity: error
+    constraint: must_distinguish(comment, bg)
+    condition: normal
+    measured_de: 0.128503
+    threshold_de: 0.13
+    has_redundant_channel: false
+  - severity: warning
+    constraint: should_distinguish(string, type)
+    condition: normal
+    measured_de: 0.068688
+    threshold_de: 0.08
+    has_redundant_channel: false
+  - severity: warning
+    constraint: should_distinguish(function, type)
+    condition: normal
+    measured_de: 0.02866
+    threshold_de: 0.08
+    has_redundant_channel: false
+  - severity: warning
+    constraint: should_distinguish(punctuation, fg)
+    condition: normal
+    measured_de: 0.052781
+    threshold_de: 0.08
+    has_redundant_channel: false
+  - severity: warning
+    constraint: should_distinguish(bg, bg_elevated)
+    condition: normal
+    measured_de: 0.055178
+    threshold_de: 0.08
+    has_redundant_channel: false
+  - severity: warning
+    constraint: same_family(number, constant)
+    condition: upper
+    measured_de: 0.2154
+    threshold_de: 0.14
+    has_redundant_channel: false
+  - severity: warning
+    constraint: same_family(diff_added, success)
+    condition: lower
+    measured_de: 0.0
+    threshold_de: 0.03
+    has_redundant_channel: true
+  - severity: warning
+    constraint: same_family(diff_removed, error)
+    condition: lower
+    measured_de: 0.0
+    threshold_de: 0.03
+    has_redundant_channel: true
+  n_errors: 3
+  n_warnings: 9
+  non_goals:
+  - claim: Every syntax role gets a unique hue.
+    reason: 'Produces rainbow highlighting, exhausts the perceptual budget, and degrades badly under CVD.
+      We use ~5 hue families for ~14 syntax roles and spend the remainder on salience.
+
+      '
+  - claim: Local variables should be coloured.
+    reason: 'Most frequent token class, least informative distinction. Colouring them means the majority
+      of chromatic pixels carry no information.
+
+      '
+  - claim: All pairwise distances should be maximised.
+    reason: 'Distance is zero-sum inside a bounded gamut. Maximising everything flattens the semantic
+      structure that the grouping above encodes.
+
+      '
+  - claim: Punctuation should match its enclosing construct.
+    reason: 'Rainbow-bracket-style coding raises the noise floor across a major area class to disambiguate
+      a structure that indentation already conveys.
+
+      '
+cvd:
+  note: dichromacy (severity 1.0) via Brettel 1997; anomaly (severity 0.6) via Machado 2009; tritan always
+    Brettel. Population-average dichromat models; they detect collapse, they do not reproduce an individual's
+    experience (RESEARCH.md R-9).
+  must_distinguish_pairs:
+  - a: error
+    b: string
+    normal_de: 0.233007
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.245787
+        anomaly_de_0.6: 0.21296
+      deutan:
+        dichromat_de_1.0: 0.157157
+        anomaly_de_0.6: 0.168499
+      tritan:
+        dichromat_de_1.0: 0.214599
+        anomaly_de_0.6: 0.217686
+  - a: error
+    b: keyword
+    normal_de: 0.18634
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.167215
+        anomaly_de_0.6: 0.158299
+      deutan:
+        dichromat_de_1.0: 0.12981
+        anomaly_de_0.6: 0.132499
+      tritan:
+        dichromat_de_1.0: 0.187964
+        anomaly_de_0.6: 0.185771
+  - a: error
+    b: warning
+    normal_de: 0.276747
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.309414
+        anomaly_de_0.6: 0.281782
+      deutan:
+        dichromat_de_1.0: 0.249043
+        anomaly_de_0.6: 0.258182
+      tritan:
+        dichromat_de_1.0: 0.263368
+        anomaly_de_0.6: 0.263158
+  - a: error
+    b: fg
+    normal_de: 0.319797
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.352398
+        anomaly_de_0.6: 0.332146
+      deutan:
+        dichromat_de_1.0: 0.295312
+        anomaly_de_0.6: 0.296768
+      tritan:
+        dichromat_de_1.0: 0.321123
+        anomaly_de_0.6: 0.319968
+  - a: warning
+    b: string
+    normal_de: 0.109313
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.064276
+        anomaly_de_0.6: 0.074213
+      deutan:
+        dichromat_de_1.0: 0.095077
+        anomaly_de_0.6: 0.095499
+      tritan:
+        dichromat_de_1.0: 0.110632
+        anomaly_de_0.6: 0.109212
+  - a: warning
+    b: number
+    normal_de: 0.20602
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.22198
+        anomaly_de_0.6: 0.20385
+      deutan:
+        dichromat_de_1.0: 0.198957
+        anomaly_de_0.6: 0.205064
+      tritan:
+        dichromat_de_1.0: 0.171392
+        anomaly_de_0.6: 0.172213
+  - a: warning
+    b: constant
+    normal_de: 0.114557
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.115213
+        anomaly_de_0.6: 0.11893
+      deutan:
+        dichromat_de_1.0: 0.11564
+        anomaly_de_0.6: 0.113521
+      tritan:
+        dichromat_de_1.0: 0.073623
+        anomaly_de_0.6: 0.077721
+  - a: error
+    b: success
+    normal_de: 0.233007
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.245787
+        anomaly_de_0.6: 0.21296
+      deutan:
+        dichromat_de_1.0: 0.157157
+        anomaly_de_0.6: 0.168499
+      tritan:
+        dichromat_de_1.0: 0.214599
+        anomaly_de_0.6: 0.217686
+  - a: diff_added
+    b: diff_removed
+    normal_de: 0.233007
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.245787
+        anomaly_de_0.6: 0.21296
+      deutan:
+        dichromat_de_1.0: 0.157157
+        anomaly_de_0.6: 0.168499
+      tritan:
+        dichromat_de_1.0: 0.214599
+        anomaly_de_0.6: 0.217686
+  - a: selection
+    b: diff_added
+    normal_de: 0.366396
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.384606
+        anomaly_de_0.6: 0.367564
+      deutan:
+        dichromat_de_1.0: 0.361606
+        anomaly_de_0.6: 0.367103
+      tritan:
+        dichromat_de_1.0: 0.357081
+        anomaly_de_0.6: 0.358155
+  - a: selection
+    b: diff_removed
+    normal_de: 0.233778
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.139204
+        anomaly_de_0.6: 0.165147
+      deutan:
+        dichromat_de_1.0: 0.20818
+        anomaly_de_0.6: 0.207562
+      tritan:
+        dichromat_de_1.0: 0.2355
+        anomaly_de_0.6: 0.234869
+  - a: fg
+    b: bg
+    normal_de: 0.574921
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.575681
+        anomaly_de_0.6: 0.574629
+      deutan:
+        dichromat_de_1.0: 0.575681
+        anomaly_de_0.6: 0.575347
+      tritan:
+        dichromat_de_1.0: 0.576555
+        anomaly_de_0.6: 0.575022
+  - a: comment
+    b: bg
+    normal_de: 0.128503
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.128503
+        anomaly_de_0.6: 0.13116
+      deutan:
+        dichromat_de_1.0: 0.128503
+        anomaly_de_0.6: 0.128613
+      tritan:
+        dichromat_de_1.0: 0.128277
+        anomaly_de_0.6: 0.126159
+  - a: error
+    b: bg
+    normal_de: 0.310542
+    cvd:
+      protan:
+        dichromat_de_1.0: 0.226478
+        anomaly_de_0.6: 0.252275
+      deutan:
+        dichromat_de_1.0: 0.293177
+        anomaly_de_0.6: 0.292387
+      tritan:
+        dichromat_de_1.0: 0.31332
+        anomaly_de_0.6: 0.311552
+spectral:
+  display: led-lcd
+  coverage_kind: code
+  coverage:
+    '#2e3440': 0.74
+    '#3b4252': 0.08
+    '#d8dee9': 0.07
+    '#4c566a': 0.035
+    '#eceff4': 0.025
+    '#81a1c1': 0.012
+    '#a3be8c': 0.018
+    '#88c0d0': 0.01
+    '#8fbcbb': 0.006
+    '#b48ead': 0.004
+  photopic_relative: 0.12643
+  melanopic_relative: 0.143485
+  melanopic_ratio: 1.134896
+  top_melanopic_contributors:
+  - hex: '#d8dee9'
+    share: 0.383199
+  - hex: '#2e3440'
+    share: 0.234088
+  - hex: '#eceff4'
+    share: 0.155103
+  - hex: '#a3be8c'
+    share: 0.043688
+  - hex: '#88c0d0'
+    share: 0.041336
+  - hex: '#3b4252'
+    share: 0.041261
+  - hex: '#81a1c1'
+    share: 0.039425
+  - hex: '#4c566a'
+    share: 0.030831
+  caveat: Exploratory nominal-display model; within-model ranking only. An sRGB triple does not determine
+    a spectral power distribution; this never claims actual retinal exposure (RESEARCH.md R-4, R-5).
