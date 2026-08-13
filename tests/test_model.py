@@ -593,8 +593,14 @@ def test_invalid_role_override_value_is_rejected(spec):
         validate_binding(b, spec)
 
 
-def test_override_cannot_change_paint_family_or_name(spec):
-    """role_overrides only allows contrast_target/chroma_class/floor/adaptation."""
+def test_override_cannot_change_paint_or_name(spec):
+    """The derivation PATH (paint) and name are protected; they are never
+    overridable.  family IS overridable (Phase 5) because reassigning a hue
+    family keeps the role in the same derivation path while changing only the
+    anchor it reads."""
     b = binding(role_overrides={"fg": {"paint": "surface"}})
     with pytest.raises(BindingError, match="unknown key"):
         validate_binding(b, spec)
+    b2 = binding(role_overrides={"fg": {"name": "x"}})
+    with pytest.raises(BindingError, match="unknown key"):
+        validate_binding(b2, spec)

@@ -1,4 +1,4 @@
-# calibration-experiment  (NON-CANDIDATE)  ok=True  input_hash=4e00a181b9ae5192
+# calibration-experiment  (NON-CANDIDATE)  ok=True  input_hash=3f646ddf714ce458
   note: NON-CANDIDATE. Systematic-transform calibration only. Comparison target is themes/experiments/handtuned-*.yaml (also NON-CANDIDATE). No palette here is final; see DESIGN.md section 1 and section 9 ("Phase 4 will test whether this works").
   stability: ok=True  max_hue_drift=5.85deg (cap 12)  cyclic_seq_preserved=True  normC_inversions=0  salience_reversals=6
   issues: 471 (aesthetic/distance/legibility misses; informational)

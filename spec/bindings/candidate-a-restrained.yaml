@@ -1,0 +1,103 @@
+# ---------------------------------------------------------------------------
+# Phase 5 CANDIDATE A -- Restrained.
+# ---------------------------------------------------------------------------
+#
+# This is a real candidate binding (meta.candidate: true).  It is ONE semantic
+# binding -- family hue anchors + a chroma budget + bounded semantic overrides
+# -- that the shared environmental transform (model.py::build_family) turns into
+# day/evening/night.  The three derived palettes are NOT three independently
+# authored sets; they are one binding under one transform.
+#
+# Hypothesis under test
+#   Does colour beyond a *functional floor* add useful scanning value?  A holds
+#   syntax chroma as low as the WCAG floor and the distance matrix will tolerate,
+#   so the palette leans almost entirely on lightness hierarchy.  If A reads as
+#   well as B/C in scanning tasks, the extra chroma in B/C is attention cost for
+#   no benefit; if A reads as flat or indistinguishable, chroma earns its place.
+#
+# How the restraint is encoded (all first-class inputs, not post-hoc fakes)
+#   * chroma_classes: the lowest class fractions of the three candidates
+#     (none 0, trace .04, low .17, medium .47, high .72).
+#   * category_caps: ordinary chromatic capped at .120 (below B's .145 and C's
+#     .160); diagnostics stay at .160 so safety signals are NOT muted by the
+#     restraint.  neutral/warm-neutral are clamped very tight (.012 / .020) so a
+#     "neutral" role never acquires a readable hue.
+#   * role_overrides: comments / docstrings / property / tag -> neutral trace;
+#     decorator -> sand trace.  No role_scale boosts -- nothing is made louder.
+#
+# Tradeoffs (flagged, not resolved)
+#   + Lowest attention cost / spectral budget of the three.
+#   - Weakest categorical cue: more pair distances sit near the must_distinguish
+#     floor; CVD headroom is smallest.  These remain VISIBLE in the reports --
+#     thresholds are not massaged to make A pass.
+#
+# The shared environments (spec/environments.yaml) are unchanged; only this
+# binding differs from B and C.  No per-variant hex is authored here -- the
+# per-variant palettes are the OUTPUT of build_family.
+# ---------------------------------------------------------------------------
+
+name: candidate-a-restrained
+candidate: true
+candidate_scale: 1.0          # class fractions are the primary lever; no extra global boost
+
+# Warm attraction anchor is shared with the environment (default 70); candidates
+# differ only in anchors / class fractions / caps / overrides / scales.
+warm_anchor: 70
+
+anchors:
+  neutral:      {h: 70,  family_scale: 1.0}   # warm-neutral lean at trace chroma
+  warm-neutral: {h: 72,  family_scale: 1.0}
+  rose:         {h: 22,  family_scale: 1.0}   # errors, builtins
+  sand:         {h: 82,  family_scale: 1.0}   # literals, diagnostics washes
+  sage:         {h: 128, family_scale: 1.0}   # strings, success, diff+
+  teal:         {h: 190, family_scale: 1.0}   # types, namespaces
+  azure:        {h: 244, family_scale: 1.0}   # functions, selection, focus
+  violet:       {h: 304, family_scale: 1.0}   # keywords
+
+# Candidate-specific chroma-class fractions (REPLACE the shared environment set).
+chroma_classes:
+  none:   0.0
+  trace:  0.04
+  low:    0.17
+  medium: 0.47
+  high:   0.72
+
+# Per-category absolute OKLCH chroma caps (REPLACE the single global ceiling).
+category_caps:
+  neutral:      0.012
+  warm-neutral: 0.020
+  ordinary:     0.120
+  diagnostics:  0.160   # safety signals keep full strength under restraint
+
+# Semantic overrides: comments/docstrings/property/tag read as neutral trace;
+# decorator borrows the literal family at trace.  Ordinary variables (fg) and
+# parameters stay neutral (untouched).
+role_overrides:
+  comment:
+    chroma_class: trace
+  docstring:
+    chroma_class: trace
+  property:
+    family: neutral
+    chroma_class: trace
+  tag:
+    family: neutral
+    chroma_class: trace
+  decorator:
+    chroma_class: trace
+
+meta:
+  candidate: true
+  phase: 5
+  strategy: restrained
+  purpose: >
+    Test whether colour beyond a functional floor adds useful scanning value.
+    Holds chroma as low as WCAG floors and the distance matrix tolerate.
+  tradeoffs: >
+    Lowest attention cost and spectral budget; weakest categorical cue and
+    smallest CVD headroom.  Diagnostics are deliberately exempt from the
+    restraint.
+  note: >
+    CANDIDATE.  No palette derived from this file is a finished/selected theme;
+    Phase 5 produces candidates, Phase 7 (human evaluation) decides.  No winner
+    is selected or ranked here (DESIGN.md section 1).

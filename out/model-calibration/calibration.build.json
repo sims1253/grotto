@@ -3,7 +3,7 @@
   "schema_version": "phase4",
   "name": "calibration-experiment",
   "is_candidate": false,
-  "input_hash": "4e00a181b9ae5192",
+  "input_hash": "3f646ddf714ce458",
   "ok": true,
   "binding": {
     "name": "calibration-experiment",
@@ -48,6 +48,8 @@
       "focus": 1.2,
       "warning": 1.1
     },
+    "chroma_classes": {},
+    "category_caps": {},
     "role_overrides": {},
     "adjustments": {
       "bg": {
@@ -724,7 +726,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -782,7 +787,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "authored"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -831,7 +839,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "authored"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -880,7 +891,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "authored"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -929,7 +943,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -987,7 +1004,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1045,7 +1065,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": -0.02,
@@ -1106,7 +1129,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1164,7 +1190,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1222,7 +1251,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1280,7 +1312,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1340,7 +1375,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1398,7 +1436,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1456,7 +1497,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1514,7 +1558,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1572,7 +1619,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1630,7 +1680,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1688,7 +1741,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1748,7 +1804,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1808,7 +1867,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1866,7 +1928,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1924,7 +1989,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -1982,7 +2050,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2041,7 +2112,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2101,7 +2175,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2159,7 +2236,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2217,7 +2297,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2275,7 +2358,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2333,7 +2419,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2391,7 +2480,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2449,7 +2541,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2509,7 +2604,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2567,7 +2665,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2625,7 +2726,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2683,7 +2787,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2742,7 +2849,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2800,7 +2910,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2858,7 +2971,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2916,7 +3032,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -2976,7 +3095,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3085,7 +3207,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3143,7 +3268,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "authored"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3192,7 +3320,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "authored"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3241,7 +3372,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "authored"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3290,7 +3424,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3348,7 +3485,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3406,7 +3546,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": -0.02,
@@ -3465,7 +3608,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3523,7 +3669,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3581,7 +3730,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3639,7 +3791,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3697,7 +3852,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3755,7 +3913,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3813,7 +3974,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3871,7 +4035,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3929,7 +4096,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -3987,7 +4157,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4045,7 +4218,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4103,7 +4279,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4161,7 +4340,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4219,7 +4401,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4277,7 +4462,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4335,7 +4523,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4394,7 +4585,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4452,7 +4646,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4510,7 +4707,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4568,7 +4768,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4626,7 +4829,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4684,7 +4890,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4742,7 +4951,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4800,7 +5012,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4858,7 +5073,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4916,7 +5134,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -4974,7 +5195,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5032,7 +5256,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5091,7 +5318,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5149,7 +5379,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5207,7 +5440,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5265,7 +5501,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5323,7 +5562,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5432,7 +5674,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5490,7 +5735,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "authored"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5539,7 +5787,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "authored"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5588,7 +5839,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "authored"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5637,7 +5891,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5695,7 +5952,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5753,7 +6013,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": -0.02,
@@ -5812,7 +6075,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5870,7 +6136,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5928,7 +6197,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -5986,7 +6258,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6044,7 +6319,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6102,7 +6380,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6160,7 +6441,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6218,7 +6502,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6276,7 +6563,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6334,7 +6624,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6392,7 +6685,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6450,7 +6746,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6508,7 +6807,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6566,7 +6868,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6624,7 +6929,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6682,7 +6990,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6741,7 +7052,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6799,7 +7113,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6857,7 +7174,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6915,7 +7235,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -6973,7 +7296,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7031,7 +7357,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7089,7 +7418,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7147,7 +7479,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7205,7 +7540,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7263,7 +7601,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7321,7 +7662,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7379,7 +7723,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7438,7 +7785,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7496,7 +7846,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7554,7 +7907,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "ordinary",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7612,7 +7968,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "neutral",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,
@@ -7670,7 +8029,10 @@
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
-            "realized_fraction": 1.0
+            "realized_fraction": 1.0,
+            "category": "diagnostics",
+            "ceiling": 0.16,
+            "class_fraction_source": "environment"
           },
           "adjustments_applied": {
             "L": 0.0,

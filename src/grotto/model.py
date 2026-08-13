@@ -135,6 +135,20 @@ CO_OCCURRING_SURFACES = (
 #: OKLCH lightness clamps to keep derived colours inside a sane realised range.
 _L_FLOOR, _L_CEIL = 0.0, 1.0
 
+#: Chroma-budget categories a candidate may cap independently.  A role's
+#: category is derived from its (effective) family and group: diagnostics roles
+#: keep a safety margin; neutral / warm-neutral families are clamped tight so a
+#: "neutral" role never accidentally acquires a readable hue; everything else is
+#: an ordinary chromatic.  These are *budget buckets for the absolute cap*, not
+#: new semantic families -- the role's identity (family, paint, salience) is
+#: unchanged.
+CHROMA_CATEGORIES = ("neutral", "warm-neutral", "ordinary", "diagnostics")
+
+#: Roles whose colour is a safety signal earn a separate (typically higher)
+#: cap so a restrained candidate can still desaturate ordinary syntax without
+#: muting diagnostics.  Membership follows the roles.yaml `diagnostics` group.
+_DIAGNOSTIC_GROUP = "diagnostics"
+
 
 # ===========================================================================
 # Bindings and the model spec bundle
@@ -179,6 +193,14 @@ class CandidateBinding:
     role_overrides: dict[str, dict] = field(default_factory=dict)
     adjustments: dict[str, RoleAdjustment] = field(default_factory=dict)
     warm_anchor_override: float | None = None
+    # Phase 5: a candidate may declare its OWN chroma-class fractions (replacing
+    # the shared spec/environments.yaml ones) and per-category absolute caps
+    # (replacing the single global ceiling).  These are first-class inputs:
+    # they feed the real solve and are part of the input hash / provenance, never
+    # faked after the fact.  Empty -> fall back to the shared environment values,
+    # which is what the Phase 4 calibration binding does.
+    chroma_classes: dict[str, float] = field(default_factory=dict)
+    category_caps: dict[str, float] = field(default_factory=dict)
     meta: dict = field(default_factory=dict)
 
     @property
@@ -215,6 +237,14 @@ class CandidateBinding:
         role_scales = {k: float(v) for k, v in (d.get("role_scales") or {}).items()}
         role_overrides = {k: dict(v) for k, v in (d.get("role_overrides") or {}).items()}
 
+        # Phase 5 candidate chroma budget: own class fractions + per-category caps.
+        chroma_classes = {
+            k: float(v) for k, v in (d.get("chroma_classes") or {}).items()
+        }
+        category_caps = {
+            k: float(v) for k, v in (d.get("category_caps") or {}).items()
+        }
+
         adjustments: dict[str, RoleAdjustment] = {}
         for role, a in (d.get("adjustments") or {}).items():
             if not isinstance(a, dict):
@@ -235,6 +265,8 @@ class CandidateBinding:
             role_overrides=role_overrides,
             adjustments=adjustments,
             warm_anchor_override=warm,
+            chroma_classes=chroma_classes,
+            category_caps=category_caps,
             meta=dict(d.get("meta") or {}),
         )
 
@@ -250,6 +282,8 @@ class CandidateBinding:
                 for f, a in sorted(self.anchors.items())
             },
             "role_scales": {k: round(v, 6) for k, v in sorted(self.role_scales.items())},
+            "chroma_classes": {k: round(v, 6) for k, v in sorted(self.chroma_classes.items())},
+            "category_caps": {k: round(v, 6) for k, v in sorted(self.category_caps.items())},
             "role_overrides": {
                 role: {
                     key: round(value, 6) if isinstance(value, float) else value
@@ -296,9 +330,13 @@ def _effective_role(role: Role, binding: CandidateBinding) -> Role:
     """Apply a binding's per-role overrides to produce the role the solve sees.
 
     Overrides are bounded experimental tweaks (e.g. drop a role's contrast_target
-    to probe a WCAG-vs-APCA conflict).  Identity properties (name/family/paint)
-    are never overridden, so a role cannot be silently moved between derivation
-    paths.
+    to probe a WCAG-vs-APCA conflict, or reassign a role's hue family for a
+    candidate).  The DERIVATION PATH is the protected identity: ``paint`` and
+    the role ``name`` are never overridden, so a role cannot be silently moved
+    between the canvas/ink/surface/border paths.  ``family`` MAY be overridden,
+    because reassigning a hue family keeps the role in the same derivation path
+    while changing only which anchor it reads -- exactly the per-candidate
+    semantic decision (e.g. tag azure -> violet) that Phase 5 needs.
     """
     ov = binding.role_overrides.get(role.name)
     if not ov:
@@ -309,6 +347,7 @@ def _effective_role(role: Role, binding: CandidateBinding) -> Role:
         chroma_class=ov.get("chroma_class", role.chroma_class),
         accessibility_floor=ov.get("accessibility_floor", role.accessibility_floor),
         night_adaptation=float(ov.get("night_adaptation", role.night_adaptation)),
+        family=ov.get("family", role.family),
     )
 
 
@@ -378,12 +417,14 @@ def validate_binding(binding: CandidateBinding, spec: ModelSpec) -> None:
 
     # role overrides: per-role experimental tweaks to the semantic properties
     # the solve branches on.  Validated strictly so a typo cannot silently flip
-    # a role into the wrong derivation path.
+    # a role into the wrong derivation path.  ``family`` is permitted because it
+    # changes the HUE (anchor) but not the derivation PATH (paint).
     _override_vocab = {
         "contrast_target": (None, CONTRAST_TARGETS),
         "chroma_class": (None, CHROMA_CLASSES),
         "accessibility_floor": (None, ACCESSIBILITY_FLOORS),
         "night_adaptation": (0.0, 1.0),
+        "family": (None, FAMILIES),
     }
     for role, ov in sorted(binding.role_overrides.items()):
         for key, val in ov.items():
@@ -403,6 +444,23 @@ def validate_binding(binding: CandidateBinding, spec: ModelSpec) -> None:
                     f"adjustment {role}.{key}={val} exceeds bound "
                     f"{ADJUSTMENT_LIMITS[key]} (rationale: {adj.rationale!r})"
                 )
+
+    # Phase 5 candidate chroma budget: validate own class fractions + caps so a
+    # typo cannot silently change a candidate's identity.  Fractions are a share
+    # of max_chroma (so [0, 1]); caps are absolute OKLCH chroma (bounded well
+    # above the largest realistic cap of 0.16).
+    for cls, frac in sorted(binding.chroma_classes.items()):
+        if cls not in CHROMA_CLASSES:
+            raise BindingError(f"chroma_classes: unknown class {cls!r}; have {CHROMA_CLASSES}")
+        if not (0.0 <= frac <= 1.0):
+            raise BindingError(f"chroma_classes.{cls}: fraction {frac} not in [0, 1]")
+    for cat, cap in sorted(binding.category_caps.items()):
+        if cat not in CHROMA_CATEGORIES:
+            raise BindingError(
+                f"category_caps: unknown category {cat!r}; have {CHROMA_CATEGORIES}"
+            )
+        if not (0.0 <= cap <= 0.5):
+            raise BindingError(f"category_caps.{cat}: cap {cap} not in [0, 0.5]")
 
     if binding.warm_anchor_override is not None and not (0.0 <= binding.warm_anchor_override < 360.0):
         raise BindingError(
@@ -456,7 +514,10 @@ class RoleTrace:
             "realized": _round3(self.realized),
             "final_hex": self.final_hex,
             "max_chroma_at_L": round(self.max_chroma_at_L, 6),
-            "chroma_losses": {k: round(v, 6) for k, v in self.chroma_losses.items()},
+            "chroma_losses": {
+                k: (round(v, 6) if isinstance(v, float) else v)
+                for k, v in self.chroma_losses.items()
+            },
             "adjustments_applied": {k: round(v, 5) for k, v in self.adjustments_applied.items()},
             "contrast": self.contrast,
             "conflicts": self.conflicts,
@@ -475,6 +536,39 @@ def _round3(t):
 # ===========================================================================
 
 
+def chroma_category(role: Role) -> str:
+    """Which absolute-cap bucket a role's chroma falls into.
+
+    Diagnostics roles are a category of their own so a restrained candidate can
+    tighten ordinary syntax without muting safety colours.  Otherwise the
+    bucket follows the role's (effective) family: neutral / warm-neutral are
+    clamped tight (a "neutral" role must never read as a real hue); everything
+    else is an ordinary chromatic.
+    """
+    if role.group == _DIAGNOSTIC_GROUP:
+        return "diagnostics"
+    if role.family == "neutral":
+        return "neutral"
+    if role.family == "warm-neutral":
+        return "warm-neutral"
+    return "ordinary"
+
+
+def effective_ceiling(role: Role, binding: CandidateBinding, spec: ModelSpec) -> float:
+    """The absolute chroma cap a role is solved under.
+
+    A Phase 5 candidate may declare per-category caps; if it does they replace
+    the single shared ``chroma_absolute_ceiling`` for the roles in that
+    category.  The chosen cap is recorded per-role in the trace so the
+    provenance shows WHICH budget a colour was solved against.
+    """
+    if binding.category_caps:
+        cat = chroma_category(role)
+        if cat in binding.category_caps:
+            return float(binding.category_caps[cat])
+    return spec.environments.chroma_absolute_ceiling
+
+
 def chroma_components(
     spec: ModelSpec, binding: CandidateBinding, role: Role, L: float, h: float, env_name: str
 ) -> dict:
@@ -482,10 +576,23 @@ def chroma_components(
 
     ``requested = max_chroma(L,h) * class_frac * candidate * family * role
                   * env_gain * (1 - attenuation*night_adaptation)``
+
+    Phase 5: a candidate may declare its OWN class fractions (replacing the
+    shared environment ones).  The source of the class fraction is recorded so
+    the provenance can show that a candidate's realised chroma came from its
+    own declared budget, not the shared default.
     """
     env = spec.environments.environments[env_name]
     cmax = max_chroma(L, h, "srgb")
-    class_frac = spec.environments.chroma_classes.get(role.chroma_class, 0.0)
+    if binding.chroma_classes:
+        class_frac = binding.chroma_classes.get(
+            role.chroma_class,
+            spec.environments.chroma_classes.get(role.chroma_class, 0.0),
+        )
+        class_source = "candidate"
+    else:
+        class_frac = spec.environments.chroma_classes.get(role.chroma_class, 0.0)
+        class_source = "environment"
     candidate = binding.candidate_scale
     family = binding.anchors[role.family].family_scale
     role_scale = binding.role_scales.get(role.name, 1.0)
@@ -497,6 +604,7 @@ def chroma_components(
     return {
         "max_chroma": cmax,
         "class_fraction": class_frac,
+        "class_fraction_source": class_source,
         "candidate_scale": candidate,
         "family_scale": family,
         "role_scale": role_scale,
@@ -611,7 +719,7 @@ def _solve_contrast_role(
     wcag_floor = _accessibility_wcag_floor(role, spec)
     band = spec.environments.contrast_bands[role.contrast_target]
     apca_centre = band.centre
-    abs_ceiling = spec.environments.chroma_absolute_ceiling
+    abs_ceiling = effective_ceiling(role, binding, spec)
 
     def comp(L):
         return chroma_components(spec, binding, role, L, h, env_name)
@@ -760,9 +868,10 @@ def _base_identity(role: Role, binding: CandidateBinding) -> tuple[float, float,
 
 
 def _trace_common(
-    role: Role, env_name: str, L: float, h: float, components: dict, spec: ModelSpec
+    role: Role, env_name: str, L: float, h: float, components: dict, spec: ModelSpec,
+    binding: CandidateBinding,
 ) -> dict:
-    abs_ceiling = spec.environments.chroma_absolute_ceiling
+    abs_ceiling = effective_ceiling(role, binding, spec)
     out = _realize_chroma(L, h, components, abs_ceiling)
     losses = {
         "requested": out["requested_C"],
@@ -772,6 +881,10 @@ def _trace_common(
         "gamut_loss": out["gamut_loss"],
         "total_loss": out["total_loss"],
         "realized_fraction": out["realized_fraction"],
+        # Phase 5 provenance: which budget + class source produced this colour.
+        "category": chroma_category(role),
+        "ceiling": abs_ceiling,
+        "class_fraction_source": components.get("class_fraction_source", "environment"),
     }
     return {"L": L, "h": h, "components": components, "losses": losses,
             "capped": out["capped"], "realized": out["realized"]}
@@ -882,20 +995,27 @@ def _build_variant(
     }
     for role_name, (paint, lch) in authored.items():
         role = roles.roles[role_name]
+        r_eff = _effective_role(role, binding)
         mapped, gloss = gamut_map(lch, "srgb")
         hx = oklch_to_hex(mapped)
         palette_colors[role_name] = hx
         palette_perceptual[role_name] = mapped
         palette_losses[role_name] = gloss
-        base = _base_identity(role, binding)
+        base = _base_identity(r_eff, binding)
         traces[role_name] = RoleTrace(
-            role=role_name, paint=paint, variant=env_name, family=role.family,
+            role=role_name, paint=paint, variant=env_name, family=r_eff.family,
             base_oklch=base, requested=tuple(lch), capped=tuple(lch),
             realized=tuple(mapped), final_hex=hx,
             max_chroma_at_L=max_chroma(mapped[0], mapped[2], "srgb"),
             chroma_losses={"requested": lch[1], "capped": lch[1], "realized": mapped[1],
                            "cap_loss": 0.0, "gamut_loss": gloss, "total_loss": gloss,
-                           "realized_fraction": 1.0 if lch[1] <= 1e-9 else mapped[1] / lch[1]},
+                           "realized_fraction": 1.0 if lch[1] <= 1e-9 else mapped[1] / lch[1],
+                           # authored backgrounds bypass the chroma chain; the
+                           # category/ceiling are reported for completeness, the
+                           # source flag says the colour was NOT solved.
+                           "category": chroma_category(r_eff),
+                           "ceiling": effective_ceiling(r_eff, binding, spec),
+                           "class_fraction_source": "authored"},
             adjustments_applied={"L": 0.0, "C": 0.0, "h": 0.0},
             contrast={}, conflicts=[], winning_constraint="authored",
             derivation=[f"{paint}: authored verbatim from environment.{env_name}.background*"],
@@ -931,7 +1051,7 @@ def _build_variant(
         applied, L, h, components = _apply_adjustment(
             r, L, h, components, binding, spec, env_name
         )
-        common = _trace_common(r, env_name, L, h, components, spec)
+        common = _trace_common(r, env_name, L, h, components, spec, binding)
         realized = common["realized"]
         losses = common["losses"]
         hx = oklch_to_hex(realized)
@@ -949,7 +1069,7 @@ def _build_variant(
             # colour with ``ok=False``.
             L, h, components = unadjusted
             applied = {"L": 0.0, "C": 0.0, "h": 0.0}
-            common = _trace_common(r, env_name, L, h, components, spec)
+            common = _trace_common(r, env_name, L, h, components, spec, binding)
             realized = common["realized"]
             losses = common["losses"]
             hx = oklch_to_hex(realized)
@@ -1511,6 +1631,9 @@ __all__ = [
     "CO_OCCURRING_SURFACES",
     "validate_binding",
     "chroma_components",
+    "chroma_category",
+    "effective_ceiling",
+    "CHROMA_CATEGORIES",
     "adapt_hue",
     "signed_shortest_arc",
     "circular_drift",
