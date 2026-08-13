@@ -22,8 +22,25 @@ import sys
 from pathlib import Path
 
 from .environments import Environments
-from .report import palette_report_dict, write_report, to_json
-from .render import palette_html_report, palette_svg_strip, stability_html_report
+from .reference_analysis import (
+    VERSION as REFERENCE_VERSION,
+    analyze_reference,
+    compare_references,
+    comparison_text,
+    load_reference_dir,
+    load_reference_file,
+    primary_variant,
+    reference_text,
+)
+from .report import palette_report_dict, write_report, to_json, to_yaml
+from .render import (
+    palette_html_report,
+    palette_svg_strip,
+    reference_comparison_svg,
+    stability_html_report,
+    reference_analysis_html,
+    reference_comparison_html,
+)
 from .spec import DistanceSpec, Palette, RoleSpec, load
 from .stability import DEFAULT_MAX_HUE_DRIFT, cross_variant_report
 
@@ -110,6 +127,76 @@ def cmd_specimens(args) -> int:
     return 0
 
 
+def cmd_references(args) -> int:
+    """Phase 3: consistent quantitative analysis of all reference themes.
+
+    Produces per-reference JSON/YAML/text reports and a side-by-side
+    comparison (JSON/YAML/text + HTML/SVG) under ``out/references/``.
+    Descriptive only; no ranking or winner is declared.
+    """
+    roles, dists, env = _load_specs(args)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+
+    # load every reference file; key by stem for stable ordering
+    if args.references:
+        loaded: dict[str, list] = {}
+        for p in args.references:
+            vs = load_reference_file(p)
+            loaded[Path(p).stem] = vs
+    else:
+        loaded = load_reference_dir(args.references_dir)
+    if not loaded:
+        print("[references] no reference files found", file=sys.stderr)
+        return 1
+
+    analyses: dict[str, dict] = {}
+    for stem in sorted(loaded):
+        pv = primary_variant(loaded[stem])
+        analyses[stem] = analyze_reference(pv, roles, dists, env, display=args.display)
+
+    # --- per-reference machine + text reports ---
+    for stem, a in analyses.items():
+        (out / f"{stem}.json").write_text(to_json(a), encoding="utf-8")
+        (out / f"{stem}.yaml").write_text(to_yaml(a), encoding="utf-8")
+        (out / f"{stem}.txt").write_text(reference_text(a), encoding="utf-8")
+        (out / f"{stem}.html").write_text(reference_analysis_html(a), encoding="utf-8")
+
+    # --- side-by-side comparison ---
+    comparison = compare_references(analyses, roles, dists, env)
+    order = comparison["references"]
+    (out / "comparison.json").write_text(to_json(comparison), encoding="utf-8")
+    (out / "comparison.yaml").write_text(to_yaml(comparison), encoding="utf-8")
+    (out / "comparison.txt").write_text(comparison_text(comparison), encoding="utf-8")
+    (out / "comparison.html").write_text(
+        reference_comparison_html(comparison, analyses), encoding="utf-8"
+    )
+    (out / "comparison.svg").write_text(
+        reference_comparison_svg(analyses, order), encoding="utf-8"
+    )
+
+    # --- console summary (descriptive, not a ranking) ---
+    print(f"[references] {len(analyses)} theme(s): {', '.join(order)}")
+    print(f"  schema           : grotto.reference-analysis v{REFERENCE_VERSION}")
+    for stem in order:
+        a = analyses[stem]
+        mc = a["reference"]["mapping_completeness"]
+        bg = a["background"].get("bg") or {}
+        bh = f"h{bg.get('h'):.0f}" if bg.get("h_meaningful") else "achromatic"
+        wc = a["warm_cool_balance"]["chroma_weighted_score"]
+        print(
+            f"  {stem:11s} bg {bh} ({bg.get('classification')})  "
+            f"mapped {mc['present']}/{mc['total_spec_roles']}  "
+            f"warm/cool {wc:+.2f}"
+        )
+    print(f"  comparison (descriptive; NOT a ranking): {out / 'comparison.html'}")
+    print("  outputs        : per-reference .json/.yaml/.txt/.html + "
+          "comparison.{json,yaml,txt,html,svg}")
+    print("  caveats        : APCA experimental; CVD population-average; "
+          "spectral nominal-only (see reports).")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="grotto", description="grotto Phase 2 evaluation tooling")
     ap.add_argument("--roles", default="spec/roles.yaml")
@@ -132,6 +219,20 @@ def build_parser() -> argparse.ArgumentParser:
     p_sp = sub.add_parser("specimens", help="write plaintext code specimens")
     p_sp.add_argument("--out", default="out/specimens")
     p_sp.set_defaults(func=cmd_specimens)
+
+    p_ref = sub.add_parser(
+        "references",
+        help="consistent reference-theme analysis + comparison (Phase 3)",
+    )
+    p_ref.add_argument(
+        "references",
+        nargs="*",
+        help="reference YAML files (default: all of themes/references/*.yaml)",
+    )
+    p_ref.add_argument("--references-dir", default="themes/references")
+    p_ref.add_argument("--out", default="out/references")
+    p_ref.add_argument("--display", default="led-lcd", choices=("led-lcd", "oled"))
+    p_ref.set_defaults(func=cmd_references)
 
     return ap
 

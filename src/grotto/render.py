@@ -477,3 +477,380 @@ th{{color:#9aa;font-weight:normal;font-size:.78rem;text-transform:uppercase;}}
         "Achromatic/low-chroma roles are omitted (hue not meaningful below chroma floor).</p>"
         "</body></html>"
     )
+
+
+# ===========================================================================
+# Phase 3: reference-theme comparison rendering
+# ===========================================================================
+#
+# These renderers take already-computed analysis/comparison dicts from
+# ``grotto.reference_analysis`` (which holds all the numbers and caveats) and
+# turn them into self-contained, deterministic HTML/SVG.  The page chrome is a
+# neutral dark surface -- it cannot use one reference's palette, because the
+# whole point is to compare six of them side by side.
+
+_REF_CSS = """
+* { box-sizing:border-box; }
+body { margin:0; background:#15161c; color:#d7d9e2;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:13px; line-height:1.5; padding:20px; }
+h1 { font-size:1.5rem; margin:0 0 .2em; }
+h2 { font-size:1.1rem; margin:1.6em 0 .5em; border-bottom:1px solid #2a2c38; padding-bottom:.2em; }
+.meta { color:#8b8ea0; font-size:.82rem; }
+.banner { background:#1f212b; padding:.7em .9em; border-radius:6px; margin:.8em 0; border-left:3px solid #4a5d8a; }
+.warn { border-left-color:#a35; }
+table { border-collapse:collapse; width:100%; background:#1b1d26; border-radius:6px; overflow:hidden; }
+th,td { text-align:left; padding:6px 9px; border-bottom:1px solid #2a2c38; vertical-align:top; }
+th { color:#8b8ea0; font-weight:normal; font-size:.76rem; text-transform:uppercase; letter-spacing:.04em; }
+td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+td.miss { color:#766; }
+.sw { display:inline-block; width:13px; height:13px; border-radius:2px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12); vertical-align:middle; margin-right:5px; }
+.sw-row { display:flex; gap:0; border-radius:3px; overflow:hidden; height:18px; box-shadow:inset 0 0 0 1px rgba(255,255,255,.08); }
+.sw-row span { flex:1; }
+.pos { color:#9ad; } .neg { color:#dab; }
+.bar-track { width:80px; display:inline-block; background:#2a2c38; border-radius:2px; height:9px; vertical-align:middle; overflow:hidden; }
+.bar-fill { height:100%; background:#6a86c8; }
+.foot { color:#8b8ea0; font-size:.75rem; margin-top:2em; border-top:1px solid #2a2c38; padding-top:.6em; }
+ul.caveats { margin:.3em 0; padding-left:1.2em; } ul.caveats li { margin:.25em 0; }
+"""
+
+
+def _ref_doc(title: str, body: str) -> str:
+    return (
+        "<!doctype html><html><head><meta charset='utf-8'>"
+        f"<title>{_esc(title)}</title><style>{_REF_CSS}</style></head>"
+        f"<body>{body}</body></html>"
+    )
+
+
+def _sw(hex_color: str | None, label: str = "") -> str:
+    if not hex_color:
+        return f'<span class="meta">-</span>'
+    return f'<span class="sw" style="background:{hex_color}" title="{_esc(label)}"></span>{_esc(label)}'
+
+
+def _fmt_v(v) -> str:
+    if v is None:
+        return '<span class="meta">-</span>'
+    if isinstance(v, float):
+        s = f"{v:.3f}".rstrip("0").rstrip(".") or "0"
+        return _esc(s)
+    return _esc(str(v))
+
+
+def _warm_cool_cell(score) -> str:
+    if score is None:
+        return '<span class="meta">-</span>'
+    # map [-1,1] to a bar width and colour sign
+    pct = abs(score) * 100
+    cls = "pos" if score >= 0 else "neg"
+    return (
+        f'<span class="{cls}">{score:+.2f}</span> '
+        f'<span class="bar-track"><span class="bar-fill" style="width:{pct:.0f}%"></span></span>'
+    )
+
+
+def reference_comparison_html(c: dict, analyses: dict[str, dict]) -> str:
+    """Side-by-side comparison page.  Fixed order, NOT a ranking."""
+    stems = c["references"]
+    title = "Reference theme comparison -- grotto (Phase 3)"
+    head = (
+        "<h1>Reference theme comparison</h1>"
+        f"<div class='meta'>{_esc(c['ordering_note'])}</div>"
+        f"<div class='meta'>{_esc(c['comparison_basis'])}</div>"
+        '<div class="banner">Descriptive only. No ranking, scoring, or winner is declared '
+        "(DESIGN.md section 1).</div>"
+    )
+
+    # --- main metrics table -------------------------------------------------
+    head_cells = "<th class='num'>metric</th>" + "".join(f"<th>{_esc(s)}</th>" for s in stems)
+    rows_html = []
+    for r in c["table"]:
+        cells = f"<td>{_esc(r['label'])}</td>"
+        for s in stems:
+            v = r.get(s)
+            if r["key"] in ("warm_cool",):
+                cells += f"<td class='num'>{_warm_cool_cell(v)}</td>"
+            elif r["key"] in ("bg_class", "bg_h", "roles_present"):
+                cells += f"<td>{_fmt_v(v)}</td>"
+            else:
+                cells += f"<td class='num'>{_fmt_v(v)}</td>"
+        rows_html.append(f"<tr>{cells}</tr>")
+    table = (
+        "<table><tr>" + head_cells + "</tr>" + "".join(rows_html) + "</table>"
+        + "<p class='meta'>Warm/cool score: +warm / -cool (chroma-weighted, OKLCH hue convention; "
+        "see reference_analysis.warm_cool_balance). Spectral columns are nominal-display, "
+        "within-model, exploratory (R-4, R-5, R-13). APCA is experimental (R-11).</p>"
+    )
+
+    # --- swatch comparison: bg/fg + key chromatic roles ---------------------
+    key_roles = ("bg", "fg", "keyword", "string", "type", "function",
+                 "error", "warning", "diff_added", "diff_removed")
+    sw_head = "<th>reference</th><th>bg</th><th>fg</th>" + "".join(
+        f"<th>{_esc(r)}</th>" for r in key_roles[2:]
+    )
+    sw_rows = []
+    for s in stems:
+        pal = analyses[s]
+        bg_hex = (pal["background"].get("bg") or {}).get("hex")
+        fg_hex = (pal.get("reading_contrast") or {}).get("fg_hex")
+        cells = f"<td><b>{_esc(s)}</b></td>"
+        cells += f"<td>{_sw(bg_hex)}</td><td>{_sw(fg_hex)}</td>"
+        for role in key_roles[2:]:
+            # find the role's hex from the per-role warm/cool map, else skip
+            hx = pal["warm_cool_balance"]["per_role"].get(role, {}).get("hex")
+            cells += f"<td>{_sw(hx) if hx else '<span class=meta>-</span>'}</td>"
+        sw_rows.append(f"<tr>{cells}</tr>")
+    swatch_table = (
+        "<h2>Swatch comparison (dark variant)</h2>"
+        "<table><tr>" + sw_head + "</tr>" + "".join(sw_rows) + "</table>"
+        "<p class='meta'>Chromatic-role swatches use the reference's own hex for that role; "
+        "roles not mapped by a reference show '-'. Selection/diff alpha hexes are base-stripped.</p>"
+    )
+
+    # --- mapping completeness ----------------------------------------------
+    map_rows = []
+    for s in stems:
+        m = c["mapping_completeness"][s]
+        miss = m["roles_missing"]
+        shown = ", ".join(miss[:12])
+        more = f" <span class='meta'>(+{len(miss)-12} more)</span>" if len(miss) > 12 else ""
+        norm = ", ".join(m["normalized_alpha_roles"]) or '<span class="meta">none</span>'
+        map_rows.append(
+            f"<tr><td><b>{_esc(s)}</b></td>"
+            f"<td class='num'>{m['present']}/{m['total_spec_roles']}</td>"
+            f"<td class='num'>{(m['fraction'] or 0)*100:.0f}%</td>"
+            f"<td class='miss'>{_esc(shown) if shown else '-'}{more}</td>"
+            f"<td>{norm}</td></tr>"
+        )
+    mapping_table = (
+        "<h2>Mapping completeness (spec has "
+        f"{c['n_spec_roles']} roles)</h2>"
+        "<table><tr><th>reference</th><th class='num'>mapped</th><th class='num'>coverage</th>"
+        "<th>missing roles (sample)</th><th>alpha-normalised</th></tr>"
+        + "".join(map_rows) + "</table>"
+        "<p class='meta'>Coverage reflects how many spec roles the reference maps, not theme "
+        "quality. References predate this spec and use their own role vocabularies; low coverage "
+        "is mapping incompleteness. 'alpha-normalised' lists roles whose 8-digit hex was "
+        "base-stripped to 6-digit on load (canonical files are unchanged).</p>"
+    )
+
+    # --- variant / source ambiguity ----------------------------------------
+    amb_rows = []
+    for s in stems:
+        amb = c["variant_ambiguity"][s]
+        extras = ", ".join(amb["extra_variant_labels"]) or "none"
+        amb_rows.append(
+            f"<tr><td><b>{_esc(s)}</b></td><td>{_esc(extras)}</td>"
+            f"<td class='num'>{_esc(amb['source_url'])}</td></tr>"
+        )
+    amb_table = (
+        "<h2>Variant / source ambiguity</h2>"
+        "<table><tr><th>reference</th><th>extra variants in file</th><th>source URL</th></tr>"
+        + "".join(amb_rows) + "</table>"
+        "<p class='meta'>Some files carry a light variant (Solarized roles_light; Rose Pine dawn). "
+        "Only the dark block every file shares is compared here; light variants are recorded but "
+        "excluded (mixing polarities would be a category error).</p>"
+    )
+
+    caveats = "<h2>Caveats</h2><ul class='caveats'>" + "".join(
+        f"<li>{_esc(cv)}</li>" for cv in c["caveats"]
+    ) + "</ul>"
+
+    foot = (
+        '<div class="foot">Generated by grotto Phase 3 reference analysis. '
+        "Reproducible: identical inputs produce byte-identical output. "
+        "Reference themes are inputs only; none is a candidate palette.</div>"
+    )
+    return _ref_doc(title, head + table + swatch_table + mapping_table + amb_table + caveats + foot)
+
+
+def reference_analysis_html(a: dict) -> str:
+    """A single self-contained HTML page for one reference's analysis."""
+    ref = a["reference"]
+    bg = a["background"]
+    rc = a.get("reading_contrast") or {}
+    title = f"{ref['name']} ({ref['label']}) -- reference analysis"
+    amb = ""
+    if ref["source_ambiguous"]:
+        amb = f"<div class='meta'>file also carries: {_esc(', '.join(ref['extra_variant_labels']))}</div>"
+    head = (
+        f"<h1>{_esc(ref['name'])} <span class='meta'>({_esc(ref['label'])})</span></h1>"
+        f"<div class='meta'>{_esc(ref['source_url'])}</div>{amb}"
+        f"<div class='meta'>mapping {_esc(ref['roles_present_count'])}/"
+        f"{_esc(ref['mapping_completeness']['total_spec_roles'])} spec roles "
+        f"({(ref['mapping_completeness']['fraction'] or 0)*100:.0f}%)</div>"
+        '<div class="banner">Reference theme -- NOT a candidate palette. Descriptive analysis '
+        "only; no ranking (DESIGN.md section 1).</div>"
+    )
+
+    sec = []
+    # background
+    bg_rows = []
+    for role in ("bg", "bg_elevated", "bg_overlay"):
+        b = bg.get(role)
+        if not b:
+            continue
+        h = f"{b['h']:.0f}&deg;" if b["h_meaningful"] else "achromatic"
+        bg_rows.append(
+            f"<tr><td>{_esc(role)}</td><td>{_sw(b['hex'])}</td>"
+            f"<td class='num'>{b['L']:.3f}</td><td class='num'>{b['C']:.3f}</td>"
+            f"<td>{h}</td><td>{_esc(b['classification'])}</td></tr>"
+        )
+    sec.append("<h2>Background (OKLCH)</h2>" + "<table><tr><th>role</th><th>hex</th>"
+               "<th class='num'>L</th><th class='num'>C</th><th>hue</th><th>class</th></tr>"
+               + "".join(bg_rows) + "</table>"
+               + f"<p class='meta'>{_esc(bg['note'])}</p>")
+
+    # reading contrast
+    if rc:
+        sec.append("<h2>Reading contrast (fg vs bg)</h2>"
+                   f"<table>"
+                   f"<tr><th>WCAG</th><th>AA body</th><th>AA large</th>"
+                   f"<th class='num'>|APCA Lc|</th><th>APCA band</th><th class='num'>OKLab dL</th></tr>"
+                   f"<tr><td class='num'>{rc['wcag_ratio']:.2f}</td>"
+                   f"<td>{'yes' if rc['wcag_aa_body'] else 'no'}</td>"
+                   f"<td>{'yes' if rc['wcag_aa_large'] else 'no'}</td>"
+                   f"<td class='num'>{abs(rc['apca_lc']):.0f}</td>"
+                   f"<td>{_esc(rc.get('apca_measured_band'))}</td>"
+                   f"<td class='num'>{rc['oklab_dl']:+.3f}</td></tr></table>"
+                   f"<p class='meta'>{_esc(rc['apca_note'])}</p>")
+
+    # distributions
+    dist = a["distributions"]
+    drows = ""
+    for scope in ("all_roles", "excluding_backgrounds"):
+        d = dist[scope]
+        ll, cc = d["lightness"], d["chroma"]
+        drows += (
+            f"<tr><td>{_esc(scope)}</td>"
+            f"<td class='num'>{ll['min']:.3f}</td><td class='num'>{ll['median']:.3f}</td>"
+            f"<td class='num'>{ll['max']:.3f}</td>"
+            f"<td class='num'>{cc['min']:.3f}</td><td class='num'>{cc['median']:.3f}</td>"
+            f"<td class='num'>{cc['max']:.3f}</td></tr>"
+        )
+    sec.append("<h2>Lightness / chroma distributions</h2>"
+               "<table><tr><th>scope</th><th class='num'>L min</th><th class='num'>L med</th>"
+               "<th class='num'>L max</th><th class='num'>C min</th><th class='num'>C med</th>"
+               "<th class='num'>C max</th></tr>" + drows + "</table>"
+               f"<p class='meta'>{_esc(dist['sample_note'])}</p>")
+
+    # warm/cool
+    wc = a["warm_cool_balance"]
+    sec.append("<h2>Warm/cool balance</h2>"
+               f"<p>chroma-weighted score: {_warm_cool_cell(wc['chroma_weighted_score'])}</p>"
+               f"<p class='meta'>warm ({wc['n_warm_roles']}): {_esc(', '.join(wc['warm_roles']) or '-')}"
+               f"<br>cool ({wc['n_cool_roles']}): {_esc(', '.join(wc['cool_roles']) or '-')}</p>"
+               f"<p class='meta'>{_esc(wc['definition'])}</p>")
+
+    # constraint coverage
+    cs = a["constraints"]
+    crows = "".join(
+        f"<tr><td>{_esc(kind)}</td><td class='num'>{cs[kind]['present_pairs']}/"
+        f"{cs[kind]['declared_pairs']}</td><td class='num'>"
+        f"{(cs[kind]['coverage_fraction'] or 0)*100:.0f}%</td></tr>"
+        for kind in ("must_distinguish", "should_distinguish", "same_family",
+                     "differentiated_by", "redundant_encoding")
+    )
+    sec.append("<h2>Declared-constraint coverage</h2>"
+               "<table><tr><th>kind</th><th class='num'>present/declared</th>"
+               "<th class='num'>coverage</th></tr>" + crows + "</table>"
+               f"<p class='meta'>{_esc(cs['note'])}</p>")
+
+    # spectral
+    sp = a.get("spectral") or {}
+    if sp and "melanopic_ratio" in sp:
+        sec.append("<h2>Spectral (nominal display, exploratory)</h2>"
+                   f"<table><tr><th class='num'>mel ratio</th><th class='num'>bg share</th>"
+                   f"<th class='num'>fg share</th><th class='num'>token share</th></tr>"
+                   f"<tr><td class='num'>{sp['melanopic_ratio']:.3f}</td>"
+                   f"<td class='num'>{sp['background_share']*100:.1f}%</td>"
+                   f"<td class='num'>{sp['foreground_share']*100:.1f}%</td>"
+                   f"<td class='num'>{sp['token_share']*100:.1f}%</td></tr></table>"
+                   f"<p class='meta'>{_esc(sp['caveat'])}</p>")
+
+    # cvd
+    cvd = a["cvd"]
+    cvd_rows = "".join(
+        f"<tr><td>{_esc(pr['a'])} / {_esc(pr['b'])}</td>"
+        f"<td class='num'>{pr['normal_de']:.3f}</td>"
+        f"<td class='num'>{pr['cvd_dichromat_de']['protan']:.3f}</td>"
+        f"<td class='num'>{pr['cvd_dichromat_de']['deutan']:.3f}</td>"
+        f"<td class='num'>{pr['cvd_dichromat_de']['tritan']:.3f}</td>"
+        f"<td>{'collapses' if pr['collapses_below_floor'] else '-'}</td></tr>"
+        for pr in cvd["pairs"]
+    )
+    sec.append("<h2>CVD (must_distinguish pairs present)</h2>"
+               "<table><tr><th>pair</th><th class='num'>normal dE</th>"
+               "<th class='num'>protan</th><th class='num'>deutan</th><th class='num'>tritan</th>"
+               "<th>below floor</th></tr>" + cvd_rows + "</table>"
+               f"<p class='meta'>{_esc(cvd['note'])}</p>")
+
+    caveats = "<h2>Caveats</h2><ul class='caveats'>" + "".join(
+        f"<li>{_esc(cv)}</li>" for cv in a["caveats"]) + "</ul>"
+    foot = (
+        '<div class="foot">Generated by grotto Phase 3 reference analysis. '
+        "Reproducible: identical inputs produce byte-identical output.</div>"
+    )
+    return _ref_doc(title, head + "".join(sec) + caveats + foot)
+
+
+def reference_comparison_svg(analyses: dict[str, dict], order: list[str]) -> str:
+    """A self-contained SVG strip comparing every reference's key colours.
+
+    One row per reference (in the fixed ``order``); each row shows the bg
+    swatch, fg swatch, and the chromatic syntax/diagnostic roles that the
+    reference actually maps. Deterministic; no external resources.
+    """
+    key_roles = ("keyword", "string", "type", "function", "number",
+                 "constant", "error", "warning", "diff_added", "diff_removed")
+    n = len(order)
+    row_h = 46
+    pad = 10
+    label_w = 110
+    chip_w = 42
+    # each row: bg + fg + up to len(key_roles) chips
+    cols = 2 + len(key_roles)
+    total_w = label_w + cols * (chip_w + pad) + pad
+    total_h = 2 * row_h + n * row_h + pad
+    bg_chrome = "#15161c"
+    fg_chrome = "#d7d9e2"
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{total_w}" height="{total_h}" '
+        f'font-family="ui-monospace,monospace" font-size="11">'
+        f'<rect width="100%" height="100%" fill="{bg_chrome}"/>'
+    ]
+    # column headers
+    parts.append(f'<text x="{pad}" y="20" fill="{fg_chrome}">reference</text>')
+    x = label_w + pad
+    for i, role in enumerate(("bg", "fg") + key_roles):
+        parts.append(
+            f'<text x="{x + i*(chip_w+pad) + 3}" y="20" fill="#8b8ea0">{_esc(role)}</text>'
+        )
+    # rows
+    for ri, stem in enumerate(order):
+        a = analyses[stem]
+        y = 2 * row_h + ri * row_h
+        parts.append(f'<text x="{pad}" y="{y + row_h//2 + 4}" fill="{fg_chrome}">{_esc(stem)}</text>')
+        bg_hex = (a["background"].get("bg") or {}).get("hex")
+        fg_hex = (a.get("reading_contrast") or {}).get("fg_hex")
+        chips = [bg_hex, fg_hex] + [
+            a["warm_cool_balance"]["per_role"].get(r, {}).get("hex") for r in key_roles
+        ]
+        for ci, hx in enumerate(chips):
+            cx = label_w + pad + ci * (chip_w + pad)
+            if hx:
+                parts.append(
+                    f'<rect x="{cx}" y="{y + 8}" width="{chip_w}" height="{row_h - 16}" '
+                    f'fill="{hx}" rx="2" />'
+                )
+                parts.append(
+                    f'<text x="{cx + 3}" y="{y + row_h - 12}" fill="#8b8ea0" font-size="8">{_esc(hx)}</text>'
+                )
+            else:
+                parts.append(
+                    f'<text x="{cx + chip_w//2 - 2}" y="{y + row_h//2 + 3}" fill="#555">-</text>'
+                )
+    parts.append("</svg>")
+    return "".join(parts)

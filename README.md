@@ -31,7 +31,9 @@ out/                            generated reports (reproducible)
 
 The evaluation tooling depends only on L1/L2 and never reaches into editor
 bindings. No layer reaches downward: L1 has no hex values; the tooling has no
-editor scope names.
+editor scope names. Phase 3 reference analysis output lives under
+`out/references/` (per-reference `.json`/`.yaml`/`.txt`/`.html` plus
+`comparison.{json,yaml,txt,html,svg}`).
 
 ## Install
 
@@ -64,6 +66,15 @@ uv run grotto specimens --out out/specimens
 
 # A reference theme works too (editor 'variant: dark' is accepted):
 uv run grotto palette themes/references/nord.yaml --out out/nord
+
+# Phase 3: consistent quantitative analysis of ALL six reference themes.
+# Writes per-reference .json/.yaml/.txt/.html plus a side-by-side
+# comparison.{json,yaml,txt,html,svg}. Descriptive only -- no ranking
+# or winner is declared (DESIGN.md section 1).
+uv run grotto references --out out/references
+# Analyse a subset explicitly:
+uv run grotto references themes/references/nord.yaml \
+    themes/references/solarized.yaml --out out/refs-subset
 ```
 
 Reports are **reproducible**: identical inputs produce byte-identical output
@@ -80,6 +91,9 @@ from grotto.distance import delta_e_ok, breakdown # dE_OK + per-channel breakdow
 from grotto.cvd import simulate, check_pair       # Brettel dichromacy / Machado anomaly
 from grotto.spectral import melanopic, screen_melanopic  # nominal-display, exploratory
 from grotto.stability import cross_variant_report # cross-variant semantic reporting
+from grotto.reference_analysis import (        # Phase 3 reference-theme analysis
+    load_reference_dir, analyze_reference, compare_references,
+)
 from grotto.report import palette_report_dict, to_json
 from grotto.render import palette_html_report, palette_svg_strip
 
@@ -92,6 +106,16 @@ audit_palette(pal, roles)        # per-role OKLCH/OKLab/hex + sRGB & P3 gamut st
 check(pal, roles, dists)         # distance-matrix + CVD violations
 contrast_report(pal["fg"], pal.bg)
 cross_variant_report({"day": p_day, "night": p_night}, roles)
+
+# Phase 3: analyse every reference consistently and compare side by side.
+# (Descriptive only -- no ranking or winner; see DESIGN.md section 1.)
+from grotto.reference_analysis import primary_variant
+refs   = load_reference_dir("themes/references")        # stem -> [ReferenceVariant]
+ref_an = {
+    stem: analyze_reference(primary_variant(vs), roles, dists, env)
+    for stem, vs in refs.items()
+}
+compare_references(ref_an, roles, dists, env)            # side-by-side dict
 ```
 
 ## The metrics and their limits
@@ -109,6 +133,7 @@ Grotto reports several metrics *together* and treats disagreement as signal.
 | CVD simulation (protan/deutan/tritan) | `cvd` | dichromacy via Brettel 1997, anomaly via Machado 2009, tritan always Brettel. **Population-average dichromat models** — they detect collapse, they do not reproduce an individual's experience (R-9). |
 | Cross-variant stability | `stability` | hue drift, family/hue ordering, salience rank, chroma rank. Cross-variant dE is informational **only** (Day↔Night inverts lightness by design). |
 | Melanopic, area-weighted | `spectral` | **exploratory, nominal-display, within-model ranking only.** An sRGB triple does not determine a spectral power distribution; this never claims actual retinal exposure (R-4, R-5). |
+| Reference analysis (Phase 3) | `reference_analysis` | consistent six-reference comparison: background OKLCH (hue suppressed when achromatic), fg/bg WCAG+APCA, lightness/chroma distributions, declared-constraint coverage, chroma-weighted warm/cool balance, nominal spectral background-vs-token split, CVD behaviour. **Descriptive only; no ranking** (DESIGN.md §1). |
 
 D-3 is enforced at load time: every role with `cvd_priority: critical` must
 declare a `redundant_channels` entry, because **hue is never the sole carrier of
@@ -133,13 +158,22 @@ colors:
 ## Status
 
 Phases implemented: **Phase 1** (specification, `DESIGN.md` / `RESEARCH.md` /
-`spec/`) and **Phase 2** (evaluation tooling: colour/contrast/distance/CVD/
+`spec/`), **Phase 2** (evaluation tooling: colour/contrast/distance/CVD/
 spectral metrics, palette loading/validation, cross-variant reporting,
-specimens, reproducible reports and self-contained visual render, tests).
+specimens, reproducible reports and self-contained visual render, tests), and
+**Phase 3** (consistent quantitative reference-theme analysis across all six
+references: background OKLCH with achromatic hue suppression, fg/bg WCAG +
+experimental APCA, lightness/chroma distributions, declared-constraint
+distances and coverage, an explicitly defined chroma-weighted warm/cool
+balance, nominal area-weighted spectral comparison with background-vs-token
+decomposition, and CVD behaviour; per-reference JSON/YAML/text/HTML plus a
+side-by-side comparison JSON/YAML/text/HTML/SVG under `out/references/`;
+descriptive only, no ranking).
 
-Not done here: the environment transform (`model.py`, Phase 4), final candidate
-palettes (Phase 5), and human evaluation (Phase 7). Reference themes are inputs
-only; no conclusions are drawn about them here (that is Phase 3 work).
+Not done here: the environment transform (`model.py`, Phase 4), final
+candidate palettes (Phase 5), and human evaluation (Phase 7). Reference themes
+are inputs only; the Phase 3 analysis is descriptive and draws no conclusion
+about which reference is "best" (DESIGN.md section 1).
 
 ## License
 

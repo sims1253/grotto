@@ -1,0 +1,756 @@
+schema: grotto.reference-analysis
+schema_version: phase3
+reference:
+  name: monokai
+  label: dark
+  file_stem: ''
+  source_url: https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-monokai/themes/monokai-color-theme.json
+  source_note: 'The classic Monokai as shipped with VS Code (extensions/theme-monokai/themes/monokai-color-theme.json).
+    This theme has no single named-palette file; the palette below is reconstructed verbatim from the
+    theme JSON''s (a) header comment of base values, (b) editor/terminal `colors` map, and (c) `tokenColors`
+    syntax rules. Roles are mapped from those same tokenColors rules (e.g. `string` -> #E6DB74, `keyword`/`storage`
+    -> #F92672). Note: this is the open VS Code "Monokai", not the proprietary Monokai Pro.'
+  is_primary: true
+  source_ambiguous: false
+  extra_variant_labels: []
+  normalized_alpha_roles:
+  - selection
+  roles_present_count: 16
+  roles_missing_count: 24
+  roles_missing:
+  - active_line
+  - bg_elevated
+  - bg_overlay
+  - breakpoint
+  - debug_current
+  - decorator
+  - deprecated
+  - diff_changed
+  - docstring
+  - fg_muted
+  - fg_secondary
+  - focus
+  - line_number
+  - line_number_active
+  - namespace
+  - operator
+  - parameter
+  - property
+  - punctuation
+  - search_match
+  - search_match_current
+  - success
+  - tag
+  - ui_inactive
+  roles_not_in_spec: []
+  mapping_completeness:
+    present: 16
+    total_spec_roles: 40
+    fraction: 0.4
+background:
+  bg:
+    role: bg
+    hex: '#272822'
+    L: 0.27366
+    C: 0.010867
+    h: null
+    h_meaningful: false
+    classification: achromatic
+    achromatic_floor: 0.02
+  bg_elevated: null
+  bg_overlay: null
+  note: Hue is suppressed (reported null, classification 'achromatic') when OKLCH chroma C < 0.02, because
+    hue angle is noise near the achromatic axis (color.oklab_to_oklch). The warm/cool classification uses
+    the same warm/cool convention documented under warm_cool_balance.
+reading_contrast:
+  pair:
+  - fg
+  - bg
+  fg_hex: '#f8f8f2'
+  bg_hex: '#272822'
+  wcag_ratio: 13.943421
+  wcag_aa_body: true
+  wcag_aa_large: true
+  apca_lc: -99.639077
+  oklab_dl: 0.703817
+  apca_measured_band: maximal
+  apca_note: APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion
+    (DESIGN.md section 7, RESEARCH.md R-11).
+distributions:
+  all_roles:
+    lightness:
+      n: 16
+      min: 0.27366
+      median: 0.701174
+      mean: 0.714535
+      max: 0.977477
+      spread: 0.703817
+      min_role: bg
+      max_role: fg
+    chroma:
+      n: 16
+      min: 0.007913
+      median: 0.130108
+      mean: 0.132672
+      max: 0.240006
+      spread: 0.232093
+      min_role: fg
+      max_role: diff_removed
+  excluding_backgrounds:
+    lightness:
+      n: 15
+      min: 0.610879
+      median: 0.701174
+      mean: 0.743927
+      max: 0.977477
+      spread: 0.366597
+      min_role: comment
+      max_role: fg
+    chroma:
+      n: 15
+      min: 0.007913
+      median: 0.130435
+      mean: 0.140793
+      max: 0.240006
+      spread: 0.232093
+      min_role: fg
+      max_role: diff_removed
+  sample_note: Descriptive statistics over n=16 mapped roles (small sample; use the spread, not the mean,
+    as the signal). 'excluding_backgrounds' omits bg/bg_elevated/bg_overlay so the syntax+foreground distribution
+    is visible on its own.
+constraints:
+  must_distinguish:
+    declared_pairs: 26
+    present_pairs: 14
+    coverage_fraction: 0.538462
+    pairs:
+    - a: error
+      b: string
+      a_hex: '#f44747'
+      b_hex: '#e6db74'
+      de: 0.319486
+      d_lightness: 0.230858
+      d_chroma: 0.084289
+      d_hue: 0.228103
+      dominant_channel: lightness
+      channel: null
+    - a: error
+      b: builtin
+      a_hex: '#f44747'
+      b_hex: '#66d9ef'
+      de: 0.364102
+      d_lightness: 0.178536
+      d_chroma: 0.101751
+      d_hue: 0.480531
+      dominant_channel: hue
+      channel: null
+    - a: error
+      b: keyword
+      a_hex: '#f44747'
+      b_hex: '#f92672'
+      de: 0.075866
+      d_lightness: 0.006781
+      d_chroma: 0.030222
+      d_hue: 0.06969
+      dominant_channel: hue
+      channel: null
+    - a: error
+      b: warning
+      a_hex: '#f44747'
+      b_hex: '#cd9731'
+      de: 0.180779
+      d_lightness: 0.062642
+      d_chroma: 0.07935
+      d_hue: 0.159946
+      dominant_channel: hue
+      channel: null
+    - a: error
+      b: fg
+      a_hex: '#f44747'
+      b_hex: '#f8f8f2'
+      de: 0.38973
+      d_lightness: 0.329117
+      d_chroma: 0.201871
+      d_hue: 0.154497
+      dominant_channel: lightness
+      channel: null
+    - a: warning
+      b: string
+      a_hex: '#cd9731'
+      b_hex: '#e6db74'
+      de: 0.176555
+      d_lightness: 0.168216
+      d_chroma: 0.004939
+      d_hue: 0.053799
+      dominant_channel: lightness
+      channel: null
+    - a: warning
+      b: number
+      a_hex: '#cd9731'
+      b_hex: '#ae81ff'
+      de: 0.294466
+      d_lightness: 0.009827
+      d_chroma: 0.050792
+      d_hue: 0.383572
+      dominant_channel: hue
+      channel: null
+    - a: warning
+      b: constant
+      a_hex: '#cd9731'
+      b_hex: '#ae81ff'
+      de: 0.294466
+      d_lightness: 0.009827
+      d_chroma: 0.050792
+      d_hue: 0.383572
+      dominant_channel: hue
+      channel: null
+    - a: diff_added
+      b: diff_removed
+      a_hex: '#a6e22e'
+      b_hex: '#f92672'
+      de: 0.433742
+      d_lightness: 0.199836
+      d_chroma: 0.035566
+      d_hue: 0.464724
+      dominant_channel: hue
+      channel: null
+    - a: selection
+      b: diff_added
+      a_hex: '#878b91'
+      b_hex: '#a6e22e'
+      de: 0.295093
+      d_lightness: 0.206068
+      d_chroma: 0.194324
+      d_hue: 0.245395
+      dominant_channel: hue
+      channel: null
+    - a: selection
+      b: diff_removed
+      a_hex: '#878b91'
+      b_hex: '#f92672'
+      de: 0.243587
+      d_lightness: 0.006233
+      d_chroma: 0.22989
+      d_hue: 0.238177
+      dominant_channel: hue
+      channel: null
+    - a: fg
+      b: bg
+      a_hex: '#f8f8f2'
+      b_hex: '#272822'
+      de: 0.703824
+      d_lightness: 0.703817
+      d_chroma: 0.002954
+      d_hue: 0.001353
+      dominant_channel: lightness
+      channel: null
+    - a: comment
+      b: bg
+      a_hex: '#88846f'
+      b_hex: '#272822'
+      de: 0.337858
+      d_lightness: 0.337219
+      d_chroma: 0.02008
+      d_hue: 0.006018
+      dominant_channel: lightness
+      channel: null
+    - a: error
+      b: bg
+      a_hex: '#f44747'
+      b_hex: '#272822'
+      de: 0.429528
+      d_lightness: 0.374699
+      d_chroma: 0.198918
+      d_hue: 0.172493
+      dominant_channel: lightness
+      channel: null
+  should_distinguish:
+    declared_pairs: 20
+    present_pairs: 15
+    coverage_fraction: 0.75
+    pairs:
+    - a: keyword
+      b: string
+      a_hex: '#f92672'
+      b_hex: '#e6db74'
+      de: 0.368542
+      d_lightness: 0.237639
+      d_chroma: 0.114511
+      d_hue: 0.305294
+      dominant_channel: hue
+      channel: null
+    - a: keyword
+      b: function
+      a_hex: '#f92672'
+      b_hex: '#a6e22e'
+      de: 0.433742
+      d_lightness: 0.199836
+      d_chroma: 0.035566
+      d_hue: 0.464724
+      dominant_channel: hue
+      channel: null
+    - a: keyword
+      b: type
+      a_hex: '#f92672'
+      b_hex: '#66d9ef'
+      de: 0.388338
+      d_lightness: 0.185317
+      d_chroma: 0.131973
+      d_hue: 0.4723
+      dominant_channel: hue
+      channel: null
+    - a: keyword
+      b: fg
+      a_hex: '#f92672'
+      b_hex: '#f8f8f2'
+      de: 0.413634
+      d_lightness: 0.335899
+      d_chroma: 0.232093
+      d_hue: 0.214357
+      dominant_channel: lightness
+      channel: null
+    - a: string
+      b: function
+      a_hex: '#e6db74'
+      b_hex: '#a6e22e'
+      de: 0.110162
+      d_lightness: 0.037803
+      d_chroma: 0.078945
+      d_hue: 0.069402
+      dominant_channel: chroma
+      channel: null
+    - a: string
+      b: type
+      a_hex: '#e6db74'
+      b_hex: '#66d9ef'
+      de: 0.1972
+      d_lightness: 0.052322
+      d_chroma: 0.017462
+      d_hue: 0.221687
+      dominant_channel: hue
+      channel: null
+    - a: string
+      b: number
+      a_hex: '#e6db74'
+      b_hex: '#ae81ff'
+      de: 0.352494
+      d_lightness: 0.178042
+      d_chroma: 0.055731
+      d_hue: 0.44197
+      dominant_channel: hue
+      channel: null
+    - a: string
+      b: comment
+      a_hex: '#e6db74'
+      b_hex: '#88846f'
+      de: 0.284557
+      d_lightness: 0.268338
+      d_chroma: 0.094549
+      d_hue: 0.006653
+      dominant_channel: lightness
+      channel: null
+    - a: function
+      b: type
+      a_hex: '#a6e22e'
+      b_hex: '#66d9ef'
+      de: 0.222665
+      d_lightness: 0.014519
+      d_chroma: 0.096407
+      d_hue: 0.2309
+      dominant_channel: hue
+      channel: null
+    - a: function
+      b: fg
+      a_hex: '#a6e22e'
+      b_hex: '#f8f8f2'
+      de: 0.23947
+      d_lightness: 0.136063
+      d_chroma: 0.196527
+      d_hue: 0.038436
+      dominant_channel: chroma
+      channel: null
+    - a: type
+      b: fg
+      a_hex: '#66d9ef'
+      b_hex: '#f8f8f2'
+      de: 0.186717
+      d_lightness: 0.150582
+      d_chroma: 0.10012
+      d_hue: 0.106664
+      dominant_channel: lightness
+      channel: null
+    - a: number
+      b: fg
+      a_hex: '#ae81ff'
+      b_hex: '#f8f8f2'
+      de: 0.334752
+      d_lightness: 0.276302
+      d_chroma: 0.173313
+      d_hue: 0.278091
+      dominant_channel: hue
+      channel: null
+    - a: comment
+      b: fg
+      a_hex: '#88846f'
+      b_hex: '#f8f8f2'
+      de: 0.367327
+      d_lightness: 0.366597
+      d_chroma: 0.023034
+      d_hue: 0.002793
+      dominant_channel: lightness
+      channel: null
+    - a: builtin
+      b: error
+      a_hex: '#66d9ef'
+      b_hex: '#f44747'
+      de: 0.364102
+      d_lightness: 0.178536
+      d_chroma: 0.101751
+      d_hue: 0.480531
+      dominant_channel: hue
+      channel: null
+    - a: builtin
+      b: fg
+      a_hex: '#66d9ef'
+      b_hex: '#f8f8f2'
+      de: 0.186717
+      d_lightness: 0.150582
+      d_chroma: 0.10012
+      d_hue: 0.106664
+      dominant_channel: lightness
+      channel: null
+  same_family:
+    declared_pairs: 7
+    present_pairs: 2
+    coverage_fraction: 0.285714
+    pairs:
+    - a: number
+      b: constant
+      a_hex: '#ae81ff'
+      b_hex: '#ae81ff'
+      de: 0.0
+      d_lightness: 0.0
+      d_chroma: 0.0
+      d_hue: 0.0
+      dominant_channel: lightness
+      channel: null
+    - a: diff_removed
+      b: error
+      a_hex: '#f92672'
+      b_hex: '#f44747'
+      de: 0.075866
+      d_lightness: 0.006781
+      d_chroma: 0.030222
+      d_hue: 0.06969
+      dominant_channel: hue
+      channel: null
+  differentiated_by:
+    declared_pairs: 5
+    present_pairs: 0
+    coverage_fraction: 0.0
+    pairs: []
+  redundant_encoding:
+    declared_pairs: 2
+    present_pairs: 2
+    coverage_fraction: 1.0
+    pairs:
+    - a: error
+      b: warning
+      a_hex: '#f44747'
+      b_hex: '#cd9731'
+      de: 0.180779
+      d_lightness: 0.062642
+      d_chroma: 0.07935
+      d_hue: 0.159946
+      dominant_channel: hue
+      channel: lightness_and_icon
+    - a: diff_added
+      b: diff_removed
+      a_hex: '#a6e22e'
+      b_hex: '#f92672'
+      de: 0.433742
+      d_lightness: 0.199836
+      d_chroma: 0.035566
+      d_hue: 0.464724
+      dominant_channel: hue
+      channel: lightness_and_gutter_sign
+  note: Coverage = fraction of declared constraints whose two roles are both mapped in this reference.
+    References are NOT candidate palettes and are not bound by the distance thresholds; the dE values
+    are descriptive. Low coverage reflects mapping incompleteness, not a theme defect.
+warm_cool_balance:
+  definition: Palette score = sum(C_i * cos(h_i - 60deg)) / sum(C_i) over chromatic roles (C >= 0.02).
+    +1 warm (amber), -1 cool (azure), 0 at 150/330 deg. A convention on OKLCH hue, not a perceptual law.
+  warm_hue_center_deg: 60.0
+  achromatic_floor: 0.02
+  chroma_weighted_score: 0.170612
+  n_chromatic_roles: 13
+  n_warm_roles: 8
+  n_cool_roles: 5
+  warm_roles:
+  - comment
+  - diff_added
+  - diff_removed
+  - error
+  - function
+  - keyword
+  - string
+  - warning
+  cool_roles:
+  - builtin
+  - constant
+  - info
+  - number
+  - type
+  per_role:
+    builtin:
+      hex: '#66d9ef'
+      C: 0.108034
+      h: 211.962677
+      score: -0.882642
+    comment:
+      hex: '#88846f'
+      C: 0.030947
+      h: 98.309062
+      score: 0.784678
+    constant:
+      hex: '#ae81ff'
+      C: 0.181227
+      h: 298.062014
+      score: -0.529001
+    diff_added:
+      hex: '#a6e22e'
+      C: 0.204441
+      h: 127.28622
+      score: 0.386128
+    diff_removed:
+      hex: '#f92672'
+      C: 0.240006
+      h: 7.466578
+      score: 0.608299
+    error:
+      hex: '#f44747'
+      C: 0.209785
+      h: 25.221337
+      score: 0.821362
+    function:
+      hex: '#a6e22e'
+      C: 0.204441
+      h: 127.28622
+      score: 0.386128
+    info:
+      hex: '#6796e6'
+      C: 0.129782
+      h: 260.521117
+      score: -0.936543
+    keyword:
+      hex: '#f92672'
+      C: 0.240006
+      h: 7.466578
+      score: 0.608299
+    number:
+      hex: '#ae81ff'
+      C: 0.181227
+      h: 298.062014
+      score: -0.529001
+    string:
+      hex: '#e6db74'
+      C: 0.125496
+      h: 103.182014
+      score: 0.729183
+    type:
+      hex: '#66d9ef'
+      C: 0.108034
+      h: 211.962677
+      score: -0.882642
+    warning:
+      hex: '#cd9731'
+      C: 0.130435
+      h: 79.093744
+      score: 0.944985
+  note: Sign/magnitude are a coarse summary. Boundaries at 150/330 deg are genuinely intermediate. Roles
+    below the chroma floor (most backgrounds and near-neutral foregrounds) are excluded; a barely-chromatic
+    surface contributes negligibly because the score is chroma-weighted.
+spectral:
+  display: led-lcd
+  coverage_kind: code
+  photopic_relative: 0.117076
+  melanopic_relative: 0.103295
+  melanopic_ratio: 0.882293
+  background_share: 0.14552
+  foreground_share: 0.613566
+  token_share: 0.240914
+  top_melanopic_contributors:
+  - hex: '#f8f8f2'
+    share: 0.613566
+  - hex: '#272822'
+    share: 0.14552
+  - hex: '#e6db74'
+    share: 0.062569
+  - hex: '#88846f'
+    share: 0.062275
+  - hex: '#66d9ef'
+    share: 0.046525
+  - hex: '#ae81ff'
+    share: 0.028368
+  - hex: '#a6e22e'
+    share: 0.02684
+  - hex: '#f92672'
+    share: 0.014337
+  caveat: Exploratory nominal-display model; within-model ranking only. An sRGB triple does not determine
+    a spectral power distribution; emitted contribution depends on linear channel drive and assumed primary
+    spectra, not area alone. This never claims actual retinal exposure (RESEARCH.md R-4, R-5, R-13, M-1).
+cvd:
+  n_must_distinguish_pairs_present: 14
+  n_pairs_collapsing_below_floor: 3
+  cvd_floor: 0.09
+  pairs:
+  - a: error
+    b: string
+    normal_de: 0.319486
+    cvd_dichromat_de:
+      protan: 0.358042
+      deutan: 0.22272
+      tritan: 0.295773
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: error
+    b: builtin
+    normal_de: 0.364102
+    cvd_dichromat_de:
+      protan: 0.339892
+      deutan: 0.238318
+      tritan: 0.363633
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: error
+    b: keyword
+    normal_de: 0.075866
+    cvd_dichromat_de:
+      protan: 0.087658
+      deutan: 0.054642
+      tritan: 0.01842
+    cvd_floor: 0.09
+    collapses_below_floor: true
+    redundant_channel: false
+  - a: error
+    b: warning
+    normal_de: 0.180779
+    cvd_dichromat_de:
+      protan: 0.172789
+      deutan: 0.061419
+      tritan: 0.14451
+    cvd_floor: 0.09
+    collapses_below_floor: true
+    redundant_channel: false
+  - a: error
+    b: fg
+    normal_de: 0.38973
+    cvd_dichromat_de:
+      protan: 0.446607
+      deutan: 0.334521
+      tritan: 0.390942
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: warning
+    b: string
+    normal_de: 0.176555
+    cvd_dichromat_de:
+      protan: 0.193515
+      deutan: 0.167133
+      tritan: 0.175852
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: warning
+    b: number
+    normal_de: 0.294466
+    cvd_dichromat_de:
+      protan: 0.302078
+      deutan: 0.28281
+      tritan: 0.096325
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: warning
+    b: constant
+    normal_de: 0.294466
+    cvd_dichromat_de:
+      protan: 0.302078
+      deutan: 0.28281
+      tritan: 0.096325
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: diff_added
+    b: diff_removed
+    normal_de: 0.433742
+    cvd_dichromat_de:
+      protan: 0.433755
+      deutan: 0.213992
+      tritan: 0.330455
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: selection
+    b: diff_added
+    normal_de: 0.295093
+    cvd_dichromat_de:
+      protan: 0.308323
+      deutan: 0.262423
+      tritan: 0.215364
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: selection
+    b: diff_removed
+    normal_de: 0.243587
+    cvd_dichromat_de:
+      protan: 0.137793
+      deutan: 0.06351
+      tritan: 0.237637
+    cvd_floor: 0.09
+    collapses_below_floor: true
+    redundant_channel: false
+  - a: fg
+    b: bg
+    normal_de: 0.703824
+    cvd_dichromat_de:
+      protan: 0.702151
+      deutan: 0.703204
+      tritan: 0.70387
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: comment
+    b: bg
+    normal_de: 0.337858
+    cvd_dichromat_de:
+      protan: 0.336425
+      deutan: 0.338037
+      tritan: 0.338799
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  - a: error
+    b: bg
+    normal_de: 0.429528
+    cvd_dichromat_de:
+      protan: 0.261296
+      deutan: 0.395815
+      tritan: 0.432066
+    cvd_floor: 0.09
+    collapses_below_floor: false
+    redundant_channel: false
+  note: Dichromacy via Brettel 1997 (population-average models); they detect collapse, they do not reproduce
+    an individual's experience (R-9). References are NOT bound by D-3 and declare no redundant channels;
+    a collapse here is informational, not a compliance failure.
+caveats:
+- 'Descriptive only. No ranking, scoring, or winner is declared (DESIGN.md section 1: no evidence selects
+  one syntax palette over another).'
+- APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion (R-11).
+- CVD figures use population-average dichromat models (R-9).
+- Spectral figures are nominal-display, within-model, exploratory; they never claim retinal exposure (R-4,
+  R-5, R-13).

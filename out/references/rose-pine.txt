@@ -1,0 +1,56 @@
+# rose-pine  (dark) [file also carries: light]
+  source: https://raw.githubusercontent.com/rose-pine/palette/main/palette.json
+  mapping: 16/40 spec roles (40%); 24 missing
+
+## background (OKLCH; hue suppressed when effectively achromatic)
+  bg           #191724  L0.213 C0.025 h 291  [cool]
+  bg_elevated  #1f1d2e  L0.241 C0.032 h 289  [cool]
+
+## reading contrast (fg vs bg)
+  WCAG 13.39 (AA-body / AA-large)  |APCA Lc| 87 (band high)  dL +0.695
+  note: APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion (DESIGN.md section 7, RESEARCH.md R-11).
+
+## lightness / chroma distributions
+  all_roles:
+    L min 0.213 (bg)  med 0.698  max 0.909 (fg)
+    C min 0.025 (bg)  med 0.054  max 0.156 (diff_removed)
+  excluding_backgrounds:
+    L min 0.372 (selection)  med 0.698  max 0.909 (fg)
+    C min 0.030 (fg)  med 0.054  max 0.156 (diff_removed)
+
+## warm/cool balance (explicit definition)
+  chroma-weighted score: +0.157  (+ warm, - cool)
+  warm roles (6): builtin, constant, diff_removed, error, string, warning
+  cool roles (10): bg, bg_elevated, comment, diff_added, fg, fg_secondary, function, info, punctuation, selection
+  definition: Palette score = sum(C_i * cos(h_i - 60deg)) / sum(C_i) over chromatic roles (C >= 0.02). +1 warm (amber), -1 cool (azure), 0 at 150/330 deg. A convention on OKLCH hue, not a perceptual law.
+
+## declared-constraint coverage & distances
+  must_distinguish     12/26 pairs (46% coverage)
+  should_distinguish   8/20 pairs (40% coverage)
+  same_family          1/7 pairs (14% coverage)
+  differentiated_by    0/5 pairs (0% coverage)
+  redundant_encoding   2/2 pairs (100% coverage)
+  note: Coverage = fraction of declared constraints whose two roles are both mapped in this reference. References are NOT candidate palettes and are not bound by the distance thresholds; the dE values are descriptive. Low coverage reflects mapping incompleteness, not a theme defect.
+
+## spectral (nominal display, exploratory)
+  melanopic/photopic ratio: 1.129  (display white = 1.0)
+  bg share 13.4%  fg share 61.6%  token share 25.0%
+  caveat: Exploratory nominal-display model; within-model ranking only. An sRGB triple does not determine a spectral power distribution; emitted contribution depends on linear channel drive and assumed primary spectra, not area alone. This never claims actual retinal exposure (RESEARCH.md R-4, R-5, R-13, M-1).
+
+## CVD behaviour (must_distinguish pairs present)
+  3/12 pairs collapse below dE 0.09 under some dichromacy
+  error/string: normal 0.215 | protan 0.239 deutan 0.166 tritan 0.166
+  error/builtin: normal 0.000 | protan 0.000 deutan 0.000 tritan 0.000  <-- collapses
+  error/warning: normal 0.215 | protan 0.239 deutan 0.166 tritan 0.166
+  error/fg: normal 0.260 | protan 0.284 deutan 0.213 tritan 0.260
+  warning/string: normal 0.000 | protan 0.000 deutan 0.000 tritan 0.000  <-- collapses
+  warning/constant: normal 0.089 | protan 0.091 deutan 0.087 tritan 0.026  <-- collapses
+  diff_added/diff_removed: normal 0.241 | protan 0.222 deutan 0.129 tritan 0.235
+  selection/diff_added: normal 0.454 | protan 0.478 deutan 0.449 tritan 0.455
+  note: Dichromacy via Brettel 1997 (population-average models); they detect collapse, they do not reproduce an individual's experience (R-9). References are NOT bound by D-3 and declare no redundant channels; a collapse here is informational, not a compliance failure.
+
+## caveats
+  - Descriptive only. No ranking, scoring, or winner is declared (DESIGN.md section 1: no evidence selects one syntax palette over another).
+  - APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion (R-11).
+  - CVD figures use population-average dichromat models (R-9).
+  - Spectral figures are nominal-display, within-model, exploratory; they never claim retinal exposure (R-4, R-5, R-13).
