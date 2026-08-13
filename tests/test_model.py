@@ -28,6 +28,7 @@ from grotto.model import (
     ModelSpec,
     RoleAdjustment,
     TransformError,
+    _contrast_block,
     _evaluate_legibility,
     adapt_hue,
     build_family,
@@ -118,6 +119,25 @@ def test_different_bindings_have_different_hashes(spec):
     h1 = build_family(binding("a"), spec).input_hash
     h2 = build_family(binding("b", candidate_scale=1.1), spec).input_hash
     assert h1 != h2
+
+
+def test_hash_includes_role_overrides_meta_and_full_spec(spec):
+    base = build_family(binding("same"), spec).input_hash
+    override = build_family(
+        binding("same", role_overrides={"keyword": {"contrast_target": "high"}}),
+        spec,
+    ).input_hash
+    metadata = build_family(
+        binding("same", meta={"candidate": True, "strategy": "audit"}), spec
+    ).input_hash
+    floors = {
+        **spec.environments.accessibility_floors,
+        "body_text_wcag": 4.6,
+    }
+    changed_env = replace(spec.environments, accessibility_floors=floors)
+    changed_spec = replace(spec, environments=changed_env)
+    spec_hash = build_family(binding("same"), changed_spec).input_hash
+    assert len({base, override, metadata, spec_hash}) == 4
 
 
 # ===========================================================================
@@ -236,6 +256,21 @@ def test_foreground_ceiling_overridden_when_wcag_requires_it(spec):
     for r in overridden:
         hx = fb2.variants["night"].palette[r.name]
         assert wcag_contrast(hx, fb2.variants["night"].palette["bg"]) >= 4.5 - 1e-6
+
+
+def test_configured_body_text_floor_is_not_hard_coded(spec):
+    floors = {
+        **spec.environments.accessibility_floors,
+        "body_text_wcag": 5.0,
+    }
+    spec2 = replace(
+        spec,
+        environments=replace(spec.environments, accessibility_floors=floors),
+    )
+    fb = build_family(binding(), spec2)
+    assert wcag_contrast(
+        fb.variants["night"].palette["fg"], fb.variants["night"].palette["bg"]
+    ) >= 5.0 - 1e-6
 
 
 # ===========================================================================
@@ -415,6 +450,20 @@ def test_adjustment_within_bounds_is_applied_and_recorded(spec):
     assert applied["L"] == pytest.approx(-0.03, abs=1e-6)
 
 
+def test_adjustment_that_breaks_wcag_is_rejected(spec):
+    b = binding(
+        role_overrides={"fg": {"contrast_target": "minimal"}},
+        adjustments={"fg": RoleAdjustment("fg", L=-0.03, rationale="probe floor")},
+    )
+    fb = build_family(b, spec)
+    trace = fb.trace("night", "fg")
+    assert trace.adjustments_applied == {"L": 0.0, "C": 0.0, "h": 0.0}
+    assert "adjustment_rejected_wcag" in trace.conflicts
+    assert wcag_contrast(
+        fb.variants["night"].palette["fg"], fb.variants["night"].palette["bg"]
+    ) >= spec.environments.accessibility_floors["body_text_wcag"] - 1e-6
+
+
 def test_adjustment_exceeding_bounds_is_rejected(spec):
     b = binding(adjustments={"fg": RoleAdjustment("fg", L=ADJUSTMENT_LIMITS["L"] + 0.01)})
     with pytest.raises(BindingError, match="exceeds bound"):
@@ -511,6 +560,31 @@ def test_role_override_changes_the_solve(spec):
     lc_ov = abs(apca_lc(fb_ov.variants["night"].palette["keyword"],
                         fb_ov.variants["night"].palette["bg"]))
     assert lc_ov > lc_plain
+
+
+def test_binding_warm_anchor_override_changes_hue_attraction(spec):
+    default = build_family(binding(), spec)
+    overridden = build_family(binding(warm_anchor_override=300.0), spec)
+    h_default = default.trace("night", "function").realized[2]
+    h_override = overridden.trace("night", "function").realized[2]
+    assert h_default < FAMILY_HUES["azure"]
+    assert h_override > FAMILY_HUES["azure"]
+    assert overridden.trace("night", "function").derivation
+
+
+def test_target_band_membership_handles_overlapping_bands(monkeypatch, spec):
+    from types import SimpleNamespace
+    import grotto.model as model
+
+    monkeypatch.setattr(
+        model,
+        "contrast_report",
+        lambda *_: SimpleNamespace(apca=76.0, wcag=7.0, dl=0.5),
+    )
+    role = replace(spec.roles["fg"], contrast_target="comfortable")
+    block = _contrast_block(role, "#ffffff", "#000000", spec, "night")
+    assert block["measured_band"] == "high"
+    assert block["in_target_band"] is True
 
 
 def test_invalid_role_override_value_is_rejected(spec):

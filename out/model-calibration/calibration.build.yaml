@@ -2,7 +2,7 @@ schema: grotto.family-build
 schema_version: phase4
 name: calibration-experiment
 is_candidate: false
-input_hash: 7c0830e0504d6cd1
+input_hash: 4e00a181b9ae5192
 ok: true
 binding:
   name: calibration-experiment
@@ -37,6 +37,7 @@ binding:
     error: 1.15
     focus: 1.2
     warning: 1.1
+  role_overrides: {}
   adjustments:
     bg:
       L: 0.0
@@ -58,6 +59,14 @@ binding:
       C: -0.01
       h: 0.0
       rationale: long strings are bars of colour; restrain chroma a touch.
+  meta:
+    experiment: true
+    note: 'NON-CANDIDATE. Systematic-transform calibration only. Comparison target is themes/experiments/handtuned-*.yaml
+      (also NON-CANDIDATE). No palette here is final; see DESIGN.md section 1 and section 9 ("Phase 4
+      will test whether this works").
+
+      '
+    phase: 4
 issues:
 - '[error] day: must_distinguish(active_line, diff_added) under normal: dE 0.030 vs 0.130'
 - '[error] day: must_distinguish(active_line, diff_removed) under normal: dE 0.007 vs 0.130'

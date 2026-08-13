@@ -47,7 +47,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
-from dataclasses import dataclass, field, replace
+from dataclasses import asdict, dataclass, field, replace
 from itertools import combinations
 
 from .color import gamut_map, max_chroma, oklch_to_hex
@@ -250,6 +250,13 @@ class CandidateBinding:
                 for f, a in sorted(self.anchors.items())
             },
             "role_scales": {k: round(v, 6) for k, v in sorted(self.role_scales.items())},
+            "role_overrides": {
+                role: {
+                    key: round(value, 6) if isinstance(value, float) else value
+                    for key, value in sorted(overrides.items())
+                }
+                for role, overrides in sorted(self.role_overrides.items())
+            },
             "adjustments": {
                 r: {
                     "L": round(a.L, 5), "C": round(a.C, 5), "h": round(a.h, 4),
@@ -257,7 +264,19 @@ class CandidateBinding:
                 }
                 for r, a in sorted(self.adjustments.items())
             },
+            "meta": _canonical_value(self.meta),
         }
+
+
+def _canonical_value(value):
+    """Return a stable JSON-compatible representation of nested YAML values."""
+    if isinstance(value, dict):
+        return {str(k): _canonical_value(v) for k, v in sorted(value.items())}
+    if isinstance(value, (list, tuple)):
+        return [_canonical_value(v) for v in value]
+    if isinstance(value, float):
+        return round(value, 6)
+    return value
 
 
 @dataclass(frozen=True)
@@ -488,7 +507,11 @@ def chroma_components(
 
 
 def adapt_hue(
-    spec: ModelSpec, env_name: str, role: Role, h0: float
+    spec: ModelSpec,
+    env_name: str,
+    role: Role,
+    h0: float,
+    warm_anchor_override: float | None = None,
 ) -> tuple[float, dict]:
     """Attract ``h0`` along the shortest arc toward the warm anchor.
 
@@ -499,7 +522,11 @@ def adapt_hue(
     role's night_adaptation and the per-hue weight.
     """
     env = spec.environments.environments[env_name]
-    warm = spec.environments.warm_anchor
+    warm = (
+        spec.environments.warm_anchor
+        if warm_anchor_override is None
+        else warm_anchor_override
+    )
     cap = env.rotation_cap_deg
     weight = spec.environments.hue_weight(h0)
     delta = signed_shortest_arc(h0, warm)  # signed direction toward warm
@@ -542,6 +569,16 @@ def _realize_chroma(L: float, h: float, components: dict, ceiling: float):
 # -- contrast solving (ink & border share this; params differ) --------------
 
 
+def _accessibility_wcag_floor(role: Role, spec: ModelSpec) -> float:
+    """Resolve a semantic floor name to the configured WCAG threshold."""
+    floors = spec.environments.accessibility_floors
+    if role.accessibility_floor == "body_text":
+        return float(floors["body_text_wcag"])
+    if role.accessibility_floor == "non_text":
+        return float(floors["non_text_wcag"])
+    return 0.0
+
+
 def _wcag_of(L: float, h: float, role, binding, spec, env_name, ref_hex, components, ceiling):
     out = _realize_chroma(L, h, components, ceiling)
     ink_hex = oklch_to_hex(out["realized"])
@@ -571,13 +608,7 @@ def _solve_contrast_role(
     env = spec.environments.environments[env_name]
     dark = env.polarity == "dark"
     ceiling = env.foreground_ceiling if role.paint == "ink" else None
-    floors = spec.environments.accessibility_floors
-    if role.accessibility_floor == "body_text":
-        wcag_floor = floors["body_text_wcag"]
-    elif role.accessibility_floor == "non_text":
-        wcag_floor = floors["large_text_wcag"]  # 3.0
-    else:
-        wcag_floor = 0.0
+    wcag_floor = _accessibility_wcag_floor(role, spec)
     band = spec.environments.contrast_bands[role.contrast_target]
     apca_centre = band.centre
     abs_ceiling = spec.environments.chroma_absolute_ceiling
@@ -766,7 +797,9 @@ def _derive_surface(role, env_name, spec, binding, canvas_L):
     direction = 1.0 if dark else -1.0
     L = max(_L_FLOOR, min(_L_CEIL, canvas_L + direction * step))
     h0 = binding.anchors[role.family].h % 360.0
-    h, hue_info = adapt_hue(spec, env_name, role, h0)
+    h, hue_info = adapt_hue(
+        spec, env_name, role, h0, binding.warm_anchor_override
+    )
     components = chroma_components(spec, binding, role, L, h, env_name)
     return L, h, components, hue_info
 
@@ -774,7 +807,9 @@ def _derive_surface(role, env_name, spec, binding, canvas_L):
 def _derive_ink_or_border(role, env_name, spec, binding, ref_hex, ref_L):
     """Contrast-solve lightness (lexicographic); chroma follows from the formula."""
     h0 = binding.anchors[role.family].h % 360.0
-    h, hue_info = adapt_hue(spec, env_name, role, h0)
+    h, hue_info = adapt_hue(
+        spec, env_name, role, h0, binding.warm_anchor_override
+    )
     L, solve_info = _solve_contrast_role(
         role, h, ref_hex, ref_L, env_name, spec, binding
     )
@@ -892,6 +927,7 @@ def _build_variant(
             raise
 
         # bounded adjustment (priority 5: minimal adjustment)
+        unadjusted = (L, h, components)
         applied, L, h, components = _apply_adjustment(
             r, L, h, components, binding, spec, env_name
         )
@@ -899,6 +935,25 @@ def _build_variant(
         realized = common["realized"]
         losses = common["losses"]
         hx = oklch_to_hex(realized)
+        adjustment_rejected = False
+        floor_v = _accessibility_wcag_floor(r, spec)
+        if (
+            r.paint in ("ink", "border")
+            and floor_v > 0.0
+            and any(applied.values())
+            and wcag_contrast(hx, bg_hex) + 1e-6 < floor_v
+        ):
+            # Adjustments are the lowest-priority preference. If their combined
+            # L/C/h change breaches a hard floor, reject the whole nudge and
+            # retain the systematic solution rather than emitting a known-bad
+            # colour with ``ok=False``.
+            L, h, components = unadjusted
+            applied = {"L": 0.0, "C": 0.0, "h": 0.0}
+            common = _trace_common(r, env_name, L, h, components, spec)
+            realized = common["realized"]
+            losses = common["losses"]
+            hx = oklch_to_hex(realized)
+            adjustment_rejected = True
         palette_colors[role.name] = hx
         palette_perceptual[role.name] = realized
         palette_losses[role.name] = losses["gamut_loss"]
@@ -913,6 +968,8 @@ def _build_variant(
                 conflicts.append("wcag_apca_conflict")
             if solve_info.get("foreground_ceiling_overridden"):
                 conflicts.append("foreground_ceiling_overridden")
+            if adjustment_rejected:
+                conflicts.append("adjustment_rejected_wcag")
             derivation.append(
                 f"solved L={L:.4f} to {winning} "
                 f"(wcag_floor={solve_info['wcag_floor']}, "
@@ -920,9 +977,7 @@ def _build_variant(
                 f"L_wcag={solve_info['L_wcag']:.4f}, L_apca={solve_info['L_apca']:.4f})"
             )
             # final quantized hex must still meet the floor
-            if r.accessibility_floor != "none":
-                floor_v = (4.5 if role.accessibility_floor == "body_text"
-                           else spec.environments.accessibility_floors["large_text_wcag"])
+            if floor_v > 0.0:
                 if contrast["wcag"] + 1e-6 < floor_v:
                     issues.append(
                         f"[error] {r.name}@{env_name}: final hex {hx} WCAG "
@@ -945,6 +1000,8 @@ def _build_variant(
                 f"adjustment applied L{applied['L']:+.4f} C{applied['C']:+.4f} "
                 f"h{applied['h']:+.3f}"
             )
+        elif adjustment_rejected:
+            derivation.append("adjustment rejected: combined nudge breached WCAG floor")
 
         role_issues: list[str] = []
         if losses["total_loss"] > 1e-6 and losses["realized_fraction"] < 0.85:
@@ -976,12 +1033,11 @@ def _contrast_block(role, hx, bg_hex, spec, env_name):
     rep = contrast_report(hx, bg_hex)
     measured_band = spec.environments.band_for_lc(abs(rep.apca))
     target = role.contrast_target
+    # ``measured_band`` remains a convenient single label for reports. Target
+    # membership must be checked directly because the declared bands overlap.
     in_target = (
         target is not None
-        and measured_band is not None
-        # bands can overlap: test membership against the role's TARGET band,
-        # not the first band a naive classifier returns.
-        and measured_band.name == target
+        and spec.environments.contrast_bands[target].contains(abs(rep.apca))
     )
     return {
         "reference": "bg",
@@ -1003,7 +1059,6 @@ def _evaluate_legibility(colors, roles, spec, env_name):
     must stay readable").
     """
     out = []
-    floors = spec.environments.accessibility_floors
     surfaces = [s for s in CO_OCCURRING_SURFACES if s in colors]
     for role in roles:
         if role.paint != "ink" or role.accessibility_floor == "none":
@@ -1011,8 +1066,7 @@ def _evaluate_legibility(colors, roles, spec, env_name):
         hx = colors.get(role.name)
         if not hx:
             continue
-        floor = (floors["body_text_wcag"] if role.accessibility_floor == "body_text"
-                 else floors["large_text_wcag"])
+        floor = _accessibility_wcag_floor(role, spec)
         for surf in surfaces:
             wcag = wcag_contrast(hx, colors[surf])
             if wcag + 1e-6 < floor:
@@ -1080,14 +1134,14 @@ def _input_hash(binding: CandidateBinding, spec: ModelSpec) -> str:
     h = hashlib.sha256()
     payload = {
         "binding": binding.canonical(),
-        "roles_version": spec.roles.version,
-        "environments_version": spec.environments.version,
-        "distances_version": spec.distances.version,
-        "n_roles": len(spec.roles),
-        "families": sorted({r.family for r in spec.roles}),
-        "warm_anchor": spec.environments.warm_anchor,
+        # Hash the effective inputs, not only their version labels. Two working
+        # specs can legitimately share a schema version while containing
+        # different thresholds or environment coordinates.
+        "roles": asdict(spec.roles),
+        "environments": asdict(spec.environments),
+        "distances": asdict(spec.distances),
     }
-    h.update(json.dumps(payload, sort_keys=True).encode())
+    h.update(json.dumps(_canonical_value(payload), sort_keys=True).encode())
     return h.hexdigest()[:16]
 
 
@@ -1131,8 +1185,8 @@ def build_family(binding: CandidateBinding, spec: ModelSpec) -> FamilyBuild:
             if role.paint in ("ink", "border") and role.accessibility_floor != "none":
                 hx = vb.palette.colors.get(role.name)
                 if hx and role.name in vb.palette:
-                    floor = (4.5 if role.accessibility_floor == "body_text"
-                             else spec.environments.accessibility_floors["large_text_wcag"])
+                    effective = _effective_role(role, binding)
+                    floor = _accessibility_wcag_floor(effective, spec)
                     if wcag_contrast(hx, bg_hex) + 1e-6 < floor:
                         ok = False
 
