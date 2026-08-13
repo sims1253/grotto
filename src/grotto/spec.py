@@ -39,6 +39,14 @@ CVD_PRIORITIES = ("critical", "high", "normal", "low")
 AREA_CLASSES = ("dominant", "major", "minor", "trace")
 VARIANTS = ("day", "evening", "night")
 
+# Phase 4 semantic paint/accessibility vocabulary (see roles.yaml header).
+# ``paint`` decides a role's DERIVATION PATH in the transform: canvas is
+# authored, ink is jointly lightness/chroma-solved, surface is a perceptual
+# step, border targets the non-text floor.  ``accessibility_floor`` is the
+# hard WCAG constraint; it overrides every preference and records the conflict.
+PAINT_TYPES = ("canvas", "ink", "surface", "border")
+ACCESSIBILITY_FLOORS = ("body_text", "non_text", "none")
+
 CONSTRAINT_KINDS = (
     "must_distinguish",
     "should_distinguish",
@@ -65,6 +73,12 @@ class Role:
     cvd_priority: str
     night_adaptation: float
     area_class: str
+    # Phase 4 semantics (see roles.yaml header).  ``paint`` is the derivation
+    # path; ``accessibility_floor`` the hard WCAG gate; ``contrast_reference``
+    # the role solved against (null for the canvas).
+    paint: str = "ink"
+    accessibility_floor: str = "body_text"
+    contrast_reference: str | None = None
     redundant_channels: tuple[str, ...] = ()
     notes: str = ""
 
@@ -105,6 +119,20 @@ def _build_role(name: str, group: str, d: dict) -> Role:
     if ac not in AREA_CLASSES:
         _fail(name, f"area_class {ac!r} not in {AREA_CLASSES}")
 
+    # Phase 4 semantic schema: every role declares how it is painted, which
+    # WCAG floor constrains it, and what it is checked against.  These are
+    # required and validated because the transform branches on ``paint`` --
+    # a missing value would silently fall through the wrong derivation path.
+    paint = d.get("paint")
+    if paint not in PAINT_TYPES:
+        _fail(name, f"paint {paint!r} not in {PAINT_TYPES}")
+    floor = d.get("accessibility_floor")
+    if floor not in ACCESSIBILITY_FLOORS:
+        _fail(name, f"accessibility_floor {floor!r} not in {ACCESSIBILITY_FLOORS}")
+    contrast_ref = d.get("contrast_reference")
+    if contrast_ref is not None:
+        contrast_ref = str(contrast_ref)
+
     channels = tuple(d.get("redundant_channels") or ())
 
     # The structural rule: a critical role that leans on hue alone is a spec bug.
@@ -126,6 +154,9 @@ def _build_role(name: str, group: str, d: dict) -> Role:
         cvd_priority=cp,
         night_adaptation=float(na),
         area_class=ac,
+        paint=paint,
+        accessibility_floor=floor,
+        contrast_reference=contrast_ref,
         redundant_channels=channels,
         notes=str(d.get("notes", "") or ""),
     )
@@ -167,6 +198,24 @@ class RoleSpec:
                 roles[name] = _build_role(name, group, entry)
         if not roles:
             raise ValueError("spec/roles.yaml: no roles defined")
+        # Phase 4 integrity: contrast_reference must name a real role (or be
+        # null for the canvas).  A dangling reference would make the transform
+        # solve against a colour that does not exist.
+        dangling = sorted(
+            {r.contrast_reference for r in roles.values()
+             if r.contrast_reference is not None and r.contrast_reference not in roles}
+        )
+        if dangling:
+            raise ValueError(
+                f"spec/roles.yaml: contrast_reference names unknown roles: {dangling}"
+            )
+        # Exactly one canvas, please: the contrast reference everything solves
+        # against.  Zero or many is a structural spec bug.
+        canvases = [n for n, r in roles.items() if r.paint == "canvas"]
+        if len(canvases) != 1:
+            raise ValueError(
+                f"spec/roles.yaml: expected exactly one paint: canvas role, got {canvases}"
+            )
         return cls(version=int(data.get("version", 0)), roles=roles)
 
 

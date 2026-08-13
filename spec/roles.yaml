@@ -48,6 +48,41 @@
 # area_class: Order-of-magnitude share of visible pixels.  Drives the spectral
 #            analysis and the "is this worth a hue?" question.
 #            dominant (>50%) | major (5-50%) | minor (0.5-5%) | trace (<0.5%)
+#
+# paint:     HOW the role is rendered, which decides its derivation path in
+#            the Phase 4 transform (DESIGN.md section 9 / model.py).  The four
+#            kinds are NOT interchangeable -- a senior-architecture correction:
+#            the transform must not run every role through one formula.
+#              canvas   - the background itself; authored directly per
+#                         environment, never derived.  It IS the contrast
+#                         reference everyone else solves against.
+#              ink      - foreground text/glyphs.  Lightness and chroma are
+#                         JOINTLY solved in sRGB under a lexicographic stack
+#                         (gamut/polarity > WCAG floor > Night fg ceiling >
+#                         APCA band centre > minimal adjustment).
+#              surface  - a background highlight (panel, selection, diff wash,
+#                         active line, debug line).  Derived by PERCEPTUAL
+#                         LIGHTNESS STEPS from the canvas, not by contrast
+#                         solving -- solving contrast for a surface would
+#                         silently destroy the legibility of the ink on it.
+#              border   - a graphical divider/ring/marker.  Derived to meet
+#                         the non-text 3:1 floor against its adjacent surface.
+#
+# accessibility_floor: Which WCAG 2.x floor is a HARD constraint on this role
+#            against its contrast_reference.  Accessibility wins over every
+#            preference; the conflict is recorded, never silently dropped.
+#              body_text - 4.5:1 (normal text; the reading baseline).
+#              non_text  - 3.0:1 (graphical objects, large text, de-emphasised
+#                          chrome the spec still obliges to keep visible).
+#              none      - no WCAG floor (canvas, surface washes whose
+#                          distinction is a distance-matrix matter, not WCAG).
+#
+# contrast_reference: The single role this role is solved/checked against.
+#            null for the canvas.  Ink/surface/border roles name the surface
+#            they sit on (normally bg).  The transform ALSO evaluates ink
+#            legibility over every CO-OCCURRING surface (selection / search /
+#            active-line / diff / debug) regardless of this primary reference,
+#            because text can land on any of them.
 
 version: 1
 
@@ -59,6 +94,9 @@ version: 1
 
 neutrals:
   bg:
+    paint: canvas
+    accessibility_floor: none
+    contrast_reference: null
     description: Editor canvas.
     salience: 0
     family: neutral        # per-environment: warm-neutral bias, never pure
@@ -75,6 +113,9 @@ neutrals:
       complete composition rather than inferred from area (RESEARCH.md M-1).
 
   bg_elevated:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: Panels, sidebars, hovers, popups -- surfaces above the canvas.
     salience: 0
     family: neutral
@@ -90,6 +131,9 @@ neutrals:
       choose sign.
 
   bg_overlay:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: Modal / floating surfaces needing separation from both above.
     salience: 0
     family: neutral
@@ -100,6 +144,9 @@ neutrals:
     area_class: minor
 
   fg:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Ordinary source text and identifiers. The reading baseline.
     salience: 2
     family: neutral
@@ -116,6 +163,9 @@ neutrals:
       are the main levers for the night spectral budget.
 
   fg_secondary:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: De-emphasised text -- inactive tabs, breadcrumbs, hints.
     salience: 1
     family: neutral
@@ -126,6 +176,9 @@ neutrals:
     area_class: minor
 
   fg_muted:
+    paint: ink
+    accessibility_floor: non_text
+    contrast_reference: "bg"
     description: Placeholder text, disabled labels, ghost text.
     salience: 0
     family: neutral
@@ -140,6 +193,9 @@ neutrals:
       with good vision in a dark room.
 
   comment:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Comments and docstrings.
     salience: 1
     family: neutral        # candidates may grant a low-chroma family
@@ -157,6 +213,9 @@ neutrals:
       read while a trailing comment is an aside.
 
   docstring:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Documentation strings -- prose meant to actually be read.
     salience: 2
     family: neutral
@@ -170,6 +229,9 @@ neutrals:
       design judgement (D-4), not an evidence-backed claim.
 
   punctuation:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Brackets, commas, semicolons, operators as delimiters.
     salience: 1
     family: neutral
@@ -186,6 +248,9 @@ neutrals:
       highlights on demand.
 
   operator:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Arithmetic / logical / assignment operators.
     salience: 2
     family: neutral
@@ -200,6 +265,9 @@ neutrals:
       real bug class.
 
   line_number:
+    paint: ink
+    accessibility_floor: non_text
+    contrast_reference: "bg"
     description: Inactive gutter line numbers.
     salience: 0
     family: neutral
@@ -210,6 +278,9 @@ neutrals:
     area_class: minor
 
   line_number_active:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Line number of the cursor's line.
     salience: 3
     family: neutral
@@ -221,6 +292,9 @@ neutrals:
     notes: Position feedback; earns salience because it is transient and sought.
 
   ui_inactive:
+    paint: border
+    accessibility_floor: non_text
+    contrast_reference: "bg"
     description: Borders, dividers, inactive chrome.
     salience: 0
     family: neutral
@@ -231,6 +305,9 @@ neutrals:
     area_class: minor
 
   active_line:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: Current-line background highlight.
     salience: 0
     family: neutral
@@ -245,6 +322,9 @@ neutrals:
       most themes overdo this and create a permanent bright band.
 
   selection:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: Selected text background.
     salience: 4
     family: azure          # candidate-bound; conventionally cool
@@ -263,6 +343,9 @@ neutrals:
       the few places a theme can silently destroy legibility.
 
   focus:
+    paint: border
+    accessibility_floor: non_text
+    contrast_reference: "bg"
     description: Keyboard focus ring / active border.
     salience: 5
     family: azure
@@ -285,6 +368,9 @@ neutrals:
 
 syntax:
   keyword:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Control flow and declaration keywords (if, for, return, def, fn).
     salience: 3
     family: violet
@@ -299,6 +385,9 @@ syntax:
       competing with diagnostics.
 
   string:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: String literals.
     salience: 3
     family: sage
@@ -314,6 +403,9 @@ syntax:
       the screen.
 
   number:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Numeric literals.
     salience: 3
     family: sand
@@ -324,6 +416,9 @@ syntax:
     area_class: trace
 
   constant:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: true/false/null/None, enum members, SCREAMING_CASE constants.
     salience: 3
     family: sand
@@ -338,6 +433,9 @@ syntax:
       distance matrix -- a distinction we choose *not* to spend a hue on.
 
   type:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Types, classes, structs, traits, interfaces.
     salience: 3
     family: teal
@@ -348,6 +446,9 @@ syntax:
     area_class: minor
 
   function:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Function/method definitions and calls.
     salience: 4
     family: azure
@@ -363,6 +464,9 @@ syntax:
       evaluation because it may prove over-salient in call-dense code.
 
   parameter:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Function parameters at the definition site.
     salience: 2
     family: neutral
@@ -376,6 +480,9 @@ syntax:
       of relationship class 4: differentiated by channel, not by colour.
 
   property:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Object fields, struct members, attribute access.
     salience: 2
     family: neutral
@@ -390,6 +497,9 @@ syntax:
       since both are "things reached through a receiver".
 
   builtin:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Language builtins and special identifiers (self, this, len, None-likes).
     salience: 3
     family: rose
@@ -403,6 +513,9 @@ syntax:
       an error.  See the must-not-confuse constraint in the distance matrix.
 
   decorator:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Decorators, attributes, annotations, macros.
     salience: 3
     family: sand
@@ -416,6 +529,9 @@ syntax:
       lower chroma; a fourth distinct hue here would not pay for itself.
 
   namespace:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Modules, packages, namespaces.
     salience: 2
     family: teal
@@ -427,6 +543,9 @@ syntax:
     notes: Weakly associated with `type` -- both name kinds of things.
 
   tag:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Markup tags, YAML/JSON keys, Markdown structure.
     salience: 3
     family: azure
@@ -448,6 +567,9 @@ syntax:
 
 diagnostics:
   error:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Errors, exceptions, fatal diagnostics.
     salience: 6
     family: rose
@@ -463,6 +585,9 @@ diagnostics:
       property at trace screen area -- a poor default trade.
 
   warning:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Warnings, lints, deprecations.
     salience: 5
     family: sand
@@ -478,6 +603,9 @@ diagnostics:
       mandatory, not optional.
 
   info:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Informational diagnostics, hints.
     salience: 4
     family: azure
@@ -489,6 +617,9 @@ diagnostics:
     redundant_channels: [underline_dotted, gutter_icon]
 
   success:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Passing tests, resolved state, clean status.
     salience: 4
     family: sage
@@ -500,6 +631,9 @@ diagnostics:
     redundant_channels: [gutter_icon, lightness_offset]
 
   diff_added:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: Added lines in a diff.
     salience: 3
     family: sage
@@ -517,6 +651,9 @@ diagnostics:
       real spectral cost.
 
   diff_removed:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: Removed lines in a diff.
     salience: 3
     family: rose
@@ -528,6 +665,9 @@ diagnostics:
     redundant_channels: [gutter_sign, lightness_offset]
 
   diff_changed:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: Modified lines / inline word-level diff.
     salience: 3
     family: sand
@@ -538,6 +678,9 @@ diagnostics:
     area_class: minor
 
   search_match:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: Search results other than the current one.
     salience: 4
     family: sand
@@ -549,6 +692,9 @@ diagnostics:
     redundant_channels: [border]
 
   search_match_current:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: The currently focused search result.
     salience: 5
     family: sand
@@ -563,6 +709,9 @@ diagnostics:
       background highlights that can co-occur on screen and even overlap.
 
   breakpoint:
+    paint: border
+    accessibility_floor: non_text
+    contrast_reference: "bg"
     description: Breakpoint marker.
     salience: 5
     family: rose
@@ -574,6 +723,9 @@ diagnostics:
     redundant_channels: [gutter_shape]
 
   debug_current:
+    paint: surface
+    accessibility_floor: none
+    contrast_reference: "bg"
     description: Current execution line while debugging.
     salience: 5
     family: sand
@@ -585,6 +737,9 @@ diagnostics:
     redundant_channels: [gutter_arrow, border]
 
   deprecated:
+    paint: ink
+    accessibility_floor: body_text
+    contrast_reference: "bg"
     description: Deprecated symbols.
     salience: 1
     family: neutral

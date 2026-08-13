@@ -110,7 +110,7 @@ environments:
       C: 0.012
       h: 265
     chroma_attenuation: 0.15
-    hue_rotation: -3.0          # degrees, warm-ward; gated per role
+    hue_rotation: -3.0          # |deg| = rotation cap; direction via warm_anchor (Phase 4)
     chroma_gain: 1.00
     notes: >
       This variant is deliberately the least transformed.  If Q-7 resolves
@@ -139,7 +139,7 @@ environments:
       C: 0.009
       h: 70
     chroma_attenuation: 0.35
-    hue_rotation: -8.0          # the cap from DESIGN.md section 9
+    hue_rotation: -8.0          # |deg| = the 8deg cap (DESIGN.md section 9); direction via warm_anchor
     chroma_gain: 0.95
     # Night-specific experimental cap on foreground lightness. Accessibility
     # floors override it; Phase 7 must determine whether this preference helps.
@@ -164,6 +164,19 @@ hue_rotation_weight:
   240: 1.00    # azure        -- carries the full rotation
   300: 0.70    # violet
   360: 0.15
+
+# ---------------------------------------------------------------------------
+# Warm anchor for the Night hue adaptation (Phase 4 senior-review correction).
+#
+# The transform attracts each role's hue along the SHORTEST CIRCULAR ARC toward
+# this anchor, bounded by the environment's |hue_rotation| and gated by the
+# role's night_adaptation and the hue_rotation_weight above.  A plain signed
+# rotation is WRONG here: subtracting degrees moves violet (h~300) toward blue,
+# i.e. COOLER, the opposite of the intent.  Attracting toward a warm anchor
+# moves violet toward magenta/red (warmer) and azure toward green (warmer).
+# This is a direction, not a magnitude; the magnitude comes per environment.
+# ---------------------------------------------------------------------------
+warm_anchor: 70
 
 # ---------------------------------------------------------------------------
 # Cross-variant stability constraints (DESIGN.md D-5).
