@@ -446,6 +446,34 @@ mid-salience syntax and needs human correction for (a) backgrounds and
 near-background surfaces, where small errors are very visible, and (b) the
 blue/violet region, where OKLab hue curvature bites [E, R-8].
 
+### Phase 4 senior-architecture corrections (implemented in `model.py`)
+
+The section-9 sketch above was the *starting* design. The implemented Phase 4
+transform departs from it in five load-bearing ways, recorded here so the
+transform and the prose do not silently disagree:
+
+1. **Paint types, not one formula.** Roles branch on `paint`
+   (canvas|ink|surface|border). Canvas is authored; **ink** lightness and
+   chroma are jointly solved in sRGB; **surface** uses perceptual lightness
+   steps (solving contrast for a surface would silently destroy the legibility
+   of the ink on it); **border** targets the non-text 3:1 floor.
+2. **Chroma is an explicit chain** (max_chroma * class * candidate * family *
+   role * environment * night term), then absolute cap, then gamut map, with
+   the cap and gamut losses reported *independently*.
+3. **Hue attracts toward a warm anchor** along the shortest arc, not a signed
+   rotation. A signed rotation moves violet (h~300) toward blue (cooler); warm
+   attraction moves it toward magenta/red (warmer).
+4. **WCAG overrides the Night ceiling and APCA**, recording each conflict
+   (`foreground_ceiling_overridden`, `wcag_apca_conflict`). APCA bands can
+   overlap, so membership is tested against the role's *target* band.
+5. **Corrected stability**: normalized C/max_chroma ordering, cyclic family
+   sequence (not pairwise signed hue), a non-vacuous realized salience proxy,
+   and total hue drift that includes the adjustment component.
+
+`BindingError` is raised for malformed bindings; `TransformError` only for
+infeasible hard constraints. Aesthetic, distance and legibility misses are
+issues, never raised.
+
 ---
 
 ## 10. Architecture

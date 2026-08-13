@@ -75,6 +75,19 @@ uv run grotto references --out out/references
 # Analyse a subset explicitly:
 uv run grotto references themes/references/nord.yaml \
     themes/references/solarized.yaml --out out/refs-subset
+
+# Phase 4: build the environmental-transform family from a semantic-anchor
+# binding. Writes a deterministic derivation report (per-role requested/capped/
+# realized OKLCH, independent cap+gamut losses, winning constraint, conflicts)
+# as JSON/YAML/text + a self-contained HTML page. NON-CANDIDATE experiment.
+uv run grotto family spec/bindings/calibration.yaml --out out/model-calibration
+
+# Phase 4: systematic-vs-hand-tuned comparison. Reports per-role dE_OK deltas
+# and whether the systematic output needed hand adjustment, and where.
+uv run grotto compare-families spec/bindings/calibration.yaml \
+    themes/experiments/handtuned-day.yaml \
+    themes/experiments/handtuned-evening.yaml \
+    themes/experiments/handtuned-night.yaml --out out/model-calibration
 ```
 
 Reports are **reproducible**: identical inputs produce byte-identical output
@@ -95,6 +108,11 @@ from grotto.reference_analysis import (        # Phase 3 reference-theme analysi
     load_reference_dir, analyze_reference, compare_references,
 )
 from grotto.report import palette_report_dict, to_json
+from grotto.model import (        # Phase 4 environmental transform
+    CandidateBinding, ModelSpec, build_family, compare_families,
+    hand_tuned_build, BindingError, TransformError,
+)
+from grotto.family_report import family_build_text, family_build_html
 from grotto.render import palette_html_report, palette_svg_strip
 
 roles  = RoleSpec.load("spec/roles.yaml")
@@ -106,6 +124,21 @@ audit_palette(pal, roles)        # per-role OKLCH/OKLab/hex + sRGB & P3 gamut st
 check(pal, roles, dists)         # distance-matrix + CVD violations
 contrast_report(pal["fg"], pal.bg)
 cross_variant_report({"day": p_day, "night": p_night}, roles)
+
+# Phase 4: build the three-variant family from a semantic-anchor binding.
+binding = CandidateBinding.load("spec/bindings/calibration.yaml")
+spec4   = ModelSpec(roles, env, dists)
+family  = build_family(binding, spec4)        # -> FamilyBuild (NON-CANDIDATE)
+family.palettes            # {"day": Palette, "evening": Palette, "night": Palette}
+family.trace("night", "keyword")  # RoleTrace: requested/capped/realized, losses,
+                                  #   winning constraint, conflicts, adjustments
+family.stability           # corrected cross-variant stability report
+
+# Compare a systematic family against a hand-tuned target.
+hand = {v: load(f"themes/experiments/handtuned-{v}.yaml")
+        for v in ("day", "evening", "night")}
+cmp = compare_families(family, hand_tuned_build(hand, spec4), spec4)
+cmp["summary"]["systematic_needed_hand_adjustment"]   # the headline finding
 
 # Phase 3: analyse every reference consistently and compare side by side.
 # (Descriptive only -- no ranking or winner; see DESIGN.md section 1.)
@@ -134,6 +167,7 @@ Grotto reports several metrics *together* and treats disagreement as signal.
 | Cross-variant stability | `stability` | hue drift, family/hue ordering, salience rank, chroma rank. Cross-variant dE is informational **only** (Day↔Night inverts lightness by design). |
 | Melanopic, area-weighted | `spectral` | **exploratory, nominal-display, within-model ranking only.** An sRGB triple does not determine a spectral power distribution; this never claims actual retinal exposure (R-4, R-5). |
 | Reference analysis (Phase 3) | `reference_analysis` | consistent six-reference comparison: background OKLCH (hue suppressed when achromatic), fg/bg WCAG+APCA, lightness/chroma distributions, declared-constraint coverage, chroma-weighted warm/cool balance, nominal spectral background-vs-token split, CVD behaviour. **Descriptive only; no ranking** (DESIGN.md §1). |
+| Environmental transform (Phase 4) | `model` | `build_family` derives day/evening/night from a semantic-anchor binding: ink jointly lightness+chroma-solved (lexicographic WCAG>ceiling>APCA>adjustment), surface perceptual steps, border non-text contrast, canvas authored; independent cap+gamut losses; warm-anchor hue attraction; corrected cross-variant stability. **NON-CANDIDATE experiment** (DESIGN.md §1). APCA experimental (R-11); WCAG floors hard. |
 
 D-3 is enforced at load time: every role with `cvd_priority: critical` must
 declare a `redundant_channels` entry, because **hue is never the sole carrier of
@@ -170,10 +204,32 @@ decomposition, and CVD behaviour; per-reference JSON/YAML/text/HTML plus a
 side-by-side comparison JSON/YAML/text/HTML/SVG under `out/references/`;
 descriptive only, no ranking).
 
-Not done here: the environment transform (`model.py`, Phase 4), final
-candidate palettes (Phase 5), and human evaluation (Phase 7). Reference themes
-are inputs only; the Phase 3 analysis is descriptive and draws no conclusion
-about which reference is "best" (DESIGN.md section 1).
+**Phase 4** (environmental transform): `build_family(binding, spec) ->
+FamilyBuild` in `src/grotto/model.py` turns a semantic-anchor binding into
+three per-variant palettes with full derivation provenance. It implements the
+senior-architecture review, not the DESIGN.md section-9 sketch: roles branch on
+`paint` (canvas authored / ink jointly lightness+chroma-solved under a
+lexicographic WCAG>ceiling>APCA>adjustment stack / surface perceptual steps /
+border non-text contrast); chroma is an explicit multiplicative chain with
+independent cap+gamut loss reporting; hue attracts toward a warm anchor
+(correcting the violet-goes-blue bug of a signed rotation); WCAG overrides the
+Night foreground ceiling and APCA, recording each conflict; ink legibility
+over every co-occurring surface is evaluated as issues. `BindingError` for
+malformed bindings, `TransformError` only for infeasible hard constraints.
+`compare_families(systematic, hand_tuned, spec)` sits beside it and reports
+whether the systematic output needed hand adjustment. Cross-variant stability
+uses the corrected checks (normalized C/max_chroma ordering, cyclic family
+sequence, non-vacuous realized salience proxy, drift including adjustments).
+Everything is NON-CANDIDATE: `spec/bindings/calibration.yaml` and the
+`themes/experiments/handtuned-*.yaml` comparison target are Phase 4 calibration
+experiments, not Candidate A/B/C. Reports live under `out/model-calibration/`
+(JSON/YAML/text + self-contained HTML). Build with `grotto family`, compare
+with `grotto compare-families`.
+
+Not done here: final candidate palettes (Phase 5) and human evaluation
+(Phase 7). Reference themes are inputs only; the Phase 3 analysis is
+descriptive and draws no conclusion about which reference is "best"
+(DESIGN.md section 1). Phase 4 output is a NON-CANDIDATE experiment.
 
 ## License
 

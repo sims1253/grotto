@@ -197,8 +197,77 @@ def cmd_references(args) -> int:
     return 0
 
 
+def cmd_family(args) -> int:
+    """Phase 4: build the environmental-transform family + derivation report.
+
+    Builds day/evening/night from a candidate binding and writes a deterministic
+    JSON/YAML/text derivation report plus a self-contained HTML page under
+    out/.  Explicitly NON-CANDIDATE: a binding is a calibration experiment,
+    not a finished palette.
+    """
+    from .model import CandidateBinding, ModelSpec, build_family
+    from .family_report import family_build_html, family_build_text
+    from .report import to_json, to_yaml
+
+    roles, dists, env = _load_specs(args)
+    spec = ModelSpec(roles, env, dists)
+    binding = CandidateBinding.load(args.binding)
+    fb = build_family(binding, spec)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    stem = Path(args.binding).stem
+    d = fb.to_dict()
+    (out / f"{stem}.build.json").write_text(to_json(d), encoding="utf-8")
+    (out / f"{stem}.build.yaml").write_text(to_yaml(d), encoding="utf-8")
+    (out / f"{stem}.build.txt").write_text(family_build_text(fb), encoding="utf-8")
+    (out / f"{stem}.build.html").write_text(family_build_html(fb), encoding="utf-8")
+    print(f"[family] {fb.name}  ok={fb.ok}  hash={fb.input_hash}")
+    st = fb.stability or {}
+    print(f"  stability   : ok={st.get('ok')} drift={st.get('max_hue_drift_deg')}deg "
+          f"cyclic_preserved={st.get('cyclic_family_sequence_preserved')}")
+    print(f"  issues      : {len(fb.issues)} (informational)")
+    print(f"  reports     : {out}/{stem}.build.{{json,yaml,txt,html}}")
+    return 0
+
+
+def cmd_compare_families(args) -> int:
+    """Phase 4: systematic-vs-hand-tuned comparison report."""
+    from .model import (
+        CandidateBinding, ModelSpec, build_family, compare_families, hand_tuned_build,
+    )
+    from .family_report import comparison_html, comparison_text
+    from .report import to_json, to_yaml
+    from .spec import load
+
+    roles, dists, env = _load_specs(args)
+    spec = ModelSpec(roles, env, dists)
+    binding = CandidateBinding.load(args.binding)
+    systematic = build_family(binding, spec)
+    hand = {
+        Path(p).stem.replace("handtuned-", ""): load(p)
+        for p in args.handtuned
+    }
+    ht = hand_tuned_build(hand, spec, "hand-tuned")
+    cmp = compare_families(systematic, ht, spec)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    stem = Path(args.binding).stem
+    (out / f"{stem}.compare.json").write_text(to_json(cmp), encoding="utf-8")
+    (out / f"{stem}.compare.yaml").write_text(to_yaml(cmp), encoding="utf-8")
+    (out / f"{stem}.compare.txt").write_text(comparison_text(cmp), encoding="utf-8")
+    (out / f"{stem}.compare.html").write_text(
+        comparison_html(systematic, cmp), encoding="utf-8")
+    s = cmp["summary"]
+    print(f"[compare-families] systematic '{cmp['systematic']}' vs '{cmp['hand_tuned']}'")
+    print(f"  dE mean/med/max : {s['de_mean']} / {s['de_median']} / {s['de_max']}")
+    print(f"  needing adjust  : {s['n_needing_adjustment']} role(s)")
+    print(f"  >> systematic needed hand adjustment: {s['systematic_needed_hand_adjustment']}")
+    print(f"  reports         : {out}/{stem}.compare.{{json,yaml,txt,html}}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
-    ap = argparse.ArgumentParser(prog="grotto", description="grotto Phase 2 evaluation tooling")
+    ap = argparse.ArgumentParser(prog="grotto", description="grotto evaluation tooling (Phases 2-4)")
     ap.add_argument("--roles", default="spec/roles.yaml")
     ap.add_argument("--distances", default="spec/distance-matrix.yaml")
     ap.add_argument("--environments", default="spec/environments.yaml")
@@ -233,6 +302,24 @@ def build_parser() -> argparse.ArgumentParser:
     p_ref.add_argument("--out", default="out/references")
     p_ref.add_argument("--display", default="led-lcd", choices=("led-lcd", "oled"))
     p_ref.set_defaults(func=cmd_references)
+
+    p_fam = sub.add_parser(
+        "family",
+        help="Phase 4: build the environmental-transform family + derivation report",
+    )
+    p_fam.add_argument("binding", help="candidate binding YAML (e.g. spec/bindings/calibration.yaml)")
+    p_fam.add_argument("--out", default="out/model-calibration")
+    p_fam.set_defaults(func=cmd_family)
+
+    p_cmp = sub.add_parser(
+        "compare-families",
+        help="Phase 4: systematic-vs-hand-tuned comparison report",
+    )
+    p_cmp.add_argument("binding", help="candidate binding YAML")
+    p_cmp.add_argument("handtuned", nargs="+",
+                       help="hand-tuned day/evening/night palette YAMLs")
+    p_cmp.add_argument("--out", default="out/model-calibration")
+    p_cmp.set_defaults(func=cmd_compare_families)
 
     return ap
 

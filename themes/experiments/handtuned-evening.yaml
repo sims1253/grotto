@@ -1,0 +1,168 @@
+name: handtuned-evening
+variant: evening
+format: oklch
+candidate: false
+kind: phase4-handtuned-experiment
+note: NON-CANDIDATE Phase 4 hand-tuned comparison target. Curated designer corrections over the systematic
+  transform output (spec/bindings/calibration.yaml). Not a finished theme (DESIGN.md section 1).
+colors:
+  bg:
+    L: 0.24
+    C: 0.012
+    h: 260
+  bg_elevated:
+    L: 0.28
+    C: 0.013
+    h: 260
+  bg_overlay:
+    L: 0.305
+    C: 0.012
+    h: 265.0
+  fg:
+    L: 0.8139
+    C: 0.0058
+    h: 0.45
+  fg_secondary:
+    L: 0.6823
+    C: 0.0115
+    h: 0.45
+  fg_muted:
+    L: 0.5345
+    C: 0.011
+    h: 0.45
+  comment:
+    L: 0.665
+    C: 0.0418
+    h: 0.45
+  docstring:
+    L: 0.817
+    C: 0.0209
+    h: 0.45
+  punctuation:
+    L: 0.6814
+    C: 0.0
+    h: 0.45
+  operator:
+    L: 0.8157
+    C: 0.0
+    h: 0.45
+  line_number:
+    L: 0.5331
+    C: 0.0
+    h: 0.45
+  line_number_active:
+    L: 0.8157
+    C: 0.0
+    h: 0.45
+  ui_inactive:
+    L: 0.5331
+    C: 0.0
+    h: 0.45
+  active_line:
+    L: 0.265
+    C: 0.0055
+    h: 0.45
+  selection:
+    L: 0.3
+    C: 0.065
+    h: 250
+  focus:
+    L: 0.8868
+    C: 0.0304
+    h: 243.83
+  keyword:
+    L: 0.69
+    C: 0.128
+    h: 298
+  string:
+    L: 0.77
+    C: 0.085
+    h: 145
+  number:
+    L: 0.816
+    C: 0.0665
+    h: 79.19
+  constant:
+    L: 0.816
+    C: 0.0665
+    h: 79.19
+  type:
+    L: 0.8065
+    C: 0.0547
+    h: 192.87
+  function:
+    L: 0.8851
+    C: 0.0245
+    h: 242.81
+  parameter:
+    L: 0.8139
+    C: 0.0058
+    h: 0.45
+  property:
+    L: 0.8139
+    C: 0.0058
+    h: 0.45
+  builtin:
+    L: 0.8169
+    C: 0.0198
+    h: 25.44
+  decorator:
+    L: 0.8148
+    C: 0.0325
+    h: 79.19
+  namespace:
+    L: 0.8118
+    C: 0.0269
+    h: 192.87
+  tag:
+    L: 0.8136
+    C: 0.0198
+    h: 242.66
+  error:
+    L: 0.891
+    C: 0.0442
+    h: 25.13
+  warning:
+    L: 0.8891
+    C: 0.0758
+    h: 79.67
+  info:
+    L: 0.8125
+    C: 0.0419
+    h: 243.25
+  success:
+    L: 0.8039
+    C: 0.1085
+    h: 143.99
+  diff_added:
+    L: 0.265
+    C: 0.0175
+    h: 143.99
+  diff_removed:
+    L: 0.265
+    C: 0.0219
+    h: 25.26
+  diff_changed:
+    L: 0.265
+    C: 0.0112
+    h: 79.53
+  search_match:
+    L: 0.29
+    C: 0.025
+    h: 79.53
+  search_match_current:
+    L: 0.315
+    C: 0.043
+    h: 79.62
+  breakpoint:
+    L: 0.8899
+    C: 0.0386
+    h: 25.15
+  debug_current:
+    L: 0.29
+    C: 0.0254
+    h: 79.62
+  deprecated:
+    L: 0.6814
+    C: 0.0
+    h: 0.45
