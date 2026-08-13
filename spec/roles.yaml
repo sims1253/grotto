@@ -1,0 +1,599 @@
+# Grotto semantic role specification.
+#
+# LAYER 1 of 3.  This file defines what visual roles *mean*.  It contains no
+# colours, no hex values, and no environment-specific numbers, because a role's
+# meaning does not change between day and night -- only its rendering does.
+#
+# Layer 2 (spec/environments.yaml + src/grotto/model.py) turns these abstract
+# properties into concrete OKLCH values per environment.
+# Layer 3 (spec/mappings/*.yaml) binds roles to editor scopes.
+#
+# ---------------------------------------------------------------------------
+# Property vocabulary
+# ---------------------------------------------------------------------------
+#
+# salience:  Intended position in the attention hierarchy.  This is the single
+#            most important property.  Ordered, 0..6:
+#              0 recessive   - present but should never attract the eye
+#              1 quiet       - readable on demand, invisible when scanning
+#              2 default     - the baseline reading level
+#              3 marked      - noticeable as a category when scanning
+#              4 structural  - anchors that carry the shape of the code
+#              5 alerting    - transient state that should pull the eye
+#              6 urgent      - must be found within one fixation
+#
+# family:    Semantic hue family.  Abstract; bound to an angle per candidate.
+#            neutral | warm-neutral | sand | rose | violet | azure | sage | teal
+#            'neutral' means "no chromatic identity" and is a positive design
+#            choice, not an absence of one.
+#
+# chroma_class: How much colourfulness the role is allowed to claim.
+#            none | trace | low | medium | high
+#            Chroma is a scarce resource: if everything is chromatic, nothing is.
+#
+# contrast_target: Desired foreground/background separation, as a band rather
+#            than a single number.  Bands are resolved per environment.
+#            minimal | low | comfortable | high | maximal
+#
+# cvd_priority: How badly it hurts if a CVD observer cannot separate this role
+#            from its peers.  critical roles must carry redundant non-hue coding.
+#            critical | high | normal | low
+#
+# night_adaptation: How strongly the Night transform is allowed to pull this
+#            role's chroma down and hue toward warm.  0.0 = pin it, 1.0 = fully
+#            subject to the transform.  Roles that are safety-critical or that
+#            occupy large screen area get different treatment for different
+#            reasons -- see the per-role notes.
+#
+# area_class: Order-of-magnitude share of visible pixels.  Drives the spectral
+#            analysis and the "is this worth a hue?" question.
+#            dominant (>50%) | major (5-50%) | minor (0.5-5%) | trace (<0.5%)
+
+version: 1
+
+# ===========================================================================
+# NEUTRAL HIERARCHY
+# ===========================================================================
+# The load-bearing structure of the theme.  If this is right, the chromatic
+# layer can be small.  If it is wrong, no amount of syntax colour rescues it.
+
+neutrals:
+  bg:
+    description: Editor canvas.
+    salience: 0
+    family: neutral        # per-environment: warm-neutral bias, never pure
+    chroma_class: trace
+    contrast_target: null  # it *is* the reference
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: dominant
+    notes: >
+      Never #ffffff or #000000.  A trace of chroma prevents the "dead screen"
+      look, and gives the transform somewhere to move.  Because this is the
+      dominant area class makes it the leading contributor in the current
+      light-theme fixture. Dark-theme contributions must be measured from the
+      complete composition rather than inferred from area (RESEARCH.md M-1).
+
+  bg_elevated:
+    description: Panels, sidebars, hovers, popups -- surfaces above the canvas.
+    salience: 0
+    family: neutral
+    chroma_class: trace
+    contrast_target: minimal
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: major
+    notes: >
+      Direction of elevation is an open question (Q-2).  Lighter-is-nearer is
+      the material convention; darker-is-nearer keeps large panels from adding
+      luminance at night.  We specify magnitude here and let the environment
+      choose sign.
+
+  bg_overlay:
+    description: Modal / floating surfaces needing separation from both above.
+    salience: 0
+    family: neutral
+    chroma_class: trace
+    contrast_target: low
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: minor
+
+  fg:
+    description: Ordinary source text and identifiers. The reading baseline.
+    salience: 2
+    family: neutral
+    chroma_class: trace
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: major
+    notes: >
+      Deliberately neutral.  Local variables are the most common token in most
+      code; giving them a hue spends the scarcest resource on the least
+      informative distinction.  In dark variants this role is the largest
+      *emitter* despite being a minority of pixels, so its chroma and lightness
+      are the main levers for the night spectral budget.
+
+  fg_secondary:
+    description: De-emphasised text -- inactive tabs, breadcrumbs, hints.
+    salience: 1
+    family: neutral
+    chroma_class: trace
+    contrast_target: low
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: minor
+
+  fg_muted:
+    description: Placeholder text, disabled labels, ghost text.
+    salience: 0
+    family: neutral
+    chroma_class: trace
+    contrast_target: minimal
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: minor
+    notes: >
+      Floor is set by accessibility, not aesthetics.  Must remain above the
+      WCAG non-text floor even though it looks "too visible" to a designer
+      with good vision in a dark room.
+
+  comment:
+    description: Comments and docstrings.
+    salience: 1
+    family: neutral        # candidates may grant a low-chroma family
+    chroma_class: low
+    contrast_target: low
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: major
+    notes: >
+      The most contested role in theme design.  Too faint and documentation
+      becomes unreadable, which punishes exactly the codebases that document
+      well.  Too strong and comments compete with code.  We treat this as a
+      *tunable* with an accessibility floor rather than a fixed choice, and we
+      separate `comment` from `docstring` because a docstring is content to be
+      read while a trailing comment is an aside.
+
+  docstring:
+    description: Documentation strings -- prose meant to actually be read.
+    salience: 2
+    family: neutral
+    chroma_class: low
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: major
+    notes: >
+      Given a full reading-level contrast target, unlike `comment`.  This is a
+      design judgement (D-4), not an evidence-backed claim.
+
+  punctuation:
+    description: Brackets, commas, semicolons, operators as delimiters.
+    salience: 1
+    family: neutral
+    chroma_class: none
+    contrast_target: low
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: major
+    notes: >
+      High token count, low information content per token.  Suppressing
+      punctuation is one of the highest-value moves available: it reduces
+      visual noise across a large area without losing any information, since
+      bracket structure is also carried by indentation and by matching
+      highlights on demand.
+
+  operator:
+    description: Arithmetic / logical / assignment operators.
+    salience: 2
+    family: neutral
+    chroma_class: none
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: minor
+    notes: >
+      Separated from `punctuation` and given a higher target: an operator
+      changes program meaning, a comma does not.  Losing a `!` or a `-` is a
+      real bug class.
+
+  line_number:
+    description: Inactive gutter line numbers.
+    salience: 0
+    family: neutral
+    chroma_class: none
+    contrast_target: minimal
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: minor
+
+  line_number_active:
+    description: Line number of the cursor's line.
+    salience: 3
+    family: neutral
+    chroma_class: none
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: trace
+    notes: Position feedback; earns salience because it is transient and sought.
+
+  ui_inactive:
+    description: Borders, dividers, inactive chrome.
+    salience: 0
+    family: neutral
+    chroma_class: none
+    contrast_target: minimal
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: minor
+
+  active_line:
+    description: Current-line background highlight.
+    salience: 0
+    family: neutral
+    chroma_class: trace
+    contrast_target: minimal
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: minor
+    notes: >
+      Must be findable in peripheral vision without being readable as a
+      foreground element.  A very small lightness step is usually enough;
+      most themes overdo this and create a permanent bright band.
+
+  selection:
+    description: Selected text background.
+    salience: 4
+    family: azure          # candidate-bound; conventionally cool
+    chroma_class: low
+    contrast_target: low
+    cvd_priority: critical
+    night_adaptation: 0.6
+    area_class: minor
+    redundant_channels: [lightness_offset, border]
+    notes: >
+      cvd_priority critical because selection must not be confusable with
+      search match or with diff backgrounds.  Since all four are *backgrounds*,
+      hue is doing more work here than anywhere else in the theme, so this is
+      the place redundant coding is hardest and most necessary.
+      Constraint: text on selection must stay readable -- selection is one of
+      the few places a theme can silently destroy legibility.
+
+  focus:
+    description: Keyboard focus ring / active border.
+    salience: 5
+    family: azure
+    chroma_class: medium
+    contrast_target: high
+    cvd_priority: critical
+    night_adaptation: 0.4
+    area_class: trace
+    redundant_channels: [border, lightness_offset]
+    notes: >
+      Accessibility-critical and transient.  Night adaptation is deliberately
+      weak: a focus ring that has been desaturated into invisibility is an
+      accessibility regression, and its area is negligible so it costs nothing
+      spectrally.
+
+# ===========================================================================
+# SYNTAX
+# ===========================================================================
+# Note what is absent: there is no `variable` role.  Variables are `fg`.
+
+syntax:
+  keyword:
+    description: Control flow and declaration keywords (if, for, return, def, fn).
+    salience: 3
+    family: violet
+    chroma_class: medium
+    contrast_target: comfortable
+    cvd_priority: normal
+    night_adaptation: 0.8
+    area_class: minor
+    notes: >
+      Keywords mark control structure, which is the thing you scan for when
+      reading unfamiliar code.  Violet rather than red keeps them from
+      competing with diagnostics.
+
+  string:
+    description: String literals.
+    salience: 3
+    family: sage
+    chroma_class: medium
+    contrast_target: comfortable
+    cvd_priority: normal
+    night_adaptation: 0.85
+    area_class: major
+    notes: >
+      Strings are often long, so their area class is higher than their token
+      count suggests.  This argues for lower chroma than a per-token view
+      would give them -- a long saturated string is a bar of colour across
+      the screen.
+
+  number:
+    description: Numeric literals.
+    salience: 3
+    family: sand
+    chroma_class: medium
+    contrast_target: comfortable
+    cvd_priority: normal
+    night_adaptation: 0.85
+    area_class: trace
+
+  constant:
+    description: true/false/null/None, enum members, SCREAMING_CASE constants.
+    salience: 3
+    family: sand
+    chroma_class: medium
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 0.85
+    area_class: trace
+    notes: >
+      Deliberately shares a family with `number`: both are literal values.
+      This is an example of relationship class 3 (may share a family) in the
+      distance matrix -- a distinction we choose *not* to spend a hue on.
+
+  type:
+    description: Types, classes, structs, traits, interfaces.
+    salience: 3
+    family: teal
+    chroma_class: medium
+    contrast_target: comfortable
+    cvd_priority: normal
+    night_adaptation: 0.8
+    area_class: minor
+
+  function:
+    description: Function/method definitions and calls.
+    salience: 4
+    family: azure
+    chroma_class: medium
+    contrast_target: high
+    cvd_priority: normal
+    night_adaptation: 0.75
+    area_class: minor
+    notes: >
+      Highest non-alerting salience in the syntax layer.  Hypothesis (H-2):
+      call sites are the primary navigation targets when reading unfamiliar
+      code, so they earn structural rank.  Explicitly listed for human
+      evaluation because it may prove over-salient in call-dense code.
+
+  parameter:
+    description: Function parameters at the definition site.
+    salience: 2
+    family: neutral
+    chroma_class: trace
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: minor
+    notes: >
+      Distinguished from `fg` by style (italic) rather than hue.  An example
+      of relationship class 4: differentiated by channel, not by colour.
+
+  property:
+    description: Object fields, struct members, attribute access.
+    salience: 2
+    family: neutral
+    chroma_class: trace
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: minor
+    notes: >
+      Candidate A leaves this fully neutral; Candidates B and C give it a
+      trace of the `azure` family to weakly associate it with `function`,
+      since both are "things reached through a receiver".
+
+  builtin:
+    description: Language builtins and special identifiers (self, this, len, None-likes).
+    salience: 3
+    family: rose
+    chroma_class: low
+    contrast_target: comfortable
+    cvd_priority: normal
+    night_adaptation: 0.85
+    area_class: trace
+    notes: >
+      Low chroma despite a warm family, specifically so it does not read as
+      an error.  See the must-not-confuse constraint in the distance matrix.
+
+  decorator:
+    description: Decorators, attributes, annotations, macros.
+    salience: 3
+    family: sand
+    chroma_class: low
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 0.85
+    area_class: trace
+    notes: >
+      Metadata *about* code rather than code.  Shares the literal family at
+      lower chroma; a fourth distinct hue here would not pay for itself.
+
+  namespace:
+    description: Modules, packages, namespaces.
+    salience: 2
+    family: teal
+    chroma_class: low
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 0.8
+    area_class: trace
+    notes: Weakly associated with `type` -- both name kinds of things.
+
+  tag:
+    description: Markup tags, YAML/JSON keys, Markdown structure.
+    salience: 3
+    family: azure
+    chroma_class: low
+    contrast_target: comfortable
+    cvd_priority: low
+    night_adaptation: 0.8
+    area_class: major
+    notes: >
+      Config-file keys occupy far more area than any code token class.  In
+      YAML and JSON this role effectively becomes the theme's dominant
+      chromatic element, which is a good reason to keep its chroma low.
+
+# ===========================================================================
+# DIAGNOSTICS AND STATE
+# ===========================================================================
+# Rule for this entire section: hue is never the sole carrier of meaning.
+# Every role here specifies a redundant channel.
+
+diagnostics:
+  error:
+    description: Errors, exceptions, fatal diagnostics.
+    salience: 6
+    family: rose
+    chroma_class: high
+    contrast_target: high
+    cvd_priority: critical
+    night_adaptation: 0.25
+    area_class: trace
+    redundant_channels: [underline_wavy, gutter_icon, lightness_offset]
+    notes: >
+      Night adaptation is deliberately near-zero.  Desaturating an error
+      colour for a speculative spectral/comfort preference trades a safety
+      property at trace screen area -- a poor default trade.
+
+  warning:
+    description: Warnings, lints, deprecations.
+    salience: 5
+    family: sand
+    chroma_class: high
+    contrast_target: high
+    cvd_priority: critical
+    night_adaptation: 0.35
+    area_class: trace
+    redundant_channels: [underline_wavy, gutter_icon]
+    notes: >
+      error/warning is a red/amber pair, which is the second-worst pair under
+      protan/deutan after red/green.  Lightness separation between them is
+      mandatory, not optional.
+
+  info:
+    description: Informational diagnostics, hints.
+    salience: 4
+    family: azure
+    chroma_class: medium
+    contrast_target: comfortable
+    cvd_priority: high
+    night_adaptation: 0.6
+    area_class: trace
+    redundant_channels: [underline_dotted, gutter_icon]
+
+  success:
+    description: Passing tests, resolved state, clean status.
+    salience: 4
+    family: sage
+    chroma_class: medium
+    contrast_target: comfortable
+    cvd_priority: critical
+    night_adaptation: 0.5
+    area_class: trace
+    redundant_channels: [gutter_icon, lightness_offset]
+
+  diff_added:
+    description: Added lines in a diff.
+    salience: 3
+    family: sage
+    chroma_class: low
+    contrast_target: minimal   # it is a background wash
+    cvd_priority: critical
+    night_adaptation: 0.5
+    area_class: major
+    redundant_channels: [gutter_sign, lightness_offset]
+    notes: >
+      The single most CVD-hostile construct in developer tooling: red/green,
+      encoded as large-area backgrounds, with the two colours often adjacent.
+      Lightness separation plus +/- gutter signs are required.  Area class is
+      major during review, which also makes this the one diagnostic with a
+      real spectral cost.
+
+  diff_removed:
+    description: Removed lines in a diff.
+    salience: 3
+    family: rose
+    chroma_class: low
+    contrast_target: minimal
+    cvd_priority: critical
+    night_adaptation: 0.5
+    area_class: major
+    redundant_channels: [gutter_sign, lightness_offset]
+
+  diff_changed:
+    description: Modified lines / inline word-level diff.
+    salience: 3
+    family: sand
+    chroma_class: low
+    contrast_target: minimal
+    cvd_priority: high
+    night_adaptation: 0.5
+    area_class: minor
+
+  search_match:
+    description: Search results other than the current one.
+    salience: 4
+    family: sand
+    chroma_class: medium
+    contrast_target: low
+    cvd_priority: high
+    night_adaptation: 0.5
+    area_class: minor
+    redundant_channels: [border]
+
+  search_match_current:
+    description: The currently focused search result.
+    salience: 5
+    family: sand
+    chroma_class: high
+    contrast_target: comfortable
+    cvd_priority: high
+    night_adaptation: 0.4
+    area_class: trace
+    redundant_channels: [border, lightness_offset]
+    notes: >
+      Must be separable from `search_match` *and* from `selection` -- three
+      background highlights that can co-occur on screen and even overlap.
+
+  breakpoint:
+    description: Breakpoint marker.
+    salience: 5
+    family: rose
+    chroma_class: high
+    contrast_target: high
+    cvd_priority: high
+    night_adaptation: 0.3
+    area_class: trace
+    redundant_channels: [gutter_shape]
+
+  debug_current:
+    description: Current execution line while debugging.
+    salience: 5
+    family: sand
+    chroma_class: medium
+    contrast_target: low
+    cvd_priority: high
+    night_adaptation: 0.4
+    area_class: minor
+    redundant_channels: [gutter_arrow, border]
+
+  deprecated:
+    description: Deprecated symbols.
+    salience: 1
+    family: neutral
+    chroma_class: none
+    contrast_target: low
+    cvd_priority: low
+    night_adaptation: 1.0
+    area_class: trace
+    redundant_channels: [strikethrough]
+    notes: >
+      Encoded entirely by strikethrough plus de-emphasis.  A deliberate
+      demonstration that not every state needs a colour.

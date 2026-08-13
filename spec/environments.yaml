@@ -1,0 +1,186 @@
+# LAYER 2 — environment parameters.
+#
+# These are the knobs the transform in DESIGN.md section 9 reads.  They are
+# design judgement [J] calibrated against reference themes, not measured
+# constants.  Every number here should be regarded as a starting point that
+# Phase 4 and Phase 7 are expected to move.
+#
+# Backgrounds are specified DIRECTLY rather than derived.  The rest of the
+# palette solves its lightness against them, so an error in a derived
+# background would propagate everywhere; and background lightness is the one
+# quantity where a designer's eye genuinely outperforms the model (Q-6).
+
+version: 1
+
+# ---------------------------------------------------------------------------
+# Experimental contrast-preference bands, in APCA |Lc|.
+# The transform solves each role's lightness to land at band centre; the band
+# edges flag candidates for review. These are project hypotheses, not W3C
+# accessibility requirements or validated comfort bounds (DESIGN.md D-2).
+# ---------------------------------------------------------------------------
+contrast_bands:
+  maximal:     {min: 90, max: 105, centre: 96}
+  high:        {min: 75, max: 90,  centre: 82}
+  comfortable: {min: 60, max: 78,  centre: 68}
+  low:         {min: 35, max: 55,  centre: 45}
+  minimal:     {min: 18, max: 32,  centre: 24}
+
+# Hard accessibility floors that no band may breach.  Where a comfort band and
+# these conflict, these win and the checker records the conflict.
+accessibility_floors:
+  body_text_wcag: 4.5
+  large_text_wcag: 3.0
+  non_text_wcag: 3.0
+
+# ---------------------------------------------------------------------------
+# Chroma classes, as a fraction of the maximum chroma available at the role's
+# solved lightness and hue.  Expressed as a fraction rather than an absolute
+# OKLCH C because available chroma varies enormously with L and h -- an
+# absolute C of 0.12 is unremarkable at L=0.6 in blue and out of gamut at
+# L=0.9 in yellow.
+# ---------------------------------------------------------------------------
+chroma_classes:
+  none:   0.00
+  trace:  0.06
+  low:    0.22
+  medium: 0.45
+  high:   0.70
+
+# Absolute ceiling regardless of class.  Prevents the "fraction of max"
+# formulation from producing a screaming yellow just because yellow has
+# headroom at high lightness.
+chroma_absolute_ceiling: 0.16
+
+# ---------------------------------------------------------------------------
+# Environments
+# ---------------------------------------------------------------------------
+environments:
+
+  day:
+    description: >
+      Normal to high ambient illumination (roughly 300-500 lx office light).
+      Positive polarity.  This is the variant with the strongest evidence
+      behind it (RESEARCH.md R-3) and should be the default in a lit room.
+    polarity: light
+    # Warm-neutral off-white. The background dominates the current light-theme
+    # fixture (M-1), but warmth remains a candidate strategy rather than a
+    # proven comfort intervention.
+    background:
+      L: 0.965
+      C: 0.008
+      h: 85        # warm, sand-ward
+    background_elevated:
+      L: 0.988     # elevated = lighter, conventional for light themes
+      C: 0.005
+      h: 85
+    background_overlay:
+      L: 1.000
+      C: 0.000
+      h: 0
+    chroma_attenuation: 0.00    # a(day) -- no desaturation
+    hue_rotation: 0.0           # no warm-ward rotation
+    # Light backgrounds need MORE chroma for equal salience: a chromatic
+    # foreground on a bright field has less room to differ in lightness, so
+    # colour has to carry more of the load.
+    chroma_gain: 1.15
+    notes: >
+      Q-2 resolves as "lighter is nearer" here without controversy.
+      The main risk in this variant is chromatic syntax washing out against
+      a bright field; watch the chroma_gain in evaluation.
+
+  evening:
+    description: >
+      Reduced ambient illumination -- a lit room in the evening, roughly
+      50-150 lx.  Negative polarity, expressive, minimal restraint.
+    polarity: dark
+    # Near-neutral dark with a *very* slight cool bias.  Chroma is low enough
+    # to read as neutral rather than as a "blue theme"; the bias exists to
+    # preserve warm-accent headroom (DESIGN.md section 3, argument 1), not
+    # because cool backgrounds are perceptually better.
+    background:
+      L: 0.235
+      C: 0.010
+      h: 265       # cool, but barely
+    background_elevated:
+      L: 0.275     # lighter-is-nearer, matching platform convention
+      C: 0.011
+      h: 265
+    background_overlay:
+      L: 0.305
+      C: 0.012
+      h: 265
+    chroma_attenuation: 0.15
+    hue_rotation: -3.0          # degrees, warm-ward; gated per role
+    chroma_gain: 1.00
+    notes: >
+      This variant is deliberately the least transformed.  If Q-7 resolves
+      against Evening, this is the one that gets cut -- it exists to test
+      whether a middle point earns its place.
+
+  night:
+    description: >
+      Dark or dim room, prolonged use. Negative polarity, restrained. This is
+      a hypothesis about environmental fit (R-6), NOT a blue-light, eye-care,
+      halation, or sleep claim (R-1, R-5, R-7).
+    polarity: dark
+    # Neutral to slightly warm. We test a raised background floor and lowered
+    # foreground ceiling as a subjective glare/appearance hypothesis; R-7 found
+    # no validated universal upper-contrast or "halation" threshold.
+    background:
+      L: 0.205
+      C: 0.007
+      h: 70        # slightly warm-neutral
+    background_elevated:
+      L: 0.238
+      C: 0.008
+      h: 70
+    background_overlay:
+      L: 0.265
+      C: 0.009
+      h: 70
+    chroma_attenuation: 0.35
+    hue_rotation: -8.0          # the cap from DESIGN.md section 9
+    chroma_gain: 0.95
+    # Night-specific experimental cap on foreground lightness. Accessibility
+    # floors override it; Phase 7 must determine whether this preference helps.
+    foreground_ceiling: 0.88
+    notes: >
+      The transform must not be allowed to produce a near-black background.
+      L=0.205 is only marginally darker than Evening's 0.235; the perceived
+      "nighttime" character comes from reduced chroma, warm bias, and the
+      foreground ceiling -- not from making the canvas darker.  This is a
+      deliberate departure from the common assumption that "night = darker".
+
+# ---------------------------------------------------------------------------
+# Per-role hue rotation weighting w(h0) from DESIGN.md section 9.
+# Warm hues barely move; cool hues carry the rotation.  Piecewise-linear in
+# OKLCH hue angle, interpolated between the control points below.
+# ---------------------------------------------------------------------------
+hue_rotation_weight:
+  0:   0.15    # rose / red   -- nearly pinned
+  60:  0.20    # sand / amber
+  120: 0.55    # sage / green
+  180: 0.85    # teal
+  240: 1.00    # azure        -- carries the full rotation
+  300: 0.70    # violet
+  360: 0.15
+
+# ---------------------------------------------------------------------------
+# Cross-variant stability constraints (DESIGN.md D-5).
+# Enforced by the Phase 4 checker.  Note the deliberate absence of a
+# cross-variant dE constraint: Day<->Night must invert lightness, so dE is a
+# bad stability metric and constraining it would be a methodological error.
+# ---------------------------------------------------------------------------
+stability:
+  max_hue_drift_deg: 12
+  preserve_salience_rank: true
+  preserve_chroma_rank: true
+  preserve_family_hue_order: true
+
+# ---------------------------------------------------------------------------
+# Salience budget (DESIGN.md section 6).  Makes "too busy" measurable.
+# Fractions are of NON-BACKGROUND pixels.
+# ---------------------------------------------------------------------------
+salience_budget:
+  max_fraction_at_or_above_3: 0.10
+  max_fraction_at_or_above_5: 0.01
