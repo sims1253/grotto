@@ -48,6 +48,7 @@ import hashlib
 import json
 import math
 from dataclasses import dataclass, field, replace
+from itertools import combinations
 
 from .color import gamut_map, max_chroma, oklch_to_hex
 from .contrast import apca_lc, contrast_report, wcag_contrast
@@ -1136,9 +1137,10 @@ def build_family(binding: CandidateBinding, spec: ModelSpec) -> FamilyBuild:
                         ok = False
 
     h = _input_hash(binding, spec)
+    stability = family_stability_build(variants, spec)
     return FamilyBuild(
         name=binding.name, binding=binding, spec=spec, variants=variants,
-        input_hash=h, issues=sorted(set(all_issues)), ok=ok,
+        input_hash=h, issues=sorted(set(all_issues)), ok=ok, stability=stability,
     )
 
 
@@ -1156,6 +1158,288 @@ def _distance_issues(variants: dict[str, VariantBuild], spec: ModelSpec) -> list
                 f"dE {v.measured:.3f} vs {v.threshold:.3f}"
             )
     return out
+
+
+# ===========================================================================
+# Corrected cross-variant stability (senior-review fixes to DESIGN.md D-5)
+# ===========================================================================
+#
+# Phase 2's ``cross_variant_report`` works on bare hex palettes and uses raw
+# chroma rank + pairwise signed hue ordering.  Both are wrong for a transform
+# that inverts lightness between Day and Night and rotates hue via warm
+# attraction across the 0/360 wrap:
+#   * raw chroma is NOT comparable across lightness-inverted variants; the
+#     invariant quantity is the realized fraction of available chroma,
+#     C / max_chroma(L, h).
+#   * pairwise signed shortest-arc hue is unstable near the wrap and near
+#     antipodal hues; the robust check is the cyclic SEQUENCE of families.
+#   * salience rank was "preserved by construction" (vacuous).  A non-vacuous
+#     proxy checks that realized chroma actually tracks the declared hierarchy.
+#   * total hue drift must include the per-role adjustment component, which the
+#     realized (post-adjustment) hue already encodes.
+#
+# These corrected checks need the transform's provenance (max_chroma per role),
+# so they live here rather than in the Phase 2 stability module.
+
+
+def _circular_mean(hues):
+    if not hues:
+        return None
+    xs = sum(math.cos(math.radians(h)) for h in hues)
+    ys = sum(math.sin(math.radians(h)) for h in hues)
+    return math.degrees(math.atan2(ys, xs)) % 360.0
+
+
+def family_stability_build(variants: dict[str, VariantBuild], spec: ModelSpec) -> dict:
+    """Corrected cross-variant stability for a built family.
+
+    Takes the per-variant traces (which carry max_chroma and post-adjustment
+    realized hues) and applies the four corrected checks.  Returns a report
+    dict; never raises -- stability misses are reported, not thrown.
+    """
+    var_names = tuple(sorted(variants))
+    roles = spec.roles
+    floor = 0.02  # chroma below this -> hue/normalized-chroma meaningless
+    thresh = spec.environments.stability.get("max_hue_drift_deg", 12.0)
+
+    # only roles present in every variant can be compared across variants;
+    # hand-tuned inputs are often partial, so missing roles are skipped
+    # (never raise) rather than treated as instability.
+    present_roles = [r.name for r in roles
+                     if all(r.name in variants[v].traces for v in var_names)]
+    role_by_name = {r.name: r for r in roles}
+
+    # normalized realized chroma C / max_chroma(L, h)
+    normC: dict[tuple[str, str], float] = {}
+    for v in var_names:
+        for name in present_roles:
+            t = variants[v].traces[name]
+            mc = t.max_chroma_at_L
+            normC[(name, v)] = (t.realized[1] / mc) if mc and mc > 1e-9 else 0.0
+
+    def is_chromatic(name):
+        return all(variants[v].traces[name].realized[1] >= floor for v in var_names)
+
+    chromatic = [name for name in present_roles if is_chromatic(name)]
+
+    # (1) normalized C/max_chroma ordering preservation
+    nc_inversions = []
+    for a, b in combinations(chromatic, 2):
+        for v1, v2 in combinations(var_names, 2):
+            da = normC[(a, v1)] - normC[(b, v1)]
+            db = normC[(a, v2)] - normC[(b, v2)]
+            if abs(da) > 1e-3 and abs(db) > 1e-3 and (da > 0) != (db > 0):
+                nc_inversions.append(
+                    {"roles": [a, b], "variants": [v1, v2],
+                     "d1": round(da, 4), "d2": round(db, 4)})
+
+    # (2) cyclic family hue sequence preservation (not pairwise signed)
+    families_used = sorted({role_by_name[n].family for n in chromatic})
+    fam_hue: dict[tuple[str, str], float | None] = {}
+    for fam in families_used:
+        for v in var_names:
+            hs = [variants[v].traces[n].realized[2]
+                  for n in chromatic if role_by_name[n].family == fam]
+            fam_hue[(fam, v)] = _circular_mean(hs)
+    seq: dict[str, tuple] = {}
+    for v in var_names:
+        present = [f for f in families_used if fam_hue[(f, v)] is not None]
+        ordered = sorted(present, key=lambda f: fam_hue[(f, v)])
+        # canonicalize the cyclic order by rotating the smallest family name
+        # to the front, so a global wrap rotation does not look like a swap.
+        if ordered:
+            k = ordered.index(min(ordered))
+            ordered = ordered[k:] + ordered[:k]
+        seq[v] = tuple(ordered)
+    sequence_preserved = len(set(seq.values())) <= 1
+
+    # (3) non-vacuous realized salience proxy: within a family, higher declared
+    # salience should carry >= normalized chroma (DESIGN.md: chroma is a
+    # salience channel).  A reversal is recorded; it is a soft signal.
+    salience_reversals = []
+    for fam in families_used:
+        famroles = [role_by_name[n] for n in chromatic if role_by_name[n].family == fam]
+        if len(famroles) < 2:
+            continue
+        for v in var_names:
+            sr = sorted(famroles, key=lambda r: r.salience)
+            for i in range(len(sr) - 1):
+                if normC[(sr[i].name, v)] - normC[(sr[i + 1].name, v)] > 2e-3:
+                    salience_reversals.append(
+                        {"family": fam, "variant": v,
+                         "lower_salience": sr[i].name, "higher_salience": sr[i + 1].name})
+
+    # (4) total hue drift INCLUDING adjustments (realized hue is post-adjustment)
+    drift_violations = []
+    max_drift = 0.0
+    for role in chromatic:
+        for v1, v2 in combinations(var_names, 2):
+            h1 = variants[v1].traces[role].realized[2]
+            h2 = variants[v2].traces[role].realized[2]
+            d = circular_drift(h1, h2)
+            if d > max_drift:
+                max_drift = d
+            if d > thresh:
+                drift_violations.append(
+                    {"role": role, "variants": [v1, v2], "drift_deg": round(d, 3)})
+
+    ok = (not nc_inversions and sequence_preserved and not drift_violations)
+    return {
+        "variants": list(var_names),
+        "checks": [
+            "normalized_chroma_ordering",
+            "cyclic_family_sequence",
+            "realized_salience_proxy",
+            "total_hue_drift_including_adjustments",
+        ],
+        "normalized_chroma_inversions": nc_inversions,
+        "cyclic_family_sequence_preserved": sequence_preserved,
+        "cyclic_family_sequence": {v: list(s) for v, s in seq.items()},
+        "salience_proxy_reversals": salience_reversals,
+        "max_hue_drift_deg": round(max_drift, 4),
+        "drift_threshold_deg": thresh,
+        "drift_violations": drift_violations,
+        "ok": ok,
+    }
+
+
+# ===========================================================================
+# Systematic-vs-hand-tuned comparison
+# ===========================================================================
+
+#: dE_OK above which a role is counted as "needing hand adjustment" relative to
+#: the systematic output.  ~0.05 is a side-by-side comfortable-difference step.
+COMPARE_DE_THRESHOLD = 0.05
+
+
+def _stub_trace(role_name: str, variant: str, palette: Palette, spec: ModelSpec) -> RoleTrace:
+    """A minimal trace for a hand-authored role (no derivation provenance)."""
+    from .color import hex_to_oklch, max_chroma as _mc
+    L, C, h = hex_to_oklch(palette[role_name])
+    return RoleTrace(
+        role=role_name, paint="hand", variant=variant, family="",
+        base_oklch=(L, C, h), requested=(L, C, h), capped=(L, C, h),
+        realized=(L, C, h), final_hex=palette[role_name],
+        max_chroma_at_L=_mc(L, h, "srgb"),
+        chroma_losses={"requested": C, "capped": C, "realized": C, "cap_loss": 0.0,
+                       "gamut_loss": 0.0, "total_loss": 0.0,
+                       "realized_fraction": 1.0},
+        adjustments_applied={"L": 0.0, "C": 0.0, "h": 0.0},
+        contrast={}, conflicts=[], winning_constraint="hand_authored",
+        derivation=["hand-authored; no systematic derivation"], issues=[],
+    )
+
+
+def hand_tuned_build(
+    palettes: dict[str, Palette], spec: ModelSpec, name: str = "hand-tuned"
+) -> FamilyBuild:
+    """Wrap hand-authored per-variant palettes as a FamilyBuild for comparison.
+
+    The hand-tuned input carries no systematic derivation provenance; its traces
+    are stubs that record the authored colour and its max_chroma so the
+    corrected stability checks can still run on it.  Used by
+    :func:`compare_families`.
+    """
+    variants: dict[str, VariantBuild] = {}
+    for v, pal in palettes.items():
+        traces = {r: _stub_trace(r, v, pal, spec) for r in pal.roles()}
+        variants[v] = VariantBuild(v, pal, traces)
+    h = hashlib.sha256()
+    for v in sorted(variants):
+        h.update(v.encode())
+        for role in sorted(variants[v].palette.colors):
+            h.update(f"{role}={variants[v].palette[role]};".encode())
+    stability = family_stability_build(variants, spec)
+    return FamilyBuild(
+        name=name, binding=_neutral_binding(spec), spec=spec, variants=variants,
+        input_hash=h.hexdigest()[:16], issues=[], ok=True, stability=stability,
+    )
+
+
+def _neutral_binding(spec: ModelSpec) -> CandidateBinding:
+    anchors = {f: FamilyAnchor(f, 0.0, 1.0) for f in FAMILIES}
+    return CandidateBinding("hand-tuned", 1.0, anchors, meta={"candidate": False})
+
+
+@dataclass
+class RoleComparison:
+    variant: str
+    role: str
+    systematic_hex: str
+    hand_hex: str
+    de: float
+    dL: float
+    dC: float
+    dh: float
+    needs_adjustment: bool
+
+
+def compare_families(systematic: FamilyBuild, hand_tuned: FamilyBuild, spec: ModelSpec) -> dict:
+    """Compare a systematic :class:`FamilyBuild` against a hand-tuned one.
+
+    Beside :func:`build_family`, not inside it: the comparison is an evaluation
+    question ("did the systematic transform match the designer's intent, or did
+    the designer have to correct it?"), separate from building either family.
+    Returns per-role deltas plus the headline finding -- whether the systematic
+    output needed hand adjustment, and where.
+    """
+    from .color import hex_to_oklch
+    from .distance import delta_e_ok
+
+    variants = sorted(set(systematic.variants) & set(hand_tuned.variants))
+    per_role: list[dict] = []
+    needing: list[dict] = []
+    des: list[float] = []
+    for v in variants:
+        sp = systematic.variants[v].palette
+        hp = hand_tuned.variants[v].palette
+        for role in spec.roles:
+            if role.name not in sp or role.name not in hp:
+                continue
+            de = delta_e_ok(sp[role.name], hp[role.name])
+            sL, sC, sh = hex_to_oklch(sp[role.name])
+            hL, hC, hh = hex_to_oklch(hp[role.name])
+            dh = signed_shortest_arc(sh, hh)
+            needs = de > COMPARE_DE_THRESHOLD
+            row = {
+                "variant": v, "role": role.name,
+                "systematic_hex": sp[role.name], "hand_hex": hp[role.name],
+                "de": round(de, 5), "dL": round(sL - hL, 5),
+                "dC": round(sC - hC, 5), "dh": round(dh, 4),
+                "needs_adjustment": needs,
+            }
+            per_role.append(row)
+            des.append(de)
+            if needs:
+                needing.append(row)
+
+    import statistics
+    summary = {
+        "n_roles_compared": len(per_role),
+        "n_variants": len(variants),
+        "de_mean": round(statistics.mean(des), 5) if des else 0.0,
+        "de_median": round(statistics.median(des), 5) if des else 0.0,
+        "de_max": round(max(des), 5) if des else 0.0,
+        "n_needing_adjustment": len(needing),
+        "threshold_de": COMPARE_DE_THRESHOLD,
+        "systematic_needed_hand_adjustment": bool(needing),
+    }
+    return {
+        "schema": "grotto.family-comparison",
+        "schema_version": "phase4",
+        "systematic": systematic.name,
+        "hand_tuned": hand_tuned.name,
+        "summary": summary,
+        "needing_adjustment": needing,
+        "per_role": per_role,
+        "systematic_stability": systematic.stability,
+        "hand_tuned_stability": hand_tuned.stability,
+        "note": (
+            "NON-CANDIDATE Phase 4 experiment. dE_OK between systematic and "
+            "hand-tuned final hex; roles above the threshold are where a human "
+            "corrected the systematic output. No palette is finalised here."
+        ),
+    }
 
 
 __all__ = [
@@ -1177,4 +1461,8 @@ __all__ = [
     "signed_shortest_arc",
     "circular_drift",
     "build_family",
+    "family_stability_build",
+    "hand_tuned_build",
+    "compare_families",
+    "COMPARE_DE_THRESHOLD",
 ]
