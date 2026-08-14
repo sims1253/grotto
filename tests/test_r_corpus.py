@@ -5,8 +5,9 @@ Acceptance points:
   * item uniqueness (no duplicated excerpts, distinct hashes);
   * provenance/license completeness with the honest project-authored
     labelling (frozen for this experiment, NOT externally established);
-  * schedule counterbalancing: bijections, no repeats, family balance,
-    distinct items per condition;
+  * schedule counterbalancing: nine deterministic cyclic lists, each a
+    bijection, and every item x every exact condition exactly once across
+    lists (item x condition Latin square);
   * coarse matching tolerances (length band, nesting, construct coverage);
   * seeded-error patches in the answer key match the frozen files exactly,
     so the answer key can never silently drift from the corpus.
@@ -101,35 +102,39 @@ def test_schedule_counterbalancing():
     schedule = _load("schedule.yaml")
     manifest = _load("manifest.yaml")
     items = {i["id"] for i in manifest["items"]}
-    families = {"restrained", "balanced", "expressive"}
-    variants = {"day", "evening", "night"}
+    # ordered enumeration of the nine exact conditions (schedule.yaml procedure)
+    families = ["restrained", "balanced", "expressive"]
+    variants = ["day", "evening", "night"]
+    conditions = [(v, f) for v in variants for f in families]
+    # items r-01..r-09 map to indices 0..8 in sorted id order
+    item_index = {item: i for i, item in enumerate(sorted(items))}
     lists = schedule["lists"]
-    assert len(lists) == 3
+    assert len(lists) == 9
+    assert [L["name"] for L in lists] == [f"L{n}" for n in range(1, 10)]
 
-    fam_meet: dict[str, set[str]] = {i: set() for i in items}
-    cond_items: dict[tuple[str, str], list[str]] = {}
-    for L in lists:
+    # (item, variant, family) -> names of the lists presenting that pairing
+    seen_on: dict[tuple[str, str, str], list[str]] = {}
+    for k, L in enumerate(lists):
         assigned: list[str] = []
-        assert set(L["assignments"]) == variants
+        assert set(L["assignments"]) == set(variants)
         for v, by_family in L["assignments"].items():
-            assert set(by_family) == families
+            assert set(by_family) == set(families)
             for fam, item in by_family.items():
                 assert item in items, item
-                assigned.append(item)          # no repeat within a list ...
-                fam_meet[item].add(fam)
-                cond_items.setdefault((v, fam), []).append(item)
-        # ... and the list is a bijection over the corpus
+                assigned.append(item)  # no repeat within a list ...
+                seen_on.setdefault((item, v, fam), []).append(L["name"])
+                # deterministic cyclic construction: list k (L{k+1}) assigns
+                # item i to condition (i + k) mod 9
+                expected = conditions[(item_index[item] + k) % 9]
+                assert (v, fam) == expected, (L["name"], item, expected, (v, fam))
+        # ... and the list is a bijection: 9 items onto the 9 exact conditions
         assert sorted(assigned) == sorted(items), L["name"]
 
-    # across the three lists each item meets each family exactly once
-    for item, fams in fam_meet.items():
-        assert fams == families, item
-    # every condition receives three distinct items across lists
-    for cond, got in cond_items.items():
-        assert len(got) == 3 and len(set(got)) == 3, cond
-    # no item permanently bound to one theme: pairing must differ per list
-    for cond, got in cond_items.items():
-        assert len(got) == len(set(got)), cond
+    # across the nine lists every item meets every exact condition exactly
+    # once (item x condition is a Latin square)
+    for item in items:
+        for cond in conditions:
+            assert len(seen_on.get((item, *cond), [])) == 1, (item, cond)
 
 
 def test_answer_key_patches_match_frozen_items():

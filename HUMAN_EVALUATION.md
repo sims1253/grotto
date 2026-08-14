@@ -41,8 +41,10 @@ Keep these fixed within a comparison set:
   supplies the frozen, project-authored pilot items and the
   counterbalanced assignment schedule for the short scan/comprehension/
   seeded-error trials. Identical visual fixtures control content exactly but
-  cannot be reused for timed tasks without practice effects; the corpus
-  forms are rotated so no timed item repeats for one participant;
+  cannot be reused for timed tasks without practice effects; each participant
+  uses exactly one of the nine lists in `schedule.yaml`, the lists
+  counterbalance across participants, and a repeated within-participant
+  experiment needs the future disjoint forms B/C;
 - diagnostic text, selection, cursor/focus, diff, search, and debug examples;
 - viewing distance and room/task lighting as far as practical.
 
@@ -91,9 +93,11 @@ Use the identical frozen multi-language specimens and editor state for every
 condition. For the short timed R scan/comprehension/seeded-error trials, use
 the disjoint frozen items from
 [evaluation/r-corpus](evaluation/r-corpus/README.md) assigned per its
-counterbalanced `schedule.yaml` (never the identical excerpt under multiple
-themes for timed tasks). Complete the same tasks in the same order, without
-a palette legend:
+counterbalanced `schedule.yaml`: one participant uses exactly one list, the
+nine lists counterbalance across participants, and repeating within one
+participant needs the future disjoint forms B/C (never the identical excerpt
+under multiple themes for timed tasks). Complete the same tasks in the same
+order, without a palette legend:
 
 1. Locate function definitions and calls, control flow, types, strings, comments,
    constants, ordinary variables, parameters, and nested delimiters.

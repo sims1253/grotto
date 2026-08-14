@@ -28,18 +28,23 @@ uv run grotto raster shot.png \
 # options: --threshold 0.05 (OKLab dE), --chunk-rows 128
 ```
 
-Report contents: image dimensions and chunk bound; palette name/variant and
-file SHA-256; exact per-role colour coverage; nearest-role and per-category
-coverage (background / normal foreground / comments / syntax accents /
-UI chrome / selection-highlights / diagnostics) plus unclassified fraction;
-and area-weighted nominal photopic/melanopic metrics for **both** display
-models (`led-lcd`, `oled`).
+Report contents: image dimensions and the honest memory-bound fields
+(maximum input RGB chunk bytes, fixed RGB555 histogram bytes, fixed
+per-channel histogram bytes — each field names exactly what it measures);
+palette name/variant and file SHA-256; exact per-role colour coverage;
+nearest-role and per-category coverage (background / normal foreground /
+comments / syntax accents / UI chrome / selection-highlights / diagnostics)
+plus unclassified fraction; and area-weighted nominal photopic/melanopic
+metrics for **both** display models (`led-lcd`, `oled`).
 
-How it stays bounded: rows are processed in chunks of at most `--chunk-rows`
-(≈1.4 MB at 4K width); nearest-role classification uses a fixed 32,768-bin
-RGB555 histogram; the spectral numbers are computed **exactly** from the
-mean linear RGB — the display SPD is linear in linear RGB and the weighting
-is a linear functional, so one integration per display model equals the
+How it stays bounded: rows are processed in chunks of at most `--chunk-rows`,
+each band cropped *before* conversion to RGB (≈1.4 MB of input RGB at 4K
+width); nearest-role classification uses a fixed 32,768-bin RGB555 histogram,
+and the mean linear RGB is accumulated from fixed 256-bin per-channel
+counts dotted with the sRGB→linear LUT, so no float64 pixel plane is ever
+materialised; the spectral numbers are computed **exactly** from the mean
+linear RGB — the display SPD is linear in linear RGB and the weighting is a
+linear functional, so one integration per display model equals the
 per-pixel area-weighted integral without ever integrating per unique pixel.
 
 ## Capturing a screenshot (manual, your installed VS Code)

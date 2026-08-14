@@ -12,10 +12,16 @@ zoom/scaling and window chrome all introduce colours the theme never
 defined. Exact-match and nearest-role numbers are coverage estimates under a
 documented threshold, never a claim about what the user perceived.
 
-Memory bound: the image is processed in row chunks (<= chunk_rows rows at a
-time); nearest-colour classification of non-palette pixels uses a fixed
-32,768-bin RGB555 histogram (5 bits/channel), so memory does not grow with
-image content diversity. Pixels that exactly match a palette colour are
+Memory bound: the image is processed in row chunks (<= chunk_rows rows at
+a time, each band cropped BEFORE conversion to RGB, so the full image is
+never converted at once); nearest-colour classification of non-palette
+pixels uses a fixed 32,768-bin RGB555 histogram (5 bits/channel), and the
+mean linear RGB is accumulated from fixed 256-bin per-channel counts
+dotted with the sRGB->linear LUT -- no float64 pixel plane is ever
+materialised -- so memory does not grow with image content diversity.
+The report states the bound as separately-named, honest fields: the
+maximum input RGB chunk bytes plus the fixed RGB555 and per-channel
+histogram sizes. Pixels that exactly match a palette colour are
 counted exactly to that colour; only the residual goes through the
 quantised nearest-colour pass (documented threshold in OKLab dE), so
 near-identical palette colours cannot steal each other's pixels. Roles that
@@ -95,19 +101,22 @@ class ChunkInfo:
     """Observability for the memory bound (tests assert on it)."""
 
     rows: int
-    max_chunk_rows: int
-    max_chunk_bytes: int
+    max_rows_seen: int
+    max_input_rgb_chunk_bytes: int   # largest input band: rows * width * 3 uint8
+    rgb555_histogram_bytes: int      # fixed 32,768-bin residual histogram
+    channel_histogram_bytes: int     # fixed 256-bin per-channel linear accumulation
 
 
 def _row_chunks(im, chunk_rows: int):
     """Yield (offset, np.ndarray[rows, width, 3] uint8) with rows <= chunk_rows.
 
-    Uses crop-then-convert so at most ``chunk_rows`` rows are ever resident.
+    Crop first, then convert: only the cropped band (<= chunk_rows rows)
+    is ever converted to RGB, never the whole image.
     """
     w, h = im.size
     for y in range(0, h, chunk_rows):
         rows = min(chunk_rows, h - y)
-        band = im.convert("RGB").crop((0, y, w, y + rows))
+        band = im.crop((0, y, w, y + rows)).convert("RGB")
         yield y, np.asarray(band, dtype=np.uint8)
 
 
@@ -195,8 +204,12 @@ def analyze_screenshot(
             q = (residual >> (8 - QUANT_BITS)).astype(np.int64)
             idx = (q[..., 0] << (2 * QUANT_BITS)) | (q[..., 1] << QUANT_BITS) | q[..., 2]
             hist += np.bincount(idx.ravel(), minlength=QUANT_BINS)
-            lin = lut[chunk]                       # (rows, w, 3) float64, chunk-bounded
-            lin_sum += lin.reshape(-1, 3).sum(axis=0)
+            # linear accumulation without materialising a (rows, w, 3)
+            # float64 plane: fixed 256-bin counts per channel, each dotted
+            # with the sRGB->linear LUT
+            for channel in range(3):
+                counts = np.bincount(chunk[..., channel].ravel(), minlength=256)
+                lin_sum[channel] += counts @ lut
 
     total = w * h
     if total == 0:
@@ -259,7 +272,13 @@ def analyze_screenshot(
             "chunk": {
                 "rows": chunk_rows,
                 "max_rows_seen": max_rows_seen,
-                "max_bytes": max_rows_seen * w * 3,
+                # honest, separately-named bound fields (none claims to be a
+                # total): largest input band as RGB bytes, plus the fixed
+                # working-state histograms that never grow with content
+                # diversity
+                "max_input_rgb_chunk_bytes": max_rows_seen * w * 3,
+                "rgb555_histogram_bytes": hist.nbytes,
+                "channel_histogram_bytes": 256 * np.dtype(np.int64).itemsize,
             },
         },
         "palette": {

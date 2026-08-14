@@ -2,8 +2,14 @@
 
 Acceptance points:
   * tiny generated PNG fixtures only (no committed screenshots);
-  * chunking is bounded: no yielded chunk exceeds chunk_rows rows, and
-    analysis is chunk-size independent;
+  * chunking is bounded: no yielded chunk exceeds chunk_rows rows, each
+    band is cropped before RGB conversion (the whole image is never
+    converted at once), and analysis is chunk-size independent;
+  * the linear-RGB mean is accumulated from fixed 256-bin per-channel
+    counts dotted with the sRGB->linear LUT (no float64 pixel plane) and
+    still matches direct per-pixel expansion;
+  * memory-bound reporting is honest: fields name the maximum input RGB
+    chunk bytes and the fixed RGB555 / per-channel histogram bytes;
   * exact colour coverage counts exact palette pixels correctly;
   * nearest-role classification respects the documented threshold and
     reports the fixed category vocabulary;
@@ -23,9 +29,11 @@ from grotto.raster import (
     CATEGORIES,
     DEFAULT_CHUNK_ROWS,
     ROLE_CATEGORIES,
+    _linear_rgb_spectral,
     _row_chunks,
     analyze_screenshot,
 )
+from grotto.color import srgb_to_linear
 from grotto.spec import load as load_palette
 from grotto.spectral import DISPLAYS, melanopic
 
@@ -51,6 +59,42 @@ def test_chunk_rows_bounded(tmp_path):
     sizes = [c.shape[0] for _, c in _row_chunks(im, chunk_rows=17)]
     assert max(sizes) <= 17 and len(sizes) == 18  # ceil(300/17)
     assert sum(sizes) == h
+
+
+def test_row_chunks_crop_before_convert(tmp_path, monkeypatch):
+    # the whole image must never be converted: every .convert("RGB") call
+    # must see a band of at most chunk_rows rows (crop first, then convert)
+    heights = []
+    real_convert = Image.Image.convert
+
+    def spying_convert(self, mode, *args, **kwargs):
+        heights.append(self.size[1])
+        return real_convert(self, mode, *args, **kwargs)
+
+    monkeypatch.setattr(Image.Image, "convert", spying_convert)
+    w, h = 8, 40
+    arr = np.zeros((h, w, 3), dtype=np.uint8)
+    p = _write_png(tmp_path / "bands.png", arr)
+    with Image.open(p) as im:
+        bands = [c for _, c in _row_chunks(im, chunk_rows=9)]
+    assert heights and max(heights) <= 9          # never the full 40 rows
+    assert sum(b.shape[0] for b in bands) == h
+
+
+def test_chunk_bound_fields_are_honest(tmp_path, palette):
+    # each field names exactly what it measures; no vague max_bytes
+    w, h = 6, 40
+    arr = np.zeros((h, w, 3), dtype=np.uint8)
+    arr[..., 1] = np.arange(h, dtype=np.uint8)[:, None]   # non-flat content
+    p = _write_png(tmp_path / "mem.png", arr)
+    rep = analyze_screenshot(p, PAL, chunk_rows=16)
+    ch = rep["image"]["chunk"]
+    assert ch["rows"] == 16
+    assert ch["max_rows_seen"] == 16              # chunks of 16, 16, 8
+    assert ch["max_input_rgb_chunk_bytes"] == 16 * w * 3
+    assert ch["rgb555_histogram_bytes"] == 32768 * 8   # fixed, int64
+    assert ch["channel_histogram_bytes"] == 256 * 8    # fixed, int64
+    assert "max_bytes" not in ch
 
 
 def test_chunk_size_independence_and_exact_coverage(tmp_path, palette):
@@ -131,6 +175,22 @@ def test_spectral_matches_coverage_weighted_exact(tmp_path, palette):
         got = rep["spectral"]["displays"][name]
         assert got["photopic"] == pytest.approx(p_tot, abs=5e-6)
         assert got["melanopic"] == pytest.approx(q_tot, abs=5e-6)
+
+
+def test_linear_accumulation_matches_direct_lut(tmp_path, palette):
+    # arbitrary (non-palette) pixels: the per-channel bincount + LUT dot
+    # accumulation must equal direct per-pixel LUT expansion of the image
+    rng = np.random.default_rng(8)
+    arr = rng.integers(0, 256, (7, 11, 3), dtype=np.uint8)
+    p = _write_png(tmp_path / "rand.png", arr)
+    rep = analyze_screenshot(p, PAL, chunk_rows=3)
+    lut = np.array([srgb_to_linear(i / 255.0) for i in range(256)])
+    mean_lin = np.array([lut[arr[..., c].ravel()].mean() for c in range(3)])
+    for name in DISPLAYS:
+        photopic, melanopic = _linear_rgb_spectral(mean_lin, DISPLAYS[name]())
+        got = rep["spectral"]["displays"][name]
+        assert got["photopic"] == pytest.approx(photopic, abs=5e-6)
+        assert got["melanopic"] == pytest.approx(melanopic, abs=5e-6)
 
 
 def test_categories_complete():

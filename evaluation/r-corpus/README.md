@@ -25,7 +25,7 @@ tools/metrics.py          stdlib-only deterministic metrics (LOC, comments,
                           construct counts, max delimiter nesting, sha256)
 tasks/form-a-tasks.md     PUBLIC task sheet (no answers)
 answers/answer-key.yaml   ANSWER KEY — keep out of the participant's view
-schedule.yaml             counterbalanced item<->condition assignment lists
+schedule.yaml             nine deterministic counterbalancing lists (form A)
 ```
 
 ## What the corpus is for (and not for)
@@ -45,9 +45,14 @@ the metrics screen for gross inequality, they do not prove equal difficulty.
 
 ## Rules during collection
 
-1. Assign items only per the current list in `schedule.yaml`; never ad hoc.
-2. A participant never sees the same item twice across timed tasks; rotate
-   lists across repeat sessions (pairing shifts deterministically).
+1. Assign items only per the participant's single list in `schedule.yaml`;
+   never ad hoc.
+2. One participant uses EXACTLY ONE of the nine lists for all nine form-A
+   trials; the lists counterbalance item<->condition pairings ACROSS
+   participants, not within one participant. Never hand a second form-A list
+   to the same participant (they would repeat timed items); a repeated
+   within-participant experiment needs the future disjoint forms B/C
+   (`manifest.yaml: forms`), which do not exist yet.
 3. Apply seeded errors from `answers/answer-key.yaml` to a **copy** of the
    item at presentation time; the corpus files stay frozen.
 4. Record which item, list, theme family and variant were on screen in the

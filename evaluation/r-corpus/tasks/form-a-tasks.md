@@ -5,10 +5,12 @@
 # during collection. The seeded error is applied by the experimenter using the
 # patch in the answer key, on a COPY of the item, never by editing the corpus.
 #
-# Timing: each item is one short trial (recommend 60-180 s). The same
-# participant never sees the same item twice across timed tasks; assignment is
-# governed by schedule.yaml. These are not speeded tests — record times for
-# failure analysis only, never as a score.
+# Timing: each item is one short trial (recommend 60-180 s). One participant
+# uses EXACTLY ONE list from schedule.yaml for all nine trials; the nine
+# lists counterbalance ACROSS participants, not within one participant. A
+# repeated within-participant experiment needs the future disjoint forms
+# B/C, never a second form-A list. These are not speeded tests — record
+# times for failure analysis only, never as a score.
 
 | item | scan task | comprehension question | seeded-error task |
 |---|---|---|---|
@@ -23,7 +25,7 @@
 | r-09 plot-with-band | Locate the `par()` save and the restore; name the mechanism that guarantees restoration. | What decides the annotation position (pos 1 vs 3) for the peak label? | find the introduced bug (answer key: r-09) |
 
 Presentation rules (from HUMAN_EVALUATION.md / schedule.yaml):
-- assign items per the current schedule list; never substitute ad hoc;
+- assign items per the participant's single schedule list; never substitute ad hoc;
 - do not reveal which family/variant is on screen; record it in the session file;
 - after the trial, note whether the participant read comments/docstrings at all
   (colour treatments of comments differ across candidates).
