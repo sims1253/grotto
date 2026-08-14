@@ -22,6 +22,7 @@ from grotto.environments import (
 from grotto.model import (
     ADJUSTMENT_LIMITS,
     CO_OCCURRING_SURFACES,
+    NORMAL_SALIENCE,
     BindingError,
     CandidateBinding,
     FamilyAnchor,
@@ -604,3 +605,119 @@ def test_override_cannot_change_paint_or_name(spec):
     b2 = binding(role_overrides={"fg": {"name": "x"}})
     with pytest.raises(BindingError, match="unknown key"):
         validate_binding(b2, spec)
+
+
+# ===========================================================================
+# 15. salience-driven APCA centre boost (Phase-7 feedback)
+# ===========================================================================
+# Day carries salience_apca_step=5.0: each salience level above the normal
+# reading level (NORMAL_SALIENCE=2) adds 5 APCA Lc to the band centre,
+# clamped to the band max.  These tests read the STRUCTURED solve provenance
+# in trace.contrast["solve"], never the human-readable derivation strings.
+
+
+def _solve_provenance(fb, variant: str, role: str) -> dict:
+    return fb.trace(variant, role).contrast["solve"]
+
+
+def test_day_apca_centres_fg68_keyword73_function90_with_clamp(spec):
+    fb = build_family(binding(), spec)
+    fg = _solve_provenance(fb, "day", "fg")
+    keyword = _solve_provenance(fb, "day", "keyword")
+    function = _solve_provenance(fb, "day", "function")
+
+    # fg: salience 2 == NORMAL_SALIENCE -> no boost, comfortable centre 68
+    assert fg["salience"] == NORMAL_SALIENCE == 2
+    assert fg["base_apca_centre"] == pytest.approx(68.0)
+    assert fg["salience_boost_requested"] == pytest.approx(0.0)
+    assert fg["salience_boost_applied"] == pytest.approx(0.0)
+    assert fg["effective_apca_centre"] == pytest.approx(68.0)
+    assert fg["clamped_to_band_max"] is False
+
+    # keyword: salience 3, comfortable 68 -> 68 + 1*5 = 73, under band max 78
+    assert keyword["base_apca_centre"] == pytest.approx(68.0)
+    assert keyword["salience_boost_requested"] == pytest.approx(5.0)
+    assert keyword["salience_boost_applied"] == pytest.approx(5.0)
+    assert keyword["effective_apca_centre"] == pytest.approx(73.0)
+    assert keyword["band_max"] == pytest.approx(78.0)
+    assert keyword["clamped_to_band_max"] is False
+
+    # function: salience 4, high 82 -> requests 82 + 2*5 = 92, clamped to 90
+    assert function["base_apca_centre"] == pytest.approx(82.0)
+    assert function["salience_boost_requested"] == pytest.approx(10.0)
+    assert function["salience_boost_applied"] == pytest.approx(8.0)
+    assert function["effective_apca_centre"] == pytest.approx(90.0)
+    assert function["band_max"] == pytest.approx(90.0)
+    assert function["clamped_to_band_max"] is True
+
+
+def test_effective_apca_centres_never_exceed_their_band(spec):
+    fb = build_family(binding(), spec)
+    for v in ("day", "evening", "night"):
+        step = spec.environments.environments[v].salience_apca_step
+        for r in spec.roles:
+            if r.paint not in ("ink", "border"):
+                continue
+            prov = _solve_provenance(fb, v, r.name)
+            band = spec.environments.contrast_bands[r.contrast_target]
+            # the clamp holds whatever the salience and step
+            assert prov["effective_apca_centre"] <= band.max + 1e-9
+            assert prov["salience_boost_applied"] <= prov["salience_boost_requested"] + 1e-9
+            assert prov["salience_boost_requested"] == pytest.approx(
+                max(0, r.salience - NORMAL_SALIENCE) * step
+            )
+            assert prov["effective_apca_centre"] == pytest.approx(
+                prov["base_apca_centre"] + prov["salience_boost_applied"]
+            )
+
+
+def test_day_salient_syntax_is_darker_than_fg_and_function_furthest(spec):
+    """Phase-7 feedback: on the light canvas, salient syntax must read
+    visibly DARKER (higher |Lc|) than the normal reading level, `function`
+    (salience 4) further than `keyword` (salience 3)."""
+    fb = build_family(binding(), spec)
+    pal = fb.variants["day"].palette
+    fg_L = hex_to_oklch(pal["fg"])[0]
+    kw_L = hex_to_oklch(pal["keyword"])[0]
+    fn_L = hex_to_oklch(pal["function"])[0]
+    # light polarity: more |Lc| = darker = lower OKLCH L; margins are far
+    # above solve tolerance (1e-4) and 8-bit quantization (~1e-3)
+    assert kw_L < fg_L - 0.02, f"keyword L {kw_L:.4f} not meaningfully below fg {fg_L:.4f}"
+    assert fn_L < kw_L - 0.05, f"function L {fn_L:.4f} not meaningfully below keyword {kw_L:.4f}"
+
+
+def test_zero_step_dark_variants_record_no_boost(spec):
+    """evening/night carry step 0.0: every solve shows a zero boost and an
+    effective centre equal to the base band centre."""
+    fb = build_family(binding(), spec)
+    for v in ("evening", "night"):
+        for r in spec.roles:
+            if r.paint not in ("ink", "border"):
+                continue
+            prov = _solve_provenance(fb, v, r.name)
+            assert prov["salience_apca_step"] == pytest.approx(0.0)
+            assert prov["salience_boost_requested"] == pytest.approx(0.0)
+            assert prov["salience_boost_applied"] == pytest.approx(0.0)
+            assert prov["effective_apca_centre"] == pytest.approx(
+                prov["base_apca_centre"]
+            )
+
+
+def test_zero_step_dark_variant_palettes_are_byte_identical_without_knob(spec):
+    """With the day step removed entirely, evening/night builds are unchanged:
+    the dark variants are untouched by the feature, not merely re-solved to
+    the same numbers."""
+    envs = spec.environments
+    without = replace(
+        envs,
+        environments={
+            name: replace(e, salience_apca_step=0.0)
+            for name, e in envs.environments.items()
+        },
+    )
+    fb_zero = build_family(binding(), replace(spec, environments=without))
+    fb_real = build_family(binding(), spec)
+    for v in ("evening", "night"):
+        assert fb_zero.variants[v].palette.colors == fb_real.variants[v].palette.colors
+    # and the day variant DOES move under the knob (it is not a no-op)
+    assert fb_zero.variants["day"].palette.colors != fb_real.variants["day"].palette.colors

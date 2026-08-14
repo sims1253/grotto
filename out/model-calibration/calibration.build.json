@@ -3,7 +3,7 @@
   "schema_version": "phase4",
   "name": "calibration-experiment",
   "is_candidate": false,
-  "input_hash": "3f646ddf714ce458",
+  "input_hash": "3ca6cf7795cd7521",
   "ok": true,
   "binding": {
     "name": "calibration-experiment",
@@ -84,21 +84,18 @@
     }
   },
   "issues": [
-    "[error] day: must_distinguish(active_line, diff_added) under normal: dE 0.030 vs 0.130",
-    "[error] day: must_distinguish(active_line, diff_removed) under normal: dE 0.007 vs 0.130",
-    "[error] day: must_distinguish(diff_added, diff_changed) under normal: dE 0.026 vs 0.130",
-    "[error] day: must_distinguish(diff_added, diff_removed) under normal: dE 0.035 vs 0.130",
-    "[error] day: must_distinguish(diff_removed, diff_changed) under normal: dE 0.015 vs 0.130",
-    "[error] day: must_distinguish(error, warning) under normal: dE 0.130 vs 0.130",
-    "[error] day: must_distinguish(search_match, search_match_current) under normal: dE 0.051 vs 0.130",
-    "[error] day: must_distinguish(selection, active_line) under normal: dE 0.029 vs 0.130",
-    "[error] day: must_distinguish(selection, diff_added) under normal: dE 0.042 vs 0.130",
-    "[error] day: must_distinguish(selection, diff_removed) under normal: dE 0.031 vs 0.130",
-    "[error] day: must_distinguish(selection, search_match) under normal: dE 0.056 vs 0.130",
-    "[error] day: must_distinguish(selection, search_match_current) under normal: dE 0.103 vs 0.130",
-    "[error] day: must_distinguish(warning, constant) under normal: dE 0.120 vs 0.130",
-    "[error] day: must_distinguish(warning, decorator) under normal: dE 0.127 vs 0.130",
-    "[error] day: must_distinguish(warning, number) under normal: dE 0.120 vs 0.130",
+    "[error] day: must_distinguish(active_line, diff_added) under normal: dE 0.027 vs 0.130",
+    "[error] day: must_distinguish(active_line, diff_removed) under normal: dE 0.005 vs 0.130",
+    "[error] day: must_distinguish(diff_added, diff_changed) under normal: dE 0.023 vs 0.130",
+    "[error] day: must_distinguish(diff_added, diff_removed) under normal: dE 0.029 vs 0.130",
+    "[error] day: must_distinguish(diff_removed, diff_changed) under normal: dE 0.011 vs 0.130",
+    "[error] day: must_distinguish(error, warning) under normal: dE 0.091 vs 0.130",
+    "[error] day: must_distinguish(search_match, search_match_current) under normal: dE 0.046 vs 0.130",
+    "[error] day: must_distinguish(selection, active_line) under normal: dE 0.028 vs 0.130",
+    "[error] day: must_distinguish(selection, diff_added) under normal: dE 0.038 vs 0.130",
+    "[error] day: must_distinguish(selection, diff_removed) under normal: dE 0.030 vs 0.130",
+    "[error] day: must_distinguish(selection, search_match) under normal: dE 0.048 vs 0.130",
+    "[error] day: must_distinguish(selection, search_match_current) under normal: dE 0.090 vs 0.130",
     "[error] evening: must_distinguish(active_line, diff_added) under normal: dE 0.024 vs 0.130",
     "[error] evening: must_distinguish(active_line, diff_removed) under normal: dE 0.016 vs 0.130",
     "[error] evening: must_distinguish(diff_added, diff_changed) under normal: dE 0.016 vs 0.130",
@@ -138,106 +135,85 @@
     "[error] night: must_distinguish(warning, decorator) under normal: dE 0.083 vs 0.130",
     "[error] night: must_distinguish(warning, number) under normal: dE 0.072 vs 0.130",
     "[error] night: must_distinguish(warning, string) under normal: dE 0.106 vs 0.130",
-    "[warning] builtin@day over active_line: WCAG 4.231 < 4.5 (ink-on-surface legibility)",
-    "[warning] builtin@day over debug_current: WCAG 3.915 < 4.5 (ink-on-surface legibility)",
-    "[warning] builtin@day over diff_added: WCAG 4.266 < 4.5 (ink-on-surface legibility)",
-    "[warning] builtin@day over diff_changed: WCAG 4.235 < 4.5 (ink-on-surface legibility)",
-    "[warning] builtin@day over diff_removed: WCAG 4.204 < 4.5 (ink-on-surface legibility)",
-    "[warning] builtin@day over search_match: WCAG 3.915 < 4.5 (ink-on-surface legibility)",
-    "[warning] builtin@day over search_match_current: WCAG 3.594 < 4.5 (ink-on-surface legibility)",
-    "[warning] builtin@day over selection: WCAG 3.915 < 4.5 (ink-on-surface legibility)",
-    "[warning] comment@day over active_line: WCAG 4.457 < 4.5 (ink-on-surface legibility)",
-    "[warning] comment@day over debug_current: WCAG 4.123 < 4.5 (ink-on-surface legibility)",
-    "[warning] comment@day over diff_added: WCAG 4.494 < 4.5 (ink-on-surface legibility)",
-    "[warning] comment@day over diff_changed: WCAG 4.461 < 4.5 (ink-on-surface legibility)",
-    "[warning] comment@day over diff_removed: WCAG 4.429 < 4.5 (ink-on-surface legibility)",
-    "[warning] comment@day over search_match: WCAG 4.123 < 4.5 (ink-on-surface legibility)",
-    "[warning] comment@day over search_match_current: WCAG 3.786 < 4.5 (ink-on-surface legibility)",
-    "[warning] comment@day over selection: WCAG 4.124 < 4.5 (ink-on-surface legibility)",
+    "[warning] builtin@day over search_match_current: WCAG 4.273 < 4.5 (ink-on-surface legibility)",
+    "[warning] comment@day over active_line: WCAG 4.496 < 4.5 (ink-on-surface legibility)",
+    "[warning] comment@day over debug_current: WCAG 4.153 < 4.5 (ink-on-surface legibility)",
+    "[warning] comment@day over diff_changed: WCAG 4.497 < 4.5 (ink-on-surface legibility)",
+    "[warning] comment@day over diff_removed: WCAG 4.487 < 4.5 (ink-on-surface legibility)",
+    "[warning] comment@day over search_match: WCAG 4.153 < 4.5 (ink-on-surface legibility)",
+    "[warning] comment@day over search_match_current: WCAG 3.824 < 4.5 (ink-on-surface legibility)",
+    "[warning] comment@day over selection: WCAG 4.165 < 4.5 (ink-on-surface legibility)",
     "[warning] comment@evening over search_match_current: WCAG 4.144 < 4.5 (ink-on-surface legibility)",
-    "[warning] constant@day over active_line: WCAG 4.204 < 4.5 (ink-on-surface legibility)",
-    "[warning] constant@day over debug_current: WCAG 3.890 < 4.5 (ink-on-surface legibility)",
-    "[warning] constant@day over diff_added: WCAG 4.239 < 4.5 (ink-on-surface legibility)",
-    "[warning] constant@day over diff_changed: WCAG 4.208 < 4.5 (ink-on-surface legibility)",
-    "[warning] constant@day over diff_removed: WCAG 4.178 < 4.5 (ink-on-surface legibility)",
-    "[warning] constant@day over search_match: WCAG 3.890 < 4.5 (ink-on-surface legibility)",
-    "[warning] constant@day over search_match_current: WCAG 3.571 < 4.5 (ink-on-surface legibility)",
-    "[warning] constant@day over selection: WCAG 3.890 < 4.5 (ink-on-surface legibility)",
-    "[warning] day: differentiated_by(line_number, line_number_active) via lightness under upper: dE 0.102 vs 0.050",
-    "[warning] day: must_distinguish(active_line, diff_added) under deutan@1.0: dE 0.014 vs 0.090",
-    "[warning] day: must_distinguish(active_line, diff_added) under protan@1.0: dE 0.024 vs 0.090",
-    "[warning] day: must_distinguish(active_line, diff_added) under tritan@1.0: dE 0.016 vs 0.090",
+    "[warning] constant@day over search_match_current: WCAG 4.268 < 4.5 (ink-on-surface legibility)",
+    "[warning] day: differentiated_by(line_number, line_number_active) via lightness under upper: dE 0.140 vs 0.050",
+    "[warning] day: must_distinguish(active_line, diff_added) under deutan@1.0: dE 0.013 vs 0.090",
+    "[warning] day: must_distinguish(active_line, diff_added) under protan@1.0: dE 0.020 vs 0.090",
+    "[warning] day: must_distinguish(active_line, diff_added) under tritan@1.0: dE 0.014 vs 0.090",
     "[warning] day: must_distinguish(active_line, diff_removed) under deutan@1.0: dE 0.003 vs 0.090",
-    "[warning] day: must_distinguish(active_line, diff_removed) under protan@1.0: dE 0.004 vs 0.090",
-    "[warning] day: must_distinguish(active_line, diff_removed) under tritan@1.0: dE 0.007 vs 0.090",
+    "[warning] day: must_distinguish(active_line, diff_removed) under protan@1.0: dE 0.003 vs 0.090",
+    "[warning] day: must_distinguish(active_line, diff_removed) under tritan@1.0: dE 0.004 vs 0.090",
     "[warning] day: must_distinguish(diff_added, diff_changed) under deutan@1.0: dE 0.003 vs 0.090",
-    "[warning] day: must_distinguish(diff_added, diff_changed) under protan@1.0: dE 0.013 vs 0.090",
-    "[warning] day: must_distinguish(diff_added, diff_changed) under tritan@1.0: dE 0.023 vs 0.090",
-    "[warning] day: must_distinguish(diff_added, diff_removed) under deutan@1.0: dE 0.012 vs 0.090",
-    "[warning] day: must_distinguish(diff_added, diff_removed) under protan@1.0: dE 0.025 vs 0.090",
-    "[warning] day: must_distinguish(diff_added, diff_removed) under tritan@1.0: dE 0.021 vs 0.090",
-    "[warning] day: must_distinguish(diff_removed, diff_changed) under deutan@1.0: dE 0.014 vs 0.090",
-    "[warning] day: must_distinguish(diff_removed, diff_changed) under protan@1.0: dE 0.014 vs 0.090",
-    "[warning] day: must_distinguish(diff_removed, diff_changed) under tritan@1.0: dE 0.003 vs 0.090",
-    "[warning] day: must_distinguish(error, warning) under deutan@1.0: dE 0.008 vs 0.090",
-    "[warning] day: must_distinguish(error, warning) under protan@1.0: dE 0.083 vs 0.090",
-    "[warning] day: must_distinguish(search_match, search_match_current) under deutan@1.0: dE 0.052 vs 0.090",
-    "[warning] day: must_distinguish(search_match, search_match_current) under protan@1.0: dE 0.052 vs 0.090",
-    "[warning] day: must_distinguish(search_match, search_match_current) under tritan@1.0: dE 0.039 vs 0.090",
+    "[warning] day: must_distinguish(diff_added, diff_changed) under protan@1.0: dE 0.010 vs 0.090",
+    "[warning] day: must_distinguish(diff_added, diff_changed) under tritan@1.0: dE 0.019 vs 0.090",
+    "[warning] day: must_distinguish(diff_added, diff_removed) under deutan@1.0: dE 0.010 vs 0.090",
+    "[warning] day: must_distinguish(diff_added, diff_removed) under protan@1.0: dE 0.018 vs 0.090",
+    "[warning] day: must_distinguish(diff_added, diff_removed) under tritan@1.0: dE 0.018 vs 0.090",
+    "[warning] day: must_distinguish(diff_removed, diff_changed) under deutan@1.0: dE 0.010 vs 0.090",
+    "[warning] day: must_distinguish(diff_removed, diff_changed) under protan@1.0: dE 0.010 vs 0.090",
+    "[warning] day: must_distinguish(diff_removed, diff_changed) under tritan@1.0: dE 0.001 vs 0.090",
+    "[warning] day: must_distinguish(error, warning) under deutan@1.0: dE 0.005 vs 0.090",
+    "[warning] day: must_distinguish(error, warning) under protan@1.0: dE 0.057 vs 0.090",
+    "[warning] day: must_distinguish(error, warning) under tritan@1.0: dE 0.079 vs 0.090",
+    "[warning] day: must_distinguish(search_match, search_match_current) under deutan@1.0: dE 0.047 vs 0.090",
+    "[warning] day: must_distinguish(search_match, search_match_current) under protan@1.0: dE 0.047 vs 0.090",
+    "[warning] day: must_distinguish(search_match, search_match_current) under tritan@1.0: dE 0.034 vs 0.090",
     "[warning] day: must_distinguish(selection, active_line) under deutan@1.0: dE 0.030 vs 0.090",
-    "[warning] day: must_distinguish(selection, active_line) under protan@1.0: dE 0.025 vs 0.090",
-    "[warning] day: must_distinguish(selection, active_line) under tritan@1.0: dE 0.029 vs 0.090",
-    "[warning] day: must_distinguish(selection, diff_added) under deutan@1.0: dE 0.036 vs 0.090",
-    "[warning] day: must_distinguish(selection, diff_added) under protan@1.0: dE 0.046 vs 0.090",
-    "[warning] day: must_distinguish(selection, diff_added) under tritan@1.0: dE 0.028 vs 0.090",
-    "[warning] day: must_distinguish(selection, diff_removed) under deutan@1.0: dE 0.028 vs 0.090",
-    "[warning] day: must_distinguish(selection, diff_removed) under protan@1.0: dE 0.022 vs 0.090",
-    "[warning] day: must_distinguish(selection, diff_removed) under tritan@1.0: dE 0.031 vs 0.090",
-    "[warning] day: must_distinguish(selection, search_match) under deutan@1.0: dE 0.055 vs 0.090",
-    "[warning] day: must_distinguish(selection, search_match) under protan@1.0: dE 0.053 vs 0.090",
-    "[warning] day: must_distinguish(selection, search_match) under tritan@1.0: dE 0.037 vs 0.090",
-    "[warning] day: must_distinguish(selection, search_match_current) under tritan@1.0: dE 0.069 vs 0.090",
-    "[warning] day: same_family(comment, docstring) under lower: dE 0.014 vs 0.030",
-    "[warning] day: same_family(diff_added, success) under upper: dE 0.411 vs 0.140",
-    "[warning] day: same_family(diff_removed, error) under upper: dE 0.533 vs 0.140",
+    "[warning] day: must_distinguish(selection, active_line) under protan@1.0: dE 0.023 vs 0.090",
+    "[warning] day: must_distinguish(selection, active_line) under tritan@1.0: dE 0.028 vs 0.090",
+    "[warning] day: must_distinguish(selection, diff_added) under deutan@1.0: dE 0.034 vs 0.090",
+    "[warning] day: must_distinguish(selection, diff_added) under protan@1.0: dE 0.040 vs 0.090",
+    "[warning] day: must_distinguish(selection, diff_added) under tritan@1.0: dE 0.026 vs 0.090",
+    "[warning] day: must_distinguish(selection, diff_removed) under deutan@1.0: dE 0.030 vs 0.090",
+    "[warning] day: must_distinguish(selection, diff_removed) under protan@1.0: dE 0.024 vs 0.090",
+    "[warning] day: must_distinguish(selection, diff_removed) under tritan@1.0: dE 0.030 vs 0.090",
+    "[warning] day: must_distinguish(selection, search_match) under deutan@1.0: dE 0.047 vs 0.090",
+    "[warning] day: must_distinguish(selection, search_match) under protan@1.0: dE 0.045 vs 0.090",
+    "[warning] day: must_distinguish(selection, search_match) under tritan@1.0: dE 0.032 vs 0.090",
+    "[warning] day: must_distinguish(selection, search_match_current) under protan@1.0: dE 0.089 vs 0.090",
+    "[warning] day: must_distinguish(selection, search_match_current) under tritan@1.0: dE 0.061 vs 0.090",
+    "[warning] day: same_family(comment, docstring) under lower: dE 0.015 vs 0.030",
+    "[warning] day: same_family(diff_added, success) under upper: dE 0.487 vs 0.140",
+    "[warning] day: same_family(diff_removed, error) under upper: dE 0.604 vs 0.140",
     "[warning] day: same_family(number, constant) under lower: dE 0.000 vs 0.030",
-    "[warning] day: same_family(number, decorator) under lower: dE 0.028 vs 0.030",
-    "[warning] day: same_family(type, namespace) under lower: dE 0.025 vs 0.030",
-    "[warning] day: same_family(warning, search_match) under upper: dE 0.490 vs 0.140",
+    "[warning] day: same_family(number, decorator) under lower: dE 0.023 vs 0.030",
+    "[warning] day: same_family(warning, search_match) under upper: dE 0.571 vs 0.140",
     "[warning] day: should_distinguish(bg, bg_elevated) under normal: dE 0.024 vs 0.080",
     "[warning] day: should_distinguish(bg_elevated, bg_overlay) under normal: dE 0.013 vs 0.080",
-    "[warning] day: should_distinguish(builtin, fg) under normal: dE 0.043 vs 0.080",
-    "[warning] day: should_distinguish(comment, fg) under normal: dE 0.041 vs 0.080",
-    "[warning] day: should_distinguish(number, fg) under normal: dE 0.056 vs 0.080",
+    "[warning] day: should_distinguish(builtin, fg) under normal: dE 0.051 vs 0.080",
+    "[warning] day: should_distinguish(comment, fg) under normal: dE 0.038 vs 0.080",
+    "[warning] day: should_distinguish(number, fg) under normal: dE 0.061 vs 0.080",
     "[warning] day: should_distinguish(operator, punctuation) under normal: dE 0.003 vs 0.080",
-    "[warning] day: should_distinguish(punctuation, fg) under normal: dE 0.016 vs 0.080",
-    "[warning] day: should_distinguish(string, number) under normal: dE 0.075 vs 0.080",
-    "[warning] day: should_distinguish(string, type) under normal: dE 0.058 vs 0.080",
-    "[warning] day: should_distinguish(type, fg) under normal: dE 0.063 vs 0.080",
-    "[warning] decorator@day over active_line: WCAG 4.194 < 4.5 (ink-on-surface legibility)",
-    "[warning] decorator@day over debug_current: WCAG 3.880 < 4.5 (ink-on-surface legibility)",
-    "[warning] decorator@day over diff_added: WCAG 4.228 < 4.5 (ink-on-surface legibility)",
-    "[warning] decorator@day over diff_changed: WCAG 4.198 < 4.5 (ink-on-surface legibility)",
-    "[warning] decorator@day over diff_removed: WCAG 4.167 < 4.5 (ink-on-surface legibility)",
-    "[warning] decorator@day over search_match: WCAG 3.880 < 4.5 (ink-on-surface legibility)",
-    "[warning] decorator@day over search_match_current: WCAG 3.562 < 4.5 (ink-on-surface legibility)",
-    "[warning] decorator@day over selection: WCAG 3.880 < 4.5 (ink-on-surface legibility)",
+    "[warning] day: should_distinguish(punctuation, fg) under normal: dE 0.013 vs 0.080",
+    "[warning] day: should_distinguish(string, number) under normal: dE 0.059 vs 0.080",
+    "[warning] day: should_distinguish(string, type) under normal: dE 0.046 vs 0.080",
+    "[warning] day: should_distinguish(type, fg) under normal: dE 0.069 vs 0.080",
+    "[warning] decorator@day over search_match_current: WCAG 4.231 < 4.5 (ink-on-surface legibility)",
     "[warning] deprecated@day over active_line: WCAG 4.155 < 4.5 (ink-on-surface legibility)",
-    "[warning] deprecated@day over debug_current: WCAG 3.844 < 4.5 (ink-on-surface legibility)",
-    "[warning] deprecated@day over diff_added: WCAG 4.189 < 4.5 (ink-on-surface legibility)",
-    "[warning] deprecated@day over diff_changed: WCAG 4.159 < 4.5 (ink-on-surface legibility)",
-    "[warning] deprecated@day over diff_removed: WCAG 4.129 < 4.5 (ink-on-surface legibility)",
-    "[warning] deprecated@day over search_match: WCAG 3.844 < 4.5 (ink-on-surface legibility)",
-    "[warning] deprecated@day over search_match_current: WCAG 3.529 < 4.5 (ink-on-surface legibility)",
-    "[warning] deprecated@day over selection: WCAG 3.845 < 4.5 (ink-on-surface legibility)",
-    "[warning] docstring@day over active_line: WCAG 4.205 < 4.5 (ink-on-surface legibility)",
-    "[warning] docstring@day over debug_current: WCAG 3.890 < 4.5 (ink-on-surface legibility)",
-    "[warning] docstring@day over diff_added: WCAG 4.240 < 4.5 (ink-on-surface legibility)",
-    "[warning] docstring@day over diff_changed: WCAG 4.209 < 4.5 (ink-on-surface legibility)",
-    "[warning] docstring@day over diff_removed: WCAG 4.178 < 4.5 (ink-on-surface legibility)",
-    "[warning] docstring@day over search_match: WCAG 3.890 < 4.5 (ink-on-surface legibility)",
-    "[warning] docstring@day over search_match_current: WCAG 3.572 < 4.5 (ink-on-surface legibility)",
-    "[warning] docstring@day over selection: WCAG 3.891 < 4.5 (ink-on-surface legibility)",
+    "[warning] deprecated@day over debug_current: WCAG 3.838 < 4.5 (ink-on-surface legibility)",
+    "[warning] deprecated@day over diff_added: WCAG 4.171 < 4.5 (ink-on-surface legibility)",
+    "[warning] deprecated@day over diff_changed: WCAG 4.156 < 4.5 (ink-on-surface legibility)",
+    "[warning] deprecated@day over diff_removed: WCAG 4.147 < 4.5 (ink-on-surface legibility)",
+    "[warning] deprecated@day over search_match: WCAG 3.838 < 4.5 (ink-on-surface legibility)",
+    "[warning] deprecated@day over search_match_current: WCAG 3.535 < 4.5 (ink-on-surface legibility)",
+    "[warning] deprecated@day over selection: WCAG 3.849 < 4.5 (ink-on-surface legibility)",
+    "[warning] docstring@day over active_line: WCAG 4.219 < 4.5 (ink-on-surface legibility)",
+    "[warning] docstring@day over debug_current: WCAG 3.897 < 4.5 (ink-on-surface legibility)",
+    "[warning] docstring@day over diff_added: WCAG 4.235 < 4.5 (ink-on-surface legibility)",
+    "[warning] docstring@day over diff_changed: WCAG 4.219 < 4.5 (ink-on-surface legibility)",
+    "[warning] docstring@day over diff_removed: WCAG 4.211 < 4.5 (ink-on-surface legibility)",
+    "[warning] docstring@day over search_match: WCAG 3.897 < 4.5 (ink-on-surface legibility)",
+    "[warning] docstring@day over search_match_current: WCAG 3.589 < 4.5 (ink-on-surface legibility)",
+    "[warning] docstring@day over selection: WCAG 3.908 < 4.5 (ink-on-surface legibility)",
     "[warning] evening: differentiated_by(comment, docstring) via lightness under upper: dE 0.156 vs 0.050",
     "[warning] evening: differentiated_by(deprecated, fg) via strikethrough under upper: dE 0.132 vs 0.050",
     "[warning] evening: differentiated_by(line_number, line_number_active) via lightness under upper: dE 0.282 vs 0.050",
@@ -313,22 +289,22 @@
     "[warning] evening: should_distinguish(number, fg) under normal: dE 0.066 vs 0.080",
     "[warning] evening: should_distinguish(string, type) under normal: dE 0.072 vs 0.080",
     "[warning] evening: should_distinguish(type, fg) under normal: dE 0.061 vs 0.080",
-    "[warning] fg@day over active_line: WCAG 4.222 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg@day over debug_current: WCAG 3.906 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg@day over diff_added: WCAG 4.257 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg@day over diff_changed: WCAG 4.226 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg@day over diff_removed: WCAG 4.195 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg@day over search_match: WCAG 3.906 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg@day over search_match_current: WCAG 3.586 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg@day over selection: WCAG 3.907 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg_muted@day over active_line: WCAG 2.757 < 3.0 (ink-on-surface legibility)",
-    "[warning] fg_muted@day over debug_current: WCAG 2.551 < 3.0 (ink-on-surface legibility)",
-    "[warning] fg_muted@day over diff_added: WCAG 2.780 < 3.0 (ink-on-surface legibility)",
-    "[warning] fg_muted@day over diff_changed: WCAG 2.760 < 3.0 (ink-on-surface legibility)",
-    "[warning] fg_muted@day over diff_removed: WCAG 2.740 < 3.0 (ink-on-surface legibility)",
-    "[warning] fg_muted@day over search_match: WCAG 2.551 < 3.0 (ink-on-surface legibility)",
-    "[warning] fg_muted@day over search_match_current: WCAG 2.342 < 3.0 (ink-on-surface legibility)",
-    "[warning] fg_muted@day over selection: WCAG 2.551 < 3.0 (ink-on-surface legibility)",
+    "[warning] fg@day over active_line: WCAG 4.194 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg@day over debug_current: WCAG 3.874 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg@day over diff_added: WCAG 4.210 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg@day over diff_changed: WCAG 4.195 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg@day over diff_removed: WCAG 4.186 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg@day over search_match: WCAG 3.874 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg@day over search_match_current: WCAG 3.568 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg@day over selection: WCAG 3.885 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg_muted@day over active_line: WCAG 2.749 < 3.0 (ink-on-surface legibility)",
+    "[warning] fg_muted@day over debug_current: WCAG 2.539 < 3.0 (ink-on-surface legibility)",
+    "[warning] fg_muted@day over diff_added: WCAG 2.760 < 3.0 (ink-on-surface legibility)",
+    "[warning] fg_muted@day over diff_changed: WCAG 2.749 < 3.0 (ink-on-surface legibility)",
+    "[warning] fg_muted@day over diff_removed: WCAG 2.744 < 3.0 (ink-on-surface legibility)",
+    "[warning] fg_muted@day over search_match: WCAG 2.539 < 3.0 (ink-on-surface legibility)",
+    "[warning] fg_muted@day over search_match_current: WCAG 2.338 < 3.0 (ink-on-surface legibility)",
+    "[warning] fg_muted@day over selection: WCAG 2.547 < 3.0 (ink-on-surface legibility)",
     "[warning] fg_muted@evening over active_line: WCAG 2.960 < 3.0 (ink-on-surface legibility)",
     "[warning] fg_muted@evening over debug_current: WCAG 2.730 < 3.0 (ink-on-surface legibility)",
     "[warning] fg_muted@evening over diff_added: WCAG 2.925 < 3.0 (ink-on-surface legibility)",
@@ -341,38 +317,23 @@
     "[warning] fg_muted@night over search_match: WCAG 2.906 < 3.0 (ink-on-surface legibility)",
     "[warning] fg_muted@night over search_match_current: WCAG 2.694 < 3.0 (ink-on-surface legibility)",
     "[warning] fg_muted@night over selection: WCAG 2.891 < 3.0 (ink-on-surface legibility)",
-    "[warning] fg_secondary@day over active_line: WCAG 4.157 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg_secondary@day over debug_current: WCAG 3.846 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg_secondary@day over diff_added: WCAG 4.191 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg_secondary@day over diff_changed: WCAG 4.160 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg_secondary@day over diff_removed: WCAG 4.130 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg_secondary@day over search_match: WCAG 3.846 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg_secondary@day over search_match_current: WCAG 3.531 < 4.5 (ink-on-surface legibility)",
-    "[warning] fg_secondary@day over selection: WCAG 3.846 < 4.5 (ink-on-surface legibility)",
-    "[warning] info@day over active_line: WCAG 4.209 < 4.5 (ink-on-surface legibility)",
-    "[warning] info@day over debug_current: WCAG 3.894 < 4.5 (ink-on-surface legibility)",
-    "[warning] info@day over diff_added: WCAG 4.243 < 4.5 (ink-on-surface legibility)",
-    "[warning] info@day over diff_changed: WCAG 4.213 < 4.5 (ink-on-surface legibility)",
-    "[warning] info@day over diff_removed: WCAG 4.182 < 4.5 (ink-on-surface legibility)",
-    "[warning] info@day over search_match: WCAG 3.894 < 4.5 (ink-on-surface legibility)",
-    "[warning] info@day over search_match_current: WCAG 3.575 < 4.5 (ink-on-surface legibility)",
-    "[warning] info@day over selection: WCAG 3.894 < 4.5 (ink-on-surface legibility)",
-    "[warning] keyword@day over active_line: WCAG 4.214 < 4.5 (ink-on-surface legibility)",
-    "[warning] keyword@day over debug_current: WCAG 3.899 < 4.5 (ink-on-surface legibility)",
-    "[warning] keyword@day over diff_added: WCAG 4.249 < 4.5 (ink-on-surface legibility)",
-    "[warning] keyword@day over diff_changed: WCAG 4.218 < 4.5 (ink-on-surface legibility)",
-    "[warning] keyword@day over diff_removed: WCAG 4.187 < 4.5 (ink-on-surface legibility)",
-    "[warning] keyword@day over search_match: WCAG 3.899 < 4.5 (ink-on-surface legibility)",
-    "[warning] keyword@day over search_match_current: WCAG 3.579 < 4.5 (ink-on-surface legibility)",
-    "[warning] keyword@day over selection: WCAG 3.899 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg_secondary@day over active_line: WCAG 4.129 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg_secondary@day over debug_current: WCAG 3.814 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg_secondary@day over diff_added: WCAG 4.145 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg_secondary@day over diff_changed: WCAG 4.129 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg_secondary@day over diff_removed: WCAG 4.121 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg_secondary@day over search_match: WCAG 3.814 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg_secondary@day over search_match_current: WCAG 3.512 < 4.5 (ink-on-surface legibility)",
+    "[warning] fg_secondary@day over selection: WCAG 3.825 < 4.5 (ink-on-surface legibility)",
+    "[warning] keyword@day over search_match_current: WCAG 4.235 < 4.5 (ink-on-surface legibility)",
     "[warning] line_number@day over active_line: WCAG 2.781 < 3.0 (ink-on-surface legibility)",
-    "[warning] line_number@day over debug_current: WCAG 2.572 < 3.0 (ink-on-surface legibility)",
-    "[warning] line_number@day over diff_added: WCAG 2.803 < 3.0 (ink-on-surface legibility)",
-    "[warning] line_number@day over diff_changed: WCAG 2.783 < 3.0 (ink-on-surface legibility)",
-    "[warning] line_number@day over diff_removed: WCAG 2.763 < 3.0 (ink-on-surface legibility)",
-    "[warning] line_number@day over search_match: WCAG 2.572 < 3.0 (ink-on-surface legibility)",
-    "[warning] line_number@day over search_match_current: WCAG 2.362 < 3.0 (ink-on-surface legibility)",
-    "[warning] line_number@day over selection: WCAG 2.573 < 3.0 (ink-on-surface legibility)",
+    "[warning] line_number@day over debug_current: WCAG 2.569 < 3.0 (ink-on-surface legibility)",
+    "[warning] line_number@day over diff_added: WCAG 2.791 < 3.0 (ink-on-surface legibility)",
+    "[warning] line_number@day over diff_changed: WCAG 2.781 < 3.0 (ink-on-surface legibility)",
+    "[warning] line_number@day over diff_removed: WCAG 2.775 < 3.0 (ink-on-surface legibility)",
+    "[warning] line_number@day over search_match: WCAG 2.569 < 3.0 (ink-on-surface legibility)",
+    "[warning] line_number@day over search_match_current: WCAG 2.365 < 3.0 (ink-on-surface legibility)",
+    "[warning] line_number@day over selection: WCAG 2.576 < 3.0 (ink-on-surface legibility)",
     "[warning] line_number@evening over active_line: WCAG 2.964 < 3.0 (ink-on-surface legibility)",
     "[warning] line_number@evening over debug_current: WCAG 2.734 < 3.0 (ink-on-surface legibility)",
     "[warning] line_number@evening over diff_added: WCAG 2.929 < 3.0 (ink-on-surface legibility)",
@@ -385,22 +346,15 @@
     "[warning] line_number@night over search_match: WCAG 2.920 < 3.0 (ink-on-surface legibility)",
     "[warning] line_number@night over search_match_current: WCAG 2.707 < 3.0 (ink-on-surface legibility)",
     "[warning] line_number@night over selection: WCAG 2.905 < 3.0 (ink-on-surface legibility)",
-    "[warning] line_number_active@day over active_line: WCAG 4.216 < 4.5 (ink-on-surface legibility)",
-    "[warning] line_number_active@day over debug_current: WCAG 3.901 < 4.5 (ink-on-surface legibility)",
-    "[warning] line_number_active@day over diff_added: WCAG 4.251 < 4.5 (ink-on-surface legibility)",
-    "[warning] line_number_active@day over diff_changed: WCAG 4.220 < 4.5 (ink-on-surface legibility)",
-    "[warning] line_number_active@day over diff_removed: WCAG 4.189 < 4.5 (ink-on-surface legibility)",
-    "[warning] line_number_active@day over search_match: WCAG 3.901 < 4.5 (ink-on-surface legibility)",
-    "[warning] line_number_active@day over search_match_current: WCAG 3.581 < 4.5 (ink-on-surface legibility)",
-    "[warning] line_number_active@day over selection: WCAG 3.901 < 4.5 (ink-on-surface legibility)",
-    "[warning] namespace@day over active_line: WCAG 4.198 < 4.5 (ink-on-surface legibility)",
-    "[warning] namespace@day over debug_current: WCAG 3.884 < 4.5 (ink-on-surface legibility)",
-    "[warning] namespace@day over diff_added: WCAG 4.232 < 4.5 (ink-on-surface legibility)",
-    "[warning] namespace@day over diff_changed: WCAG 4.202 < 4.5 (ink-on-surface legibility)",
-    "[warning] namespace@day over diff_removed: WCAG 4.171 < 4.5 (ink-on-surface legibility)",
-    "[warning] namespace@day over search_match: WCAG 3.884 < 4.5 (ink-on-surface legibility)",
-    "[warning] namespace@day over search_match_current: WCAG 3.566 < 4.5 (ink-on-surface legibility)",
-    "[warning] namespace@day over selection: WCAG 3.884 < 4.5 (ink-on-surface legibility)",
+    "[warning] line_number_active@day over search_match_current: WCAG 4.226 < 4.5 (ink-on-surface legibility)",
+    "[warning] namespace@day over active_line: WCAG 4.226 < 4.5 (ink-on-surface legibility)",
+    "[warning] namespace@day over debug_current: WCAG 3.904 < 4.5 (ink-on-surface legibility)",
+    "[warning] namespace@day over diff_added: WCAG 4.243 < 4.5 (ink-on-surface legibility)",
+    "[warning] namespace@day over diff_changed: WCAG 4.227 < 4.5 (ink-on-surface legibility)",
+    "[warning] namespace@day over diff_removed: WCAG 4.218 < 4.5 (ink-on-surface legibility)",
+    "[warning] namespace@day over search_match: WCAG 3.904 < 4.5 (ink-on-surface legibility)",
+    "[warning] namespace@day over search_match_current: WCAG 3.595 < 4.5 (ink-on-surface legibility)",
+    "[warning] namespace@day over selection: WCAG 3.915 < 4.5 (ink-on-surface legibility)",
     "[warning] night: differentiated_by(comment, docstring) via lightness under upper: dE 0.156 vs 0.050",
     "[warning] night: differentiated_by(deprecated, fg) via strikethrough under upper: dE 0.135 vs 0.050",
     "[warning] night: differentiated_by(line_number, line_number_active) via lightness under upper: dE 0.283 vs 0.050",
@@ -483,78 +437,42 @@
     "[warning] night: should_distinguish(string, number) under normal: dE 0.065 vs 0.080",
     "[warning] night: should_distinguish(string, type) under normal: dE 0.052 vs 0.080",
     "[warning] night: should_distinguish(type, fg) under normal: dE 0.049 vs 0.080",
-    "[warning] number@day over active_line: WCAG 4.204 < 4.5 (ink-on-surface legibility)",
-    "[warning] number@day over debug_current: WCAG 3.890 < 4.5 (ink-on-surface legibility)",
-    "[warning] number@day over diff_added: WCAG 4.239 < 4.5 (ink-on-surface legibility)",
-    "[warning] number@day over diff_changed: WCAG 4.208 < 4.5 (ink-on-surface legibility)",
-    "[warning] number@day over diff_removed: WCAG 4.178 < 4.5 (ink-on-surface legibility)",
-    "[warning] number@day over search_match: WCAG 3.890 < 4.5 (ink-on-surface legibility)",
-    "[warning] number@day over search_match_current: WCAG 3.571 < 4.5 (ink-on-surface legibility)",
-    "[warning] number@day over selection: WCAG 3.890 < 4.5 (ink-on-surface legibility)",
+    "[warning] number@day over search_match_current: WCAG 4.268 < 4.5 (ink-on-surface legibility)",
     "[warning] operator@day over active_line: WCAG 4.216 < 4.5 (ink-on-surface legibility)",
-    "[warning] operator@day over debug_current: WCAG 3.901 < 4.5 (ink-on-surface legibility)",
-    "[warning] operator@day over diff_added: WCAG 4.251 < 4.5 (ink-on-surface legibility)",
-    "[warning] operator@day over diff_changed: WCAG 4.220 < 4.5 (ink-on-surface legibility)",
-    "[warning] operator@day over diff_removed: WCAG 4.189 < 4.5 (ink-on-surface legibility)",
-    "[warning] operator@day over search_match: WCAG 3.901 < 4.5 (ink-on-surface legibility)",
-    "[warning] operator@day over search_match_current: WCAG 3.581 < 4.5 (ink-on-surface legibility)",
-    "[warning] operator@day over selection: WCAG 3.901 < 4.5 (ink-on-surface legibility)",
-    "[warning] parameter@day over active_line: WCAG 4.222 < 4.5 (ink-on-surface legibility)",
-    "[warning] parameter@day over debug_current: WCAG 3.906 < 4.5 (ink-on-surface legibility)",
-    "[warning] parameter@day over diff_added: WCAG 4.257 < 4.5 (ink-on-surface legibility)",
-    "[warning] parameter@day over diff_changed: WCAG 4.226 < 4.5 (ink-on-surface legibility)",
-    "[warning] parameter@day over diff_removed: WCAG 4.195 < 4.5 (ink-on-surface legibility)",
-    "[warning] parameter@day over search_match: WCAG 3.906 < 4.5 (ink-on-surface legibility)",
-    "[warning] parameter@day over search_match_current: WCAG 3.586 < 4.5 (ink-on-surface legibility)",
-    "[warning] parameter@day over selection: WCAG 3.907 < 4.5 (ink-on-surface legibility)",
-    "[warning] property@day over active_line: WCAG 4.222 < 4.5 (ink-on-surface legibility)",
-    "[warning] property@day over debug_current: WCAG 3.906 < 4.5 (ink-on-surface legibility)",
-    "[warning] property@day over diff_added: WCAG 4.257 < 4.5 (ink-on-surface legibility)",
-    "[warning] property@day over diff_changed: WCAG 4.226 < 4.5 (ink-on-surface legibility)",
-    "[warning] property@day over diff_removed: WCAG 4.195 < 4.5 (ink-on-surface legibility)",
-    "[warning] property@day over search_match: WCAG 3.906 < 4.5 (ink-on-surface legibility)",
-    "[warning] property@day over search_match_current: WCAG 3.586 < 4.5 (ink-on-surface legibility)",
-    "[warning] property@day over selection: WCAG 3.907 < 4.5 (ink-on-surface legibility)",
+    "[warning] operator@day over debug_current: WCAG 3.895 < 4.5 (ink-on-surface legibility)",
+    "[warning] operator@day over diff_added: WCAG 4.233 < 4.5 (ink-on-surface legibility)",
+    "[warning] operator@day over diff_changed: WCAG 4.217 < 4.5 (ink-on-surface legibility)",
+    "[warning] operator@day over diff_removed: WCAG 4.208 < 4.5 (ink-on-surface legibility)",
+    "[warning] operator@day over search_match: WCAG 3.895 < 4.5 (ink-on-surface legibility)",
+    "[warning] operator@day over search_match_current: WCAG 3.587 < 4.5 (ink-on-surface legibility)",
+    "[warning] operator@day over selection: WCAG 3.906 < 4.5 (ink-on-surface legibility)",
+    "[warning] parameter@day over active_line: WCAG 4.194 < 4.5 (ink-on-surface legibility)",
+    "[warning] parameter@day over debug_current: WCAG 3.874 < 4.5 (ink-on-surface legibility)",
+    "[warning] parameter@day over diff_added: WCAG 4.210 < 4.5 (ink-on-surface legibility)",
+    "[warning] parameter@day over diff_changed: WCAG 4.195 < 4.5 (ink-on-surface legibility)",
+    "[warning] parameter@day over diff_removed: WCAG 4.186 < 4.5 (ink-on-surface legibility)",
+    "[warning] parameter@day over search_match: WCAG 3.874 < 4.5 (ink-on-surface legibility)",
+    "[warning] parameter@day over search_match_current: WCAG 3.568 < 4.5 (ink-on-surface legibility)",
+    "[warning] parameter@day over selection: WCAG 3.885 < 4.5 (ink-on-surface legibility)",
+    "[warning] property@day over active_line: WCAG 4.194 < 4.5 (ink-on-surface legibility)",
+    "[warning] property@day over debug_current: WCAG 3.874 < 4.5 (ink-on-surface legibility)",
+    "[warning] property@day over diff_added: WCAG 4.210 < 4.5 (ink-on-surface legibility)",
+    "[warning] property@day over diff_changed: WCAG 4.195 < 4.5 (ink-on-surface legibility)",
+    "[warning] property@day over diff_removed: WCAG 4.186 < 4.5 (ink-on-surface legibility)",
+    "[warning] property@day over search_match: WCAG 3.874 < 4.5 (ink-on-surface legibility)",
+    "[warning] property@day over search_match_current: WCAG 3.568 < 4.5 (ink-on-surface legibility)",
+    "[warning] property@day over selection: WCAG 3.885 < 4.5 (ink-on-surface legibility)",
     "[warning] punctuation@day over active_line: WCAG 4.155 < 4.5 (ink-on-surface legibility)",
-    "[warning] punctuation@day over debug_current: WCAG 3.844 < 4.5 (ink-on-surface legibility)",
-    "[warning] punctuation@day over diff_added: WCAG 4.189 < 4.5 (ink-on-surface legibility)",
-    "[warning] punctuation@day over diff_changed: WCAG 4.159 < 4.5 (ink-on-surface legibility)",
-    "[warning] punctuation@day over diff_removed: WCAG 4.129 < 4.5 (ink-on-surface legibility)",
-    "[warning] punctuation@day over search_match: WCAG 3.844 < 4.5 (ink-on-surface legibility)",
-    "[warning] punctuation@day over search_match_current: WCAG 3.529 < 4.5 (ink-on-surface legibility)",
-    "[warning] punctuation@day over selection: WCAG 3.845 < 4.5 (ink-on-surface legibility)",
-    "[warning] string@day over active_line: WCAG 4.249 < 4.5 (ink-on-surface legibility)",
-    "[warning] string@day over debug_current: WCAG 3.931 < 4.5 (ink-on-surface legibility)",
-    "[warning] string@day over diff_added: WCAG 4.284 < 4.5 (ink-on-surface legibility)",
-    "[warning] string@day over diff_changed: WCAG 4.253 < 4.5 (ink-on-surface legibility)",
-    "[warning] string@day over diff_removed: WCAG 4.222 < 4.5 (ink-on-surface legibility)",
-    "[warning] string@day over search_match: WCAG 3.931 < 4.5 (ink-on-surface legibility)",
-    "[warning] string@day over search_match_current: WCAG 3.609 < 4.5 (ink-on-surface legibility)",
-    "[warning] string@day over selection: WCAG 3.931 < 4.5 (ink-on-surface legibility)",
-    "[warning] success@day over active_line: WCAG 4.254 < 4.5 (ink-on-surface legibility)",
-    "[warning] success@day over debug_current: WCAG 3.936 < 4.5 (ink-on-surface legibility)",
-    "[warning] success@day over diff_added: WCAG 4.289 < 4.5 (ink-on-surface legibility)",
-    "[warning] success@day over diff_changed: WCAG 4.258 < 4.5 (ink-on-surface legibility)",
-    "[warning] success@day over diff_removed: WCAG 4.227 < 4.5 (ink-on-surface legibility)",
-    "[warning] success@day over search_match: WCAG 3.936 < 4.5 (ink-on-surface legibility)",
-    "[warning] success@day over search_match_current: WCAG 3.613 < 4.5 (ink-on-surface legibility)",
-    "[warning] success@day over selection: WCAG 3.936 < 4.5 (ink-on-surface legibility)",
-    "[warning] tag@day over active_line: WCAG 4.224 < 4.5 (ink-on-surface legibility)",
-    "[warning] tag@day over debug_current: WCAG 3.908 < 4.5 (ink-on-surface legibility)",
-    "[warning] tag@day over diff_added: WCAG 4.259 < 4.5 (ink-on-surface legibility)",
-    "[warning] tag@day over diff_changed: WCAG 4.228 < 4.5 (ink-on-surface legibility)",
-    "[warning] tag@day over diff_removed: WCAG 4.198 < 4.5 (ink-on-surface legibility)",
-    "[warning] tag@day over search_match: WCAG 3.908 < 4.5 (ink-on-surface legibility)",
-    "[warning] tag@day over search_match_current: WCAG 3.588 < 4.5 (ink-on-surface legibility)",
-    "[warning] tag@day over selection: WCAG 3.909 < 4.5 (ink-on-surface legibility)",
-    "[warning] type@day over active_line: WCAG 4.235 < 4.5 (ink-on-surface legibility)",
-    "[warning] type@day over debug_current: WCAG 3.918 < 4.5 (ink-on-surface legibility)",
-    "[warning] type@day over diff_added: WCAG 4.269 < 4.5 (ink-on-surface legibility)",
-    "[warning] type@day over diff_changed: WCAG 4.239 < 4.5 (ink-on-surface legibility)",
-    "[warning] type@day over diff_removed: WCAG 4.208 < 4.5 (ink-on-surface legibility)",
-    "[warning] type@day over search_match: WCAG 3.918 < 4.5 (ink-on-surface legibility)",
-    "[warning] type@day over search_match_current: WCAG 3.597 < 4.5 (ink-on-surface legibility)",
-    "[warning] type@day over selection: WCAG 3.918 < 4.5 (ink-on-surface legibility)"
+    "[warning] punctuation@day over debug_current: WCAG 3.838 < 4.5 (ink-on-surface legibility)",
+    "[warning] punctuation@day over diff_added: WCAG 4.171 < 4.5 (ink-on-surface legibility)",
+    "[warning] punctuation@day over diff_changed: WCAG 4.156 < 4.5 (ink-on-surface legibility)",
+    "[warning] punctuation@day over diff_removed: WCAG 4.147 < 4.5 (ink-on-surface legibility)",
+    "[warning] punctuation@day over search_match: WCAG 3.838 < 4.5 (ink-on-surface legibility)",
+    "[warning] punctuation@day over search_match_current: WCAG 3.535 < 4.5 (ink-on-surface legibility)",
+    "[warning] punctuation@day over selection: WCAG 3.849 < 4.5 (ink-on-surface legibility)",
+    "[warning] string@day over search_match_current: WCAG 4.263 < 4.5 (ink-on-surface legibility)",
+    "[warning] tag@day over search_match_current: WCAG 4.273 < 4.5 (ink-on-surface legibility)",
+    "[warning] type@day over search_match_current: WCAG 4.275 < 4.5 (ink-on-surface legibility)"
   ],
   "stability": {
     "variants": [
@@ -652,42 +570,42 @@
           "bg": "#f6f3ed",
           "bg_elevated": "#fdfbf7",
           "bg_overlay": "#ffffff",
-          "fg": "#776b6e",
-          "fg_secondary": "#786c70",
-          "fg_muted": "#98898d",
-          "comment": "#885f6b",
-          "docstring": "#8c636f",
+          "fg": "#766c6e",
+          "fg_secondary": "#776d70",
+          "fg_muted": "#968a8d",
+          "comment": "#84606a",
+          "docstring": "#89646f",
           "punctuation": "#6f6f6f",
           "operator": "#6e6e6e",
           "line_number": "#8c8c8c",
-          "line_number_active": "#6e6e6e",
+          "line_number_active": "#636363",
           "ui_inactive": "#8c8c8c",
           "active_line": "#ebe9e9",
-          "selection": "#dbe2e9",
-          "focus": "#2c506e",
-          "keyword": "#7a5eb8",
-          "string": "#4f7750",
-          "number": "#816b48",
-          "constant": "#816b48",
-          "type": "#4b7575",
-          "function": "#325068",
-          "parameter": "#776b6e",
-          "property": "#776b6e",
-          "builtin": "#8e6360",
-          "decorator": "#786d5c",
-          "namespace": "#5f7272",
-          "tag": "#5e7081",
-          "error": "#91131b",
-          "warning": "#644813",
-          "info": "#4a7294",
-          "success": "#4a784c",
-          "diff_added": "#deefde",
-          "diff_removed": "#efe7e7",
-          "diff_changed": "#efe9de",
-          "search_match": "#f1dfc1",
-          "search_match_current": "#f8d396",
-          "breakpoint": "#8b2424",
-          "debug_current": "#f1dfc1",
+          "selection": "#dce2e8",
+          "focus": "#22394d",
+          "keyword": "#6c579d",
+          "string": "#4b6a4c",
+          "number": "#716045",
+          "constant": "#716045",
+          "type": "#486868",
+          "function": "#26394a",
+          "parameter": "#766c6e",
+          "property": "#766c6e",
+          "builtin": "#7c5a57",
+          "decorator": "#6a6255",
+          "namespace": "#617171",
+          "tag": "#566471",
+          "error": "#661718",
+          "warning": "#473414",
+          "info": "#3e5a71",
+          "success": "#3e5e3f",
+          "diff_added": "#dfeedf",
+          "diff_removed": "#eee8e7",
+          "diff_changed": "#eee9e0",
+          "search_match": "#efdfc6",
+          "search_match_current": "#f4d4a0",
+          "breakpoint": "#611f1d",
+          "debug_current": "#efdfc6",
           "deprecated": "#6f6f6f"
         }
       },
@@ -704,25 +622,25 @@
           ],
           "requested": [
             0.935,
-            0.0024,
+            0.0021,
             0.0
           ],
           "capped": [
             0.935,
-            0.0024,
+            0.0021,
             0.0
           ],
           "realized": [
             0.935,
-            0.0024,
+            0.0021,
             0.0
           ],
           "final_hex": "#ebe9e9",
           "max_chroma_at_L": 0.035431,
           "chroma_losses": {
-            "requested": 0.002445,
-            "capped": 0.002445,
-            "realized": 0.002445,
+            "requested": 0.002126,
+            "capped": 0.002126,
+            "realized": 0.002126,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -749,7 +667,7 @@
           "winning_constraint": "perceptual_step",
           "derivation": [
             "surface step: L=0.9350 (canvas 0.9650 -.0.0300)",
-            "chroma: requested 0.0024 -> capped 0.0024 (cap -0.0000) -> realized 0.0024 (gamut -0.0000), fraction 1.000"
+            "chroma: requested 0.0021 -> capped 0.0021 (cap -0.0000) -> realized 0.0021 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -920,26 +838,26 @@
             25.0
           ],
           "requested": [
-            0.427,
-            0.1393,
+            0.3427,
+            0.0973,
             25.0
           ],
           "capped": [
-            0.427,
-            0.1393,
+            0.3427,
+            0.0973,
             25.0
           ],
           "realized": [
-            0.427,
-            0.1393,
+            0.3427,
+            0.0973,
             25.0
           ],
-          "final_hex": "#8b2424",
-          "max_chroma_at_L": 0.173103,
+          "final_hex": "#611f1d",
+          "max_chroma_at_L": 0.138939,
           "chroma_losses": {
-            "requested": 0.139348,
-            "capped": 0.139348,
-            "realized": 0.139348,
+            "requested": 0.097257,
+            "capped": 0.097257,
+            "realized": 0.097257,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -956,17 +874,30 @@
           "contrast": {
             "reference": "bg",
             "target_band": "high",
-            "measured_band": "high",
-            "in_target_band": true,
-            "wcag": 7.9818,
-            "apca_lc": 82.0627,
-            "oklab_dl": -0.538414
+            "measured_band": "maximal",
+            "in_target_band": false,
+            "wcag": 11.0113,
+            "apca_lc": 90.0878,
+            "oklab_dl": -0.622844,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 82.0,
+              "salience": 5,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 15.0,
+              "salience_boost_applied": 8.0,
+              "effective_apca_centre": 90.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": true
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.4270 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.6611, L_apca=0.4270)",
-            "chroma: requested 0.1393 -> capped 0.1393 (cap -0.0000) -> realized 0.1393 (gamut -0.0000), fraction 1.000"
+            "solved L=0.3427 to apca_centre (wcag_floor=3.0, apca_centre=90.0, L_wcag=0.6613, L_apca=0.3427)",
+            "apca centre: base 82.0 + salience boost 15.0 requested / 8.0 applied (salience 5 vs normal 2, step 5.00) -> effective 90.0 (band max 90.0)",
+            "chroma: requested 0.0973 -> capped 0.0973 (cap -0.0000) -> realized 0.0973 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -981,26 +912,26 @@
             25.0
           ],
           "requested": [
-            0.5446,
-            0.0559,
+            0.5035,
+            0.0449,
             25.0
           ],
           "capped": [
-            0.5446,
-            0.0559,
+            0.5035,
+            0.0449,
             25.0
           ],
           "realized": [
-            0.5446,
-            0.0559,
+            0.5035,
+            0.0449,
             25.0
           ],
-          "final_hex": "#8e6360",
-          "max_chroma_at_L": 0.220802,
+          "final_hex": "#7c5a57",
+          "max_chroma_at_L": 0.204109,
           "chroma_losses": {
-            "requested": 0.055863,
-            "capped": 0.055863,
-            "realized": 0.055863,
+            "requested": 0.044904,
+            "capped": 0.044904,
+            "realized": 0.044904,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1019,15 +950,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.6205,
-            "apca_lc": 68.189,
-            "oklab_dl": -0.420952
+            "wcag": 5.4848,
+            "apca_lc": 73.2652,
+            "oklab_dl": -0.462539,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 5.0,
+              "salience_boost_applied": 5.0,
+              "effective_apca_centre": 73.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5446 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5489, L_apca=0.5446)",
-            "chroma: requested 0.0559 -> capped 0.0559 (cap -0.0000) -> realized 0.0559 (gamut -0.0000), fraction 1.000"
+            "solved L=0.5035 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5492, L_apca=0.5035)",
+            "apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2, step 5.00) -> effective 73.0 (band max 78.0)",
+            "chroma: requested 0.0449 -> capped 0.0449 (cap -0.0000) -> realized 0.0449 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1042,26 +986,26 @@
             0.0
           ],
           "requested": [
-            0.5323,
-            0.0566,
+            0.5287,
+            0.0489,
             0.0
           ],
           "capped": [
-            0.5323,
-            0.0566,
+            0.5287,
+            0.0489,
             0.0
           ],
           "realized": [
-            0.5323,
-            0.0566,
+            0.5287,
+            0.0489,
             0.0
           ],
-          "final_hex": "#885f6b",
-          "max_chroma_at_L": 0.2239,
+          "final_hex": "#84606a",
+          "max_chroma_at_L": 0.222443,
           "chroma_losses": {
-            "requested": 0.056647,
-            "capped": 0.056647,
-            "realized": 0.056647,
+            "requested": 0.048937,
+            "capped": 0.048937,
+            "realized": 0.048937,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1080,17 +1024,30 @@
             "target_band": "low",
             "measured_band": "comfortable",
             "in_target_band": false,
-            "wcag": 4.8669,
-            "apca_lc": 69.7681,
-            "oklab_dl": -0.432517
+            "wcag": 4.9093,
+            "apca_lc": 70.0492,
+            "oklab_dl": -0.435481,
+            "solve": {
+              "winning_constraint": "wcag_floor",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [
             "wcag_apca_conflict"
           ],
           "winning_constraint": "wcag_floor",
           "derivation": [
-            "solved L=0.5323 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5523, L_apca=0.7064)",
-            "chroma: requested 0.0566 -> capped 0.0566 (cap -0.0000) -> realized 0.0566 (gamut -0.0000), fraction 1.000",
+            "solved L=0.5287 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5487, L_apca=0.7043)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 5.00) -> effective 45.0 (band max 55.0)",
+            "chroma: requested 0.0489 -> capped 0.0489 (cap -0.0000) -> realized 0.0489 (gamut -0.0000), fraction 1.000",
             "adjustment applied L-0.0200 C+0.0000 h+0.000"
           ],
           "issues": []
@@ -1106,26 +1063,26 @@
             80.0
           ],
           "requested": [
-            0.5412,
-            0.058,
+            0.4997,
+            0.0466,
             80.0
           ],
           "capped": [
-            0.5412,
-            0.058,
+            0.4997,
+            0.0466,
             80.0
           ],
           "realized": [
-            0.5412,
-            0.058,
+            0.4997,
+            0.0466,
             80.0
           ],
-          "final_hex": "#816b48",
-          "max_chroma_at_L": 0.112091,
+          "final_hex": "#716045",
+          "max_chroma_at_L": 0.1035,
           "chroma_losses": {
-            "requested": 0.058007,
-            "capped": 0.058007,
-            "realized": 0.058007,
+            "requested": 0.046575,
+            "capped": 0.046575,
+            "realized": 0.046575,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1144,15 +1101,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.5911,
-            "apca_lc": 68.0427,
-            "oklab_dl": -0.424531
+            "wcag": 5.4783,
+            "apca_lc": 73.2694,
+            "oklab_dl": -0.466402,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 5.0,
+              "salience_boost_applied": 5.0,
+              "effective_apca_centre": 73.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5412 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5447, L_apca=0.5412)",
-            "chroma: requested 0.0580 -> capped 0.0580 (cap -0.0000) -> realized 0.0580 (gamut -0.0000), fraction 1.000"
+            "solved L=0.4997 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5439, L_apca=0.4997)",
+            "apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2, step 5.00) -> effective 73.0 (band max 78.0)",
+            "chroma: requested 0.0466 -> capped 0.0466 (cap -0.0000) -> realized 0.0466 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1168,25 +1138,25 @@
           ],
           "requested": [
             0.91,
-            0.0435,
+            0.0379,
             80.0
           ],
           "capped": [
             0.91,
-            0.0435,
+            0.0379,
             80.0
           ],
           "realized": [
             0.91,
-            0.0435,
+            0.0379,
             80.0
           ],
-          "final_hex": "#f1dfc1",
+          "final_hex": "#efdfc6",
           "max_chroma_at_L": 0.084114,
           "chroma_losses": {
-            "requested": 0.043529,
-            "capped": 0.043529,
-            "realized": 0.043529,
+            "requested": 0.037851,
+            "capped": 0.037851,
+            "realized": 0.037851,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1205,15 +1175,15 @@
             "target_band": "low",
             "measured_band": null,
             "in_target_band": false,
-            "wcag": 1.1803,
-            "apca_lc": 8.1775,
-            "oklab_dl": -0.054323
+            "wcag": 1.1821,
+            "apca_lc": 8.2763,
+            "oklab_dl": -0.05482
           },
           "conflicts": [],
           "winning_constraint": "perceptual_step",
           "derivation": [
             "surface step: L=0.9100 (canvas 0.9650 -.0.0550)",
-            "chroma: requested 0.0435 -> capped 0.0435 (cap -0.0000) -> realized 0.0435 (gamut -0.0000), fraction 1.000"
+            "chroma: requested 0.0379 -> capped 0.0379 (cap -0.0000) -> realized 0.0379 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1228,26 +1198,26 @@
             80.0
           ],
           "requested": [
-            0.5403,
-            0.0283,
+            0.5011,
+            0.0228,
             80.0
           ],
           "capped": [
-            0.5403,
-            0.0283,
+            0.5011,
+            0.0228,
             80.0
           ],
           "realized": [
-            0.5403,
-            0.0283,
+            0.5011,
+            0.0228,
             80.0
           ],
-          "final_hex": "#786d5c",
-          "max_chroma_at_L": 0.111916,
+          "final_hex": "#6a6255",
+          "max_chroma_at_L": 0.103783,
           "chroma_losses": {
-            "requested": 0.028315,
-            "capped": 0.028315,
-            "realized": 0.028315,
+            "requested": 0.022832,
+            "capped": 0.022832,
+            "realized": 0.022832,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1266,15 +1236,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.5794,
-            "apca_lc": 68.0089,
-            "oklab_dl": -0.424772
+            "wcag": 5.4315,
+            "apca_lc": 73.0577,
+            "oklab_dl": -0.465075,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 5.0,
+              "salience_boost_applied": 5.0,
+              "effective_apca_centre": 73.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5403 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5446, L_apca=0.5403)",
-            "chroma: requested 0.0283 -> capped 0.0283 (cap -0.0000) -> realized 0.0283 (gamut -0.0000), fraction 1.000"
+            "solved L=0.5011 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5439, L_apca=0.5011)",
+            "apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2, step 5.00) -> effective 73.0 (band max 78.0)",
+            "chroma: requested 0.0228 -> capped 0.0228 (cap -0.0000) -> realized 0.0228 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1329,7 +1312,19 @@
             "in_target_band": false,
             "wcag": 4.5371,
             "apca_lc": 67.7383,
-            "oklab_dl": -0.423101
+            "oklab_dl": -0.423101,
+            "solve": {
+              "winning_constraint": "wcag_floor",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [
             "wcag_apca_conflict"
@@ -1337,6 +1332,7 @@
           "winning_constraint": "wcag_floor",
           "derivation": [
             "solved L=0.5434 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5434, L_apca=0.7008)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 5.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -1353,25 +1349,25 @@
           ],
           "requested": [
             0.935,
-            0.03,
+            0.0261,
             145.0
           ],
           "capped": [
             0.935,
-            0.03,
+            0.0261,
             145.0
           ],
           "realized": [
             0.935,
-            0.03,
+            0.0261,
             145.0
           ],
-          "final_hex": "#deefde",
+          "final_hex": "#dfeedf",
           "max_chroma_at_L": 0.118477,
           "chroma_losses": {
-            "requested": 0.029975,
-            "capped": 0.029975,
-            "realized": 0.029975,
+            "requested": 0.026065,
+            "capped": 0.026065,
+            "realized": 0.026065,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1390,15 +1386,15 @@
             "target_band": "minimal",
             "measured_band": null,
             "in_target_band": false,
-            "wcag": 1.0831,
+            "wcag": 1.0877,
             "apca_lc": 0.0,
-            "oklab_dl": -0.029978
+            "oklab_dl": -0.031019
           },
           "conflicts": [],
           "winning_constraint": "perceptual_step",
           "derivation": [
             "surface step: L=0.9350 (canvas 0.9650 -.0.0300)",
-            "chroma: requested 0.0300 -> capped 0.0300 (cap -0.0000) -> realized 0.0300 (gamut -0.0000), fraction 1.000"
+            "chroma: requested 0.0261 -> capped 0.0261 (cap -0.0000) -> realized 0.0261 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1414,25 +1410,25 @@
           ],
           "requested": [
             0.935,
-            0.0152,
+            0.0132,
             80.0
           ],
           "capped": [
             0.935,
-            0.0152,
+            0.0132,
             80.0
           ],
           "realized": [
             0.935,
-            0.0152,
+            0.0132,
             80.0
           ],
-          "final_hex": "#efe9de",
+          "final_hex": "#eee9e0",
           "max_chroma_at_L": 0.060005,
           "chroma_losses": {
-            "requested": 0.015181,
-            "capped": 0.015181,
-            "realized": 0.015181,
+            "requested": 0.013201,
+            "capped": 0.013201,
+            "realized": 0.013201,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1451,15 +1447,15 @@
             "target_band": "minimal",
             "measured_band": null,
             "in_target_band": false,
-            "wcag": 1.091,
+            "wcag": 1.0918,
             "apca_lc": 0.0,
-            "oklab_dl": -0.029104
+            "oklab_dl": -0.029362
           },
           "conflicts": [],
           "winning_constraint": "perceptual_step",
           "derivation": [
             "surface step: L=0.9350 (canvas 0.9650 -.0.0300)",
-            "chroma: requested 0.0152 -> capped 0.0152 (cap -0.0000) -> realized 0.0152 (gamut -0.0000), fraction 1.000"
+            "chroma: requested 0.0132 -> capped 0.0132 (cap -0.0000) -> realized 0.0132 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1475,25 +1471,25 @@
           ],
           "requested": [
             0.935,
-            0.0083,
+            0.0072,
             25.0
           ],
           "capped": [
             0.935,
-            0.0083,
+            0.0072,
             25.0
           ],
           "realized": [
             0.935,
-            0.0083,
+            0.0072,
             25.0
           ],
-          "final_hex": "#efe7e7",
+          "final_hex": "#eee8e7",
           "max_chroma_at_L": 0.032761,
           "chroma_losses": {
-            "requested": 0.008288,
-            "capped": 0.008288,
-            "realized": 0.008288,
+            "requested": 0.007207,
+            "capped": 0.007207,
+            "realized": 0.007207,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1512,15 +1508,15 @@
             "target_band": "minimal",
             "measured_band": null,
             "in_target_band": false,
-            "wcag": 1.0989,
+            "wcag": 1.094,
             "apca_lc": 0.0,
-            "oklab_dl": -0.030571
+            "oklab_dl": -0.02941
           },
           "conflicts": [],
           "winning_constraint": "perceptual_step",
           "derivation": [
             "surface step: L=0.9350 (canvas 0.9650 -.0.0300)",
-            "chroma: requested 0.0083 -> capped 0.0083 (cap -0.0000) -> realized 0.0083 (gamut -0.0000), fraction 1.000"
+            "chroma: requested 0.0072 -> capped 0.0072 (cap -0.0000) -> realized 0.0072 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1535,26 +1531,26 @@
             0.0
           ],
           "requested": [
-            0.5466,
-            0.0561,
+            0.5449,
+            0.0486,
             0.0
           ],
           "capped": [
-            0.5466,
-            0.0561,
+            0.5449,
+            0.0486,
             0.0
           ],
           "realized": [
-            0.5466,
-            0.0561,
+            0.5449,
+            0.0486,
             0.0
           ],
-          "final_hex": "#8c636f",
-          "max_chroma_at_L": 0.221611,
+          "final_hex": "#89646f",
+          "max_chroma_at_L": 0.220917,
           "chroma_losses": {
-            "requested": 0.056068,
-            "capped": 0.056068,
-            "realized": 0.056068,
+            "requested": 0.048602,
+            "capped": 0.048602,
+            "realized": 0.048602,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1573,15 +1569,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.5919,
-            "apca_lc": 68.0131,
-            "oklab_dl": -0.418828
+            "wcag": 4.6067,
+            "apca_lc": 68.1293,
+            "oklab_dl": -0.420283,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5466 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5523, L_apca=0.5466)",
-            "chroma: requested 0.0561 -> capped 0.0561 (cap -0.0000) -> realized 0.0561 (gamut -0.0000), fraction 1.000"
+            "solved L=0.5449 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5487, L_apca=0.5449)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 5.00) -> effective 68.0 (band max 78.0)",
+            "chroma: requested 0.0486 -> capped 0.0486 (cap -0.0000) -> realized 0.0486 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1596,26 +1605,26 @@
             25.0
           ],
           "requested": [
-            0.4239,
-            0.1591,
+            0.3411,
+            0.1113,
             25.0
           ],
           "capped": [
-            0.4239,
-            0.1591,
+            0.3411,
+            0.1113,
             25.0
           ],
           "realized": [
-            0.4239,
-            0.1591,
+            0.3411,
+            0.1113,
             25.0
           ],
-          "final_hex": "#91131b",
-          "max_chroma_at_L": 0.17186,
+          "final_hex": "#661718",
+          "max_chroma_at_L": 0.138321,
           "chroma_losses": {
-            "requested": 0.159099,
-            "capped": 0.159099,
-            "realized": 0.159099,
+            "requested": 0.111348,
+            "capped": 0.111348,
+            "realized": 0.111348,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1632,17 +1641,30 @@
           "contrast": {
             "reference": "bg",
             "target_band": "high",
-            "measured_band": "high",
-            "in_target_band": true,
-            "wcag": 8.1981,
-            "apca_lc": 82.095,
-            "oklab_dl": -0.542007
+            "measured_band": "maximal",
+            "in_target_band": false,
+            "wcag": 11.1493,
+            "apca_lc": 90.0221,
+            "oklab_dl": -0.624075,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 82.0,
+              "salience": 6,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 20.0,
+              "salience_boost_applied": 8.0,
+              "effective_apca_centre": 90.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": true
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.4239 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.5630, L_apca=0.4239)",
-            "chroma: requested 0.1591 -> capped 0.1591 (cap -0.0000) -> realized 0.1591 (gamut -0.0000), fraction 1.000"
+            "solved L=0.3411 to apca_centre (wcag_floor=4.5, apca_centre=90.0, L_wcag=0.5630, L_apca=0.3411)",
+            "apca centre: base 82.0 + salience boost 20.0 requested / 8.0 applied (salience 6 vs normal 2, step 5.00) -> effective 90.0 (band max 90.0)",
+            "chroma: requested 0.1113 -> capped 0.1113 (cap -0.0000) -> realized 0.1113 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1657,26 +1679,26 @@
             0.0
           ],
           "requested": [
-            0.5412,
-            0.0151,
+            0.541,
+            0.0132,
             0.0
           ],
           "capped": [
-            0.5412,
-            0.0151,
+            0.541,
+            0.0132,
             0.0
           ],
           "realized": [
-            0.5412,
-            0.0151,
+            0.541,
+            0.0132,
             0.0
           ],
-          "final_hex": "#776b6e",
-          "max_chroma_at_L": 0.219391,
+          "final_hex": "#766c6e",
+          "max_chroma_at_L": 0.219315,
           "chroma_losses": {
-            "requested": 0.015138,
-            "capped": 0.015138,
-            "realized": 0.015138,
+            "requested": 0.013159,
+            "capped": 0.013159,
+            "realized": 0.013159,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1695,15 +1717,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.6106,
-            "apca_lc": 68.2237,
-            "oklab_dl": -0.424908
+            "wcag": 4.5796,
+            "apca_lc": 68.0191,
+            "oklab_dl": -0.423683,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5412 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5447, L_apca=0.5412)",
-            "chroma: requested 0.0151 -> capped 0.0151 (cap -0.0000) -> realized 0.0151 (gamut -0.0000), fraction 1.000"
+            "solved L=0.5410 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5461, L_apca=0.5410)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 5.00) -> effective 68.0 (band max 78.0)",
+            "chroma: requested 0.0132 -> capped 0.0132 (cap -0.0000) -> realized 0.0132 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1718,26 +1753,26 @@
             0.0
           ],
           "requested": [
-            0.6456,
-            0.0181,
+            0.6454,
+            0.0157,
             0.0
           ],
           "capped": [
-            0.6456,
-            0.0181,
+            0.6454,
+            0.0157,
             0.0
           ],
           "realized": [
-            0.6456,
-            0.0181,
+            0.6454,
+            0.0157,
             0.0
           ],
-          "final_hex": "#98898d",
-          "max_chroma_at_L": 0.261719,
+          "final_hex": "#968a8d",
+          "max_chroma_at_L": 0.261627,
           "chroma_losses": {
-            "requested": 0.018059,
-            "capped": 0.018059,
-            "realized": 0.018059,
+            "requested": 0.015698,
+            "capped": 0.015698,
+            "realized": 0.015698,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1756,17 +1791,30 @@
             "target_band": "minimal",
             "measured_band": "low",
             "in_target_band": false,
-            "wcag": 3.0108,
-            "apca_lc": 53.7566,
-            "oklab_dl": -0.320162
+            "wcag": 3.0018,
+            "apca_lc": 53.6471,
+            "oklab_dl": -0.319903,
+            "solve": {
+              "winning_constraint": "wcag_floor",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 24.0,
+              "salience": 0,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 24.0,
+              "band_max": 32.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [
             "wcag_apca_conflict"
           ],
           "winning_constraint": "wcag_floor",
           "derivation": [
-            "solved L=0.6456 to wcag_floor (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.6456, L_apca=0.8243)",
-            "chroma: requested 0.0181 -> capped 0.0181 (cap -0.0000) -> realized 0.0181 (gamut -0.0000), fraction 1.000"
+            "solved L=0.6454 to wcag_floor (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.6454, L_apca=0.8252)",
+            "apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2, step 5.00) -> effective 24.0 (band max 32.0)",
+            "chroma: requested 0.0157 -> capped 0.0157 (cap -0.0000) -> realized 0.0157 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1781,26 +1829,26 @@
             0.0
           ],
           "requested": [
-            0.5447,
-            0.0152,
+            0.5461,
+            0.0133,
             0.0
           ],
           "capped": [
-            0.5447,
-            0.0152,
+            0.5461,
+            0.0133,
             0.0
           ],
           "realized": [
-            0.5447,
-            0.0152,
+            0.5461,
+            0.0133,
             0.0
           ],
-          "final_hex": "#786c70",
-          "max_chroma_at_L": 0.220818,
+          "final_hex": "#776d70",
+          "max_chroma_at_L": 0.221367,
           "chroma_losses": {
-            "requested": 0.015236,
-            "capped": 0.015236,
-            "realized": 0.015236,
+            "requested": 0.013282,
+            "capped": 0.013282,
+            "realized": 0.013282,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1819,17 +1867,30 @@
             "target_band": "low",
             "measured_band": "comfortable",
             "in_target_band": false,
-            "wcag": 4.5389,
-            "apca_lc": 67.7421,
-            "oklab_dl": -0.421121
+            "wcag": 4.5084,
+            "apca_lc": 67.5368,
+            "oklab_dl": -0.419898,
+            "solve": {
+              "winning_constraint": "wcag_floor",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [
             "wcag_apca_conflict"
           ],
           "winning_constraint": "wcag_floor",
           "derivation": [
-            "solved L=0.5447 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5447, L_apca=0.7020)",
-            "chroma: requested 0.0152 -> capped 0.0152 (cap -0.0000) -> realized 0.0152 (gamut -0.0000), fraction 1.000"
+            "solved L=0.5461 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5461, L_apca=0.7006)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 5.00) -> effective 45.0 (band max 55.0)",
+            "chroma: requested 0.0133 -> capped 0.0133 (cap -0.0000) -> realized 0.0133 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1844,26 +1905,26 @@
             245.0
           ],
           "requested": [
-            0.4197,
-            0.0656,
+            0.3365,
+            0.0457,
             245.0
           ],
           "capped": [
-            0.4197,
-            0.0656,
+            0.3365,
+            0.0457,
             245.0
           ],
           "realized": [
-            0.4197,
-            0.0656,
+            0.3365,
+            0.0457,
             245.0
           ],
-          "final_hex": "#2c506e",
-          "max_chroma_at_L": 0.105637,
+          "final_hex": "#22394d",
+          "max_chroma_at_L": 0.084717,
           "chroma_losses": {
-            "requested": 0.0656,
-            "capped": 0.0656,
-            "realized": 0.0656,
+            "requested": 0.045747,
+            "capped": 0.045747,
+            "realized": 0.045747,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1880,17 +1941,30 @@
           "contrast": {
             "reference": "bg",
             "target_band": "high",
-            "measured_band": "high",
-            "in_target_band": true,
-            "wcag": 7.6467,
-            "apca_lc": 82.0056,
-            "oklab_dl": -0.546618
+            "measured_band": "maximal",
+            "in_target_band": false,
+            "wcag": 10.771,
+            "apca_lc": 90.2313,
+            "oklab_dl": -0.629719,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 82.0,
+              "salience": 5,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 15.0,
+              "salience_boost_applied": 8.0,
+              "effective_apca_centre": 90.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": true
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.4197 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.6411, L_apca=0.4197)",
-            "chroma: requested 0.0656 -> capped 0.0656 (cap -0.0000) -> realized 0.0656 (gamut -0.0000), fraction 1.000"
+            "solved L=0.3365 to apca_centre (wcag_floor=3.0, apca_centre=90.0, L_wcag=0.6416, L_apca=0.3365)",
+            "apca centre: base 82.0 + salience boost 15.0 requested / 8.0 applied (salience 5 vs normal 2, step 5.00) -> effective 90.0 (band max 90.0)",
+            "chroma: requested 0.0457 -> capped 0.0457 (cap -0.0000) -> realized 0.0457 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1905,26 +1979,26 @@
             245.0
           ],
           "requested": [
-            0.4182,
-            0.0545,
+            0.3375,
+            0.0382,
             245.0
           ],
           "capped": [
-            0.4182,
-            0.0545,
+            0.3375,
+            0.0382,
             245.0
           ],
           "realized": [
-            0.4182,
-            0.0545,
+            0.3375,
+            0.0382,
             245.0
           ],
-          "final_hex": "#325068",
-          "max_chroma_at_L": 0.10527,
+          "final_hex": "#26394a",
+          "max_chroma_at_L": 0.084969,
           "chroma_losses": {
-            "requested": 0.054477,
-            "capped": 0.054477,
-            "realized": 0.054477,
+            "requested": 0.038236,
+            "capped": 0.038236,
+            "realized": 0.038236,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -1941,17 +2015,30 @@
           "contrast": {
             "reference": "bg",
             "target_band": "high",
-            "measured_band": "high",
-            "in_target_band": true,
-            "wcag": 7.6367,
-            "apca_lc": 82.024,
-            "oklab_dl": -0.546398
+            "measured_band": "maximal",
+            "in_target_band": false,
+            "wcag": 10.7338,
+            "apca_lc": 90.1854,
+            "oklab_dl": -0.628705,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 82.0,
+              "salience": 4,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 10.0,
+              "salience_boost_applied": 8.0,
+              "effective_apca_centre": 90.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": true
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.4182 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.5415, L_apca=0.4182)",
-            "chroma: requested 0.0545 -> capped 0.0545 (cap -0.0000) -> realized 0.0545 (gamut -0.0000), fraction 1.000"
+            "solved L=0.3375 to apca_centre (wcag_floor=4.5, apca_centre=90.0, L_wcag=0.5428, L_apca=0.3375)",
+            "apca centre: base 82.0 + salience boost 10.0 requested / 8.0 applied (salience 4 vs normal 2, step 5.00) -> effective 90.0 (band max 90.0)",
+            "chroma: requested 0.0382 -> capped 0.0382 (cap -0.0000) -> realized 0.0382 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -1966,26 +2053,26 @@
             245.0
           ],
           "requested": [
-            0.5382,
-            0.0701,
+            0.4543,
+            0.0515,
             245.0
           ],
           "capped": [
-            0.5382,
-            0.0701,
+            0.4543,
+            0.0515,
             245.0
           ],
           "realized": [
-            0.5382,
-            0.0701,
+            0.4543,
+            0.0515,
             245.0
           ],
-          "final_hex": "#4a7294",
-          "max_chroma_at_L": 0.13546,
+          "final_hex": "#3e5a71",
+          "max_chroma_at_L": 0.114372,
           "chroma_losses": {
-            "requested": 0.0701,
-            "capped": 0.0701,
-            "realized": 0.0701,
+            "requested": 0.051468,
+            "capped": 0.051468,
+            "realized": 0.051468,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2002,17 +2089,30 @@
           "contrast": {
             "reference": "bg",
             "target_band": "comfortable",
-            "measured_band": "comfortable",
-            "in_target_band": true,
-            "wcag": 4.596,
-            "apca_lc": 68.015,
-            "oklab_dl": -0.428111
+            "measured_band": "high",
+            "in_target_band": false,
+            "wcag": 6.5256,
+            "apca_lc": 78.0158,
+            "oklab_dl": -0.509718,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 4,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 10.0,
+              "salience_boost_applied": 10.0,
+              "effective_apca_centre": 78.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5382 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5415, L_apca=0.5382)",
-            "chroma: requested 0.0701 -> capped 0.0701 (cap -0.0000) -> realized 0.0701 (gamut -0.0000), fraction 1.000"
+            "solved L=0.4543 to apca_centre (wcag_floor=4.5, apca_centre=78.0, L_wcag=0.5428, L_apca=0.4543)",
+            "apca centre: base 68.0 + salience boost 10.0 requested / 10.0 applied (salience 4 vs normal 2, step 5.00) -> effective 78.0 (band max 78.0)",
+            "chroma: requested 0.0515 -> capped 0.0515 (cap -0.0000) -> realized 0.0515 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2027,26 +2127,26 @@
             300.0
           ],
           "requested": [
-            0.5525,
-            0.1372,
+            0.5088,
+            0.11,
             296.0
           ],
           "capped": [
-            0.5525,
-            0.1372,
+            0.5088,
+            0.11,
             296.0
           ],
           "realized": [
-            0.5525,
-            0.1372,
+            0.5088,
+            0.11,
             296.0
           ],
-          "final_hex": "#7a5eb8",
-          "max_chroma_at_L": 0.294662,
+          "final_hex": "#6c579d",
+          "max_chroma_at_L": 0.271614,
           "chroma_losses": {
-            "requested": 0.137239,
-            "capped": 0.137239,
-            "realized": 0.137239,
+            "requested": 0.110004,
+            "capped": 0.110004,
+            "realized": 0.110004,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2065,15 +2165,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.6015,
-            "apca_lc": 67.9586,
-            "oklab_dl": -0.413572
+            "wcag": 5.4366,
+            "apca_lc": 72.9464,
+            "oklab_dl": -0.455732,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 5.0,
+              "salience_boost_applied": 5.0,
+              "effective_apca_centre": 73.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5525 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5578, L_apca=0.5525)",
-            "chroma: requested 0.1372 -> capped 0.1372 (cap -0.0000) -> realized 0.1372 (gamut -0.0000), fraction 1.000",
+            "solved L=0.5088 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5558, L_apca=0.5088)",
+            "apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2, step 5.00) -> effective 73.0 (band max 78.0)",
+            "chroma: requested 0.1100 -> capped 0.1100 (cap -0.0000) -> realized 0.1100 (gamut -0.0000), fraction 1.000",
             "adjustment applied L+0.0000 C+0.0000 h-4.000"
           ],
           "issues": []
@@ -2129,7 +2242,19 @@
             "in_target_band": false,
             "wcag": 3.0363,
             "apca_lc": 54.0825,
-            "oklab_dl": -0.32472
+            "oklab_dl": -0.32472,
+            "solve": {
+              "winning_constraint": "wcag_floor",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 24.0,
+              "salience": 0,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 24.0,
+              "band_max": 32.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [
             "wcag_apca_conflict"
@@ -2137,6 +2262,7 @@
           "winning_constraint": "wcag_floor",
           "derivation": [
             "solved L=0.6417 to wcag_floor (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.6417, L_apca=0.8250)",
+            "apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2, step 5.00) -> effective 24.0 (band max 32.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -2152,22 +2278,22 @@
             0.0
           ],
           "requested": [
-            0.5399,
+            0.5014,
             0.0,
             0.0
           ],
           "capped": [
-            0.5399,
+            0.5014,
             0.0,
             0.0
           ],
           "realized": [
-            0.5399,
+            0.5014,
             0.0,
             0.0
           ],
-          "final_hex": "#6e6e6e",
-          "max_chroma_at_L": 0.218887,
+          "final_hex": "#636363",
+          "max_chroma_at_L": 0.20327,
           "chroma_losses": {
             "requested": 0.0,
             "capped": 0.0,
@@ -2190,14 +2316,27 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.604,
-            "apca_lc": 68.1879,
-            "oklab_dl": -0.42657
+            "wcag": 5.4247,
+            "apca_lc": 73.0321,
+            "oklab_dl": -0.465111,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 5.0,
+              "salience_boost_applied": 5.0,
+              "effective_apca_centre": 73.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5399 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5434, L_apca=0.5399)",
+            "solved L=0.5014 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5434, L_apca=0.5014)",
+            "apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2, step 5.00) -> effective 73.0 (band max 78.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -2213,26 +2352,26 @@
             195.0
           ],
           "requested": [
-            0.5377,
-            0.0232,
+            0.5363,
+            0.0201,
             195.0
           ],
           "capped": [
-            0.5377,
-            0.0232,
+            0.5363,
+            0.0201,
             195.0
           ],
           "realized": [
-            0.5377,
-            0.0232,
+            0.5363,
+            0.0201,
             195.0
           ],
-          "final_hex": "#5f7272",
-          "max_chroma_at_L": 0.091759,
+          "final_hex": "#617171",
+          "max_chroma_at_L": 0.091522,
           "chroma_losses": {
-            "requested": 0.023215,
-            "capped": 0.023215,
-            "realized": 0.023215,
+            "requested": 0.020135,
+            "capped": 0.020135,
+            "realized": 0.020135,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2251,15 +2390,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.584,
-            "apca_lc": 68.0361,
-            "oklab_dl": -0.42819
+            "wcag": 4.6149,
+            "apca_lc": 68.2474,
+            "oklab_dl": -0.429382,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5377 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5411, L_apca=0.5377)",
-            "chroma: requested 0.0232 -> capped 0.0232 (cap -0.0000) -> realized 0.0232 (gamut -0.0000), fraction 1.000"
+            "solved L=0.5363 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5397, L_apca=0.5363)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 5.00) -> effective 68.0 (band max 78.0)",
+            "chroma: requested 0.0201 -> capped 0.0201 (cap -0.0000) -> realized 0.0201 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2274,26 +2426,26 @@
             80.0
           ],
           "requested": [
-            0.5412,
-            0.058,
+            0.4997,
+            0.0466,
             80.0
           ],
           "capped": [
-            0.5412,
-            0.058,
+            0.4997,
+            0.0466,
             80.0
           ],
           "realized": [
-            0.5412,
-            0.058,
+            0.4997,
+            0.0466,
             80.0
           ],
-          "final_hex": "#816b48",
-          "max_chroma_at_L": 0.112091,
+          "final_hex": "#716045",
+          "max_chroma_at_L": 0.1035,
           "chroma_losses": {
-            "requested": 0.058007,
-            "capped": 0.058007,
-            "realized": 0.058007,
+            "requested": 0.046575,
+            "capped": 0.046575,
+            "realized": 0.046575,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2312,15 +2464,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.5911,
-            "apca_lc": 68.0427,
-            "oklab_dl": -0.424531
+            "wcag": 5.4783,
+            "apca_lc": 73.2694,
+            "oklab_dl": -0.466402,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 5.0,
+              "salience_boost_applied": 5.0,
+              "effective_apca_centre": 73.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5412 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5447, L_apca=0.5412)",
-            "chroma: requested 0.0580 -> capped 0.0580 (cap -0.0000) -> realized 0.0580 (gamut -0.0000), fraction 1.000"
+            "solved L=0.4997 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5439, L_apca=0.4997)",
+            "apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2, step 5.00) -> effective 73.0 (band max 78.0)",
+            "chroma: requested 0.0466 -> capped 0.0466 (cap -0.0000) -> realized 0.0466 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2375,12 +2540,25 @@
             "in_target_band": true,
             "wcag": 4.604,
             "apca_lc": 68.1879,
-            "oklab_dl": -0.42657
+            "oklab_dl": -0.42657,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.5399 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5434, L_apca=0.5399)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 5.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -2396,26 +2574,26 @@
             0.0
           ],
           "requested": [
-            0.5412,
-            0.0151,
+            0.541,
+            0.0132,
             0.0
           ],
           "capped": [
-            0.5412,
-            0.0151,
+            0.541,
+            0.0132,
             0.0
           ],
           "realized": [
-            0.5412,
-            0.0151,
+            0.541,
+            0.0132,
             0.0
           ],
-          "final_hex": "#776b6e",
-          "max_chroma_at_L": 0.219391,
+          "final_hex": "#766c6e",
+          "max_chroma_at_L": 0.219315,
           "chroma_losses": {
-            "requested": 0.015138,
-            "capped": 0.015138,
-            "realized": 0.015138,
+            "requested": 0.013159,
+            "capped": 0.013159,
+            "realized": 0.013159,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2434,15 +2612,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.6106,
-            "apca_lc": 68.2237,
-            "oklab_dl": -0.424908
+            "wcag": 4.5796,
+            "apca_lc": 68.0191,
+            "oklab_dl": -0.423683,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5412 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5447, L_apca=0.5412)",
-            "chroma: requested 0.0151 -> capped 0.0151 (cap -0.0000) -> realized 0.0151 (gamut -0.0000), fraction 1.000"
+            "solved L=0.5410 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5461, L_apca=0.5410)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 5.00) -> effective 68.0 (band max 78.0)",
+            "chroma: requested 0.0132 -> capped 0.0132 (cap -0.0000) -> realized 0.0132 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2457,26 +2648,26 @@
             0.0
           ],
           "requested": [
-            0.5412,
-            0.0151,
+            0.541,
+            0.0132,
             0.0
           ],
           "capped": [
-            0.5412,
-            0.0151,
+            0.541,
+            0.0132,
             0.0
           ],
           "realized": [
-            0.5412,
-            0.0151,
+            0.541,
+            0.0132,
             0.0
           ],
-          "final_hex": "#776b6e",
-          "max_chroma_at_L": 0.219391,
+          "final_hex": "#766c6e",
+          "max_chroma_at_L": 0.219315,
           "chroma_losses": {
-            "requested": 0.015138,
-            "capped": 0.015138,
-            "realized": 0.015138,
+            "requested": 0.013159,
+            "capped": 0.013159,
+            "realized": 0.013159,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2495,15 +2686,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.6106,
-            "apca_lc": 68.2237,
-            "oklab_dl": -0.424908
+            "wcag": 4.5796,
+            "apca_lc": 68.0191,
+            "oklab_dl": -0.423683,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5412 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5447, L_apca=0.5412)",
-            "chroma: requested 0.0151 -> capped 0.0151 (cap -0.0000) -> realized 0.0151 (gamut -0.0000), fraction 1.000"
+            "solved L=0.5410 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5461, L_apca=0.5410)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 5.00) -> effective 68.0 (band max 78.0)",
+            "chroma: requested 0.0132 -> capped 0.0132 (cap -0.0000) -> realized 0.0132 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2558,7 +2762,19 @@
             "in_target_band": false,
             "wcag": 4.5371,
             "apca_lc": 67.7383,
-            "oklab_dl": -0.423101
+            "oklab_dl": -0.423101,
+            "solve": {
+              "winning_constraint": "wcag_floor",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [
             "wcag_apca_conflict"
@@ -2566,6 +2782,7 @@
           "winning_constraint": "wcag_floor",
           "derivation": [
             "solved L=0.5434 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5434, L_apca=0.7008)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 5.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -2582,25 +2799,25 @@
           ],
           "requested": [
             0.91,
-            0.0435,
+            0.0379,
             80.0
           ],
           "capped": [
             0.91,
-            0.0435,
+            0.0379,
             80.0
           ],
           "realized": [
             0.91,
-            0.0435,
+            0.0379,
             80.0
           ],
-          "final_hex": "#f1dfc1",
+          "final_hex": "#efdfc6",
           "max_chroma_at_L": 0.084114,
           "chroma_losses": {
-            "requested": 0.043529,
-            "capped": 0.043529,
-            "realized": 0.043529,
+            "requested": 0.037851,
+            "capped": 0.037851,
+            "realized": 0.037851,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2619,15 +2836,15 @@
             "target_band": "low",
             "measured_band": null,
             "in_target_band": false,
-            "wcag": 1.1803,
-            "apca_lc": 8.1775,
-            "oklab_dl": -0.054323
+            "wcag": 1.1821,
+            "apca_lc": 8.2763,
+            "oklab_dl": -0.05482
           },
           "conflicts": [],
           "winning_constraint": "perceptual_step",
           "derivation": [
             "surface step: L=0.9100 (canvas 0.9650 -.0.0550)",
-            "chroma: requested 0.0435 -> capped 0.0435 (cap -0.0000) -> realized 0.0435 (gamut -0.0000), fraction 1.000"
+            "chroma: requested 0.0379 -> capped 0.0379 (cap -0.0000) -> realized 0.0379 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2643,25 +2860,25 @@
           ],
           "requested": [
             0.885,
-            0.0876,
+            0.0762,
             80.0
           ],
           "capped": [
             0.885,
-            0.0876,
+            0.0762,
             80.0
           ],
           "realized": [
             0.885,
-            0.0876,
+            0.0762,
             80.0
           ],
-          "final_hex": "#f8d396",
+          "final_hex": "#f4d4a0",
           "max_chroma_at_L": 0.108871,
           "chroma_losses": {
-            "requested": 0.087642,
-            "capped": 0.087642,
-            "realized": 0.087642,
+            "requested": 0.07621,
+            "capped": 0.07621,
+            "realized": 0.07621,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2680,15 +2897,15 @@
             "target_band": "comfortable",
             "measured_band": null,
             "in_target_band": false,
-            "wcag": 1.2856,
-            "apca_lc": 13.309,
-            "oklab_dl": -0.080374
+            "wcag": 1.2837,
+            "apca_lc": 13.2358,
+            "oklab_dl": -0.080239
           },
           "conflicts": [],
           "winning_constraint": "perceptual_step",
           "derivation": [
             "surface step: L=0.8850 (canvas 0.9650 -.0.0800)",
-            "chroma: requested 0.0876 -> capped 0.0876 (cap -0.0000) -> realized 0.0876 (gamut -0.0000), fraction 1.000"
+            "chroma: requested 0.0762 -> capped 0.0762 (cap -0.0000) -> realized 0.0762 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2704,25 +2921,25 @@
           ],
           "requested": [
             0.91,
-            0.0118,
+            0.0103,
             245.0
           ],
           "capped": [
             0.91,
-            0.0118,
+            0.0103,
             245.0
           ],
           "realized": [
             0.91,
-            0.0118,
+            0.0103,
             245.0
           ],
-          "final_hex": "#dbe2e9",
+          "final_hex": "#dce2e8",
           "max_chroma_at_L": 0.046761,
           "chroma_losses": {
-            "requested": 0.01183,
-            "capped": 0.01183,
-            "realized": 0.01183,
+            "requested": 0.010287,
+            "capped": 0.010287,
+            "realized": 0.010287,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2741,15 +2958,15 @@
             "target_band": "low",
             "measured_band": null,
             "in_target_band": false,
-            "wcag": 1.1801,
-            "apca_lc": 8.1841,
-            "oklab_dl": -0.055312
+            "wcag": 1.1787,
+            "apca_lc": 8.1083,
+            "oklab_dl": -0.054858
           },
           "conflicts": [],
           "winning_constraint": "perceptual_step",
           "derivation": [
             "surface step: L=0.9100 (canvas 0.9650 -.0.0550)",
-            "chroma: requested 0.0118 -> capped 0.0118 (cap -0.0000) -> realized 0.0118 (gamut -0.0000), fraction 1.000"
+            "chroma: requested 0.0103 -> capped 0.0103 (cap -0.0000) -> realized 0.0103 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2764,26 +2981,26 @@
             145.0
           ],
           "requested": [
-            0.5284,
-            0.076,
+            0.4917,
+            0.0596,
             145.0
           ],
           "capped": [
-            0.5284,
-            0.076,
+            0.4917,
+            0.0596,
             145.0
           ],
           "realized": [
-            0.5284,
-            0.076,
+            0.4917,
+            0.0596,
             145.0
           ],
-          "final_hex": "#4f7750",
-          "max_chroma_at_L": 0.166206,
+          "final_hex": "#4b6a4c",
+          "max_chroma_at_L": 0.154671,
           "chroma_losses": {
-            "requested": 0.076012,
-            "capped": 0.076012,
-            "realized": 0.076012,
+            "requested": 0.059602,
+            "capped": 0.059602,
+            "realized": 0.059602,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2802,15 +3019,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.6395,
-            "apca_lc": 68.3236,
-            "oklab_dl": -0.436334
+            "wcag": 5.4721,
+            "apca_lc": 73.2094,
+            "oklab_dl": -0.473511,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 5.0,
+              "salience_boost_applied": 5.0,
+              "effective_apca_centre": 73.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5284 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5347, L_apca=0.5284)",
-            "chroma: requested 0.0760 -> capped 0.0760 (cap -0.0000) -> realized 0.0760 (gamut -0.0000), fraction 1.000",
+            "solved L=0.4917 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5366, L_apca=0.4917)",
+            "apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2, step 5.00) -> effective 73.0 (band max 78.0)",
+            "chroma: requested 0.0596 -> capped 0.0596 (cap -0.0000) -> realized 0.0596 (gamut -0.0000), fraction 1.000",
             "adjustment applied L+0.0000 C-0.0100 h+0.000"
           ],
           "issues": []
@@ -2826,26 +3056,26 @@
             145.0
           ],
           "requested": [
-            0.5284,
-            0.086,
+            0.4492,
+            0.0636,
             145.0
           ],
           "capped": [
-            0.5284,
-            0.086,
+            0.4492,
+            0.0636,
             145.0
           ],
           "realized": [
-            0.5284,
-            0.086,
+            0.4492,
+            0.0636,
             145.0
           ],
-          "final_hex": "#4a784c",
-          "max_chroma_at_L": 0.166206,
+          "final_hex": "#3e5e3f",
+          "max_chroma_at_L": 0.141281,
           "chroma_losses": {
-            "requested": 0.086012,
-            "capped": 0.086012,
-            "realized": 0.086012,
+            "requested": 0.063577,
+            "capped": 0.063577,
+            "realized": 0.063577,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2862,17 +3092,30 @@
           "contrast": {
             "reference": "bg",
             "target_band": "comfortable",
-            "measured_band": "comfortable",
-            "in_target_band": true,
-            "wcag": 4.6451,
-            "apca_lc": 68.3303,
-            "oklab_dl": -0.437598
+            "measured_band": "high",
+            "in_target_band": false,
+            "wcag": 6.5892,
+            "apca_lc": 78.2636,
+            "oklab_dl": -0.516936,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 4,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 10.0,
+              "salience_boost_applied": 10.0,
+              "effective_apca_centre": 78.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5284 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5347, L_apca=0.5284)",
-            "chroma: requested 0.0860 -> capped 0.0860 (cap -0.0000) -> realized 0.0860 (gamut -0.0000), fraction 1.000"
+            "solved L=0.4492 to apca_centre (wcag_floor=4.5, apca_centre=78.0, L_wcag=0.5366, L_apca=0.4492)",
+            "apca centre: base 68.0 + salience boost 10.0 requested / 10.0 applied (salience 4 vs normal 2, step 5.00) -> effective 78.0 (band max 78.0)",
+            "chroma: requested 0.0636 -> capped 0.0636 (cap -0.0000) -> realized 0.0636 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2887,26 +3130,26 @@
             245.0
           ],
           "requested": [
-            0.5376,
-            0.0342,
+            0.4974,
+            0.0275,
             245.0
           ],
           "capped": [
-            0.5376,
-            0.0342,
+            0.4974,
+            0.0275,
             245.0
           ],
           "realized": [
-            0.5376,
-            0.0342,
+            0.4974,
+            0.0275,
             245.0
           ],
-          "final_hex": "#5e7081",
-          "max_chroma_at_L": 0.13533,
+          "final_hex": "#566471",
+          "max_chroma_at_L": 0.125206,
           "chroma_losses": {
-            "requested": 0.034239,
-            "capped": 0.034239,
-            "realized": 0.034239,
+            "requested": 0.027545,
+            "capped": 0.027545,
+            "realized": 0.027545,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2925,15 +3168,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.6129,
-            "apca_lc": 68.221,
-            "oklab_dl": -0.428102
+            "wcag": 5.485,
+            "apca_lc": 73.3279,
+            "oklab_dl": -0.468596,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 5.0,
+              "salience_boost_applied": 5.0,
+              "effective_apca_centre": 73.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5376 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5410, L_apca=0.5376)",
-            "chroma: requested 0.0342 -> capped 0.0342 (cap -0.0000) -> realized 0.0342 (gamut -0.0000), fraction 1.000"
+            "solved L=0.4974 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5420, L_apca=0.4974)",
+            "apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2, step 5.00) -> effective 73.0 (band max 78.0)",
+            "chroma: requested 0.0275 -> capped 0.0275 (cap -0.0000) -> realized 0.0275 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -2948,26 +3204,26 @@
             195.0
           ],
           "requested": [
-            0.533,
-            0.0471,
+            0.4937,
+            0.0379,
             195.0
           ],
           "capped": [
-            0.533,
-            0.0471,
+            0.4937,
+            0.0379,
             195.0
           ],
           "realized": [
-            0.533,
-            0.0471,
+            0.4937,
+            0.0379,
             195.0
           ],
-          "final_hex": "#4b7575",
-          "max_chroma_at_L": 0.090958,
+          "final_hex": "#486868",
+          "max_chroma_at_L": 0.084251,
           "chroma_losses": {
-            "requested": 0.047071,
-            "capped": 0.047071,
-            "realized": 0.047071,
+            "requested": 0.037913,
+            "capped": 0.037913,
+            "realized": 0.037913,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -2986,15 +3242,28 @@
             "target_band": "comfortable",
             "measured_band": "comfortable",
             "in_target_band": true,
-            "wcag": 4.6242,
-            "apca_lc": 68.2332,
-            "oklab_dl": -0.433078
+            "wcag": 5.4873,
+            "apca_lc": 73.2967,
+            "oklab_dl": -0.472134,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 5.0,
+              "salience_boost_applied": 5.0,
+              "effective_apca_centre": 73.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.5330 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5395, L_apca=0.5330)",
-            "chroma: requested 0.0471 -> capped 0.0471 (cap -0.0000) -> realized 0.0471 (gamut -0.0000), fraction 1.000"
+            "solved L=0.4937 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5399, L_apca=0.4937)",
+            "apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2, step 5.00) -> effective 73.0 (band max 78.0)",
+            "chroma: requested 0.0379 -> capped 0.0379 (cap -0.0000) -> realized 0.0379 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         },
@@ -3049,7 +3318,19 @@
             "in_target_band": false,
             "wcag": 3.0363,
             "apca_lc": 54.0825,
-            "oklab_dl": -0.32472
+            "oklab_dl": -0.32472,
+            "solve": {
+              "winning_constraint": "wcag_floor",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 24.0,
+              "salience": 0,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 24.0,
+              "band_max": 32.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [
             "wcag_apca_conflict"
@@ -3057,6 +3338,7 @@
           "winning_constraint": "wcag_floor",
           "derivation": [
             "solved L=0.6417 to wcag_floor (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.6417, L_apca=0.8250)",
+            "apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2, step 5.00) -> effective 24.0 (band max 32.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -3072,26 +3354,26 @@
             80.0
           ],
           "requested": [
-            0.4231,
-            0.0776,
+            0.3397,
+            0.0542,
             80.0
           ],
           "capped": [
-            0.4231,
-            0.0776,
+            0.3397,
+            0.0542,
             80.0
           ],
           "realized": [
-            0.4231,
-            0.0776,
+            0.3397,
+            0.0542,
             80.0
           ],
-          "final_hex": "#644813",
-          "max_chroma_at_L": 0.087639,
+          "final_hex": "#473414",
+          "max_chroma_at_L": 0.070381,
           "chroma_losses": {
-            "requested": 0.077604,
-            "capped": 0.077604,
-            "realized": 0.077604,
+            "requested": 0.054193,
+            "capped": 0.054193,
+            "realized": 0.054193,
             "cap_loss": 0.0,
             "gamut_loss": 0.0,
             "total_loss": 0.0,
@@ -3108,17 +3390,30 @@
           "contrast": {
             "reference": "bg",
             "target_band": "high",
-            "measured_band": "high",
-            "in_target_band": true,
-            "wcag": 7.6514,
-            "apca_lc": 82.003,
-            "oklab_dl": -0.542769
+            "measured_band": "maximal",
+            "in_target_band": false,
+            "wcag": 10.7176,
+            "apca_lc": 90.1054,
+            "oklab_dl": -0.625601,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 82.0,
+              "salience": 5,
+              "salience_apca_step": 5.0,
+              "salience_boost_requested": 15.0,
+              "salience_boost_applied": 8.0,
+              "effective_apca_centre": 90.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": true
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
-            "solved L=0.4231 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.5479, L_apca=0.4231)",
-            "chroma: requested 0.0776 -> capped 0.0776 (cap -0.0000) -> realized 0.0776 (gamut -0.0000), fraction 1.000"
+            "solved L=0.3397 to apca_centre (wcag_floor=4.5, apca_centre=90.0, L_wcag=0.5466, L_apca=0.3397)",
+            "apca centre: base 82.0 + salience boost 15.0 requested / 8.0 applied (salience 5 vs normal 2, step 5.00) -> effective 90.0 (band max 90.0)",
+            "chroma: requested 0.0542 -> capped 0.0542 (cap -0.0000) -> realized 0.0542 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
         }
@@ -3441,12 +3736,25 @@
             "in_target_band": true,
             "wcag": 11.8763,
             "apca_lc": -82.071,
-            "oklab_dl": 0.656173
+            "oklab_dl": 0.656173,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 82.0,
+              "salience": 5,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8899 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.5355, L_apca=0.8899)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0386 -> capped 0.0386 (cap -0.0000) -> realized 0.0386 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -3502,12 +3810,25 @@
             "in_target_band": true,
             "wcag": 9.4248,
             "apca_lc": -68.3185,
-            "oklab_dl": 0.583125
+            "oklab_dl": 0.583125,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8169 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6207, L_apca=0.8169)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0198 -> capped 0.0198 (cap -0.0000) -> realized 0.0198 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -3563,12 +3884,25 @@
             "in_target_band": true,
             "wcag": 5.3222,
             "apca_lc": -41.5307,
-            "oklab_dl": 0.428458
+            "oklab_dl": 0.428458,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.6650 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.6228, L_apca=0.6850)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 0.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0418 -> capped 0.0418 (cap -0.0000) -> realized 0.0418 (gamut -0.0000), fraction 1.000",
             "adjustment applied L-0.0200 C+0.0000 h+0.000"
           ],
@@ -3625,12 +3959,25 @@
             "in_target_band": true,
             "wcag": 9.4084,
             "apca_lc": -68.2567,
-            "oklab_dl": 0.581671
+            "oklab_dl": 0.581671,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8160 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6164, L_apca=0.8160)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0665 -> capped 0.0665 (cap -0.0000) -> realized 0.0665 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -3747,12 +4094,25 @@
             "in_target_band": true,
             "wcag": 9.402,
             "apca_lc": -68.1872,
-            "oklab_dl": 0.58066
+            "oklab_dl": 0.58066,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8148 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6158, L_apca=0.8148)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0325 -> capped 0.0325 (cap -0.0000) -> realized 0.0325 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -3808,12 +4168,25 @@
             "in_target_band": true,
             "wcag": 5.8529,
             "apca_lc": -45.3508,
-            "oklab_dl": 0.447874
+            "oklab_dl": 0.447874,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.6814 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.6151, L_apca=0.6814)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 0.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4052,12 +4425,25 @@
             "in_target_band": true,
             "wcag": 9.3908,
             "apca_lc": -68.1194,
-            "oklab_dl": 0.582577
+            "oklab_dl": 0.582577,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8170 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6228, L_apca=0.8170)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0209 -> capped 0.0209 (cap -0.0000) -> realized 0.0209 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4113,12 +4499,25 @@
             "in_target_band": true,
             "wcag": 11.8687,
             "apca_lc": -82.0368,
-            "oklab_dl": 0.65646
+            "oklab_dl": 0.65646,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 82.0,
+              "salience": 6,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8910 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.6347, L_apca=0.8910)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 6 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0442 -> capped 0.0442 (cap -0.0000) -> realized 0.0442 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4174,12 +4573,25 @@
             "in_target_band": true,
             "wcag": 9.3763,
             "apca_lc": -68.0267,
-            "oklab_dl": 0.580177
+            "oklab_dl": 0.580177,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8139 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6181, L_apca=0.8139)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0058 -> capped 0.0058 (cap -0.0000) -> realized 0.0058 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4235,12 +4647,25 @@
             "in_target_band": true,
             "wcag": 3.2182,
             "apca_lc": -24.1904,
-            "oklab_dl": 0.300683
+            "oklab_dl": 0.300683,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 24.0,
+              "salience": 0,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 24.0,
+              "band_max": 32.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.5345 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5201, L_apca=0.5345)",
+            "apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2, step 0.00) -> effective 24.0 (band max 32.0)",
             "chroma: requested 0.0110 -> capped 0.0110 (cap -0.0000) -> realized 0.0110 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4296,12 +4721,25 @@
             "in_target_band": true,
             "wcag": 5.8051,
             "apca_lc": -45.0125,
-            "oklab_dl": 0.447242
+            "oklab_dl": 0.447242,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.6823 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.6181, L_apca=0.6823)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 0.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0115 -> capped 0.0115 (cap -0.0000) -> realized 0.0115 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4357,12 +4795,25 @@
             "in_target_band": true,
             "wcag": 11.9497,
             "apca_lc": -82.448,
-            "oklab_dl": 0.652473
+            "oklab_dl": 0.652473,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 82.0,
+              "salience": 5,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8868 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.5158, L_apca=0.8868)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0304 -> capped 0.0304 (cap -0.0000) -> realized 0.0304 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4418,12 +4869,25 @@
             "in_target_band": true,
             "wcag": 11.887,
             "apca_lc": -82.1084,
-            "oklab_dl": 0.651001
+            "oklab_dl": 0.651001,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 82.0,
+              "salience": 4,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8851 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.6125, L_apca=0.8851)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0245 -> capped 0.0245 (cap -0.0000) -> realized 0.0245 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4479,12 +4943,25 @@
             "in_target_band": true,
             "wcag": 9.3954,
             "apca_lc": -68.1601,
-            "oklab_dl": 0.578196
+            "oklab_dl": 0.578196,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 4,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8125 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6124, L_apca=0.8125)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0419 -> capped 0.0419 (cap -0.0000) -> realized 0.0419 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4540,12 +5017,25 @@
             "in_target_band": true,
             "wcag": 9.3531,
             "apca_lc": -67.8974,
-            "oklab_dl": 0.581761
+            "oklab_dl": 0.581761,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8174 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6234, L_apca=0.8174)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0391 -> capped 0.0391 (cap -0.0000) -> realized 0.0391 (gamut -0.0000), fraction 1.000",
             "adjustment applied L+0.0000 C+0.0000 h-4.000"
           ],
@@ -4602,12 +5092,25 @@
             "in_target_band": true,
             "wcag": 3.2227,
             "apca_lc": -24.2284,
-            "oklab_dl": 0.299682
+            "oklab_dl": 0.299682,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 24.0,
+              "salience": 0,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 24.0,
+              "band_max": 32.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.5331 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5191, L_apca=0.5331)",
+            "apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2, step 0.00) -> effective 24.0 (band max 32.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4663,12 +5166,25 @@
             "in_target_band": true,
             "wcag": 9.4608,
             "apca_lc": -68.5221,
-            "oklab_dl": 0.582113
+            "oklab_dl": 0.582113,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8157 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6151, L_apca=0.8157)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4724,12 +5240,25 @@
             "in_target_band": true,
             "wcag": 9.3759,
             "apca_lc": -68.0358,
-            "oklab_dl": 0.576311
+            "oklab_dl": 0.576311,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8118 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6141, L_apca=0.8118)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0269 -> capped 0.0269 (cap -0.0000) -> realized 0.0269 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4785,12 +5314,25 @@
             "in_target_band": true,
             "wcag": 9.4084,
             "apca_lc": -68.2567,
-            "oklab_dl": 0.581671
+            "oklab_dl": 0.581671,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8160 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6164, L_apca=0.8160)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0665 -> capped 0.0665 (cap -0.0000) -> realized 0.0665 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4846,12 +5388,25 @@
             "in_target_band": true,
             "wcag": 9.4608,
             "apca_lc": -68.5221,
-            "oklab_dl": 0.582113
+            "oklab_dl": 0.582113,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8157 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6151, L_apca=0.8157)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4907,12 +5462,25 @@
             "in_target_band": true,
             "wcag": 9.3763,
             "apca_lc": -68.0267,
-            "oklab_dl": 0.580177
+            "oklab_dl": 0.580177,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8139 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6181, L_apca=0.8139)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0058 -> capped 0.0058 (cap -0.0000) -> realized 0.0058 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -4968,12 +5536,25 @@
             "in_target_band": true,
             "wcag": 9.3763,
             "apca_lc": -68.0267,
-            "oklab_dl": 0.580177
+            "oklab_dl": 0.580177,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8139 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6181, L_apca=0.8139)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0058 -> capped 0.0058 (cap -0.0000) -> realized 0.0058 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -5029,12 +5610,25 @@
             "in_target_band": true,
             "wcag": 5.8529,
             "apca_lc": -45.3508,
-            "oklab_dl": 0.447874
+            "oklab_dl": 0.447874,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.6814 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.6151, L_apca=0.6814)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 0.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -5273,12 +5867,25 @@
             "in_target_band": true,
             "wcag": 9.327,
             "apca_lc": -67.8147,
-            "oklab_dl": 0.567941
+            "oklab_dl": 0.567941,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8032 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6068, L_apca=0.8032)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0946 -> capped 0.0946 (cap -0.0000) -> realized 0.0946 (gamut -0.0000), fraction 1.000",
             "adjustment applied L+0.0000 C-0.0100 h+0.000"
           ],
@@ -5335,12 +5942,25 @@
             "in_target_band": true,
             "wcag": 9.4289,
             "apca_lc": -68.4434,
-            "oklab_dl": 0.569623
+            "oklab_dl": 0.569623,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 4,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8039 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6076, L_apca=0.8039)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.1085 -> capped 0.1085 (cap -0.0000) -> realized 0.1085 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -5396,12 +6016,25 @@
             "in_target_band": true,
             "wcag": 9.39,
             "apca_lc": -68.1102,
-            "oklab_dl": 0.579031
+            "oklab_dl": 0.579031,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8136 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6140, L_apca=0.8136)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0198 -> capped 0.0198 (cap -0.0000) -> realized 0.0198 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -5457,12 +6090,25 @@
             "in_target_band": true,
             "wcag": 9.367,
             "apca_lc": -68.0322,
-            "oklab_dl": 0.572497
+            "oklab_dl": 0.572497,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8065 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6103, L_apca=0.8065)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0547 -> capped 0.0547 (cap -0.0000) -> realized 0.0547 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -5518,12 +6164,25 @@
             "in_target_band": true,
             "wcag": 3.2227,
             "apca_lc": -24.2284,
-            "oklab_dl": 0.299682
+            "oklab_dl": 0.299682,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 24.0,
+              "salience": 0,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 24.0,
+              "band_max": 32.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.5331 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5191, L_apca=0.5331)",
+            "apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2, step 0.00) -> effective 24.0 (band max 32.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -5579,12 +6238,25 @@
             "in_target_band": true,
             "wcag": 11.929,
             "apca_lc": -82.3749,
-            "oklab_dl": 0.654675
+            "oklab_dl": 0.654675,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 82.0,
+              "salience": 5,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8891 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.6186, L_apca=0.8891)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0758 -> capped 0.0758 (cap -0.0000) -> realized 0.0758 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -5908,12 +6580,25 @@
             "in_target_band": true,
             "wcag": 12.6492,
             "apca_lc": -82.4149,
-            "oklab_dl": 0.682802
+            "oklab_dl": 0.682802,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 82.0,
+              "salience": 5,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8873 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.5165, L_apca=0.8873)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0353 -> capped 0.0353 (cap -0.0000) -> realized 0.0353 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -5969,12 +6654,25 @@
             "in_target_band": true,
             "wcag": 9.9071,
             "apca_lc": -68.0015,
-            "oklab_dl": 0.605875
+            "oklab_dl": 0.605875,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8108 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6025, L_apca=0.8108)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0157 -> capped 0.0157 (cap -0.0000) -> realized 0.0157 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6030,12 +6728,25 @@
             "in_target_band": true,
             "wcag": 5.6232,
             "apca_lc": -41.7184,
-            "oklab_dl": 0.452546
+            "oklab_dl": 0.452546,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.6593 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.6024, L_apca=0.6793)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 0.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0309 -> capped 0.0309 (cap -0.0000) -> realized 0.0309 (gamut -0.0000), fraction 1.000",
             "adjustment applied L-0.0200 C+0.0000 h+0.000"
           ],
@@ -6092,12 +6803,25 @@
             "in_target_band": true,
             "wcag": 9.9248,
             "apca_lc": -68.1207,
-            "oklab_dl": 0.605873
+            "oklab_dl": 0.605873,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8104 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5989, L_apca=0.8104)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0508 -> capped 0.0508 (cap -0.0000) -> realized 0.0508 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6214,12 +6938,25 @@
             "in_target_band": true,
             "wcag": 9.9473,
             "apca_lc": -68.2247,
-            "oklab_dl": 0.605802
+            "oklab_dl": 0.605802,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8107 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5981, L_apca=0.8107)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0248 -> capped 0.0248 (cap -0.0000) -> realized 0.0248 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6275,12 +7012,25 @@
             "in_target_band": true,
             "wcag": 6.1239,
             "apca_lc": -45.1191,
-            "oklab_dl": 0.470621
+            "oklab_dl": 0.470621,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.6748 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5982, L_apca=0.6748)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 0.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6519,12 +7269,25 @@
             "in_target_band": true,
             "wcag": 9.9445,
             "apca_lc": -68.2073,
-            "oklab_dl": 0.607313
+            "oklab_dl": 0.607313,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8118 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6024, L_apca=0.8118)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0156 -> capped 0.0156 (cap -0.0000) -> realized 0.0156 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6580,12 +7343,25 @@
             "in_target_band": true,
             "wcag": 12.285,
             "apca_lc": -80.5929,
-            "oklab_dl": 0.674716
+            "oklab_dl": 0.674716,
+            "solve": {
+              "winning_constraint": "night_ceiling",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 82.0,
+              "salience": 6,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "night_ceiling",
           "derivation": [
             "solved L=0.8800 to night_ceiling (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.6176, L_apca=0.8885)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 6 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0443 -> capped 0.0443 (cap -0.0000) -> realized 0.0443 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6641,12 +7417,25 @@
             "in_target_band": true,
             "wcag": 9.9294,
             "apca_lc": -68.1204,
-            "oklab_dl": 0.605529
+            "oklab_dl": 0.605529,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8105 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5982, L_apca=0.8105)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0043 -> capped 0.0043 (cap -0.0000) -> realized 0.0043 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6702,12 +7491,25 @@
             "in_target_band": true,
             "wcag": 3.3406,
             "apca_lc": -24.0188,
-            "oklab_dl": 0.32208
+            "oklab_dl": 0.32208,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 24.0,
+              "salience": 0,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 24.0,
+              "band_max": 32.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.5284 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5037, L_apca=0.5284)",
+            "apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2, step 0.00) -> effective 24.0 (band max 32.0)",
             "chroma: requested 0.0079 -> capped 0.0079 (cap -0.0000) -> realized 0.0079 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6763,12 +7565,25 @@
             "in_target_band": true,
             "wcag": 6.1525,
             "apca_lc": -45.3127,
-            "oklab_dl": 0.472744
+            "oklab_dl": 0.472744,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.6780 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5982, L_apca=0.6780)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 0.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0085 -> capped 0.0085 (cap -0.0000) -> realized 0.0085 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6824,12 +7639,25 @@
             "in_target_band": true,
             "wcag": 12.5768,
             "apca_lc": -82.039,
-            "oklab_dl": 0.675717
+            "oklab_dl": 0.675717,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 82.0,
+              "salience": 5,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8806 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.4993, L_apca=0.8806)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0283 -> capped 0.0283 (cap -0.0000) -> realized 0.0283 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6885,12 +7713,25 @@
             "in_target_band": true,
             "wcag": 12.5353,
             "apca_lc": -81.8258,
-            "oklab_dl": 0.674997
+            "oklab_dl": 0.674997,
+            "solve": {
+              "winning_constraint": "night_ceiling",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 82.0,
+              "salience": 4,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "night_ceiling",
           "derivation": [
             "solved L=0.8800 to night_ceiling (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.5976, L_apca=0.8825)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0209 -> capped 0.0209 (cap -0.0000) -> realized 0.0209 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -6946,12 +7787,25 @@
             "in_target_band": true,
             "wcag": 9.9181,
             "apca_lc": -68.0739,
-            "oklab_dl": 0.602988
+            "oklab_dl": 0.602988,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 4,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8091 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5972, L_apca=0.8091)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0361 -> capped 0.0361 (cap -0.0000) -> realized 0.0361 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7007,12 +7861,25 @@
             "in_target_band": true,
             "wcag": 9.9576,
             "apca_lc": -68.2803,
-            "oklab_dl": 0.608239
+            "oklab_dl": 0.608239,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8137 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6048, L_apca=0.8137)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0322 -> capped 0.0322 (cap -0.0000) -> realized 0.0322 (gamut -0.0000), fraction 1.000",
             "adjustment applied L+0.0000 C+0.0000 h-4.000"
           ],
@@ -7069,12 +7936,25 @@
             "in_target_band": true,
             "wcag": 3.3565,
             "apca_lc": -24.1554,
-            "oklab_dl": 0.322013
+            "oklab_dl": 0.322013,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 24.0,
+              "salience": 0,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 24.0,
+              "band_max": 32.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.5261 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5015, L_apca=0.5261)",
+            "apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2, step 0.00) -> effective 24.0 (band max 32.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7130,12 +8010,25 @@
             "in_target_band": true,
             "wcag": 9.9366,
             "apca_lc": -68.1596,
-            "oklab_dl": 0.605149
+            "oklab_dl": 0.605149,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8094 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5982, L_apca=0.8094)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7191,12 +8084,25 @@
             "in_target_band": true,
             "wcag": 9.9182,
             "apca_lc": -68.0667,
-            "oklab_dl": 0.6019
+            "oklab_dl": 0.6019,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8069 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5972, L_apca=0.8069)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0210 -> capped 0.0210 (cap -0.0000) -> realized 0.0210 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7252,12 +8158,25 @@
             "in_target_band": true,
             "wcag": 9.9248,
             "apca_lc": -68.1207,
-            "oklab_dl": 0.605873
+            "oklab_dl": 0.605873,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8104 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5989, L_apca=0.8104)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0508 -> capped 0.0508 (cap -0.0000) -> realized 0.0508 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7313,12 +8232,25 @@
             "in_target_band": true,
             "wcag": 9.9366,
             "apca_lc": -68.1596,
-            "oklab_dl": 0.605149
+            "oklab_dl": 0.605149,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8094 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5982, L_apca=0.8094)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7374,12 +8306,25 @@
             "in_target_band": true,
             "wcag": 9.9294,
             "apca_lc": -68.1204,
-            "oklab_dl": 0.605529
+            "oklab_dl": 0.605529,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8105 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5982, L_apca=0.8105)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0043 -> capped 0.0043 (cap -0.0000) -> realized 0.0043 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7435,12 +8380,25 @@
             "in_target_band": true,
             "wcag": 9.9294,
             "apca_lc": -68.1204,
-            "oklab_dl": 0.605529
+            "oklab_dl": 0.605529,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 2,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8105 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5982, L_apca=0.8105)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0043 -> capped 0.0043 (cap -0.0000) -> realized 0.0043 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7496,12 +8454,25 @@
             "in_target_band": true,
             "wcag": 6.1239,
             "apca_lc": -45.1191,
-            "oklab_dl": 0.470621
+            "oklab_dl": 0.470621,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 45.0,
+              "salience": 1,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 45.0,
+              "band_max": 55.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.6748 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5982, L_apca=0.6748)",
+            "apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2, step 0.00) -> effective 45.0 (band max 55.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7740,12 +8711,25 @@
             "in_target_band": true,
             "wcag": 9.8799,
             "apca_lc": -67.8845,
-            "oklab_dl": 0.596414
+            "oklab_dl": 0.596414,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8024 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5919, L_apca=0.8024)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0683 -> capped 0.0683 (cap -0.0000) -> realized 0.0683 (gamut -0.0000), fraction 1.000",
             "adjustment applied L+0.0000 C-0.0100 h+0.000"
           ],
@@ -7802,12 +8786,25 @@
             "in_target_band": true,
             "wcag": 9.9119,
             "apca_lc": -68.1019,
-            "oklab_dl": 0.594529
+            "oklab_dl": 0.594529,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 4,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.7991 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5909, L_apca=0.7991)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0955 -> capped 0.0955 (cap -0.0000) -> realized 0.0955 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7863,12 +8860,25 @@
             "in_target_band": true,
             "wcag": 9.9634,
             "apca_lc": -68.3103,
-            "oklab_dl": 0.605006
+            "oklab_dl": 0.605006,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8096 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5976, L_apca=0.8096)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0163 -> capped 0.0163 (cap -0.0000) -> realized 0.0163 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7924,12 +8934,25 @@
             "in_target_band": true,
             "wcag": 9.9282,
             "apca_lc": -68.1498,
-            "oklab_dl": 0.599522
+            "oklab_dl": 0.599522,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 68.0,
+              "salience": 3,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 68.0,
+              "band_max": 78.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.8045 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5946, L_apca=0.8045)",
+            "apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2, step 0.00) -> effective 68.0 (band max 78.0)",
             "chroma: requested 0.0429 -> capped 0.0429 (cap -0.0000) -> realized 0.0429 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -7985,12 +9008,25 @@
             "in_target_band": true,
             "wcag": 3.3565,
             "apca_lc": -24.1554,
-            "oklab_dl": 0.322013
+            "oklab_dl": 0.322013,
+            "solve": {
+              "winning_constraint": "apca_centre",
+              "wcag_floor": 3.0,
+              "base_apca_centre": 24.0,
+              "salience": 0,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 24.0,
+              "band_max": 32.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "apca_centre",
           "derivation": [
             "solved L=0.5261 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5015, L_apca=0.5261)",
+            "apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2, step 0.00) -> effective 24.0 (band max 32.0)",
             "chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []
@@ -8046,12 +9082,25 @@
             "in_target_band": true,
             "wcag": 12.4188,
             "apca_lc": -81.2792,
-            "oklab_dl": 0.674515
+            "oklab_dl": 0.674515,
+            "solve": {
+              "winning_constraint": "night_ceiling",
+              "wcag_floor": 4.5,
+              "base_apca_centre": 82.0,
+              "salience": 5,
+              "salience_apca_step": 0.0,
+              "salience_boost_requested": 0.0,
+              "salience_boost_applied": 0.0,
+              "effective_apca_centre": 82.0,
+              "band_max": 90.0,
+              "clamped_to_band_max": false
+            }
           },
           "conflicts": [],
           "winning_constraint": "night_ceiling",
           "derivation": [
             "solved L=0.8800 to night_ceiling (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.5997, L_apca=0.8847)",
+            "apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2, step 0.00) -> effective 82.0 (band max 90.0)",
             "chroma: requested 0.0715 -> capped 0.0715 (cap -0.0000) -> realized 0.0715 (gamut -0.0000), fraction 1.000"
           ],
           "issues": []

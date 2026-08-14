@@ -2,7 +2,7 @@ schema: grotto.family-build
 schema_version: phase4
 name: candidate-c-expressive
 is_candidate: true
-input_hash: fd33af8be8b3d7a2
+input_hash: c0858be5fcd1549f
 ok: true
 binding:
   name: candidate-c-expressive
@@ -81,20 +81,18 @@ binding:
 
       '
 issues:
-- '[error] day: must_distinguish(active_line, diff_added) under normal: dE 0.062 vs 0.130'
-- '[error] day: must_distinguish(active_line, diff_removed) under normal: dE 0.011 vs 0.130'
-- '[error] day: must_distinguish(diff_added, diff_changed) under normal: dE 0.047 vs 0.130'
-- '[error] day: must_distinguish(diff_added, diff_removed) under normal: dE 0.071 vs 0.130'
-- '[error] day: must_distinguish(diff_removed, diff_changed) under normal: dE 0.027 vs 0.130'
-- '[error] day: must_distinguish(search_match, search_match_current) under normal: dE 0.049 vs 0.130'
+- '[error] day: must_distinguish(active_line, diff_added) under normal: dE 0.054 vs 0.130'
+- '[error] day: must_distinguish(active_line, diff_removed) under normal: dE 0.009 vs 0.130'
+- '[error] day: must_distinguish(diff_added, diff_changed) under normal: dE 0.042 vs 0.130'
+- '[error] day: must_distinguish(diff_added, diff_removed) under normal: dE 0.061 vs 0.130'
+- '[error] day: must_distinguish(diff_removed, diff_changed) under normal: dE 0.021 vs 0.130'
+- '[error] day: must_distinguish(error, warning) under normal: dE 0.108 vs 0.130'
+- '[error] day: must_distinguish(search_match, search_match_current) under normal: dE 0.045 vs 0.130'
 - '[error] day: must_distinguish(selection, active_line) under normal: dE 0.031 vs 0.130'
-- '[error] day: must_distinguish(selection, diff_added) under normal: dE 0.077 vs 0.130'
+- '[error] day: must_distinguish(selection, diff_added) under normal: dE 0.069 vs 0.130'
 - '[error] day: must_distinguish(selection, diff_removed) under normal: dE 0.034 vs 0.130'
-- '[error] day: must_distinguish(selection, search_match) under normal: dE 0.092 vs 0.130'
-- '[error] day: must_distinguish(warning, constant) under normal: dE 0.121 vs 0.130'
-- '[error] day: must_distinguish(warning, decorator) under normal: dE 0.127 vs 0.130'
-- '[error] day: must_distinguish(warning, number) under normal: dE 0.121 vs 0.130'
-- '[error] day: must_distinguish(warning, string) under normal: dE 0.126 vs 0.130'
+- '[error] day: must_distinguish(selection, search_match) under normal: dE 0.079 vs 0.130'
+- '[error] day: must_distinguish(selection, search_match_current) under normal: dE 0.119 vs 0.130'
 - '[error] evening: must_distinguish(active_line, diff_added) under normal: dE 0.016 vs 0.130'
 - '[error] evening: must_distinguish(active_line, diff_removed) under normal: dE 0.029 vs 0.130'
 - '[error] evening: must_distinguish(diff_added, diff_changed) under normal: dE 0.012 vs 0.130'
@@ -134,103 +132,85 @@ issues:
 - '[error] night: must_distinguish(warning, decorator) under normal: dE 0.088 vs 0.130'
 - '[error] night: must_distinguish(warning, number) under normal: dE 0.071 vs 0.130'
 - '[error] night: must_distinguish(warning, string) under normal: dE 0.093 vs 0.130'
-- '[warning] builtin@day over active_line: WCAG 4.220 < 4.5 (ink-on-surface legibility)'
-- '[warning] builtin@day over debug_current: WCAG 3.893 < 4.5 (ink-on-surface legibility)'
-- '[warning] builtin@day over diff_added: WCAG 4.291 < 4.5 (ink-on-surface legibility)'
-- '[warning] builtin@day over diff_changed: WCAG 4.228 < 4.5 (ink-on-surface legibility)'
-- '[warning] builtin@day over diff_removed: WCAG 4.191 < 4.5 (ink-on-surface legibility)'
-- '[warning] builtin@day over search_match: WCAG 3.893 < 4.5 (ink-on-surface legibility)'
-- '[warning] builtin@day over search_match_current: WCAG 3.609 < 4.5 (ink-on-surface legibility)'
-- '[warning] builtin@day over selection: WCAG 3.930 < 4.5 (ink-on-surface legibility)'
+- '[warning] builtin@day over search_match_current: WCAG 4.282 < 4.5 (ink-on-surface legibility)'
 - '[warning] comment@day over active_line: WCAG 4.131 < 4.5 (ink-on-surface legibility)'
-- '[warning] comment@day over debug_current: WCAG 3.810 < 4.5 (ink-on-surface legibility)'
-- '[warning] comment@day over diff_added: WCAG 4.200 < 4.5 (ink-on-surface legibility)'
-- '[warning] comment@day over diff_changed: WCAG 4.139 < 4.5 (ink-on-surface legibility)'
-- '[warning] comment@day over diff_removed: WCAG 4.102 < 4.5 (ink-on-surface legibility)'
-- '[warning] comment@day over search_match: WCAG 3.810 < 4.5 (ink-on-surface legibility)'
-- '[warning] comment@day over search_match_current: WCAG 3.533 < 4.5 (ink-on-surface legibility)'
-- '[warning] comment@day over selection: WCAG 3.846 < 4.5 (ink-on-surface legibility)'
-- '[warning] comment@day: large chroma loss (0.0065, fraction 0.846)'
+- '[warning] comment@day over debug_current: WCAG 3.826 < 4.5 (ink-on-surface legibility)'
+- '[warning] comment@day over diff_added: WCAG 4.191 < 4.5 (ink-on-surface legibility)'
+- '[warning] comment@day over diff_changed: WCAG 4.138 < 4.5 (ink-on-surface legibility)'
+- '[warning] comment@day over diff_removed: WCAG 4.121 < 4.5 (ink-on-surface legibility)'
+- '[warning] comment@day over search_match: WCAG 3.826 < 4.5 (ink-on-surface legibility)'
+- '[warning] comment@day over search_match_current: WCAG 3.540 < 4.5 (ink-on-surface legibility)'
+- '[warning] comment@day over selection: WCAG 3.822 < 4.5 (ink-on-surface legibility)'
 - '[warning] comment@evening over search_match_current: WCAG 4.484 < 4.5 (ink-on-surface legibility)'
-- '[warning] constant@day over active_line: WCAG 4.202 < 4.5 (ink-on-surface legibility)'
-- '[warning] constant@day over debug_current: WCAG 3.877 < 4.5 (ink-on-surface legibility)'
-- '[warning] constant@day over diff_added: WCAG 4.273 < 4.5 (ink-on-surface legibility)'
-- '[warning] constant@day over diff_changed: WCAG 4.211 < 4.5 (ink-on-surface legibility)'
-- '[warning] constant@day over diff_removed: WCAG 4.174 < 4.5 (ink-on-surface legibility)'
-- '[warning] constant@day over search_match: WCAG 3.877 < 4.5 (ink-on-surface legibility)'
-- '[warning] constant@day over search_match_current: WCAG 3.594 < 4.5 (ink-on-surface legibility)'
-- '[warning] constant@day over selection: WCAG 3.913 < 4.5 (ink-on-surface legibility)'
-- '[warning] day: differentiated_by(line_number, line_number_active) via lightness under upper: dE 0.102
+- '[warning] constant@day over search_match_current: WCAG 4.289 < 4.5 (ink-on-surface legibility)'
+- '[warning] day: differentiated_by(line_number, line_number_active) via lightness under upper: dE 0.140
   vs 0.050'
-- '[warning] day: must_distinguish(active_line, diff_added) under deutan@1.0: dE 0.046 vs 0.090'
-- '[warning] day: must_distinguish(active_line, diff_added) under protan@1.0: dE 0.056 vs 0.090'
+- '[warning] day: must_distinguish(active_line, diff_added) under deutan@1.0: dE 0.039 vs 0.090'
+- '[warning] day: must_distinguish(active_line, diff_added) under protan@1.0: dE 0.049 vs 0.090'
 - '[warning] day: must_distinguish(active_line, diff_added) under tritan@1.0: dE 0.010 vs 0.090'
-- '[warning] day: must_distinguish(active_line, diff_removed) under deutan@1.0: dE 0.001 vs 0.090'
-- '[warning] day: must_distinguish(active_line, diff_removed) under protan@1.0: dE 0.007 vs 0.090'
-- '[warning] day: must_distinguish(active_line, diff_removed) under tritan@1.0: dE 0.010 vs 0.090'
-- '[warning] day: must_distinguish(diff_added, diff_changed) under deutan@1.0: dE 0.023 vs 0.090'
-- '[warning] day: must_distinguish(diff_added, diff_changed) under protan@1.0: dE 0.035 vs 0.090'
-- '[warning] day: must_distinguish(diff_added, diff_changed) under tritan@1.0: dE 0.022 vs 0.090'
-- '[warning] day: must_distinguish(diff_added, diff_removed) under deutan@1.0: dE 0.047 vs 0.090'
-- '[warning] day: must_distinguish(diff_added, diff_removed) under protan@1.0: dE 0.062 vs 0.090'
-- '[warning] day: must_distinguish(diff_added, diff_removed) under tritan@1.0: dE 0.019 vs 0.090'
-- '[warning] day: must_distinguish(diff_removed, diff_changed) under deutan@1.0: dE 0.025 vs 0.090'
-- '[warning] day: must_distinguish(diff_removed, diff_changed) under protan@1.0: dE 0.027 vs 0.090'
-- '[warning] day: must_distinguish(diff_removed, diff_changed) under tritan@1.0: dE 0.004 vs 0.090'
-- '[warning] day: must_distinguish(error, warning) under deutan@1.0: dE 0.043 vs 0.090'
-- '[warning] day: must_distinguish(search_match, search_match_current) under deutan@1.0: dE 0.050 vs 0.090'
-- '[warning] day: must_distinguish(search_match, search_match_current) under protan@1.0: dE 0.050 vs 0.090'
-- '[warning] day: must_distinguish(search_match, search_match_current) under tritan@1.0: dE 0.026 vs 0.090'
-- '[warning] day: must_distinguish(selection, active_line) under deutan@1.0: dE 0.031 vs 0.090'
-- '[warning] day: must_distinguish(selection, active_line) under protan@1.0: dE 0.028 vs 0.090'
-- '[warning] day: must_distinguish(selection, active_line) under tritan@1.0: dE 0.029 vs 0.090'
-- '[warning] day: must_distinguish(selection, diff_added) under deutan@1.0: dE 0.069 vs 0.090'
-- '[warning] day: must_distinguish(selection, diff_added) under protan@1.0: dE 0.080 vs 0.090'
-- '[warning] day: must_distinguish(selection, diff_added) under tritan@1.0: dE 0.029 vs 0.090'
-- '[warning] day: must_distinguish(selection, diff_removed) under deutan@1.0: dE 0.030 vs 0.090'
-- '[warning] day: must_distinguish(selection, diff_removed) under protan@1.0: dE 0.020 vs 0.090'
-- '[warning] day: must_distinguish(selection, diff_removed) under tritan@1.0: dE 0.034 vs 0.090'
-- '[warning] day: must_distinguish(selection, search_match) under protan@1.0: dE 0.089 vs 0.090'
-- '[warning] day: must_distinguish(selection, search_match) under tritan@1.0: dE 0.057 vs 0.090'
-- '[warning] day: must_distinguish(selection, search_match_current) under tritan@1.0: dE 0.074 vs 0.090'
+- '[warning] day: must_distinguish(active_line, diff_removed) under deutan@1.0: dE 0.002 vs 0.090'
+- '[warning] day: must_distinguish(active_line, diff_removed) under protan@1.0: dE 0.004 vs 0.090'
+- '[warning] day: must_distinguish(active_line, diff_removed) under tritan@1.0: dE 0.008 vs 0.090'
+- '[warning] day: must_distinguish(diff_added, diff_changed) under deutan@1.0: dE 0.020 vs 0.090'
+- '[warning] day: must_distinguish(diff_added, diff_changed) under protan@1.0: dE 0.032 vs 0.090'
+- '[warning] day: must_distinguish(diff_added, diff_changed) under tritan@1.0: dE 0.019 vs 0.090'
+- '[warning] day: must_distinguish(diff_added, diff_removed) under deutan@1.0: dE 0.040 vs 0.090'
+- '[warning] day: must_distinguish(diff_added, diff_removed) under protan@1.0: dE 0.053 vs 0.090'
+- '[warning] day: must_distinguish(diff_added, diff_removed) under tritan@1.0: dE 0.017 vs 0.090'
+- '[warning] day: must_distinguish(diff_removed, diff_changed) under deutan@1.0: dE 0.019 vs 0.090'
+- '[warning] day: must_distinguish(diff_removed, diff_changed) under protan@1.0: dE 0.021 vs 0.090'
+- '[warning] day: must_distinguish(diff_removed, diff_changed) under tritan@1.0: dE 0.003 vs 0.090'
+- '[warning] day: must_distinguish(error, warning) under deutan@1.0: dE 0.029 vs 0.090'
+- '[warning] day: must_distinguish(error, warning) under protan@1.0: dE 0.078 vs 0.090'
+- '[warning] day: must_distinguish(error, warning) under tritan@1.0: dE 0.074 vs 0.090'
+- '[warning] day: must_distinguish(search_match, search_match_current) under deutan@1.0: dE 0.046 vs 0.090'
+- '[warning] day: must_distinguish(search_match, search_match_current) under protan@1.0: dE 0.047 vs 0.090'
+- '[warning] day: must_distinguish(search_match, search_match_current) under tritan@1.0: dE 0.031 vs 0.090'
+- '[warning] day: must_distinguish(selection, active_line) under deutan@1.0: dE 0.030 vs 0.090'
+- '[warning] day: must_distinguish(selection, active_line) under protan@1.0: dE 0.027 vs 0.090'
+- '[warning] day: must_distinguish(selection, active_line) under tritan@1.0: dE 0.030 vs 0.090'
+- '[warning] day: must_distinguish(selection, diff_added) under deutan@1.0: dE 0.060 vs 0.090'
+- '[warning] day: must_distinguish(selection, diff_added) under protan@1.0: dE 0.071 vs 0.090'
+- '[warning] day: must_distinguish(selection, diff_added) under tritan@1.0: dE 0.030 vs 0.090'
+- '[warning] day: must_distinguish(selection, diff_removed) under deutan@1.0: dE 0.031 vs 0.090'
+- '[warning] day: must_distinguish(selection, diff_removed) under protan@1.0: dE 0.022 vs 0.090'
+- '[warning] day: must_distinguish(selection, diff_removed) under tritan@1.0: dE 0.033 vs 0.090'
+- '[warning] day: must_distinguish(selection, search_match) under deutan@1.0: dE 0.079 vs 0.090'
+- '[warning] day: must_distinguish(selection, search_match) under protan@1.0: dE 0.076 vs 0.090'
+- '[warning] day: must_distinguish(selection, search_match) under tritan@1.0: dE 0.049 vs 0.090'
+- '[warning] day: must_distinguish(selection, search_match_current) under tritan@1.0: dE 0.071 vs 0.090'
 - '[warning] day: same_family(comment, docstring) under lower: dE 0.003 vs 0.030'
-- '[warning] day: same_family(diff_added, success) under upper: dE 0.407 vs 0.140'
-- '[warning] day: same_family(diff_removed, error) under upper: dE 0.529 vs 0.140'
+- '[warning] day: same_family(diff_added, success) under upper: dE 0.485 vs 0.140'
+- '[warning] day: same_family(diff_removed, error) under upper: dE 0.603 vs 0.140'
 - '[warning] day: same_family(number, constant) under lower: dE 0.000 vs 0.030'
-- '[warning] day: same_family(warning, search_match) under upper: dE 0.490 vs 0.140'
+- '[warning] day: same_family(warning, search_match) under upper: dE 0.571 vs 0.140'
 - '[warning] day: should_distinguish(bg, bg_elevated) under normal: dE 0.024 vs 0.080'
 - '[warning] day: should_distinguish(bg_elevated, bg_overlay) under normal: dE 0.013 vs 0.080'
-- '[warning] day: should_distinguish(builtin, fg) under normal: dE 0.062 vs 0.080'
+- '[warning] day: should_distinguish(builtin, fg) under normal: dE 0.059 vs 0.080'
 - '[warning] day: should_distinguish(comment, fg) under normal: dE 0.027 vs 0.080'
-- '[warning] day: should_distinguish(number, fg) under normal: dE 0.076 vs 0.080'
+- '[warning] day: should_distinguish(number, fg) under normal: dE 0.071 vs 0.080'
 - '[warning] day: should_distinguish(operator, punctuation) under normal: dE 0.003 vs 0.080'
 - '[warning] day: should_distinguish(punctuation, fg) under normal: dE 0.010 vs 0.080'
-- '[warning] day: should_distinguish(string, number) under normal: dE 0.060 vs 0.080'
-- '[warning] day: should_distinguish(type, fg) under normal: dE 0.075 vs 0.080'
-- '[warning] decorator@day over active_line: WCAG 4.197 < 4.5 (ink-on-surface legibility)'
-- '[warning] decorator@day over debug_current: WCAG 3.872 < 4.5 (ink-on-surface legibility)'
-- '[warning] decorator@day over diff_added: WCAG 4.268 < 4.5 (ink-on-surface legibility)'
-- '[warning] decorator@day over diff_changed: WCAG 4.206 < 4.5 (ink-on-surface legibility)'
-- '[warning] decorator@day over diff_removed: WCAG 4.169 < 4.5 (ink-on-surface legibility)'
-- '[warning] decorator@day over search_match: WCAG 3.872 < 4.5 (ink-on-surface legibility)'
-- '[warning] decorator@day over search_match_current: WCAG 3.590 < 4.5 (ink-on-surface legibility)'
-- '[warning] decorator@day over selection: WCAG 3.909 < 4.5 (ink-on-surface legibility)'
+- '[warning] day: should_distinguish(string, number) under normal: dE 0.049 vs 0.080'
+- '[warning] day: should_distinguish(string, type) under normal: dE 0.070 vs 0.080'
+- '[warning] day: should_distinguish(type, fg) under normal: dE 0.078 vs 0.080'
+- '[warning] decorator@day over search_match_current: WCAG 4.262 < 4.5 (ink-on-surface legibility)'
 - '[warning] deprecated@day over active_line: WCAG 4.150 < 4.5 (ink-on-surface legibility)'
-- '[warning] deprecated@day over debug_current: WCAG 3.828 < 4.5 (ink-on-surface legibility)'
-- '[warning] deprecated@day over diff_added: WCAG 4.220 < 4.5 (ink-on-surface legibility)'
-- '[warning] deprecated@day over diff_changed: WCAG 4.158 < 4.5 (ink-on-surface legibility)'
-- '[warning] deprecated@day over diff_removed: WCAG 4.121 < 4.5 (ink-on-surface legibility)'
-- '[warning] deprecated@day over search_match: WCAG 3.828 < 4.5 (ink-on-surface legibility)'
-- '[warning] deprecated@day over search_match_current: WCAG 3.549 < 4.5 (ink-on-surface legibility)'
-- '[warning] deprecated@day over selection: WCAG 3.864 < 4.5 (ink-on-surface legibility)'
+- '[warning] deprecated@day over debug_current: WCAG 3.844 < 4.5 (ink-on-surface legibility)'
+- '[warning] deprecated@day over diff_added: WCAG 4.210 < 4.5 (ink-on-surface legibility)'
+- '[warning] deprecated@day over diff_changed: WCAG 4.157 < 4.5 (ink-on-surface legibility)'
+- '[warning] deprecated@day over diff_removed: WCAG 4.140 < 4.5 (ink-on-surface legibility)'
+- '[warning] deprecated@day over search_match: WCAG 3.844 < 4.5 (ink-on-surface legibility)'
+- '[warning] deprecated@day over search_match_current: WCAG 3.557 < 4.5 (ink-on-surface legibility)'
+- '[warning] deprecated@day over selection: WCAG 3.840 < 4.5 (ink-on-surface legibility)'
 - '[warning] docstring@day over active_line: WCAG 4.191 < 4.5 (ink-on-surface legibility)'
-- '[warning] docstring@day over debug_current: WCAG 3.866 < 4.5 (ink-on-surface legibility)'
-- '[warning] docstring@day over diff_added: WCAG 4.262 < 4.5 (ink-on-surface legibility)'
-- '[warning] docstring@day over diff_changed: WCAG 4.200 < 4.5 (ink-on-surface legibility)'
-- '[warning] docstring@day over diff_removed: WCAG 4.163 < 4.5 (ink-on-surface legibility)'
-- '[warning] docstring@day over search_match: WCAG 3.866 < 4.5 (ink-on-surface legibility)'
-- '[warning] docstring@day over search_match_current: WCAG 3.585 < 4.5 (ink-on-surface legibility)'
-- '[warning] docstring@day over selection: WCAG 3.903 < 4.5 (ink-on-surface legibility)'
+- '[warning] docstring@day over debug_current: WCAG 3.882 < 4.5 (ink-on-surface legibility)'
+- '[warning] docstring@day over diff_added: WCAG 4.252 < 4.5 (ink-on-surface legibility)'
+- '[warning] docstring@day over diff_changed: WCAG 4.199 < 4.5 (ink-on-surface legibility)'
+- '[warning] docstring@day over diff_removed: WCAG 4.181 < 4.5 (ink-on-surface legibility)'
+- '[warning] docstring@day over search_match: WCAG 3.882 < 4.5 (ink-on-surface legibility)'
+- '[warning] docstring@day over search_match_current: WCAG 3.592 < 4.5 (ink-on-surface legibility)'
+- '[warning] docstring@day over selection: WCAG 3.878 < 4.5 (ink-on-surface legibility)'
 - '[warning] evening: differentiated_by(comment, docstring) via lightness under upper: dE 0.134 vs 0.050'
 - '[warning] evening: differentiated_by(deprecated, fg) via strikethrough under upper: dE 0.133 vs 0.050'
 - '[warning] evening: differentiated_by(line_number, line_number_active) via lightness under upper: dE
@@ -303,21 +283,21 @@ issues:
 - '[warning] evening: should_distinguish(builtin, fg) under normal: dE 0.023 vs 0.080'
 - '[warning] evening: should_distinguish(string, number) under normal: dE 0.070 vs 0.080'
 - '[warning] fg@day over active_line: WCAG 4.223 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg@day over debug_current: WCAG 3.895 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg@day over diff_added: WCAG 4.294 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg@day over diff_changed: WCAG 4.231 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg@day over diff_removed: WCAG 4.194 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg@day over search_match: WCAG 3.895 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg@day over search_match_current: WCAG 3.612 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg@day over selection: WCAG 3.932 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg_muted@day over active_line: WCAG 2.745 < 3.0 (ink-on-surface legibility)'
-- '[warning] fg_muted@day over debug_current: WCAG 2.532 < 3.0 (ink-on-surface legibility)'
+- '[warning] fg@day over debug_current: WCAG 3.912 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg@day over diff_added: WCAG 4.284 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg@day over diff_changed: WCAG 4.230 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg@day over diff_removed: WCAG 4.213 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg@day over search_match: WCAG 3.912 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg@day over search_match_current: WCAG 3.619 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg@day over selection: WCAG 3.907 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg_muted@day over active_line: WCAG 2.750 < 3.0 (ink-on-surface legibility)'
+- '[warning] fg_muted@day over debug_current: WCAG 2.548 < 3.0 (ink-on-surface legibility)'
 - '[warning] fg_muted@day over diff_added: WCAG 2.791 < 3.0 (ink-on-surface legibility)'
-- '[warning] fg_muted@day over diff_changed: WCAG 2.751 < 3.0 (ink-on-surface legibility)'
-- '[warning] fg_muted@day over diff_removed: WCAG 2.726 < 3.0 (ink-on-surface legibility)'
-- '[warning] fg_muted@day over search_match: WCAG 2.532 < 3.0 (ink-on-surface legibility)'
-- '[warning] fg_muted@day over search_match_current: WCAG 2.348 < 3.0 (ink-on-surface legibility)'
-- '[warning] fg_muted@day over selection: WCAG 2.556 < 3.0 (ink-on-surface legibility)'
+- '[warning] fg_muted@day over diff_changed: WCAG 2.755 < 3.0 (ink-on-surface legibility)'
+- '[warning] fg_muted@day over diff_removed: WCAG 2.744 < 3.0 (ink-on-surface legibility)'
+- '[warning] fg_muted@day over search_match: WCAG 2.548 < 3.0 (ink-on-surface legibility)'
+- '[warning] fg_muted@day over search_match_current: WCAG 2.358 < 3.0 (ink-on-surface legibility)'
+- '[warning] fg_muted@day over selection: WCAG 2.545 < 3.0 (ink-on-surface legibility)'
 - '[warning] fg_muted@evening over active_line: WCAG 2.945 < 3.0 (ink-on-surface legibility)'
 - '[warning] fg_muted@evening over debug_current: WCAG 2.714 < 3.0 (ink-on-surface legibility)'
 - '[warning] fg_muted@evening over diff_added: WCAG 2.927 < 3.0 (ink-on-surface legibility)'
@@ -331,39 +311,23 @@ issues:
 - '[warning] fg_muted@night over search_match_current: WCAG 2.694 < 3.0 (ink-on-surface legibility)'
 - '[warning] fg_muted@night over selection: WCAG 2.921 < 3.0 (ink-on-surface legibility)'
 - '[warning] fg_secondary@day over active_line: WCAG 4.118 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg_secondary@day over debug_current: WCAG 3.799 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg_secondary@day over diff_added: WCAG 4.188 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg_secondary@day over diff_changed: WCAG 4.127 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg_secondary@day over diff_removed: WCAG 4.090 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg_secondary@day over search_match: WCAG 3.799 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg_secondary@day over search_match_current: WCAG 3.522 < 4.5 (ink-on-surface legibility)'
-- '[warning] fg_secondary@day over selection: WCAG 3.835 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg_secondary@day over debug_current: WCAG 3.815 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg_secondary@day over diff_added: WCAG 4.178 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg_secondary@day over diff_changed: WCAG 4.126 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg_secondary@day over diff_removed: WCAG 4.109 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg_secondary@day over search_match: WCAG 3.815 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg_secondary@day over search_match_current: WCAG 3.530 < 4.5 (ink-on-surface legibility)'
+- '[warning] fg_secondary@day over selection: WCAG 3.811 < 4.5 (ink-on-surface legibility)'
 - '[warning] fg_secondary@evening over search_match_current: WCAG 4.495 < 4.5 (ink-on-surface legibility)'
-- '[warning] info@day over active_line: WCAG 4.237 < 4.5 (ink-on-surface legibility)'
-- '[warning] info@day over debug_current: WCAG 3.908 < 4.5 (ink-on-surface legibility)'
-- '[warning] info@day over diff_added: WCAG 4.309 < 4.5 (ink-on-surface legibility)'
-- '[warning] info@day over diff_changed: WCAG 4.245 < 4.5 (ink-on-surface legibility)'
-- '[warning] info@day over diff_removed: WCAG 4.208 < 4.5 (ink-on-surface legibility)'
-- '[warning] info@day over search_match: WCAG 3.908 < 4.5 (ink-on-surface legibility)'
-- '[warning] info@day over search_match_current: WCAG 3.624 < 4.5 (ink-on-surface legibility)'
-- '[warning] info@day over selection: WCAG 3.945 < 4.5 (ink-on-surface legibility)'
-- '[warning] keyword@day over active_line: WCAG 4.266 < 4.5 (ink-on-surface legibility)'
-- '[warning] keyword@day over debug_current: WCAG 3.936 < 4.5 (ink-on-surface legibility)'
-- '[warning] keyword@day over diff_added: WCAG 4.339 < 4.5 (ink-on-surface legibility)'
-- '[warning] keyword@day over diff_changed: WCAG 4.275 < 4.5 (ink-on-surface legibility)'
-- '[warning] keyword@day over diff_removed: WCAG 4.238 < 4.5 (ink-on-surface legibility)'
-- '[warning] keyword@day over search_match: WCAG 3.936 < 4.5 (ink-on-surface legibility)'
-- '[warning] keyword@day over search_match_current: WCAG 3.649 < 4.5 (ink-on-surface legibility)'
-- '[warning] keyword@day over selection: WCAG 3.973 < 4.5 (ink-on-surface legibility)'
-- '[warning] keyword@day: large chroma loss (0.0646, fraction 0.713)'
+- '[warning] keyword@day over search_match_current: WCAG 4.351 < 4.5 (ink-on-surface legibility)'
 - '[warning] line_number@day over active_line: WCAG 2.777 < 3.0 (ink-on-surface legibility)'
-- '[warning] line_number@day over debug_current: WCAG 2.562 < 3.0 (ink-on-surface legibility)'
-- '[warning] line_number@day over diff_added: WCAG 2.824 < 3.0 (ink-on-surface legibility)'
-- '[warning] line_number@day over diff_changed: WCAG 2.783 < 3.0 (ink-on-surface legibility)'
-- '[warning] line_number@day over diff_removed: WCAG 2.758 < 3.0 (ink-on-surface legibility)'
-- '[warning] line_number@day over search_match: WCAG 2.562 < 3.0 (ink-on-surface legibility)'
-- '[warning] line_number@day over search_match_current: WCAG 2.375 < 3.0 (ink-on-surface legibility)'
-- '[warning] line_number@day over selection: WCAG 2.586 < 3.0 (ink-on-surface legibility)'
+- '[warning] line_number@day over debug_current: WCAG 2.572 < 3.0 (ink-on-surface legibility)'
+- '[warning] line_number@day over diff_added: WCAG 2.817 < 3.0 (ink-on-surface legibility)'
+- '[warning] line_number@day over diff_changed: WCAG 2.782 < 3.0 (ink-on-surface legibility)'
+- '[warning] line_number@day over diff_removed: WCAG 2.770 < 3.0 (ink-on-surface legibility)'
+- '[warning] line_number@day over search_match: WCAG 2.572 < 3.0 (ink-on-surface legibility)'
+- '[warning] line_number@day over search_match_current: WCAG 2.380 < 3.0 (ink-on-surface legibility)'
+- '[warning] line_number@day over selection: WCAG 2.570 < 3.0 (ink-on-surface legibility)'
 - '[warning] line_number@evening over active_line: WCAG 2.960 < 3.0 (ink-on-surface legibility)'
 - '[warning] line_number@evening over debug_current: WCAG 2.727 < 3.0 (ink-on-surface legibility)'
 - '[warning] line_number@evening over diff_added: WCAG 2.942 < 3.0 (ink-on-surface legibility)'
@@ -376,22 +340,15 @@ issues:
 - '[warning] line_number@night over search_match: WCAG 2.921 < 3.0 (ink-on-surface legibility)'
 - '[warning] line_number@night over search_match_current: WCAG 2.686 < 3.0 (ink-on-surface legibility)'
 - '[warning] line_number@night over selection: WCAG 2.912 < 3.0 (ink-on-surface legibility)'
-- '[warning] line_number_active@day over active_line: WCAG 4.211 < 4.5 (ink-on-surface legibility)'
-- '[warning] line_number_active@day over debug_current: WCAG 3.884 < 4.5 (ink-on-surface legibility)'
-- '[warning] line_number_active@day over diff_added: WCAG 4.282 < 4.5 (ink-on-surface legibility)'
-- '[warning] line_number_active@day over diff_changed: WCAG 4.219 < 4.5 (ink-on-surface legibility)'
-- '[warning] line_number_active@day over diff_removed: WCAG 4.182 < 4.5 (ink-on-surface legibility)'
-- '[warning] line_number_active@day over search_match: WCAG 3.884 < 4.5 (ink-on-surface legibility)'
-- '[warning] line_number_active@day over search_match_current: WCAG 3.601 < 4.5 (ink-on-surface legibility)'
-- '[warning] line_number_active@day over selection: WCAG 3.921 < 4.5 (ink-on-surface legibility)'
-- '[warning] namespace@day over active_line: WCAG 4.224 < 4.5 (ink-on-surface legibility)'
-- '[warning] namespace@day over debug_current: WCAG 3.897 < 4.5 (ink-on-surface legibility)'
-- '[warning] namespace@day over diff_added: WCAG 4.295 < 4.5 (ink-on-surface legibility)'
-- '[warning] namespace@day over diff_changed: WCAG 4.232 < 4.5 (ink-on-surface legibility)'
-- '[warning] namespace@day over diff_removed: WCAG 4.195 < 4.5 (ink-on-surface legibility)'
-- '[warning] namespace@day over search_match: WCAG 3.897 < 4.5 (ink-on-surface legibility)'
-- '[warning] namespace@day over search_match_current: WCAG 3.613 < 4.5 (ink-on-surface legibility)'
-- '[warning] namespace@day over selection: WCAG 3.933 < 4.5 (ink-on-surface legibility)'
+- '[warning] line_number_active@day over search_match_current: WCAG 4.253 < 4.5 (ink-on-surface legibility)'
+- '[warning] namespace@day over active_line: WCAG 4.198 < 4.5 (ink-on-surface legibility)'
+- '[warning] namespace@day over debug_current: WCAG 3.889 < 4.5 (ink-on-surface legibility)'
+- '[warning] namespace@day over diff_added: WCAG 4.259 < 4.5 (ink-on-surface legibility)'
+- '[warning] namespace@day over diff_changed: WCAG 4.205 < 4.5 (ink-on-surface legibility)'
+- '[warning] namespace@day over diff_removed: WCAG 4.188 < 4.5 (ink-on-surface legibility)'
+- '[warning] namespace@day over search_match: WCAG 3.889 < 4.5 (ink-on-surface legibility)'
+- '[warning] namespace@day over search_match_current: WCAG 3.598 < 4.5 (ink-on-surface legibility)'
+- '[warning] namespace@day over selection: WCAG 3.885 < 4.5 (ink-on-surface legibility)'
 - '[warning] night: differentiated_by(comment, docstring) via lightness under upper: dE 0.134 vs 0.050'
 - '[warning] night: differentiated_by(deprecated, fg) via strikethrough under upper: dE 0.136 vs 0.050'
 - '[warning] night: differentiated_by(line_number, line_number_active) via lightness under upper: dE 0.283
@@ -471,78 +428,42 @@ issues:
 - '[warning] night: should_distinguish(string, number) under normal: dE 0.051 vs 0.080'
 - '[warning] night: should_distinguish(string, type) under normal: dE 0.072 vs 0.080'
 - '[warning] night: should_distinguish(type, fg) under normal: dE 0.068 vs 0.080'
-- '[warning] number@day over active_line: WCAG 4.202 < 4.5 (ink-on-surface legibility)'
-- '[warning] number@day over debug_current: WCAG 3.877 < 4.5 (ink-on-surface legibility)'
-- '[warning] number@day over diff_added: WCAG 4.273 < 4.5 (ink-on-surface legibility)'
-- '[warning] number@day over diff_changed: WCAG 4.211 < 4.5 (ink-on-surface legibility)'
-- '[warning] number@day over diff_removed: WCAG 4.174 < 4.5 (ink-on-surface legibility)'
-- '[warning] number@day over search_match: WCAG 3.877 < 4.5 (ink-on-surface legibility)'
-- '[warning] number@day over search_match_current: WCAG 3.594 < 4.5 (ink-on-surface legibility)'
-- '[warning] number@day over selection: WCAG 3.913 < 4.5 (ink-on-surface legibility)'
+- '[warning] number@day over search_match_current: WCAG 4.289 < 4.5 (ink-on-surface legibility)'
 - '[warning] operator@day over active_line: WCAG 4.211 < 4.5 (ink-on-surface legibility)'
-- '[warning] operator@day over debug_current: WCAG 3.884 < 4.5 (ink-on-surface legibility)'
-- '[warning] operator@day over diff_added: WCAG 4.282 < 4.5 (ink-on-surface legibility)'
-- '[warning] operator@day over diff_changed: WCAG 4.219 < 4.5 (ink-on-surface legibility)'
-- '[warning] operator@day over diff_removed: WCAG 4.182 < 4.5 (ink-on-surface legibility)'
-- '[warning] operator@day over search_match: WCAG 3.884 < 4.5 (ink-on-surface legibility)'
-- '[warning] operator@day over search_match_current: WCAG 3.601 < 4.5 (ink-on-surface legibility)'
-- '[warning] operator@day over selection: WCAG 3.921 < 4.5 (ink-on-surface legibility)'
+- '[warning] operator@day over debug_current: WCAG 3.901 < 4.5 (ink-on-surface legibility)'
+- '[warning] operator@day over diff_added: WCAG 4.272 < 4.5 (ink-on-surface legibility)'
+- '[warning] operator@day over diff_changed: WCAG 4.218 < 4.5 (ink-on-surface legibility)'
+- '[warning] operator@day over diff_removed: WCAG 4.201 < 4.5 (ink-on-surface legibility)'
+- '[warning] operator@day over search_match: WCAG 3.901 < 4.5 (ink-on-surface legibility)'
+- '[warning] operator@day over search_match_current: WCAG 3.609 < 4.5 (ink-on-surface legibility)'
+- '[warning] operator@day over selection: WCAG 3.896 < 4.5 (ink-on-surface legibility)'
 - '[warning] parameter@day over active_line: WCAG 4.223 < 4.5 (ink-on-surface legibility)'
-- '[warning] parameter@day over debug_current: WCAG 3.895 < 4.5 (ink-on-surface legibility)'
-- '[warning] parameter@day over diff_added: WCAG 4.294 < 4.5 (ink-on-surface legibility)'
-- '[warning] parameter@day over diff_changed: WCAG 4.231 < 4.5 (ink-on-surface legibility)'
-- '[warning] parameter@day over diff_removed: WCAG 4.194 < 4.5 (ink-on-surface legibility)'
-- '[warning] parameter@day over search_match: WCAG 3.895 < 4.5 (ink-on-surface legibility)'
-- '[warning] parameter@day over search_match_current: WCAG 3.612 < 4.5 (ink-on-surface legibility)'
-- '[warning] parameter@day over selection: WCAG 3.932 < 4.5 (ink-on-surface legibility)'
-- '[warning] property@day over active_line: WCAG 4.185 < 4.5 (ink-on-surface legibility)'
-- '[warning] property@day over debug_current: WCAG 3.861 < 4.5 (ink-on-surface legibility)'
-- '[warning] property@day over diff_added: WCAG 4.256 < 4.5 (ink-on-surface legibility)'
-- '[warning] property@day over diff_changed: WCAG 4.194 < 4.5 (ink-on-surface legibility)'
-- '[warning] property@day over diff_removed: WCAG 4.157 < 4.5 (ink-on-surface legibility)'
-- '[warning] property@day over search_match: WCAG 3.861 < 4.5 (ink-on-surface legibility)'
-- '[warning] property@day over search_match_current: WCAG 3.580 < 4.5 (ink-on-surface legibility)'
-- '[warning] property@day over selection: WCAG 3.897 < 4.5 (ink-on-surface legibility)'
+- '[warning] parameter@day over debug_current: WCAG 3.912 < 4.5 (ink-on-surface legibility)'
+- '[warning] parameter@day over diff_added: WCAG 4.284 < 4.5 (ink-on-surface legibility)'
+- '[warning] parameter@day over diff_changed: WCAG 4.230 < 4.5 (ink-on-surface legibility)'
+- '[warning] parameter@day over diff_removed: WCAG 4.213 < 4.5 (ink-on-surface legibility)'
+- '[warning] parameter@day over search_match: WCAG 3.912 < 4.5 (ink-on-surface legibility)'
+- '[warning] parameter@day over search_match_current: WCAG 3.619 < 4.5 (ink-on-surface legibility)'
+- '[warning] parameter@day over selection: WCAG 3.907 < 4.5 (ink-on-surface legibility)'
+- '[warning] property@day over active_line: WCAG 4.190 < 4.5 (ink-on-surface legibility)'
+- '[warning] property@day over debug_current: WCAG 3.881 < 4.5 (ink-on-surface legibility)'
+- '[warning] property@day over diff_added: WCAG 4.251 < 4.5 (ink-on-surface legibility)'
+- '[warning] property@day over diff_changed: WCAG 4.198 < 4.5 (ink-on-surface legibility)'
+- '[warning] property@day over diff_removed: WCAG 4.180 < 4.5 (ink-on-surface legibility)'
+- '[warning] property@day over search_match: WCAG 3.881 < 4.5 (ink-on-surface legibility)'
+- '[warning] property@day over search_match_current: WCAG 3.592 < 4.5 (ink-on-surface legibility)'
+- '[warning] property@day over selection: WCAG 3.877 < 4.5 (ink-on-surface legibility)'
 - '[warning] punctuation@day over active_line: WCAG 4.150 < 4.5 (ink-on-surface legibility)'
-- '[warning] punctuation@day over debug_current: WCAG 3.828 < 4.5 (ink-on-surface legibility)'
-- '[warning] punctuation@day over diff_added: WCAG 4.220 < 4.5 (ink-on-surface legibility)'
-- '[warning] punctuation@day over diff_changed: WCAG 4.158 < 4.5 (ink-on-surface legibility)'
-- '[warning] punctuation@day over diff_removed: WCAG 4.121 < 4.5 (ink-on-surface legibility)'
-- '[warning] punctuation@day over search_match: WCAG 3.828 < 4.5 (ink-on-surface legibility)'
-- '[warning] punctuation@day over search_match_current: WCAG 3.549 < 4.5 (ink-on-surface legibility)'
-- '[warning] punctuation@day over selection: WCAG 3.864 < 4.5 (ink-on-surface legibility)'
-- '[warning] string@day over active_line: WCAG 4.244 < 4.5 (ink-on-surface legibility)'
-- '[warning] string@day over debug_current: WCAG 3.915 < 4.5 (ink-on-surface legibility)'
-- '[warning] string@day over diff_added: WCAG 4.316 < 4.5 (ink-on-surface legibility)'
-- '[warning] string@day over diff_changed: WCAG 4.253 < 4.5 (ink-on-surface legibility)'
-- '[warning] string@day over diff_removed: WCAG 4.215 < 4.5 (ink-on-surface legibility)'
-- '[warning] string@day over search_match: WCAG 3.915 < 4.5 (ink-on-surface legibility)'
-- '[warning] string@day over search_match_current: WCAG 3.630 < 4.5 (ink-on-surface legibility)'
-- '[warning] string@day over selection: WCAG 3.952 < 4.5 (ink-on-surface legibility)'
-- '[warning] success@day over active_line: WCAG 4.232 < 4.5 (ink-on-surface legibility)'
-- '[warning] success@day over debug_current: WCAG 3.904 < 4.5 (ink-on-surface legibility)'
-- '[warning] success@day over diff_added: WCAG 4.304 < 4.5 (ink-on-surface legibility)'
-- '[warning] success@day over diff_changed: WCAG 4.241 < 4.5 (ink-on-surface legibility)'
-- '[warning] success@day over diff_removed: WCAG 4.203 < 4.5 (ink-on-surface legibility)'
-- '[warning] success@day over search_match: WCAG 3.904 < 4.5 (ink-on-surface legibility)'
-- '[warning] success@day over search_match_current: WCAG 3.620 < 4.5 (ink-on-surface legibility)'
-- '[warning] success@day over selection: WCAG 3.941 < 4.5 (ink-on-surface legibility)'
-- '[warning] tag@day over active_line: WCAG 4.218 < 4.5 (ink-on-surface legibility)'
-- '[warning] tag@day over debug_current: WCAG 3.891 < 4.5 (ink-on-surface legibility)'
-- '[warning] tag@day over diff_added: WCAG 4.289 < 4.5 (ink-on-surface legibility)'
-- '[warning] tag@day over diff_changed: WCAG 4.227 < 4.5 (ink-on-surface legibility)'
-- '[warning] tag@day over diff_removed: WCAG 4.189 < 4.5 (ink-on-surface legibility)'
-- '[warning] tag@day over search_match: WCAG 3.891 < 4.5 (ink-on-surface legibility)'
-- '[warning] tag@day over search_match_current: WCAG 3.608 < 4.5 (ink-on-surface legibility)'
-- '[warning] tag@day over selection: WCAG 3.928 < 4.5 (ink-on-surface legibility)'
-- '[warning] type@day over active_line: WCAG 4.250 < 4.5 (ink-on-surface legibility)'
-- '[warning] type@day over debug_current: WCAG 3.921 < 4.5 (ink-on-surface legibility)'
-- '[warning] type@day over diff_added: WCAG 4.322 < 4.5 (ink-on-surface legibility)'
-- '[warning] type@day over diff_changed: WCAG 4.259 < 4.5 (ink-on-surface legibility)'
-- '[warning] type@day over diff_removed: WCAG 4.221 < 4.5 (ink-on-surface legibility)'
-- '[warning] type@day over search_match: WCAG 3.921 < 4.5 (ink-on-surface legibility)'
-- '[warning] type@day over search_match_current: WCAG 3.635 < 4.5 (ink-on-surface legibility)'
-- '[warning] type@day over selection: WCAG 3.958 < 4.5 (ink-on-surface legibility)'
+- '[warning] punctuation@day over debug_current: WCAG 3.844 < 4.5 (ink-on-surface legibility)'
+- '[warning] punctuation@day over diff_added: WCAG 4.210 < 4.5 (ink-on-surface legibility)'
+- '[warning] punctuation@day over diff_changed: WCAG 4.157 < 4.5 (ink-on-surface legibility)'
+- '[warning] punctuation@day over diff_removed: WCAG 4.140 < 4.5 (ink-on-surface legibility)'
+- '[warning] punctuation@day over search_match: WCAG 3.844 < 4.5 (ink-on-surface legibility)'
+- '[warning] punctuation@day over search_match_current: WCAG 3.557 < 4.5 (ink-on-surface legibility)'
+- '[warning] punctuation@day over selection: WCAG 3.840 < 4.5 (ink-on-surface legibility)'
+- '[warning] string@day over search_match_current: WCAG 4.265 < 4.5 (ink-on-surface legibility)'
+- '[warning] tag@day over search_match_current: WCAG 4.290 < 4.5 (ink-on-surface legibility)'
+- '[warning] type@day over search_match_current: WCAG 4.294 < 4.5 (ink-on-surface legibility)'
 stability:
   variants:
   - day
@@ -560,7 +481,7 @@ stability:
     variants:
     - day
     - evening
-    d1: 0.1641
+    d1: 0.0188
     d2: -0.0185
   - roles:
     - focus
@@ -572,27 +493,11 @@ stability:
     d2: 0.0426
   - roles:
     - keyword
-    - string
-    variants:
-    - day
-    - evening
-    d1: -0.0882
-    d2: 0.1206
-  - roles:
-    - keyword
-    - string
-    variants:
-    - day
-    - night
-    d1: -0.0882
-    d2: 0.1002
-  - roles:
-    - keyword
     - number
     variants:
     - day
     - evening
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.063
   - roles:
     - keyword
@@ -600,7 +505,7 @@ stability:
     variants:
     - day
     - night
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.0561
   - roles:
     - keyword
@@ -608,7 +513,7 @@ stability:
     variants:
     - day
     - evening
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.063
   - roles:
     - keyword
@@ -616,7 +521,7 @@ stability:
     variants:
     - day
     - night
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.0561
   - roles:
     - keyword
@@ -624,7 +529,7 @@ stability:
     variants:
     - day
     - evening
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.0581
   - roles:
     - keyword
@@ -632,7 +537,7 @@ stability:
     variants:
     - day
     - night
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.0451
   - roles:
     - keyword
@@ -640,7 +545,7 @@ stability:
     variants:
     - day
     - evening
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.0383
   - roles:
     - keyword
@@ -648,7 +553,7 @@ stability:
     variants:
     - day
     - night
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.0013
   - roles:
     - keyword
@@ -656,7 +561,7 @@ stability:
     variants:
     - day
     - evening
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.0284
   - roles:
     - keyword
@@ -672,7 +577,7 @@ stability:
     variants:
     - day
     - evening
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.0284
   - roles:
     - keyword
@@ -688,7 +593,7 @@ stability:
     variants:
     - day
     - evening
-    d1: -0.1641
+    d1: -0.0188
     d2: 0.0185
   - roles:
     - keyword
@@ -785,40 +690,40 @@ variants:
         bg_overlay: '#ffffff'
         fg: '#726d69'
         fg_secondary: '#736f6a'
-        fg_muted: '#928c86'
+        fg_muted: '#918c87'
         comment: '#7f6c5b'
         docstring: '#7e6b5a'
         punctuation: '#6f6f6f'
         operator: '#6e6e6e'
         line_number: '#8c8c8c'
-        line_number_active: '#6e6e6e'
+        line_number_active: '#636363'
         ui_inactive: '#8c8c8c'
         active_line: '#ebe9e7'
-        selection: '#d9e3ec'
-        focus: '#215075'
-        keyword: '#984fae'
-        string: '#5f7537'
-        number: '#846b30'
-        constant: '#846b30'
-        type: '#347873'
-        function: '#134f7c'
+        selection: '#dae2ea'
+        focus: '#1c3953'
+        keyword: '#8c42a2'
+        string: '#576939'
+        number: '#746034'
+        constant: '#746034'
+        type: '#376b67'
+        function: '#143957'
         parameter: '#726d69'
-        property: '#6a6f75'
-        builtin: '#936067'
-        decorator: '#796d55'
-        namespace: '#587371'
-        tag: '#885f94'
-        error: '#8f143b'
-        warning: '#60490e'
-        info: '#3272a6'
-        success: '#5d762f'
-        diff_added: '#dff2c4'
-        diff_removed: '#f1e6e8'
-        diff_changed: '#f1e9d7'
-        search_match: '#f8dea7'
-        search_match_current: '#fcd479'
-        breakpoint: '#8f143b'
-        debug_current: '#f8dea7'
+        property: '#6a6f74'
+        builtin: '#80585d'
+        decorator: '#6b6250'
+        namespace: '#5b7370'
+        tag: '#775781'
+        error: '#64172b'
+        warning: '#453512'
+        info: '#2f5a7f'
+        success: '#4b5d2c'
+        diff_added: '#e0f1c9'
+        diff_removed: '#f0e7e8'
+        diff_changed: '#f0e9da'
+        search_match: '#f5dfb0'
+        search_match_current: '#f8d588'
+        breakpoint: '#64172b'
+        debug_current: '#f5dfb0'
         deprecated: '#6f6f6f'
     traces:
       active_line:
@@ -832,22 +737,22 @@ variants:
         - 68.0
         requested:
         - 0.935
-        - 0.0037
+        - 0.0032
         - 68.0
         capped:
         - 0.935
-        - 0.0037
+        - 0.0032
         - 68.0
         realized:
         - 0.935
-        - 0.0037
+        - 0.0032
         - 68.0
         final_hex: '#ebe9e7'
         max_chroma_at_L: 0.046364
         chroma_losses:
-          requested: 0.003732
-          capped: 0.003732
-          realized: 0.003732
+          requested: 0.003245
+          capped: 0.003245
+          realized: 0.003245
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -871,7 +776,7 @@ variants:
         winning_constraint: perceptual_step
         derivation:
         - 'surface step: L=0.9350 (canvas 0.9650 -.0.0300)'
-        - 'chroma: requested 0.0037 -> capped 0.0037 (cap -0.0000) -> realized 0.0037 (gamut -0.0000),
+        - 'chroma: requested 0.0032 -> capped 0.0032 (cap -0.0000) -> realized 0.0032 (gamut -0.0000),
           fraction 1.000'
         issues: []
       bg:
@@ -1016,23 +921,23 @@ variants:
         - 0.0
         - 10.0
         requested:
-        - 0.4261
-        - 0.1568
+        - 0.3426
+        - 0.1096
         - 10.0
         capped:
-        - 0.4261
-        - 0.1568
+        - 0.3426
+        - 0.1096
         - 10.0
         realized:
-        - 0.4261
-        - 0.1568
+        - 0.3426
+        - 0.1096
         - 10.0
-        final_hex: '#8f143b'
-        max_chroma_at_L: 0.170425
+        final_hex: '#64172b'
+        max_chroma_at_L: 0.137009
         chroma_losses:
-          requested: 0.156791
-          capped: 0.156791
-          realized: 0.156791
+          requested: 0.109607
+          capped: 0.109607
+          realized: 0.109607
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1047,16 +952,29 @@ variants:
         contrast:
           reference: bg
           target_band: high
-          measured_band: high
-          in_target_band: true
-          wcag: 8.1341
-          apca_lc: 82.0488
-          oklab_dl: -0.539369
+          measured_band: maximal
+          in_target_band: false
+          wcag: 11.1585
+          apca_lc: 90.1272
+          oklab_dl: -0.623759
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 82.0
+            salience: 5
+            salience_apca_step: 5.0
+            salience_boost_requested: 15.0
+            salience_boost_applied: 8.0
+            effective_apca_centre: 90.0
+            band_max: 90.0
+            clamped_to_band_max: true
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.4261 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.6636, L_apca=0.4261)
-        - 'chroma: requested 0.1568 -> capped 0.1568 (cap -0.0000) -> realized 0.1568 (gamut -0.0000),
+        - solved L=0.3426 to apca_centre (wcag_floor=3.0, apca_centre=90.0, L_wcag=0.6636, L_apca=0.3426)
+        - 'apca centre: base 82.0 + salience boost 15.0 requested / 8.0 applied (salience 5 vs normal
+          2, step 5.00) -> effective 90.0 (band max 90.0)'
+        - 'chroma: requested 0.1096 -> capped 0.1096 (cap -0.0000) -> realized 0.1096 (gamut -0.0000),
           fraction 1.000'
         issues: []
       builtin:
@@ -1069,23 +987,23 @@ variants:
         - 0.0
         - 10.0
         requested:
-        - 0.5467
-        - 0.0679
+        - 0.5049
+        - 0.0545
         - 10.0
         capped:
-        - 0.5467
-        - 0.0679
+        - 0.5049
+        - 0.0545
         - 10.0
         realized:
-        - 0.5467
-        - 0.0679
+        - 0.5049
+        - 0.0545
         - 10.0
-        final_hex: '#936067'
-        max_chroma_at_L: 0.218636
+        final_hex: '#80585d'
+        max_chroma_at_L: 0.201935
         chroma_losses:
-          requested: 0.067886
-          capped: 0.067886
-          realized: 0.067886
+          requested: 0.054522
+          capped: 0.054522
+          realized: 0.054522
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1102,14 +1020,27 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.614
-          apca_lc: 68.106
-          oklab_dl: -0.418721
+          wcag: 5.4616
+          apca_lc: 73.1182
+          oklab_dl: -0.460064
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 5.0
+            salience_boost_requested: 5.0
+            salience_boost_applied: 5.0
+            effective_apca_centre: 73.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5467 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5529, L_apca=0.5467)
-        - 'chroma: requested 0.0679 -> capped 0.0679 (cap -0.0000) -> realized 0.0679 (gamut -0.0000),
+        - solved L=0.5049 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5511, L_apca=0.5049)
+        - 'apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2,
+          step 5.00) -> effective 73.0 (band max 78.0)'
+        - 'chroma: requested 0.0545 -> capped 0.0545 (cap -0.0000) -> realized 0.0545 (gamut -0.0000),
           fraction 1.000'
         issues: []
       comment:
@@ -1123,7 +1054,7 @@ variants:
         - 64.0
         requested:
         - 0.5451
-        - 0.0425
+        - 0.037
         - 64.0
         capped:
         - 0.5451
@@ -1136,13 +1067,13 @@ variants:
         final_hex: '#7f6c5b'
         max_chroma_at_L: 0.123299
         chroma_losses:
-          requested: 0.042538
+          requested: 0.03699
           capped: 0.036
           realized: 0.036
-          cap_loss: 0.006538
+          cap_loss: 0.00099
           gamut_loss: 0.0
-          total_loss: 0.006538
-          realized_fraction: 0.846301
+          total_loss: 0.00099
+          realized_fraction: 0.973247
           category: warm-neutral
           ceiling: 0.036
           class_fraction_source: candidate
@@ -1158,15 +1089,27 @@ variants:
           wcag: 4.5163
           apca_lc: 67.5667
           oklab_dl: -0.420222
+          solve:
+            winning_constraint: wcag_floor
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts:
         - wcag_apca_conflict
         winning_constraint: wcag_floor
         derivation:
         - solved L=0.5451 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5451, L_apca=0.7010)
-        - 'chroma: requested 0.0425 -> capped 0.0360 (cap -0.0065) -> realized 0.0360 (gamut -0.0000),
-          fraction 0.846'
-        issues:
-        - '[warning] comment@day: large chroma loss (0.0065, fraction 0.846)'
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 5.00) -> effective 45.0 (band max 55.0)'
+        - 'chroma: requested 0.0370 -> capped 0.0360 (cap -0.0010) -> realized 0.0360 (gamut -0.0000),
+          fraction 0.973'
+        issues: []
       constant:
         role: constant
         paint: ink
@@ -1177,23 +1120,23 @@ variants:
         - 0.0
         - 86.0
         requested:
-        - 0.5403
-        - 0.084
+        - 0.4999
+        - 0.0675
         - 86.0
         capped:
-        - 0.5403
-        - 0.084
+        - 0.4999
+        - 0.0675
         - 86.0
         realized:
-        - 0.5403
-        - 0.084
+        - 0.4999
+        - 0.0675
         - 86.0
-        final_hex: '#846b30'
-        max_chroma_at_L: 0.110611
+        final_hex: '#746034'
+        max_chroma_at_L: 0.102341
         chroma_losses:
-          requested: 0.083954
-          capped: 0.083954
-          realized: 0.083954
+          requested: 0.067545
+          capped: 0.067545
+          realized: 0.067545
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1210,14 +1153,27 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.5947
-          apca_lc: 68.0131
-          oklab_dl: -0.42506
+          wcag: 5.4718
+          apca_lc: 73.1977
+          oklab_dl: -0.466335
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 5.0
+            salience_boost_requested: 5.0
+            salience_boost_applied: 5.0
+            effective_apca_centre: 73.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5403 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5455, L_apca=0.5403)
-        - 'chroma: requested 0.0840 -> capped 0.0840 (cap -0.0000) -> realized 0.0840 (gamut -0.0000),
+        - solved L=0.4999 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5429, L_apca=0.4999)
+        - 'apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2,
+          step 5.00) -> effective 73.0 (band max 78.0)'
+        - 'chroma: requested 0.0675 -> capped 0.0675 (cap -0.0000) -> realized 0.0675 (gamut -0.0000),
           fraction 1.000'
         issues: []
       debug_current:
@@ -1231,22 +1187,22 @@ variants:
         - 86.0
         requested:
         - 0.91
-        - 0.076
+        - 0.0661
         - 86.0
         capped:
         - 0.91
-        - 0.076
+        - 0.0661
         - 86.0
         realized:
         - 0.91
-        - 0.076
+        - 0.0661
         - 86.0
-        final_hex: '#f8dea7'
+        final_hex: '#f5dfb0'
         max_chroma_at_L: 0.100105
         chroma_losses:
-          requested: 0.07598
-          capped: 0.07598
-          realized: 0.07598
+          requested: 0.066069
+          capped: 0.066069
+          realized: 0.066069
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1263,14 +1219,14 @@ variants:
           target_band: low
           measured_band: null
           in_target_band: false
-          wcag: 1.1853
-          apca_lc: 8.4144
-          oklab_dl: -0.055787
+          wcag: 1.1803
+          apca_lc: 8.167
+          oklab_dl: -0.054638
         conflicts: []
         winning_constraint: perceptual_step
         derivation:
         - 'surface step: L=0.9100 (canvas 0.9650 -.0.0550)'
-        - 'chroma: requested 0.0760 -> capped 0.0760 (cap -0.0000) -> realized 0.0760 (gamut -0.0000),
+        - 'chroma: requested 0.0661 -> capped 0.0661 (cap -0.0000) -> realized 0.0661 (gamut -0.0000),
           fraction 1.000'
         issues: []
       decorator:
@@ -1283,23 +1239,23 @@ variants:
         - 0.0
         - 86.0
         requested:
-        - 0.5401
-        - 0.0381
+        - 0.5007
+        - 0.0308
         - 86.0
         capped:
-        - 0.5401
-        - 0.0381
+        - 0.5007
+        - 0.0308
         - 86.0
         realized:
-        - 0.5401
-        - 0.0381
+        - 0.5007
+        - 0.0308
         - 86.0
-        final_hex: '#796d55'
-        max_chroma_at_L: 0.110565
+        final_hex: '#6b6250'
+        max_chroma_at_L: 0.102501
         chroma_losses:
-          requested: 0.038145
-          capped: 0.038145
-          realized: 0.038145
+          requested: 0.03075
+          capped: 0.03075
+          realized: 0.03075
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1316,14 +1272,27 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.5894
-          apca_lc: 68.0676
-          oklab_dl: -0.425523
+          wcag: 5.4362
+          apca_lc: 73.0768
+          oklab_dl: -0.46542
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 5.0
+            salience_boost_requested: 5.0
+            salience_boost_applied: 5.0
+            effective_apca_centre: 73.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5401 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5436, L_apca=0.5401)
-        - 'chroma: requested 0.0381 -> capped 0.0381 (cap -0.0000) -> realized 0.0381 (gamut -0.0000),
+        - solved L=0.5007 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5429, L_apca=0.5007)
+        - 'apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2,
+          step 5.00) -> effective 73.0 (band max 78.0)'
+        - 'chroma: requested 0.0308 -> capped 0.0308 (cap -0.0000) -> realized 0.0308 (gamut -0.0000),
           fraction 1.000'
         issues: []
       deprecated:
@@ -1372,11 +1341,24 @@ variants:
           wcag: 4.5371
           apca_lc: 67.7383
           oklab_dl: -0.423101
+          solve:
+            winning_constraint: wcag_floor
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts:
         - wcag_apca_conflict
         winning_constraint: wcag_floor
         derivation:
         - solved L=0.5434 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5434, L_apca=0.7008)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 5.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -1391,22 +1373,22 @@ variants:
         - 126.0
         requested:
         - 0.935
-        - 0.0638
+        - 0.0555
         - 126.0
         capped:
         - 0.935
-        - 0.0638
+        - 0.0555
         - 126.0
         realized:
         - 0.935
-        - 0.0638
+        - 0.0555
         - 126.0
-        final_hex: '#dff2c4'
+        final_hex: '#e0f1c9'
         max_chroma_at_L: 0.184952
         chroma_losses:
-          requested: 0.063808
-          capped: 0.063808
-          realized: 0.063808
+          requested: 0.055486
+          capped: 0.055486
+          realized: 0.055486
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1423,14 +1405,14 @@ variants:
           target_band: minimal
           measured_band: null
           in_target_band: false
-          wcag: 1.0752
+          wcag: 1.0777
           apca_lc: 0.0
-          oklab_dl: -0.029439
+          oklab_dl: -0.029635
         conflicts: []
         winning_constraint: perceptual_step
         derivation:
         - 'surface step: L=0.9350 (canvas 0.9650 -.0.0300)'
-        - 'chroma: requested 0.0638 -> capped 0.0638 (cap -0.0000) -> realized 0.0638 (gamut -0.0000),
+        - 'chroma: requested 0.0555 -> capped 0.0555 (cap -0.0000) -> realized 0.0555 (gamut -0.0000),
           fraction 1.000'
         issues: []
       diff_changed:
@@ -1444,22 +1426,22 @@ variants:
         - 86.0
         requested:
         - 0.935
-        - 0.0247
+        - 0.0215
         - 86.0
         capped:
         - 0.935
-        - 0.0247
+        - 0.0215
         - 86.0
         realized:
         - 0.935
-        - 0.0247
+        - 0.0215
         - 86.0
-        final_hex: '#f1e9d7'
+        final_hex: '#f0e9da'
         max_chroma_at_L: 0.071686
         chroma_losses:
-          requested: 0.024732
-          capped: 0.024732
-          realized: 0.024732
+          requested: 0.021506
+          capped: 0.021506
+          realized: 0.021506
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1476,14 +1458,14 @@ variants:
           target_band: minimal
           measured_band: null
           in_target_band: false
-          wcag: 1.0912
+          wcag: 1.0914
           apca_lc: 0.0
-          oklab_dl: -0.029323
+          oklab_dl: -0.029354
         conflicts: []
         winning_constraint: perceptual_step
         derivation:
         - 'surface step: L=0.9350 (canvas 0.9650 -.0.0300)'
-        - 'chroma: requested 0.0247 -> capped 0.0247 (cap -0.0000) -> realized 0.0247 (gamut -0.0000),
+        - 'chroma: requested 0.0215 -> capped 0.0215 (cap -0.0000) -> realized 0.0215 (gamut -0.0000),
           fraction 1.000'
         issues: []
       diff_removed:
@@ -1497,22 +1479,22 @@ variants:
         - 10.0
         requested:
         - 0.935
-        - 0.0116
+        - 0.0101
         - 10.0
         capped:
         - 0.935
-        - 0.0116
+        - 0.0101
         - 10.0
         realized:
         - 0.935
-        - 0.0116
+        - 0.0101
         - 10.0
-        final_hex: '#f1e6e8'
+        final_hex: '#f0e7e8'
         max_chroma_at_L: 0.033531
         chroma_losses:
-          requested: 0.011568
-          capped: 0.011568
-          realized: 0.011568
+          requested: 0.010059
+          capped: 0.010059
+          realized: 0.010059
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1529,14 +1511,14 @@ variants:
           target_band: minimal
           measured_band: null
           in_target_band: false
-          wcag: 1.1009
+          wcag: 1.096
           apca_lc: 0.0
-          oklab_dl: -0.030636
+          oklab_dl: -0.029495
         conflicts: []
         winning_constraint: perceptual_step
         derivation:
         - 'surface step: L=0.9350 (canvas 0.9650 -.0.0300)'
-        - 'chroma: requested 0.0116 -> capped 0.0116 (cap -0.0000) -> realized 0.0116 (gamut -0.0000),
+        - 'chroma: requested 0.0101 -> capped 0.0101 (cap -0.0000) -> realized 0.0101 (gamut -0.0000),
           fraction 1.000'
         issues: []
       docstring:
@@ -1550,7 +1532,7 @@ variants:
         - 64.0
         requested:
         - 0.5418
-        - 0.0423
+        - 0.0368
         - 64.0
         capped:
         - 0.5418
@@ -1563,13 +1545,13 @@ variants:
         final_hex: '#7e6b5a'
         max_chroma_at_L: 0.122536
         chroma_losses:
-          requested: 0.042275
+          requested: 0.036761
           capped: 0.036
           realized: 0.036
-          cap_loss: 0.006275
+          cap_loss: 0.000761
           gamut_loss: 0.0
-          total_loss: 0.006275
-          realized_fraction: 0.851571
+          total_loss: 0.000761
+          realized_fraction: 0.979306
           category: warm-neutral
           ceiling: 0.036
           class_fraction_source: candidate
@@ -1585,12 +1567,25 @@ variants:
           wcag: 4.5825
           apca_lc: 68.0146
           oklab_dl: -0.42367
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.5418 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5451, L_apca=0.5418)
-        - 'chroma: requested 0.0423 -> capped 0.0360 (cap -0.0063) -> realized 0.0360 (gamut -0.0000),
-          fraction 0.852'
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 5.00) -> effective 68.0 (band max 78.0)'
+        - 'chroma: requested 0.0368 -> capped 0.0360 (cap -0.0008) -> realized 0.0360 (gamut -0.0000),
+          fraction 0.979'
         issues: []
       error:
         role: error
@@ -1602,23 +1597,23 @@ variants:
         - 0.0
         - 10.0
         requested:
-        - 0.4261
-        - 0.1568
+        - 0.3426
+        - 0.1096
         - 10.0
         capped:
-        - 0.4261
-        - 0.1568
+        - 0.3426
+        - 0.1096
         - 10.0
         realized:
-        - 0.4261
-        - 0.1568
+        - 0.3426
+        - 0.1096
         - 10.0
-        final_hex: '#8f143b'
-        max_chroma_at_L: 0.170425
+        final_hex: '#64172b'
+        max_chroma_at_L: 0.137009
         chroma_losses:
-          requested: 0.156791
-          capped: 0.156791
-          realized: 0.156791
+          requested: 0.109607
+          capped: 0.109607
+          realized: 0.109607
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1633,16 +1628,29 @@ variants:
         contrast:
           reference: bg
           target_band: high
-          measured_band: high
-          in_target_band: true
-          wcag: 8.1341
-          apca_lc: 82.0488
-          oklab_dl: -0.539369
+          measured_band: maximal
+          in_target_band: false
+          wcag: 11.1585
+          apca_lc: 90.1272
+          oklab_dl: -0.623759
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 82.0
+            salience: 6
+            salience_apca_step: 5.0
+            salience_boost_requested: 20.0
+            salience_boost_applied: 8.0
+            effective_apca_centre: 90.0
+            band_max: 90.0
+            clamped_to_band_max: true
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.4261 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.5646, L_apca=0.4261)
-        - 'chroma: requested 0.1568 -> capped 0.1568 (cap -0.0000) -> realized 0.1568 (gamut -0.0000),
+        - solved L=0.3426 to apca_centre (wcag_floor=4.5, apca_centre=90.0, L_wcag=0.5646, L_apca=0.3426)
+        - 'apca centre: base 82.0 + salience boost 20.0 requested / 8.0 applied (salience 6 vs normal
+          2, step 5.00) -> effective 90.0 (band max 90.0)'
+        - 'chroma: requested 0.1096 -> capped 0.1096 (cap -0.0000) -> realized 0.1096 (gamut -0.0000),
           fraction 1.000'
         issues: []
       fg:
@@ -1655,23 +1663,23 @@ variants:
         - 0.0
         - 68.0
         requested:
-        - 0.5393
-        - 0.0095
+        - 0.5389
+        - 0.0083
         - 68.0
         capped:
-        - 0.5393
-        - 0.0095
+        - 0.5389
+        - 0.0083
         - 68.0
         realized:
-        - 0.5393
-        - 0.0095
+        - 0.5389
+        - 0.0083
         - 68.0
         final_hex: '#726d69'
-        max_chroma_at_L: 0.118355
+        max_chroma_at_L: 0.118263
         chroma_losses:
-          requested: 0.009528
-          capped: 0.009528
-          realized: 0.009528
+          requested: 0.008278
+          capped: 0.008278
+          realized: 0.008278
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1691,11 +1699,24 @@ variants:
           wcag: 4.617
           apca_lc: 68.2722
           oklab_dl: -0.426788
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5393 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5434, L_apca=0.5393)
-        - 'chroma: requested 0.0095 -> capped 0.0095 (cap -0.0000) -> realized 0.0095 (gamut -0.0000),
+        - solved L=0.5389 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5432, L_apca=0.5389)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 5.00) -> effective 68.0 (band max 78.0)'
+        - 'chroma: requested 0.0083 -> capped 0.0083 (cap -0.0000) -> realized 0.0083 (gamut -0.0000),
           fraction 1.000'
         issues: []
       fg_muted:
@@ -1708,23 +1729,23 @@ variants:
         - 0.0
         - 68.0
         requested:
-        - 0.6451
-        - 0.0114
+        - 0.644
+        - 0.0099
         - 68.0
         capped:
-        - 0.6451
-        - 0.0114
+        - 0.644
+        - 0.0099
         - 68.0
         realized:
-        - 0.6451
-        - 0.0114
+        - 0.644
+        - 0.0099
         - 68.0
-        final_hex: '#928c86'
-        max_chroma_at_L: 0.141563
+        final_hex: '#918c87'
+        max_chroma_at_L: 0.141335
         chroma_losses:
-          requested: 0.011396
-          capped: 0.011396
-          realized: 0.011396
+          requested: 0.009893
+          capped: 0.009893
+          realized: 0.009893
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1741,15 +1762,28 @@ variants:
           target_band: minimal
           measured_band: low
           in_target_band: false
-          wcag: 3.0014
-          apca_lc: 53.6452
-          oklab_dl: -0.321341
+          wcag: 3.0074
+          apca_lc: 53.7214
+          oklab_dl: -0.321927
+          solve:
+            winning_constraint: wcag_floor
+            wcag_floor: 3.0
+            base_apca_centre: 24.0
+            salience: 0
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 24.0
+            band_max: 32.0
+            clamped_to_band_max: false
         conflicts:
         - wcag_apca_conflict
         winning_constraint: wcag_floor
         derivation:
-        - solved L=0.6451 to wcag_floor (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.6451, L_apca=0.8250)
-        - 'chroma: requested 0.0114 -> capped 0.0114 (cap -0.0000) -> realized 0.0114 (gamut -0.0000),
+        - solved L=0.6440 to wcag_floor (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.6440, L_apca=0.8246)
+        - 'apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2,
+          step 5.00) -> effective 24.0 (band max 32.0)'
+        - 'chroma: requested 0.0099 -> capped 0.0099 (cap -0.0000) -> realized 0.0099 (gamut -0.0000),
           fraction 1.000'
         issues: []
       fg_secondary:
@@ -1762,23 +1796,23 @@ variants:
         - 0.0
         - 68.0
         requested:
-        - 0.5434
-        - 0.0096
+        - 0.5432
+        - 0.0083
         - 68.0
         capped:
-        - 0.5434
-        - 0.0096
+        - 0.5432
+        - 0.0083
         - 68.0
         realized:
-        - 0.5434
-        - 0.0096
+        - 0.5432
+        - 0.0083
         - 68.0
         final_hex: '#736f6a'
-        max_chroma_at_L: 0.119255
+        max_chroma_at_L: 0.119217
         chroma_losses:
-          requested: 0.0096
-          capped: 0.0096
-          realized: 0.0096
+          requested: 0.008345
+          capped: 0.008345
+          realized: 0.008345
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1798,12 +1832,25 @@ variants:
           wcag: 4.503
           apca_lc: 67.5035
           oklab_dl: -0.421078
+          solve:
+            winning_constraint: wcag_floor
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts:
         - wcag_apca_conflict
         winning_constraint: wcag_floor
         derivation:
-        - solved L=0.5434 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5434, L_apca=0.7002)
-        - 'chroma: requested 0.0096 -> capped 0.0096 (cap -0.0000) -> realized 0.0096 (gamut -0.0000),
+        - solved L=0.5432 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5432, L_apca=0.7007)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 5.00) -> effective 45.0 (band max 55.0)'
+        - 'chroma: requested 0.0083 -> capped 0.0083 (cap -0.0000) -> realized 0.0083 (gamut -0.0000),
           fraction 1.000'
         issues: []
       focus:
@@ -1816,23 +1863,23 @@ variants:
         - 0.0
         - 246.0
         requested:
-        - 0.4164
-        - 0.0813
+        - 0.336
+        - 0.057
         - 246.0
         capped:
-        - 0.4164
-        - 0.0813
+        - 0.336
+        - 0.057
         - 246.0
         realized:
-        - 0.4164
-        - 0.0813
+        - 0.336
+        - 0.057
         - 246.0
-        final_hex: '#215075'
-        max_chroma_at_L: 0.107094
+        final_hex: '#1c3953'
+        max_chroma_at_L: 0.086426
         chroma_losses:
-          requested: 0.081284
-          capped: 0.081284
-          realized: 0.081284
+          requested: 0.057041
+          capped: 0.057041
+          realized: 0.057041
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1847,16 +1894,29 @@ variants:
         contrast:
           reference: bg
           target_band: high
-          measured_band: high
-          in_target_band: true
-          wcag: 7.6799
-          apca_lc: 82.0128
-          oklab_dl: -0.547696
+          measured_band: maximal
+          in_target_band: false
+          wcag: 10.7765
+          apca_lc: 90.1761
+          oklab_dl: -0.629712
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 82.0
+            salience: 5
+            salience_apca_step: 5.0
+            salience_boost_requested: 15.0
+            salience_boost_applied: 8.0
+            effective_apca_centre: 90.0
+            band_max: 90.0
+            clamped_to_band_max: true
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.4164 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.6408, L_apca=0.4164)
-        - 'chroma: requested 0.0813 -> capped 0.0813 (cap -0.0000) -> realized 0.0813 (gamut -0.0000),
+        - solved L=0.3360 to apca_centre (wcag_floor=3.0, apca_centre=90.0, L_wcag=0.6416, L_apca=0.3360)
+        - 'apca centre: base 82.0 + salience boost 15.0 requested / 8.0 applied (salience 5 vs normal
+          2, step 5.00) -> effective 90.0 (band max 90.0)'
+        - 'chroma: requested 0.0570 -> capped 0.0570 (cap -0.0000) -> realized 0.0570 (gamut -0.0000),
           fraction 1.000'
         issues: []
       function:
@@ -1869,23 +1929,23 @@ variants:
         - 0.0
         - 246.0
         requested:
-        - 0.4158
-        - 0.0958
+        - 0.3355
+        - 0.0672
         - 246.0
         capped:
-        - 0.4158
-        - 0.0958
+        - 0.3355
+        - 0.0672
         - 246.0
         realized:
-        - 0.4158
-        - 0.0958
+        - 0.3355
+        - 0.0672
         - 246.0
-        final_hex: '#134f7c'
-        max_chroma_at_L: 0.106941
+        final_hex: '#143957'
+        max_chroma_at_L: 0.086304
         chroma_losses:
-          requested: 0.095779
-          capped: 0.095779
-          realized: 0.095779
+          requested: 0.067213
+          capped: 0.067213
+          realized: 0.067213
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1900,16 +1960,29 @@ variants:
         contrast:
           reference: bg
           target_band: high
-          measured_band: high
-          in_target_band: true
-          wcag: 7.7803
-          apca_lc: 82.1928
-          oklab_dl: -0.550411
+          measured_band: maximal
+          in_target_band: false
+          wcag: 10.8191
+          apca_lc: 90.1772
+          oklab_dl: -0.63087
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 82.0
+            salience: 4
+            salience_apca_step: 5.0
+            salience_boost_requested: 10.0
+            salience_boost_applied: 8.0
+            effective_apca_centre: 90.0
+            band_max: 90.0
+            clamped_to_band_max: true
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.4158 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.5429, L_apca=0.4158)
-        - 'chroma: requested 0.0958 -> capped 0.0958 (cap -0.0000) -> realized 0.0958 (gamut -0.0000),
+        - solved L=0.3355 to apca_centre (wcag_floor=4.5, apca_centre=90.0, L_wcag=0.5425, L_apca=0.3355)
+        - 'apca centre: base 82.0 + salience boost 10.0 requested / 8.0 applied (salience 4 vs normal
+          2, step 5.00) -> effective 90.0 (band max 90.0)'
+        - 'chroma: requested 0.0672 -> capped 0.0672 (cap -0.0000) -> realized 0.0672 (gamut -0.0000),
           fraction 1.000'
         issues: []
       info:
@@ -1922,23 +1995,23 @@ variants:
         - 0.0
         - 246.0
         requested:
-        - 0.5364
-        - 0.1047
+        - 0.4552
+        - 0.0773
         - 246.0
         capped:
-        - 0.5364
-        - 0.1047
+        - 0.4552
+        - 0.0773
         - 246.0
         realized:
-        - 0.5364
-        - 0.1047
+        - 0.4552
+        - 0.0773
         - 246.0
-        final_hex: '#3272a6'
-        max_chroma_at_L: 0.137939
+        final_hex: '#2f5a7f'
+        max_chroma_at_L: 0.117058
         chroma_losses:
-          requested: 0.104696
-          capped: 0.104696
-          realized: 0.104696
+          requested: 0.077258
+          capped: 0.077258
+          realized: 0.077258
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -1953,16 +2026,29 @@ variants:
         contrast:
           reference: bg
           target_band: comfortable
-          measured_band: comfortable
-          in_target_band: true
-          wcag: 4.6325
-          apca_lc: 68.0852
-          oklab_dl: -0.429982
+          measured_band: high
+          in_target_band: false
+          wcag: 6.5616
+          apca_lc: 78.0466
+          oklab_dl: -0.510919
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 4
+            salience_apca_step: 5.0
+            salience_boost_requested: 10.0
+            salience_boost_applied: 10.0
+            effective_apca_centre: 78.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5364 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5430, L_apca=0.5364)
-        - 'chroma: requested 0.1047 -> capped 0.1047 (cap -0.0000) -> realized 0.1047 (gamut -0.0000),
+        - solved L=0.4552 to apca_centre (wcag_floor=4.5, apca_centre=78.0, L_wcag=0.5403, L_apca=0.4552)
+        - 'apca centre: base 68.0 + salience boost 10.0 requested / 10.0 applied (salience 4 vs normal
+          2, step 5.00) -> effective 78.0 (band max 78.0)'
+        - 'chroma: requested 0.0773 -> capped 0.0773 (cap -0.0000) -> realized 0.0773 (gamut -0.0000),
           fraction 1.000'
         issues: []
       keyword:
@@ -1975,27 +2061,27 @@ variants:
         - 0.0
         - 318.0
         requested:
-        - 0.5547
-        - 0.2246
+        - 0.5146
+        - 0.1812
         - 318.0
         capped:
-        - 0.5547
+        - 0.5146
         - 0.16
         - 318.0
         realized:
-        - 0.5547
+        - 0.5146
         - 0.16
         - 318.0
-        final_hex: '#984fae'
-        max_chroma_at_L: 0.268967
+        final_hex: '#8c42a2'
+        max_chroma_at_L: 0.249542
         chroma_losses:
-          requested: 0.22456
+          requested: 0.181168
           capped: 0.16
           realized: 0.16
-          cap_loss: 0.06456
+          cap_loss: 0.021168
           gamut_loss: 0.0
-          total_loss: 0.06456
-          realized_fraction: 0.712504
+          total_loss: 0.021168
+          realized_fraction: 0.88316
           category: ordinary
           ceiling: 0.16
           class_fraction_source: candidate
@@ -2008,17 +2094,29 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.665
-          apca_lc: 68.142
-          oklab_dl: -0.410457
+          wcag: 5.5507
+          apca_lc: 73.1367
+          oklab_dl: -0.450625
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 5.0
+            salience_boost_requested: 5.0
+            salience_boost_applied: 5.0
+            effective_apca_centre: 73.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5547 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5640, L_apca=0.5547)
-        - 'chroma: requested 0.2246 -> capped 0.1600 (cap -0.0646) -> realized 0.1600 (gamut -0.0000),
-          fraction 0.713'
-        issues:
-        - '[warning] keyword@day: large chroma loss (0.0646, fraction 0.713)'
+        - solved L=0.5146 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5640, L_apca=0.5146)
+        - 'apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2,
+          step 5.00) -> effective 73.0 (band max 78.0)'
+        - 'chroma: requested 0.1812 -> capped 0.1600 (cap -0.0212) -> realized 0.1600 (gamut -0.0000),
+          fraction 0.883'
+        issues: []
       line_number:
         role: line_number
         paint: ink
@@ -2065,11 +2163,24 @@ variants:
           wcag: 3.0363
           apca_lc: 54.0825
           oklab_dl: -0.32472
+          solve:
+            winning_constraint: wcag_floor
+            wcag_floor: 3.0
+            base_apca_centre: 24.0
+            salience: 0
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 24.0
+            band_max: 32.0
+            clamped_to_band_max: false
         conflicts:
         - wcag_apca_conflict
         winning_constraint: wcag_floor
         derivation:
         - solved L=0.6417 to wcag_floor (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.6417, L_apca=0.8250)
+        - 'apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2,
+          step 5.00) -> effective 24.0 (band max 32.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -2083,19 +2194,19 @@ variants:
         - 0.0
         - 68.0
         requested:
-        - 0.5399
+        - 0.5014
         - 0.0
         - 68.0
         capped:
-        - 0.5399
+        - 0.5014
         - 0.0
         - 68.0
         realized:
-        - 0.5399
+        - 0.5014
         - 0.0
         - 68.0
-        final_hex: '#6e6e6e'
-        max_chroma_at_L: 0.118492
+        final_hex: '#636363'
+        max_chroma_at_L: 0.110039
         chroma_losses:
           requested: 0.0
           capped: 0.0
@@ -2116,13 +2227,26 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.604
-          apca_lc: 68.1879
-          oklab_dl: -0.42657
+          wcag: 5.4247
+          apca_lc: 73.0321
+          oklab_dl: -0.465111
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 5.0
+            salience_boost_requested: 5.0
+            salience_boost_applied: 5.0
+            effective_apca_centre: 73.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5399 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5434, L_apca=0.5399)
+        - solved L=0.5014 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5434, L_apca=0.5014)
+        - 'apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2,
+          step 5.00) -> effective 73.0 (band max 78.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -2136,23 +2260,23 @@ variants:
         - 0.0
         - 188.0
         requested:
-        - 0.5348
-        - 0.0321
+        - 0.536
+        - 0.028
         - 188.0
         capped:
-        - 0.5348
-        - 0.0321
+        - 0.536
+        - 0.028
         - 188.0
         realized:
-        - 0.5348
-        - 0.0321
+        - 0.536
+        - 0.028
         - 188.0
-        final_hex: '#587371'
-        max_chroma_at_L: 0.09301
+        final_hex: '#5b7370'
+        max_chroma_at_L: 0.093216
         chroma_losses:
-          requested: 0.032088
-          capped: 0.032088
-          realized: 0.032088
+          requested: 0.027965
+          capped: 0.027965
+          realized: 0.027965
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2169,14 +2293,27 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.6184
-          apca_lc: 68.2467
-          oklab_dl: -0.431158
+          wcag: 4.59
+          apca_lc: 68.0657
+          oklab_dl: -0.42939
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5348 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5402, L_apca=0.5348)
-        - 'chroma: requested 0.0321 -> capped 0.0321 (cap -0.0000) -> realized 0.0321 (gamut -0.0000),
+        - solved L=0.5360 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5408, L_apca=0.5360)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 5.00) -> effective 68.0 (band max 78.0)'
+        - 'chroma: requested 0.0280 -> capped 0.0280 (cap -0.0000) -> realized 0.0280 (gamut -0.0000),
           fraction 1.000'
         issues: []
       number:
@@ -2189,23 +2326,23 @@ variants:
         - 0.0
         - 86.0
         requested:
-        - 0.5403
-        - 0.084
+        - 0.4999
+        - 0.0675
         - 86.0
         capped:
-        - 0.5403
-        - 0.084
+        - 0.4999
+        - 0.0675
         - 86.0
         realized:
-        - 0.5403
-        - 0.084
+        - 0.4999
+        - 0.0675
         - 86.0
-        final_hex: '#846b30'
-        max_chroma_at_L: 0.110611
+        final_hex: '#746034'
+        max_chroma_at_L: 0.102341
         chroma_losses:
-          requested: 0.083954
-          capped: 0.083954
-          realized: 0.083954
+          requested: 0.067545
+          capped: 0.067545
+          realized: 0.067545
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2222,14 +2359,27 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.5947
-          apca_lc: 68.0131
-          oklab_dl: -0.42506
+          wcag: 5.4718
+          apca_lc: 73.1977
+          oklab_dl: -0.466335
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 5.0
+            salience_boost_requested: 5.0
+            salience_boost_applied: 5.0
+            effective_apca_centre: 73.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5403 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5455, L_apca=0.5403)
-        - 'chroma: requested 0.0840 -> capped 0.0840 (cap -0.0000) -> realized 0.0840 (gamut -0.0000),
+        - solved L=0.4999 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5429, L_apca=0.4999)
+        - 'apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2,
+          step 5.00) -> effective 73.0 (band max 78.0)'
+        - 'chroma: requested 0.0675 -> capped 0.0675 (cap -0.0000) -> realized 0.0675 (gamut -0.0000),
           fraction 1.000'
         issues: []
       operator:
@@ -2278,10 +2428,23 @@ variants:
           wcag: 4.604
           apca_lc: 68.1879
           oklab_dl: -0.42657
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.5399 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5434, L_apca=0.5399)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 5.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -2295,23 +2458,23 @@ variants:
         - 0.0
         - 68.0
         requested:
-        - 0.5393
-        - 0.0095
+        - 0.5389
+        - 0.0083
         - 68.0
         capped:
-        - 0.5393
-        - 0.0095
+        - 0.5389
+        - 0.0083
         - 68.0
         realized:
-        - 0.5393
-        - 0.0095
+        - 0.5389
+        - 0.0083
         - 68.0
         final_hex: '#726d69'
-        max_chroma_at_L: 0.118355
+        max_chroma_at_L: 0.118263
         chroma_losses:
-          requested: 0.009528
-          capped: 0.009528
-          realized: 0.009528
+          requested: 0.008278
+          capped: 0.008278
+          realized: 0.008278
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2331,11 +2494,24 @@ variants:
           wcag: 4.617
           apca_lc: 68.2722
           oklab_dl: -0.426788
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5393 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5434, L_apca=0.5393)
-        - 'chroma: requested 0.0095 -> capped 0.0095 (cap -0.0000) -> realized 0.0095 (gamut -0.0000),
+        - solved L=0.5389 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5432, L_apca=0.5389)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 5.00) -> effective 68.0 (band max 78.0)'
+        - 'chroma: requested 0.0083 -> capped 0.0083 (cap -0.0000) -> realized 0.0083 (gamut -0.0000),
           fraction 1.000'
         issues: []
       property:
@@ -2348,23 +2524,23 @@ variants:
         - 0.0
         - 246.0
         requested:
-        - 0.5402
-        - 0.0112
+        - 0.5406
+        - 0.0097
         - 246.0
         capped:
-        - 0.5402
-        - 0.0112
+        - 0.5406
+        - 0.0097
         - 246.0
         realized:
-        - 0.5402
-        - 0.0112
+        - 0.5406
+        - 0.0097
         - 246.0
-        final_hex: '#6a6f75'
-        max_chroma_at_L: 0.138908
+        final_hex: '#6a6f74'
+        max_chroma_at_L: 0.139015
         chroma_losses:
-          requested: 0.011182
-          capped: 0.011182
-          realized: 0.011182
+          requested: 0.009731
+          capped: 0.009731
+          realized: 0.009731
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2381,14 +2557,27 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.5763
-          apca_lc: 68.0004
-          oklab_dl: -0.425395
+          wcag: 4.5814
+          apca_lc: 68.0354
+          oklab_dl: -0.425742
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5402 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5436, L_apca=0.5402)
-        - 'chroma: requested 0.0112 -> capped 0.0112 (cap -0.0000) -> realized 0.0112 (gamut -0.0000),
+        - solved L=0.5406 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5440, L_apca=0.5406)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 5.00) -> effective 68.0 (band max 78.0)'
+        - 'chroma: requested 0.0097 -> capped 0.0097 (cap -0.0000) -> realized 0.0097 (gamut -0.0000),
           fraction 1.000'
         issues: []
       punctuation:
@@ -2437,11 +2626,24 @@ variants:
           wcag: 4.5371
           apca_lc: 67.7383
           oklab_dl: -0.423101
+          solve:
+            winning_constraint: wcag_floor
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts:
         - wcag_apca_conflict
         winning_constraint: wcag_floor
         derivation:
         - solved L=0.5434 to wcag_floor (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5434, L_apca=0.7008)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 5.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -2456,22 +2658,22 @@ variants:
         - 86.0
         requested:
         - 0.91
-        - 0.076
+        - 0.0661
         - 86.0
         capped:
         - 0.91
-        - 0.076
+        - 0.0661
         - 86.0
         realized:
         - 0.91
-        - 0.076
+        - 0.0661
         - 86.0
-        final_hex: '#f8dea7'
+        final_hex: '#f5dfb0'
         max_chroma_at_L: 0.100105
         chroma_losses:
-          requested: 0.07598
-          capped: 0.07598
-          realized: 0.07598
+          requested: 0.066069
+          capped: 0.066069
+          realized: 0.066069
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2488,14 +2690,14 @@ variants:
           target_band: low
           measured_band: null
           in_target_band: false
-          wcag: 1.1853
-          apca_lc: 8.4144
-          oklab_dl: -0.055787
+          wcag: 1.1803
+          apca_lc: 8.167
+          oklab_dl: -0.054638
         conflicts: []
         winning_constraint: perceptual_step
         derivation:
         - 'surface step: L=0.9100 (canvas 0.9650 -.0.0550)'
-        - 'chroma: requested 0.0760 -> capped 0.0760 (cap -0.0000) -> realized 0.0760 (gamut -0.0000),
+        - 'chroma: requested 0.0661 -> capped 0.0661 (cap -0.0000) -> realized 0.0661 (gamut -0.0000),
           fraction 1.000'
         issues: []
       search_match_current:
@@ -2509,22 +2711,22 @@ variants:
         - 86.0
         requested:
         - 0.885
-        - 0.1188
+        - 0.1033
         - 86.0
         capped:
         - 0.885
-        - 0.1188
+        - 0.1033
         - 86.0
         realized:
         - 0.885
-        - 0.1188
+        - 0.1033
         - 86.0
-        final_hex: '#fcd479'
+        final_hex: '#f8d588'
         max_chroma_at_L: 0.129089
         chroma_losses:
-          requested: 0.118762
-          capped: 0.118762
-          realized: 0.118762
+          requested: 0.103271
+          capped: 0.103271
+          realized: 0.103271
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2541,14 +2743,14 @@ variants:
           target_band: comfortable
           measured_band: null
           in_target_band: false
-          wcag: 1.2784
-          apca_lc: 12.9374
-          oklab_dl: -0.079221
+          wcag: 1.2756
+          apca_lc: 12.8352
+          oklab_dl: -0.078818
         conflicts: []
         winning_constraint: perceptual_step
         derivation:
         - 'surface step: L=0.8850 (canvas 0.9650 -.0.0800)'
-        - 'chroma: requested 0.1188 -> capped 0.1188 (cap -0.0000) -> realized 0.1188 (gamut -0.0000),
+        - 'chroma: requested 0.1033 -> capped 0.1033 (cap -0.0000) -> realized 0.1033 (gamut -0.0000),
           fraction 1.000'
         issues: []
       selection:
@@ -2562,22 +2764,22 @@ variants:
         - 246.0
         requested:
         - 0.91
-        - 0.016
+        - 0.0139
         - 246.0
         capped:
         - 0.91
-        - 0.016
+        - 0.0139
         - 246.0
         realized:
         - 0.91
-        - 0.016
+        - 0.0139
         - 246.0
-        final_hex: '#d9e3ec'
+        final_hex: '#dae2ea'
         max_chroma_at_L: 0.046432
         chroma_losses:
-          requested: 0.016019
-          capped: 0.016019
-          realized: 0.016019
+          requested: 0.01393
+          capped: 0.01393
+          realized: 0.01393
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2594,14 +2796,14 @@ variants:
           target_band: low
           measured_band: null
           in_target_band: false
-          wcag: 1.1742
-          apca_lc: 7.8667
-          oklab_dl: -0.0539
+          wcag: 1.1816
+          apca_lc: 8.2589
+          oklab_dl: -0.05576
         conflicts: []
         winning_constraint: perceptual_step
         derivation:
         - 'surface step: L=0.9100 (canvas 0.9650 -.0.0550)'
-        - 'chroma: requested 0.0160 -> capped 0.0160 (cap -0.0000) -> realized 0.0160 (gamut -0.0000),
+        - 'chroma: requested 0.0139 -> capped 0.0139 (cap -0.0000) -> realized 0.0139 (gamut -0.0000),
           fraction 1.000'
         issues: []
       string:
@@ -2614,23 +2816,23 @@ variants:
         - 0.0
         - 126.0
         requested:
-        - 0.5308
-        - 0.0923
+        - 0.4949
+        - 0.0748
         - 126.0
         capped:
-        - 0.5308
-        - 0.0923
+        - 0.4949
+        - 0.0748
         - 126.0
         realized:
-        - 0.5308
-        - 0.0923
+        - 0.4949
+        - 0.0748
         - 126.0
-        final_hex: '#5f7537'
-        max_chroma_at_L: 0.135117
+        final_hex: '#576939'
+        max_chroma_at_L: 0.125977
         chroma_losses:
-          requested: 0.092298
-          capped: 0.092298
-          realized: 0.092298
+          requested: 0.07483
+          capped: 0.07483
+          realized: 0.07483
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2647,14 +2849,27 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.6404
-          apca_lc: 68.3414
-          oklab_dl: -0.434996
+          wcag: 5.441
+          apca_lc: 73.0539
+          oklab_dl: -0.47128
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 5.0
+            salience_boost_requested: 5.0
+            salience_boost_applied: 5.0
+            effective_apca_centre: 73.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5308 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5372, L_apca=0.5308)
-        - 'chroma: requested 0.0923 -> capped 0.0923 (cap -0.0000) -> realized 0.0923 (gamut -0.0000),
+        - solved L=0.4949 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5375, L_apca=0.4949)
+        - 'apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2,
+          step 5.00) -> effective 73.0 (band max 78.0)'
+        - 'chroma: requested 0.0748 -> capped 0.0748 (cap -0.0000) -> realized 0.0748 (gamut -0.0000),
           fraction 1.000'
         issues: []
       success:
@@ -2667,23 +2882,23 @@ variants:
         - 0.0
         - 126.0
         requested:
-        - 0.5312
-        - 0.1026
+        - 0.4525
+        - 0.076
         - 126.0
         capped:
-        - 0.5312
-        - 0.1026
+        - 0.4525
+        - 0.076
         - 126.0
         realized:
-        - 0.5312
-        - 0.1026
+        - 0.4525
+        - 0.076
         - 126.0
-        final_hex: '#5d762f'
-        max_chroma_at_L: 0.135223
+        final_hex: '#4b5d2c'
+        max_chroma_at_L: 0.115196
         chroma_losses:
-          requested: 0.102635
-          capped: 0.102635
-          realized: 0.102635
+          requested: 0.07603
+          capped: 0.07603
+          realized: 0.07603
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2698,16 +2913,29 @@ variants:
         contrast:
           reference: bg
           target_band: comfortable
-          measured_band: comfortable
-          in_target_band: true
-          wcag: 4.6272
-          apca_lc: 68.2308
-          oklab_dl: -0.43504
+          measured_band: high
+          in_target_band: false
+          wcag: 6.5356
+          apca_lc: 78.0604
+          oklab_dl: -0.513941
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 4
+            salience_apca_step: 5.0
+            salience_boost_requested: 10.0
+            salience_boost_applied: 10.0
+            effective_apca_centre: 78.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5312 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5360, L_apca=0.5312)
-        - 'chroma: requested 0.1026 -> capped 0.1026 (cap -0.0000) -> realized 0.1026 (gamut -0.0000),
+        - solved L=0.4525 to apca_centre (wcag_floor=4.5, apca_centre=78.0, L_wcag=0.5381, L_apca=0.4525)
+        - 'apca centre: base 68.0 + salience boost 10.0 requested / 10.0 applied (salience 4 vs normal
+          2, step 5.00) -> effective 78.0 (band max 78.0)'
+        - 'chroma: requested 0.0760 -> capped 0.0760 (cap -0.0000) -> realized 0.0760 (gamut -0.0000),
           fraction 1.000'
         issues: []
       tag:
@@ -2720,23 +2948,23 @@ variants:
         - 0.0
         - 318.0
         requested:
-        - 0.5488
-        - 0.0918
+        - 0.5066
+        - 0.0737
         - 318.0
         capped:
-        - 0.5488
-        - 0.0918
+        - 0.5066
+        - 0.0737
         - 318.0
         realized:
-        - 0.5488
-        - 0.0918
+        - 0.5066
+        - 0.0737
         - 318.0
-        final_hex: '#885f94'
-        max_chroma_at_L: 0.266136
+        final_hex: '#775781'
+        max_chroma_at_L: 0.245689
         chroma_losses:
-          requested: 0.091817
-          capped: 0.091817
-          realized: 0.091817
+          requested: 0.073707
+          capped: 0.073707
+          realized: 0.073707
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2753,14 +2981,27 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.612
-          apca_lc: 68.1049
-          oklab_dl: -0.416417
+          wcag: 5.4729
+          apca_lc: 73.1846
+          oklab_dl: -0.458755
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 5.0
+            salience_boost_requested: 5.0
+            salience_boost_applied: 5.0
+            effective_apca_centre: 73.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5488 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5529, L_apca=0.5488)
-        - 'chroma: requested 0.0918 -> capped 0.0918 (cap -0.0000) -> realized 0.0918 (gamut -0.0000),
+        - solved L=0.5066 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5538, L_apca=0.5066)
+        - 'apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2,
+          step 5.00) -> effective 73.0 (band max 78.0)'
+        - 'chroma: requested 0.0737 -> capped 0.0737 (cap -0.0000) -> realized 0.0737 (gamut -0.0000),
           fraction 1.000'
         issues: []
       type:
@@ -2773,23 +3014,23 @@ variants:
         - 0.0
         - 188.0
         requested:
-        - 0.5287
-        - 0.0698
+        - 0.492
+        - 0.0565
         - 188.0
         capped:
-        - 0.5287
-        - 0.0698
+        - 0.492
+        - 0.0565
         - 188.0
         realized:
-        - 0.5287
-        - 0.0698
+        - 0.492
+        - 0.0565
         - 188.0
-        final_hex: '#347873'
-        max_chroma_at_L: 0.091957
+        final_hex: '#376b67'
+        max_chroma_at_L: 0.085571
         chroma_losses:
-          requested: 0.069795
-          capped: 0.069795
-          realized: 0.069795
+          requested: 0.056477
+          capped: 0.056477
+          realized: 0.056477
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2806,14 +3047,27 @@ variants:
           target_band: comfortable
           measured_band: comfortable
           in_target_band: true
-          wcag: 4.6473
-          apca_lc: 68.2547
-          oklab_dl: -0.437209
+          wcag: 5.4781
+          apca_lc: 73.1563
+          oklab_dl: -0.474267
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 5.0
+            salience_boost_requested: 5.0
+            salience_boost_applied: 5.0
+            effective_apca_centre: 73.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.5287 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5350, L_apca=0.5287)
-        - 'chroma: requested 0.0698 -> capped 0.0698 (cap -0.0000) -> realized 0.0698 (gamut -0.0000),
+        - solved L=0.4920 to apca_centre (wcag_floor=4.5, apca_centre=73.0, L_wcag=0.5369, L_apca=0.4920)
+        - 'apca centre: base 68.0 + salience boost 5.0 requested / 5.0 applied (salience 3 vs normal 2,
+          step 5.00) -> effective 73.0 (band max 78.0)'
+        - 'chroma: requested 0.0565 -> capped 0.0565 (cap -0.0000) -> realized 0.0565 (gamut -0.0000),
           fraction 1.000'
         issues: []
       ui_inactive:
@@ -2862,11 +3116,24 @@ variants:
           wcag: 3.0363
           apca_lc: 54.0825
           oklab_dl: -0.32472
+          solve:
+            winning_constraint: wcag_floor
+            wcag_floor: 3.0
+            base_apca_centre: 24.0
+            salience: 0
+            salience_apca_step: 5.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 24.0
+            band_max: 32.0
+            clamped_to_band_max: false
         conflicts:
         - wcag_apca_conflict
         winning_constraint: wcag_floor
         derivation:
         - solved L=0.6417 to wcag_floor (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.6417, L_apca=0.8250)
+        - 'apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2,
+          step 5.00) -> effective 24.0 (band max 32.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -2880,23 +3147,23 @@ variants:
         - 0.0
         - 86.0
         requested:
-        - 0.4205
-        - 0.0792
+        - 0.3394
+        - 0.0556
         - 86.0
         capped:
-        - 0.4205
-        - 0.0792
+        - 0.3394
+        - 0.0556
         - 86.0
         realized:
-        - 0.4205
-        - 0.0792
+        - 0.3394
+        - 0.0556
         - 86.0
-        final_hex: '#60490e'
-        max_chroma_at_L: 0.086098
+        final_hex: '#453512'
+        max_chroma_at_L: 0.069489
         chroma_losses:
-          requested: 0.07921
-          capped: 0.07921
-          realized: 0.07921
+          requested: 0.055591
+          capped: 0.055591
+          realized: 0.055591
           cap_loss: 0.0
           gamut_loss: 0.0
           total_loss: 0.0
@@ -2911,16 +3178,29 @@ variants:
         contrast:
           reference: bg
           target_band: high
-          measured_band: high
-          in_target_band: true
-          wcag: 7.7183
-          apca_lc: 82.2301
-          oklab_dl: -0.545844
+          measured_band: maximal
+          in_target_band: false
+          wcag: 10.7067
+          apca_lc: 90.0911
+          oklab_dl: -0.62601
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 82.0
+            salience: 5
+            salience_apca_step: 5.0
+            salience_boost_requested: 15.0
+            salience_boost_applied: 8.0
+            effective_apca_centre: 90.0
+            band_max: 90.0
+            clamped_to_band_max: true
         conflicts: []
         winning_constraint: apca_centre
         derivation:
-        - solved L=0.4205 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.5446, L_apca=0.4205)
-        - 'chroma: requested 0.0792 -> capped 0.0792 (cap -0.0000) -> realized 0.0792 (gamut -0.0000),
+        - solved L=0.3394 to apca_centre (wcag_floor=4.5, apca_centre=90.0, L_wcag=0.5458, L_apca=0.3394)
+        - 'apca centre: base 82.0 + salience boost 15.0 requested / 8.0 applied (salience 5 vs normal
+          2, step 5.00) -> effective 90.0 (band max 90.0)'
+        - 'chroma: requested 0.0556 -> capped 0.0556 (cap -0.0000) -> realized 0.0556 (gamut -0.0000),
           fraction 1.000'
         issues: []
   evening:
@@ -3201,10 +3481,23 @@ variants:
           wcag: 11.9393
           apca_lc: -82.4132
           oklab_dl: 0.658878
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 82.0
+            salience: 5
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8932 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.5372, L_apca=0.8932)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0437 -> capped 0.0437 (cap -0.0000) -> realized 0.0437 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3254,10 +3547,23 @@ variants:
           wcag: 9.3708
           apca_lc: -68.0056
           oklab_dl: 0.58236
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8165 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6224, L_apca=0.8165)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0250 -> capped 0.0250 (cap -0.0000) -> realized 0.0250 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3307,10 +3613,23 @@ variants:
           wcag: 5.8032
           apca_lc: -45.0173
           oklab_dl: 0.447288
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.6812 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.6179, L_apca=0.6812)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 0.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0391 -> capped 0.0360 (cap -0.0031) -> realized 0.0360 (gamut -0.0000),
           fraction 0.921'
         issues: []
@@ -3360,10 +3679,23 @@ variants:
           wcag: 9.3786
           apca_lc: -68.1197
           oklab_dl: 0.580782
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8163 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6174, L_apca=0.8163)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0963 -> capped 0.0963 (cap -0.0000) -> realized 0.0963 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3466,10 +3798,23 @@ variants:
           wcag: 9.3778
           apca_lc: -68.05
           oklab_dl: 0.579597
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8137 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6149, L_apca=0.8137)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0436 -> capped 0.0436 (cap -0.0000) -> realized 0.0436 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3519,10 +3864,23 @@ variants:
           wcag: 5.8529
           apca_lc: -45.3508
           oklab_dl: 0.447874
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.6814 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.6151, L_apca=0.6814)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 0.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3731,10 +4089,23 @@ variants:
           wcag: 9.384
           apca_lc: -68.0868
           oklab_dl: 0.581235
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8154 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6179, L_apca=0.8154)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0347 -> capped 0.0347 (cap -0.0000) -> realized 0.0347 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3784,10 +4155,23 @@ variants:
           wcag: 11.9393
           apca_lc: -82.4132
           oklab_dl: 0.658878
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 82.0
+            salience: 6
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8934 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.6366, L_apca=0.8934)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 6 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0440 -> capped 0.0440 (cap -0.0000) -> realized 0.0440 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3837,10 +4221,23 @@ variants:
           wcag: 9.4117
           apca_lc: -68.2349
           oklab_dl: 0.58077
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8149 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6170, L_apca=0.8149)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0087 -> capped 0.0087 (cap -0.0000) -> realized 0.0087 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3890,10 +4287,23 @@ variants:
           wcag: 3.2064
           apca_lc: -24.0781
           oklab_dl: 0.298854
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 24.0
+            salience: 0
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 24.0
+            band_max: 32.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.5335 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5175, L_apca=0.5335)
+        - 'apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2,
+          step 0.00) -> effective 24.0 (band max 32.0)'
         - 'chroma: requested 0.0069 -> capped 0.0069 (cap -0.0000) -> realized 0.0069 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3943,10 +4353,23 @@ variants:
           wcag: 5.8174
           apca_lc: -45.0983
           oklab_dl: 0.446485
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.6805 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.6170, L_apca=0.6805)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 0.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0088 -> capped 0.0088 (cap -0.0000) -> realized 0.0088 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -3996,10 +4419,23 @@ variants:
           wcag: 11.9004
           apca_lc: -82.189
           oklab_dl: 0.650978
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 82.0
+            salience: 5
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8853 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.5165, L_apca=0.8853)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0374 -> capped 0.0374 (cap -0.0000) -> realized 0.0374 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4049,10 +4485,23 @@ variants:
           wcag: 11.8769
           apca_lc: -82.0659
           oklab_dl: 0.650266
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 82.0
+            salience: 4
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8852 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.6134, L_apca=0.8852)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0420 -> capped 0.0420 (cap -0.0000) -> realized 0.0420 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4102,10 +4551,23 @@ variants:
           wcag: 9.3842
           apca_lc: -68.1202
           oklab_dl: 0.577356
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 4
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8116 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6119, L_apca=0.8116)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0613 -> capped 0.0613 (cap -0.0000) -> realized 0.0613 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4155,10 +4617,23 @@ variants:
           wcag: 9.3835
           apca_lc: -68.1375
           oklab_dl: 0.589777
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8252 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6351, L_apca=0.8252)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0896 -> capped 0.0896 (cap -0.0000) -> realized 0.0896 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4208,10 +4683,23 @@ variants:
           wcag: 3.2227
           apca_lc: -24.2284
           oklab_dl: 0.299682
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 24.0
+            salience: 0
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 24.0
+            band_max: 32.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.5331 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5191, L_apca=0.5331)
+        - 'apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2,
+          step 0.00) -> effective 24.0 (band max 32.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4261,10 +4749,23 @@ variants:
           wcag: 9.4608
           apca_lc: -68.5221
           oklab_dl: 0.582113
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8157 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6151, L_apca=0.8157)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4314,10 +4815,23 @@ variants:
           wcag: 9.3731
           apca_lc: -68.0315
           oklab_dl: 0.574799
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8106 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6117, L_apca=0.8106)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0375 -> capped 0.0375 (cap -0.0000) -> realized 0.0375 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4367,10 +4881,23 @@ variants:
           wcag: 9.3786
           apca_lc: -68.1197
           oklab_dl: 0.580782
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8163 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6174, L_apca=0.8163)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0963 -> capped 0.0963 (cap -0.0000) -> realized 0.0963 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4420,10 +4947,23 @@ variants:
           wcag: 9.4608
           apca_lc: -68.5221
           oklab_dl: 0.582113
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8157 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6151, L_apca=0.8157)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4473,10 +5013,23 @@ variants:
           wcag: 9.4117
           apca_lc: -68.2349
           oklab_dl: 0.58077
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8149 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6170, L_apca=0.8149)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0087 -> capped 0.0087 (cap -0.0000) -> realized 0.0087 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4526,10 +5079,23 @@ variants:
           wcag: 9.3991
           apca_lc: -68.1599
           oklab_dl: 0.579849
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8137 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6155, L_apca=0.8137)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0061 -> capped 0.0061 (cap -0.0000) -> realized 0.0061 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4579,10 +5145,23 @@ variants:
           wcag: 5.8529
           apca_lc: -45.3508
           oklab_dl: 0.447874
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.6814 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.6151, L_apca=0.6814)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 0.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4791,10 +5370,23 @@ variants:
           wcag: 9.3844
           apca_lc: -68.132
           oklab_dl: 0.572072
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8059 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6098, L_apca=0.8059)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.1043 -> capped 0.1043 (cap -0.0000) -> realized 0.1043 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4844,10 +5436,23 @@ variants:
           wcag: 9.4083
           apca_lc: -68.2986
           oklab_dl: 0.571437
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 4
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8054 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6082, L_apca=0.8054)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.1238 -> capped 0.1238 (cap -0.0000) -> realized 0.1238 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4897,10 +5502,23 @@ variants:
           wcag: 9.4356
           apca_lc: -68.3859
           oklab_dl: 0.585303
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8196 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6242, L_apca=0.8196)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0383 -> capped 0.0383 (cap -0.0000) -> realized 0.0383 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -4950,10 +5568,23 @@ variants:
           wcag: 9.3953
           apca_lc: -68.2834
           oklab_dl: 0.569802
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8039 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6067, L_apca=0.8039)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0819 -> capped 0.0819 (cap -0.0000) -> realized 0.0819 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5003,10 +5634,23 @@ variants:
           wcag: 3.2227
           apca_lc: -24.2284
           oklab_dl: 0.299682
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 24.0
+            salience: 0
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 24.0
+            band_max: 32.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.5331 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5191, L_apca=0.5331)
+        - 'apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2,
+          step 0.00) -> effective 24.0 (band max 32.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5056,10 +5700,23 @@ variants:
           wcag: 11.8583
           apca_lc: -82.0167
           oklab_dl: 0.652162
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 82.0
+            salience: 5
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8864 to apca_centre (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.6162, L_apca=0.8864)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0954 -> capped 0.0954 (cap -0.0000) -> realized 0.0954 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5341,10 +5998,23 @@ variants:
           wcag: 12.6233
           apca_lc: -82.2914
           oklab_dl: 0.683324
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 82.0
+            salience: 5
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8878 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.5197, L_apca=0.8878)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0410 -> capped 0.0410 (cap -0.0000) -> realized 0.0410 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5394,10 +6064,23 @@ variants:
           wcag: 9.9208
           apca_lc: -68.08
           oklab_dl: 0.60702
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8116 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6040, L_apca=0.8116)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0196 -> capped 0.0196 (cap -0.0000) -> realized 0.0196 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5447,10 +6130,23 @@ variants:
           wcag: 6.1514
           apca_lc: -45.3169
           oklab_dl: 0.472956
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.6777 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5998, L_apca=0.6777)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 0.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0280 -> capped 0.0280 (cap -0.0000) -> realized 0.0280 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5500,10 +6196,23 @@ variants:
           wcag: 9.9302
           apca_lc: -68.1711
           oklab_dl: 0.605761
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8103 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5991, L_apca=0.8103)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0733 -> capped 0.0733 (cap -0.0000) -> realized 0.0733 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5606,10 +6315,23 @@ variants:
           wcag: 9.9252
           apca_lc: -68.1061
           oklab_dl: 0.604877
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8099 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5976, L_apca=0.8099)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0333 -> capped 0.0333 (cap -0.0000) -> realized 0.0333 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5659,10 +6381,23 @@ variants:
           wcag: 6.1239
           apca_lc: -45.1191
           oklab_dl: 0.470621
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.6748 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5982, L_apca=0.6748)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 0.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5871,10 +6606,23 @@ variants:
           wcag: 9.969
           apca_lc: -68.3477
           oklab_dl: 0.607193
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8118 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5998, L_apca=0.8118)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0262 -> capped 0.0262 (cap -0.0000) -> realized 0.0262 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5924,10 +6672,23 @@ variants:
           wcag: 12.2612
           apca_lc: -80.4724
           oklab_dl: 0.674727
+          solve:
+            winning_constraint: night_ceiling
+            wcag_floor: 4.5
+            base_apca_centre: 82.0
+            salience: 6
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: night_ceiling
         derivation:
         - solved L=0.8800 to night_ceiling (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.6180, L_apca=0.8884)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 6 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0451 -> capped 0.0451 (cap -0.0000) -> realized 0.0451 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -5977,10 +6738,23 @@ variants:
           wcag: 9.9745
           apca_lc: -68.3687
           oklab_dl: 0.606407
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8111 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5997, L_apca=0.8111)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0066 -> capped 0.0066 (cap -0.0000) -> realized 0.0066 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6030,10 +6804,23 @@ variants:
           wcag: 3.3673
           apca_lc: -24.2505
           oklab_dl: 0.322846
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 24.0
+            salience: 0
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 24.0
+            band_max: 32.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.5274 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5020, L_apca=0.5274)
+        - 'apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2,
+          step 0.00) -> effective 24.0 (band max 32.0)'
         - 'chroma: requested 0.0049 -> capped 0.0049 (cap -0.0000) -> realized 0.0049 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6083,10 +6870,23 @@ variants:
           wcag: 6.1516
           apca_lc: -45.3061
           oklab_dl: 0.471947
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.6764 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5997, L_apca=0.6764)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 0.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0063 -> capped 0.0063 (cap -0.0000) -> realized 0.0063 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6136,10 +6936,23 @@ variants:
           wcag: 12.5696
           apca_lc: -82.0056
           oklab_dl: 0.675588
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 82.0
+            salience: 5
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8817 to apca_centre (wcag_floor=3.0, apca_centre=82.0, L_wcag=0.4995, L_apca=0.8817)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0340 -> capped 0.0340 (cap -0.0000) -> realized 0.0340 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6189,10 +7002,23 @@ variants:
           wcag: 12.5008
           apca_lc: -81.6626
           oklab_dl: 0.673498
+          solve:
+            winning_constraint: night_ceiling
+            wcag_floor: 4.5
+            base_apca_centre: 82.0
+            salience: 4
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: night_ceiling
         derivation:
         - solved L=0.8800 to night_ceiling (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.5942, L_apca=0.8809)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0358 -> capped 0.0358 (cap -0.0000) -> realized 0.0358 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6242,10 +7068,23 @@ variants:
           wcag: 9.9756
           apca_lc: -68.4116
           oklab_dl: 0.60392
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 4
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8087 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5961, L_apca=0.8087)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0526 -> capped 0.0526 (cap -0.0000) -> realized 0.0526 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6295,10 +7134,23 @@ variants:
           wcag: 9.9138
           apca_lc: -68.0845
           oklab_dl: 0.612995
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8177 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6168, L_apca=0.8177)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0766 -> capped 0.0766 (cap -0.0000) -> realized 0.0766 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6348,10 +7200,23 @@ variants:
           wcag: 3.3565
           apca_lc: -24.1554
           oklab_dl: 0.322013
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 24.0
+            salience: 0
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 24.0
+            band_max: 32.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.5261 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5015, L_apca=0.5261)
+        - 'apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2,
+          step 0.00) -> effective 24.0 (band max 32.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6401,10 +7266,23 @@ variants:
           wcag: 9.9366
           apca_lc: -68.1596
           oklab_dl: 0.605149
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8094 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5982, L_apca=0.8094)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6454,10 +7332,23 @@ variants:
           wcag: 9.9605
           apca_lc: -68.3068
           oklab_dl: 0.602018
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8069 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5960, L_apca=0.8069)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0296 -> capped 0.0296 (cap -0.0000) -> realized 0.0296 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6507,10 +7398,23 @@ variants:
           wcag: 9.9302
           apca_lc: -68.1711
           oklab_dl: 0.605761
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8103 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5991, L_apca=0.8103)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0733 -> capped 0.0733 (cap -0.0000) -> realized 0.0733 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6560,10 +7464,23 @@ variants:
           wcag: 9.9366
           apca_lc: -68.1596
           oklab_dl: 0.605149
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8094 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5982, L_apca=0.8094)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6613,10 +7530,23 @@ variants:
           wcag: 9.9745
           apca_lc: -68.3687
           oklab_dl: 0.606407
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8111 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5997, L_apca=0.8111)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0066 -> capped 0.0066 (cap -0.0000) -> realized 0.0066 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6666,10 +7596,23 @@ variants:
           wcag: 9.9687
           apca_lc: -68.3369
           oklab_dl: 0.605716
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 2
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8108 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5979, L_apca=0.8108)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 2 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0047 -> capped 0.0047 (cap -0.0000) -> realized 0.0047 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6719,10 +7662,23 @@ variants:
           wcag: 6.1239
           apca_lc: -45.1191
           oklab_dl: 0.470621
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 45.0
+            salience: 1
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 45.0
+            band_max: 55.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.6748 to apca_centre (wcag_floor=4.5, apca_centre=45.0, L_wcag=0.5982, L_apca=0.6748)
+        - 'apca centre: base 45.0 + salience boost 0.0 requested / 0.0 applied (salience 1 vs normal 2,
+          step 0.00) -> effective 45.0 (band max 55.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6931,10 +7887,23 @@ variants:
           wcag: 9.9263
           apca_lc: -68.1345
           oklab_dl: 0.599271
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8042 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5950, L_apca=0.8042)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0774 -> capped 0.0774 (cap -0.0000) -> realized 0.0774 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -6984,10 +7953,23 @@ variants:
           wcag: 9.9013
           apca_lc: -68.0213
           oklab_dl: 0.596765
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 4
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8012 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5917, L_apca=0.8012)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 4 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.1025 -> capped 0.1025 (cap -0.0000) -> realized 0.1025 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -7037,10 +8019,23 @@ variants:
           wcag: 9.9334
           apca_lc: -68.1506
           oklab_dl: 0.608487
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8134 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.6056, L_apca=0.8134)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0324 -> capped 0.0324 (cap -0.0000) -> realized 0.0324 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -7090,10 +8085,23 @@ variants:
           wcag: 9.9485
           apca_lc: -68.3082
           oklab_dl: 0.59729
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 4.5
+            base_apca_centre: 68.0
+            salience: 3
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 68.0
+            band_max: 78.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.8020 to apca_centre (wcag_floor=4.5, apca_centre=68.0, L_wcag=0.5920, L_apca=0.8020)
+        - 'apca centre: base 68.0 + salience boost 0.0 requested / 0.0 applied (salience 3 vs normal 2,
+          step 0.00) -> effective 68.0 (band max 78.0)'
         - 'chroma: requested 0.0647 -> capped 0.0647 (cap -0.0000) -> realized 0.0647 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -7143,10 +8151,23 @@ variants:
           wcag: 3.3565
           apca_lc: -24.1554
           oklab_dl: 0.322013
+          solve:
+            winning_constraint: apca_centre
+            wcag_floor: 3.0
+            base_apca_centre: 24.0
+            salience: 0
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 24.0
+            band_max: 32.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: apca_centre
         derivation:
         - solved L=0.5261 to apca_centre (wcag_floor=3.0, apca_centre=24.0, L_wcag=0.5015, L_apca=0.5261)
+        - 'apca centre: base 24.0 + salience boost 0.0 requested / 0.0 applied (salience 0 vs normal 2,
+          step 0.00) -> effective 24.0 (band max 32.0)'
         - 'chroma: requested 0.0000 -> capped 0.0000 (cap -0.0000) -> realized 0.0000 (gamut -0.0000),
           fraction 1.000'
         issues: []
@@ -7196,10 +8217,23 @@ variants:
           wcag: 12.459
           apca_lc: -81.495
           oklab_dl: 0.674935
+          solve:
+            winning_constraint: night_ceiling
+            wcag_floor: 4.5
+            base_apca_centre: 82.0
+            salience: 5
+            salience_apca_step: 0.0
+            salience_boost_requested: 0.0
+            salience_boost_applied: 0.0
+            effective_apca_centre: 82.0
+            band_max: 90.0
+            clamped_to_band_max: false
         conflicts: []
         winning_constraint: night_ceiling
         derivation:
         - solved L=0.8800 to night_ceiling (wcag_floor=4.5, apca_centre=82.0, L_wcag=0.6004, L_apca=0.8832)
+        - 'apca centre: base 82.0 + salience boost 0.0 requested / 0.0 applied (salience 5 vs normal 2,
+          step 0.00) -> effective 82.0 (band max 90.0)'
         - 'chroma: requested 0.0873 -> capped 0.0873 (cap -0.0000) -> realized 0.0873 (gamut -0.0000),
           fraction 1.000'
         issues: []

@@ -13,7 +13,7 @@ meta:
   transform: phase4-model
   binding: candidate-c-expressive
   strategy: expressive
-  input_hash: fd33af8be8b3d7a2
+  input_hash: c0858be5fcd1549f
   shared_environments: spec/environments.yaml
   srgb_primary: true
 colors:

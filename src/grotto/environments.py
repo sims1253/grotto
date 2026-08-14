@@ -59,6 +59,13 @@ class Environment:
     hue_rotation: float
     chroma_gain: float
     foreground_ceiling: float | None
+    # Per-salience-step APCA Lc added to a role's contrast-band centre for
+    # salience above the normal reading level (model.py NORMAL_SALIENCE),
+    # clamped to the band max.  Phase-7 feedback knob: on the bright Day
+    # canvas salient syntax read insufficiently differentiated, so expressing
+    # extra salience as contrast (rather than more chroma) is the next
+    # hypothesis under evaluation.  Default 0.0 = the knob is off.
+    salience_apca_step: float = 0.0
 
     @property
     def rotation_cap_deg(self) -> float:
@@ -131,6 +138,7 @@ class Environments:
                 hue_rotation=float(e.get("hue_rotation", 0.0)),
                 chroma_gain=float(e.get("chroma_gain", 1.0)),
                 foreground_ceiling=e.get("foreground_ceiling"),
+                salience_apca_step=float(e.get("salience_apca_step", 0.0)),
             )
         # hue_rotation_weight control points, sorted by hue for interpolation.
         weight_items = tuple(

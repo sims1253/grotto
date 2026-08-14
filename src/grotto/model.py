@@ -149,6 +149,14 @@ CHROMA_CATEGORIES = ("neutral", "warm-neutral", "ordinary", "diagnostics")
 #: muting diagnostics.  Membership follows the roles.yaml `diagnostics` group.
 _DIAGNOSTIC_GROUP = "diagnostics"
 
+#: Salience level of the normal reading baseline (roles.yaml vocabulary:
+#: 2 = "default -- the baseline reading level", e.g. `fg`).  Roles ABOVE this
+#: level may earn a higher APCA centre via the environment's
+#: ``salience_apca_step`` (one step of Lc per salience level above normal,
+#: clamped to the band max); roles at or below it never do.  Phase-7 feedback
+#: knob: see ``_solve_contrast_role``.
+NORMAL_SALIENCE = 2
+
 
 # ===========================================================================
 # Bindings and the model spec bundle
@@ -718,7 +726,19 @@ def _solve_contrast_role(
     ceiling = env.foreground_ceiling if role.paint == "ink" else None
     wcag_floor = _accessibility_wcag_floor(role, spec)
     band = spec.environments.contrast_bands[role.contrast_target]
-    apca_centre = band.centre
+    # Salience-driven APCA boost (Phase-7 feedback): a role above the normal
+    # reading level (NORMAL_SALIENCE) prefers a HIGHER contrast centre, one
+    # ``salience_apca_step`` of APCA Lc per salience level above normal,
+    # clamped to the band max so a role never leaves its declared band.  This
+    # is a priority-4 PREFERENCE: the WCAG floor (priority 2) and the night
+    # foreground ceiling (priority 3) still override it below.
+    base_apca_centre = band.centre
+    salience_boost_requested = (
+        max(0, role.salience - NORMAL_SALIENCE) * env.salience_apca_step
+    )
+    effective_apca_centre = min(band.max, base_apca_centre + salience_boost_requested)
+    salience_boost_applied = effective_apca_centre - base_apca_centre
+    apca_centre = effective_apca_centre
     abs_ceiling = effective_ceiling(role, binding, spec)
 
     def comp(L):
@@ -734,6 +754,12 @@ def _solve_contrast_role(
         "polarity": env.polarity,
         "wcag_floor": wcag_floor,
         "apca_centre": apca_centre,
+        "base_apca_centre": base_apca_centre,
+        "salience": role.salience,
+        "salience_apca_step": env.salience_apca_step,
+        "salience_boost_requested": salience_boost_requested,
+        "salience_boost_applied": salience_boost_applied,
+        "effective_apca_centre": effective_apca_centre,
         "ceiling": ceiling,
         "ref_L": ref_L,
     }
@@ -1090,11 +1116,46 @@ def _build_variant(
                 conflicts.append("foreground_ceiling_overridden")
             if adjustment_rejected:
                 conflicts.append("adjustment_rejected_wcag")
+            # Machine-readable solve provenance: how the APCA centre was moved
+            # by salience (base -> requested -> clamped effective), alongside
+            # the winning constraint and floor.  Mirrors the derivation text
+            # below but survives string changes (Phase-7 feedback audit).
+            band = spec.environments.contrast_bands[r.contrast_target]
+            contrast["solve"] = {
+                "winning_constraint": winning,
+                "wcag_floor": round(solve_info["wcag_floor"], 4),
+                "base_apca_centre": round(solve_info["base_apca_centre"], 4),
+                "salience": r.salience,
+                "salience_apca_step": round(solve_info["salience_apca_step"], 4),
+                "salience_boost_requested": round(
+                    solve_info["salience_boost_requested"], 4
+                ),
+                "salience_boost_applied": round(
+                    solve_info["salience_boost_applied"], 4
+                ),
+                "effective_apca_centre": round(
+                    solve_info["effective_apca_centre"], 4
+                ),
+                "band_max": round(band.max, 4),
+                "clamped_to_band_max": (
+                    solve_info["salience_boost_applied"]
+                    < solve_info["salience_boost_requested"] - 1e-9
+                ),
+            }
             derivation.append(
                 f"solved L={L:.4f} to {winning} "
                 f"(wcag_floor={solve_info['wcag_floor']}, "
                 f"apca_centre={solve_info['apca_centre']}, "
                 f"L_wcag={solve_info['L_wcag']:.4f}, L_apca={solve_info['L_apca']:.4f})"
+            )
+            derivation.append(
+                f"apca centre: base {solve_info['base_apca_centre']:.1f} + salience "
+                f"boost {solve_info['salience_boost_requested']:.1f} requested / "
+                f"{solve_info['salience_boost_applied']:.1f} applied (salience "
+                f"{r.salience} vs normal {NORMAL_SALIENCE}, step "
+                f"{solve_info['salience_apca_step']:.2f}) -> effective "
+                f"{solve_info['effective_apca_centre']:.1f} "
+                f"(band max {band.max:.1f})"
             )
             # final quantized hex must still meet the floor
             if floor_v > 0.0:
@@ -1629,6 +1690,7 @@ __all__ = [
     "ADJUSTMENT_LIMITS",
     "SURFACE_STEPS",
     "CO_OCCURRING_SURFACES",
+    "NORMAL_SALIENCE",
     "validate_binding",
     "chroma_components",
     "chroma_category",

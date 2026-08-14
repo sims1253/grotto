@@ -81,8 +81,20 @@ environments:
     hue_rotation: 0.0           # no warm-ward rotation
     # Light backgrounds need MORE chroma for equal salience: a chromatic
     # foreground on a bright field has less room to differ in lightness, so
-    # colour has to carry more of the load.
-    chroma_gain: 1.15
+    # colour has to carry more of the load.  That was the argument for the
+    # earlier 1.15 gain; DESIGN JUDGMENT [J] revised by Phase-7 feedback:
+    # extra chroma on the bright canvas read as washed-out colour noise, so
+    # salience is now carried by CONTRAST (salience_apca_step below), not by
+    # additional chroma.  chroma_gain returns to neutral 1.00.
+    chroma_gain: 1.00
+    # DESIGN JUDGMENT [J] from Phase-7 feedback: on the bright day canvas,
+    # syntax above the normal reading level (salience > 2) was judged too
+    # weak to scan for.  Each salience level above normal adds this many APCA
+    # Lc to the role's contrast-band centre, clamped to the band max (see
+    # model.py NORMAL_SALIENCE / _solve_contrast_role).  5.0 puts `keyword`
+    # (salience 3, comfortable) at Lc 73 and `function` (salience 4, high)
+    # at the band-max 90.
+    salience_apca_step: 5.0
     notes: >
       Q-2 resolves as "lighter is nearer" here without controversy.
       The main risk in this variant is chromatic syntax washing out against
@@ -112,6 +124,11 @@ environments:
     chroma_attenuation: 0.15
     hue_rotation: -3.0          # |deg| = rotation cap; direction via warm_anchor (Phase 4)
     chroma_gain: 1.00
+    # DESIGN JUDGMENT [J] from Phase-7 feedback: Evening already showed the
+    # clearer hierarchy.  Keep the new contrast hypothesis isolated to Day so
+    # this iteration changes one environmental variable rather than silently
+    # retuning the dark variants too.
+    salience_apca_step: 0.0
     notes: >
       This variant is deliberately the least transformed.  If Q-7 resolves
       against Evening, this is the one that gets cut -- it exists to test
@@ -144,6 +161,10 @@ environments:
     # Night-specific experimental cap on foreground lightness. Accessibility
     # floors override it; Phase 7 must determine whether this preference helps.
     foreground_ceiling: 0.88
+    # DESIGN JUDGMENT [J]: as Evening, keep the new contrast hypothesis
+    # isolated to Day.  This is experimental control, not evidence that a
+    # salience boost on a dark canvas would be uncomfortable.
+    salience_apca_step: 0.0
     notes: >
       The transform must not be allowed to produce a near-black background.
       L=0.205 is only marginally darker than Evening's 0.235; the perceived

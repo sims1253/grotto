@@ -399,7 +399,7 @@
   "grotto": {
     "generator": "grotto-vscode/1",
     "palette": "candidate-a-restrained.evening.yaml",
-    "palette_sha256": "e3d69ea172a2e0165d34fbe9c308a5e93364891aa2229553721b51ee45f360c1",
+    "palette_sha256": "9f791e0a8c2327ea4035336516370bb9ec82f66ec648884126dbad4ec0c61a0b",
     "candidate": true,
     "note": "EVALUATION PREVIEW generated from a Phase 5 CANDIDATE palette. No theme is selected, ranked or final (DESIGN.md section 1)."
   }

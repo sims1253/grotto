@@ -112,61 +112,61 @@
     {
       "candidate": "candidate-a-restrained",
       "strategy": "restrained",
-      "input_hash": "60749f4087c7c133",
+      "input_hash": "c0c67c9b81fe9bbe",
       "ok": true,
       "mean_realized_chroma_night": 0.018988,
-      "mean_realized_chroma_day": 0.033882,
+      "mean_realized_chroma_day": 0.026935,
       "mel_ratio_led_night": 0.964067,
       "mel_ratio_oled_night": 0.964826,
-      "mel_ratio_led_day": 0.963891,
+      "mel_ratio_led_day": 0.964165,
       "distance_errors_night": 21,
       "distance_warnings_night": 82,
       "cvd_worst_retention_night": 0.0,
       "max_hue_drift_deg": 5.88,
       "stability_ok": false,
       "min_wcag_body_text_night": 6.1239,
-      "n_issues": 469
+      "n_issues": 387
     },
     {
       "candidate": "candidate-b-balanced",
       "strategy": "balanced",
-      "input_hash": "80689aafddee5272",
+      "input_hash": "795d55bccb35b4fa",
       "ok": true,
       "mean_realized_chroma_night": 0.023759,
-      "mean_realized_chroma_day": 0.042084,
+      "mean_realized_chroma_day": 0.033782,
       "mel_ratio_led_night": 0.951196,
       "mel_ratio_oled_night": 0.952121,
-      "mel_ratio_led_day": 0.963275,
+      "mel_ratio_led_day": 0.96314,
       "distance_errors_night": 20,
       "distance_warnings_night": 77,
       "cvd_worst_retention_night": 0.079189,
       "max_hue_drift_deg": 5.7,
-      "stability_ok": false,
+      "stability_ok": true,
       "min_wcag_body_text_night": 6.1239,
-      "n_issues": 456
+      "n_issues": 377
     },
     {
       "candidate": "candidate-c-expressive",
       "strategy": "expressive",
-      "input_hash": "fd33af8be8b3d7a2",
+      "input_hash": "c0858be5fcd1549f",
       "ok": true,
       "mean_realized_chroma_night": 0.028641,
-      "mean_realized_chroma_day": 0.05042,
+      "mean_realized_chroma_day": 0.040875,
       "mel_ratio_led_night": 0.947989,
       "mel_ratio_oled_night": 0.948569,
-      "mel_ratio_led_day": 0.962267,
+      "mel_ratio_led_day": 0.962028,
       "distance_errors_night": 20,
       "distance_warnings_night": 75,
       "cvd_worst_retention_night": 0.0,
       "max_hue_drift_deg": 5.82,
       "stability_ok": false,
       "min_wcag_body_text_night": 6.1239,
-      "n_issues": 450
+      "n_issues": 371
     }
   ],
   "per_candidate": {
     "candidate-a-restrained": {
-      "input_hash": "60749f4087c7c133",
+      "input_hash": "c0c67c9b81fe9bbe",
       "ok": true,
       "strategy": "restrained",
       "stability": {
@@ -191,7 +191,7 @@
               "day",
               "evening"
             ],
-            "d1": -0.1239,
+            "d1": -0.0201,
             "d2": 0.0035
           },
           {
@@ -203,7 +203,7 @@
               "day",
               "night"
             ],
-            "d1": -0.1239,
+            "d1": -0.0201,
             "d2": 0.0078
           },
           {
@@ -215,7 +215,7 @@
               "day",
               "evening"
             ],
-            "d1": -0.1239,
+            "d1": -0.0201,
             "d2": 0.0035
           },
           {
@@ -227,7 +227,7 @@
               "day",
               "night"
             ],
-            "d1": -0.1239,
+            "d1": -0.0201,
             "d2": 0.0078
           },
           {
@@ -239,7 +239,7 @@
               "day",
               "evening"
             ],
-            "d1": -0.1239,
+            "d1": -0.0201,
             "d2": 0.0035
           },
           {
@@ -251,7 +251,7 @@
               "day",
               "night"
             ],
-            "d1": -0.1239,
+            "d1": -0.0201,
             "d2": 0.0078
           }
         ],
@@ -345,10 +345,10 @@
             "dH_deg": 75.2256
           },
           "fg": {
-            "dE": 0.272602,
-            "dL": -0.272602,
-            "dC": 0.000505,
-            "dH_deg": 0.0137
+            "dE": 0.27229,
+            "dL": -0.272287,
+            "dC": -0.000771,
+            "dH_deg": 10.5532
           },
           "fg_secondary": {
             "dE": 0.132911,
@@ -357,10 +357,10 @@
             "dH_deg": 28.2525
           },
           "fg_muted": {
-            "dE": 0.11462,
-            "dL": 0.114558,
-            "dC": 0.003185,
-            "dH_deg": 24.9716
+            "dE": 0.113723,
+            "dL": 0.113691,
+            "dC": 0.00236,
+            "dH_deg": 16.8431
           },
           "comment": {
             "dE": 0.132911,
@@ -369,10 +369,10 @@
             "dH_deg": 28.2525
           },
           "docstring": {
-            "dE": 0.272602,
-            "dL": -0.272602,
-            "dC": 0.000505,
-            "dH_deg": 0.0137
+            "dE": 0.27229,
+            "dL": -0.272287,
+            "dC": -0.000771,
+            "dH_deg": 10.5532
           },
           "punctuation": {
             "dE": 0.134698,
@@ -393,8 +393,8 @@
             "dH_deg": 0.0
           },
           "line_number_active": {
-            "dE": 0.272695,
-            "dL": -0.272695,
+            "dE": 0.311236,
+            "dL": -0.311236,
             "dC": -0.0,
             "dH_deg": 0.0
           },
@@ -411,154 +411,154 @@
             "dH_deg": 38.7429
           },
           "selection": {
-            "dE": 0.648426,
-            "dL": 0.648418,
-            "dC": 0.002489,
-            "dH_deg": 13.7259
+            "dE": 0.648882,
+            "dL": 0.64888,
+            "dC": 0.000759,
+            "dH_deg": 12.5505
           },
           "focus": {
-            "dE": 0.465028,
-            "dL": -0.463971,
-            "dC": 0.031121,
-            "dH_deg": 5.5758
+            "dE": 0.547084,
+            "dL": -0.546869,
+            "dC": 0.014896,
+            "dH_deg": 6.5724
           },
           "keyword": {
-            "dE": 0.276097,
-            "dL": -0.263853,
-            "dC": 0.081172,
-            "dH_deg": 3.961
+            "dE": 0.314515,
+            "dL": -0.303348,
+            "dC": 0.082952,
+            "dH_deg": 3.6298
           },
           "string": {
-            "dE": 0.273134,
-            "dL": -0.272857,
-            "dC": 0.011174,
-            "dH_deg": 4.2586
+            "dE": 0.312087,
+            "dL": -0.312032,
+            "dC": -0.004273,
+            "dH_deg": 3.7237
           },
           "number": {
-            "dE": 0.272659,
-            "dL": -0.272562,
-            "dC": 0.006874,
-            "dH_deg": 2.3659
+            "dE": 0.311033,
+            "dL": -0.310984,
+            "dC": -0.004582,
+            "dH_deg": 3.4454
           },
           "constant": {
-            "dE": 0.272659,
-            "dL": -0.272562,
-            "dC": 0.006874,
-            "dH_deg": 2.3659
+            "dE": 0.311033,
+            "dL": -0.310984,
+            "dC": -0.004582,
+            "dH_deg": 3.4454
           },
           "type": {
-            "dE": 0.273352,
-            "dL": -0.273292,
-            "dC": 0.002485,
-            "dH_deg": 6.1738
+            "dE": 0.312173,
+            "dL": -0.312045,
+            "dC": -0.007143,
+            "dH_deg": 7.1919
           },
           "function": {
-            "dE": 0.463265,
-            "dL": -0.462036,
-            "dC": 0.033608,
-            "dH_deg": 4.5519
+            "dE": 0.545219,
+            "dL": -0.544934,
+            "dC": 0.017383,
+            "dH_deg": 5.5485
           },
           "parameter": {
-            "dE": 0.272602,
-            "dL": -0.272602,
-            "dC": 0.000505,
-            "dH_deg": 0.0137
+            "dE": 0.27229,
+            "dL": -0.272287,
+            "dC": -0.000771,
+            "dH_deg": 10.5532
           },
           "property": {
-            "dE": 0.272602,
-            "dL": -0.272602,
-            "dC": 0.000505,
-            "dH_deg": 0.0137
+            "dE": 0.27229,
+            "dL": -0.272287,
+            "dC": -0.000771,
+            "dH_deg": 10.5532
           },
           "builtin": {
-            "dE": 0.271141,
-            "dL": -0.269315,
-            "dC": 0.031378,
-            "dH_deg": 3.7833
+            "dE": 0.311613,
+            "dL": -0.310669,
+            "dC": 0.024201,
+            "dH_deg": 3.4739
           },
           "decorator": {
-            "dE": 0.271801,
-            "dL": -0.271797,
-            "dC": 0.000932,
-            "dH_deg": 13.1752
+            "dE": 0.310915,
+            "dL": -0.310914,
+            "dC": -0.00093,
+            "dH_deg": 6.8875
           },
           "namespace": {
-            "dE": 0.272063,
-            "dL": -0.272047,
-            "dC": 0.001098,
-            "dH_deg": 9.1191
+            "dE": 0.270492,
+            "dL": -0.270478,
+            "dC": -0.001231,
+            "dH_deg": 8.4672
           },
           "tag": {
-            "dE": 0.272602,
-            "dL": -0.272602,
-            "dC": 0.000505,
-            "dH_deg": 0.0137
+            "dE": 0.313425,
+            "dL": -0.313419,
+            "dC": 0.000218,
+            "dH_deg": 21.9978
           },
           "error": {
-            "dE": 0.46577,
-            "dL": -0.454404,
-            "dC": 0.102265,
-            "dH_deg": 0.0724
+            "dE": 0.540648,
+            "dL": -0.537434,
+            "dC": 0.058858,
+            "dH_deg": 0.4893
           },
           "warning": {
-            "dE": 0.457587,
-            "dL": -0.457582,
-            "dC": 0.001894,
-            "dH_deg": 0.7259
+            "dE": 0.539577,
+            "dL": -0.539225,
+            "dC": -0.019496,
+            "dH_deg": 0.4402
           },
           "info": {
-            "dE": 0.27598,
-            "dL": -0.27375,
-            "dC": 0.034475,
-            "dH_deg": 6.6702
+            "dE": 0.355208,
+            "dL": -0.354885,
+            "dC": 0.014391,
+            "dH_deg": 6.0688
           },
           "success": {
-            "dE": 0.272936,
-            "dL": -0.272926,
-            "dC": -0.000889,
-            "dH_deg": 1.6256
+            "dE": 0.353923,
+            "dL": -0.353361,
+            "dC": -0.019876,
+            "dH_deg": 1.4712
           },
           "diff_added": {
-            "dE": 0.699438,
-            "dL": 0.699005,
-            "dC": 0.02461,
-            "dH_deg": 0.8427
+            "dE": 0.700597,
+            "dL": 0.700259,
+            "dC": 0.021755,
+            "dH_deg": 0.9625
           },
           "diff_removed": {
-            "dE": 0.699809,
-            "dL": 0.699782,
-            "dC": -0.006132,
-            "dH_deg": 2.3995
+            "dE": 0.699314,
+            "dL": 0.699274,
+            "dC": -0.007375,
+            "dH_deg": 9.1811
           },
           "diff_changed": {
-            "dE": 0.699352,
-            "dL": 0.699319,
-            "dC": 0.00678,
-            "dH_deg": 4.2017
+            "dE": 0.699082,
+            "dL": 0.699071,
+            "dC": 0.003911,
+            "dH_deg": 3.5948
           },
           "search_match": {
-            "dE": 0.650735,
-            "dL": 0.650137,
-            "dC": 0.027865,
-            "dH_deg": 2.384
+            "dE": 0.64996,
+            "dL": 0.649616,
+            "dC": 0.021133,
+            "dH_deg": 1.3884
           },
           "search_match_current": {
-            "dE": 0.605009,
-            "dL": 0.601896,
-            "dC": 0.061221,
-            "dH_deg": 3.0713
+            "dE": 0.601983,
+            "dL": 0.59998,
+            "dC": 0.049015,
+            "dH_deg": 2.267
           },
           "breakpoint": {
-            "dE": 0.472885,
-            "dL": -0.460897,
-            "dC": 0.105799,
-            "dH_deg": 0.228
+            "dE": 0.547494,
+            "dL": -0.543927,
+            "dC": 0.062391,
+            "dH_deg": 0.1888
           },
           "debug_current": {
-            "dE": 0.650735,
-            "dL": 0.650137,
-            "dC": 0.027865,
-            "dH_deg": 2.384
+            "dE": 0.64996,
+            "dL": 0.649616,
+            "dC": 0.021133,
+            "dH_deg": 1.3884
           },
           "deprecated": {
             "dE": 0.134698,
@@ -574,248 +574,230 @@
           "distributions": {
             "all_roles": {
               "lightness": {
-                "min": 0.418326,
-                "p25": 0.537694,
-                "median": 0.540385,
-                "p75": 0.892109,
+                "min": 0.335428,
+                "p25": 0.499334,
+                "median": 0.539379,
+                "p75": 0.890577,
                 "max": 1.0
               },
               "chroma": {
                 "min": 0.0,
-                "p25": 0.005142,
-                "median": 0.009005,
-                "p75": 0.0569,
-                "max": 0.141907
+                "p25": 0.003965,
+                "median": 0.00814,
+                "p75": 0.042947,
+                "max": 0.121593
               }
             },
             "chromatic_only": {
               "lightness": {
-                "min": 0.418326,
-                "p25": 0.426054,
-                "median": 0.536067,
-                "p75": 0.550179,
-                "max": 0.934653
+                "min": 0.335428,
+                "p25": 0.343024,
+                "median": 0.494206,
+                "p75": 0.510684,
+                "max": 0.935907
               },
               "chroma": {
-                "min": 0.032681,
-                "p25": 0.04892,
-                "median": 0.060154,
-                "p75": 0.074724,
-                "max": 0.141907
+                "min": 0.029826,
+                "p25": 0.03959,
+                "median": 0.048698,
+                "p75": 0.059278,
+                "max": 0.121593
               }
             },
             "chroma_floor": 0.02,
             "chroma_ordering": [
               {
+                "role": "keyword",
+                "family": "violet",
+                "C": 0.121593
+              },
+              {
                 "role": "breakpoint",
                 "family": "rose",
-                "C": 0.141907
+                "C": 0.098499
               },
               {
                 "role": "error",
                 "family": "rose",
-                "C": 0.141907
-              },
-              {
-                "role": "keyword",
-                "family": "violet",
-                "C": 0.119813
+                "C": 0.098499
               },
               {
                 "role": "search_match_current",
                 "family": "sand",
-                "C": 0.095155
+                "C": 0.08295
               },
               {
                 "role": "string",
                 "family": "sage",
-                "C": 0.074724
+                "C": 0.059278
               },
               {
                 "role": "success",
                 "family": "sage",
-                "C": 0.074724
+                "C": 0.055738
               },
               {
                 "role": "info",
                 "family": "azure",
-                "C": 0.072477
+                "C": 0.052393
               },
               {
                 "role": "warning",
                 "family": "sand",
-                "C": 0.071752
+                "C": 0.050363
               },
               {
                 "role": "constant",
                 "family": "sand",
-                "C": 0.060154
+                "C": 0.048698
               },
               {
                 "role": "number",
                 "family": "sand",
-                "C": 0.060154
-              },
-              {
-                "role": "focus",
-                "family": "azure",
-                "C": 0.055816
-              },
-              {
-                "role": "function",
-                "family": "azure",
-                "C": 0.055816
-              },
-              {
-                "role": "type",
-                "family": "teal",
-                "C": 0.04892
+                "C": 0.048698
               },
               {
                 "role": "debug_current",
                 "family": "sand",
-                "C": 0.047762
+                "C": 0.04103
               },
               {
                 "role": "search_match",
                 "family": "sand",
-                "C": 0.047762
+                "C": 0.04103
+              },
+              {
+                "role": "focus",
+                "family": "azure",
+                "C": 0.03959
+              },
+              {
+                "role": "function",
+                "family": "azure",
+                "C": 0.03959
+              },
+              {
+                "role": "type",
+                "family": "teal",
+                "C": 0.039292
               },
               {
                 "role": "builtin",
                 "family": "rose",
-                "C": 0.042768
+                "C": 0.035591
               },
               {
                 "role": "diff_added",
                 "family": "sage",
-                "C": 0.032681
+                "C": 0.029826
               }
             ]
           },
           "distance_summary": {
-            "n_errors": 15,
-            "n_warnings": 50,
-            "n_total": 65,
+            "n_errors": 12,
+            "n_warnings": 51,
+            "n_total": 63,
             "errors": [
               {
                 "constraint": "must_distinguish(error, warning)",
                 "condition": "normal",
-                "measured_de": 0.122735,
-                "threshold_de": 0.13
-              },
-              {
-                "constraint": "must_distinguish(warning, string)",
-                "condition": "normal",
-                "measured_de": 0.125772,
-                "threshold_de": 0.13
-              },
-              {
-                "constraint": "must_distinguish(warning, number)",
-                "condition": "normal",
-                "measured_de": 0.1181,
-                "threshold_de": 0.13
-              },
-              {
-                "constraint": "must_distinguish(warning, constant)",
-                "condition": "normal",
-                "measured_de": 0.1181,
+                "measured_de": 0.084583,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(diff_added, diff_removed)",
                 "condition": "normal",
-                "measured_de": 0.034384,
+                "measured_de": 0.032152,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(diff_added, diff_changed)",
                 "condition": "normal",
-                "measured_de": 0.025288,
+                "measured_de": 0.023867,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(diff_removed, diff_changed)",
                 "condition": "normal",
-                "measured_de": 0.010676,
+                "measured_de": 0.009374,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, search_match)",
                 "condition": "normal",
-                "measured_de": 0.056708,
+                "measured_de": 0.048329,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, search_match_current)",
                 "condition": "normal",
-                "measured_de": 0.106685,
+                "measured_de": 0.093832,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(search_match, search_match_current)",
                 "condition": "normal",
-                "measured_de": 0.052918,
+                "measured_de": 0.048773,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, diff_added)",
                 "condition": "normal",
-                "measured_de": 0.045168,
+                "measured_de": 0.042411,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, diff_removed)",
                 "condition": "normal",
-                "measured_de": 0.029993,
+                "measured_de": 0.027596,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, active_line)",
                 "condition": "normal",
-                "measured_de": 0.027242,
+                "measured_de": 0.026149,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(active_line, diff_added)",
                 "condition": "normal",
-                "measured_de": 0.031858,
+                "measured_de": 0.029036,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(active_line, diff_removed)",
                 "condition": "normal",
-                "measured_de": 0.005494,
+                "measured_de": 0.004533,
                 "threshold_de": 0.13
               }
             ],
             "warnings_count_by_constraint": {
               "differentiated_by": 1,
-              "must_distinguish": 33,
+              "must_distinguish": 34,
               "same_family": 5,
               "should_distinguish": 11
             }
           },
           "cvd_summary": {
             "n_pairs": 26,
-            "worst_retention": 0.106732,
+            "worst_retention": 0.0,
             "pairs": [
               {
                 "a": "error",
                 "b": "string",
-                "normal_de": 0.207404,
+                "normal_de": 0.197426,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.203536,
-                    "retention": 0.98135
+                    "dichromat_de_1.0": 0.216911,
+                    "retention": 1.098696
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.099499,
-                    "retention": 0.479733
+                    "dichromat_de_1.0": 0.144165,
+                    "retention": 0.730225
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.189606,
-                    "retention": 0.914185
+                    "dichromat_de_1.0": 0.18754,
+                    "retention": 0.949925
                   }
                 },
                 "redundant_channel": true
@@ -823,19 +805,19 @@
               {
                 "a": "error",
                 "b": "builtin",
-                "normal_de": 0.1535,
+                "normal_de": 0.170863,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.176849,
-                    "retention": 1.152111
+                    "dichromat_de_1.0": 0.19376,
+                    "retention": 1.134011
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.122472,
-                    "retention": 0.797862
+                    "dichromat_de_1.0": 0.157626,
+                    "retention": 0.922529
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.153366,
-                    "retention": 0.999125
+                    "dichromat_de_1.0": 0.170796,
+                    "retention": 0.999609
                   }
                 },
                 "redundant_channel": true
@@ -843,19 +825,19 @@
               {
                 "a": "error",
                 "b": "keyword",
-                "normal_de": 0.206823,
+                "normal_de": 0.218205,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.21904,
-                    "retention": 1.059069
+                    "dichromat_de_1.0": 0.227793,
+                    "retention": 1.043938
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.19836,
-                    "retention": 0.959083
+                    "dichromat_de_1.0": 0.215213,
+                    "retention": 0.986289
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.177682,
-                    "retention": 0.859101
+                    "dichromat_de_1.0": 0.182395,
+                    "retention": 0.835886
                   }
                 },
                 "redundant_channel": true
@@ -863,19 +845,19 @@
               {
                 "a": "error",
                 "b": "warning",
-                "normal_de": 0.122735,
+                "normal_de": 0.084583,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.076203,
-                    "retention": 0.620871
+                    "dichromat_de_1.0": 0.049016,
+                    "retention": 0.579499
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.0131,
-                    "retention": 0.106732
+                    "dichromat_de_1.0": 0.009537,
+                    "retention": 0.11275
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.101068,
-                    "retention": 0.823467
+                    "dichromat_de_1.0": 0.070122,
+                    "retention": 0.829025
                   }
                 },
                 "redundant_channel": true
@@ -883,19 +865,19 @@
               {
                 "a": "error",
                 "b": "fg",
-                "normal_de": 0.179202,
+                "normal_de": 0.218461,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.190786,
-                    "retention": 1.06464
+                    "dichromat_de_1.0": 0.246317,
+                    "retention": 1.127512
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.122299,
-                    "retention": 0.682467
+                    "dichromat_de_1.0": 0.195067,
+                    "retention": 0.892913
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.182037,
-                    "retention": 1.015819
+                    "dichromat_de_1.0": 0.220821,
+                    "retention": 1.010801
                   }
                 },
                 "redundant_channel": true
@@ -903,19 +885,19 @@
               {
                 "a": "warning",
                 "b": "string",
-                "normal_de": 0.125772,
+                "normal_de": 0.160308,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.137179,
-                    "retention": 1.090695
+                    "dichromat_de_1.0": 0.17493,
+                    "retention": 1.09121
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.111031,
-                    "retention": 0.882793
+                    "dichromat_de_1.0": 0.151672,
+                    "retention": 0.946126
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.125237,
-                    "retention": 0.995744
+                    "dichromat_de_1.0": 0.158157,
+                    "retention": 0.986581
                   }
                 },
                 "redundant_channel": true
@@ -923,19 +905,19 @@
               {
                 "a": "warning",
                 "b": "number",
-                "normal_de": 0.1181,
+                "normal_de": 0.160763,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.12039,
-                    "retention": 1.019392
+                    "dichromat_de_1.0": 0.163986,
+                    "retention": 1.020052
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.117805,
-                    "retention": 0.997504
+                    "dichromat_de_1.0": 0.158931,
+                    "retention": 0.988609
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.117881,
-                    "retention": 0.998146
+                    "dichromat_de_1.0": 0.159944,
+                    "retention": 0.994911
                   }
                 },
                 "redundant_channel": true
@@ -943,19 +925,19 @@
               {
                 "a": "warning",
                 "b": "constant",
-                "normal_de": 0.1181,
+                "normal_de": 0.160763,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.12039,
-                    "retention": 1.019392
+                    "dichromat_de_1.0": 0.163986,
+                    "retention": 1.020052
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.117805,
-                    "retention": 0.997504
+                    "dichromat_de_1.0": 0.158931,
+                    "retention": 0.988609
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.117881,
-                    "retention": 0.998146
+                    "dichromat_de_1.0": 0.159944,
+                    "retention": 0.994911
                   }
                 },
                 "redundant_channel": true
@@ -963,19 +945,19 @@
               {
                 "a": "warning",
                 "b": "decorator",
-                "normal_de": 0.13541,
+                "normal_de": 0.167208,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.141892,
-                    "retention": 1.047868
+                    "dichromat_de_1.0": 0.173477,
+                    "retention": 1.037492
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.13533,
-                    "retention": 0.999407
+                    "dichromat_de_1.0": 0.166413,
+                    "retention": 0.995242
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.123985,
-                    "retention": 0.915629
+                    "dichromat_de_1.0": 0.161321,
+                    "retention": 0.964788
                   }
                 },
                 "redundant_channel": true
@@ -983,19 +965,19 @@
               {
                 "a": "error",
                 "b": "success",
-                "normal_de": 0.207404,
+                "normal_de": 0.166508,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.203536,
-                    "retention": 0.98135
+                    "dichromat_de_1.0": 0.174001,
+                    "retention": 1.045006
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.099499,
-                    "retention": 0.479733
+                    "dichromat_de_1.0": 0.104402,
+                    "retention": 0.62701
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.189606,
-                    "retention": 0.914185
+                    "dichromat_de_1.0": 0.156874,
+                    "retention": 0.942141
                   }
                 },
                 "redundant_channel": true
@@ -1003,19 +985,19 @@
               {
                 "a": "diff_added",
                 "b": "diff_removed",
-                "normal_de": 0.034384,
+                "normal_de": 0.032152,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.027854,
-                    "retention": 0.810094
+                    "dichromat_de_1.0": 0.0268,
+                    "retention": 0.833545
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.021031,
-                    "retention": 0.611664
+                    "dichromat_de_1.0": 0.021724,
+                    "retention": 0.675673
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.011321,
-                    "retention": 0.329259
+                    "dichromat_de_1.0": 0.01046,
+                    "retention": 0.325324
                   }
                 },
                 "redundant_channel": true
@@ -1023,19 +1005,19 @@
               {
                 "a": "diff_added",
                 "b": "diff_changed",
-                "normal_de": 0.025288,
+                "normal_de": 0.023867,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.018681,
-                    "retention": 0.738729
+                    "dichromat_de_1.0": 0.018705,
+                    "retention": 0.783698
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.011377,
-                    "retention": 0.449903
+                    "dichromat_de_1.0": 0.013518,
+                    "retention": 0.566372
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.01227,
-                    "retention": 0.485224
+                    "dichromat_de_1.0": 0.011321,
+                    "retention": 0.474336
                   }
                 },
                 "redundant_channel": true
@@ -1043,19 +1025,19 @@
               {
                 "a": "diff_removed",
                 "b": "diff_changed",
-                "normal_de": 0.010676,
+                "normal_de": 0.009374,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.009893,
-                    "retention": 0.926605
+                    "dichromat_de_1.0": 0.008679,
+                    "retention": 0.925799
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.009874,
-                    "retention": 0.924873
+                    "dichromat_de_1.0": 0.0083,
+                    "retention": 0.885369
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.001345,
-                    "retention": 0.125983
+                    "dichromat_de_1.0": 0.001342,
+                    "retention": 0.143175
                   }
                 },
                 "redundant_channel": true
@@ -1063,19 +1045,19 @@
               {
                 "a": "selection",
                 "b": "search_match",
-                "normal_de": 0.056708,
+                "normal_de": 0.048329,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.054041,
-                    "retention": 0.952966
+                    "dichromat_de_1.0": 0.045834,
+                    "retention": 0.948385
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.056301,
-                    "retention": 0.992815
+                    "dichromat_de_1.0": 0.048236,
+                    "retention": 0.998088
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.036537,
-                    "retention": 0.644291
+                    "dichromat_de_1.0": 0.032098,
+                    "retention": 0.66417
                   }
                 },
                 "redundant_channel": true
@@ -1083,19 +1065,19 @@
               {
                 "a": "selection",
                 "b": "search_match_current",
-                "normal_de": 0.106685,
+                "normal_de": 0.093832,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.105081,
-                    "retention": 0.984963
+                    "dichromat_de_1.0": 0.092798,
+                    "retention": 0.988979
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.107661,
-                    "retention": 1.009152
+                    "dichromat_de_1.0": 0.094557,
+                    "retention": 1.007724
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.066895,
-                    "retention": 0.627031
+                    "dichromat_de_1.0": 0.062917,
+                    "retention": 0.670533
                   }
                 },
                 "redundant_channel": true
@@ -1103,19 +1085,19 @@
               {
                 "a": "search_match",
                 "b": "search_match_current",
-                "normal_de": 0.052918,
+                "normal_de": 0.048773,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.054658,
-                    "retention": 1.032871
+                    "dichromat_de_1.0": 0.050191,
+                    "retention": 1.029082
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.054145,
-                    "retention": 1.023192
+                    "dichromat_de_1.0": 0.049783,
+                    "retention": 1.020712
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.034614,
-                    "retention": 0.654114
+                    "dichromat_de_1.0": 0.036257,
+                    "retention": 0.743394
                   }
                 },
                 "redundant_channel": true
@@ -1123,19 +1105,19 @@
               {
                 "a": "selection",
                 "b": "diff_added",
-                "normal_de": 0.045168,
+                "normal_de": 0.042411,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.047673,
-                    "retention": 1.055445
+                    "dichromat_de_1.0": 0.044658,
+                    "retention": 1.052969
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.041603,
-                    "retention": 0.921059
+                    "dichromat_de_1.0": 0.040391,
+                    "retention": 0.95237
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.02864,
-                    "retention": 0.634066
+                    "dichromat_de_1.0": 0.027823,
+                    "retention": 0.656018
                   }
                 },
                 "redundant_channel": true
@@ -1143,19 +1125,19 @@
               {
                 "a": "selection",
                 "b": "diff_removed",
-                "normal_de": 0.029993,
+                "normal_de": 0.027596,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.023743,
-                    "retention": 0.791613
+                    "dichromat_de_1.0": 0.022491,
+                    "retention": 0.814994
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.029811,
-                    "retention": 0.993937
+                    "dichromat_de_1.0": 0.026361,
+                    "retention": 0.95525
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.029905,
-                    "retention": 0.997068
+                    "dichromat_de_1.0": 0.02762,
+                    "retention": 1.000869
                   }
                 },
                 "redundant_channel": true
@@ -1163,19 +1145,19 @@
               {
                 "a": "selection",
                 "b": "active_line",
-                "normal_de": 0.027242,
+                "normal_de": 0.026149,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.023504,
-                    "retention": 0.862755
+                    "dichromat_de_1.0": 0.022491,
+                    "retention": 0.860085
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.027403,
-                    "retention": 1.005881
+                    "dichromat_de_1.0": 0.026361,
+                    "retention": 1.008101
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.027133,
-                    "retention": 0.995991
+                    "dichromat_de_1.0": 0.026128,
+                    "retention": 0.999195
                   }
                 },
                 "redundant_channel": true
@@ -1183,19 +1165,19 @@
               {
                 "a": "active_line",
                 "b": "diff_added",
-                "normal_de": 0.031858,
+                "normal_de": 0.029036,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.028974,
-                    "retention": 0.909475
+                    "dichromat_de_1.0": 0.0268,
+                    "retention": 0.922987
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.023186,
-                    "retention": 0.727796
+                    "dichromat_de_1.0": 0.021724,
+                    "retention": 0.748175
                   },
                   "tritan": {
                     "dichromat_de_1.0": 0.006647,
-                    "retention": 0.208645
+                    "retention": 0.228919
                   }
                 },
                 "redundant_channel": true
@@ -1203,19 +1185,19 @@
               {
                 "a": "active_line",
                 "b": "diff_removed",
-                "normal_de": 0.005494,
+                "normal_de": 0.004533,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.001365,
-                    "retention": 0.248437
+                    "dichromat_de_1.0": 0.0,
+                    "retention": 0.0
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.003329,
-                    "retention": 0.605836
+                    "dichromat_de_1.0": 0.0,
+                    "retention": 0.0
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.005493,
-                    "retention": 0.999887
+                    "dichromat_de_1.0": 0.004336,
+                    "retention": 0.956603
                   }
                 },
                 "redundant_channel": true
@@ -1223,19 +1205,19 @@
               {
                 "a": "fg",
                 "b": "bg",
-                "normal_de": 0.425756,
+                "normal_de": 0.425456,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.42588,
-                    "retention": 1.000291
+                    "dichromat_de_1.0": 0.425579,
+                    "retention": 1.000289
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.42588,
-                    "retention": 1.000291
+                    "dichromat_de_1.0": 0.425579,
+                    "retention": 1.000289
                   },
                   "tritan": {
                     "dichromat_de_1.0": 0.425283,
-                    "retention": 0.998889
+                    "retention": 0.999592
                   }
                 },
                 "redundant_channel": false
@@ -1263,19 +1245,19 @@
               {
                 "a": "fg_muted",
                 "b": "bg",
-                "normal_de": 0.322228,
+                "normal_de": 0.323091,
                 "cvd": {
                   "protan": {
                     "dichromat_de_1.0": 0.324037,
-                    "retention": 1.005615
+                    "retention": 1.002928
                   },
                   "deutan": {
                     "dichromat_de_1.0": 0.321003,
-                    "retention": 0.996199
+                    "retention": 0.993537
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.321778,
-                    "retention": 0.998605
+                    "dichromat_de_1.0": 0.322647,
+                    "retention": 0.998626
                   }
                 },
                 "redundant_channel": false
@@ -1283,19 +1265,19 @@
               {
                 "a": "error",
                 "b": "bg",
-                "normal_de": 0.55619,
+                "normal_de": 0.628969,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.615623,
-                    "retention": 1.106858
+                    "dichromat_de_1.0": 0.671425,
+                    "retention": 1.0675
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.535297,
-                    "retention": 0.962436
+                    "dichromat_de_1.0": 0.617066,
+                    "retention": 0.981076
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.555879,
-                    "retention": 0.999441
+                    "dichromat_de_1.0": 0.630262,
+                    "retention": 1.002056
                   }
                 },
                 "redundant_channel": true
@@ -1303,19 +1285,19 @@
               {
                 "a": "focus",
                 "b": "bg",
-                "normal_de": 0.550208,
+                "normal_de": 0.63119,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.541113,
-                    "retention": 0.98347
+                    "dichromat_de_1.0": 0.625166,
+                    "retention": 0.990456
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.548516,
-                    "retention": 0.996926
+                    "dichromat_de_1.0": 0.630324,
+                    "retention": 0.998629
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.551236,
-                    "retention": 1.001869
+                    "dichromat_de_1.0": 0.632978,
+                    "retention": 1.002833
                   }
                 },
                 "redundant_channel": true
@@ -1325,64 +1307,64 @@
           },
           "spectral_both_displays": {
             "led-lcd": {
-              "melanopic_ratio": 0.963891,
-              "photopic_relative": 0.767871,
-              "melanopic_relative": 0.740144,
+              "melanopic_ratio": 0.964165,
+              "photopic_relative": 0.766319,
+              "melanopic_relative": 0.738858,
               "top_contributors": [
                 {
                   "hex": "#f6f3ed",
-                  "share": 0.873972
+                  "share": 0.875493
                 },
                 {
                   "hex": "#fdfbf7",
-                  "share": 0.048869
-                },
-                {
-                  "hex": "#706e6b",
-                  "share": 0.015964
+                  "share": 0.048954
                 },
                 {
                   "hex": "#eae9e8",
-                  "share": 0.01575
+                  "share": 0.015778
+                },
+                {
+                  "hex": "#706e6c",
+                  "share": 0.014024
                 },
                 {
                   "hex": "#726f6d",
-                  "share": 0.006636
+                  "share": 0.006647
                 },
                 {
                   "hex": "#ffffff",
-                  "share": 0.006484
+                  "share": 0.006495
                 }
               ]
             },
             "oled": {
-              "melanopic_ratio": 0.964438,
-              "photopic_relative": 0.767871,
-              "melanopic_relative": 0.740564,
+              "melanopic_ratio": 0.964702,
+              "photopic_relative": 0.766319,
+              "melanopic_relative": 0.739269,
               "top_contributors": [
                 {
                   "hex": "#f6f3ed",
-                  "share": 0.874
+                  "share": 0.875531
                 },
                 {
                   "hex": "#fdfbf7",
-                  "share": 0.04886
-                },
-                {
-                  "hex": "#706e6b",
-                  "share": 0.015964
+                  "share": 0.048946
                 },
                 {
                   "hex": "#eae9e8",
-                  "share": 0.015742
+                  "share": 0.01577
+                },
+                {
+                  "hex": "#706e6c",
+                  "share": 0.01402
                 },
                 {
                   "hex": "#726f6d",
-                  "share": 0.006633
+                  "share": 0.006645
                 },
                 {
                   "hex": "#ffffff",
-                  "share": 0.00648
+                  "share": 0.006491
                 }
               ]
             },
@@ -3343,7 +3325,7 @@
       }
     },
     "candidate-b-balanced": {
-      "input_hash": "80689aafddee5272",
+      "input_hash": "795d55bccb35b4fa",
       "ok": true,
       "strategy": "balanced",
       "stability": {
@@ -3358,80 +3340,7 @@
           "realized_salience_proxy",
           "total_hue_drift_including_adjustments"
         ],
-        "normalized_chroma_inversions": [
-          {
-            "roles": [
-              "keyword",
-              "string"
-            ],
-            "variants": [
-              "day",
-              "evening"
-            ],
-            "d1": -0.1206,
-            "d2": 0.0041
-          },
-          {
-            "roles": [
-              "keyword",
-              "string"
-            ],
-            "variants": [
-              "day",
-              "night"
-            ],
-            "d1": -0.1206,
-            "d2": 0.0091
-          },
-          {
-            "roles": [
-              "keyword",
-              "number"
-            ],
-            "variants": [
-              "day",
-              "evening"
-            ],
-            "d1": -0.1206,
-            "d2": 0.0041
-          },
-          {
-            "roles": [
-              "keyword",
-              "number"
-            ],
-            "variants": [
-              "day",
-              "night"
-            ],
-            "d1": -0.1206,
-            "d2": 0.0091
-          },
-          {
-            "roles": [
-              "keyword",
-              "constant"
-            ],
-            "variants": [
-              "day",
-              "evening"
-            ],
-            "d1": -0.1206,
-            "d2": 0.0041
-          },
-          {
-            "roles": [
-              "keyword",
-              "constant"
-            ],
-            "variants": [
-              "day",
-              "night"
-            ],
-            "d1": -0.1206,
-            "d2": 0.0091
-          }
-        ],
+        "normalized_chroma_inversions": [],
         "cyclic_family_sequence_preserved": true,
         "cyclic_family_sequence": {
           "day": [
@@ -3515,7 +3424,7 @@
         "max_hue_drift_deg": 5.7,
         "drift_threshold_deg": 12,
         "drift_violations": [],
-        "ok": false
+        "ok": true
       },
       "cross_variant_drift": {
         "variants": [
@@ -3543,22 +3452,22 @@
             "dH_deg": 75.2256
           },
           "fg": {
-            "dE": 0.272847,
-            "dL": -0.272838,
-            "dC": 0.002025,
-            "dH_deg": 5.3092
+            "dE": 0.272532,
+            "dL": -0.272532,
+            "dC": 0.000691,
+            "dH_deg": 0.033
           },
           "fg_secondary": {
-            "dE": 0.133515,
-            "dL": -0.133449,
-            "dC": 0.004181,
-            "dH_deg": 4.6106
+            "dE": 0.134072,
+            "dL": -0.134053,
+            "dC": 0.002226,
+            "dH_deg": 2.924
           },
           "fg_muted": {
-            "dE": 0.114336,
-            "dL": 0.114251,
-            "dC": 0.004215,
-            "dH_deg": 10.6219
+            "dE": 0.114606,
+            "dL": 0.114547,
+            "dC": 0.003135,
+            "dH_deg": 16.897
           },
           "comment": {
             "dE": 0.134699,
@@ -3591,8 +3500,8 @@
             "dH_deg": 0.0
           },
           "line_number_active": {
-            "dE": 0.272695,
-            "dL": -0.272695,
+            "dE": 0.311236,
+            "dL": -0.311236,
             "dC": -0.0,
             "dH_deg": 0.0
           },
@@ -3609,154 +3518,154 @@
             "dH_deg": 0.0734
           },
           "selection": {
-            "dE": 0.648358,
-            "dL": 0.648355,
-            "dC": 0.001746,
-            "dH_deg": 5.8555
+            "dE": 0.64881,
+            "dL": 0.648809,
+            "dC": 4e-06,
+            "dH_deg": 5.8358
           },
           "focus": {
-            "dE": 0.467957,
-            "dL": -0.465483,
-            "dC": 0.047946,
-            "dH_deg": 4.2615
+            "dE": 0.547346,
+            "dL": -0.546689,
+            "dC": 0.02666,
+            "dH_deg": 4.231
           },
           "keyword": {
-            "dE": 0.279299,
-            "dL": -0.261907,
-            "dC": 0.096865,
-            "dH_deg": 3.735
+            "dE": 0.317645,
+            "dL": -0.302833,
+            "dC": 0.09574,
+            "dH_deg": 3.3717
           },
           "string": {
-            "dE": 0.27681,
-            "dL": -0.276372,
-            "dC": 0.014411,
-            "dH_deg": 3.8623
+            "dE": 0.314368,
+            "dL": -0.314298,
+            "dC": -0.003589,
+            "dH_deg": 4.0485
           },
           "number": {
-            "dE": 0.273159,
-            "dL": -0.273011,
-            "dC": 0.008976,
-            "dH_deg": 0.2485
+            "dE": 0.312516,
+            "dL": -0.31248,
+            "dC": -0.004711,
+            "dH_deg": 0.101
           },
           "constant": {
-            "dE": 0.273159,
-            "dL": -0.273011,
-            "dC": 0.008976,
-            "dH_deg": 0.2485
+            "dE": 0.312516,
+            "dL": -0.31248,
+            "dC": -0.004711,
+            "dH_deg": 0.101
           },
           "type": {
-            "dE": 0.276559,
-            "dL": -0.276451,
-            "dC": 0.003889,
-            "dH_deg": 6.9664
+            "dE": 0.312126,
+            "dL": -0.312015,
+            "dC": -0.005859,
+            "dH_deg": 6.7704
           },
           "function": {
-            "dE": 0.465306,
-            "dL": -0.462508,
-            "dC": 0.050716,
-            "dH_deg": 6.4702
+            "dE": 0.544526,
+            "dL": -0.543715,
+            "dC": 0.02943,
+            "dH_deg": 6.4397
           },
           "parameter": {
-            "dE": 0.272847,
-            "dL": -0.272838,
-            "dC": 0.002025,
-            "dH_deg": 5.3092
+            "dE": 0.272532,
+            "dL": -0.272532,
+            "dC": 0.000691,
+            "dH_deg": 0.033
           },
           "property": {
-            "dE": 0.272701,
-            "dL": -0.272572,
-            "dC": 0.007548,
-            "dH_deg": 33.3413
+            "dE": 0.273008,
+            "dL": -0.27292,
+            "dC": 0.006287,
+            "dH_deg": 28.4721
           },
           "builtin": {
-            "dE": 0.272267,
-            "dL": -0.268869,
-            "dC": 0.042807,
-            "dH_deg": 4.7445
+            "dE": 0.309707,
+            "dL": -0.308203,
+            "dC": 0.030378,
+            "dH_deg": 5.5099
           },
           "decorator": {
-            "dE": 0.272149,
-            "dL": -0.272136,
-            "dC": 0.002584,
-            "dH_deg": 0.1523
+            "dE": 0.314021,
+            "dL": -0.314003,
+            "dC": -0.002654,
+            "dH_deg": 4.4721
           },
           "namespace": {
-            "dE": 0.271548,
-            "dL": -0.271511,
-            "dC": 0.001513,
-            "dH_deg": 10.5796
+            "dE": 0.27276,
+            "dL": -0.272725,
+            "dC": -0.001883,
+            "dH_deg": 10.674
           },
           "tag": {
-            "dE": 0.273258,
-            "dL": -0.272199,
-            "dC": 0.023996,
-            "dH_deg": 3.1133
+            "dE": 0.313192,
+            "dL": -0.312739,
+            "dC": 0.016769,
+            "dH_deg": 3.6843
           },
           "error": {
-            "dE": 0.465131,
-            "dL": -0.45345,
-            "dC": 0.103586,
-            "dH_deg": 0.0183
+            "dE": 0.541657,
+            "dL": -0.538446,
+            "dC": 0.05889,
+            "dH_deg": 0.2243
           },
           "warning": {
-            "dE": 0.459449,
-            "dL": -0.459365,
-            "dC": 0.008689,
-            "dH_deg": 1.1667
+            "dE": 0.541105,
+            "dL": -0.540927,
+            "dC": -0.013815,
+            "dH_deg": 1.2238
           },
           "info": {
-            "dE": 0.277009,
-            "dL": -0.271629,
-            "dC": 0.053984,
-            "dH_deg": 5.4491
+            "dE": 0.355108,
+            "dL": -0.353937,
+            "dC": 0.028244,
+            "dH_deg": 5.8851
           },
           "success": {
-            "dE": 0.275048,
-            "dL": -0.275025,
-            "dC": -0.00099,
-            "dH_deg": 2.0426
+            "dE": 0.353281,
+            "dL": -0.352321,
+            "dC": -0.025824,
+            "dH_deg": 2.2454
           },
           "diff_added": {
-            "dE": 0.701856,
-            "dL": 0.701275,
-            "dC": 0.028544,
-            "dH_deg": 1.893
+            "dE": 0.701599,
+            "dL": 0.701203,
+            "dC": 0.023569,
+            "dH_deg": 0.2521
           },
           "diff_removed": {
-            "dE": 0.6986,
-            "dL": 0.698545,
-            "dC": -0.008816,
-            "dH_deg": 1.1602
+            "dE": 0.699792,
+            "dL": 0.699705,
+            "dC": -0.010846,
+            "dH_deg": 10.3622
           },
           "diff_changed": {
-            "dE": 0.698594,
-            "dL": 0.698574,
-            "dC": 0.004465,
-            "dH_deg": 14.3685
+            "dE": 0.700023,
+            "dL": 0.700014,
+            "dC": 0.003407,
+            "dH_deg": 6.3881
           },
           "search_match": {
-            "dE": 0.648898,
-            "dL": 0.648348,
-            "dC": 0.026701,
-            "dH_deg": 1.2359
+            "dE": 0.648096,
+            "dL": 0.647785,
+            "dC": 0.02006,
+            "dH_deg": 0.2718
           },
           "search_match_current": {
-            "dE": 0.603201,
-            "dL": 0.600847,
-            "dC": 0.053241,
-            "dH_deg": 0.3274
+            "dE": 0.601417,
+            "dL": 0.600033,
+            "dC": 0.040774,
+            "dH_deg": 0.7635
           },
           "breakpoint": {
-            "dE": 0.474341,
-            "dL": -0.461816,
-            "dC": 0.108258,
-            "dH_deg": 1.9467
+            "dE": 0.550499,
+            "dL": -0.546812,
+            "dC": 0.063562,
+            "dH_deg": 2.1894
           },
           "debug_current": {
-            "dE": 0.649091,
-            "dL": 0.648597,
-            "dC": 0.025312,
-            "dH_deg": 0.6656
+            "dE": 0.648304,
+            "dL": 0.648033,
+            "dC": 0.018671,
+            "dH_deg": 2.1733
           },
           "deprecated": {
             "dE": 0.134698,
@@ -3772,34 +3681,34 @@
           "distributions": {
             "all_roles": {
               "lightness": {
-                "min": 0.418479,
-                "p25": 0.537387,
-                "median": 0.541009,
-                "p75": 0.892091,
+                "min": 0.337272,
+                "p25": 0.497889,
+                "median": 0.539658,
+                "p75": 0.891449,
                 "max": 1.0
               },
               "chroma": {
                 "min": 0.0,
-                "p25": 0.008525,
-                "median": 0.02757,
-                "p75": 0.072048,
-                "max": 0.14565
+                "p25": 0.007049,
+                "median": 0.025666,
+                "p75": 0.053612,
+                "max": 0.144526
               }
             },
             "chromatic_only": {
               "lightness": {
-                "min": 0.418479,
-                "p25": 0.527825,
-                "median": 0.538525,
-                "p75": 0.543884,
-                "max": 0.93553
+                "min": 0.337272,
+                "p25": 0.451513,
+                "median": 0.499079,
+                "p75": 0.5389,
+                "max": 0.935458
               },
               "chroma": {
-                "min": 0.023703,
-                "p25": 0.042813,
-                "median": 0.071158,
-                "p75": 0.093513,
-                "max": 0.14565
+                "min": 0.020308,
+                "p25": 0.036537,
+                "median": 0.052914,
+                "p75": 0.071075,
+                "max": 0.144526
               }
             },
             "chroma_floor": 0.02,
@@ -3807,97 +3716,92 @@
               {
                 "role": "keyword",
                 "family": "violet",
-                "C": 0.14565
+                "C": 0.144526
               },
               {
                 "role": "breakpoint",
                 "family": "rose",
-                "C": 0.145398
+                "C": 0.100702
               },
               {
                 "role": "error",
                 "family": "rose",
-                "C": 0.145398
-              },
-              {
-                "role": "info",
-                "family": "azure",
-                "C": 0.097122
+                "C": 0.100702
               },
               {
                 "role": "string",
                 "family": "sage",
-                "C": 0.094987
-              },
-              {
-                "role": "success",
-                "family": "sage",
-                "C": 0.094987
+                "C": 0.076987
               },
               {
                 "role": "search_match_current",
                 "family": "sand",
-                "C": 0.089092
+                "C": 0.076625
               },
               {
-                "role": "focus",
+                "role": "info",
                 "family": "azure",
-                "C": 0.074898
+                "C": 0.071382
               },
               {
-                "role": "function",
-                "family": "azure",
-                "C": 0.074898
-              },
-              {
-                "role": "warning",
-                "family": "sand",
-                "C": 0.074719
+                "role": "success",
+                "family": "sage",
+                "C": 0.070153
               },
               {
                 "role": "constant",
                 "family": "sand",
-                "C": 0.071158
+                "C": 0.05747
               },
               {
                 "role": "number",
                 "family": "sand",
-                "C": 0.071158
+                "C": 0.05747
               },
               {
-                "role": "builtin",
-                "family": "rose",
-                "C": 0.058751
+                "role": "focus",
+                "family": "azure",
+                "C": 0.053612
+              },
+              {
+                "role": "function",
+                "family": "azure",
+                "C": 0.053612
+              },
+              {
+                "role": "warning",
+                "family": "sand",
+                "C": 0.052215
               },
               {
                 "role": "type",
                 "family": "teal",
-                "C": 0.056735
+                "C": 0.046987
+              },
+              {
+                "role": "builtin",
+                "family": "rose",
+                "C": 0.046322
               },
               {
                 "role": "debug_current",
                 "family": "sand",
-                "C": 0.05089
+                "C": 0.044249
               },
               {
                 "role": "search_match",
                 "family": "sand",
-                "C": 0.05089
-              },
-              {
-                "role": "tag",
-                "family": "azure",
-                "C": 0.04012
+                "C": 0.044249
               },
               {
                 "role": "diff_added",
                 "family": "sage",
-                "C": 0.038943
+                "C": 0.033967
               },
               {
-                "role": "decorator",
-                "family": "sand",
-                "C": 0.02902
+                "role": "tag",
+                "family": "azure",
+                "C": 0.032892
               },
               {
                 "role": "docstring",
@@ -3910,135 +3814,122 @@
                 "C": 0.027549
               },
               {
+                "role": "decorator",
+                "family": "sand",
+                "C": 0.023783
+              },
+              {
                 "role": "namespace",
                 "family": "teal",
-                "C": 0.023703
+                "C": 0.020308
               }
             ]
           },
           "distance_summary": {
-            "n_errors": 15,
-            "n_warnings": 47,
-            "n_total": 62,
+            "n_errors": 12,
+            "n_warnings": 51,
+            "n_total": 63,
             "errors": [
               {
                 "constraint": "must_distinguish(error, warning)",
                 "condition": "normal",
-                "measured_de": 0.127631,
-                "threshold_de": 0.13
-              },
-              {
-                "constraint": "must_distinguish(warning, number)",
-                "condition": "normal",
-                "measured_de": 0.118508,
-                "threshold_de": 0.13
-              },
-              {
-                "constraint": "must_distinguish(warning, constant)",
-                "condition": "normal",
-                "measured_de": 0.118508,
-                "threshold_de": 0.13
-              },
-              {
-                "constraint": "must_distinguish(warning, decorator)",
-                "condition": "normal",
-                "measured_de": 0.127464,
+                "measured_de": 0.086403,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(diff_added, diff_removed)",
                 "condition": "normal",
-                "measured_de": 0.043633,
+                "measured_de": 0.036171,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(diff_added, diff_changed)",
                 "condition": "normal",
-                "measured_de": 0.034204,
+                "measured_de": 0.027539,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(diff_removed, diff_changed)",
                 "condition": "normal",
-                "measured_de": 0.012003,
+                "measured_de": 0.010676,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, search_match)",
                 "condition": "normal",
-                "measured_de": 0.062902,
+                "measured_de": 0.054583,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, search_match_current)",
                 "condition": "normal",
-                "measured_de": 0.103728,
+                "measured_de": 0.090281,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(search_match, search_match_current)",
                 "condition": "normal",
-                "measured_de": 0.04493,
+                "measured_de": 0.040274,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, diff_added)",
                 "condition": "normal",
-                "measured_de": 0.052146,
+                "measured_de": 0.047044,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, diff_removed)",
                 "condition": "normal",
-                "measured_de": 0.031149,
+                "measured_de": 0.030146,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, active_line)",
                 "condition": "normal",
-                "measured_de": 0.029927,
+                "measured_de": 0.028656,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(active_line, diff_added)",
                 "condition": "normal",
-                "measured_de": 0.03772,
+                "measured_de": 0.03267,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(active_line, diff_removed)",
                 "condition": "normal",
-                "measured_de": 0.007057,
+                "measured_de": 0.004541,
                 "threshold_de": 0.13
               }
             ],
             "warnings_count_by_constraint": {
               "differentiated_by": 1,
-              "must_distinguish": 33,
+              "must_distinguish": 35,
               "same_family": 5,
-              "should_distinguish": 8
+              "should_distinguish": 10
             }
           },
           "cvd_summary": {
             "n_pairs": 26,
-            "worst_retention": 0.0,
+            "worst_retention": 0.125983,
             "pairs": [
               {
                 "a": "error",
                 "b": "string",
-                "normal_de": 0.229166,
+                "normal_de": 0.212169,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.215492,
-                    "retention": 0.940331
+                    "dichromat_de_1.0": 0.226878,
+                    "retention": 1.069322
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.095704,
-                    "retention": 0.417618
+                    "dichromat_de_1.0": 0.143903,
+                    "retention": 0.678243
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.198869,
-                    "retention": 0.867794
+                    "dichromat_de_1.0": 0.193823,
+                    "retention": 0.913529
                   }
                 },
                 "redundant_channel": true
@@ -4046,19 +3937,19 @@
               {
                 "a": "error",
                 "b": "builtin",
-                "normal_de": 0.146097,
+                "normal_de": 0.17211,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.173034,
-                    "retention": 1.18438
+                    "dichromat_de_1.0": 0.196082,
+                    "retention": 1.139282
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.119062,
-                    "retention": 0.814952
+                    "dichromat_de_1.0": 0.162376,
+                    "retention": 0.943443
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.144823,
-                    "retention": 0.991278
+                    "dichromat_de_1.0": 0.173564,
+                    "retention": 1.008449
                   }
                 },
                 "redundant_channel": true
@@ -4066,19 +3957,19 @@
               {
                 "a": "error",
                 "b": "keyword",
-                "normal_de": 0.209661,
+                "normal_de": 0.223531,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.219834,
-                    "retention": 1.048519
+                    "dichromat_de_1.0": 0.216189,
+                    "retention": 0.967156
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.205517,
-                    "retention": 0.980233
+                    "dichromat_de_1.0": 0.223051,
+                    "retention": 0.997853
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.168843,
-                    "retention": 0.805312
+                    "dichromat_de_1.0": 0.178035,
+                    "retention": 0.796467
                   }
                 },
                 "redundant_channel": true
@@ -4086,19 +3977,19 @@
               {
                 "a": "error",
                 "b": "warning",
-                "normal_de": 0.127631,
+                "normal_de": 0.086403,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.08517,
-                    "retention": 0.667314
+                    "dichromat_de_1.0": 0.05783,
+                    "retention": 0.669308
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.021739,
-                    "retention": 0.170328
+                    "dichromat_de_1.0": 0.01465,
+                    "retention": 0.169553
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.097646,
-                    "retention": 0.765065
+                    "dichromat_de_1.0": 0.066848,
+                    "retention": 0.773682
                   }
                 },
                 "redundant_channel": true
@@ -4106,19 +3997,19 @@
               {
                 "a": "error",
                 "b": "fg",
-                "normal_de": 0.18127,
+                "normal_de": 0.220825,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.193947,
-                    "retention": 1.069939
+                    "dichromat_de_1.0": 0.24971,
+                    "retention": 1.130809
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.117418,
-                    "retention": 0.647755
+                    "dichromat_de_1.0": 0.196284,
+                    "retention": 0.88887
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.180063,
-                    "retention": 0.993345
+                    "dichromat_de_1.0": 0.220658,
+                    "retention": 0.999244
                   }
                 },
                 "redundant_channel": true
@@ -4126,19 +4017,19 @@
               {
                 "a": "warning",
                 "b": "string",
-                "normal_de": 0.133386,
+                "normal_de": 0.164086,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.142596,
-                    "retention": 1.069049
+                    "dichromat_de_1.0": 0.178448,
+                    "retention": 1.087527
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.104701,
-                    "retention": 0.78495
+                    "dichromat_de_1.0": 0.147857,
+                    "retention": 0.901091
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.129884,
-                    "retention": 0.97375
+                    "dichromat_de_1.0": 0.160473,
+                    "retention": 0.977978
                   }
                 },
                 "redundant_channel": true
@@ -4146,19 +4037,19 @@
               {
                 "a": "warning",
                 "b": "number",
-                "normal_de": 0.118508,
+                "normal_de": 0.160592,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.118898,
-                    "retention": 1.003293
+                    "dichromat_de_1.0": 0.159654,
+                    "retention": 0.994158
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.117918,
-                    "retention": 0.995026
+                    "dichromat_de_1.0": 0.158739,
+                    "retention": 0.988462
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.119606,
-                    "retention": 1.009268
+                    "dichromat_de_1.0": 0.160977,
+                    "retention": 1.002399
                   }
                 },
                 "redundant_channel": true
@@ -4166,19 +4057,19 @@
               {
                 "a": "warning",
                 "b": "constant",
-                "normal_de": 0.118508,
+                "normal_de": 0.160592,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.118898,
-                    "retention": 1.003293
+                    "dichromat_de_1.0": 0.159654,
+                    "retention": 0.994158
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.117918,
-                    "retention": 0.995026
+                    "dichromat_de_1.0": 0.158739,
+                    "retention": 0.988462
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.119606,
-                    "retention": 1.009268
+                    "dichromat_de_1.0": 0.160977,
+                    "retention": 1.002399
                   }
                 },
                 "redundant_channel": true
@@ -4186,19 +4077,19 @@
               {
                 "a": "warning",
                 "b": "decorator",
-                "normal_de": 0.127464,
+                "normal_de": 0.161219,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.13552,
-                    "retention": 1.063202
+                    "dichromat_de_1.0": 0.165641,
+                    "retention": 1.02743
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.126867,
-                    "retention": 0.995319
+                    "dichromat_de_1.0": 0.160944,
+                    "retention": 0.9983
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.12203,
-                    "retention": 0.957369
+                    "dichromat_de_1.0": 0.158144,
+                    "retention": 0.980931
                   }
                 },
                 "redundant_channel": true
@@ -4206,19 +4097,19 @@
               {
                 "a": "error",
                 "b": "success",
-                "normal_de": 0.229166,
+                "normal_de": 0.182357,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.215492,
-                    "retention": 0.940331
+                    "dichromat_de_1.0": 0.184242,
+                    "retention": 1.010339
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.095704,
-                    "retention": 0.417618
+                    "dichromat_de_1.0": 0.104144,
+                    "retention": 0.5711
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.198869,
-                    "retention": 0.867794
+                    "dichromat_de_1.0": 0.164191,
+                    "retention": 0.900382
                   }
                 },
                 "redundant_channel": true
@@ -4226,19 +4117,19 @@
               {
                 "a": "diff_added",
                 "b": "diff_removed",
-                "normal_de": 0.043633,
+                "normal_de": 0.036171,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.034012,
-                    "retention": 0.7795
+                    "dichromat_de_1.0": 0.029004,
+                    "retention": 0.801856
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.022177,
-                    "retention": 0.50826
+                    "dichromat_de_1.0": 0.01977,
+                    "retention": 0.546558
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.019021,
-                    "retention": 0.435929
+                    "dichromat_de_1.0": 0.014104,
+                    "retention": 0.389909
                   }
                 },
                 "redundant_channel": true
@@ -4246,19 +4137,19 @@
               {
                 "a": "diff_added",
                 "b": "diff_changed",
-                "normal_de": 0.034204,
+                "normal_de": 0.027539,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.02384,
-                    "retention": 0.696989
+                    "dichromat_de_1.0": 0.020306,
+                    "retention": 0.737352
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.011033,
-                    "retention": 0.32258
+                    "dichromat_de_1.0": 0.010107,
+                    "retention": 0.367005
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.020338,
-                    "retention": 0.594624
+                    "dichromat_de_1.0": 0.015084,
+                    "retention": 0.547747
                   }
                 },
                 "redundant_channel": true
@@ -4266,19 +4157,19 @@
               {
                 "a": "diff_removed",
                 "b": "diff_changed",
-                "normal_de": 0.012003,
+                "normal_de": 0.010676,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.01157,
-                    "retention": 0.963857
+                    "dichromat_de_1.0": 0.009893,
+                    "retention": 0.926605
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.011144,
-                    "retention": 0.928389
+                    "dichromat_de_1.0": 0.009874,
+                    "retention": 0.924873
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.001817,
-                    "retention": 0.151335
+                    "dichromat_de_1.0": 0.001345,
+                    "retention": 0.125983
                   }
                 },
                 "redundant_channel": true
@@ -4286,19 +4177,19 @@
               {
                 "a": "selection",
                 "b": "search_match",
-                "normal_de": 0.062902,
+                "normal_de": 0.054583,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.058552,
-                    "retention": 0.930849
+                    "dichromat_de_1.0": 0.050599,
+                    "retention": 0.927005
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.061654,
-                    "retention": 0.980151
+                    "dichromat_de_1.0": 0.053626,
+                    "retention": 0.982464
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.042258,
-                    "retention": 0.6718
+                    "dichromat_de_1.0": 0.037844,
+                    "retention": 0.693329
                   }
                 },
                 "redundant_channel": true
@@ -4306,19 +4197,19 @@
               {
                 "a": "selection",
                 "b": "search_match_current",
-                "normal_de": 0.103728,
+                "normal_de": 0.090281,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.101227,
-                    "retention": 0.975894
+                    "dichromat_de_1.0": 0.088623,
+                    "retention": 0.981629
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.103638,
-                    "retention": 0.999136
+                    "dichromat_de_1.0": 0.090342,
+                    "retention": 1.000673
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.067812,
-                    "retention": 0.653748
+                    "dichromat_de_1.0": 0.061915,
+                    "retention": 0.685802
                   }
                 },
                 "redundant_channel": true
@@ -4326,19 +4217,19 @@
               {
                 "a": "search_match",
                 "b": "search_match_current",
-                "normal_de": 0.04493,
+                "normal_de": 0.040274,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.046289,
-                    "retention": 1.030251
+                    "dichromat_de_1.0": 0.041651,
+                    "retention": 1.0342
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.045717,
-                    "retention": 1.017521
+                    "dichromat_de_1.0": 0.041212,
+                    "retention": 1.023314
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.031354,
-                    "retention": 0.697832
+                    "dichromat_de_1.0": 0.031009,
+                    "retention": 0.769967
                   }
                 },
                 "redundant_channel": true
@@ -4346,19 +4237,19 @@
               {
                 "a": "selection",
                 "b": "diff_added",
-                "normal_de": 0.052146,
+                "normal_de": 0.047044,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.054279,
-                    "retention": 1.040903
+                    "dichromat_de_1.0": 0.050427,
+                    "retention": 1.071914
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.044099,
-                    "retention": 0.845687
+                    "dichromat_de_1.0": 0.041615,
+                    "retention": 0.884608
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.028917,
-                    "retention": 0.554536
+                    "dichromat_de_1.0": 0.027302,
+                    "retention": 0.580353
                   }
                 },
                 "redundant_channel": true
@@ -4366,19 +4257,19 @@
               {
                 "a": "selection",
                 "b": "diff_removed",
-                "normal_de": 0.031149,
+                "normal_de": 0.030146,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.022268,
-                    "retention": 0.714885
+                    "dichromat_de_1.0": 0.024053,
+                    "retention": 0.797887
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.028295,
-                    "retention": 0.908377
+                    "dichromat_de_1.0": 0.030125,
+                    "retention": 0.999311
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.030877,
-                    "retention": 0.991282
+                    "dichromat_de_1.0": 0.029869,
+                    "retention": 0.990812
                   }
                 },
                 "redundant_channel": true
@@ -4386,19 +4277,19 @@
               {
                 "a": "selection",
                 "b": "active_line",
-                "normal_de": 0.029927,
+                "normal_de": 0.028656,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.026138,
-                    "retention": 0.873404
+                    "dichromat_de_1.0": 0.024909,
+                    "retention": 0.869226
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.028295,
-                    "retention": 0.945466
+                    "dichromat_de_1.0": 0.027935,
+                    "retention": 0.974814
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.029186,
-                    "retention": 0.975243
+                    "dichromat_de_1.0": 0.028142,
+                    "retention": 0.982054
                   }
                 },
                 "redundant_channel": true
@@ -4406,19 +4297,19 @@
               {
                 "a": "active_line",
                 "b": "diff_added",
-                "normal_de": 0.03772,
+                "normal_de": 0.03267,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.031083,
-                    "retention": 0.824052
+                    "dichromat_de_1.0": 0.028411,
+                    "retention": 0.869632
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.022177,
-                    "retention": 0.587939
+                    "dichromat_de_1.0": 0.020612,
+                    "retention": 0.630914
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.013129,
-                    "retention": 0.348068
+                    "dichromat_de_1.0": 0.010242,
+                    "retention": 0.313487
                   }
                 },
                 "redundant_channel": true
@@ -4426,19 +4317,19 @@
               {
                 "a": "active_line",
                 "b": "diff_removed",
-                "normal_de": 0.007057,
+                "normal_de": 0.004541,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.003918,
-                    "retention": 0.555281
+                    "dichromat_de_1.0": 0.001327,
+                    "retention": 0.292214
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.0,
-                    "retention": 0.0
+                    "dichromat_de_1.0": 0.002608,
+                    "retention": 0.574238
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.006724,
-                    "retention": 0.952828
+                    "dichromat_de_1.0": 0.004343,
+                    "retention": 0.956499
                   }
                 },
                 "redundant_channel": true
@@ -4446,19 +4337,19 @@
               {
                 "a": "fg",
                 "b": "bg",
-                "normal_de": 0.425456,
+                "normal_de": 0.425153,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.425588,
-                    "retention": 1.00031
+                    "dichromat_de_1.0": 0.425284,
+                    "retention": 1.000308
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.425588,
-                    "retention": 1.00031
+                    "dichromat_de_1.0": 0.425284,
+                    "retention": 1.000308
                   },
                   "tritan": {
                     "dichromat_de_1.0": 0.425695,
-                    "retention": 1.000563
+                    "retention": 1.001276
                   }
                 },
                 "redundant_channel": false
@@ -4486,19 +4377,19 @@
               {
                 "a": "fg_muted",
                 "b": "bg",
-                "normal_de": 0.321939,
+                "normal_de": 0.321649,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.323759,
-                    "retention": 1.005653
+                    "dichromat_de_1.0": 0.323467,
+                    "retention": 1.005651
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.320733,
-                    "retention": 0.996252
+                    "dichromat_de_1.0": 0.320437,
+                    "retention": 0.996231
                   },
                   "tritan": {
                     "dichromat_de_1.0": 0.322176,
-                    "retention": 1.000737
+                    "retention": 1.001637
                   }
                 },
                 "redundant_channel": false
@@ -4506,19 +4397,19 @@
               {
                 "a": "error",
                 "b": "bg",
-                "normal_de": 0.556971,
+                "normal_de": 0.631107,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.619427,
-                    "retention": 1.112136
+                    "dichromat_de_1.0": 0.674955,
+                    "retention": 1.069478
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.53452,
-                    "retention": 0.959691
+                    "dichromat_de_1.0": 0.619592,
+                    "retention": 0.981754
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.556936,
-                    "retention": 0.999937
+                    "dichromat_de_1.0": 0.631932,
+                    "retention": 1.001307
                   }
                 },
                 "redundant_channel": true
@@ -4526,19 +4417,19 @@
               {
                 "a": "focus",
                 "b": "bg",
-                "normal_de": 0.552637,
+                "normal_de": 0.630589,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.547411,
-                    "retention": 0.990543
+                    "dichromat_de_1.0": 0.626818,
+                    "retention": 0.994021
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.55201,
-                    "retention": 0.998866
+                    "dichromat_de_1.0": 0.630979,
+                    "retention": 1.000618
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.553876,
-                    "retention": 1.002241
+                    "dichromat_de_1.0": 0.630605,
+                    "retention": 1.000025
                   }
                 },
                 "redundant_channel": true
@@ -4548,64 +4439,64 @@
           },
           "spectral_both_displays": {
             "led-lcd": {
-              "melanopic_ratio": 0.963275,
-              "photopic_relative": 0.767824,
-              "melanopic_relative": 0.739626,
+              "melanopic_ratio": 0.96314,
+              "photopic_relative": 0.7663,
+              "melanopic_relative": 0.738054,
               "top_contributors": [
                 {
                   "hex": "#f6f3ed",
-                  "share": 0.874584
+                  "share": 0.876447
                 },
                 {
                   "hex": "#fdfbf7",
-                  "share": 0.048903
+                  "share": 0.049007
                 },
                 {
                   "hex": "#ebe9e7",
-                  "share": 0.015662
+                  "share": 0.015696
                 },
                 {
-                  "hex": "#716e69",
-                  "share": 0.011207
+                  "hex": "#716e6a",
+                  "share": 0.011375
                 },
                 {
                   "hex": "#ffffff",
-                  "share": 0.006488
+                  "share": 0.006502
                 },
                 {
-                  "hex": "#7b6d5f",
-                  "share": 0.004153
+                  "hex": "#eee8e7",
+                  "share": 0.004172
                 }
               ]
             },
             "oled": {
-              "melanopic_ratio": 0.96382,
-              "photopic_relative": 0.767824,
-              "melanopic_relative": 0.740044,
+              "melanopic_ratio": 0.963683,
+              "photopic_relative": 0.7663,
+              "melanopic_relative": 0.73847,
               "top_contributors": [
                 {
                   "hex": "#f6f3ed",
-                  "share": 0.874614
+                  "share": 0.876478
                 },
                 {
                   "hex": "#fdfbf7",
-                  "share": 0.048895
+                  "share": 0.048999
                 },
                 {
                   "hex": "#ebe9e7",
-                  "share": 0.015656
+                  "share": 0.015689
                 },
                 {
-                  "hex": "#716e69",
-                  "share": 0.011212
+                  "hex": "#716e6a",
+                  "share": 0.011377
                 },
                 {
                   "hex": "#ffffff",
-                  "share": 0.006485
+                  "share": 0.006498
                 },
                 {
-                  "hex": "#7b6d5f",
-                  "share": 0.004158
+                  "hex": "#eee8e7",
+                  "share": 0.004169
                 }
               ]
             },
@@ -6620,7 +6511,7 @@
       }
     },
     "candidate-c-expressive": {
-      "input_hash": "fd33af8be8b3d7a2",
+      "input_hash": "c0858be5fcd1549f",
       "ok": true,
       "strategy": "expressive",
       "stability": {
@@ -6645,7 +6536,7 @@
               "day",
               "evening"
             ],
-            "d1": 0.1641,
+            "d1": 0.0188,
             "d2": -0.0185
           },
           {
@@ -6663,37 +6554,13 @@
           {
             "roles": [
               "keyword",
-              "string"
-            ],
-            "variants": [
-              "day",
-              "evening"
-            ],
-            "d1": -0.0882,
-            "d2": 0.1206
-          },
-          {
-            "roles": [
-              "keyword",
-              "string"
-            ],
-            "variants": [
-              "day",
-              "night"
-            ],
-            "d1": -0.0882,
-            "d2": 0.1002
-          },
-          {
-            "roles": [
-              "keyword",
               "number"
             ],
             "variants": [
               "day",
               "evening"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.063
           },
           {
@@ -6705,7 +6572,7 @@
               "day",
               "night"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.0561
           },
           {
@@ -6717,7 +6584,7 @@
               "day",
               "evening"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.063
           },
           {
@@ -6729,7 +6596,7 @@
               "day",
               "night"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.0561
           },
           {
@@ -6741,7 +6608,7 @@
               "day",
               "evening"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.0581
           },
           {
@@ -6753,7 +6620,7 @@
               "day",
               "night"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.0451
           },
           {
@@ -6765,7 +6632,7 @@
               "day",
               "evening"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.0383
           },
           {
@@ -6777,7 +6644,7 @@
               "day",
               "night"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.0013
           },
           {
@@ -6789,7 +6656,7 @@
               "day",
               "evening"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.0284
           },
           {
@@ -6813,7 +6680,7 @@
               "day",
               "evening"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.0284
           },
           {
@@ -6837,7 +6704,7 @@
               "day",
               "evening"
             ],
-            "d1": -0.1641,
+            "d1": -0.0188,
             "d2": 0.0185
           },
           {
@@ -6994,10 +6861,10 @@
             "dH_deg": 1.7066
           },
           "fg_muted": {
-            "dE": 0.115008,
-            "dL": 0.114837,
-            "dC": 0.006106,
-            "dH_deg": 10.6558
+            "dE": 0.114336,
+            "dL": 0.114251,
+            "dC": 0.004215,
+            "dH_deg": 10.6219
           },
           "comment": {
             "dE": 0.134357,
@@ -7030,8 +6897,8 @@
             "dH_deg": 0.0
           },
           "line_number_active": {
-            "dE": 0.272695,
-            "dL": -0.272695,
+            "dE": 0.311236,
+            "dL": -0.311236,
             "dC": -0.0,
             "dH_deg": 0.0
           },
@@ -7048,52 +6915,52 @@
             "dH_deg": 0.0734
           },
           "selection": {
-            "dE": 0.651163,
-            "dL": 0.651156,
-            "dC": 0.00258,
-            "dH_deg": 5.9302
+            "dE": 0.649299,
+            "dL": 0.649295,
+            "dC": 0.000159,
+            "dH_deg": 8.8127
           },
           "focus": {
-            "dE": 0.466601,
-            "dL": -0.46426,
-            "dC": 0.046672,
-            "dH_deg": 1.2864
+            "dE": 0.546826,
+            "dL": -0.546275,
+            "dC": 0.02438,
+            "dH_deg": 3.5138
           },
           "keyword": {
-            "dE": 0.277119,
-            "dL": -0.264428,
-            "dC": 0.082657,
-            "dH_deg": 3.3108
+            "dE": 0.31632,
+            "dL": -0.304596,
+            "dC": 0.085078,
+            "dH_deg": 3.3227
           },
           "string": {
-            "dE": 0.275612,
-            "dL": -0.275243,
-            "dC": 0.01361,
-            "dH_deg": 2.9098
+            "dE": 0.311578,
+            "dL": -0.311527,
+            "dC": -0.003757,
+            "dH_deg": 3.1851
           },
           "number": {
-            "dE": 0.272013,
-            "dL": -0.271797,
-            "dC": 0.010304,
-            "dH_deg": 2.4329
+            "dE": 0.313146,
+            "dL": -0.313072,
+            "dC": -0.006524,
+            "dH_deg": 1.6626
           },
           "constant": {
-            "dE": 0.272013,
-            "dL": -0.271797,
-            "dC": 0.010304,
-            "dH_deg": 2.4329
+            "dE": 0.313146,
+            "dL": -0.313072,
+            "dC": -0.006524,
+            "dH_deg": 1.6626
           },
           "type": {
-            "dE": 0.275604,
-            "dL": -0.275475,
-            "dC": 0.003714,
-            "dH_deg": 6.4365
+            "dE": 0.312743,
+            "dL": -0.312534,
+            "dC": -0.009029,
+            "dH_deg": 6.6572
           },
           "function": {
-            "dE": 0.468754,
-            "dL": -0.464885,
-            "dC": 0.059795,
-            "dH_deg": 5.9425
+            "dE": 0.546299,
+            "dL": -0.545344,
+            "dC": 0.031873,
+            "dH_deg": 5.9811
           },
           "parameter": {
             "dE": 0.274187,
@@ -7102,100 +6969,100 @@
             "dH_deg": 14.0592
           },
           "property": {
-            "dE": 0.272169,
-            "dL": -0.272086,
-            "dC": 0.005908,
-            "dH_deg": 24.0458
+            "dE": 0.272484,
+            "dL": -0.272433,
+            "dC": 0.004646,
+            "dH_deg": 19.1765
           },
           "builtin": {
-            "dE": 0.270965,
-            "dL": -0.266716,
-            "dC": 0.04776,
-            "dH_deg": 2.9387
+            "dE": 0.309941,
+            "dL": -0.308059,
+            "dC": 0.034071,
+            "dH_deg": 2.5753
           },
           "decorator": {
-            "dE": 0.27142,
-            "dL": -0.271376,
-            "dC": 0.004829,
-            "dH_deg": 1.0201
+            "dE": 0.3113,
+            "dL": -0.311273,
+            "dC": -0.004028,
+            "dH_deg": 0.9513
           },
           "namespace": {
-            "dE": 0.274208,
-            "dL": -0.274151,
-            "dC": 0.001276,
-            "dH_deg": 10.0073
+            "dE": 0.272408,
+            "dL": -0.272383,
+            "dC": -0.001771,
+            "dH_deg": 6.3797
           },
           "tag": {
-            "dE": 0.272892,
-            "dL": -0.265879,
-            "dC": 0.061421,
-            "dH_deg": 2.4863
+            "dE": 0.311307,
+            "dL": -0.308218,
+            "dC": 0.043673,
+            "dH_deg": 2.9162
           },
           "error": {
-            "dE": 0.468371,
-            "dL": -0.455071,
-            "dC": 0.110798,
-            "dH_deg": 1.4971
+            "dE": 0.543259,
+            "dL": -0.539462,
+            "dC": 0.064095,
+            "dH_deg": 1.2557
           },
           "warning": {
-            "dE": 0.461829,
-            "dL": -0.461755,
-            "dC": -0.008239,
-            "dH_deg": 0.4547
+            "dE": 0.542849,
+            "dL": -0.541921,
+            "dC": -0.031709,
+            "dH_deg": 0.9937
           },
           "info": {
-            "dE": 0.279872,
-            "dL": -0.274877,
-            "dC": 0.052131,
-            "dH_deg": 5.6267
+            "dE": 0.356752,
+            "dL": -0.355814,
+            "dC": 0.024945,
+            "dH_deg": 6.0716
           },
           "success": {
-            "dE": 0.272811,
-            "dL": -0.272781,
-            "dC": -0.000686,
-            "dH_deg": 2.2478
+            "dE": 0.352723,
+            "dL": -0.351682,
+            "dC": -0.026873,
+            "dH_deg": 2.2056
           },
           "diff_added": {
-            "dE": 0.702562,
-            "dL": 0.700747,
-            "dC": 0.050392,
-            "dH_deg": 5.479
+            "dE": 0.701837,
+            "dL": 0.70055,
+            "dC": 0.042387,
+            "dH_deg": 5.8302
           },
           "diff_removed": {
-            "dE": 0.697891,
-            "dL": 0.697813,
-            "dC": -0.010358,
-            "dH_deg": 4.6968
+            "dE": 0.699071,
+            "dL": 0.698955,
+            "dC": -0.012735,
+            "dH_deg": 0.0881
           },
           "diff_changed": {
-            "dE": 0.699348,
-            "dL": 0.699219,
-            "dC": 0.013405,
-            "dH_deg": 2.3123
+            "dE": 0.69925,
+            "dL": 0.699188,
+            "dC": 0.009339,
+            "dH_deg": 1.3854
           },
           "search_match": {
-            "dE": 0.651203,
-            "dL": 0.649399,
-            "dC": 0.048438,
-            "dH_deg": 0.002
+            "dE": 0.651646,
+            "dL": 0.650548,
+            "dC": 0.037809,
+            "dH_deg": 0.2853
           },
           "search_match_current": {
-            "dE": 0.604622,
-            "dL": 0.599238,
-            "dC": 0.080498,
-            "dH_deg": 0.6963
+            "dE": 0.603167,
+            "dL": 0.599642,
+            "dC": 0.065115,
+            "dH_deg": 0.3846
           },
           "breakpoint": {
-            "dE": 0.477841,
-            "dL": -0.463669,
-            "dC": 0.115509,
-            "dH_deg": 0.6087
+            "dE": 0.552362,
+            "dL": -0.548059,
+            "dC": 0.068807,
+            "dH_deg": 0.3673
           },
           "debug_current": {
-            "dE": 0.651323,
-            "dL": 0.649622,
-            "dC": 0.047027,
-            "dH_deg": 1.237
+            "dE": 0.651789,
+            "dL": 0.650771,
+            "dC": 0.036399,
+            "dH_deg": 0.9537
           },
           "deprecated": {
             "dE": 0.134698,
@@ -7211,34 +7078,34 @@
           "distributions": {
             "all_roles": {
               "lightness": {
-                "min": 0.414396,
-                "p25": 0.537221,
-                "median": 0.541706,
-                "p75": 0.891444,
+                "min": 0.333937,
+                "p25": 0.498472,
+                "median": 0.538651,
+                "p75": 0.891753,
                 "max": 1.0
               },
               "chroma": {
                 "min": 0.0,
                 "p25": 0.008739,
-                "median": 0.035134,
-                "p75": 0.083515,
-                "max": 0.158835
+                "median": 0.032411,
+                "p75": 0.066687,
+                "max": 0.161256
               }
             },
             "chromatic_only": {
               "lightness": {
-                "min": 0.414396,
-                "p25": 0.528682,
-                "median": 0.539747,
-                "p75": 0.55137,
-                "max": 0.935484
+                "min": 0.333937,
+                "p25": 0.452377,
+                "median": 0.499387,
+                "p75": 0.54286,
+                "max": 0.935453
               },
               "chroma": {
-                "min": 0.025406,
-                "p25": 0.065419,
-                "median": 0.080257,
-                "p75": 0.098843,
-                "max": 0.158835
+                "min": 0.021341,
+                "p25": 0.054337,
+                "median": 0.065598,
+                "p75": 0.075588,
+                "max": 0.161256
               }
             },
             "chroma_floor": 0.02,
@@ -7246,97 +7113,92 @@
               {
                 "role": "keyword",
                 "family": "violet",
-                "C": 0.158835
+                "C": 0.161256
               },
               {
                 "role": "breakpoint",
                 "family": "rose",
-                "C": 0.156249
+                "C": 0.109547
               },
               {
                 "role": "error",
                 "family": "rose",
-                "C": 0.156249
+                "C": 0.109547
               },
               {
                 "role": "search_match_current",
                 "family": "sand",
-                "C": 0.118799
+                "C": 0.103417
               },
               {
                 "role": "info",
                 "family": "azure",
-                "C": 0.10472
+                "C": 0.077533
               },
               {
                 "role": "success",
                 "family": "sage",
-                "C": 0.102111
-              },
-              {
-                "role": "function",
-                "family": "azure",
-                "C": 0.095575
+                "C": 0.075923
               },
               {
                 "role": "tag",
                 "family": "azure",
-                "C": 0.093
+                "C": 0.075252
               },
               {
                 "role": "string",
                 "family": "sage",
-                "C": 0.091448
+                "C": 0.074081
+              },
+              {
+                "role": "function",
+                "family": "azure",
+                "C": 0.067652
               },
               {
                 "role": "constant",
                 "family": "sand",
-                "C": 0.083515
+                "C": 0.066687
               },
               {
                 "role": "number",
                 "family": "sand",
-                "C": 0.083515
-              },
-              {
-                "role": "focus",
-                "family": "azure",
-                "C": 0.080257
-              },
-              {
-                "role": "warning",
-                "family": "sand",
-                "C": 0.078737
+                "C": 0.066687
               },
               {
                 "role": "debug_current",
                 "family": "sand",
-                "C": 0.076226
+                "C": 0.065598
               },
               {
                 "role": "search_match",
                 "family": "sand",
-                "C": 0.076226
+                "C": 0.065598
+              },
+              {
+                "role": "focus",
+                "family": "azure",
+                "C": 0.057966
               },
               {
                 "role": "type",
                 "family": "teal",
-                "C": 0.069057
-              },
-              {
-                "role": "builtin",
-                "family": "rose",
-                "C": 0.067096
+                "C": 0.056315
               },
               {
                 "role": "diff_added",
                 "family": "sage",
-                "C": 0.063743
+                "C": 0.055737
               },
               {
-                "role": "decorator",
+                "role": "warning",
                 "family": "sand",
-                "C": 0.038572
+                "C": 0.055267
+              },
+              {
+                "role": "builtin",
+                "family": "rose",
+                "C": 0.053406
               },
               {
                 "role": "docstring",
@@ -7349,134 +7211,127 @@
                 "C": 0.035107
               },
               {
+                "role": "decorator",
+                "family": "sand",
+                "C": 0.029715
+              },
+              {
                 "role": "namespace",
                 "family": "teal",
-                "C": 0.031606
+                "C": 0.02856
               },
               {
                 "role": "diff_changed",
                 "family": "sand",
-                "C": 0.025406
+                "C": 0.021341
               }
             ]
           },
           "distance_summary": {
-            "n_errors": 14,
-            "n_warnings": 46,
-            "n_total": 60,
+            "n_errors": 12,
+            "n_warnings": 50,
+            "n_total": 62,
             "errors": [
               {
-                "constraint": "must_distinguish(warning, string)",
+                "constraint": "must_distinguish(error, warning)",
                 "condition": "normal",
-                "measured_de": 0.125675,
-                "threshold_de": 0.13
-              },
-              {
-                "constraint": "must_distinguish(warning, number)",
-                "condition": "normal",
-                "measured_de": 0.120881,
-                "threshold_de": 0.13
-              },
-              {
-                "constraint": "must_distinguish(warning, constant)",
-                "condition": "normal",
-                "measured_de": 0.120881,
-                "threshold_de": 0.13
-              },
-              {
-                "constraint": "must_distinguish(warning, decorator)",
-                "condition": "normal",
-                "measured_de": 0.126853,
+                "measured_de": 0.108483,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(diff_added, diff_removed)",
                 "condition": "normal",
-                "measured_de": 0.070848,
+                "measured_de": 0.060799,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(diff_added, diff_changed)",
                 "condition": "normal",
-                "measured_de": 0.046814,
+                "measured_de": 0.0418,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(diff_removed, diff_changed)",
                 "condition": "normal",
-                "measured_de": 0.026672,
+                "measured_de": 0.021298,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, search_match)",
                 "condition": "normal",
-                "measured_de": 0.091741,
+                "measured_de": 0.078978,
+                "threshold_de": 0.13
+              },
+              {
+                "constraint": "must_distinguish(selection, search_match_current)",
+                "condition": "normal",
+                "measured_de": 0.118999,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(search_match, search_match_current)",
                 "condition": "normal",
-                "measured_de": 0.04861,
+                "measured_de": 0.044888,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, diff_added)",
                 "condition": "normal",
-                "measured_de": 0.077112,
+                "measured_de": 0.069283,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, diff_removed)",
                 "condition": "normal",
-                "measured_de": 0.033995,
+                "measured_de": 0.033531,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(selection, active_line)",
                 "condition": "normal",
-                "measured_de": 0.031193,
+                "measured_de": 0.031245,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(active_line, diff_added)",
                 "condition": "normal",
-                "measured_de": 0.061987,
+                "measured_de": 0.054009,
                 "threshold_de": 0.13
               },
               {
                 "constraint": "must_distinguish(active_line, diff_removed)",
                 "condition": "normal",
-                "measured_de": 0.011125,
+                "measured_de": 0.008555,
                 "threshold_de": 0.13
               }
             ],
             "warnings_count_by_constraint": {
               "differentiated_by": 1,
-              "must_distinguish": 31,
+              "must_distinguish": 34,
               "same_family": 5,
-              "should_distinguish": 9
+              "should_distinguish": 10
             }
           },
           "cvd_summary": {
             "n_pairs": 26,
-            "worst_retention": 0.122632,
+            "worst_retention": 0.127318,
             "pairs": [
               {
                 "a": "error",
                 "b": "string",
-                "normal_de": 0.236843,
+                "normal_de": 0.21864,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.233749,
-                    "retention": 0.986933
+                    "dichromat_de_1.0": 0.239198,
+                    "retention": 1.094026
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.102184,
-                    "retention": 0.43144
+                    "dichromat_de_1.0": 0.150528,
+                    "retention": 0.688471
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.193677,
-                    "retention": 0.817741
+                    "dichromat_de_1.0": 0.192867,
+                    "retention": 0.88212
                   }
                 },
                 "redundant_channel": true
@@ -7484,19 +7339,19 @@
               {
                 "a": "error",
                 "b": "builtin",
-                "normal_de": 0.150021,
+                "normal_de": 0.173059,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.180853,
-                    "retention": 1.20552
+                    "dichromat_de_1.0": 0.200977,
+                    "retention": 1.161318
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.119849,
-                    "retention": 0.798886
+                    "dichromat_de_1.0": 0.162731,
+                    "retention": 0.940321
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.147321,
-                    "retention": 0.982006
+                    "dichromat_de_1.0": 0.172519,
+                    "retention": 0.996879
                   }
                 },
                 "redundant_channel": true
@@ -7504,19 +7359,19 @@
               {
                 "a": "error",
                 "b": "keyword",
-                "normal_de": 0.188749,
+                "normal_de": 0.215168,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.199993,
-                    "retention": 1.059574
+                    "dichromat_de_1.0": 0.197481,
+                    "retention": 0.917801
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.186042,
-                    "retention": 0.985658
+                    "dichromat_de_1.0": 0.215268,
+                    "retention": 1.000466
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.15401,
-                    "retention": 0.815954
+                    "dichromat_de_1.0": 0.170951,
+                    "retention": 0.794503
                   }
                 },
                 "redundant_channel": true
@@ -7524,19 +7379,19 @@
               {
                 "a": "error",
                 "b": "warning",
-                "normal_de": 0.157061,
+                "normal_de": 0.108483,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.118684,
-                    "retention": 0.755658
+                    "dichromat_de_1.0": 0.077812,
+                    "retention": 0.717273
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.042964,
-                    "retention": 0.273547
+                    "dichromat_de_1.0": 0.028845,
+                    "retention": 0.265895
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.108002,
-                    "retention": 0.687645
+                    "dichromat_de_1.0": 0.074167,
+                    "retention": 0.683678
                   }
                 },
                 "redundant_channel": true
@@ -7544,19 +7399,19 @@
               {
                 "a": "error",
                 "b": "fg",
-                "normal_de": 0.188306,
+                "normal_de": 0.222874,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.202767,
-                    "retention": 1.076796
+                    "dichromat_de_1.0": 0.254803,
+                    "retention": 1.143261
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.111865,
-                    "retention": 0.594061
+                    "dichromat_de_1.0": 0.194957,
+                    "retention": 0.874741
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.182161,
-                    "retention": 0.967368
+                    "dichromat_de_1.0": 0.220659,
+                    "retention": 0.990062
                   }
                 },
                 "redundant_channel": true
@@ -7564,19 +7419,19 @@
               {
                 "a": "warning",
                 "b": "string",
-                "normal_de": 0.125675,
+                "normal_de": 0.162352,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.13673,
-                    "retention": 1.087964
+                    "dichromat_de_1.0": 0.177278,
+                    "retention": 1.09193
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.108725,
-                    "retention": 0.865121
+                    "dichromat_de_1.0": 0.152162,
+                    "retention": 0.937234
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.122336,
-                    "retention": 0.973426
+                    "dichromat_de_1.0": 0.160306,
+                    "retention": 0.987393
                   }
                 },
                 "redundant_channel": true
@@ -7584,19 +7439,19 @@
               {
                 "a": "warning",
                 "b": "number",
-                "normal_de": 0.120881,
+                "normal_de": 0.160089,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.121706,
-                    "retention": 1.006821
+                    "dichromat_de_1.0": 0.15984,
+                    "retention": 0.998445
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.121143,
-                    "retention": 1.002167
+                    "dichromat_de_1.0": 0.159175,
+                    "retention": 0.994291
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.120974,
-                    "retention": 1.000769
+                    "dichromat_de_1.0": 0.160826,
+                    "retention": 1.004606
                   }
                 },
                 "redundant_channel": true
@@ -7604,19 +7459,19 @@
               {
                 "a": "warning",
                 "b": "constant",
-                "normal_de": 0.120881,
+                "normal_de": 0.160089,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.121706,
-                    "retention": 1.006821
+                    "dichromat_de_1.0": 0.15984,
+                    "retention": 0.998445
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.121143,
-                    "retention": 1.002167
+                    "dichromat_de_1.0": 0.159175,
+                    "retention": 0.994291
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.120974,
-                    "retention": 1.000769
+                    "dichromat_de_1.0": 0.160826,
+                    "retention": 1.004606
                   }
                 },
                 "redundant_channel": true
@@ -7624,19 +7479,19 @@
               {
                 "a": "warning",
                 "b": "decorator",
-                "normal_de": 0.126853,
+                "normal_de": 0.16261,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.131847,
-                    "retention": 1.039368
+                    "dichromat_de_1.0": 0.165613,
+                    "retention": 1.018467
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.126033,
-                    "retention": 0.993535
+                    "dichromat_de_1.0": 0.161931,
+                    "retention": 0.995821
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.120302,
-                    "retention": 0.94836
+                    "dichromat_de_1.0": 0.161626,
+                    "retention": 0.993945
                   }
                 },
                 "redundant_channel": true
@@ -7644,19 +7499,19 @@
               {
                 "a": "error",
                 "b": "success",
-                "normal_de": 0.244562,
+                "normal_de": 0.192598,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.239371,
-                    "retention": 0.978772
+                    "dichromat_de_1.0": 0.199464,
+                    "retention": 1.035652
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.105077,
-                    "retention": 0.429654
+                    "dichromat_de_1.0": 0.109244,
+                    "retention": 0.567214
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.196678,
-                    "retention": 0.804205
+                    "dichromat_de_1.0": 0.162902,
+                    "retention": 0.845815
                   }
                 },
                 "redundant_channel": true
@@ -7664,19 +7519,19 @@
               {
                 "a": "diff_added",
                 "b": "diff_removed",
-                "normal_de": 0.070848,
+                "normal_de": 0.060799,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.061659,
-                    "retention": 0.870307
+                    "dichromat_de_1.0": 0.052603,
+                    "retention": 0.865185
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.047256,
-                    "retention": 0.667011
+                    "dichromat_de_1.0": 0.03963,
+                    "retention": 0.651822
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.019434,
-                    "retention": 0.274313
+                    "dichromat_de_1.0": 0.016714,
+                    "retention": 0.274906
                   }
                 },
                 "redundant_channel": true
@@ -7684,19 +7539,19 @@
               {
                 "a": "diff_added",
                 "b": "diff_changed",
-                "normal_de": 0.046814,
+                "normal_de": 0.0418,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.035491,
-                    "retention": 0.758137
+                    "dichromat_de_1.0": 0.032439,
+                    "retention": 0.776062
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.022951,
-                    "retention": 0.490255
+                    "dichromat_de_1.0": 0.020393,
+                    "retention": 0.487881
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.021941,
-                    "retention": 0.468679
+                    "dichromat_de_1.0": 0.018591,
+                    "retention": 0.444763
                   }
                 },
                 "redundant_channel": true
@@ -7704,19 +7559,19 @@
               {
                 "a": "diff_removed",
                 "b": "diff_changed",
-                "normal_de": 0.026672,
+                "normal_de": 0.021298,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.026648,
-                    "retention": 0.999078
+                    "dichromat_de_1.0": 0.020861,
+                    "retention": 0.979478
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.024526,
-                    "retention": 0.919537
+                    "dichromat_de_1.0": 0.019337,
+                    "retention": 0.907933
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.004443,
-                    "retention": 0.166576
+                    "dichromat_de_1.0": 0.002712,
+                    "retention": 0.127318
                   }
                 },
                 "redundant_channel": true
@@ -7724,19 +7579,19 @@
               {
                 "a": "selection",
                 "b": "search_match",
-                "normal_de": 0.091741,
+                "normal_de": 0.078978,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.088969,
-                    "retention": 0.969782
+                    "dichromat_de_1.0": 0.076047,
+                    "retention": 0.962889
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.092292,
-                    "retention": 1.005996
+                    "dichromat_de_1.0": 0.078561,
+                    "retention": 0.994723
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.056622,
-                    "retention": 0.61719
+                    "dichromat_de_1.0": 0.048984,
+                    "retention": 0.620226
                   }
                 },
                 "redundant_channel": true
@@ -7744,19 +7599,19 @@
               {
                 "a": "selection",
                 "b": "search_match_current",
-                "normal_de": 0.136544,
+                "normal_de": 0.118999,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.135677,
-                    "retention": 0.993644
+                    "dichromat_de_1.0": 0.117848,
+                    "retention": 0.990331
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.138196,
-                    "retention": 1.012096
+                    "dichromat_de_1.0": 0.12055,
+                    "retention": 1.013031
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.073676,
-                    "retention": 0.539578
+                    "dichromat_de_1.0": 0.071109,
+                    "retention": 0.597559
                   }
                 },
                 "redundant_channel": true
@@ -7764,19 +7619,19 @@
               {
                 "a": "search_match",
                 "b": "search_match_current",
-                "normal_de": 0.04861,
+                "normal_de": 0.044888,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.050376,
-                    "retention": 1.036334
+                    "dichromat_de_1.0": 0.046552,
+                    "retention": 1.037079
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.050253,
-                    "retention": 1.033798
+                    "dichromat_de_1.0": 0.045996,
+                    "retention": 1.024684
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.026302,
-                    "retention": 0.541083
+                    "dichromat_de_1.0": 0.030863,
+                    "retention": 0.687551
                   }
                 },
                 "redundant_channel": true
@@ -7784,19 +7639,19 @@
               {
                 "a": "selection",
                 "b": "diff_added",
-                "normal_de": 0.077112,
+                "normal_de": 0.069283,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.079867,
-                    "retention": 1.035737
+                    "dichromat_de_1.0": 0.071206,
+                    "retention": 1.027762
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.068888,
-                    "retention": 0.893351
+                    "dichromat_de_1.0": 0.060313,
+                    "retention": 0.870533
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.028978,
-                    "retention": 0.375798
+                    "dichromat_de_1.0": 0.030131,
+                    "retention": 0.434905
                   }
                 },
                 "redundant_channel": true
@@ -7804,19 +7659,19 @@
               {
                 "a": "selection",
                 "b": "diff_removed",
-                "normal_de": 0.033995,
+                "normal_de": 0.033531,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.020295,
-                    "retention": 0.597018
+                    "dichromat_de_1.0": 0.022264,
+                    "retention": 0.663974
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.030004,
-                    "retention": 0.882594
+                    "dichromat_de_1.0": 0.031293,
+                    "retention": 0.93326
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.034083,
-                    "retention": 1.00261
+                    "dichromat_de_1.0": 0.033331,
+                    "retention": 0.994023
                   }
                 },
                 "redundant_channel": true
@@ -7824,19 +7679,19 @@
               {
                 "a": "selection",
                 "b": "active_line",
-                "normal_de": 0.031193,
+                "normal_de": 0.031245,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.027558,
-                    "retention": 0.88348
+                    "dichromat_de_1.0": 0.026548,
+                    "retention": 0.849695
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.030524,
-                    "retention": 0.978573
+                    "dichromat_de_1.0": 0.029547,
+                    "retention": 0.945672
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.029389,
-                    "retention": 0.94219
+                    "dichromat_de_1.0": 0.029691,
+                    "retention": 0.950286
                   }
                 },
                 "redundant_channel": true
@@ -7844,19 +7699,19 @@
               {
                 "a": "active_line",
                 "b": "diff_added",
-                "normal_de": 0.061987,
+                "normal_de": 0.054009,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.055821,
-                    "retention": 0.900534
+                    "dichromat_de_1.0": 0.04888,
+                    "retention": 0.905029
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.045961,
-                    "retention": 0.741466
+                    "dichromat_de_1.0": 0.039266,
+                    "retention": 0.727015
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.010261,
-                    "retention": 0.16553
+                    "dichromat_de_1.0": 0.009689,
+                    "retention": 0.179401
                   }
                 },
                 "redundant_channel": true
@@ -7864,19 +7719,19 @@
               {
                 "a": "active_line",
                 "b": "diff_removed",
-                "normal_de": 0.011125,
+                "normal_de": 0.008555,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.007289,
-                    "retention": 0.655194
+                    "dichromat_de_1.0": 0.004341,
+                    "retention": 0.507416
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.001364,
-                    "retention": 0.122632
+                    "dichromat_de_1.0": 0.002497,
+                    "retention": 0.291869
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.010027,
-                    "retention": 0.901343
+                    "dichromat_de_1.0": 0.007718,
+                    "retention": 0.902135
                   }
                 },
                 "redundant_channel": true
@@ -7924,19 +7779,19 @@
               {
                 "a": "fg_muted",
                 "b": "bg",
-                "normal_de": 0.321366,
+                "normal_de": 0.321939,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.323194,
-                    "retention": 1.005688
+                    "dichromat_de_1.0": 0.323759,
+                    "retention": 1.005653
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.320172,
-                    "retention": 0.996284
+                    "dichromat_de_1.0": 0.320733,
+                    "retention": 0.996252
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.321304,
-                    "retention": 0.999808
+                    "dichromat_de_1.0": 0.322176,
+                    "retention": 1.000737
                   }
                 },
                 "redundant_channel": false
@@ -7944,19 +7799,19 @@
               {
                 "a": "error",
                 "b": "bg",
-                "normal_de": 0.560984,
+                "normal_de": 0.632968,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.631055,
-                    "retention": 1.124907
+                    "dichromat_de_1.0": 0.683445,
+                    "retention": 1.079746
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.533838,
-                    "retention": 0.951611
+                    "dichromat_de_1.0": 0.61978,
+                    "retention": 0.979165
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.55902,
-                    "retention": 0.9965
+                    "dichromat_de_1.0": 0.632836,
+                    "retention": 0.99979
                   }
                 },
                 "redundant_channel": true
@@ -7964,19 +7819,19 @@
               {
                 "a": "focus",
                 "b": "bg",
-                "normal_de": 0.554787,
+                "normal_de": 0.633185,
                 "cvd": {
                   "protan": {
-                    "dichromat_de_1.0": 0.544517,
-                    "retention": 0.981489
+                    "dichromat_de_1.0": 0.627158,
+                    "retention": 0.990481
                   },
                   "deutan": {
-                    "dichromat_de_1.0": 0.552975,
-                    "retention": 0.996734
+                    "dichromat_de_1.0": 0.632013,
+                    "retention": 0.998149
                   },
                   "tritan": {
-                    "dichromat_de_1.0": 0.554983,
-                    "retention": 1.000355
+                    "dichromat_de_1.0": 0.633752,
+                    "retention": 1.000896
                   }
                 },
                 "redundant_channel": true
@@ -7986,64 +7841,64 @@
           },
           "spectral_both_displays": {
             "led-lcd": {
-              "melanopic_ratio": 0.962267,
-              "photopic_relative": 0.767752,
-              "melanopic_relative": 0.738783,
+              "melanopic_ratio": 0.962028,
+              "photopic_relative": 0.766228,
+              "melanopic_relative": 0.737132,
               "top_contributors": [
                 {
                   "hex": "#f6f3ed",
-                  "share": 0.875583
+                  "share": 0.877543
                 },
                 {
                   "hex": "#fdfbf7",
-                  "share": 0.048959
+                  "share": 0.049069
                 },
                 {
                   "hex": "#ebe9e7",
-                  "share": 0.01568
+                  "share": 0.015715
                 },
                 {
                   "hex": "#726d69",
-                  "share": 0.011144
+                  "share": 0.011169
                 },
                 {
                   "hex": "#ffffff",
-                  "share": 0.006496
+                  "share": 0.00651
                 },
                 {
-                  "hex": "#d9e3ec",
-                  "share": 0.00423
+                  "hex": "#f0e7e8",
+                  "share": 0.004191
                 }
               ]
             },
             "oled": {
-              "melanopic_ratio": 0.962784,
-              "photopic_relative": 0.767752,
-              "melanopic_relative": 0.73918,
+              "melanopic_ratio": 0.962556,
+              "photopic_relative": 0.766228,
+              "melanopic_relative": 0.737537,
               "top_contributors": [
                 {
                   "hex": "#f6f3ed",
-                  "share": 0.875637
+                  "share": 0.877588
                 },
                 {
                   "hex": "#fdfbf7",
-                  "share": 0.048952
+                  "share": 0.049061
                 },
                 {
                   "hex": "#ebe9e7",
-                  "share": 0.015674
+                  "share": 0.015709
                 },
                 {
                   "hex": "#726d69",
-                  "share": 0.011143
+                  "share": 0.011168
                 },
                 {
                   "hex": "#ffffff",
-                  "share": 0.006492
+                  "share": 0.006507
                 },
                 {
-                  "hex": "#d9e3ec",
-                  "share": 0.004225
+                  "hex": "#f0e7e8",
+                  "share": 0.004186
                 }
               ]
             },
@@ -10935,8 +10790,8 @@
       "strategy": "restrained",
       "declared_tradeoffs": "Lowest chromatic attention hypothesis; weakest categorical cue and smallest CVD headroom. Nominal area-weighted spectral output is evaluated separately and is not inferred from chroma. Diagnostics are deliberately exempt from the restraint.\n",
       "declared_purpose": "Test whether colour beyond a functional floor adds useful scanning value. Holds chroma as low as WCAG floors and the distance matrix tolerate.\n",
-      "n_total_issues": 469,
-      "n_legibility_issues": 208,
+      "n_total_issues": 387,
+      "n_legibility_issues": 129,
       "stability_ok": false,
       "max_hue_drift_deg": 5.88
     },
@@ -10945,9 +10800,9 @@
       "strategy": "balanced",
       "declared_tradeoffs": "Categorical scanning should be comfortable; warm-tinted comments and azure-traced property are design judgements to be confirmed in Phase 7.\n",
       "declared_purpose": "Baseline hypothesis: semantic colouration with a strong neutral foundation.\n",
-      "n_total_issues": 456,
-      "n_legibility_issues": 208,
-      "stability_ok": false,
+      "n_total_issues": 377,
+      "n_legibility_issues": 129,
+      "stability_ok": true,
       "max_hue_drift_deg": 5.7
     },
     {
@@ -10955,8 +10810,8 @@
       "strategy": "expressive",
       "declared_tradeoffs": "Strongest categorical/navigation cue; highest chromatic attention hypothesis, and the most likely to read as busy in call-dense or config-heavy files. Nominal area-weighted spectral output is evaluated separately and is not inferred from chroma. The violet tag shift spends a hue A/B keep on azure.\n",
       "declared_purpose": "Test whether stronger unmistakable accents improve scanning enough to justify greater attention cost.\n",
-      "n_total_issues": 450,
-      "n_legibility_issues": 210,
+      "n_total_issues": 371,
+      "n_legibility_issues": 131,
       "stability_ok": false,
       "max_hue_drift_deg": 5.82
     }
