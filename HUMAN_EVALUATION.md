@@ -35,6 +35,14 @@ Keep these fixed within a comparison set:
 - system colour-temperature filters, HDR, True Tone/adaptive colour, local
   dimming, and automatic brightness state;
 - the same frozen source specimens and viewport positions for scan tasks;
+  the identical multi-language visual fixtures are `out/specimens/`
+  (`grotto specimens`); the *disjoint timed R forms* are a different
+  thing — see [evaluation/r-corpus](evaluation/r-corpus/README.md), which
+  supplies the frozen, project-authored pilot items and the
+  counterbalanced assignment schedule for the short scan/comprehension/
+  seeded-error trials. Identical visual fixtures control content exactly but
+  cannot be reused for timed tasks without practice effects; the corpus
+  forms are rotated so no timed item repeats for one participant;
 - diagnostic text, selection, cursor/focus, diff, search, and debug examples;
 - viewing distance and room/task lighting as far as practical.
 
@@ -80,7 +88,12 @@ that visual adaptation has been eliminated. Avoid direct A/B flickering.
 ## Part A — structured scan (10–15 minutes)
 
 Use the identical frozen multi-language specimens and editor state for every
-condition. Complete the same tasks in the same order, without a palette legend:
+condition. For the short timed R scan/comprehension/seeded-error trials, use
+the disjoint frozen items from
+[evaluation/r-corpus](evaluation/r-corpus/README.md) assigned per its
+counterbalanced `schedule.yaml` (never the identical excerpt under multiple
+themes for timed tasks). Complete the same tasks in the same order, without
+a palette legend:
 
 1. Locate function definitions and calls, control flow, types, strings, comments,
    constants, ordinary variables, parameters, and nested delimiters.

@@ -1,0 +1,245 @@
+# Grotto R pilot corpus manifest (Phase 8b).
+#
+# PROVENANCE: project-authored pilot corpus (see provenance block). It is
+# frozen for this experiment but NOT externally established. If a CRAN-derived
+# corpus is added later, it lands as a SEPARATE manifest per CORPUS_RESEARCH.md
+# (package/version/URL/archive-sha256/path/line-range/license/attribution per
+# excerpt, at most 3 pinned tarballs, never committed). Never invent
+# provenance; never merge corpora silently.
+#
+# Metrics below are reproducible with tools/metrics.py (stdlib-only) and are
+# re-verified by tests. Matching on these features is approximate and still
+# needs piloting (CORPUS_RESEARCH.md); they screen for gross inequality only.
+version: 1
+corpus: grotto-r-pilot
+provenance:
+  authorship: project-authored
+  statement: PROJECT-AUTHORED PILOT CORPUS. These excerpts were written for this experiment by the
+    Grotto project; they are NOT taken from CRAN, R-universe, or any external corpus, and no external
+    provenance is claimed. The corpus is FROZEN for this experiment but is NOT externally established
+    or validated as representative R code.
+  license: MIT (repository LICENSE; same terms as the project)
+  copyright: Copyright (c) 2026 Maximilian Scholz
+  external_sources: none
+  frozen: true
+  frozen_date: '2026-08-14'
+purpose:
+  use: short scan / comprehension / seeded-error tasks during theme evaluation
+  not_evidence_for: 1-2 hour comfort; see HUMAN_EVALUATION.md Part B for sustained coding blocks
+  item_length_target: 25-60 visible lines
+forms:
+  available:
+  - a
+  note: First pass ships ONE form of 9 items. Forms B and C (9 disjoint matched items each, for the
+    full 3x9 design) are a later increment; this manifest + tools/metrics.py + tasks + schedule formats
+    are the interface for adding them.
+items:
+- id: r-01-read-station-log
+  file: items/r-01-read-station-log.R
+  form: a
+  topic: reading and cleaning a monitoring CSV
+  sha256: b5e684fc16da49a9b5ee24f92eef9287ad60a9c3611e8a149f09fb10de9691f1
+  metrics:
+    lines: 46
+    nonblank_lines: 39
+    blank_lines: 7
+    comment_lines: 13
+    comment_ratio: 0.333
+    constructs:
+      function_def: 1
+      assignment: 15
+      dollar_index: 15
+      bracket_index: 0
+      if_else: 4
+      loop: 0
+      apply_call: 0
+      string_literal: 21
+      numeric_literal: 4
+    construct_families: 7
+    max_nesting: 4
+- id: r-02-signif-round
+  file: items/r-02-signif-round.R
+  form: a
+  topic: significant-digit rounding helpers
+  sha256: e29b263e05bdaa48d197f1214af110069849ec353a5ea18bc27ee3a806ea58fd
+  metrics:
+    lines: 43
+    nonblank_lines: 36
+    blank_lines: 7
+    comment_lines: 14
+    comment_ratio: 0.389
+    constructs:
+      function_def: 2
+      assignment: 9
+      dollar_index: 0
+      bracket_index: 0
+      if_else: 4
+      loop: 0
+      apply_call: 0
+      string_literal: 3
+      numeric_literal: 33
+    construct_families: 6
+    max_nesting: 5
+- id: r-03-threshold-check
+  file: items/r-03-threshold-check.R
+  form: a
+  topic: S3 class with print and summary methods
+  sha256: 05190ddd9114dcd7b24afb36511b1837ae7dab22643480957800408884225337
+  metrics:
+    lines: 58
+    nonblank_lines: 53
+    blank_lines: 5
+    comment_lines: 9
+    comment_ratio: 0.17
+    constructs:
+      function_def: 4
+      assignment: 13
+      dollar_index: 19
+      bracket_index: 0
+      if_else: 1
+      loop: 0
+      apply_call: 0
+      string_literal: 6
+      numeric_literal: 12
+    construct_families: 7
+    max_nesting: 5
+- id: r-04-rolling-window
+  file: items/r-04-rolling-window.R
+  form: a
+  topic: explicit loops over a rolling window
+  sha256: e861dd1c9877665f62bac66643ebbc79a8921fa98da47f9f3ba11bf7d6e45427
+  metrics:
+    lines: 55
+    nonblank_lines: 48
+    blank_lines: 7
+    comment_lines: 10
+    comment_ratio: 0.208
+    constructs:
+      function_def: 2
+      assignment: 11
+      dollar_index: 0
+      bracket_index: 0
+      if_else: 7
+      loop: 7
+      apply_call: 0
+      string_literal: 1
+      numeric_literal: 28
+    construct_families: 7
+    max_nesting: 5
+- id: r-05-normalise-results
+  file: items/r-05-normalise-results.R
+  form: a
+  topic: apply-family normalisation of result tables
+  sha256: f63a8bb8de8802397a89998a75c2126b37a6316d8bcf037661244157c585ad2d
+  metrics:
+    lines: 58
+    nonblank_lines: 50
+    blank_lines: 8
+    comment_lines: 11
+    comment_ratio: 0.22
+    constructs:
+      function_def: 3
+      assignment: 11
+      dollar_index: 8
+      bracket_index: 1
+      if_else: 10
+      loop: 0
+      apply_call: 3
+      string_literal: 9
+      numeric_literal: 14
+    construct_families: 9
+    max_nesting: 7
+- id: r-06-canonicalise-id
+  file: items/r-06-canonicalise-id.R
+  form: a
+  topic: regex canonicalisation of sample ids
+  sha256: 2f56f20e182f91ecef167ae3004503afbfc7f20f9621e6ee99176105b570e821
+  metrics:
+    lines: 43
+    nonblank_lines: 37
+    blank_lines: 6
+    comment_lines: 11
+    comment_ratio: 0.297
+    constructs:
+      function_def: 4
+      assignment: 13
+      dollar_index: 2
+      bracket_index: 0
+      if_else: 3
+      loop: 0
+      apply_call: 0
+      string_literal: 27
+      numeric_literal: 19
+    construct_families: 7
+    max_nesting: 5
+- id: r-07-month-grid
+  file: items/r-07-month-grid.R
+  form: a
+  topic: date ranges and month buckets
+  sha256: 97037894c14b0f9528fc14df525d08bfa3f2a627022fdba1140ef3dd3c99f389
+  metrics:
+    lines: 52
+    nonblank_lines: 44
+    blank_lines: 8
+    comment_lines: 13
+    comment_ratio: 0.295
+    constructs:
+      function_def: 2
+      assignment: 15
+      dollar_index: 4
+      bracket_index: 0
+      if_else: 2
+      loop: 1
+      apply_call: 0
+      string_literal: 20
+      numeric_literal: 48
+    construct_families: 8
+    max_nesting: 6
+- id: r-08-dominant-direction
+  file: items/r-08-dominant-direction.R
+  form: a
+  topic: matrix power iteration with nested indexing
+  sha256: 848d99b3717da91795d4b19e113379097b1603c8b3f7095eee88f88bd2d460c6
+  metrics:
+    lines: 55
+    nonblank_lines: 48
+    blank_lines: 7
+    comment_lines: 9
+    comment_ratio: 0.188
+    constructs:
+      function_def: 2
+      assignment: 18
+      dollar_index: 2
+      bracket_index: 0
+      if_else: 5
+      loop: 4
+      apply_call: 1
+      string_literal: 2
+      numeric_literal: 23
+    construct_families: 9
+    max_nesting: 6
+- id: r-09-plot-with-band
+  file: items/r-09-plot-with-band.R
+  form: a
+  topic: base-graphics helper with par() save/restore
+  sha256: cfadecd6ec9539e210f0044c509ba87bbcfd68779c334536211b77546ee75ebe
+  metrics:
+    lines: 38
+    nonblank_lines: 30
+    blank_lines: 8
+    comment_lines: 9
+    comment_ratio: 0.3
+    constructs:
+      function_def: 1
+      assignment: 5
+      dollar_index: 0
+      bracket_index: 0
+      if_else: 2
+      loop: 0
+      apply_call: 0
+      string_literal: 10
+      numeric_literal: 19
+    construct_families: 6
+    max_nesting: 4
+metrics_tool: tools/metrics.py (stdlib-only, deterministic)
+schedule: schedule.yaml (counterbalanced; no item repeats within a list)
