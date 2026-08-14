@@ -42,6 +42,8 @@ from .render import (
     reference_comparison_html,
 )
 from .spec import DistanceSpec, Palette, RoleSpec, load
+from .raster import DEFAULT_CHUNK_ROWS as DEFAULT_RASTER_CHUNK_ROWS
+from .raster import DEFAULT_THRESHOLD as DEFAULT_RASTER_THRESHOLD
 from .stability import DEFAULT_MAX_HUE_DRIFT, cross_variant_report
 from .vscode import write_extension
 
@@ -338,6 +340,39 @@ def cmd_vscode(args) -> int:
     return 0
 
 
+def cmd_raster(args) -> int:
+    """Phase 8c: bounded raster analysis of one manual screenshot vs a palette.
+
+    No capture automation: the PNG comes from the user's installed VS Code
+    (see evaluation/raster/README.md). Pixel counts are coverage estimates,
+    NOT semantic ground truth.
+    """
+    from .raster import analyze_screenshot, write_report
+
+    report = analyze_screenshot(
+        args.png, args.palette,
+        threshold=args.threshold, chunk_rows=args.chunk_rows,
+    )
+    path = write_report(report, args.out)
+    c = report["classification"]
+    print(f"[raster] {report['image']['width']}x{report['image']['height']} "
+          f"({report['image']['pixels']} px, chunk {report['image']['chunk']['rows']} rows)")
+    print(f"  palette : {report['palette']['name']} ({report['palette']['variant']})")
+    print(f"  exact   : {c['exact_fraction']*100:.2f}% of pixels are exact palette colours")
+    print(f"  nearest : {c['classified_fraction']*100:.2f}% within dE {c['threshold_de_ok']} "
+          f"(unclassified {c['unclassified_fraction']*100:.2f}%)")
+    top = sorted(c["nearest_by_category"].items(),
+                 key=lambda kv: -kv[1]["fraction"])[:3]
+    print("  top cat : " + ", ".join(f"{k} {v['fraction']*100:.2f}%" for k, v in top))
+    for name, s in report["spectral"]["displays"].items():
+        print(f"  {name:8s}: photopic {s['photopic']:.4f}  melanopic {s['melanopic']:.4f} "
+              f"(nominal, area-weighted)")
+    print(f"  report  : {path}")
+    print("  caveats : pixel measurement is NOT semantic ground truth "
+          "(antialiasing, transparency, images, terminals, scaling)")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="grotto", description="grotto evaluation tooling (Phases 2-4)")
     ap.add_argument("--roles", default="spec/roles.yaml")
@@ -412,6 +447,20 @@ def build_parser() -> argparse.ArgumentParser:
     p_vs.add_argument("--candidates", default="themes/candidates")
     p_vs.add_argument("--mapping", default="spec/mappings/vscode.yaml")
     p_vs.set_defaults(func=cmd_vscode)
+
+    p_ras = sub.add_parser(
+        "raster",
+        help="Phase 8c: bounded raster analysis of a manual PNG screenshot",
+    )
+    p_ras.add_argument("png", help="existing PNG screenshot (no capture automation)")
+    p_ras.add_argument("--palette", required=True,
+                       help="generated palette YAML (e.g. themes/candidates/candidate-a-restrained.evening.yaml)")
+    p_ras.add_argument("--out", default="raster.report.json")
+    p_ras.add_argument("--threshold", type=float, default=DEFAULT_RASTER_THRESHOLD,
+                       help="max OKLab dE for nearest-role classification (default %(default)s)")
+    p_ras.add_argument("--chunk-rows", type=int, default=DEFAULT_RASTER_CHUNK_ROWS,
+                       help="row-chunk bound for memory (default %(default)s)")
+    p_ras.set_defaults(func=cmd_raster)
 
     return ap
 

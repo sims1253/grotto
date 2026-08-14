@@ -26,6 +26,10 @@ spec/bindings/candidate-*.yaml  L2  candidate hue-anchor + chroma-budget binding
 themes/references/*.yaml        reference themes (Nord, Solarized, ...), hex, non-candidate
 themes/fixtures/*.yaml          evaluation fixtures, OKLCH-first, non-candidate
 themes/candidates/*.yaml        GENERATED candidate palettes, OKLCH-first (Phase 5)
+spec/mappings/vscode.yaml       L3 editor binding (VS Code)
+editors/vscode/                 GENERATED 9-theme VS Code evaluation preview (Phase 8a)
+evaluation/r-corpus/            frozen R pilot corpus for timed evaluation tasks (Phase 8b)
+evaluation/raster/              manual screenshot capture guide + metadata template (Phase 8c)
 src/grotto/                     implementation + evaluation tooling
 tests/                          cross-validated test suite
 out/                            generated reports (reproducible)
