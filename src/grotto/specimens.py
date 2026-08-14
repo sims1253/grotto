@@ -201,7 +201,7 @@ YAML = _spec(
 # --------------------------------------------------------------------------
 
 MARKDOWN = _spec(
-    "markdown", "Markdown", "README.md",
+    "markdown", "Markdown", "rolling.md",
     "Headings as tags, inline code, bold/link structure, fenced block.",
     [
         [("tag", "# Rolling mean")],

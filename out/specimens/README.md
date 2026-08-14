@@ -1,12 +1,18 @@
-# Rolling mean
+# Code specimens
 
-The **exponential** moving average smooths a `signal` over time.
+Realistic, diff-stable snippets (one per required language) used by the
+visual evaluation reports. Each file is the **plaintext** of a specimen; the
+renderers colour it span-by-span with a palette.
 
-## Usage
+| file | language |
+|---|---|
+| `rolling.py`  | Python |
+| `rolling.rs`  | Rust |
+| `rolling.ts`  | TypeScript |
+| `rolling.sh`  | shell |
+| `rolling.json` | JSON |
+| `rolling.yaml` | YAML |
+| `rolling.md`  | Markdown |
+| `rolling.R`   | R |
 
-- Set `decay` between `0` and `1`.
-- See [the docs](https://example.com) for details.
-
-```python
-acc = decay * acc + (1 - decay) * x
-```
+Regenerate with `uv run grotto specimens --out out/specimens`.

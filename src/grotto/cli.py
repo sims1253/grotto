@@ -124,7 +124,32 @@ def cmd_specimens(args) -> int:
         sp = S.specimen(lang)
         (out / sp.filename).write_text(sp.plaintext(), encoding="utf-8")
         print(f"[specimen] {sp.filename} ({sp.label}, {sp.line_count()} lines)")
+    # an explanatory README (distinct from the rolling.md Markdown specimen,
+    # which used to collide with this filename).
+    (out / "README.md").write_text(_SPECIMENS_README, encoding="utf-8")
+    print(f"[specimen] README.md ({len(S.REQUIRED_LANGUAGES)} language specimens)")
     return 0
+
+
+_SPECIMENS_README = """# Code specimens
+
+Realistic, diff-stable snippets (one per required language) used by the
+visual evaluation reports. Each file is the **plaintext** of a specimen; the
+renderers colour it span-by-span with a palette.
+
+| file | language |
+|---|---|
+| `rolling.py`  | Python |
+| `rolling.rs`  | Rust |
+| `rolling.ts`  | TypeScript |
+| `rolling.sh`  | shell |
+| `rolling.json` | JSON |
+| `rolling.yaml` | YAML |
+| `rolling.md`  | Markdown |
+| `rolling.R`   | R |
+
+Regenerate with `uv run grotto specimens --out out/specimens`.
+"""
 
 
 def cmd_references(args) -> int:
@@ -266,6 +291,33 @@ def cmd_compare_families(args) -> int:
     return 0
 
 
+def cmd_candidates(args) -> int:
+    """Phase 5/6: rebuild all canonical candidates + reports in one pass.
+
+    Generates the 9 concrete palettes (themes/candidates/), the per-candidate
+    family reports + family specimen pages, and the cross-candidate comparison
+    (matrix, drift, specimens/CVD/spectral visuals) under out/candidates/.
+    No aggregate score, ranking, or recommendation is produced.
+    """
+    from .candidates import write_all_candidate_artifacts
+    from .model import ModelSpec
+
+    roles, dists, env = _load_specs(args)
+    spec = ModelSpec(roles, env, dists)
+    result = write_all_candidate_artifacts(spec, out_dir=args.out)
+    families = result["families"]
+    print(f"[candidates] {len(families)} candidate families rebuilt")
+    for f in families:
+        st = f.stability or {}
+        print(f"  {f.name:26s} ok={f.ok} hash={f.input_hash} "
+              f"drift={st.get('max_hue_drift_deg')}deg issues={len(f.issues)}")
+    print(f"  palettes : themes/candidates/ (9 = 3 candidates x 3 variants)")
+    print(f"  reports  : out/candidates/<candidate>/ + comparison.{{json,yaml,txt,html,svg}}")
+    print("  framing  : CANDIDATE comparison; no score/rank/winner. WCAG hard; "
+          "APCA experimental; CVD population-average; spectral nominal-only.")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="grotto", description="grotto evaluation tooling (Phases 2-4)")
     ap.add_argument("--roles", default="spec/roles.yaml")
@@ -320,6 +372,17 @@ def build_parser() -> argparse.ArgumentParser:
                        help="hand-tuned day/evening/night palette YAMLs")
     p_cmp.add_argument("--out", default="out/model-calibration")
     p_cmp.set_defaults(func=cmd_compare_families)
+
+    p_cand = sub.add_parser(
+        "candidates",
+        help="Phase 5/6: rebuild all candidates + reports (palettes, family "
+             "reports, cross-candidate comparison, specimens/CVD/spectral visuals)",
+    )
+    p_cand.add_argument(
+        "--out", default="out/candidates",
+        help="report output directory (default out/candidates)",
+    )
+    p_cand.set_defaults(func=cmd_candidates)
 
     return ap
 

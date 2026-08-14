@@ -266,6 +266,70 @@ def candidate_index(families: list[FamilyBuild], spec: ModelSpec) -> dict:
     }
 
 
+def write_all_candidate_artifacts(
+    spec: ModelSpec,
+    repo: str | Path = ".",
+    themes_dir: str | Path = CANDIDATE_PALETTES_DIR,
+    out_dir: str | Path = CANDIDATE_REPORTS_DIR,
+) -> dict:
+    """Rebuild EVERY canonical candidate artifact in one deterministic pass.
+
+    Writes: the 9 generated palettes (themes/candidates/), the per-candidate
+    family reports + family specimen pages, the cross-candidate comparison
+    (json/yaml/txt/html/svg), and the index.  This is what ``grotto candidates``
+    calls; it is the single source of truth for regeneration.
+    """
+    # lazy import: candidate_report imports candidates (DISPLAY_MODELS)
+    from .candidate_report import (
+        candidate_comparison_html,
+        candidate_comparison_svg,
+        candidate_comparison_text,
+        candidate_family_specimens_html,
+        compare_candidates,
+    )
+
+    families = build_candidates(spec, repo)
+    written: dict[str, list[Path]] = {}
+
+    # 1. generated concrete palettes
+    written["palettes"] = write_candidate_palettes(families, themes_dir)
+
+    # 2. per-candidate family reports (build + eval)
+    written["family_reports"] = write_candidate_family_reports(families, spec, out_dir)
+
+    # 3. per-candidate family specimen pages (Phase 6 visuals)
+    out = Path(out_dir)
+    spec_pages: list[Path] = []
+    for family in families:
+        stem = candidate_stem(family.binding)
+        p = out / stem / f"{stem}.specimens.html"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(candidate_family_specimens_html(family, spec), encoding="utf-8")
+        spec_pages.append(p)
+    written["specimen_pages"] = spec_pages
+
+    # 4. cross-candidate comparison (Phase 6)
+    comparison = compare_candidates(families, spec)
+    (out / "comparison.json").write_text(to_json(comparison), encoding="utf-8")
+    (out / "comparison.yaml").write_text(to_yaml(comparison), encoding="utf-8")
+    (out / "comparison.txt").write_text(candidate_comparison_text(comparison), encoding="utf-8")
+    (out / "comparison.html").write_text(
+        candidate_comparison_html(comparison, families, spec), encoding="utf-8"
+    )
+    (out / "comparison.svg").write_text(candidate_comparison_svg(families, spec), encoding="utf-8")
+    written["comparison"] = [
+        out / f"comparison.{ext}" for ext in ("json", "yaml", "txt", "html", "svg")
+    ]
+
+    # 5. index (registry; not a ranking)
+    idx = candidate_index(families, spec)
+    (out / "index.json").write_text(to_json(idx), encoding="utf-8")
+    (out / "index.yaml").write_text(to_yaml(idx), encoding="utf-8")
+    written["index"] = [out / "index.json", out / "index.yaml"]
+
+    return {"families": families, "written": written}
+
+
 __all__ = [
     "CANDIDATE_BINDING_GLOB",
     "CANDIDATE_PALETTES_DIR",
@@ -281,4 +345,5 @@ __all__ = [
     "candidate_reports_root",
     "write_candidate_family_reports",
     "candidate_index",
+    "write_all_candidate_artifacts",
 ]

@@ -64,5 +64,5 @@ def test_cli_specimens(tmp_path):
     assert rc == 0
     names = {p.name for p in tmp_path.iterdir()}
     for fn in ("rolling.py", "rolling.rs", "rolling.ts", "rolling.sh",
-               "rolling.json", "rolling.yaml", "README.md", "rolling.R"):
+               "rolling.json", "rolling.yaml", "rolling.md", "rolling.R"):
         assert fn in names, f"specimen {fn} not written"

@@ -22,8 +22,10 @@ determine emitted light in dark themes).
 spec/roles.yaml            L1  semantics     -- what each role MEANS (no colour)
 spec/distance-matrix.yaml  L1  constraints   -- which distinctions are obligatory
 spec/environments.yaml     L2  parameters    -- contrast bands, backgrounds, stability
+spec/bindings/candidate-*.yaml  L2  candidate hue-anchor + chroma-budget bindings (Phase 5)
 themes/references/*.yaml        reference themes (Nord, Solarized, ...), hex, non-candidate
 themes/fixtures/*.yaml          evaluation fixtures, OKLCH-first, non-candidate
+themes/candidates/*.yaml        GENERATED candidate palettes, OKLCH-first (Phase 5)
 src/grotto/                     implementation + evaluation tooling
 tests/                          cross-validated test suite
 out/                            generated reports (reproducible)
@@ -88,6 +90,13 @@ uv run grotto compare-families spec/bindings/calibration.yaml \
     themes/experiments/handtuned-day.yaml \
     themes/experiments/handtuned-evening.yaml \
     themes/experiments/handtuned-night.yaml --out out/model-calibration
+
+# Phase 5/6: rebuild all canonical candidates + reports in one pass.
+# Writes the 9 generated palettes (themes/candidates/), per-candidate family
+# reports + family specimen pages, and the cross-candidate comparison
+# (matrix, drift, specimens/CVD/spectral visuals) under out/candidates/.
+# No score, rank, or recommendation is produced.
+uv run grotto candidates --out out/candidates
 ```
 
 Reports are **reproducible**: identical inputs produce byte-identical output
@@ -115,6 +124,14 @@ from grotto.model import (        # Phase 4 environmental transform
 from grotto.family_report import family_build_text, family_build_html
 from grotto.render import palette_html_report, palette_svg_strip
 
+# Phase 5/6: candidate bindings -> generated palettes + comparative evaluation.
+from grotto.candidates import (        # Phase 5 generation
+    build_candidates, candidate_family_report, write_all_candidate_artifacts,
+)
+from grotto.candidate_report import (   # Phase 6 comparison
+    compare_candidates, candidate_comparison_html, candidate_family_specimens_html,
+)
+
 roles  = RoleSpec.load("spec/roles.yaml")
 dists  = DistanceSpec.load("spec/distance-matrix.yaml", roles)
 env    = Environments.load("spec/environments.yaml")
@@ -139,6 +156,13 @@ hand = {v: load(f"themes/experiments/handtuned-{v}.yaml")
         for v in ("day", "evening", "night")}
 cmp = compare_families(family, hand_tuned_build(hand, spec4), spec4)
 cmp["summary"]["systematic_needed_hand_adjustment"]   # the headline finding
+
+# Phase 5/6: build the three canonical candidates and compare them.
+families = build_candidates(spec4)            # 3 FamilyBuilds (A/B/C)
+artifacts = write_all_candidate_artifacts(spec4)   # palettes + reports + visuals
+comparison = compare_candidates(families, spec4)   # cross-candidate matrix
+comparison["matrix"]                          # descriptive columns, NOT a score
+# (No aggregate score, rank, or winner is produced; Phase 7 decides.)
 
 # Phase 3: analyse every reference consistently and compare side by side.
 # (Descriptive only -- no ranking or winner; see DESIGN.md section 1.)
@@ -168,6 +192,8 @@ Grotto reports several metrics *together* and treats disagreement as signal.
 | Melanopic, area-weighted | `spectral` | **exploratory, nominal-display, within-model ranking only.** An sRGB triple does not determine a spectral power distribution; this never claims actual retinal exposure (R-4, R-5). |
 | Reference analysis (Phase 3) | `reference_analysis` | consistent six-reference comparison: background OKLCH (hue suppressed when achromatic), fg/bg WCAG+APCA, lightness/chroma distributions, declared-constraint coverage, chroma-weighted warm/cool balance, nominal spectral background-vs-token split, CVD behaviour. **Descriptive only; no ranking** (DESIGN.md §1). |
 | Environmental transform (Phase 4) | `model` | `build_family` derives day/evening/night from a semantic-anchor binding: ink jointly lightness+chroma-solved (lexicographic WCAG>ceiling>APCA>adjustment), surface perceptual steps, border non-text contrast, canvas authored; independent cap+gamut losses; warm-anchor hue attraction; corrected cross-variant stability. **NON-CANDIDATE experiment** (DESIGN.md §1). APCA experimental (R-11); WCAG floors hard. |
+| Candidate bindings & generation (Phase 5) | `candidates`, `model` | Three candidate bindings (Restrained / Balanced / Expressive) — each ONE semantic binding with its own chroma budget (class fractions + per-category caps) turned into day/evening/night by the SAME shared transform. Candidate-specific classes/caps are first-class inputs (in the hash/provenance); family may be overridden per role while the derivation PATH (paint) stays protected. Generated OKLCH-first/sRGB palettes under `themes/candidates/`. **CANDIDATE; no winner ranked.** |
+| Cross-candidate comparison (Phase 6) | `candidate_report` | Descriptive 3×3 evaluation matrix, per-role cross-variant and cross-candidate drift, declared area-weighted nominal spectral for BOTH display models, CVD retention summaries, side-by-side specimens (8 languages × 3 variants) + critical-state diagnostics with redundant markers, normal/protan/deutan/tritan views, and a metrics-vs-visual-judgment disagreement log. **No aggregate score, rank, or recommendation.** |
 
 D-3 is enforced at load time: every role with `cvd_priority: critical` must
 declare a `redundant_channels` entry, because **hue is never the sole carrier of
@@ -230,6 +256,15 @@ Not done here: final candidate palettes (Phase 5) and human evaluation
 (Phase 7). Reference themes are inputs only; the Phase 3 analysis is
 descriptive and draws no conclusion about which reference is "best"
 (DESIGN.md section 1). Phase 4 output is a NON-CANDIDATE experiment.
+
+**Phase 5 (candidates)** and **Phase 6 (comparative evaluation)** are now
+implemented: three candidate bindings live under `spec/bindings/`, the nine
+generated palettes under `themes/candidates/`, and the per-candidate family
+reports + cross-candidate comparison under `out/candidates/`. These are
+**CANDIDATE** families — the first produced here — but **no aggregate score,
+ranking, or recommendation** is made and no winner is selected; Phase 7 (human
+evaluation) is the only part that tests the actual preference claim. Rebuild
+everything with `uv run grotto candidates --out out/candidates`.
 
 ## License
 
