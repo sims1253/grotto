@@ -13,7 +13,7 @@ meta:
   transform: phase4-model
   binding: candidate-b-balanced
   strategy: balanced
-  input_hash: 795d55bccb35b4fa
+  input_hash: 7ffb99008258b166
   shared_environments: spec/environments.yaml
   srgb_primary: true
 colors:

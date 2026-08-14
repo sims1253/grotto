@@ -101,55 +101,55 @@ area_model:
 matrix:
 - candidate: candidate-a-restrained
   strategy: restrained
-  input_hash: c0c67c9b81fe9bbe
+  input_hash: cf77d7e29855f702
   ok: true
   mean_realized_chroma_night: 0.018988
-  mean_realized_chroma_day: 0.026935
+  mean_realized_chroma_day: 0.033661
   mel_ratio_led_night: 0.964067
   mel_ratio_oled_night: 0.964826
-  mel_ratio_led_day: 0.964165
+  mel_ratio_led_day: 0.963581
   distance_errors_night: 21
   distance_warnings_night: 82
   cvd_worst_retention_night: 0.0
   max_hue_drift_deg: 5.88
   stability_ok: false
   min_wcag_body_text_night: 6.1239
-  n_issues: 387
+  n_issues: 433
 - candidate: candidate-b-balanced
   strategy: balanced
-  input_hash: 795d55bccb35b4fa
+  input_hash: 7ffb99008258b166
   ok: true
   mean_realized_chroma_night: 0.023759
-  mean_realized_chroma_day: 0.033782
+  mean_realized_chroma_day: 0.041702
   mel_ratio_led_night: 0.951196
   mel_ratio_oled_night: 0.952121
-  mel_ratio_led_day: 0.96314
+  mel_ratio_led_day: 0.963033
   distance_errors_night: 20
   distance_warnings_night: 77
   cvd_worst_retention_night: 0.079189
   max_hue_drift_deg: 5.7
-  stability_ok: true
+  stability_ok: false
   min_wcag_body_text_night: 6.1239
-  n_issues: 377
+  n_issues: 426
 - candidate: candidate-c-expressive
   strategy: expressive
-  input_hash: c0858be5fcd1549f
+  input_hash: fbf70c2a610d42fe
   ok: true
   mean_realized_chroma_night: 0.028641
-  mean_realized_chroma_day: 0.040875
+  mean_realized_chroma_day: 0.050449
   mel_ratio_led_night: 0.947989
   mel_ratio_oled_night: 0.948569
-  mel_ratio_led_day: 0.962028
+  mel_ratio_led_day: 0.961753
   distance_errors_night: 20
   distance_warnings_night: 75
   cvd_worst_retention_night: 0.0
   max_hue_drift_deg: 5.82
   stability_ok: false
   min_wcag_body_text_night: 6.1239
-  n_issues: 371
+  n_issues: 404
 per_candidate:
   candidate-a-restrained:
-    input_hash: c0c67c9b81fe9bbe
+    input_hash: cf77d7e29855f702
     ok: true
     strategy: restrained
     stability:
@@ -169,7 +169,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: -0.0201
+        d1: -0.1485
         d2: 0.0035
       - roles:
         - keyword
@@ -177,7 +177,7 @@ per_candidate:
         variants:
         - day
         - night
-        d1: -0.0201
+        d1: -0.1485
         d2: 0.0078
       - roles:
         - keyword
@@ -185,7 +185,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: -0.0201
+        d1: -0.1485
         d2: 0.0035
       - roles:
         - keyword
@@ -193,7 +193,7 @@ per_candidate:
         variants:
         - day
         - night
-        d1: -0.0201
+        d1: -0.1485
         d2: 0.0078
       - roles:
         - keyword
@@ -201,7 +201,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: -0.0201
+        d1: -0.1485
         d2: 0.0035
       - roles:
         - keyword
@@ -209,7 +209,7 @@ per_candidate:
         variants:
         - day
         - night
-        d1: -0.0201
+        d1: -0.1485
         d2: 0.0078
       cyclic_family_sequence_preserved: true
       cyclic_family_sequence:
@@ -282,30 +282,30 @@ per_candidate:
           dC: -0.008538
           dH_deg: 75.2256
         fg:
-          dE: 0.27229
-          dL: -0.272287
-          dC: -0.000771
-          dH_deg: 10.5532
+          dE: 0.272602
+          dL: -0.272602
+          dC: 0.000505
+          dH_deg: 0.0137
         fg_secondary:
-          dE: 0.132911
-          dL: -0.132886
-          dC: 0.001711
-          dH_deg: 28.2525
+          dE: 0.133235
+          dL: -0.133199
+          dC: 0.0028
+          dH_deg: 16.8621
         fg_muted:
-          dE: 0.113723
-          dL: 0.113691
-          dC: 0.00236
-          dH_deg: 16.8431
+          dE: 0.11462
+          dL: 0.114558
+          dC: 0.003185
+          dH_deg: 24.9716
         comment:
-          dE: 0.132911
-          dL: -0.132886
-          dC: 0.001711
-          dH_deg: 28.2525
+          dE: 0.133235
+          dL: -0.133199
+          dC: 0.0028
+          dH_deg: 16.8621
         docstring:
-          dE: 0.27229
-          dL: -0.272287
-          dC: -0.000771
-          dH_deg: 10.5532
+          dE: 0.272602
+          dL: -0.272602
+          dC: 0.000505
+          dH_deg: 0.0137
         punctuation:
           dE: 0.134698
           dL: -0.134698
@@ -322,8 +322,8 @@ per_candidate:
           dC: 0.0
           dH_deg: 0.0
         line_number_active:
-          dE: 0.311236
-          dL: -0.311236
+          dE: 0.290125
+          dL: -0.290125
           dC: -0.0
           dH_deg: 0.0
         ui_inactive:
@@ -337,130 +337,130 @@ per_candidate:
           dC: -0.000156
           dH_deg: 38.7429
         selection:
-          dE: 0.648882
-          dL: 0.64888
-          dC: 0.000759
-          dH_deg: 12.5505
+          dE: 0.648426
+          dL: 0.648418
+          dC: 0.002489
+          dH_deg: 13.7259
         focus:
-          dE: 0.547084
-          dL: -0.546869
-          dC: 0.014896
-          dH_deg: 6.5724
+          dE: 0.525989
+          dL: -0.525259
+          dC: 0.027342
+          dH_deg: 7.2148
         keyword:
-          dE: 0.314515
-          dL: -0.303348
-          dC: 0.082952
-          dH_deg: 3.6298
+          dE: 0.291468
+          dL: -0.279644
+          dC: 0.082075
+          dH_deg: 3.4423
         string:
-          dE: 0.312087
-          dL: -0.312032
-          dC: -0.004273
-          dH_deg: 3.7237
+          dE: 0.290877
+          dL: -0.290504
+          dC: 0.013953
+          dH_deg: 3.7995
         number:
-          dE: 0.311033
-          dL: -0.310984
-          dC: -0.004582
-          dH_deg: 3.4454
+          dE: 0.286869
+          dL: -0.286699
+          dC: 0.009287
+          dH_deg: 3.385
         constant:
-          dE: 0.311033
-          dL: -0.310984
-          dC: -0.004582
-          dH_deg: 3.4454
+          dE: 0.286869
+          dL: -0.286699
+          dC: 0.009287
+          dH_deg: 3.385
         type:
-          dE: 0.312173
-          dL: -0.312045
-          dC: -0.007143
-          dH_deg: 7.1919
+          dE: 0.291661
+          dL: -0.291579
+          dC: 0.004428
+          dH_deg: 6.2379
         function:
-          dE: 0.545219
-          dL: -0.544934
-          dC: 0.017383
-          dH_deg: 5.5485
+          dE: 0.502631
+          dL: -0.501605
+          dC: 0.031928
+          dH_deg: 5.4208
         parameter:
-          dE: 0.27229
-          dL: -0.272287
-          dC: -0.000771
-          dH_deg: 10.5532
+          dE: 0.272602
+          dL: -0.272602
+          dC: 0.000505
+          dH_deg: 0.0137
         property:
-          dE: 0.27229
-          dL: -0.272287
-          dC: -0.000771
-          dH_deg: 10.5532
+          dE: 0.272602
+          dL: -0.272602
+          dC: 0.000505
+          dH_deg: 0.0137
         builtin:
-          dE: 0.311613
-          dL: -0.310669
-          dC: 0.024201
-          dH_deg: 3.4739
+          dE: 0.287324
+          dL: -0.285407
+          dC: 0.033104
+          dH_deg: 3.7403
         decorator:
-          dE: 0.310915
-          dL: -0.310914
-          dC: -0.00093
-          dH_deg: 6.8875
+          dE: 0.286947
+          dL: -0.28694
+          dC: 0.001984
+          dH_deg: 3.7172
         namespace:
-          dE: 0.270492
-          dL: -0.270478
-          dC: -0.001231
-          dH_deg: 8.4672
+          dE: 0.272846
+          dL: -0.27282
+          dC: 0.002255
+          dH_deg: 9.378
         tag:
-          dE: 0.313425
-          dL: -0.313419
-          dC: 0.000218
-          dH_deg: 21.9978
+          dE: 0.288802
+          dL: -0.288796
+          dC: 0.000158
+          dH_deg: 21.9897
         error:
-          dE: 0.540648
-          dL: -0.537434
-          dC: 0.058858
-          dH_deg: 0.4893
+          dE: 0.548122
+          dL: -0.542151
+          dC: 0.080687
+          dH_deg: 0.0037
         warning:
-          dE: 0.539577
-          dL: -0.539225
-          dC: -0.019496
-          dH_deg: 0.4402
+          dE: 0.518137
+          dL: -0.518122
+          dC: -0.004028
+          dH_deg: 0.3624
         info:
-          dE: 0.355208
-          dL: -0.354885
-          dC: 0.014391
-          dH_deg: 6.0688
+          dE: 0.306931
+          dL: -0.304994
+          dC: 0.033969
+          dH_deg: 6.1313
         success:
-          dE: 0.353923
-          dL: -0.353361
-          dC: -0.019876
-          dH_deg: 1.4712
+          dE: 0.304323
+          dL: -0.304315
+          dC: 0.000959
+          dH_deg: 1.5267
         diff_added:
-          dE: 0.700597
-          dL: 0.700259
-          dC: 0.021755
-          dH_deg: 0.9625
+          dE: 0.700393
+          dL: 0.69979
+          dC: 0.029063
+          dH_deg: 0.063
         diff_removed:
-          dE: 0.699314
-          dL: 0.699274
-          dC: -0.007375
-          dH_deg: 9.1811
+          dE: 0.699809
+          dL: 0.699782
+          dC: -0.006132
+          dH_deg: 2.3995
         diff_changed:
-          dE: 0.699082
-          dL: 0.699071
-          dC: 0.003911
-          dH_deg: 3.5948
+          dE: 0.699352
+          dL: 0.699319
+          dC: 0.00678
+          dH_deg: 4.2017
         search_match:
-          dE: 0.64996
-          dL: 0.649616
-          dC: 0.021133
-          dH_deg: 1.3884
+          dE: 0.651956
+          dL: 0.651158
+          dC: 0.032234
+          dH_deg: 1.9506
         search_match_current:
-          dE: 0.601983
-          dL: 0.59998
-          dC: 0.049015
-          dH_deg: 2.267
+          dE: 0.60464
+          dL: 0.60084
+          dC: 0.067623
+          dH_deg: 2.7544
         breakpoint:
-          dE: 0.547494
-          dL: -0.543927
-          dC: 0.062391
-          dH_deg: 0.1888
+          dE: 0.534492
+          dL: -0.526381
+          dC: 0.092763
+          dH_deg: 0.2729
         debug_current:
-          dE: 0.64996
-          dL: 0.649616
-          dC: 0.021133
-          dH_deg: 1.3884
+          dE: 0.651956
+          dL: 0.651158
+          dC: 0.032234
+          dH_deg: 1.9506
         deprecated:
           dE: 0.134698
           dL: -0.134698
@@ -472,547 +472,547 @@ per_candidate:
         distributions:
           all_roles:
             lightness:
-              min: 0.335428
-              p25: 0.499334
-              median: 0.539379
-              p75: 0.890577
+              min: 0.338308
+              p25: 0.522354
+              median: 0.539065
+              p75: 0.891317
               max: 1.0
             chroma:
               min: 0.0
-              p25: 0.003965
-              median: 0.00814
-              p75: 0.042947
-              max: 0.121593
+              p25: 0.005241
+              median: 0.009005
+              p75: 0.056243
+              max: 0.128871
           chromatic_only:
             lightness:
-              min: 0.335428
-              p25: 0.343024
-              median: 0.494206
-              p75: 0.510684
-              max: 0.935907
+              min: 0.338308
+              p25: 0.378757
+              median: 0.515253
+              p75: 0.534388
+              max: 0.935437
             chroma:
-              min: 0.029826
-              p25: 0.03959
-              median: 0.048698
-              p75: 0.059278
-              max: 0.121593
+              min: 0.037134
+              p25: 0.052131
+              median: 0.062567
+              p75: 0.077503
+              max: 0.128871
           chroma_floor: 0.02
           chroma_ordering:
-          - role: keyword
-            family: violet
-            C: 0.121593
           - role: breakpoint
             family: rose
-            C: 0.098499
+            C: 0.128871
+          - role: keyword
+            family: violet
+            C: 0.120715
           - role: error
             family: rose
-            C: 0.098499
+            C: 0.120329
           - role: search_match_current
             family: sand
-            C: 0.08295
+            C: 0.101557
           - role: string
             family: sage
-            C: 0.059278
+            C: 0.077503
           - role: success
             family: sage
-            C: 0.055738
+            C: 0.076573
           - role: info
             family: azure
-            C: 0.052393
+            C: 0.071972
           - role: warning
             family: sand
-            C: 0.050363
+            C: 0.06583
           - role: constant
             family: sand
-            C: 0.048698
+            C: 0.062567
           - role: number
             family: sand
-            C: 0.048698
-          - role: debug_current
-            family: sand
-            C: 0.04103
-          - role: search_match
-            family: sand
-            C: 0.04103
-          - role: focus
-            family: azure
-            C: 0.03959
+            C: 0.062567
           - role: function
             family: azure
-            C: 0.03959
+            C: 0.054135
+          - role: debug_current
+            family: sand
+            C: 0.052131
+          - role: search_match
+            family: sand
+            C: 0.052131
+          - role: focus
+            family: azure
+            C: 0.052036
           - role: type
             family: teal
-            C: 0.039292
+            C: 0.050863
           - role: builtin
             family: rose
-            C: 0.035591
+            C: 0.044494
           - role: diff_added
             family: sage
-            C: 0.029826
+            C: 0.037134
         distance_summary:
           n_errors: 12
-          n_warnings: 51
-          n_total: 63
+          n_warnings: 50
+          n_total: 62
           errors:
           - constraint: must_distinguish(error, warning)
             condition: normal
-            measured_de: 0.084583
+            measured_de: 0.105334
             threshold_de: 0.13
           - constraint: must_distinguish(diff_added, diff_removed)
             condition: normal
-            measured_de: 0.032152
+            measured_de: 0.038855
             threshold_de: 0.13
           - constraint: must_distinguish(diff_added, diff_changed)
             condition: normal
-            measured_de: 0.023867
+            measured_de: 0.029644
             threshold_de: 0.13
           - constraint: must_distinguish(diff_removed, diff_changed)
             condition: normal
-            measured_de: 0.009374
+            measured_de: 0.010676
             threshold_de: 0.13
           - constraint: must_distinguish(selection, search_match)
             condition: normal
-            measured_de: 0.048329
+            measured_de: 0.061103
             threshold_de: 0.13
           - constraint: must_distinguish(selection, search_match_current)
             condition: normal
-            measured_de: 0.093832
+            measured_de: 0.113176
             threshold_de: 0.13
           - constraint: must_distinguish(search_match, search_match_current)
             condition: normal
-            measured_de: 0.048773
+            measured_de: 0.055669
             threshold_de: 0.13
           - constraint: must_distinguish(selection, diff_added)
             condition: normal
-            measured_de: 0.042411
+            measured_de: 0.049154
             threshold_de: 0.13
           - constraint: must_distinguish(selection, diff_removed)
             condition: normal
-            measured_de: 0.027596
+            measured_de: 0.029993
             threshold_de: 0.13
           - constraint: must_distinguish(selection, active_line)
             condition: normal
-            measured_de: 0.026149
+            measured_de: 0.027242
             threshold_de: 0.13
           - constraint: must_distinguish(active_line, diff_added)
             condition: normal
-            measured_de: 0.029036
+            measured_de: 0.036342
             threshold_de: 0.13
           - constraint: must_distinguish(active_line, diff_removed)
             condition: normal
-            measured_de: 0.004533
+            measured_de: 0.005494
             threshold_de: 0.13
           warnings_count_by_constraint:
             differentiated_by: 1
-            must_distinguish: 34
+            must_distinguish: 33
             same_family: 5
             should_distinguish: 11
         cvd_summary:
           n_pairs: 26
-          worst_retention: 0.0
+          worst_retention: 0.125983
           pairs:
           - a: error
             b: string
-            normal_de: 0.197426
+            normal_de: 0.238419
             cvd:
               protan:
-                dichromat_de_1.0: 0.216911
-                retention: 1.098696
+                dichromat_de_1.0: 0.266017
+                retention: 1.115752
               deutan:
-                dichromat_de_1.0: 0.144165
-                retention: 0.730225
+                dichromat_de_1.0: 0.169978
+                retention: 0.712937
               tritan:
-                dichromat_de_1.0: 0.18754
-                retention: 0.949925
+                dichromat_de_1.0: 0.224224
+                retention: 0.940459
             redundant_channel: true
           - a: error
             b: builtin
-            normal_de: 0.170863
+            normal_de: 0.203497
             cvd:
               protan:
-                dichromat_de_1.0: 0.19376
-                retention: 1.134011
+                dichromat_de_1.0: 0.238231
+                retention: 1.17069
               deutan:
-                dichromat_de_1.0: 0.157626
-                retention: 0.922529
+                dichromat_de_1.0: 0.187142
+                retention: 0.919634
               tritan:
-                dichromat_de_1.0: 0.170796
-                retention: 0.999609
+                dichromat_de_1.0: 0.203514
+                retention: 1.000088
             redundant_channel: true
           - a: error
             b: keyword
-            normal_de: 0.218205
+            normal_de: 0.247228
             cvd:
               protan:
-                dichromat_de_1.0: 0.227793
-                retention: 1.043938
+                dichromat_de_1.0: 0.266033
+                retention: 1.076064
               deutan:
-                dichromat_de_1.0: 0.215213
-                retention: 0.986289
+                dichromat_de_1.0: 0.241954
+                retention: 0.978667
               tritan:
-                dichromat_de_1.0: 0.182395
-                retention: 0.835886
+                dichromat_de_1.0: 0.218496
+                retention: 0.883786
             redundant_channel: true
           - a: error
             b: warning
-            normal_de: 0.084583
+            normal_de: 0.105334
             cvd:
               protan:
-                dichromat_de_1.0: 0.049016
-                retention: 0.579499
+                dichromat_de_1.0: 0.092901
+                retention: 0.88197
               deutan:
-                dichromat_de_1.0: 0.009537
-                retention: 0.11275
+                dichromat_de_1.0: 0.019692
+                retention: 0.186952
               tritan:
-                dichromat_de_1.0: 0.070122
-                retention: 0.829025
+                dichromat_de_1.0: 0.084767
+                retention: 0.804751
             redundant_channel: true
           - a: error
             b: fg
-            normal_de: 0.218461
+            normal_de: 0.232623
             cvd:
               protan:
-                dichromat_de_1.0: 0.246317
-                retention: 1.127512
+                dichromat_de_1.0: 0.269572
+                retention: 1.158838
               deutan:
-                dichromat_de_1.0: 0.195067
-                retention: 0.892913
+                dichromat_de_1.0: 0.200411
+                retention: 0.861527
               tritan:
-                dichromat_de_1.0: 0.220821
-                retention: 1.010801
+                dichromat_de_1.0: 0.235155
+                retention: 1.010888
             redundant_channel: true
           - a: warning
             b: string
-            normal_de: 0.160308
+            normal_de: 0.165214
             cvd:
               protan:
-                dichromat_de_1.0: 0.17493
-                retention: 1.09121
+                dichromat_de_1.0: 0.179486
+                retention: 1.086389
               deutan:
-                dichromat_de_1.0: 0.151672
-                retention: 0.946126
+                dichromat_de_1.0: 0.153958
+                retention: 0.931873
               tritan:
-                dichromat_de_1.0: 0.158157
-                retention: 0.986581
+                dichromat_de_1.0: 0.163108
+                retention: 0.987255
             redundant_channel: true
           - a: warning
             b: number
-            normal_de: 0.160763
+            normal_de: 0.163982
             cvd:
               protan:
-                dichromat_de_1.0: 0.163986
-                retention: 1.020052
+                dichromat_de_1.0: 0.165526
+                retention: 1.009419
               deutan:
-                dichromat_de_1.0: 0.158931
-                retention: 0.988609
+                dichromat_de_1.0: 0.163692
+                retention: 0.998233
               tritan:
-                dichromat_de_1.0: 0.159944
-                retention: 0.994911
+                dichromat_de_1.0: 0.163187
+                retention: 0.995155
             redundant_channel: true
           - a: warning
             b: constant
-            normal_de: 0.160763
+            normal_de: 0.163982
             cvd:
               protan:
-                dichromat_de_1.0: 0.163986
-                retention: 1.020052
+                dichromat_de_1.0: 0.165526
+                retention: 1.009419
               deutan:
-                dichromat_de_1.0: 0.158931
-                retention: 0.988609
+                dichromat_de_1.0: 0.163692
+                retention: 0.998233
               tritan:
-                dichromat_de_1.0: 0.159944
-                retention: 0.994911
+                dichromat_de_1.0: 0.163187
+                retention: 0.995155
             redundant_channel: true
           - a: warning
             b: decorator
-            normal_de: 0.167208
+            normal_de: 0.17393
             cvd:
               protan:
-                dichromat_de_1.0: 0.173477
-                retention: 1.037492
+                dichromat_de_1.0: 0.181287
+                retention: 1.042299
               deutan:
-                dichromat_de_1.0: 0.166413
-                retention: 0.995242
+                dichromat_de_1.0: 0.174255
+                retention: 1.001872
               tritan:
-                dichromat_de_1.0: 0.161321
-                retention: 0.964788
+                dichromat_de_1.0: 0.164191
+                retention: 0.944005
             redundant_channel: true
           - a: error
             b: success
-            normal_de: 0.166508
+            normal_de: 0.228203
             cvd:
               protan:
-                dichromat_de_1.0: 0.174001
-                retention: 1.045006
+                dichromat_de_1.0: 0.254798
+                retention: 1.116536
               deutan:
-                dichromat_de_1.0: 0.104402
-                retention: 0.62701
+                dichromat_de_1.0: 0.155139
+                retention: 0.679828
               tritan:
-                dichromat_de_1.0: 0.156874
-                retention: 0.942141
+                dichromat_de_1.0: 0.213083
+                retention: 0.933741
             redundant_channel: true
           - a: diff_added
             b: diff_removed
-            normal_de: 0.032152
+            normal_de: 0.038855
             cvd:
               protan:
-                dichromat_de_1.0: 0.0268
-                retention: 0.833545
+                dichromat_de_1.0: 0.032711
+                retention: 0.841863
               deutan:
-                dichromat_de_1.0: 0.021724
-                retention: 0.675673
+                dichromat_de_1.0: 0.023812
+                retention: 0.612822
               tritan:
-                dichromat_de_1.0: 0.01046
-                retention: 0.325324
+                dichromat_de_1.0: 0.012663
+                retention: 0.325893
             redundant_channel: true
           - a: diff_added
             b: diff_changed
-            normal_de: 0.023867
+            normal_de: 0.029644
             cvd:
               protan:
-                dichromat_de_1.0: 0.018705
-                retention: 0.783698
+                dichromat_de_1.0: 0.023696
+                retention: 0.799349
               deutan:
-                dichromat_de_1.0: 0.013518
-                retention: 0.566372
+                dichromat_de_1.0: 0.014076
+                retention: 0.47484
               tritan:
-                dichromat_de_1.0: 0.011321
-                retention: 0.474336
+                dichromat_de_1.0: 0.013633
+                retention: 0.459903
             redundant_channel: true
           - a: diff_removed
             b: diff_changed
-            normal_de: 0.009374
+            normal_de: 0.010676
             cvd:
               protan:
-                dichromat_de_1.0: 0.008679
-                retention: 0.925799
+                dichromat_de_1.0: 0.009893
+                retention: 0.926605
               deutan:
-                dichromat_de_1.0: 0.0083
-                retention: 0.885369
+                dichromat_de_1.0: 0.009874
+                retention: 0.924873
               tritan:
-                dichromat_de_1.0: 0.001342
-                retention: 0.143175
+                dichromat_de_1.0: 0.001345
+                retention: 0.125983
             redundant_channel: true
           - a: selection
             b: search_match
-            normal_de: 0.048329
+            normal_de: 0.061103
             cvd:
               protan:
-                dichromat_de_1.0: 0.045834
-                retention: 0.948385
+                dichromat_de_1.0: 0.057978
+                retention: 0.948855
               deutan:
-                dichromat_de_1.0: 0.048236
-                retention: 0.998088
+                dichromat_de_1.0: 0.061228
+                retention: 1.002052
               tritan:
-                dichromat_de_1.0: 0.032098
-                retention: 0.66417
+                dichromat_de_1.0: 0.038928
+                retention: 0.637087
             redundant_channel: true
           - a: selection
             b: search_match_current
-            normal_de: 0.093832
+            normal_de: 0.113176
             cvd:
               protan:
-                dichromat_de_1.0: 0.092798
-                retention: 0.988979
+                dichromat_de_1.0: 0.111535
+                retention: 0.9855
               deutan:
-                dichromat_de_1.0: 0.094557
-                retention: 1.007724
+                dichromat_de_1.0: 0.1138
+                retention: 1.005517
               tritan:
-                dichromat_de_1.0: 0.062917
-                retention: 0.670533
+                dichromat_de_1.0: 0.068647
+                retention: 0.60655
             redundant_channel: true
           - a: search_match
             b: search_match_current
-            normal_de: 0.048773
+            normal_de: 0.055669
             cvd:
               protan:
-                dichromat_de_1.0: 0.050191
-                retention: 1.029082
+                dichromat_de_1.0: 0.057214
+                retention: 1.027751
               deutan:
-                dichromat_de_1.0: 0.049783
-                retention: 1.020712
+                dichromat_de_1.0: 0.056737
+                retention: 1.019184
               tritan:
-                dichromat_de_1.0: 0.036257
-                retention: 0.743394
+                dichromat_de_1.0: 0.036212
+                retention: 0.65048
             redundant_channel: true
           - a: selection
             b: diff_added
-            normal_de: 0.042411
+            normal_de: 0.049154
             cvd:
               protan:
-                dichromat_de_1.0: 0.044658
-                retention: 1.052969
+                dichromat_de_1.0: 0.052718
+                retention: 1.072511
               deutan:
-                dichromat_de_1.0: 0.040391
-                retention: 0.95237
+                dichromat_de_1.0: 0.044067
+                retention: 0.896506
               tritan:
-                dichromat_de_1.0: 0.027823
-                retention: 0.656018
+                dichromat_de_1.0: 0.028078
+                retention: 0.571223
             redundant_channel: true
           - a: selection
             b: diff_removed
-            normal_de: 0.027596
+            normal_de: 0.029993
             cvd:
               protan:
-                dichromat_de_1.0: 0.022491
-                retention: 0.814994
+                dichromat_de_1.0: 0.023743
+                retention: 0.791613
               deutan:
-                dichromat_de_1.0: 0.026361
-                retention: 0.95525
+                dichromat_de_1.0: 0.029811
+                retention: 0.993937
               tritan:
-                dichromat_de_1.0: 0.02762
-                retention: 1.000869
+                dichromat_de_1.0: 0.029905
+                retention: 0.997068
             redundant_channel: true
           - a: selection
             b: active_line
-            normal_de: 0.026149
+            normal_de: 0.027242
             cvd:
               protan:
-                dichromat_de_1.0: 0.022491
-                retention: 0.860085
+                dichromat_de_1.0: 0.023504
+                retention: 0.862755
               deutan:
-                dichromat_de_1.0: 0.026361
-                retention: 1.008101
+                dichromat_de_1.0: 0.027403
+                retention: 1.005881
               tritan:
-                dichromat_de_1.0: 0.026128
-                retention: 0.999195
+                dichromat_de_1.0: 0.027133
+                retention: 0.995991
             redundant_channel: true
           - a: active_line
             b: diff_added
-            normal_de: 0.029036
+            normal_de: 0.036342
             cvd:
               protan:
-                dichromat_de_1.0: 0.0268
-                retention: 0.922987
+                dichromat_de_1.0: 0.033798
+                retention: 0.929985
               deutan:
-                dichromat_de_1.0: 0.021724
-                retention: 0.748175
+                dichromat_de_1.0: 0.025979
+                retention: 0.714848
               tritan:
-                dichromat_de_1.0: 0.006647
-                retention: 0.228919
+                dichromat_de_1.0: 0.007981
+                retention: 0.219599
             redundant_channel: true
           - a: active_line
             b: diff_removed
-            normal_de: 0.004533
+            normal_de: 0.005494
             cvd:
               protan:
-                dichromat_de_1.0: 0.0
-                retention: 0.0
+                dichromat_de_1.0: 0.001365
+                retention: 0.248437
               deutan:
-                dichromat_de_1.0: 0.0
-                retention: 0.0
+                dichromat_de_1.0: 0.003329
+                retention: 0.605836
               tritan:
-                dichromat_de_1.0: 0.004336
-                retention: 0.956603
+                dichromat_de_1.0: 0.005493
+                retention: 0.999887
             redundant_channel: true
           - a: fg
             b: bg
-            normal_de: 0.425456
+            normal_de: 0.425756
             cvd:
               protan:
-                dichromat_de_1.0: 0.425579
-                retention: 1.000289
+                dichromat_de_1.0: 0.42588
+                retention: 1.000291
               deutan:
-                dichromat_de_1.0: 0.425579
-                retention: 1.000289
+                dichromat_de_1.0: 0.42588
+                retention: 1.000291
               tritan:
                 dichromat_de_1.0: 0.425283
-                retention: 0.999592
+                retention: 0.998889
             redundant_channel: false
           - a: comment
             b: bg
-            normal_de: 0.421088
+            normal_de: 0.421386
             cvd:
               protan:
-                dichromat_de_1.0: 0.422111
-                retention: 1.002429
+                dichromat_de_1.0: 0.422411
+                retention: 1.002432
               deutan:
-                dichromat_de_1.0: 0.418948
-                retention: 0.994917
+                dichromat_de_1.0: 0.419249
+                retention: 0.994929
               tritan:
                 dichromat_de_1.0: 0.420911
-                retention: 0.99958
+                retention: 0.998873
             redundant_channel: false
           - a: fg_muted
             b: bg
-            normal_de: 0.323091
+            normal_de: 0.322228
             cvd:
               protan:
                 dichromat_de_1.0: 0.324037
-                retention: 1.002928
+                retention: 1.005615
               deutan:
                 dichromat_de_1.0: 0.321003
-                retention: 0.993537
+                retention: 0.996199
               tritan:
-                dichromat_de_1.0: 0.322647
-                retention: 0.998626
+                dichromat_de_1.0: 0.321778
+                retention: 0.998605
             redundant_channel: false
           - a: error
             b: bg
-            normal_de: 0.628969
+            normal_de: 0.637266
             cvd:
               protan:
-                dichromat_de_1.0: 0.671425
-                retention: 1.0675
+                dichromat_de_1.0: 0.695032
+                retention: 1.090647
               deutan:
-                dichromat_de_1.0: 0.617066
-                retention: 0.981076
+                dichromat_de_1.0: 0.621607
+                retention: 0.975428
               tritan:
-                dichromat_de_1.0: 0.630262
-                retention: 1.002056
+                dichromat_de_1.0: 0.63831
+                retention: 1.001639
             redundant_channel: true
           - a: focus
             b: bg
-            normal_de: 0.63119
+            normal_de: 0.610746
             cvd:
               protan:
-                dichromat_de_1.0: 0.625166
-                retention: 0.990456
+                dichromat_de_1.0: 0.604029
+                retention: 0.989003
               deutan:
-                dichromat_de_1.0: 0.630324
-                retention: 0.998629
+                dichromat_de_1.0: 0.608974
+                retention: 0.997099
               tritan:
-                dichromat_de_1.0: 0.632978
-                retention: 1.002833
+                dichromat_de_1.0: 0.611968
+                retention: 1.002001
             redundant_channel: true
           note: Population-average dichromat (Brettel) models at severity 1.0. They detect collapse; they
             do not reproduce an individual's experience (RESEARCH.md R-9). Low retention on a pair WITH
             a redundant channel is compensated, not a failure.
         spectral_both_displays:
           led-lcd:
-            melanopic_ratio: 0.964165
-            photopic_relative: 0.766319
-            melanopic_relative: 0.738858
+            melanopic_ratio: 0.963581
+            photopic_relative: 0.76717
+            melanopic_relative: 0.739231
             top_contributors:
             - hex: '#f6f3ed'
-              share: 0.875493
+              share: 0.875052
             - hex: '#fdfbf7'
-              share: 0.048954
-            - hex: '#eae9e8'
-              share: 0.015778
-            - hex: '#706e6c'
-              share: 0.014024
-            - hex: '#726f6d'
-              share: 0.006647
-            - hex: '#ffffff'
-              share: 0.006495
-          oled:
-            melanopic_ratio: 0.964702
-            photopic_relative: 0.766319
-            melanopic_relative: 0.739269
-            top_contributors:
-            - hex: '#f6f3ed'
-              share: 0.875531
-            - hex: '#fdfbf7'
-              share: 0.048946
+              share: 0.048929
             - hex: '#eae9e8'
               share: 0.01577
-            - hex: '#706e6c'
-              share: 0.01402
-            - hex: '#726f6d'
-              share: 0.006645
+            - hex: '#706e6b'
+              share: 0.01384
+            - hex: '#726f6c'
+              share: 0.006561
             - hex: '#ffffff'
-              share: 0.006491
+              share: 0.006492
+          oled:
+            melanopic_ratio: 0.964134
+            photopic_relative: 0.76717
+            melanopic_relative: 0.739654
+            top_contributors:
+            - hex: '#f6f3ed'
+              share: 0.875075
+            - hex: '#fdfbf7'
+              share: 0.04892
+            - hex: '#eae9e8'
+              share: 0.015762
+            - hex: '#706e6b'
+              share: 0.01384
+            - hex: '#726f6c'
+              share: 0.00656
+            - hex: '#ffffff'
+              share: 0.006488
           coverage_model: declared area estimate (see area_category_weights)
           caveat: Nominal within-model ranking ONLY. An sRGB triple does not determine a spectral power
             distribution; two displays at the same hex emit different spectra. This never claims actual
@@ -2398,7 +2398,7 @@ per_candidate:
             - warning
             measurement: declared estimate; not a screenshot pixel count
   candidate-b-balanced:
-    input_hash: 795d55bccb35b4fa
+    input_hash: 7ffb99008258b166
     ok: true
     strategy: balanced
     stability:
@@ -2411,7 +2411,55 @@ per_candidate:
       - cyclic_family_sequence
       - realized_salience_proxy
       - total_hue_drift_including_adjustments
-      normalized_chroma_inversions: []
+      normalized_chroma_inversions:
+      - roles:
+        - keyword
+        - string
+        variants:
+        - day
+        - evening
+        d1: -0.1486
+        d2: 0.0041
+      - roles:
+        - keyword
+        - string
+        variants:
+        - day
+        - night
+        d1: -0.1486
+        d2: 0.0091
+      - roles:
+        - keyword
+        - number
+        variants:
+        - day
+        - evening
+        d1: -0.1486
+        d2: 0.0041
+      - roles:
+        - keyword
+        - number
+        variants:
+        - day
+        - night
+        d1: -0.1486
+        d2: 0.0091
+      - roles:
+        - keyword
+        - constant
+        variants:
+        - day
+        - evening
+        d1: -0.1486
+        d2: 0.0041
+      - roles:
+        - keyword
+        - constant
+        variants:
+        - day
+        - night
+        d1: -0.1486
+        d2: 0.0091
       cyclic_family_sequence_preserved: true
       cyclic_family_sequence:
         day:
@@ -2474,7 +2522,7 @@ per_candidate:
       max_hue_drift_deg: 5.7
       drift_threshold_deg: 12
       drift_violations: []
-      ok: true
+      ok: false
     cross_variant_drift:
       variants:
       - day
@@ -2498,20 +2546,20 @@ per_candidate:
           dC: -0.008538
           dH_deg: 75.2256
         fg:
-          dE: 0.272532
-          dL: -0.272532
-          dC: 0.000691
-          dH_deg: 0.033
+          dE: 0.274187
+          dL: -0.274171
+          dC: 0.002287
+          dH_deg: 14.0592
         fg_secondary:
-          dE: 0.134072
-          dL: -0.134053
-          dC: 0.002226
-          dH_deg: 2.924
+          dE: 0.133515
+          dL: -0.133449
+          dC: 0.004181
+          dH_deg: 4.6106
         fg_muted:
-          dE: 0.114606
-          dL: 0.114547
-          dC: 0.003135
-          dH_deg: 16.897
+          dE: 0.114336
+          dL: 0.114251
+          dC: 0.004215
+          dH_deg: 10.6219
         comment:
           dE: 0.134699
           dL: -0.134519
@@ -2538,8 +2586,8 @@ per_candidate:
           dC: 0.0
           dH_deg: 0.0
         line_number_active:
-          dE: 0.311236
-          dL: -0.311236
+          dE: 0.290125
+          dL: -0.290125
           dC: -0.0
           dH_deg: 0.0
         ui_inactive:
@@ -2553,130 +2601,130 @@ per_candidate:
           dC: 0.001018
           dH_deg: 0.0734
         selection:
-          dE: 0.64881
-          dL: 0.648809
-          dC: 4.0e-06
-          dH_deg: 5.8358
+          dE: 0.648663
+          dL: 0.648654
+          dC: 0.002838
+          dH_deg: 9.461
         focus:
-          dE: 0.547346
-          dL: -0.546689
-          dC: 0.02666
-          dH_deg: 4.231
+          dE: 0.529195
+          dL: -0.527506
+          dC: 0.042101
+          dH_deg: 4.6086
         keyword:
-          dE: 0.317645
-          dL: -0.302833
-          dC: 0.09574
-          dH_deg: 3.3717
+          dE: 0.295012
+          dL: -0.278408
+          dC: 0.097409
+          dH_deg: 3.8557
         string:
-          dE: 0.314368
-          dL: -0.314298
-          dC: -0.003589
-          dH_deg: 4.0485
+          dE: 0.291852
+          dL: -0.291212
+          dC: 0.01845
+          dH_deg: 3.6805
         number:
-          dE: 0.312516
-          dL: -0.31248
-          dC: -0.004711
-          dH_deg: 0.101
+          dE: 0.287412
+          dL: -0.287155
+          dC: 0.01201
+          dH_deg: 1.5874
         constant:
-          dE: 0.312516
-          dL: -0.31248
-          dC: -0.004711
-          dH_deg: 0.101
+          dE: 0.287412
+          dL: -0.287155
+          dC: 0.01201
+          dH_deg: 1.5874
         type:
-          dE: 0.312126
-          dL: -0.312015
-          dC: -0.005859
-          dH_deg: 6.7704
+          dE: 0.291351
+          dL: -0.291167
+          dC: 0.006276
+          dH_deg: 8.4414
         function:
-          dE: 0.544526
-          dL: -0.543715
-          dC: 0.02943
-          dH_deg: 6.4397
+          dE: 0.50515
+          dL: -0.502789
+          dC: 0.048576
+          dH_deg: 6.1548
         parameter:
-          dE: 0.272532
-          dL: -0.272532
-          dC: 0.000691
-          dH_deg: 0.033
+          dE: 0.274187
+          dL: -0.274171
+          dC: 0.002287
+          dH_deg: 14.0592
         property:
-          dE: 0.273008
-          dL: -0.27292
-          dC: 0.006287
-          dH_deg: 28.4721
+          dE: 0.272701
+          dL: -0.272572
+          dC: 0.007548
+          dH_deg: 33.3413
         builtin:
-          dE: 0.309707
-          dL: -0.308203
-          dC: 0.030378
-          dH_deg: 5.5099
+          dE: 0.286102
+          dL: -0.282802
+          dC: 0.043294
+          dH_deg: 3.2198
         decorator:
-          dE: 0.314021
-          dL: -0.314003
-          dC: -0.002654
-          dH_deg: 4.4721
+          dE: 0.28854
+          dL: -0.288518
+          dC: 0.003418
+          dH_deg: 2.3519
         namespace:
-          dE: 0.27276
-          dL: -0.272725
-          dC: -0.001883
-          dH_deg: 10.674
+          dE: 0.272294
+          dL: -0.272247
+          dC: 0.002641
+          dH_deg: 10.5472
         tag:
-          dE: 0.313192
-          dL: -0.312739
-          dC: 0.016769
-          dH_deg: 3.6843
+          dE: 0.28863
+          dL: -0.287493
+          dC: 0.025599
+          dH_deg: 0.6062
         error:
-          dE: 0.541657
-          dL: -0.538446
-          dC: 0.05889
-          dH_deg: 0.2243
+          dE: 0.548742
+          dL: -0.542783
+          dC: 0.08065
+          dH_deg: 0.1923
         warning:
-          dE: 0.541105
-          dL: -0.540927
-          dC: -0.013815
-          dH_deg: 1.2238
+          dE: 0.519743
+          dL: -0.519736
+          dC: 0.002527
+          dH_deg: 0.424
         info:
-          dE: 0.355108
-          dL: -0.353937
-          dC: 0.028244
-          dH_deg: 5.8851
+          dE: 0.308036
+          dL: -0.303451
+          dC: 0.052722
+          dH_deg: 4.3672
         success:
-          dE: 0.353281
-          dL: -0.352321
-          dC: -0.025824
-          dH_deg: 2.2454
+          dE: 0.306024
+          dL: -0.306001
+          dC: -0.000438
+          dH_deg: 2.2223
         diff_added:
-          dE: 0.701599
-          dL: 0.701203
-          dC: 0.023569
-          dH_deg: 0.2521
+          dE: 0.701456
+          dL: 0.700776
+          dC: 0.030895
+          dH_deg: 0.2556
         diff_removed:
-          dE: 0.699792
-          dL: 0.699705
-          dC: -0.010846
-          dH_deg: 10.3622
+          dE: 0.699384
+          dL: 0.699341
+          dC: -0.007723
+          dH_deg: 1.1409
         diff_changed:
-          dE: 0.700023
-          dL: 0.700014
-          dC: 0.003407
-          dH_deg: 6.3881
+          dE: 0.699139
+          dL: 0.699104
+          dC: 0.006173
+          dH_deg: 15.1135
         search_match:
-          dE: 0.648096
-          dL: 0.647785
-          dC: 0.02006
-          dH_deg: 0.2718
+          dE: 0.650317
+          dL: 0.649625
+          dC: 0.029978
+          dH_deg: 0.467
         search_match_current:
-          dE: 0.601417
-          dL: 0.600033
-          dC: 0.040774
-          dH_deg: 0.7635
+          dE: 0.602807
+          dL: 0.599927
+          dC: 0.058857
+          dH_deg: 0.0791
         breakpoint:
-          dE: 0.550499
-          dL: -0.546812
-          dC: 0.063562
-          dH_deg: 2.1894
+          dE: 0.53509
+          dL: -0.526628
+          dC: 0.09475
+          dH_deg: 2.2097
         debug_current:
-          dE: 0.648304
-          dL: 0.648033
-          dC: 0.018671
-          dH_deg: 2.1733
+          dE: 0.650503
+          dL: 0.649874
+          dC: 0.028589
+          dH_deg: 1.4345
         deprecated:
           dE: 0.134698
           dL: -0.134698
@@ -2688,467 +2736,467 @@ per_candidate:
         distributions:
           all_roles:
             lightness:
-              min: 0.337272
-              p25: 0.497889
-              median: 0.539658
-              p75: 0.891449
+              min: 0.336961
+              p25: 0.521925
+              median: 0.538824
+              p75: 0.891475
               max: 1.0
             chroma:
               min: 0.0
-              p25: 0.007049
-              median: 0.025666
-              p75: 0.053612
-              max: 0.144526
+              p25: 0.008739
+              median: 0.02757
+              p75: 0.069979
+              max: 0.146195
           chromatic_only:
             lightness:
-              min: 0.337272
-              p25: 0.451513
-              median: 0.499079
-              p75: 0.5389
-              max: 0.935458
+              min: 0.336961
+              p25: 0.498874
+              median: 0.524484
+              p75: 0.53935
+              max: 0.93503
             chroma:
-              min: 0.020308
-              p25: 0.036537
-              median: 0.052914
-              p75: 0.071075
-              max: 0.144526
+              min: 0.024832
+              p25: 0.044833
+              median: 0.068805
+              p75: 0.095332
+              max: 0.146195
           chroma_floor: 0.02
           chroma_ordering:
           - role: keyword
             family: violet
-            C: 0.144526
+            C: 0.146195
           - role: breakpoint
             family: rose
-            C: 0.100702
+            C: 0.13189
           - role: error
             family: rose
-            C: 0.100702
+            C: 0.122462
           - role: string
             family: sage
-            C: 0.076987
-          - role: search_match_current
-            family: sand
-            C: 0.076625
+            C: 0.099026
           - role: info
             family: azure
-            C: 0.071382
+            C: 0.09586
           - role: success
             family: sage
-            C: 0.070153
+            C: 0.09554
+          - role: search_match_current
+            family: sand
+            C: 0.094708
           - role: constant
             family: sand
-            C: 0.05747
+            C: 0.074191
           - role: number
             family: sand
-            C: 0.05747
-          - role: focus
-            family: azure
-            C: 0.053612
+            C: 0.074191
           - role: function
             family: azure
-            C: 0.053612
+            C: 0.072758
+          - role: focus
+            family: azure
+            C: 0.069052
           - role: warning
             family: sand
-            C: 0.052215
-          - role: type
-            family: teal
-            C: 0.046987
+            C: 0.068558
           - role: builtin
             family: rose
-            C: 0.046322
+            C: 0.059238
+          - role: type
+            family: teal
+            C: 0.059121
           - role: debug_current
             family: sand
-            C: 0.044249
+            C: 0.054167
           - role: search_match
             family: sand
-            C: 0.044249
-          - role: diff_added
-            family: sage
-            C: 0.033967
+            C: 0.054167
           - role: tag
             family: azure
-            C: 0.032892
+            C: 0.041722
+          - role: diff_added
+            family: sage
+            C: 0.041294
+          - role: decorator
+            family: sand
+            C: 0.029854
           - role: docstring
             family: neutral
             C: 0.02759
           - role: comment
             family: neutral
             C: 0.027549
-          - role: decorator
-            family: sand
-            C: 0.023783
           - role: namespace
             family: teal
-            C: 0.020308
+            C: 0.024832
         distance_summary:
           n_errors: 12
-          n_warnings: 51
-          n_total: 63
+          n_warnings: 47
+          n_total: 59
           errors:
           - constraint: must_distinguish(error, warning)
             condition: normal
-            measured_de: 0.086403
+            measured_de: 0.108733
             threshold_de: 0.13
           - constraint: must_distinguish(diff_added, diff_removed)
             condition: normal
-            measured_de: 0.036171
+            measured_de: 0.046369
             threshold_de: 0.13
           - constraint: must_distinguish(diff_added, diff_changed)
             condition: normal
-            measured_de: 0.027539
+            measured_de: 0.035872
             threshold_de: 0.13
           - constraint: must_distinguish(diff_removed, diff_changed)
             condition: normal
-            measured_de: 0.010676
+            measured_de: 0.013323
             threshold_de: 0.13
           - constraint: must_distinguish(selection, search_match)
             condition: normal
-            measured_de: 0.054583
+            measured_de: 0.067391
             threshold_de: 0.13
           - constraint: must_distinguish(selection, search_match_current)
             condition: normal
-            measured_de: 0.090281
+            measured_de: 0.110641
             threshold_de: 0.13
           - constraint: must_distinguish(search_match, search_match_current)
             condition: normal
-            measured_de: 0.040274
+            measured_de: 0.048078
             threshold_de: 0.13
           - constraint: must_distinguish(selection, diff_added)
             condition: normal
-            measured_de: 0.047044
+            measured_de: 0.055166
             threshold_de: 0.13
           - constraint: must_distinguish(selection, diff_removed)
             condition: normal
-            measured_de: 0.030146
+            measured_de: 0.032567
             threshold_de: 0.13
           - constraint: must_distinguish(selection, active_line)
             condition: normal
-            measured_de: 0.028656
+            measured_de: 0.030259
             threshold_de: 0.13
           - constraint: must_distinguish(active_line, diff_added)
             condition: normal
-            measured_de: 0.03267
+            measured_de: 0.039966
             threshold_de: 0.13
           - constraint: must_distinguish(active_line, diff_removed)
             condition: normal
-            measured_de: 0.004541
+            measured_de: 0.008034
             threshold_de: 0.13
           warnings_count_by_constraint:
             differentiated_by: 1
-            must_distinguish: 35
+            must_distinguish: 33
             same_family: 5
-            should_distinguish: 10
+            should_distinguish: 8
         cvd_summary:
           n_pairs: 26
-          worst_retention: 0.125983
+          worst_retention: 0.0
           pairs:
           - a: error
             b: string
-            normal_de: 0.212169
+            normal_de: 0.257634
             cvd:
               protan:
-                dichromat_de_1.0: 0.226878
-                retention: 1.069322
+                dichromat_de_1.0: 0.280155
+                retention: 1.087414
               deutan:
-                dichromat_de_1.0: 0.143903
-                retention: 0.678243
+                dichromat_de_1.0: 0.17027
+                retention: 0.660899
               tritan:
-                dichromat_de_1.0: 0.193823
-                retention: 0.913529
+                dichromat_de_1.0: 0.232844
+                retention: 0.903777
             redundant_channel: true
           - a: error
             b: builtin
-            normal_de: 0.17211
+            normal_de: 0.20313
             cvd:
               protan:
-                dichromat_de_1.0: 0.196082
-                retention: 1.139282
+                dichromat_de_1.0: 0.237523
+                retention: 1.169316
               deutan:
-                dichromat_de_1.0: 0.162376
-                retention: 0.943443
+                dichromat_de_1.0: 0.191448
+                retention: 0.942489
               tritan:
-                dichromat_de_1.0: 0.173564
-                retention: 1.008449
+                dichromat_de_1.0: 0.202268
+                retention: 0.99576
             redundant_channel: true
           - a: error
             b: keyword
-            normal_de: 0.223531
+            normal_de: 0.252801
             cvd:
               protan:
-                dichromat_de_1.0: 0.216189
-                retention: 0.967156
+                dichromat_de_1.0: 0.26044
+                retention: 1.030216
               deutan:
-                dichromat_de_1.0: 0.223051
-                retention: 0.997853
+                dichromat_de_1.0: 0.251066
+                retention: 0.993136
               tritan:
-                dichromat_de_1.0: 0.178035
-                retention: 0.796467
+                dichromat_de_1.0: 0.213105
+                retention: 0.842973
             redundant_channel: true
           - a: error
             b: warning
-            normal_de: 0.086403
+            normal_de: 0.108733
             cvd:
               protan:
-                dichromat_de_1.0: 0.05783
-                retention: 0.669308
+                dichromat_de_1.0: 0.09927
+                retention: 0.91297
               deutan:
-                dichromat_de_1.0: 0.01465
-                retention: 0.169553
+                dichromat_de_1.0: 0.028864
+                retention: 0.265463
               tritan:
-                dichromat_de_1.0: 0.066848
-                retention: 0.773682
+                dichromat_de_1.0: 0.081635
+                retention: 0.750784
             redundant_channel: true
           - a: error
             b: fg
-            normal_de: 0.220825
+            normal_de: 0.232248
             cvd:
               protan:
-                dichromat_de_1.0: 0.24971
-                retention: 1.130809
+                dichromat_de_1.0: 0.269699
+                retention: 1.161255
               deutan:
-                dichromat_de_1.0: 0.196284
-                retention: 0.88887
+                dichromat_de_1.0: 0.200916
+                retention: 0.865095
               tritan:
-                dichromat_de_1.0: 0.220658
-                retention: 0.999244
+                dichromat_de_1.0: 0.231366
+                retention: 0.996204
             redundant_channel: true
           - a: warning
             b: string
-            normal_de: 0.164086
+            normal_de: 0.173554
             cvd:
               protan:
-                dichromat_de_1.0: 0.178448
-                retention: 1.087527
+                dichromat_de_1.0: 0.188921
+                retention: 1.088544
               deutan:
-                dichromat_de_1.0: 0.147857
-                retention: 0.901091
+                dichromat_de_1.0: 0.150425
+                retention: 0.866733
               tritan:
-                dichromat_de_1.0: 0.160473
-                retention: 0.977978
+                dichromat_de_1.0: 0.169053
+                retention: 0.974069
             redundant_channel: true
           - a: warning
             b: number
-            normal_de: 0.160592
+            normal_de: 0.164737
             cvd:
               protan:
-                dichromat_de_1.0: 0.159654
-                retention: 0.994158
+                dichromat_de_1.0: 0.164515
+                retention: 0.99865
               deutan:
-                dichromat_de_1.0: 0.158739
-                retention: 0.988462
+                dichromat_de_1.0: 0.166764
+                retention: 1.012302
               tritan:
-                dichromat_de_1.0: 0.160977
-                retention: 1.002399
+                dichromat_de_1.0: 0.163088
+                retention: 0.989989
             redundant_channel: true
           - a: warning
             b: constant
-            normal_de: 0.160592
+            normal_de: 0.164737
             cvd:
               protan:
-                dichromat_de_1.0: 0.159654
-                retention: 0.994158
+                dichromat_de_1.0: 0.164515
+                retention: 0.99865
               deutan:
-                dichromat_de_1.0: 0.158739
-                retention: 0.988462
+                dichromat_de_1.0: 0.166764
+                retention: 1.012302
               tritan:
-                dichromat_de_1.0: 0.160977
-                retention: 1.002399
+                dichromat_de_1.0: 0.163088
+                retention: 0.989989
             redundant_channel: true
           - a: warning
             b: decorator
-            normal_de: 0.161219
+            normal_de: 0.167514
             cvd:
               protan:
-                dichromat_de_1.0: 0.165641
-                retention: 1.02743
+                dichromat_de_1.0: 0.174905
+                retention: 1.044121
               deutan:
-                dichromat_de_1.0: 0.160944
-                retention: 0.9983
+                dichromat_de_1.0: 0.168944
+                retention: 1.008536
               tritan:
-                dichromat_de_1.0: 0.158144
-                retention: 0.980931
+                dichromat_de_1.0: 0.163452
+                retention: 0.975752
             redundant_channel: true
           - a: error
             b: success
-            normal_de: 0.182357
+            normal_de: 0.245024
             cvd:
               protan:
-                dichromat_de_1.0: 0.184242
-                retention: 1.010339
+                dichromat_de_1.0: 0.263093
+                retention: 1.073744
               deutan:
-                dichromat_de_1.0: 0.104144
-                retention: 0.5711
+                dichromat_de_1.0: 0.155424
+                retention: 0.634323
               tritan:
-                dichromat_de_1.0: 0.164191
-                retention: 0.900382
+                dichromat_de_1.0: 0.219873
+                retention: 0.897353
             redundant_channel: true
           - a: diff_added
             b: diff_removed
-            normal_de: 0.036171
+            normal_de: 0.046369
             cvd:
               protan:
-                dichromat_de_1.0: 0.029004
-                retention: 0.801856
+                dichromat_de_1.0: 0.036645
+                retention: 0.790285
               deutan:
-                dichromat_de_1.0: 0.01977
-                retention: 0.546558
+                dichromat_de_1.0: 0.024684
+                retention: 0.532337
               tritan:
-                dichromat_de_1.0: 0.014104
-                retention: 0.389909
+                dichromat_de_1.0: 0.019045
+                retention: 0.410733
             redundant_channel: true
           - a: diff_added
             b: diff_changed
-            normal_de: 0.027539
+            normal_de: 0.035872
             cvd:
               protan:
-                dichromat_de_1.0: 0.020306
-                retention: 0.737352
+                dichromat_de_1.0: 0.02346
+                retention: 0.653994
               deutan:
-                dichromat_de_1.0: 0.010107
-                retention: 0.367005
+                dichromat_de_1.0: 0.01227
+                retention: 0.342057
               tritan:
-                dichromat_de_1.0: 0.015084
-                retention: 0.547747
+                dichromat_de_1.0: 0.021419
+                retention: 0.597092
             redundant_channel: true
           - a: diff_removed
             b: diff_changed
-            normal_de: 0.010676
+            normal_de: 0.013323
             cvd:
               protan:
-                dichromat_de_1.0: 0.009893
-                retention: 0.926605
+                dichromat_de_1.0: 0.013958
+                retention: 1.047671
               deutan:
-                dichromat_de_1.0: 0.009874
-                retention: 0.924873
+                dichromat_de_1.0: 0.012414
+                retention: 0.931776
               tritan:
-                dichromat_de_1.0: 0.001345
-                retention: 0.125983
+                dichromat_de_1.0: 0.002619
+                retention: 0.196567
             redundant_channel: true
           - a: selection
             b: search_match
-            normal_de: 0.054583
+            normal_de: 0.067391
             cvd:
               protan:
-                dichromat_de_1.0: 0.050599
-                retention: 0.927005
+                dichromat_de_1.0: 0.063222
+                retention: 0.938132
               deutan:
-                dichromat_de_1.0: 0.053626
-                retention: 0.982464
+                dichromat_de_1.0: 0.06695
+                retention: 0.993452
               tritan:
-                dichromat_de_1.0: 0.037844
-                retention: 0.693329
+                dichromat_de_1.0: 0.046652
+                retention: 0.69226
             redundant_channel: true
           - a: selection
             b: search_match_current
-            normal_de: 0.090281
+            normal_de: 0.110641
             cvd:
               protan:
-                dichromat_de_1.0: 0.088623
-                retention: 0.981629
+                dichromat_de_1.0: 0.107971
+                retention: 0.975873
               deutan:
-                dichromat_de_1.0: 0.090342
-                retention: 1.000673
+                dichromat_de_1.0: 0.110287
+                retention: 0.9968
               tritan:
-                dichromat_de_1.0: 0.061915
-                retention: 0.685802
+                dichromat_de_1.0: 0.072035
+                retention: 0.651075
             redundant_channel: true
           - a: search_match
             b: search_match_current
-            normal_de: 0.040274
+            normal_de: 0.048078
             cvd:
               protan:
-                dichromat_de_1.0: 0.041651
-                retention: 1.0342
+                dichromat_de_1.0: 0.050023
+                retention: 1.040449
               deutan:
-                dichromat_de_1.0: 0.041212
-                retention: 1.023314
+                dichromat_de_1.0: 0.048947
+                retention: 1.01807
               tritan:
-                dichromat_de_1.0: 0.031009
-                retention: 0.769967
+                dichromat_de_1.0: 0.033314
+                retention: 0.692916
             redundant_channel: true
           - a: selection
             b: diff_added
-            normal_de: 0.047044
+            normal_de: 0.055166
             cvd:
               protan:
-                dichromat_de_1.0: 0.050427
-                retention: 1.071914
+                dichromat_de_1.0: 0.057496
+                retention: 1.042235
               deutan:
-                dichromat_de_1.0: 0.041615
-                retention: 0.884608
+                dichromat_de_1.0: 0.047535
+                retention: 0.861662
               tritan:
-                dichromat_de_1.0: 0.027302
-                retention: 0.580353
+                dichromat_de_1.0: 0.028057
+                retention: 0.508598
             redundant_channel: true
           - a: selection
             b: diff_removed
-            normal_de: 0.030146
+            normal_de: 0.032567
             cvd:
               protan:
-                dichromat_de_1.0: 0.024053
-                retention: 0.797887
+                dichromat_de_1.0: 0.022713
+                retention: 0.697419
               deutan:
-                dichromat_de_1.0: 0.030125
-                retention: 0.999311
+                dichromat_de_1.0: 0.029547
+                retention: 0.907259
               tritan:
-                dichromat_de_1.0: 0.029869
-                retention: 0.990812
+                dichromat_de_1.0: 0.032099
+                retention: 0.985608
             redundant_channel: true
           - a: selection
             b: active_line
-            normal_de: 0.028656
+            normal_de: 0.030259
             cvd:
               protan:
-                dichromat_de_1.0: 0.024909
-                retention: 0.869226
+                dichromat_de_1.0: 0.026548
+                retention: 0.877366
               deutan:
-                dichromat_de_1.0: 0.027935
-                retention: 0.974814
+                dichromat_de_1.0: 0.029547
+                retention: 0.976469
               tritan:
-                dichromat_de_1.0: 0.028142
-                retention: 0.982054
+                dichromat_de_1.0: 0.028579
+                retention: 0.94449
             redundant_channel: true
           - a: active_line
             b: diff_added
-            normal_de: 0.03267
+            normal_de: 0.039966
             cvd:
               protan:
-                dichromat_de_1.0: 0.028411
-                retention: 0.869632
+                dichromat_de_1.0: 0.033775
+                retention: 0.845098
               deutan:
-                dichromat_de_1.0: 0.020612
-                retention: 0.630914
+                dichromat_de_1.0: 0.024684
+                retention: 0.61763
               tritan:
-                dichromat_de_1.0: 0.010242
-                retention: 0.313487
+                dichromat_de_1.0: 0.012318
+                retention: 0.308217
             redundant_channel: true
           - a: active_line
             b: diff_removed
-            normal_de: 0.004541
+            normal_de: 0.008034
             cvd:
               protan:
-                dichromat_de_1.0: 0.001327
-                retention: 0.292214
+                dichromat_de_1.0: 0.003918
+                retention: 0.48772
               deutan:
-                dichromat_de_1.0: 0.002608
-                retention: 0.574238
+                dichromat_de_1.0: 0.0
+                retention: 0.0
               tritan:
-                dichromat_de_1.0: 0.004343
-                retention: 0.956499
+                dichromat_de_1.0: 0.007718
+                retention: 0.960586
             redundant_channel: true
           - a: fg
             b: bg
-            normal_de: 0.425153
+            normal_de: 0.426802
             cvd:
               protan:
-                dichromat_de_1.0: 0.425284
-                retention: 1.000308
+                dichromat_de_1.0: 0.428757
+                retention: 1.00458
               deutan:
-                dichromat_de_1.0: 0.425284
-                retention: 1.000308
+                dichromat_de_1.0: 0.425588
+                retention: 0.997154
               tritan:
-                dichromat_de_1.0: 0.425695
-                retention: 1.001276
+                dichromat_de_1.0: 0.427327
+                retention: 1.001229
             redundant_channel: false
           - a: comment
             b: bg
@@ -3166,84 +3214,84 @@ per_candidate:
             redundant_channel: false
           - a: fg_muted
             b: bg
-            normal_de: 0.321649
+            normal_de: 0.321939
             cvd:
               protan:
-                dichromat_de_1.0: 0.323467
-                retention: 1.005651
+                dichromat_de_1.0: 0.323759
+                retention: 1.005653
               deutan:
-                dichromat_de_1.0: 0.320437
-                retention: 0.996231
+                dichromat_de_1.0: 0.320733
+                retention: 0.996252
               tritan:
                 dichromat_de_1.0: 0.322176
-                retention: 1.001637
+                retention: 1.000737
             redundant_channel: false
           - a: error
             b: bg
-            normal_de: 0.631107
+            normal_de: 0.639087
             cvd:
               protan:
-                dichromat_de_1.0: 0.674955
-                retention: 1.069478
+                dichromat_de_1.0: 0.698414
+                retention: 1.092831
               deutan:
-                dichromat_de_1.0: 0.619592
-                retention: 0.981754
+                dichromat_de_1.0: 0.623854
+                retention: 0.976165
               tritan:
-                dichromat_de_1.0: 0.631932
-                retention: 1.001307
+                dichromat_de_1.0: 0.639338
+                retention: 1.000393
             redundant_channel: true
           - a: focus
             b: bg
-            normal_de: 0.630589
+            normal_de: 0.61326
             cvd:
               protan:
-                dichromat_de_1.0: 0.626818
-                retention: 0.994021
+                dichromat_de_1.0: 0.609642
+                retention: 0.994101
               deutan:
-                dichromat_de_1.0: 0.630979
-                retention: 1.000618
+                dichromat_de_1.0: 0.610955
+                retention: 0.996241
               tritan:
-                dichromat_de_1.0: 0.630605
-                retention: 1.000025
+                dichromat_de_1.0: 0.613781
+                retention: 1.000849
             redundant_channel: true
           note: Population-average dichromat (Brettel) models at severity 1.0. They detect collapse; they
             do not reproduce an individual's experience (RESEARCH.md R-9). Low retention on a pair WITH
             a redundant channel is compensated, not a failure.
         spectral_both_displays:
           led-lcd:
-            melanopic_ratio: 0.96314
-            photopic_relative: 0.7663
-            melanopic_relative: 0.738054
+            melanopic_ratio: 0.963033
+            photopic_relative: 0.767092
+            melanopic_relative: 0.738735
             top_contributors:
             - hex: '#f6f3ed'
-              share: 0.876447
+              share: 0.87564
             - hex: '#fdfbf7'
-              share: 0.049007
+              share: 0.048962
             - hex: '#ebe9e7'
-              share: 0.015696
-            - hex: '#716e6a'
-              share: 0.011375
+              share: 0.015681
+            - hex: '#726d69'
+              share: 0.011145
             - hex: '#ffffff'
-              share: 0.006502
-            - hex: '#eee8e7'
-              share: 0.004172
+              share: 0.006496
+            - hex: '#dbe2ea'
+              share: 0.004163
           oled:
-            melanopic_ratio: 0.963683
-            photopic_relative: 0.7663
-            melanopic_relative: 0.73847
+            melanopic_ratio: 0.963576
+            photopic_relative: 0.767092
+            melanopic_relative: 0.739152
             top_contributors:
             - hex: '#f6f3ed'
-              share: 0.876478
+              share: 0.87567
             - hex: '#fdfbf7'
-              share: 0.048999
+              share: 0.048954
             - hex: '#ebe9e7'
-              share: 0.015689
-            - hex: '#716e6a'
-              share: 0.011377
+              share: 0.015675
+            - hex: '#726d69'
+              share: 0.011143
             - hex: '#ffffff'
-              share: 0.006498
-            - hex: '#eee8e7'
-              share: 0.004169
+              share: 0.006492
+            - hex: '#7b6d5f'
+              share: 0.004163
           coverage_model: declared area estimate (see area_category_weights)
           caveat: Nominal within-model ranking ONLY. An sRGB triple does not determine a spectral power
             distribution; two displays at the same hex emit different spectra. This never claims actual
@@ -4661,7 +4709,7 @@ per_candidate:
             - warning
             measurement: declared estimate; not a screenshot pixel count
   candidate-c-expressive:
-    input_hash: c0858be5fcd1549f
+    input_hash: fbf70c2a610d42fe
     ok: true
     strategy: expressive
     stability:
@@ -4681,7 +4729,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: 0.0188
+        d1: 0.2002
         d2: -0.0185
       - roles:
         - focus
@@ -4693,11 +4741,27 @@ per_candidate:
         d2: 0.0426
       - roles:
         - keyword
+        - string
+        variants:
+        - day
+        - evening
+        d1: -0.1191
+        d2: 0.1206
+      - roles:
+        - keyword
+        - string
+        variants:
+        - day
+        - night
+        d1: -0.1191
+        d2: 0.1002
+      - roles:
+        - keyword
         - number
         variants:
         - day
         - evening
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.063
       - roles:
         - keyword
@@ -4705,7 +4769,7 @@ per_candidate:
         variants:
         - day
         - night
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.0561
       - roles:
         - keyword
@@ -4713,7 +4777,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.063
       - roles:
         - keyword
@@ -4721,7 +4785,7 @@ per_candidate:
         variants:
         - day
         - night
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.0561
       - roles:
         - keyword
@@ -4729,7 +4793,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.0581
       - roles:
         - keyword
@@ -4737,7 +4801,7 @@ per_candidate:
         variants:
         - day
         - night
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.0451
       - roles:
         - keyword
@@ -4745,7 +4809,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.0383
       - roles:
         - keyword
@@ -4753,7 +4817,7 @@ per_candidate:
         variants:
         - day
         - night
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.0013
       - roles:
         - keyword
@@ -4761,7 +4825,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.0284
       - roles:
         - keyword
@@ -4777,7 +4841,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.0284
       - roles:
         - keyword
@@ -4793,7 +4857,7 @@ per_candidate:
         variants:
         - day
         - evening
-        d1: -0.0188
+        d1: -0.2002
         d2: 0.0185
       - roles:
         - keyword
@@ -4901,20 +4965,20 @@ per_candidate:
           dC: -0.008538
           dH_deg: 75.2256
         fg:
-          dE: 0.274187
-          dL: -0.274171
-          dC: 0.002287
-          dH_deg: 14.0592
+          dE: 0.273588
+          dL: -0.273549
+          dC: 0.004258
+          dH_deg: 12.9495
         fg_secondary:
-          dE: 0.134022
-          dL: -0.134001
-          dC: 0.002337
-          dH_deg: 1.7066
+          dE: 0.135693
+          dL: -0.135622
+          dC: 0.003943
+          dH_deg: 12.9351
         fg_muted:
-          dE: 0.114336
-          dL: 0.114251
-          dC: 0.004215
-          dH_deg: 10.6219
+          dE: 0.115008
+          dL: 0.114837
+          dC: 0.006106
+          dH_deg: 10.6558
         comment:
           dE: 0.134357
           dL: -0.134154
@@ -4941,8 +5005,8 @@ per_candidate:
           dC: 0.0
           dH_deg: 0.0
         line_number_active:
-          dE: 0.311236
-          dL: -0.311236
+          dE: 0.290125
+          dL: -0.290125
           dC: -0.0
           dH_deg: 0.0
         ui_inactive:
@@ -4956,130 +5020,130 @@ per_candidate:
           dC: 0.001018
           dH_deg: 0.0734
         selection:
-          dE: 0.649299
-          dL: 0.649295
-          dC: 0.000159
-          dH_deg: 8.8127
+          dE: 0.650427
+          dL: 0.650418
+          dC: 0.003309
+          dH_deg: 3.2739
         focus:
-          dE: 0.546826
-          dL: -0.546275
-          dC: 0.02438
-          dH_deg: 3.5138
+          dE: 0.52646
+          dL: -0.524824
+          dC: 0.041406
+          dH_deg: 2.6015
         keyword:
-          dE: 0.31632
-          dL: -0.304596
-          dC: 0.085078
-          dH_deg: 3.3227
+          dE: 0.291596
+          dL: -0.27932
+          dC: 0.083533
+          dH_deg: 2.8748
         string:
-          dE: 0.311578
-          dL: -0.311527
-          dC: -0.003757
-          dH_deg: 3.1851
+          dE: 0.290738
+          dL: -0.290181
+          dC: 0.017348
+          dH_deg: 3.1833
         number:
-          dE: 0.313146
-          dL: -0.313072
-          dC: -0.006524
-          dH_deg: 1.6626
+          dE: 0.288535
+          dL: -0.288184
+          dC: 0.013816
+          dH_deg: 2.4172
         constant:
-          dE: 0.313146
-          dL: -0.313072
-          dC: -0.006524
-          dH_deg: 1.6626
+          dE: 0.288535
+          dL: -0.288184
+          dC: 0.013816
+          dH_deg: 2.4172
         type:
-          dE: 0.312743
-          dL: -0.312534
-          dC: -0.009029
-          dH_deg: 6.6572
+          dE: 0.290903
+          dL: -0.290722
+          dC: 0.006683
+          dH_deg: 6.5321
         function:
-          dE: 0.546299
-          dL: -0.545344
-          dC: 0.031873
-          dH_deg: 5.9811
+          dE: 0.507546
+          dL: -0.50426
+          dC: 0.057345
+          dH_deg: 6.0147
         parameter:
-          dE: 0.274187
-          dL: -0.274171
-          dC: 0.002287
-          dH_deg: 14.0592
+          dE: 0.273588
+          dL: -0.273549
+          dC: 0.004258
+          dH_deg: 12.9495
         property:
-          dE: 0.272484
-          dL: -0.272433
-          dC: 0.004646
-          dH_deg: 19.1765
+          dE: 0.273018
+          dL: -0.272925
+          dC: 0.006631
+          dH_deg: 19.2138
         builtin:
-          dE: 0.309941
-          dL: -0.308059
-          dC: 0.034071
-          dH_deg: 2.5753
+          dE: 0.286789
+          dL: -0.282455
+          dC: 0.049641
+          dH_deg: 2.576
         decorator:
-          dE: 0.3113
-          dL: -0.311273
-          dC: -0.004028
-          dH_deg: 0.9513
+          dE: 0.288772
+          dL: -0.288727
+          dC: 0.00507
+          dH_deg: 1.0407
         namespace:
-          dE: 0.272408
-          dL: -0.272383
-          dC: -0.001771
-          dH_deg: 6.3797
+          dE: 0.273151
+          dL: -0.273074
+          dC: 0.004644
+          dH_deg: 7.9133
         tag:
-          dE: 0.311307
-          dL: -0.308218
-          dC: 0.043673
-          dH_deg: 2.9162
+          dE: 0.288228
+          dL: -0.280799
+          dC: 0.064955
+          dH_deg: 2.9092
         error:
-          dE: 0.543259
-          dL: -0.539462
-          dC: 0.064095
-          dH_deg: 1.2557
+          dE: 0.552954
+          dL: -0.546168
+          dC: 0.086336
+          dH_deg: 1.5602
         warning:
-          dE: 0.542849
-          dL: -0.541921
-          dC: -0.031709
-          dH_deg: 0.9937
+          dE: 0.520095
+          dL: -0.519891
+          dC: -0.014483
+          dH_deg: 1.1091
         info:
-          dE: 0.356752
-          dL: -0.355814
-          dC: 0.024945
-          dH_deg: 6.0716
+          dE: 0.312953
+          dL: -0.308329
+          dC: 0.053042
+          dH_deg: 5.9279
         success:
-          dE: 0.352723
-          dL: -0.351682
-          dC: -0.026873
-          dH_deg: 2.2056
+          dE: 0.303099
+          dL: -0.303079
+          dC: -0.000516
+          dH_deg: 1.8991
         diff_added:
-          dE: 0.701837
-          dL: 0.70055
-          dC: 0.042387
-          dH_deg: 5.8302
+          dE: 0.701475
+          dL: 0.699357
+          dC: 0.054397
+          dH_deg: 5.3508
         diff_removed:
-          dE: 0.699071
-          dL: 0.698955
-          dC: -0.012735
-          dH_deg: 0.0881
+          dE: 0.698402
+          dL: 0.698338
+          dC: -0.009463
+          dH_deg: 2.1005
         diff_changed:
-          dE: 0.69925
-          dL: 0.699188
-          dC: 0.009339
-          dH_deg: 1.3854
+          dE: 0.69912
+          dL: 0.698966
+          dC: 0.014637
+          dH_deg: 3.2962
         search_match:
-          dE: 0.651646
-          dL: 0.650548
-          dC: 0.037809
-          dH_deg: 0.2853
+          dE: 0.651698
+          dL: 0.649519
+          dC: 0.053248
+          dH_deg: 0.6164
         search_match_current:
-          dE: 0.603167
-          dL: 0.599642
-          dC: 0.065115
-          dH_deg: 0.3846
+          dE: 0.604583
+          dL: 0.598033
+          dC: 0.088746
+          dH_deg: 0.6646
         breakpoint:
-          dE: 0.552362
-          dL: -0.548059
-          dC: 0.068807
-          dH_deg: 0.3673
+          dE: 0.541489
+          dL: -0.532289
+          dC: 0.099396
+          dH_deg: 0.2977
         debug_current:
-          dE: 0.651789
-          dL: 0.650771
-          dC: 0.036399
-          dH_deg: 0.9537
+          dE: 0.651807
+          dL: 0.649742
+          dC: 0.051838
+          dH_deg: 0.6226
         deprecated:
           dE: 0.134698
           dL: -0.134698
@@ -5091,470 +5155,462 @@ per_candidate:
         distributions:
           all_roles:
             lightness:
-              min: 0.333937
-              p25: 0.498472
-              median: 0.538651
-              p75: 0.891753
+              min: 0.334342
+              p25: 0.521651
+              median: 0.539049
+              p75: 0.89057
               max: 1.0
             chroma:
               min: 0.0
-              p25: 0.008739
-              median: 0.032411
-              p75: 0.066687
-              max: 0.161256
+              p25: 0.010204
+              median: 0.035134
+              p75: 0.087026
+              max: 0.159711
           chromatic_only:
             lightness:
-              min: 0.333937
-              p25: 0.452377
-              median: 0.499387
+              min: 0.334342
+              p25: 0.500421
+              median: 0.523359
               p75: 0.54286
-              max: 0.935453
+              max: 0.935231
             chroma:
-              min: 0.021341
-              p25: 0.054337
-              median: 0.065598
-              p75: 0.075588
-              max: 0.161256
+              min: 0.026638
+              p25: 0.068362
+              median: 0.081037
+              p75: 0.099408
+              max: 0.159711
           chroma_floor: 0.02
           chroma_ordering:
           - role: keyword
             family: violet
-            C: 0.161256
+            C: 0.159711
           - role: breakpoint
             family: rose
-            C: 0.109547
+            C: 0.140136
           - role: error
             family: rose
-            C: 0.109547
+            C: 0.131787
           - role: search_match_current
             family: sand
-            C: 0.103417
+            C: 0.127047
           - role: info
             family: azure
-            C: 0.077533
+            C: 0.105631
           - role: success
             family: sage
-            C: 0.075923
+            C: 0.102281
           - role: tag
             family: azure
-            C: 0.075252
+            C: 0.096534
           - role: string
             family: sage
-            C: 0.074081
+            C: 0.095186
           - role: function
             family: azure
-            C: 0.067652
+            C: 0.093125
           - role: constant
             family: sand
-            C: 0.066687
+            C: 0.087026
           - role: number
             family: sand
-            C: 0.066687
+            C: 0.087026
           - role: debug_current
             family: sand
-            C: 0.065598
+            C: 0.081037
           - role: search_match
             family: sand
-            C: 0.065598
+            C: 0.081037
           - role: focus
             family: azure
-            C: 0.057966
-          - role: type
-            family: teal
-            C: 0.056315
-          - role: diff_added
-            family: sage
-            C: 0.055737
+            C: 0.074992
           - role: warning
             family: sand
-            C: 0.055267
+            C: 0.072493
+          - role: type
+            family: teal
+            C: 0.072026
           - role: builtin
             family: rose
-            C: 0.053406
+            C: 0.068976
+          - role: diff_added
+            family: sage
+            C: 0.067748
+          - role: decorator
+            family: sand
+            C: 0.038813
           - role: docstring
             family: neutral
             C: 0.03516
           - role: comment
             family: neutral
             C: 0.035107
-          - role: decorator
-            family: sand
-            C: 0.029715
           - role: namespace
             family: teal
-            C: 0.02856
+            C: 0.034975
           - role: diff_changed
             family: sand
-            C: 0.021341
+            C: 0.026638
         distance_summary:
-          n_errors: 12
-          n_warnings: 50
-          n_total: 62
+          n_errors: 10
+          n_warnings: 44
+          n_total: 54
           errors:
-          - constraint: must_distinguish(error, warning)
-            condition: normal
-            measured_de: 0.108483
-            threshold_de: 0.13
           - constraint: must_distinguish(diff_added, diff_removed)
             condition: normal
-            measured_de: 0.060799
+            measured_de: 0.0741
             threshold_de: 0.13
           - constraint: must_distinguish(diff_added, diff_changed)
             condition: normal
-            measured_de: 0.0418
+            measured_de: 0.049522
             threshold_de: 0.13
           - constraint: must_distinguish(diff_removed, diff_changed)
             condition: normal
-            measured_de: 0.021298
+            measured_de: 0.026767
             threshold_de: 0.13
           - constraint: must_distinguish(selection, search_match)
             condition: normal
-            measured_de: 0.078978
-            threshold_de: 0.13
-          - constraint: must_distinguish(selection, search_match_current)
-            condition: normal
-            measured_de: 0.118999
+            measured_de: 0.096921
             threshold_de: 0.13
           - constraint: must_distinguish(search_match, search_match_current)
             condition: normal
-            measured_de: 0.044888
+            measured_de: 0.052249
             threshold_de: 0.13
           - constraint: must_distinguish(selection, diff_added)
             condition: normal
-            measured_de: 0.069283
+            measured_de: 0.080546
             threshold_de: 0.13
           - constraint: must_distinguish(selection, diff_removed)
             condition: normal
-            measured_de: 0.033531
+            measured_de: 0.036713
             threshold_de: 0.13
           - constraint: must_distinguish(selection, active_line)
             condition: normal
-            measured_de: 0.031245
+            measured_de: 0.032219
             threshold_de: 0.13
           - constraint: must_distinguish(active_line, diff_added)
             condition: normal
-            measured_de: 0.054009
+            measured_de: 0.065988
             threshold_de: 0.13
           - constraint: must_distinguish(active_line, diff_removed)
             condition: normal
-            measured_de: 0.008555
+            measured_de: 0.011566
             threshold_de: 0.13
           warnings_count_by_constraint:
             differentiated_by: 1
-            must_distinguish: 34
+            must_distinguish: 30
             same_family: 5
-            should_distinguish: 10
+            should_distinguish: 8
         cvd_summary:
           n_pairs: 26
-          worst_retention: 0.127318
+          worst_retention: 0.0
           pairs:
           - a: error
             b: string
-            normal_de: 0.21864
+            normal_de: 0.264688
             cvd:
               protan:
-                dichromat_de_1.0: 0.239198
-                retention: 1.094026
+                dichromat_de_1.0: 0.293448
+                retention: 1.108655
               deutan:
-                dichromat_de_1.0: 0.150528
-                retention: 0.688471
+                dichromat_de_1.0: 0.177719
+                retention: 0.671429
               tritan:
-                dichromat_de_1.0: 0.192867
-                retention: 0.88212
+                dichromat_de_1.0: 0.23003
+                retention: 0.869059
             redundant_channel: true
           - a: error
             b: builtin
-            normal_de: 0.173059
+            normal_de: 0.205833
             cvd:
               protan:
-                dichromat_de_1.0: 0.200977
-                retention: 1.161318
+                dichromat_de_1.0: 0.243453
+                retention: 1.182766
               deutan:
-                dichromat_de_1.0: 0.162731
-                retention: 0.940321
+                dichromat_de_1.0: 0.191112
+                retention: 0.928479
               tritan:
-                dichromat_de_1.0: 0.172519
-                retention: 0.996879
+                dichromat_de_1.0: 0.204112
+                retention: 0.991638
             redundant_channel: true
           - a: error
             b: keyword
-            normal_de: 0.215168
+            normal_de: 0.242239
             cvd:
               protan:
-                dichromat_de_1.0: 0.197481
-                retention: 0.917801
+                dichromat_de_1.0: 0.24569
+                retention: 1.014246
               deutan:
-                dichromat_de_1.0: 0.215268
-                retention: 1.000466
+                dichromat_de_1.0: 0.240184
+                retention: 0.99152
               tritan:
-                dichromat_de_1.0: 0.170951
-                retention: 0.794503
+                dichromat_de_1.0: 0.207025
+                retention: 0.854633
             redundant_channel: true
           - a: error
             b: warning
-            normal_de: 0.108483
+            normal_de: 0.137505
             cvd:
               protan:
-                dichromat_de_1.0: 0.077812
-                retention: 0.717273
+                dichromat_de_1.0: 0.125767
+                retention: 0.914639
               deutan:
-                dichromat_de_1.0: 0.028845
-                retention: 0.265895
+                dichromat_de_1.0: 0.045013
+                retention: 0.327353
               tritan:
-                dichromat_de_1.0: 0.074167
-                retention: 0.683678
+                dichromat_de_1.0: 0.092088
+                retention: 0.669709
             redundant_channel: true
           - a: error
             b: fg
-            normal_de: 0.222874
+            normal_de: 0.239803
             cvd:
               protan:
-                dichromat_de_1.0: 0.254803
-                retention: 1.143261
+                dichromat_de_1.0: 0.279368
+                retention: 1.164989
               deutan:
-                dichromat_de_1.0: 0.194957
-                retention: 0.874741
+                dichromat_de_1.0: 0.198483
+                retention: 0.82769
               tritan:
-                dichromat_de_1.0: 0.220659
-                retention: 0.990062
+                dichromat_de_1.0: 0.235803
+                retention: 0.983319
             redundant_channel: true
           - a: warning
             b: string
-            normal_de: 0.162352
+            normal_de: 0.165507
             cvd:
               protan:
-                dichromat_de_1.0: 0.177278
-                retention: 1.09193
+                dichromat_de_1.0: 0.182782
+                retention: 1.104375
               deutan:
-                dichromat_de_1.0: 0.152162
-                retention: 0.937234
+                dichromat_de_1.0: 0.153352
+                retention: 0.926556
               tritan:
-                dichromat_de_1.0: 0.160306
-                retention: 0.987393
+                dichromat_de_1.0: 0.163913
+                retention: 0.990369
             redundant_channel: true
           - a: warning
             b: number
-            normal_de: 0.160089
+            normal_de: 0.163181
             cvd:
               protan:
-                dichromat_de_1.0: 0.15984
-                retention: 0.998445
+                dichromat_de_1.0: 0.16546
+                retention: 1.013964
               deutan:
-                dichromat_de_1.0: 0.159175
-                retention: 0.994291
+                dichromat_de_1.0: 0.163593
+                retention: 1.002522
               tritan:
-                dichromat_de_1.0: 0.160826
-                retention: 1.004606
+                dichromat_de_1.0: 0.163744
+                retention: 1.003445
             redundant_channel: true
           - a: warning
             b: constant
-            normal_de: 0.160089
+            normal_de: 0.163181
             cvd:
               protan:
-                dichromat_de_1.0: 0.15984
-                retention: 0.998445
+                dichromat_de_1.0: 0.16546
+                retention: 1.013964
               deutan:
-                dichromat_de_1.0: 0.159175
-                retention: 0.994291
+                dichromat_de_1.0: 0.163593
+                retention: 1.002522
               tritan:
-                dichromat_de_1.0: 0.160826
-                retention: 1.004606
+                dichromat_de_1.0: 0.163744
+                retention: 1.003445
             redundant_channel: true
           - a: warning
             b: decorator
-            normal_de: 0.16261
+            normal_de: 0.164599
             cvd:
               protan:
-                dichromat_de_1.0: 0.165613
-                retention: 1.018467
+                dichromat_de_1.0: 0.171291
+                retention: 1.040658
               deutan:
-                dichromat_de_1.0: 0.161931
-                retention: 0.995821
+                dichromat_de_1.0: 0.164411
+                retention: 0.998859
               tritan:
-                dichromat_de_1.0: 0.161626
-                retention: 0.993945
+                dichromat_de_1.0: 0.16279
+                retention: 0.989013
             redundant_channel: true
           - a: error
             b: success
-            normal_de: 0.192598
+            normal_de: 0.258603
             cvd:
               protan:
-                dichromat_de_1.0: 0.199464
-                retention: 1.035652
+                dichromat_de_1.0: 0.281777
+                retention: 1.089611
               deutan:
-                dichromat_de_1.0: 0.109244
-                retention: 0.567214
+                dichromat_de_1.0: 0.165234
+                retention: 0.63895
               tritan:
-                dichromat_de_1.0: 0.162902
-                retention: 0.845815
+                dichromat_de_1.0: 0.218996
+                retention: 0.846844
             redundant_channel: true
           - a: diff_added
             b: diff_removed
-            normal_de: 0.060799
+            normal_de: 0.0741
             cvd:
               protan:
-                dichromat_de_1.0: 0.052603
-                retention: 0.865185
+                dichromat_de_1.0: 0.06371
+                retention: 0.859779
               deutan:
-                dichromat_de_1.0: 0.03963
-                retention: 0.651822
+                dichromat_de_1.0: 0.049641
+                retention: 0.669919
               tritan:
-                dichromat_de_1.0: 0.016714
-                retention: 0.274906
+                dichromat_de_1.0: 0.020079
+                retention: 0.27097
             redundant_channel: true
           - a: diff_added
             b: diff_changed
-            normal_de: 0.0418
+            normal_de: 0.049522
             cvd:
               protan:
-                dichromat_de_1.0: 0.032439
-                retention: 0.776062
+                dichromat_de_1.0: 0.036895
+                retention: 0.745034
               deutan:
-                dichromat_de_1.0: 0.020393
-                retention: 0.487881
+                dichromat_de_1.0: 0.026269
+                retention: 0.530446
               tritan:
-                dichromat_de_1.0: 0.018591
-                retention: 0.444763
+                dichromat_de_1.0: 0.022146
+                retention: 0.44719
             redundant_channel: true
           - a: diff_removed
             b: diff_changed
-            normal_de: 0.021298
+            normal_de: 0.026767
             cvd:
               protan:
-                dichromat_de_1.0: 0.020861
-                retention: 0.979478
+                dichromat_de_1.0: 0.027086
+                retention: 1.011934
               deutan:
-                dichromat_de_1.0: 0.019337
-                retention: 0.907933
+                dichromat_de_1.0: 0.023427
+                retention: 0.875223
               tritan:
-                dichromat_de_1.0: 0.002712
-                retention: 0.127318
+                dichromat_de_1.0: 0.002731
+                retention: 0.102012
             redundant_channel: true
           - a: selection
             b: search_match
-            normal_de: 0.078978
+            normal_de: 0.096921
             cvd:
               protan:
-                dichromat_de_1.0: 0.076047
-                retention: 0.962889
+                dichromat_de_1.0: 0.093829
+                retention: 0.968101
               deutan:
-                dichromat_de_1.0: 0.078561
-                retention: 0.994723
+                dichromat_de_1.0: 0.097151
+                retention: 1.002373
               tritan:
-                dichromat_de_1.0: 0.048984
-                retention: 0.620226
+                dichromat_de_1.0: 0.058178
+                retention: 0.600267
             redundant_channel: true
           - a: selection
             b: search_match_current
-            normal_de: 0.118999
+            normal_de: 0.145151
             cvd:
               protan:
-                dichromat_de_1.0: 0.117848
-                retention: 0.990331
+                dichromat_de_1.0: 0.144266
+                retention: 0.993907
               deutan:
-                dichromat_de_1.0: 0.12055
-                retention: 1.013031
+                dichromat_de_1.0: 0.146749
+                retention: 1.011011
               tritan:
-                dichromat_de_1.0: 0.071109
-                retention: 0.597559
+                dichromat_de_1.0: 0.073037
+                retention: 0.503178
             redundant_channel: true
           - a: search_match
             b: search_match_current
-            normal_de: 0.044888
+            normal_de: 0.052249
             cvd:
               protan:
-                dichromat_de_1.0: 0.046552
-                retention: 1.037079
+                dichromat_de_1.0: 0.05397
+                retention: 1.032943
               deutan:
-                dichromat_de_1.0: 0.045996
-                retention: 1.024684
+                dichromat_de_1.0: 0.053811
+                retention: 1.029904
               tritan:
-                dichromat_de_1.0: 0.030863
-                retention: 0.687551
+                dichromat_de_1.0: 0.026309
+                retention: 0.503541
             redundant_channel: true
           - a: selection
             b: diff_added
-            normal_de: 0.069283
+            normal_de: 0.080546
             cvd:
               protan:
-                dichromat_de_1.0: 0.071206
-                retention: 1.027762
+                dichromat_de_1.0: 0.082781
+                retention: 1.027747
               deutan:
-                dichromat_de_1.0: 0.060313
-                retention: 0.870533
+                dichromat_de_1.0: 0.072094
+                retention: 0.895069
               tritan:
-                dichromat_de_1.0: 0.030131
-                retention: 0.434905
+                dichromat_de_1.0: 0.028995
+                retention: 0.359986
             redundant_channel: true
           - a: selection
             b: diff_removed
-            normal_de: 0.033531
+            normal_de: 0.036713
             cvd:
               protan:
-                dichromat_de_1.0: 0.022264
-                retention: 0.663974
+                dichromat_de_1.0: 0.020921
+                retention: 0.569836
               deutan:
-                dichromat_de_1.0: 0.031293
-                retention: 0.93326
+                dichromat_de_1.0: 0.030524
+                retention: 0.831426
               tritan:
-                dichromat_de_1.0: 0.033331
-                retention: 0.994023
+                dichromat_de_1.0: 0.03754
+                retention: 1.02252
             redundant_channel: true
           - a: selection
             b: active_line
-            normal_de: 0.031245
+            normal_de: 0.032219
             cvd:
               protan:
-                dichromat_de_1.0: 0.026548
-                retention: 0.849695
+                dichromat_de_1.0: 0.027558
+                retention: 0.855336
               deutan:
-                dichromat_de_1.0: 0.029547
-                retention: 0.945672
+                dichromat_de_1.0: 0.030524
+                retention: 0.9474
               tritan:
-                dichromat_de_1.0: 0.029691
-                retention: 0.950286
+                dichromat_de_1.0: 0.032028
+                retention: 0.994075
             redundant_channel: true
           - a: active_line
             b: diff_added
-            normal_de: 0.054009
+            normal_de: 0.065988
             cvd:
               protan:
-                dichromat_de_1.0: 0.04888
-                retention: 0.905029
+                dichromat_de_1.0: 0.059138
+                retention: 0.896187
               deutan:
-                dichromat_de_1.0: 0.039266
-                retention: 0.727015
+                dichromat_de_1.0: 0.049641
+                retention: 0.752274
               tritan:
-                dichromat_de_1.0: 0.009689
-                retention: 0.179401
+                dichromat_de_1.0: 0.010242
+                retention: 0.155204
             redundant_channel: true
           - a: active_line
             b: diff_removed
-            normal_de: 0.008555
+            normal_de: 0.011566
             cvd:
               protan:
-                dichromat_de_1.0: 0.004341
-                retention: 0.507416
+                dichromat_de_1.0: 0.0069
+                retention: 0.596629
               deutan:
-                dichromat_de_1.0: 0.002497
-                retention: 0.291869
+                dichromat_de_1.0: 0.0
+                retention: 0.0
               tritan:
-                dichromat_de_1.0: 0.007718
-                retention: 0.902135
+                dichromat_de_1.0: 0.011008
+                retention: 0.951804
             redundant_channel: true
           - a: fg
             b: bg
-            normal_de: 0.426802
+            normal_de: 0.426187
             cvd:
               protan:
-                dichromat_de_1.0: 0.428757
-                retention: 1.00458
+                dichromat_de_1.0: 0.429061
+                retention: 1.006744
               deutan:
-                dichromat_de_1.0: 0.425588
-                retention: 0.997154
+                dichromat_de_1.0: 0.425894
+                retention: 0.999312
               tritan:
-                dichromat_de_1.0: 0.427327
-                retention: 1.001229
+                dichromat_de_1.0: 0.426403
+                retention: 1.000506
             redundant_channel: false
           - a: comment
             b: bg
@@ -5572,84 +5628,84 @@ per_candidate:
             redundant_channel: false
           - a: fg_muted
             b: bg
-            normal_de: 0.321939
+            normal_de: 0.321366
             cvd:
               protan:
-                dichromat_de_1.0: 0.323759
-                retention: 1.005653
+                dichromat_de_1.0: 0.323194
+                retention: 1.005688
               deutan:
-                dichromat_de_1.0: 0.320733
-                retention: 0.996252
+                dichromat_de_1.0: 0.320172
+                retention: 0.996284
               tritan:
-                dichromat_de_1.0: 0.322176
-                retention: 1.000737
+                dichromat_de_1.0: 0.321304
+                retention: 0.999808
             redundant_channel: false
           - a: error
             b: bg
-            normal_de: 0.632968
+            normal_de: 0.64369
             cvd:
               protan:
-                dichromat_de_1.0: 0.683445
-                retention: 1.079746
+                dichromat_de_1.0: 0.708086
+                retention: 1.100041
               deutan:
-                dichromat_de_1.0: 0.61978
-                retention: 0.979165
+                dichromat_de_1.0: 0.623435
+                retention: 0.968533
               tritan:
-                dichromat_de_1.0: 0.632836
-                retention: 0.99979
+                dichromat_de_1.0: 0.642288
+                retention: 0.997821
             redundant_channel: true
           - a: focus
             b: bg
-            normal_de: 0.633185
+            normal_de: 0.613926
             cvd:
               protan:
-                dichromat_de_1.0: 0.627158
-                retention: 0.990481
+                dichromat_de_1.0: 0.606831
+                retention: 0.988443
               deutan:
-                dichromat_de_1.0: 0.632013
-                retention: 0.998149
+                dichromat_de_1.0: 0.611976
+                retention: 0.996824
               tritan:
-                dichromat_de_1.0: 0.633752
-                retention: 1.000896
+                dichromat_de_1.0: 0.614795
+                retention: 1.001416
             redundant_channel: true
           note: Population-average dichromat (Brettel) models at severity 1.0. They detect collapse; they
             do not reproduce an individual's experience (RESEARCH.md R-9). Low retention on a pair WITH
             a redundant channel is compensated, not a failure.
         spectral_both_displays:
           led-lcd:
-            melanopic_ratio: 0.962028
-            photopic_relative: 0.766228
-            melanopic_relative: 0.737132
+            melanopic_ratio: 0.961753
+            photopic_relative: 0.76709
+            melanopic_relative: 0.737751
             top_contributors:
             - hex: '#f6f3ed'
-              share: 0.877543
+              share: 0.876807
             - hex: '#fdfbf7'
-              share: 0.049069
+              share: 0.049028
             - hex: '#ebe9e7'
-              share: 0.015715
-            - hex: '#726d69'
-              share: 0.011169
+              share: 0.015702
+            - hex: '#736d68'
+              share: 0.011019
             - hex: '#ffffff'
-              share: 0.00651
-            - hex: '#f0e7e8'
-              share: 0.004191
+              share: 0.006505
+            - hex: '#d8e3ec'
+              share: 0.004235
           oled:
-            melanopic_ratio: 0.962556
-            photopic_relative: 0.766228
-            melanopic_relative: 0.737537
+            melanopic_ratio: 0.962279
+            photopic_relative: 0.76709
+            melanopic_relative: 0.738155
             top_contributors:
             - hex: '#f6f3ed'
-              share: 0.877588
+              share: 0.876853
             - hex: '#fdfbf7'
-              share: 0.049061
+              share: 0.04902
             - hex: '#ebe9e7'
-              share: 0.015709
-            - hex: '#726d69'
-              share: 0.011168
+              share: 0.015696
+            - hex: '#736d68'
+              share: 0.011019
             - hex: '#ffffff'
-              share: 0.006507
-            - hex: '#f0e7e8'
-              share: 0.004186
+              share: 0.006501
+            - hex: '#d8e3ec'
+              share: 0.004231
           coverage_model: declared area estimate (see area_category_weights)
           caveat: Nominal within-model ranking ONLY. An sRGB triple does not determine a spectral power
             distribution; two displays at the same hex emit different spectra. This never claims actual
@@ -7776,8 +7832,8 @@ tradeoffs:
     as low as WCAG floors and the distance matrix tolerate.
 
     '
-  n_total_issues: 387
-  n_legibility_issues: 129
+  n_total_issues: 433
+  n_legibility_issues: 175
   stability_ok: false
   max_hue_drift_deg: 5.88
 - candidate: candidate-b-balanced
@@ -7789,9 +7845,9 @@ tradeoffs:
   declared_purpose: 'Baseline hypothesis: semantic colouration with a strong neutral foundation.
 
     '
-  n_total_issues: 377
-  n_legibility_issues: 129
-  stability_ok: true
+  n_total_issues: 426
+  n_legibility_issues: 179
+  stability_ok: false
   max_hue_drift_deg: 5.7
 - candidate: candidate-c-expressive
   strategy: expressive
@@ -7805,8 +7861,8 @@ tradeoffs:
     attention cost.
 
     '
-  n_total_issues: 371
-  n_legibility_issues: 131
+  n_total_issues: 404
+  n_legibility_issues: 169
   stability_ok: false
   max_hue_drift_deg: 5.82
 caveats:

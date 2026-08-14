@@ -79,22 +79,13 @@ environments:
       h: 0
     chroma_attenuation: 0.00    # a(day) -- no desaturation
     hue_rotation: 0.0           # no warm-ward rotation
-    # Light backgrounds need MORE chroma for equal salience: a chromatic
-    # foreground on a bright field has less room to differ in lightness, so
-    # colour has to carry more of the load.  That was the argument for the
-    # earlier 1.15 gain; DESIGN JUDGMENT [J] revised by Phase-7 feedback:
-    # extra chroma on the bright canvas read as washed-out colour noise, so
-    # salience is now carried by CONTRAST (salience_apca_step below), not by
-    # additional chroma.  chroma_gain returns to neutral 1.00.
-    chroma_gain: 1.00
-    # DESIGN JUDGMENT [J] from Phase-7 feedback: on the bright day canvas,
-    # syntax above the normal reading level (salience > 2) was judged too
-    # weak to scan for.  Each salience level above normal adds this many APCA
-    # Lc to the role's contrast-band centre, clamped to the band max (see
-    # model.py NORMAL_SALIENCE / _solve_contrast_role).  5.0 puts `keyword`
-    # (salience 3, comfortable) at Lc 73 and `function` (salience 4, high)
-    # at the band-max 90.
-    salience_apca_step: 5.0
+    # DESIGN JUDGMENT [J]: raise Day chroma after the 1.00 experiment made
+    # accents read as dark and desaturated. 1.23 stays below the point where
+    # the generic violet role hits the absolute cap and inverts chroma rank.
+    chroma_gain: 1.23
+    # The prior 5.0 experiment made salience mostly a darkness hierarchy.
+    # Retain a modest 2 Lc step while moving more of the distinction to chroma.
+    salience_apca_step: 2.0
     notes: >
       Q-2 resolves as "lighter is nearer" here without controversy.
       The main risk in this variant is chromatic syntax washing out against

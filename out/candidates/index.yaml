@@ -8,10 +8,10 @@ candidates:
     low as WCAG floors and the distance matrix tolerate.
 
     '
-  input_hash: c0c67c9b81fe9bbe
+  input_hash: cf77d7e29855f702
   ok: true
-  n_issues: 387
-  mean_realized_chroma: 0.023037
+  n_issues: 433
+  mean_realized_chroma: 0.025279
   stability_ok: false
   max_hue_drift_deg: 5.88
 - name: candidate-b-balanced
@@ -19,11 +19,11 @@ candidates:
   purpose: 'Baseline hypothesis: semantic colouration with a strong neutral foundation.
 
     '
-  input_hash: 795d55bccb35b4fa
+  input_hash: 7ffb99008258b166
   ok: true
-  n_issues: 377
-  mean_realized_chroma: 0.028946
-  stability_ok: true
+  n_issues: 426
+  mean_realized_chroma: 0.031586
+  stability_ok: false
   max_hue_drift_deg: 5.7
 - name: candidate-c-expressive
   strategy: expressive
@@ -31,10 +31,10 @@ candidates:
     cost.
 
     '
-  input_hash: c0858be5fcd1549f
+  input_hash: fbf70c2a610d42fe
   ok: true
-  n_issues: 371
-  mean_realized_chroma: 0.034928
+  n_issues: 404
+  mean_realized_chroma: 0.03812
   stability_ok: false
   max_hue_drift_deg: 5.82
 ordering_note: Candidates are listed in binding-file (alphabetical) order, which by convention is Restrained,

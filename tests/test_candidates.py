@@ -319,6 +319,14 @@ def test_role_scales_are_applied_in_provenance(families):
     assert b.role_scales["builtin"] == pytest.approx(0.90)
 
 
+def test_balanced_day_accents_do_not_regress_to_muted_revision(families):
+    """Phase-7 feedback: keep each medium accent above its observed floor."""
+    fb = families["b-balanced"]
+    floors = {"keyword": 0.14, "string": 0.099, "type": 0.059, "function": 0.072}
+    for role, floor in floors.items():
+        assert fb.trace("day", role).realized[1] >= floor
+
+
 def test_family_override_cannot_change_paint_or_name(spec):
     """family is overridable; paint (the derivation path) and name are not."""
     anchors = {f: FamilyAnchor(f, 0.0, 1.0) for f in (

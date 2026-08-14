@@ -1,8 +1,8 @@
 # systematic 'calibration-experiment' vs hand-tuned 'hand-tuned'
   roles compared : 120 across 3 variants
-  dE_OK mean/med/max : 0.01716 / 0.0 / 0.24653
+  dE_OK mean/med/max : 0.01367 / 0.0 / 0.24653
   threshold      : 0.05
-  needing adjust : 15 role(s)
+  needing adjust : 13 role(s)
   >> systematic needed hand adjustment: True
 
 ## roles where a human corrected the systematic output (dE > threshold)
@@ -10,16 +10,14 @@
   evening  keyword          dE=0.1542 dL=+0.127 dC=-0.088 dh=-0.8  #c6beda -> #a589e0
   night    keyword          dE=0.1409 dL=+0.108 dC=-0.090 dh=-2.6  #c5bed4 -> #a98fe2
   night    function         dE=0.1110 dL=+0.082 dC=-0.075 dh=+9.5  #ccdae4 -> #8cc3f8
-  day      error            dE=0.0945 dL=-0.082 dC=-0.047 dh=+0.2  #661718 -> #91131b
-  day      breakpoint       dE=0.0943 dL=-0.084 dC=-0.042 dh=-0.1  #611f1d -> #8b2424
-  day      warning          dE=0.0883 dL=-0.085 dC=-0.023 dh=+2.4  #473414 -> #644913
-  day      focus            dE=0.0877 dL=-0.086 dC=-0.019 dh=-2.1  #22394d -> #2c516e
-  day      info             dE=0.0861 dL=-0.084 dC=-0.019 dh=-0.1  #3e5a71 -> #4a7394
-  day      function         dE=0.0844 dL=-0.083 dC=-0.016 dh=-1.5  #26394a -> #325069
-  day      success          dE=0.0824 dL=-0.079 dC=-0.022 dh=+0.1  #3e5e3f -> #4a784c
+  day      error            dE=0.0953 dL=-0.092 dC=-0.026 dh=+0.0  #6a010c -> #91131b
   night    comment          dE=0.0708 dL=+0.064 dC=+0.013 dh=+71.1  #a38a91 -> #867d73
+  day      breakpoint       dE=0.0650 dL=-0.064 dC=-0.012 dh=+0.4  #721518 -> #8b2424
+  day      focus            dE=0.0643 dL=-0.064 dC=-0.004 dh=-2.2  #1f3f5a -> #2c516e
+  day      warning          dE=0.0643 dL=-0.064 dC=-0.007 dh=+1.7  #513806 -> #644913
+  day      comment          dE=0.0600 dL=-0.017 dC=+0.040 dh=+72.9  #8a5e6b -> #797065
+  day      keyword          dE=0.0565 dL=+0.055 dC=+0.014 dh=-0.4  #7658b6 -> #654b9e
   evening  selection        dE=0.0520 dL=-0.010 dC=-0.051 dh=+6.2  #252c32 -> #102f4d
-  day      comment          dE=0.0512 dL=-0.021 dC=+0.029 dh=+72.3  #84606a -> #797065
   night    selection        dE=0.0510 dL=-0.006 dC=-0.050 dh=+15.0  #202528 -> #0a2741
 
 NON-CANDIDATE Phase 4 experiment. dE_OK between systematic and hand-tuned final hex; roles above the threshold are where a human corrected the systematic output. No palette is finalised here.

@@ -399,7 +399,7 @@
   "grotto": {
     "generator": "grotto-vscode/1",
     "palette": "candidate-c-expressive.evening.yaml",
-    "palette_sha256": "e6f5f3933c95bd02db626f517b5248e204c733d06adc51dd3afe630caf6fcc3f",
+    "palette_sha256": "a0b22f809c66d3c23156ba3e217e464b49136881d6882511b07ae5feb2f35a33",
     "candidate": true,
     "note": "EVALUATION PREVIEW generated from a Phase 5 CANDIDATE palette. No theme is selected, ranked or final (DESIGN.md section 1)."
   }

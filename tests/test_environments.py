@@ -3,8 +3,9 @@
 ``salience_apca_step`` is the per-salience-level APCA Lc added to a role's
 contrast-band centre above the normal reading level (model.py
 NORMAL_SALIENCE), clamped to the band max.  Day carries the design judgment
-(5.0, from Phase-7 human-evaluation feedback that salient syntax read
-washed-out on the bright canvas); evening/night keep it off at 0.0.
+(2.0, revised down from 5.0 after the widened step over-weighted lightness
+and left moderate syntax darker than intended); evening/night keep it off at
+0.0.
 """
 
 from pathlib import Path
@@ -18,7 +19,7 @@ REPO = Path(__file__).resolve().parents[1]
 
 def test_salience_apca_step_loaded_from_spec():
     env = Environments.load(REPO / "spec/environments.yaml")
-    assert env.environments["day"].salience_apca_step == 5.0
+    assert env.environments["day"].salience_apca_step == 2.0
     assert env.environments["evening"].salience_apca_step == 0.0
     assert env.environments["night"].salience_apca_step == 0.0
 
@@ -35,13 +36,14 @@ def test_salience_apca_step_defaults_to_zero_when_absent(tmp_path):
     assert all(e.salience_apca_step == 0.0 for e in env.environments.values())
 
 
-def test_phase7_spec_change_leaves_other_environment_values_untouched():
-    """Day's chroma_gain moves to 1.00; every other gain/knob is unchanged."""
+def test_day_revision_restores_gain_and_softens_step():
+    """Day uses more chroma and a softer contrast step; dark gains stay put."""
     env = Environments.load(REPO / "spec/environments.yaml")
     day, evening, night = (
         env.environments["day"], env.environments["evening"], env.environments["night"]
     )
-    assert day.chroma_gain == 1.00
+    assert day.chroma_gain == 1.23
+    assert day.salience_apca_step == 2.0
     assert evening.chroma_gain == 1.00
     assert night.chroma_gain == 0.95
     assert night.foreground_ceiling == 0.88

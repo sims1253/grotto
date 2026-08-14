@@ -1,50 +1,50 @@
-# candidate-c-expressive  (CANDIDATE)  ok=True  input_hash=c0858be5fcd1549f
+# candidate-c-expressive  (CANDIDATE)  ok=True  input_hash=fbf70c2a610d42fe
   note: CANDIDATE.  Not a finished/selected theme; no winner is ranked here (DESIGN.md section 1).
-  stability: ok=False  max_hue_drift=5.82deg (cap 12)  cyclic_seq_preserved=True  normC_inversions=16  salience_reversals=11
-  issues: 371 (aesthetic/distance/legibility misses; informational)
+  stability: ok=False  max_hue_drift=5.82deg (cap 12)  cyclic_seq_preserved=True  normC_inversions=18  salience_reversals=11
+  issues: 404 (aesthetic/distance/legibility misses; informational)
 
 ## variant day
 role             paint   winning       hex           L      C     h  reqC   capC   realC  capL   gamL   frac
-active_line      surface perceptual_step #ebe9e7  0.935  0.003    68  0.0032 0.0032 0.0032 0.0000 0.0000 1.00
+active_line      surface perceptual_step #ebe9e7  0.935  0.004    68  0.0040 0.0040 0.0040 0.0000 0.0000 1.00
 bg               canvas  authored      #f6f3ed  0.965  0.008    85  0.0080 0.0080 0.0080 0.0000 0.0000 1.00
 bg_elevated      surface authored      #fdfbf7  0.988  0.005    85  0.0050 0.0050 0.0050 0.0000 0.0000 1.00
 bg_overlay       surface authored      #ffffff  1.000  0.000     0  0.0000 0.0000 0.0000 0.0000 0.0000 1.00
-breakpoint       border  apca_centre   #64172b  0.343  0.110    10  0.1096 0.1096 0.1096 0.0000 0.0000 1.00
-builtin          ink     apca_centre   #80585d  0.505  0.054    10  0.0545 0.0545 0.0545 0.0000 0.0000 1.00
-comment          ink     wcag_floor    #7f6c5b  0.545  0.036    64  0.0370 0.0360 0.0360 0.0010 0.0000 0.97  conflicts=['wcag_apca_conflict']
-constant         ink     apca_centre   #746034  0.500  0.068    86  0.0675 0.0675 0.0675 0.0000 0.0000 1.00
-debug_current    surface perceptual_step #f5dfb0  0.910  0.066    86  0.0661 0.0661 0.0661 0.0000 0.0000 1.00
-decorator        ink     apca_centre   #6b6250  0.501  0.031    86  0.0307 0.0307 0.0307 0.0000 0.0000 1.00
+breakpoint       border  apca_centre   #73032b  0.358  0.141    10  0.1408 0.1408 0.1408 0.0000 0.0000 1.00
+builtin          ink     apca_centre   #8f5b62  0.530  0.070    10  0.0704 0.0704 0.0704 0.0000 0.0000 1.00
+comment          ink     wcag_floor    #7f6c5b  0.545  0.036    64  0.0455 0.0360 0.0360 0.0095 0.0000 0.79  conflicts=['wcag_apca_conflict']
+constant         ink     apca_centre   #806627  0.524  0.087    86  0.0871 0.0871 0.0871 0.0000 0.0000 1.00
+debug_current    surface perceptual_step #f9dea3  0.910  0.081    86  0.0813 0.0813 0.0813 0.0000 0.0000 1.00
+decorator        ink     apca_centre   #746850  0.523  0.040    86  0.0395 0.0395 0.0395 0.0000 0.0000 1.00
 deprecated       ink     wcag_floor    #6f6f6f  0.543  0.000    68  0.0000 0.0000 0.0000 0.0000 0.0000 1.00  conflicts=['wcag_apca_conflict']
-diff_added       surface perceptual_step #e0f1c9  0.935  0.056   126  0.0555 0.0555 0.0555 0.0000 0.0000 1.00
-diff_changed     surface perceptual_step #f0e9da  0.935  0.021    86  0.0215 0.0215 0.0215 0.0000 0.0000 1.00
-diff_removed     surface perceptual_step #f0e7e8  0.935  0.010    10  0.0101 0.0101 0.0101 0.0000 0.0000 1.00
-docstring        ink     apca_centre   #7e6b5a  0.542  0.036    64  0.0368 0.0360 0.0360 0.0008 0.0000 0.98
-error            ink     apca_centre   #64172b  0.343  0.110    10  0.1096 0.1096 0.1096 0.0000 0.0000 1.00
-fg               ink     apca_centre   #726d69  0.539  0.008    68  0.0083 0.0083 0.0083 0.0000 0.0000 1.00
-fg_muted         ink     wcag_floor    #918c87  0.644  0.010    68  0.0099 0.0099 0.0099 0.0000 0.0000 1.00  conflicts=['wcag_apca_conflict']
-fg_secondary     ink     wcag_floor    #736f6a  0.543  0.008    68  0.0083 0.0083 0.0083 0.0000 0.0000 1.00  conflicts=['wcag_apca_conflict']
-focus            border  apca_centre   #1c3953  0.336  0.057   246  0.0570 0.0570 0.0570 0.0000 0.0000 1.00
-function         ink     apca_centre   #143957  0.336  0.067   246  0.0672 0.0672 0.0672 0.0000 0.0000 1.00
-info             ink     apca_centre   #2f5a7f  0.455  0.077   246  0.0773 0.0773 0.0773 0.0000 0.0000 1.00
-keyword          ink     apca_centre   #8c42a2  0.515  0.160   318  0.1812 0.1600 0.1600 0.0212 0.0000 0.88
+diff_added       surface perceptual_step #def2c1  0.935  0.068   126  0.0682 0.0682 0.0682 0.0000 0.0000 1.00
+diff_changed     surface perceptual_step #f1e9d6  0.935  0.026    86  0.0265 0.0265 0.0265 0.0000 0.0000 1.00
+diff_removed     surface perceptual_step #f2e6e7  0.935  0.012    10  0.0124 0.0124 0.0124 0.0000 0.0000 1.00
+docstring        ink     apca_centre   #7e6b5a  0.542  0.036    64  0.0452 0.0360 0.0360 0.0092 0.0000 0.80
+error            ink     apca_centre   #690227  0.335  0.132    10  0.1320 0.1320 0.1320 0.0000 0.0000 1.00
+fg               ink     apca_centre   #736d68  0.539  0.010    68  0.0102 0.0102 0.0102 0.0000 0.0000 1.00
+fg_muted         ink     wcag_floor    #928c86  0.644  0.012    68  0.0122 0.0122 0.0122 0.0000 0.0000 1.00  conflicts=['wcag_apca_conflict']
+fg_secondary     ink     wcag_floor    #746e69  0.543  0.010    68  0.0103 0.0103 0.0103 0.0000 0.0000 1.00  conflicts=['wcag_apca_conflict']
+focus            border  apca_centre   #153f61  0.358  0.075   246  0.0747 0.0747 0.0747 0.0000 0.0000 1.00
+function         ink     apca_centre   #06446f  0.376  0.093   246  0.0927 0.0927 0.0927 0.0000 0.0000 1.00
+info             ink     apca_centre   #27689c  0.503  0.105   246  0.1049 0.1049 0.1049 0.0000 0.0000 1.00
+keyword          ink     apca_centre   #944aa9  0.539  0.160   318  0.2336 0.1600 0.1600 0.0736 0.0000 0.68
 line_number      ink     wcag_floor    #8c8c8c  0.642  0.000    68  0.0000 0.0000 0.0000 0.0000 0.0000 1.00  conflicts=['wcag_apca_conflict']
-line_number_active ink     apca_centre   #636363  0.501  0.000    68  0.0000 0.0000 0.0000 0.0000 0.0000 1.00
-namespace        ink     apca_centre   #5b7370  0.536  0.028   188  0.0280 0.0280 0.0280 0.0000 0.0000 1.00
-number           ink     apca_centre   #746034  0.500  0.068    86  0.0675 0.0675 0.0675 0.0000 0.0000 1.00
+line_number_active ink     apca_centre   #696969  0.523  0.000    68  0.0000 0.0000 0.0000 0.0000 0.0000 1.00
+namespace        ink     apca_centre   #567471  0.534  0.034   188  0.0343 0.0343 0.0343 0.0000 0.0000 1.00
+number           ink     apca_centre   #806627  0.524  0.087    86  0.0871 0.0871 0.0871 0.0000 0.0000 1.00
 operator         ink     apca_centre   #6e6e6e  0.540  0.000    68  0.0000 0.0000 0.0000 0.0000 0.0000 1.00
-parameter        ink     apca_centre   #726d69  0.539  0.008    68  0.0083 0.0083 0.0083 0.0000 0.0000 1.00
-property         ink     apca_centre   #6a6f74  0.541  0.010   246  0.0097 0.0097 0.0097 0.0000 0.0000 1.00
+parameter        ink     apca_centre   #736d68  0.539  0.010    68  0.0102 0.0102 0.0102 0.0000 0.0000 1.00
+property         ink     apca_centre   #696f75  0.540  0.012   246  0.0120 0.0120 0.0120 0.0000 0.0000 1.00
 punctuation      ink     wcag_floor    #6f6f6f  0.543  0.000    68  0.0000 0.0000 0.0000 0.0000 0.0000 1.00  conflicts=['wcag_apca_conflict']
-search_match     surface perceptual_step #f5dfb0  0.910  0.066    86  0.0661 0.0661 0.0661 0.0000 0.0000 1.00
-search_match_current surface perceptual_step #f8d588  0.885  0.103    86  0.1033 0.1033 0.1033 0.0000 0.0000 1.00
-selection        surface perceptual_step #dae2ea  0.910  0.014   246  0.0139 0.0139 0.0139 0.0000 0.0000 1.00
-string           ink     apca_centre   #576939  0.495  0.075   126  0.0748 0.0748 0.0748 0.0000 0.0000 1.00
-success          ink     apca_centre   #4b5d2c  0.453  0.076   126  0.0760 0.0760 0.0760 0.0000 0.0000 1.00
-tag              ink     apca_centre   #775781  0.507  0.074   318  0.0737 0.0737 0.0737 0.0000 0.0000 1.00
-type             ink     apca_centre   #376b67  0.492  0.057   188  0.0565 0.0565 0.0565 0.0000 0.0000 1.00
+search_match     surface perceptual_step #f9dea3  0.910  0.081    86  0.0813 0.0813 0.0813 0.0000 0.0000 1.00
+search_match_current surface perceptual_step #fed370  0.885  0.127    86  0.1270 0.1270 0.1270 0.0000 0.0000 1.00
+selection        surface perceptual_step #d8e3ec  0.910  0.017   246  0.0171 0.0171 0.0171 0.0000 0.0000 1.00
+string           ink     apca_centre   #5a7130  0.516  0.096   126  0.0960 0.0960 0.0960 0.0000 0.0000 1.00
+success          ink     apca_centre   #556d25  0.500  0.103   126  0.1034 0.1034 0.1034 0.0000 0.0000 1.00
+tag              ink     apca_centre   #845a91  0.534  0.096   318  0.0956 0.0956 0.0956 0.0000 0.0000 1.00
+type             ink     apca_centre   #2b746f  0.514  0.072   188  0.0725 0.0725 0.0725 0.0000 0.0000 1.00
 ui_inactive      border  wcag_floor    #8c8c8c  0.642  0.000    68  0.0000 0.0000 0.0000 0.0000 0.0000 1.00  conflicts=['wcag_apca_conflict']
-warning          ink     apca_centre   #453512  0.339  0.056    86  0.0556 0.0556 0.0556 0.0000 0.0000 1.00
+warning          ink     apca_centre   #4e3a02  0.362  0.073    86  0.0729 0.0729 0.0729 0.0000 0.0000 1.00
 
 ## variant evening
 role             paint   winning       hex           L      C     h  reqC   capC   realC  capL   gamL   frac

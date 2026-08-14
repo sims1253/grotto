@@ -3,9 +3,9 @@ Candidates are listed in binding-file (alphabetical) order: Restrained, Balanced
 
 ## matrix (descriptive, not a score)
 candidate                   meanC_n  meanC_d  melLED melOLED  dErr  cvdRet  drift   wcag   iss
-candidate-a-restrained       0.0190   0.0269   0.964   0.965    21    0.00   5.88   6.12   387
-candidate-b-balanced         0.0238   0.0338   0.951   0.952    20    0.08   5.70   6.12   377
-candidate-c-expressive       0.0286   0.0409   0.948   0.949    20    0.00   5.82   6.12   371
+candidate-a-restrained       0.0190   0.0337   0.964   0.965    21    0.00   5.88   6.12   433
+candidate-b-balanced         0.0238   0.0417   0.951   0.952    20    0.08   5.70   6.12   426
+candidate-c-expressive       0.0286   0.0504   0.948   0.949    20    0.00   5.82   6.12   404
 
 ## flagged tradeoffs
   candidate-a-restrained: Lowest chromatic attention hypothesis; weakest categorical cue and smallest CVD headroom. Nominal area-weighted spectral output is evaluated separately and is not inferred from chroma. Diagnostics are deliberately exempt from the restraint.

@@ -610,20 +610,26 @@ def test_override_cannot_change_paint_or_name(spec):
 # ===========================================================================
 # 15. salience-driven APCA centre boost (Phase-7 feedback)
 # ===========================================================================
-# Day carries salience_apca_step=5.0: each salience level above the normal
-# reading level (NORMAL_SALIENCE=2) adds 5 APCA Lc to the band centre,
-# clamped to the band max.  These tests read the STRUCTURED solve provenance
-# in trace.contrast["solve"], never the human-readable derivation strings.
+# Day carries salience_apca_step=2.0 (softened from the first revision's 5.0,
+# which over-weighted lightness and darkened moderate syntax by ~.04 L):
+# each salience level above the normal reading level (NORMAL_SALIENCE=2) adds
+# 2 APCA Lc to the band centre, clamped to the band max.  Targets: fg 68,
+# keyword/string/type 70, function 86 (no clamps).  These tests read the
+# STRUCTURED solve provenance in trace.contrast["solve"], never the
+# human-readable derivation strings.
 
 
 def _solve_provenance(fb, variant: str, role: str) -> dict:
     return fb.trace(variant, role).contrast["solve"]
 
 
-def test_day_apca_centres_fg68_keyword73_function90_with_clamp(spec):
+def test_day_apca_centres_fg68_medium70_function86_without_clamp(spec):
     fb = build_family(binding(), spec)
     fg = _solve_provenance(fb, "day", "fg")
-    keyword = _solve_provenance(fb, "day", "keyword")
+    medium = {
+        r: _solve_provenance(fb, "day", r)
+        for r in ("keyword", "string", "type")
+    }
     function = _solve_provenance(fb, "day", "function")
 
     # fg: salience 2 == NORMAL_SALIENCE -> no boost, comfortable centre 68
@@ -634,21 +640,24 @@ def test_day_apca_centres_fg68_keyword73_function90_with_clamp(spec):
     assert fg["effective_apca_centre"] == pytest.approx(68.0)
     assert fg["clamped_to_band_max"] is False
 
-    # keyword: salience 3, comfortable 68 -> 68 + 1*5 = 73, under band max 78
-    assert keyword["base_apca_centre"] == pytest.approx(68.0)
-    assert keyword["salience_boost_requested"] == pytest.approx(5.0)
-    assert keyword["salience_boost_applied"] == pytest.approx(5.0)
-    assert keyword["effective_apca_centre"] == pytest.approx(73.0)
-    assert keyword["band_max"] == pytest.approx(78.0)
-    assert keyword["clamped_to_band_max"] is False
+    # keyword/string/type: salience 3, comfortable 68 -> 68 + 1*2 = 70,
+    # under the comfortable band max 78 -- a MODEST step, not the earlier 73
+    for r, prov in medium.items():
+        assert prov["base_apca_centre"] == pytest.approx(68.0), r
+        assert prov["salience_boost_requested"] == pytest.approx(2.0), r
+        assert prov["salience_boost_applied"] == pytest.approx(2.0), r
+        assert prov["effective_apca_centre"] == pytest.approx(70.0), r
+        assert prov["band_max"] == pytest.approx(78.0), r
+        assert prov["clamped_to_band_max"] is False, r
 
-    # function: salience 4, high 82 -> requests 82 + 2*5 = 92, clamped to 90
+    # function: salience 4, high 82 -> 82 + 2*2 = 86, under band max 90
+    # (the earlier 5.0 step clamped it to 90 and darkened it by ~.08 L)
     assert function["base_apca_centre"] == pytest.approx(82.0)
-    assert function["salience_boost_requested"] == pytest.approx(10.0)
-    assert function["salience_boost_applied"] == pytest.approx(8.0)
-    assert function["effective_apca_centre"] == pytest.approx(90.0)
+    assert function["salience_boost_requested"] == pytest.approx(4.0)
+    assert function["salience_boost_applied"] == pytest.approx(4.0)
+    assert function["effective_apca_centre"] == pytest.approx(86.0)
     assert function["band_max"] == pytest.approx(90.0)
-    assert function["clamped_to_band_max"] is True
+    assert function["clamped_to_band_max"] is False
 
 
 def test_effective_apca_centres_never_exceed_their_band(spec):
@@ -671,19 +680,27 @@ def test_effective_apca_centres_never_exceed_their_band(spec):
             )
 
 
-def test_day_salient_syntax_is_darker_than_fg_and_function_furthest(spec):
-    """Phase-7 feedback: on the light canvas, salient syntax must read
-    visibly DARKER (higher |Lc|) than the normal reading level, `function`
-    (salience 4) further than `keyword` (salience 3)."""
+def test_day_salient_syntax_only_modestly_darker_than_fg(spec):
+    """Phase-7 follow-up: salient syntax stays visibly DARKER than `fg` on the
+    light canvas, but only MODESTLY so -- the first revision's 5.0 step put
+    keyword/string/type .030/.049/.047 L below fg (a separate, muted weight
+    class) and function .204 below.  With step 2.0 the observed deltas are
+    .004/.029/.026 and function .162: modest, and function clearly darker
+    without the earlier extreme."""
     fb = build_family(binding(), spec)
     pal = fb.variants["day"].palette
     fg_L = hex_to_oklch(pal["fg"])[0]
-    kw_L = hex_to_oklch(pal["keyword"])[0]
+    for r in ("keyword", "string", "type"):
+        L = hex_to_oklch(pal[r])[0]
+        assert fg_L - L > 0.003, f"{r} L {L:.4f} not below fg {fg_L:.4f}"
+        assert fg_L - L < 0.035, (
+            f"{r} L {L:.4f} darker than fg by {fg_L - L:.4f} (was ~.04-.05)"
+        )
     fn_L = hex_to_oklch(pal["function"])[0]
-    # light polarity: more |Lc| = darker = lower OKLCH L; margins are far
-    # above solve tolerance (1e-4) and 8-bit quantization (~1e-3)
-    assert kw_L < fg_L - 0.02, f"keyword L {kw_L:.4f} not meaningfully below fg {fg_L:.4f}"
-    assert fn_L < kw_L - 0.05, f"function L {fn_L:.4f} not meaningfully below keyword {kw_L:.4f}"
+    assert fn_L < fg_L - 0.05, "function must remain meaningfully darker than fg"
+    assert fg_L - fn_L < 0.17, (
+        f"function L {fn_L:.4f} still near the earlier ~.20 extreme"
+    )
 
 
 def test_zero_step_dark_variants_record_no_boost(spec):
