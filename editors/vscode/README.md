@@ -65,12 +65,31 @@ prefix matching (`string`, `keyword.control.r`, `entity.name.function.r`,
 **REditorSupport.r** is *recommended* for the evaluation (better R grammar and
 R Markdown embedding), but not required — the themes work with any grammar.
 
+### R call-argument normalization
+
+The R grammar wraps whole argument lists in
+`meta.function-call.arguments.r > meta.function-call.r`; because the mapping
+paints `meta.function-call` as `function` (so real function names and nested
+calls keep their highlight), every plain identifier argument (`log`, `temp_c`)
+inherited the function colour. A later, R-only `meta.function-call.arguments.r`
+rule paints those arguments back to neutral foreground, and
+`keyword.accessor.dollar.r` is routed through the operator rule so R's `$`
+accessor renders as an operator rather than a keyword. **Limitation:** the
+override is keyed to the exact `.r` scope, so it normalizes only plain
+argument tokens that carry it — with no semantic tokens present, argument
+*names* with their own grammar scopes (strings, numbers, nested calls) keep
+those scopes' colours, and other languages' `meta.function-call.arguments`
+(no `.r`) are untouched. Verified with `Developer: Inspect Editor Tokens and
+Scopes` under Balanced Night; re-verify if the R grammar changes.
+
 ## Known gaps and honesty notes
 
 - Scope lists are broad/prefix-based; exact R/R Markdown and niche-language
   scope behaviour needs eyeballing in a real VS Code. Inspect with
   `Developer: Inspect Editor Tokens and Scopes` and fix
   `spec/mappings/vscode.yaml` (then regenerate) — never the generated files.
+  One such verified fix is the R call-argument normalization above; the same
+  inspect-and-map loop applies to any residual R/R Markdown oddities.
 - Redundant non-hue channels VS Code does not let a theme control: squiggle
   shapes and diagnostic gutter icons (fixed UI), diff `+/-` gutter signs,
   selection borders (only the lightness offset survives). Strikethrough,

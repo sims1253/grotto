@@ -175,7 +175,8 @@
     },
     {
       "scope": [
-        "keyword.operator"
+        "keyword.operator",
+        "keyword.accessor.dollar.r"
       ],
       "settings": {
         "foreground": "#c1c1c1"
@@ -190,6 +191,14 @@
       ],
       "settings": {
         "foreground": "#c3dbed"
+      }
+    },
+    {
+      "scope": [
+        "meta.function-call.arguments.r"
+      ],
+      "settings": {
+        "foreground": "#c4c1bd"
       }
     },
     {

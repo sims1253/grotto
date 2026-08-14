@@ -198,6 +198,78 @@ def test_textmate_rules(themes, mapping):
         assert dep and dep[0]["settings"]["fontStyle"] == "strikethrough"
 
 
+# -- R grammar normalization (regression) ---------------------------------
+#
+# Developer evidence from `Developer: Inspect Editor Tokens and Scopes`
+# (Balanced Night, R file, no semantic tokens present):
+#   * plain `log` outside a call: `source.r`, no selector -> neutral fg;
+#   * `log` / `temp_c` inside a call:
+#     `meta.function-call.arguments.r > meta.function-call.r > source.r`,
+#     winner `meta.function-call` -> function colour -- whole argument lists
+#     of plain identifiers rendered as function names;
+#   * `$`: `keyword.accessor.dollar.r`, winner generic `keyword`, so the
+#     accessor lost the operator rule.
+# Normalization under test: the generic `meta.function-call` stays on
+# `function` (actual function names / nested calls keep their highlight), a
+# LATER R-specific `meta.function-call.arguments.r` rule maps to `fg` so
+# plain R arguments override the broad parent, and `keyword.accessor.dollar.r`
+# rides an operator rule placed after the generic keyword rule.
+
+def _find_rule(scopes: list[tuple[str, ...]], scope: str):
+    """Index of the first rule whose scope list contains `scope`, else None."""
+    return next((i for i, s in enumerate(scopes) if scope in s), None)
+
+
+def test_r_call_arguments_normalized_mapping(mapping):
+    rules = mapping["textmate"]
+    scopes = [tuple(r["scopes"]) for r in rules]
+
+    function_idx = _find_rule(scopes, "meta.function-call")
+    assert function_idx is not None, "meta.function-call must stay mapped"
+    assert rules[function_idx]["role"] == "function"
+    # the broad parent stays generic: it must not absorb the R argument scope
+    assert "meta.function-call.arguments.r" not in scopes[function_idx]
+
+    arg_idx = _find_rule(scopes, "meta.function-call.arguments.r")
+    assert arg_idx is not None, \
+        "meta.function-call.arguments.r needs its own rule"
+    assert arg_idx > function_idx, "R argument rule must follow the function rule"
+    assert rules[arg_idx]["role"] == "fg"
+    # narrowly R-specific: nothing else is neutralized alongside it
+    assert scopes[arg_idx] == ("meta.function-call.arguments.r",)
+
+    keyword_idx = _find_rule(scopes, "keyword")
+    dollar_idx = _find_rule(scopes, "keyword.accessor.dollar.r")
+    assert dollar_idx is not None, "keyword.accessor.dollar.r must be mapped"
+    assert rules[dollar_idx]["role"] == "operator"
+    assert dollar_idx > keyword_idx, \
+        "dollar accessor rule must follow the generic keyword rule"
+
+
+def test_r_call_arguments_normalized_themes(themes):
+    import grotto.spec as spec_mod
+
+    for name, theme in themes.items():
+        pal = spec_mod.load(CAND / theme["grotto"]["palette"])
+        rules = theme["tokenColors"]
+        scopes = [tuple(r["scope"]) for r in rules]
+
+        function_idx = _find_rule(scopes, "meta.function-call")
+        assert function_idx is not None, f"{name}: meta.function-call missing"
+        assert rules[function_idx]["settings"]["foreground"] == pal["function"]
+
+        arg_idx = _find_rule(scopes, "meta.function-call.arguments.r")
+        assert arg_idx is not None, \
+            f"{name}: meta.function-call.arguments.r rule missing"
+        assert arg_idx > function_idx, f"{name}: argument rule ordering"
+        assert rules[arg_idx]["settings"]["foreground"] == pal["fg"]
+
+        dollar_idx = _find_rule(scopes, "keyword.accessor.dollar.r")
+        assert dollar_idx is not None, \
+            f"{name}: keyword.accessor.dollar.r rule missing"
+        assert rules[dollar_idx]["settings"]["foreground"] == pal["operator"]
+
+
 # -- mapping integrity ------------------------------------------------------
 
 def test_mapping_roles_exist(roles, mapping):

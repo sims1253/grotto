@@ -234,6 +234,8 @@ required_workbench:
 # Prefix matching (`string` catches `string.quoted.double.r`) is what makes
 # one small list cover many grammars, including R and R Markdown.  R-specific
 # behaviour still needs verification in a real VS Code (README gaps).
+# keyword.accessor.dollar.r sits in the operator rule (after the generic
+# keyword rule) so R's `$` accessor is an operator, not a keyword.
 # `font_style` entries carry the non-hue redundant channels.
 # ---------------------------------------------------------------------------
 textmate:
@@ -247,9 +249,18 @@ textmate:
                                  constant.character, variable.other.constant]}
   - {role: keyword,     scopes: [keyword, keyword.control, keyword.other, storage,
                                  storage.type, storage.modifier]}
-  - {role: operator,    scopes: [keyword.operator]}
+  - {role: operator,    scopes: [keyword.operator, keyword.accessor.dollar.r]}
   - {role: function,    scopes: [entity.name.function, support.function,
                                  variable.function, meta.function-call]}
+  # R normalization: the R grammar wraps whole argument lists in
+  # meta.function-call.arguments.r (a child of the broad meta.function-call
+  # above), which painted plain identifiers like `log`/`temp_c` as function
+  # names.  VS Code resolves the more specific scope, and later rules win
+  # ties, so this NARROW `.r`-only rule paints plain R arguments back to
+  # neutral `fg`; actual function names and nested calls still hit
+  # entity.name.function / support.function via the rule above.  Other
+  # languages' meta.function-call.arguments (no .r) are untouched.
+  - {role: fg,          scopes: [meta.function-call.arguments.r]}
   - {role: builtin,     scopes: [variable.language, support.function.builtin,
                                  support.variable, variable.other.predefined]}
   - {role: type,        scopes: [entity.name.type, entity.name.class,
