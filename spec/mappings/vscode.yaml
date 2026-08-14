@@ -1,0 +1,296 @@
+# LAYER 3 -- VS Code editor binding.
+#
+# Machine-readable mapping from Grotto roles (spec/roles.yaml) to VS Code
+# workbench color ids, TextMate scopes and semantic-token selectors.  This is
+# the ONLY place editor names appear; the generator (src/grotto/vscode.py)
+# reads this file and writes editors/vscode/themes/*.json deterministically.
+#
+# Status: EVALUATION PREVIEW (Phase 8a).  The nine generated themes exist so a
+# human can see the three candidate families in a real editor before Phase 7
+# selects anything.  No winner is chosen or implied here.
+#
+# ---------------------------------------------------------------------------
+# Transparency policy
+# ---------------------------------------------------------------------------
+# VS Code accepts #RRGGBBAA in most color ids, but the official theme-color
+# guidance is that most workbench colors should stay opaque: translucent work
+# bench colors composite against arbitrary content and cause artifacts.  We
+# therefore emit opaque colors everywhere EXCEPT ids whose documented contract
+# expects alpha, marked with an explicit `alpha:` below (currently only
+# editorUnnecessaryCode.opacity, which the default themes also ship as alpha).
+#
+# ---------------------------------------------------------------------------
+# Redundant-channel limits (what this adapter CANNOT express)
+# ---------------------------------------------------------------------------
+# spec/roles.yaml gives critical roles redundant non-hue channels.  VS Code
+# provides some of them automatically and denies us others:
+#   * error/warning/info  -- squiggle style + gutter icon are drawn by VS Code
+#     itself from the severity, not from the theme; we supply only the color.
+#     The redundant channels exist, but we cannot change their shape.
+#   * diff_added/removed  -- the +/- gutter signs are VS Code UI, not theme
+#     colors.  Lightness separation of the two washes is preserved because the
+#     Phase 4 transform solves both from the same canvas; the signs come free.
+#   * selection -- `redundant_channels: [lightness_offset, border]`: VS Code
+#     has no selectable selection border; only the lightness offset survives.
+#   * focus -- border channel is expressible (focusBorder/list.focusOutline).
+#   * breakpoint -- the gutter glyph shape is fixed; color only.
+#   * deprecated -- strikethrough IS expressible via fontStyle (invalid.
+#     deprecated scope and the semantic `*.deprecated` modifier).
+#   * parameter italic -- expressible only where the grammar or semantic
+#     provider actually tags parameters; see README gaps.
+# ---------------------------------------------------------------------------
+
+version: 1
+target: vscode-theme-json
+generator: grotto-vscode/1
+
+# Facts the generator, the committed package.json and the tests must agree on.
+extension:
+  theme_count: 9
+  themes:
+    - {family: restrained, variant: day,     label: "Grotto Restrained Day",     path: "themes/restrained-day.json"}
+    - {family: restrained, variant: evening, label: "Grotto Restrained Evening", path: "themes/restrained-evening.json"}
+    - {family: restrained, variant: night,   label: "Grotto Restrained Night",   path: "themes/restrained-night.json"}
+    - {family: balanced,   variant: day,     label: "Grotto Balanced Day",       path: "themes/balanced-day.json"}
+    - {family: balanced,   variant: evening, label: "Grotto Balanced Evening",   path: "themes/balanced-evening.json"}
+    - {family: balanced,   variant: night,   label: "Grotto Balanced Night",     path: "themes/balanced-night.json"}
+    - {family: expressive, variant: day,     label: "Grotto Expressive Day",     path: "themes/expressive-day.json"}
+    - {family: expressive, variant: evening, label: "Grotto Expressive Evening", path: "themes/expressive-evening.json"}
+    - {family: expressive, variant: night,   label: "Grotto Expressive Night",   path: "themes/expressive-night.json"}
+
+# uiTheme is a package.json obligation: `vs` for light (Day), `vs-dark` for
+# the two dark variants.  `type` is the theme-JSON counterpart.
+variants:
+  day:     {ui_theme: "vs",      type: "light"}
+  evening: {ui_theme: "vs-dark", type: "dark"}
+  night:   {ui_theme: "vs-dark", type: "dark"}
+
+families:
+  restrained: {candidate: candidate-a-restrained, label: "Restrained"}
+  balanced:   {candidate: candidate-b-balanced,   label: "Balanced"}
+  expressive: {candidate: candidate-c-expressive, label: "Expressive"}
+
+# ---------------------------------------------------------------------------
+# Workbench colors.  value is a role name, or {role, alpha} where the id's
+# contract expects alpha (see transparency policy above).
+# ---------------------------------------------------------------------------
+workbench:
+  # canvas + text
+  editor.background: bg
+  editor.foreground: fg
+  editorLineNumber.foreground: line_number
+  editorLineNumber.activeForeground: line_number_active
+  editorCursor.foreground: focus
+  editor.lineHighlightBackground: active_line
+  editorCodeLens.foreground: fg_muted
+  editorGhostText.foreground: fg_muted
+  editorWhitespace.foreground: ui_inactive
+  editorIndentGuide.background1: ui_inactive
+  editorRuler.foreground: ui_inactive
+  editorOverviewRuler.border: ui_inactive
+  # selection / search / focus
+  editor.selectionBackground: selection
+  editor.inactiveSelectionBackground: selection
+  editor.selectionHighlightBackground: search_match
+  editor.findMatchBackground: search_match_current
+  editor.findMatchHighlightBackground: search_match
+  editor.hoverHighlightBackground: search_match
+  editorBracketMatch.background: selection
+  editorBracketMatch.border: focus
+  focusBorder: focus
+  list.focusOutline: focus
+  # diagnostics (color only; squiggle + gutter glyph are VS Code UI)
+  editorError.foreground: error
+  editorWarning.foreground: warning
+  editorInfo.foreground: info
+  editorHint.foreground: success
+  editorUnnecessaryCode.opacity: {role: deprecated, alpha: "66"}
+  list.errorForeground: error
+  list.warningForeground: warning
+  # diff (gutter +/- signs are VS Code UI, not theme colors)
+  diffEditor.insertedTextBackground: diff_added
+  diffEditor.removedTextBackground: diff_removed
+  diffEditor.insertedLineBackground: diff_added
+  diffEditor.removedLineBackground: diff_removed
+  diffEditor.diagonalFill: ui_inactive
+  editorGutter.addedBackground: diff_added
+  editorGutter.modifiedBackground: diff_changed
+  editorGutter.deletedBackground: diff_removed
+  # breakpoint / debug
+  debugIcon.breakpointForeground: breakpoint
+  debugIcon.breakpointDisabledForeground: ui_inactive
+  debugIcon.breakpointUnverifiedForeground: fg_muted
+  debugIcon.breakpointCurrentStackframeForeground: focus
+  debugIcon.breakpointStackframeForeground: focus
+  editor.stackFrameHighlightBackground: debug_current
+  editor.focusedStackFrameHighlightBackground: debug_current
+  debugToolBar.background: bg_elevated
+  debugToolBar.border: ui_inactive
+  # gutter
+  editorGutter.background: bg
+  editorGutter.commentGlyphForeground: comment
+  editorGutter.commentRangeForeground: ui_inactive
+  editorGutter.foldingControlForeground: ui_inactive
+  # elevated chrome (panels / sidebar / tabs / widgets)
+  sideBar.background: bg_elevated
+  sideBar.foreground: fg_secondary
+  sideBarTitle.foreground: fg
+  sideBarSectionHeader.background: bg
+  activityBar.background: bg_elevated
+  activityBar.foreground: fg_secondary
+  activityBar.inactiveForeground: fg_muted
+  activityBarBadge.background: selection
+  activityBarBadge.foreground: fg
+  statusBar.background: bg_elevated
+  statusBar.foreground: fg_secondary
+  titleBar.activeBackground: bg_elevated
+  titleBar.activeForeground: fg_secondary
+  editorGroupHeader.tabsBackground: bg_elevated
+  editorGroupHeader.tabsBorder: ui_inactive
+  editorGroup.border: ui_inactive
+  tab.activeBackground: bg
+  tab.activeForeground: fg
+  tab.activeBorderTop: focus
+  tab.inactiveBackground: bg_elevated
+  tab.inactiveForeground: fg_secondary
+  panel.background: bg_elevated
+  panel.border: ui_inactive
+  panelTitle.activeForeground: fg
+  panelTitle.inactiveForeground: fg_secondary
+  editorWidget.background: bg_elevated
+  editorWidget.border: ui_inactive
+  editorSuggestWidget.background: bg_elevated
+  editorSuggestWidget.border: ui_inactive
+  editorSuggestWidget.selectedBackground: selection
+  editorHoverWidget.background: bg_elevated
+  editorHoverWidget.border: ui_inactive
+  # lists
+  list.activeSelectionBackground: selection
+  list.activeSelectionForeground: fg
+  list.inactiveSelectionBackground: selection
+  list.hoverBackground: active_line
+  badge.background: selection
+  badge.foreground: fg
+  # inputs (search box etc.)
+  input.background: bg_overlay
+  input.foreground: fg
+  input.border: ui_inactive
+  inputOption.activeBorder: focus
+  # scrollbars mirror the highlight semantics they index
+  scrollbarSlider.background: selection
+  scrollbarSlider.hoverBackground: search_match
+  scrollbarSlider.activeBackground: search_match_current
+  # links
+  textLink.foreground: function
+  textLink.activeForeground: focus
+  # git decorations (redundant icon + color from VS Code)
+  gitDecoration.addedResourceForeground: success
+  gitDecoration.modifiedResourceForeground: warning
+  gitDecoration.deletedResourceForeground: error
+  gitDecoration.untrackedResourceForeground: success
+
+# Workbench ids that every generated theme MUST contain (tested).
+required_workbench:
+  - editor.background
+  - editor.foreground
+  - editorLineNumber.foreground
+  - editorLineNumber.activeForeground
+  - editorCursor.foreground
+  - editor.lineHighlightBackground
+  - editor.selectionBackground
+  - editor.findMatchBackground
+  - editor.findMatchHighlightBackground
+  - editorError.foreground
+  - editorWarning.foreground
+  - editorInfo.foreground
+  - diffEditor.insertedTextBackground
+  - diffEditor.removedTextBackground
+  - debugIcon.breakpointForeground
+  - editor.stackFrameHighlightBackground
+  - sideBar.background
+  - activityBar.background
+  - statusBar.background
+  - panel.background
+  - tab.activeBackground
+  - list.activeSelectionBackground
+  - focusBorder
+  - badge.background
+
+# ---------------------------------------------------------------------------
+# TextMate rules, in emission order.  VS Code matches scopes by dot-segment
+# prefix and lets LATER rules win ties, so this list runs generic -> specific.
+# Prefix matching (`string` catches `string.quoted.double.r`) is what makes
+# one small list cover many grammars, including R and R Markdown.  R-specific
+# behaviour still needs verification in a real VS Code (README gaps).
+# `font_style` entries carry the non-hue redundant channels.
+# ---------------------------------------------------------------------------
+textmate:
+  - {role: punctuation, scopes: [punctuation]}
+  - {role: comment,     scopes: [comment]}
+  - {role: docstring,   scopes: [comment.block.documentation, string.quoted.docstring,
+                                 comment.roxygen, comment.line.roxygen]}
+  - {role: string,      scopes: [string]}
+  - {role: number,      scopes: [constant.numeric]}
+  - {role: constant,    scopes: [constant.language, constant.character.escape,
+                                 constant.character, variable.other.constant]}
+  - {role: keyword,     scopes: [keyword, keyword.control, keyword.other, storage,
+                                 storage.type, storage.modifier]}
+  - {role: operator,    scopes: [keyword.operator]}
+  - {role: function,    scopes: [entity.name.function, support.function,
+                                 variable.function, meta.function-call]}
+  - {role: builtin,     scopes: [variable.language, support.function.builtin,
+                                 support.variable, variable.other.predefined]}
+  - {role: type,        scopes: [entity.name.type, entity.name.class,
+                                 entity.name.struct, entity.name.interface,
+                                 entity.name.enum, support.class, support.type]}
+  - {role: parameter,   scopes: [variable.parameter], font_style: italic}
+  - {role: property,    scopes: [variable.other.property, variable.other.object.property,
+                                 meta.property-name, entity.other.attribute-name]}
+  - {role: namespace,   scopes: [entity.name.namespace, entity.name.module,
+                                 support.module]}
+  - {role: decorator,   scopes: [meta.decorator, punctuation.decorator,
+                                 entity.name.function.decorator]}
+  - {role: tag,         scopes: [entity.name.tag, support.type.property-name.json,
+                                 entity.name.tag.yaml, markup.heading]}
+  - {role: error,       scopes: [invalid.illegal]}
+  - {role: deprecated,  scopes: [invalid.deprecated], font_style: strikethrough}
+
+# ---------------------------------------------------------------------------
+# Semantic tokens (theme-level `semanticTokenColors` + `semanticHighlighting`:
+# true).  Ordinary variables/parameters stay neutral (`fg`); parameters are
+# distinguished by italic, deprecated symbols by strikethrough, per the role
+# spec.  Selectors without a `role` are style-only modifier rules.
+# ---------------------------------------------------------------------------
+semantic:
+  - {selector: variable,               role: fg}
+  - {selector: variable.readonly,      role: constant}
+  - {selector: variable.defaultLibrary, role: builtin}
+  - {selector: parameter,              role: parameter, font_style: italic}
+  - {selector: parameter.readonly,     role: parameter, font_style: italic}
+  - {selector: property,               role: property}
+  - {selector: property.readonly,      role: property}
+  - {selector: property.defaultLibrary, role: builtin}
+  - {selector: function,               role: function}
+  - {selector: function.defaultLibrary, role: builtin}
+  - {selector: method,                 role: function}
+  - {selector: method.defaultLibrary,  role: builtin}
+  - {selector: macro,                  role: decorator}
+  - {selector: decorator,              role: decorator}
+  - {selector: type,                   role: type}
+  - {selector: type.defaultLibrary,    role: builtin}
+  - {selector: typeParameter,          role: type, font_style: italic}
+  - {selector: class,                  role: type}
+  - {selector: interface,              role: type}
+  - {selector: struct,                 role: type}
+  - {selector: enum,                   role: type}
+  - {selector: enumMember,             role: constant}
+  - {selector: event,                  role: function}
+  - {selector: namespace,              role: namespace}
+  - {selector: module,                 role: namespace}
+  - {selector: keyword,                role: keyword}
+  - {selector: string,                 role: string}
+  - {selector: number,                 role: number}
+  - {selector: comment,                role: comment}
+  - {selector: operator,               role: operator}
+  - {selector: "*.deprecated",         font_style: strikethrough}
+  - {selector: "*.documentation",      role: comment}

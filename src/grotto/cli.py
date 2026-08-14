@@ -43,6 +43,7 @@ from .render import (
 )
 from .spec import DistanceSpec, Palette, RoleSpec, load
 from .stability import DEFAULT_MAX_HUE_DRIFT, cross_variant_report
+from .vscode import write_extension
 
 
 def _load_specs(args) -> tuple[RoleSpec, DistanceSpec, Environments]:
@@ -318,6 +319,25 @@ def cmd_candidates(args) -> int:
     return 0
 
 
+def cmd_vscode(args) -> int:
+    """Phase 8a: regenerate the nine-theme VS Code evaluation preview.
+
+    Writes editors/vscode/themes/*.json deterministically from
+    themes/candidates/*.yaml + spec/mappings/vscode.yaml.  No winner is
+    selected; the themes exist only so human evaluation can see the
+    candidates in a real editor.
+    """
+    roles = RoleSpec.load(args.roles)
+    written = write_extension(
+        args.out, candidates_dir=args.candidates, mapping_path=args.mapping, roles=roles
+    )
+    print(f"[vscode] {len(written)} evaluation-preview theme(s) generated -> {args.out}/themes")
+    for rel, path in written.items():
+        print(f"  {rel}")
+    print("  static adapter only: no runtime, no switching, no winner (Phase 8a preview)")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="grotto", description="grotto evaluation tooling (Phases 2-4)")
     ap.add_argument("--roles", default="spec/roles.yaml")
@@ -383,6 +403,15 @@ def build_parser() -> argparse.ArgumentParser:
         help="report output directory (default out/candidates)",
     )
     p_cand.set_defaults(func=cmd_candidates)
+
+    p_vs = sub.add_parser(
+        "vscode",
+        help="Phase 8a: regenerate the 9-theme VS Code evaluation preview",
+    )
+    p_vs.add_argument("--out", default="editors/vscode")
+    p_vs.add_argument("--candidates", default="themes/candidates")
+    p_vs.add_argument("--mapping", default="spec/mappings/vscode.yaml")
+    p_vs.set_defaults(func=cmd_vscode)
 
     return ap
 
