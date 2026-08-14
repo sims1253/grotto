@@ -26,7 +26,8 @@
 #
 # Tradeoffs (flagged, not resolved)
 #   + Strongest categorical / navigation cue of the three.
-#   - Highest attention cost and spectral budget; most likely to read as "busy"
+#   - Highest chromatic attention hypothesis; most likely to read as "busy".
+#     Nominal spectral output is measured separately rather than inferred.
 #     in call-dense or config-heavy files (tag is a major area class).  The
 #     violet tag shift also spends a hue A/B keep on azure.  All visible in the
 #     reports; thresholds are not massaged.
@@ -88,9 +89,11 @@ meta:
     Test whether stronger unmistakable accents improve scanning enough to
     justify greater attention cost.
   tradeoffs: >
-    Strongest categorical/navigation cue; highest attention cost and spectral
-    budget, and the most likely to read as busy in call-dense or config-heavy
-    files.  The violet tag shift spends a hue A/B keep on azure.
+    Strongest categorical/navigation cue; highest chromatic attention
+    hypothesis, and the most likely to read as busy in call-dense or
+    config-heavy files. Nominal area-weighted spectral output is evaluated
+    separately and is not inferred from chroma. The violet tag shift spends a
+    hue A/B keep on azure.
   note: >
     CANDIDATE.  Not a finished/selected theme; no winner is ranked here
     (DESIGN.md section 1).

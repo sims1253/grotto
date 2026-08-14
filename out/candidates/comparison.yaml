@@ -101,7 +101,7 @@ area_model:
 matrix:
 - candidate: candidate-a-restrained
   strategy: restrained
-  input_hash: 025bb0e71b16c7e9
+  input_hash: 60749f4087c7c133
   ok: true
   mean_realized_chroma_night: 0.018988
   mean_realized_chroma_day: 0.033882
@@ -133,7 +133,7 @@ matrix:
   n_issues: 456
 - candidate: candidate-c-expressive
   strategy: expressive
-  input_hash: 46d14552d946c15b
+  input_hash: fd33af8be8b3d7a2
   ok: true
   mean_realized_chroma_night: 0.028641
   mean_realized_chroma_day: 0.05042
@@ -149,7 +149,7 @@ matrix:
   n_issues: 450
 per_candidate:
   candidate-a-restrained:
-    input_hash: 025bb0e71b16c7e9
+    input_hash: 60749f4087c7c133
     ok: true
     strategy: restrained
     stability:
@@ -4733,7 +4733,7 @@ per_candidate:
             - warning
             measurement: declared estimate; not a screenshot pixel count
   candidate-c-expressive:
-    input_hash: 46d14552d946c15b
+    input_hash: fd33af8be8b3d7a2
     ok: true
     strategy: expressive
     stability:
@@ -7824,16 +7824,19 @@ disagreement_log:
   entries:
   - id: A-chroma-vs-flatness
     candidate: candidate-a-restrained
-    metric_signal: lowest mean realized chroma; fewest distance errors expected near floors
-    metric_prediction: metrics say A is 'safe' (low attention cost)
+    metric_signal: lowest mean realized chroma, but the most night distance errors of the three candidates
+    metric_prediction: lower chroma suggests lower chromatic activity; distance failures warn that categorical
+      separation may be insufficient
     visual_question: does A read as comfortably scannable, or as flat/indistinguishable?
     visual_judgment: null
     resolution: null
     status: open
   - id: C-busyness-vs-acuity
     candidate: candidate-c-expressive
-    metric_signal: highest mean realized chroma; higher spectral budget
-    metric_prediction: metrics say C is 'loudest' (highest attention cost)
+    metric_signal: highest mean realized chroma, while the nominal area-weighted night model reports slightly
+      lower melanopic output than A
+    metric_prediction: C is the most chromatic; chroma alone does not predict modeled spectral output
+      or sustained attention cost
     visual_question: does C's accent strength aid navigation, or read as busy in call/config-dense files?
     visual_judgment: null
     resolution: null
@@ -7860,8 +7863,9 @@ disagreement_log:
 tradeoffs:
 - candidate: candidate-a-restrained
   strategy: restrained
-  declared_tradeoffs: 'Lowest attention cost and spectral budget; weakest categorical cue and smallest
-    CVD headroom.  Diagnostics are deliberately exempt from the restraint.
+  declared_tradeoffs: 'Lowest chromatic attention hypothesis; weakest categorical cue and smallest CVD
+    headroom. Nominal area-weighted spectral output is evaluated separately and is not inferred from chroma.
+    Diagnostics are deliberately exempt from the restraint.
 
     '
   declared_purpose: 'Test whether colour beyond a functional floor adds useful scanning value. Holds chroma
@@ -7887,9 +7891,10 @@ tradeoffs:
   max_hue_drift_deg: 5.7
 - candidate: candidate-c-expressive
   strategy: expressive
-  declared_tradeoffs: 'Strongest categorical/navigation cue; highest attention cost and spectral budget,
-    and the most likely to read as busy in call-dense or config-heavy files.  The violet tag shift spends
-    a hue A/B keep on azure.
+  declared_tradeoffs: 'Strongest categorical/navigation cue; highest chromatic attention hypothesis, and
+    the most likely to read as busy in call-dense or config-heavy files. Nominal area-weighted spectral
+    output is evaluated separately and is not inferred from chroma. The violet tag shift spends a hue
+    A/B keep on azure.
 
     '
   declared_purpose: 'Test whether stronger unmistakable accents improve scanning enough to justify greater

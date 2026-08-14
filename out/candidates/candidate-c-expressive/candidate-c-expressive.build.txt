@@ -1,4 +1,4 @@
-# candidate-c-expressive  (CANDIDATE)  ok=True  input_hash=46d14552d946c15b
+# candidate-c-expressive  (CANDIDATE)  ok=True  input_hash=fd33af8be8b3d7a2
   note: CANDIDATE.  Not a finished/selected theme; no winner is ranked here (DESIGN.md section 1).
   stability: ok=False  max_hue_drift=5.82deg (cap 12)  cyclic_seq_preserved=True  normC_inversions=18  salience_reversals=11
   issues: 450 (aesthetic/distance/legibility misses; informational)

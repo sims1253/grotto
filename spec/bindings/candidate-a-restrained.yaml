@@ -26,7 +26,8 @@
 #     decorator -> sand trace.  No role_scale boosts -- nothing is made louder.
 #
 # Tradeoffs (flagged, not resolved)
-#   + Lowest attention cost / spectral budget of the three.
+#   + Lowest chromatic attention hypothesis of the three. Nominal spectral
+#     output is measured separately and may disagree with that expectation.
 #   - Weakest categorical cue: more pair distances sit near the must_distinguish
 #     floor; CVD headroom is smallest.  These remain VISIBLE in the reports --
 #     thresholds are not massaged to make A pass.
@@ -94,9 +95,10 @@ meta:
     Test whether colour beyond a functional floor adds useful scanning value.
     Holds chroma as low as WCAG floors and the distance matrix tolerate.
   tradeoffs: >
-    Lowest attention cost and spectral budget; weakest categorical cue and
-    smallest CVD headroom.  Diagnostics are deliberately exempt from the
-    restraint.
+    Lowest chromatic attention hypothesis; weakest categorical cue and smallest
+    CVD headroom. Nominal area-weighted spectral output is evaluated separately
+    and is not inferred from chroma. Diagnostics are deliberately exempt from
+    the restraint.
   note: >
     CANDIDATE.  No palette derived from this file is a finished/selected theme;
     Phase 5 produces candidates, Phase 7 (human evaluation) decides.  No winner

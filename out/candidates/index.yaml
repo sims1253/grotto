@@ -8,7 +8,7 @@ candidates:
     low as WCAG floors and the distance matrix tolerate.
 
     '
-  input_hash: 025bb0e71b16c7e9
+  input_hash: 60749f4087c7c133
   ok: true
   n_issues: 469
   mean_realized_chroma: 0.025353
@@ -31,7 +31,7 @@ candidates:
     cost.
 
     '
-  input_hash: 46d14552d946c15b
+  input_hash: fd33af8be8b3d7a2
   ok: true
   n_issues: 450
   mean_realized_chroma: 0.03811

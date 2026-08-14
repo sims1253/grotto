@@ -1,4 +1,4 @@
-# candidate-a-restrained  (CANDIDATE)  ok=True  input_hash=025bb0e71b16c7e9
+# candidate-a-restrained  (CANDIDATE)  ok=True  input_hash=60749f4087c7c133
   note: CANDIDATE.  No palette derived from this file is a finished/selected theme; Phase 5 produces candidates, Phase 7 (human evaluation) decides.  No winner is selected or ranked here (DESIGN.md section 1).
   stability: ok=False  max_hue_drift=5.88deg (cap 12)  cyclic_seq_preserved=True  normC_inversions=6  salience_reversals=5
   issues: 469 (aesthetic/distance/legibility misses; informational)

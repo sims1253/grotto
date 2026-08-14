@@ -8,9 +8,9 @@ candidate-b-balanced         0.0238   0.0421   0.951   0.952    20    0.08   5.7
 candidate-c-expressive       0.0286   0.0504   0.948   0.949    20    0.00   5.82   6.12   450
 
 ## flagged tradeoffs
-  candidate-a-restrained: Lowest attention cost and spectral budget; weakest categorical cue and smallest CVD headro
-  candidate-b-balanced: Categorical scanning should be comfortable; warm-tinted comments and azure-traced property
-  candidate-c-expressive: Strongest categorical/navigation cue; highest attention cost and spectral budget, and the 
+  candidate-a-restrained: Lowest chromatic attention hypothesis; weakest categorical cue and smallest CVD headroom. Nominal area-weighted spectral output is evaluated separately and is not inferred from chroma. Diagnostics are deliberately exempt from the restraint.
+  candidate-b-balanced: Categorical scanning should be comfortable; warm-tinted comments and azure-traced property are design judgements to be confirmed in Phase 7.
+  candidate-c-expressive: Strongest categorical/navigation cue; highest chromatic attention hypothesis, and the most likely to read as busy in call-dense or config-heavy files. Nominal area-weighted spectral output is evaluated separately and is not inferred from chroma. The violet tag shift spends a hue A/B keep on azure.
 
 ## disagreement log (open for Phase 7)
   [A-chroma-vs-flatness] does A read as comfortably scannable, or as flat/indistinguishable?

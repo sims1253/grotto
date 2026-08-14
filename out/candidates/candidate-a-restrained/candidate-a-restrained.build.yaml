@@ -2,7 +2,7 @@ schema: grotto.family-build
 schema_version: phase4
 name: candidate-a-restrained
 is_candidate: true
-input_hash: 025bb0e71b16c7e9
+input_hash: 60749f4087c7c133
 ok: true
 binding:
   name: candidate-a-restrained
@@ -72,7 +72,8 @@ binding:
 
       '
     strategy: restrained
-    tradeoffs: 'Lowest attention cost and spectral budget; weakest categorical cue and smallest CVD headroom.  Diagnostics
+    tradeoffs: 'Lowest chromatic attention hypothesis; weakest categorical cue and smallest CVD headroom.
+      Nominal area-weighted spectral output is evaluated separately and is not inferred from chroma. Diagnostics
       are deliberately exempt from the restraint.
 
       '

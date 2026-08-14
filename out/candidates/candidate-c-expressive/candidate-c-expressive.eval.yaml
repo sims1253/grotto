@@ -3,7 +3,7 @@ schema_version: phase5
 is_candidate: true
 name: candidate-c-expressive
 strategy: expressive
-input_hash: 46d14552d946c15b
+input_hash: fd33af8be8b3d7a2
 ok: true
 n_issues: 450
 binding:
@@ -76,9 +76,10 @@ binding:
 
       '
     strategy: expressive
-    tradeoffs: 'Strongest categorical/navigation cue; highest attention cost and spectral budget, and
-      the most likely to read as busy in call-dense or config-heavy files.  The violet tag shift spends
-      a hue A/B keep on azure.
+    tradeoffs: 'Strongest categorical/navigation cue; highest chromatic attention hypothesis, and the
+      most likely to read as busy in call-dense or config-heavy files. Nominal area-weighted spectral
+      output is evaluated separately and is not inferred from chroma. The violet tag shift spends a hue
+      A/B keep on azure.
 
       '
 build:
@@ -86,7 +87,7 @@ build:
   schema_version: phase4
   name: candidate-c-expressive
   is_candidate: true
-  input_hash: 46d14552d946c15b
+  input_hash: fd33af8be8b3d7a2
   ok: true
   binding:
     name: candidate-c-expressive
@@ -158,9 +159,10 @@ build:
 
         '
       strategy: expressive
-      tradeoffs: 'Strongest categorical/navigation cue; highest attention cost and spectral budget, and
-        the most likely to read as busy in call-dense or config-heavy files.  The violet tag shift spends
-        a hue A/B keep on azure.
+      tradeoffs: 'Strongest categorical/navigation cue; highest chromatic attention hypothesis, and the
+        most likely to read as busy in call-dense or config-heavy files. Nominal area-weighted spectral
+        output is evaluated separately and is not inferred from chroma. The violet tag shift spends a
+        hue A/B keep on azure.
 
         '
   issues:

@@ -13,7 +13,7 @@ meta:
   transform: phase4-model
   binding: candidate-a-restrained
   strategy: restrained
-  input_hash: 025bb0e71b16c7e9
+  input_hash: 60749f4087c7c133
   shared_environments: spec/environments.yaml
   srgb_primary: true
 colors:

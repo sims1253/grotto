@@ -435,8 +435,14 @@ def disagreement_log_template(families: list[FamilyBuild], spec: ModelSpec) -> d
         {
             "id": "A-chroma-vs-flatness",
             "candidate": "candidate-a-restrained",
-            "metric_signal": "lowest mean realized chroma; fewest distance errors expected near floors",
-            "metric_prediction": "metrics say A is 'safe' (low attention cost)",
+            "metric_signal": (
+                "lowest mean realized chroma, but the most night distance errors "
+                "of the three candidates"
+            ),
+            "metric_prediction": (
+                "lower chroma suggests lower chromatic activity; distance failures "
+                "warn that categorical separation may be insufficient"
+            ),
             "visual_question": "does A read as comfortably scannable, or as flat/indistinguishable?",
             "visual_judgment": None,
             "resolution": None,
@@ -445,8 +451,14 @@ def disagreement_log_template(families: list[FamilyBuild], spec: ModelSpec) -> d
         {
             "id": "C-busyness-vs-acuity",
             "candidate": "candidate-c-expressive",
-            "metric_signal": "highest mean realized chroma; higher spectral budget",
-            "metric_prediction": "metrics say C is 'loudest' (highest attention cost)",
+            "metric_signal": (
+                "highest mean realized chroma, while the nominal area-weighted "
+                "night model reports slightly lower melanopic output than A"
+            ),
+            "metric_prediction": (
+                "C is the most chromatic; chroma alone does not predict modeled "
+                "spectral output or sustained attention cost"
+            ),
             "visual_question": "does C's accent strength aid navigation, or read as busy in call/config-dense files?",
             "visual_judgment": None,
             "resolution": None,
@@ -996,7 +1008,7 @@ def candidate_comparison_text(comparison: dict) -> str:
     lines.append("")
     lines.append("## flagged tradeoffs")
     for t in comparison["tradeoffs"]:
-        lines.append(f"  {t['candidate']}: {(t['declared_tradeoffs'] or '').strip()[:90]}")
+        lines.append(f"  {t['candidate']}: {(t['declared_tradeoffs'] or '').strip()}")
     lines.append("")
     lines.append("## disagreement log (open for Phase 7)")
     for e in comparison["disagreement_log"]["entries"]:
