@@ -61,6 +61,9 @@ the metrics screen for gross inequality, they do not prove equal difficulty.
 ## Regenerate / verify
 
 ```bash
-python3 tools/metrics.py items          # table
-uv run pytest tests/test_r_corpus.py -q # hashes, balance, tolerances
+# from evaluation/r-corpus/ (metrics.py resolves item paths from there):
+python3 tools/metrics.py items   # table
+
+# from the repository root:
+uv run pytest tests/test_r_corpus.py -q   # hashes, balance, tolerances
 ```

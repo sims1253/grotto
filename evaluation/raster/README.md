@@ -65,6 +65,13 @@ per-pixel area-weighted integral without ever integrating per unique pixel.
    keep) both together; the report records the palette's SHA-256 so
    palette drift is detectable.
 
+**HDR and tone mapping.** HDR and OS tone mapping can change the pixel values
+in a PNG even when the theme is unchanged. Record the HDR state in
+`capture-metadata-template.yaml`. Use SDR captures when you need exact
+palette-colour comparison; keep your normal display conditions for subjective
+evaluation. Before exact-match analysis, sample a flat background region and
+confirm that its PNG value matches the theme value.
+
 ## Template
 
 Copy `capture-metadata-template.yaml` for each screenshot. Do not commit

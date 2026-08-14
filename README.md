@@ -4,10 +4,13 @@ A perceptually engineered, *adaptive* coding colour system. Grotto does not ship
 a finished theme yet. It ships **a stated, measured, falsifiable design system**
 together with the evaluation tooling that holds the system to its own rules.
 
-> No palette is finalised here. `DESIGN.md` is the Phase 1 specification; this
-> repository currently contains the Phase 1 spec plus the **Phase 2 evaluation
-> tooling**. Final candidate palettes are later work, and every palette in this
-> repo is explicitly labelled a non-candidate (evaluation fixture or reference).
+> No theme is selected here. `DESIGN.md` is the Phase 1 specification; this
+> repository also contains the Phase 2–6 tooling and reports, three unranked
+> candidate families (nine Day/Evening/Night palettes), and the Phase 7–8
+> evaluation assets. Selecting a family is later work:
+> Phase 7 (human evaluation) is the only part that tests the preference claim,
+> and every other palette in this repo remains a non-candidate (evaluation
+> fixture or reference).
 
 The honest framing, the evidence base, and the challenges to the original brief
 live in [`DESIGN.md`](DESIGN.md) and [`RESEARCH.md`](RESEARCH.md). Read those
@@ -40,6 +43,20 @@ bindings. No layer reaches downward: L1 has no hex values; the tooling has no
 editor scope names. Phase 3 reference analysis output lives under
 `out/references/` (per-reference `.json`/`.yaml`/`.txt`/`.html` plus
 `comparison.{json,yaml,txt,html,svg}`).
+
+## Evaluating the candidates
+
+- **View the nine theme variants:** install the generated VS Code
+  preview — see [editors/vscode/README.md](editors/vscode/README.md). The
+  palettes themselves live in [themes/candidates/](themes/candidates/README.md).
+- **Rebuild the candidate and preview artifacts:** run
+  `uv run grotto candidates --out out/candidates` for palettes and reports,
+  `uv run grotto vscode --out editors/vscode` for themes, and
+  `uv run grotto specimens --out out/specimens` for visual fixtures.
+- **Run the human evaluation:** follow
+  [HUMAN_EVALUATION.md](HUMAN_EVALUATION.md). Timed R tasks use the frozen
+  corpus in [evaluation/r-corpus/](evaluation/r-corpus/README.md); screenshot
+  checks follow [evaluation/raster/](evaluation/raster/README.md).
 
 ## Install
 
@@ -256,9 +273,9 @@ experiments, not Candidate A/B/C. Reports live under `out/model-calibration/`
 (JSON/YAML/text + self-contained HTML). Build with `grotto family`, compare
 with `grotto compare-families`.
 
-Not done here: final candidate palettes (Phase 5) and human evaluation
-(Phase 7). Reference themes are inputs only; the Phase 3 analysis is
-descriptive and draws no conclusion about which reference is "best"
+Not done here: human evaluation (Phase 7) and the selection it informs.
+Reference themes are inputs only; the Phase 3 analysis is descriptive and
+draws no conclusion about which reference is "best"
 (DESIGN.md section 1). Phase 4 output is a NON-CANDIDATE experiment.
 
 **Phase 5 (candidates)** and **Phase 6 (comparative evaluation)** are now

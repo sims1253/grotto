@@ -438,7 +438,7 @@ metric, because Day↔Night necessarily inverts lightness. Stability lives in
 cross-variant dE and calling large values "instability" would be a
 methodological error.
 
-### Phase 4 will test whether this works
+### Phase 4 tests whether this works
 
 The transform is a hypothesis. Phase 4 compares systematic output against
 hand-tuned variants, and the expected outcome is that it works well for

@@ -32,15 +32,34 @@ Copy or symlink this directory into your VS Code extensions folder, then
 reload and pick a theme by label from the Color Theme picker:
 
 ```bash
+mkdir -p ~/.vscode/extensions
+
 # symlink (recommended: stays in sync with the repo)
 ln -s "$(pwd)/editors/vscode" ~/.vscode/extensions/grotto-evaluation-preview
 
 # or copy
-cp -r editors/vscode ~/.vscode/extensions/grotto-evaluation-preview
+mkdir -p ~/.vscode/extensions/grotto-evaluation-preview
+cp -a editors/vscode/. ~/.vscode/extensions/grotto-evaluation-preview/
 ```
 
 Undo with `rm ~/.vscode/extensions/grotto-evaluation-preview` (add `-r` if you
 copied; a symlink needs no `-r`).
+
+### From WSL
+
+When you open this repo from WSL with VS Code running on Windows
+(Remote-WSL), the theme must live in the **Windows-side** extensions folder:
+
+```bash
+windows_user="YOUR_WINDOWS_USERNAME"  # replace this value
+extension_dir="/mnt/c/Users/$windows_user/.vscode/extensions/grotto-evaluation-preview"
+mkdir -p "$extension_dir"
+cp -a editors/vscode/. "$extension_dir/"
+```
+
+then reload VS Code on Windows. Copy rather than symlink: a WSL symlink may
+not resolve on the Windows filesystem. The F5 development host below needs no
+install at all.
 
 ## Development host (no install at all)
 

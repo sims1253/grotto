@@ -48,6 +48,11 @@ Keep these fixed within a comparison set:
 - diagnostic text, selection, cursor/focus, diff, search, and debug examples;
 - viewing distance and room/task lighting as far as practical.
 
+Typography is a confound, not a property of a theme. Record the exact font
+family, size, and weight for every condition, and keep them fixed across the
+conditions you compare. This protocol prescribes no font; no font choice is
+assumed to be optimal for this evaluation.
+
 Record display make/model, panel technology when known, brightness setting and
 whether it is automatic. Measured white/background luminance in cd/m² is useful
 if a meter is available, but do not estimate it from the brightness slider.
@@ -59,6 +64,12 @@ bright display/outdoors, and minutes spent adapting before the trial.
 Record whether switching was manual or automatic and the exact trigger. Disable
 unrelated automatic display changes unless automatic adaptation itself is the
 thing being tested.
+
+HDR and OS tone mapping can change the pixel values of a screenshot even when
+the theme is unchanged. Record the HDR state, use SDR captures when exact
+palette comparison matters (see
+[evaluation/raster](evaluation/raster/README.md)), and keep normal display
+conditions for subjective evaluation.
 
 ## Ordering and counterbalancing
 
@@ -215,4 +226,3 @@ Complete this section after the raw records are frozen.
   declaring a numerical winner.
 - **Follow-up and rollback criterion:** What to test next, and what observation
   would reopen the decision?
-
