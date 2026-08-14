@@ -76,9 +76,13 @@ R Markdown embedding), but not required — the themes work with any grammar.
   selection borders (only the lightness offset survives). Strikethrough,
   parameter italics and focus borders *are* honored. See the notes in
   `spec/mappings/vscode.yaml`.
-- Colors are opaque by policy, per the official VS Code transparency guidance;
-  the only alpha value is `editorUnnecessaryCode.opacity`, whose contract
-  expects it.
+- Chrome colors are opaque by policy, per the official VS Code transparency
+  guidance.  Ids that paint a highlight OVER editor content keep that content
+  readable with alpha 80: `editor.inactiveSelectionBackground`,
+  `editor.selectionHighlightBackground`, `editor.findMatchHighlightBackground`
+  and `editor.hoverHighlightBackground`; the primary selection and current
+  find match stay opaque.  `editorUnnecessaryCode.opacity` ships alpha 66 as
+  its contract expects.
 - Unmapped workbench keys fall back to VS Code defaults; the mapping covers
   canvas, chrome, line numbers, cursor/focus, selection, active line, search,
   diagnostics, diff, breakpoint/debug, panels/sidebar/lists, but not every id.

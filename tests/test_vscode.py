@@ -128,13 +128,25 @@ def test_required_workbench_keys(themes, mapping):
 
 
 def test_color_format_and_transparency_policy(themes):
-    # opaque everywhere except the one id whose contract expects alpha
-    alpha_ok = {"editorUnnecessaryCode.opacity"}
+    # Opaque everywhere except the ids whose policy contract expects alpha
+    # (spec/mappings/vscode.yaml): the four content-preserving secondary
+    # overlays at alpha 80 and editorUnnecessaryCode.opacity at alpha 66.
+    # These five are the ONLY RGBA ids; notably editor.selectionBackground
+    # and editor.findMatchBackground must stay opaque #rrggbb.
+    alpha_exact = {
+        "editor.inactiveSelectionBackground": "80",
+        "editor.selectionHighlightBackground": "80",
+        "editor.findMatchHighlightBackground": "80",
+        "editor.hoverHighlightBackground": "80",
+        "editorUnnecessaryCode.opacity": "66",
+    }
     for name, theme in themes.items():
         for key, hx in theme["colors"].items():
             hx = hx.lstrip("#")
-            if key in alpha_ok:
+            if key in alpha_exact:
                 assert len(hx) == 8, f"{name}: {key} must be #rrggbbaa"
+                assert hx[6:] == alpha_exact[key], \
+                    f"{name}: {key} alpha must be {alpha_exact[key]}, got {hx[6:]}"
             else:
                 assert len(hx) == 6, f"{name}: {key} must be opaque #rrggbb, got #{hx}"
             int(hx, 16)  # valid hex

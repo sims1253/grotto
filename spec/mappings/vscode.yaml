@@ -12,12 +12,21 @@
 # ---------------------------------------------------------------------------
 # Transparency policy
 # ---------------------------------------------------------------------------
-# VS Code accepts #RRGGBBAA in most color ids, but the official theme-color
-# guidance is that most workbench colors should stay opaque: translucent work
-# bench colors composite against arbitrary content and cause artifacts.  We
-# therefore emit opaque colors everywhere EXCEPT ids whose documented contract
-# expects alpha, marked with an explicit `alpha:` below (currently only
-# editorUnnecessaryCode.opacity, which the default themes also ship as alpha).
+# VS Code accepts #RRGGBBAA in most color ids.  Chrome colors (panels, lists,
+# inputs, badges) must stay opaque -- translucent chrome composites against
+# arbitrary content and causes artifacts -- but ids that paint a highlight
+# OVER editor content have the opposite obligation: a fully opaque overlay
+# would hide the code, diagnostics and squiggles beneath it.  We therefore
+# emit opaque colors everywhere EXCEPT:
+#   * secondary overlays that must preserve the content under them, marked
+#     `alpha: "80"` (~50%) below: editor.inactiveSelectionBackground,
+#     editor.selectionHighlightBackground, editor.findMatchHighlightBackground
+#     and editor.hoverHighlightBackground;
+#   * editorUnnecessaryCode.opacity, whose documented contract expects alpha
+#     (the default themes ship 66 there too).
+# The PRIMARY editor.selectionBackground and editor.findMatchBackground stay
+# opaque on purpose: they are the top of the overlay stack and must dominate
+# every wash beneath them.
 #
 # ---------------------------------------------------------------------------
 # Redundant-channel limits (what this adapter CANNOT express)
@@ -88,13 +97,16 @@ workbench:
   editorIndentGuide.background1: ui_inactive
   editorRuler.foreground: ui_inactive
   editorOverviewRuler.border: ui_inactive
-  # selection / search / focus
+  # selection / search / focus.  Secondary overlays composite over arbitrary
+  # editor content, so they carry alpha 80 to keep that content readable
+  # (transparency policy above); the primary selection and the current find
+  # match stay opaque to dominate the overlay stack.
   editor.selectionBackground: selection
-  editor.inactiveSelectionBackground: selection
-  editor.selectionHighlightBackground: search_match
+  editor.inactiveSelectionBackground: {role: selection, alpha: "80"}
+  editor.selectionHighlightBackground: {role: search_match, alpha: "80"}
   editor.findMatchBackground: search_match_current
-  editor.findMatchHighlightBackground: search_match
-  editor.hoverHighlightBackground: search_match
+  editor.findMatchHighlightBackground: {role: search_match, alpha: "80"}
+  editor.hoverHighlightBackground: {role: search_match, alpha: "80"}
   editorBracketMatch.background: selection
   editorBracketMatch.border: focus
   focusBorder: focus
