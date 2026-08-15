@@ -1,0 +1,86 @@
+# nord  (dark, source=hex, NON-candidate)
+  roles: 17 defined, 23 spec roles missing
+  input_hash: 976caeb29b934abc
+
+## colors (role: hex  oklch L C h  gamut)
+  bg                 #2e3440  L0.324 C0.023 h264  sRGB=Y P3=Y
+  bg_elevated        #3b4252  L0.379 C0.029 h266  sRGB=Y P3=Y
+  fg                 #d8dee9  L0.899 C0.016 h263  sRGB=Y P3=Y
+  comment            #4c566a  L0.452 C0.035 h264  sRGB=Y P3=Y
+  punctuation        #eceff4  L0.951 C0.007 h261  sRGB=Y P3=Y
+  selection          #434c5e  L0.416 C0.032 h264  sRGB=Y P3=Y
+  keyword            #81a1c1  L0.697 C0.059 h249  sRGB=Y P3=Y
+  string             #a3be8c  L0.768 C0.075 h131  sRGB=Y P3=Y
+  number             #b48ead  L0.692 C0.062 h333  sRGB=Y P3=Y
+  constant           #d8dee9  L0.899 C0.016 h263  sRGB=Y P3=Y
+  type               #8fbcbb  L0.763 C0.048 h194  sRGB=Y P3=Y
+  function           #88c0d0  L0.775 C0.062 h217  sRGB=Y P3=Y
+  error              #bf616a  L0.606 C0.121 h15  sRGB=Y P3=Y
+  warning            #ebcb8b  L0.855 C0.089 h84  sRGB=Y P3=Y
+  success            #a3be8c  L0.768 C0.075 h131  sRGB=Y P3=Y
+  diff_added         #a3be8c  L0.768 C0.075 h131  sRGB=Y P3=Y
+  diff_removed       #bf616a  L0.606 C0.121 h15  sRGB=Y P3=Y
+
+## contrast vs bg (role: |Lc| WCAG DL band)
+  bg_elevated        |Lc|=    0  WCAG= 1.24  DL=+0.055  band=None (target minimal)  BELOW-AA  <-- band MISMATCH
+  fg                 |Lc|=   80  WCAG= 9.25  DL=+0.575  band=high (target comfortable)  AA-ok  <-- band MISMATCH
+  comment            |Lc|=   10  WCAG= 1.69  DL=+0.128  band=None (target low)  BELOW-AA  <-- band MISMATCH
+  punctuation        |Lc|=   91  WCAG=10.84  DL=+0.627  band=maximal (target low)  AA-ok  <-- band MISMATCH
+  selection          |Lc|=    0  WCAG= 1.45  DL=+0.091  band=None (target low)  BELOW-AA  <-- band MISMATCH
+  keyword            |Lc|=   44  WCAG= 4.64  DL=+0.372  band=low (target comfortable)  AA-ok  <-- band MISMATCH
+  string             |Lc|=   57  WCAG= 6.13  DL=+0.444  band=None (target comfortable)  AA-ok  <-- band MISMATCH
+  number             |Lc|=   41  WCAG= 4.41  DL=+0.368  band=low (target comfortable)  BELOW-AA  <-- band MISMATCH
+  constant           |Lc|=   80  WCAG= 9.25  DL=+0.575  band=high (target comfortable)  AA-ok  <-- band MISMATCH
+  type               |Lc|=   55  WCAG= 5.99  DL=+0.438  band=None (target comfortable)  AA-ok  <-- band MISMATCH
+  function           |Lc|=   58  WCAG= 6.24  DL=+0.450  band=None (target high)  AA-ok  <-- band MISMATCH
+  error              |Lc|=   28  WCAG= 3.05  DL=+0.282  band=minimal (target high)  BELOW-AA  <-- band MISMATCH
+  warning            |Lc|=   71  WCAG= 8.00  DL=+0.530  band=comfortable (target high)  AA-ok  <-- band MISMATCH
+  success            |Lc|=   57  WCAG= 6.13  DL=+0.444  band=None (target comfortable)  AA-ok  <-- band MISMATCH
+  diff_added         |Lc|=   57  WCAG= 6.13  DL=+0.444  band=None (target minimal)  AA-ok  <-- band MISMATCH
+  diff_removed       |Lc|=   28  WCAG= 3.05  DL=+0.282  band=minimal (target minimal)  BELOW-AA
+
+## distance matrix: 3 error(s), 9 warning(s)
+  [error] must_distinguish(warning, string) under normal: dE 0.109 vs 0.130
+  [warning] must_distinguish(warning, string) under protan@1.0: dE 0.064 vs 0.090
+  [error] must_distinguish(warning, constant) under normal: dE 0.115 vs 0.130
+  [warning] must_distinguish(warning, constant) under tritan@1.0: dE 0.074 vs 0.090
+  [error] must_distinguish(comment, bg) under normal: dE 0.129 vs 0.130
+  [warning] should_distinguish(string, type) under normal: dE 0.069 vs 0.080
+  [warning] should_distinguish(function, type) under normal: dE 0.029 vs 0.080
+  [warning] should_distinguish(punctuation, fg) under normal: dE 0.053 vs 0.080
+  [warning] should_distinguish(bg, bg_elevated) under normal: dE 0.055 vs 0.080
+  [warning] same_family(number, constant) under upper: dE 0.215 vs 0.140
+  [warning] same_family(diff_added, success) under lower: dE 0.000 vs 0.030
+  [warning] same_family(diff_removed, error) under lower: dE 0.000 vs 0.030
+
+## CVD must_distinguish pairs (normal dE | protan deutan tritan @1.0)
+  error/string: 0.233 | 0.246 0.157 0.215
+  error/keyword: 0.186 | 0.167 0.130 0.188
+  error/warning: 0.277 | 0.309 0.249 0.263
+  error/fg: 0.320 | 0.352 0.295 0.321
+  warning/string: 0.109 | 0.064 0.095 0.111
+  warning/number: 0.206 | 0.222 0.199 0.171
+  warning/constant: 0.115 | 0.115 0.116 0.074
+  error/success: 0.233 | 0.246 0.157 0.215
+  diff_added/diff_removed: 0.233 | 0.246 0.157 0.215
+  selection/diff_added: 0.366 | 0.385 0.362 0.357
+  selection/diff_removed: 0.234 | 0.139 0.208 0.235
+  fg/bg: 0.575 | 0.576 0.576 0.577
+  comment/bg: 0.129 | 0.129 0.129 0.128
+  error/bg: 0.311 | 0.226 0.293 0.313
+
+## salience budget (code coverage, declared estimate)
+  at_or_above_3:  19.2% of non-bg pixels (budget <= 22%)
+  at_or_above_5:   0.0% of non-bg pixels (budget <= 1%)
+  within budget
+
+## spectral (nominal led-lcd, code coverage) -- exploratory
+  melanopic/photopic ratio: 1.135 (display white = 1.0)
+    #d8dee9: 38.3% of melanopic output
+    #2e3440: 23.4% of melanopic output
+    #eceff4: 15.5% of melanopic output
+    #a3be8c: 4.4% of melanopic output
+    #88c0d0: 4.1% of melanopic output
+  Exploratory nominal-display model; within-model ranking only. An sRGB triple does not determine a spectral power distribution; this never claims actual retinal exposure (RESEARCH.md R-4, R-5).
+
+APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion. CVD models are population-average dichromat models (RESEARCH.md R-9).

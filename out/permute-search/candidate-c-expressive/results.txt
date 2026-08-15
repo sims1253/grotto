@@ -1,0 +1,23 @@
+# Permutation + rotation search -- base candidate-c-expressive (NON-CANDIDATE)
+
+combos built: 264 (24 perms x base angles + 24 perms x 10 even-spread rotations)
+gates: stability ok, WCAG ok, distance errors <= base; refined top 6 locally
+
+   id  score  minHue  nightC    cvd  kw/str/fn/typ families      conventions
+ p048  0.783   0.109   0.091  0.018  azu/vio/sag/tea            ! ! !
+ p007  0.737   0.069   0.086  0.054  sag/vio/azu/tea            ! . !
+ p054  0.723   0.094   0.071  0.053  azu/sag/tea/vio            . ! !
+ p049  0.692   0.074   0.073  0.061  azu/vio/sag/tea            ! . !
+ p009  0.681   0.070   0.077  0.056  sag/tea/azu/vio            ! . !
+ p035  0.595   0.074   0.070  0.047  sag/vio/azu/tea            . ! !
+ p031  0.475   0.053   0.071  0.042  sag/vio/tea/azu            ! ! !
+ p004  0.474   0.045   0.090  0.018  vio/azu/sag/tea            ! ! .
+ p016  0.474   0.045   0.090  0.018  tea/azu/sag/vio            ! ! !
+ p010  0.470   0.045   0.080  0.034  sag/azu/vio/tea            ! ! !
+ p006  0.468   0.046   0.088  0.019  sag/vio/tea/azu            ! ! !
+ p008  0.465   0.046   0.079  0.033  sag/tea/vio/azu            ! ! !
+ p011  0.464   0.046   0.088  0.018  sag/azu/tea/vio            ! ! !
+ p055  0.459   0.068   0.066  0.033  azu/sag/tea/vio            ! ! !
+
+conventions column = string_green / function_blue_cyan / keyword_purple kept(.) or broken(!)
+* = committed base. Angles per result in results.json.

@@ -1,0 +1,57 @@
+# kanagawa-wave  (dark)
+  source: https://raw.githubusercontent.com/rebelot/kanagawa.nvim/master/lua/kanagawa/colors.lua
+  mapping: 19/40 spec roles (48%); 21 missing
+
+## background (OKLCH; hue suppressed when effectively achromatic)
+  bg           #1f1f28  L0.243 C0.017 achromatic  [achromatic]
+  bg_elevated  #2a2a37  L0.291 C0.024 h 285  [cool]
+
+## reading contrast (fg vs bg)
+  WCAG 11.26 (AA-body / AA-large)  |APCA Lc| 80 (band high)  dL +0.632
+  note: APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion (DESIGN.md section 7, RESEARCH.md R-11).
+
+## lightness / chroma distributions
+  all_roles:
+    L min 0.243 (bg)  med 0.690  max 0.876 (fg)
+    C min 0.012 (comment)  med 0.070  max 0.227 (error)
+  excluding_backgrounds:
+    L min 0.314 (selection)  med 0.694  max 0.876 (fg)
+    C min 0.012 (comment)  med 0.087  max 0.227 (error)
+
+## warm/cool balance (explicit definition)
+  chroma-weighted score: +0.344  (+ warm, - cool)
+  warm roles (10): constant, diff_added, diff_removed, error, fg, fg_secondary, number, string, success, warning
+  cool roles (7): bg_elevated, function, info, keyword, punctuation, selection, type
+  neutral roles (0): -  (hue exactly on the 150/330 deg boundary)
+  definition: Palette score = sum(C_i * cos(h_i - 60deg)) / sum(C_i) over chromatic roles (C >= 0.02). +1 warm (amber), -1 cool (azure), 0 at 150/330 deg. A convention on OKLCH hue, not a perceptual law.
+
+## declared-constraint coverage & distances
+  must_distinguish     14/26 pairs (54% coverage)
+  should_distinguish   15/20 pairs (75% coverage)
+  same_family          3/7 pairs (43% coverage)
+  differentiated_by    0/5 pairs (0% coverage)
+  redundant_encoding   2/2 pairs (100% coverage)
+  note: Coverage = fraction of declared constraints whose two roles are both mapped in this reference. References are NOT candidate palettes and are not bound by the distance thresholds; the dE values are descriptive. Low coverage reflects mapping incompleteness, not a theme defect.
+
+## spectral (nominal display, exploratory)
+  melanopic/photopic ratio: 0.992  (display white = 1.0)
+  bg share 17.8%  fg share 42.2%  token share 39.9%
+  caveat: Exploratory nominal-display model; within-model ranking only. An sRGB triple does not determine a spectral power distribution; emitted contribution depends on linear channel drive and assumed primary spectra, not area alone. This never claims actual retinal exposure (RESEARCH.md R-4, R-5, R-13, M-1).
+
+## CVD behaviour (must_distinguish pairs present)
+  3/14 pairs collapse below dE 0.09 under some dichromacy
+  error/string: normal 0.310 | protan 0.306 deutan 0.144 tritan 0.292
+  error/keyword: normal 0.241 | protan 0.214 deutan 0.195 tritan 0.231
+  error/warning: normal 0.226 | protan 0.275 deutan 0.178 tritan 0.217
+  error/fg: normal 0.353 | protan 0.412 deutan 0.281 tritan 0.353
+  warning/string: normal 0.157 | protan 0.050 deutan 0.074 tritan 0.144  <-- collapses
+  warning/number: normal 0.171 | protan 0.179 deutan 0.168 tritan 0.103
+  warning/constant: normal 0.036 | protan 0.039 deutan 0.035 tritan 0.009  <-- collapses
+  error/success: normal 0.310 | protan 0.306 deutan 0.144 tritan 0.292
+  note: Dichromacy via Brettel 1997 (population-average models); they detect collapse, they do not reproduce an individual's experience (R-9). References are NOT bound by D-3 and declare no redundant channels; a collapse here is informational, not a compliance failure.
+
+## caveats
+  - Descriptive only. No ranking, scoring, or winner is declared (DESIGN.md section 1: no evidence selects one syntax palette over another).
+  - APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion (R-11).
+  - CVD figures use population-average dichromat models (R-9).
+  - Spectral figures are nominal-display, within-model, exploratory; they never claim retinal exposure (R-4, R-5, R-13).

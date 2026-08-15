@@ -1,0 +1,73 @@
+name: monokai
+variant: dark
+source_url: https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-monokai/themes/monokai-color-theme.json
+fetched_note: >
+  The classic Monokai as shipped with VS Code
+  (extensions/theme-monokai/themes/monokai-color-theme.json). This theme has no
+  single named-palette file; the palette below is reconstructed verbatim from the
+  theme JSON's (a) header comment of base values, (b) editor/terminal `colors`
+  map, and (c) `tokenColors` syntax rules. Roles are mapped from those same
+  tokenColors rules (e.g. `string` -> #E6DB74, `keyword`/`storage` -> #F92672).
+  Note: this is the open VS Code "Monokai", not the proprietary Monokai Pro.
+
+# palette reconstructed from the theme JSON (header comment + colors + tokenColors)
+palette:
+    # core (header comment + editor colors)
+    background: '#272822'
+    background_dark: '#1e1f1c'    # tab wells / borders / sideBar
+    foreground: '#f8f8f2'
+    selection: '#878b9180'        # editor.selectionBackground (alpha as defined)
+    line_highlight: '#3e3d32'     # editor.lineHighlightBackground
+    # syntax token colors (from tokenColors)
+    comment: '#88846f'
+    string: '#e6db74'
+    number: '#ae81ff'             # constant.numeric / constant.language
+    keyword: '#f92672'            # keyword / storage / entity.name.tag
+    type: '#66d9ef'               # storage.type / support.type / support.class
+    function: '#a6e22e'           # entity.name.function
+    parameter: '#fd971f'          # variable.parameter / variable.language
+    builtin: '#66d9ef'            # support.function / support.constant
+    error: '#f44747'              # invalid / token.error-token
+    warning: '#cd9731'            # token.warn-token
+    info: '#6796e6'               # token.info-token
+    # terminal ANSI 16 (from colors map)
+    ansi_black: '#333333'
+    ansi_red: '#c4265e'
+    ansi_green: '#86b42b'
+    ansi_yellow: '#b3b42b'
+    ansi_blue: '#6a7ec8'
+    ansi_magenta: '#8c6bc8'
+    ansi_cyan: '#56adbc'
+    ansi_white: '#e3e3dd'
+    ansi_bright_black: '#666666'
+    ansi_bright_red: '#f92672'
+    ansi_bright_green: '#a6e22e'
+    ansi_bright_yellow: '#e2e22e'
+    ansi_bright_blue: '#819aff'
+    ansi_bright_magenta: '#ae81ff'
+    ansi_bright_cyan: '#66d9ef'
+    ansi_bright_white: '#f8f8f2'
+
+# roles mapped from tokenColors (scope -> foreground). null where the theme
+# defines no token for that role.
+roles:
+    bg: '#272822'           # editor.background
+    bg_elevated: null       # flat theme; editor.lineHighlightBackground is #3e3d32
+    fg: '#f8f8f2'           # editor.foreground
+    fg_secondary: null      # editorLineNumber.foreground #90908a is the nearest muted fg
+    comment: '#88846f'      # comment
+    punctuation: null       # no punctuation token defined; inherits fg #f8f8f2
+    selection: '#878b9180'  # editor.selectionBackground (alpha kept as defined)
+    keyword: '#f92672'      # keyword / storage
+    string: '#e6db74'       # string
+    number: '#ae81ff'       # constant.numeric
+    constant: '#ae81ff'     # constant.language / constant.character / constant.other
+    type: '#66d9ef'         # storage.type / support.type / support.class
+    function: '#a6e22e'     # entity.name.function
+    builtin: '#66d9ef'      # support.function / support.constant (equals type)
+    error: '#f44747'        # invalid / token.error-token
+    warning: '#cd9731'      # token.warn-token
+    info: '#6796e6'         # token.info-token
+    success: null           # no success semantic (markup.inserted #a6e22e is the green)
+    diff_added: '#a6e22e'   # markup.inserted
+    diff_removed: '#f92672' # markup.deleted

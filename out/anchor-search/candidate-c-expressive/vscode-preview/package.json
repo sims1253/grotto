@@ -1,0 +1,47 @@
+{
+  "name": "grotto-anchor-exploration-c",
+  "displayName": "Grotto Anchor Exploration C (NON-CANDIDATE)",
+  "description": "Night themes from the anchor-hue search; exploration only, no winner.",
+  "version": "0.0.1",
+  "publisher": "grotto-exploration",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto C-Explore 01 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/explore-01-night.json"
+      },
+      {
+        "label": "Grotto C-Explore 02 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/explore-02-night.json"
+      },
+      {
+        "label": "Grotto C-Explore 03 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/explore-03-night.json"
+      },
+      {
+        "label": "Grotto C-Explore 04 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/explore-04-night.json"
+      },
+      {
+        "label": "Grotto C-Explore 05 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/explore-05-night.json"
+      },
+      {
+        "label": "Grotto C-Explore 06 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/explore-06-night.json"
+      }
+    ]
+  }
+}

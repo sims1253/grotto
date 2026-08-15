@@ -1,0 +1,45 @@
+# ---------------------------------------------------------------------------
+# EVALUATION FIXTURE -- NOT A CANDIDATE PALETTE.
+# ---------------------------------------------------------------------------
+# Member of the day/evening/night PLACEHOLDER trio used to exercise the
+# cross-variant stability reporting in Phase 2. Same role set as its evening
+# and night companions so the cross-variant tooling has real pairwise data.
+# Round-number OKLCH stubs; NOT optimised, NOT a candidate. The small,
+# consistent hue shifts between the three files are intentional only so the
+# stability report has something non-trivial (and bounded) to measure.
+# ---------------------------------------------------------------------------
+
+name: grotto-eval-fixture-day
+variant: day
+format: oklch
+candidate: false
+kind: fixture
+trio: eval-fixture
+note: >
+  EVALUATION FIXTURE ONLY. NOT A CANDIDATE PALETTE. Day member of the
+  placeholder trio; positive polarity. Round-number stubs.
+
+colors:
+  bg:               {L: 0.965, C: 0.008, h: 85}
+  bg_elevated:      {L: 0.988, C: 0.005, h: 85}
+  fg:               {L: 0.420, C: 0.012, h: 90}
+  fg_secondary:     {L: 0.500, C: 0.012, h: 90}
+  comment:          {L: 0.580, C: 0.022, h: 70}
+  punctuation:      {L: 0.450, C: 0.000, h: 0}
+  operator:         {L: 0.400, C: 0.000, h: 0}
+  keyword:          {L: 0.500, C: 0.125, h: 300}
+  string:           {L: 0.580, C: 0.095, h: 145}
+  number:           {L: 0.620, C: 0.095, h: 80}
+  constant:         {L: 0.550, C: 0.090, h: 80}
+  type:             {L: 0.580, C: 0.085, h: 195}
+  function:         {L: 0.500, C: 0.095, h: 245}
+  builtin:          {L: 0.520, C: 0.065, h: 25}
+  decorator:        {L: 0.550, C: 0.075, h: 80}
+  tag:              {L: 0.500, C: 0.065, h: 245}
+  error:            {L: 0.500, C: 0.160, h: 25}
+  warning:          {L: 0.780, C: 0.150, h: 80}
+  success:          {L: 0.550, C: 0.110, h: 145}
+  diff_added:       {L: 0.900, C: 0.040, h: 145}
+  diff_removed:     {L: 0.900, C: 0.040, h: 25}
+  selection:        {L: 0.850, C: 0.060, h: 245}
+  focus:            {L: 0.550, C: 0.190, h: 245}
