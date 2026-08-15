@@ -11,9 +11,10 @@ items:
 
   r-01-read-station-log:
     scan: >
-      Five arguments: path, keep_failed, tz (function); read.csv args
-      stringsAsFactors/naStrings are not arguments of read_station_log.
-      Coerced with suppressWarnings: temp_c and humidity.
+      Three arguments: path, keep_failed, tz. (stringsAsFactors / na.strings
+      are read.csv's own parameters named inside the call -- plausible
+      distractors, not arguments of read_station_log.) Coerced with
+      suppressWarnings: temp_c and humidity.
     comprehension: >
       stop() fires when required columns are missing (structural error; the
       caller gets no data frame). warning() fires when some timestamps do not
@@ -104,8 +105,9 @@ items:
       original: '  sub("^([A-Z]+)([0-9]+)$", "\\1\\2", upper)'
       broken: '  sub("^([A-Z]+)([0-9]+)$", "\\1\\1", upper)'
       why: >-
-        the replacement duplicates the letter prefix instead of keeping
-        prefix+suffix, so every well-formed id comes back wrong (e.g. "A11").
+        the replacement duplicates the letter prefix and drops the digit
+        group entirely (backreference 2 is never emitted), so every
+        well-formed id comes back wrong ("A1" -> "AA", not "A11").
 
   r-07-month-grid:
     scan: >
@@ -122,12 +124,15 @@ items:
       broken: '  inside <- !key %in% labels'
       why: >-
         membership inverted: every in-grid date is reported as outside and
-        every out-of-grid date is bucketed (and crashes/NA-labels later).
+        every out-of-grid date is bucketed. counts[absent_name] <- 1 does not
+        crash: it grows the vector with an NA-labelled entry, so the grid
+        silently ends up with NA-named counts and wrong totals.
 
   r-08-dominant-direction:
     scan: >
-      Indexing used: single [, matrix subsets [, k], %*% (twice), %o%, and
-      t(v); deflation is the line "remaining <- remaining - values[k] * (v %o% v)".
+      Indexing used: single [, matrix subsets [, k], %*% (three occurrences
+      over two lines), %o%, and t(v); deflation is the line
+      "remaining <- remaining - values[k] * (v %o% v)".
     comprehension: >
       Convergence: max abs component change < 1e-9 stops the loop with the
       improved vector kept; norm < 1e-12 guards a zero (or numerically

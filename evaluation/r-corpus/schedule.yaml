@@ -1,6 +1,16 @@
 # Counterbalanced assignment schedule — form A.
 # Deterministic cyclic Latin square over the nine exact conditions (no RNG).
-version: 2
+#
+# v3 (pre-data correction): v2 assigned family presentation sequences in
+# lockstep with the item rotation (list L(n) used sequence ((n-1) mod 3)+1),
+# which made every item's WITHIN-BLOCK ordinal position constant across all
+# nine lists (r-01/r-04/r-07 always first, r-03/r-06/r-09 always third).
+# Item identity was perfectly confounded with practice/fatigue position.
+# v3 decouples the two: list L(n) now uses sequence ((n-1)*2 mod 3)+1, so
+# each item occupies each within-block position in exactly 3 of the 9 lists.
+# Assignments are UNCHANGED from v2; only the family_sequence per list and
+# the procedure text differ.
+version: 3
 form: a
 procedure:
   construction: >-
@@ -20,7 +30,11 @@ procedure:
   - variant order is contextual (day before evening before night) per HUMAN_EVALUATION.md;
     cross-context checks are marked separately there
   - family presentation order within a variant block follows the balanced sequences of
-    HUMAN_EVALUATION.md; list L(n) uses sequence ((n - 1) mod 3) + 1
+    HUMAN_EVALUATION.md; list L(n) uses sequence (((n - 1) * 2) mod 3) + 1, deliberately
+    NOT in lockstep with the item rotation (see the v3 note above)
+  - 'position balance: across the nine lists every item sits at each within-block
+    ordinal position (first / second / third timed trial) exactly three times, so item
+    difficulty is not structurally confounded with within-session practice or fatigue'
   - 'easy excerpts are never permanently bound to one theme: the item<->condition
     pairing shifts by one condition in every successive list'
 usage:
@@ -49,8 +63,8 @@ lists:
       balanced: r-08-dominant-direction
       expressive: r-09-plot-with-band
 - name: L2
-  family_sequence: 2
-  family_sequence_order: balanced -> expressive -> restrained
+  family_sequence: 3
+  family_sequence_order: expressive -> restrained -> balanced
   variant_order: [day, evening, night]
   assignments:
     day:
@@ -66,8 +80,8 @@ lists:
       balanced: r-07-month-grid
       expressive: r-08-dominant-direction
 - name: L3
-  family_sequence: 3
-  family_sequence_order: expressive -> restrained -> balanced
+  family_sequence: 2
+  family_sequence_order: balanced -> expressive -> restrained
   variant_order: [day, evening, night]
   assignments:
     day:
@@ -100,8 +114,8 @@ lists:
       balanced: r-05-normalise-results
       expressive: r-06-canonicalise-id
 - name: L5
-  family_sequence: 2
-  family_sequence_order: balanced -> expressive -> restrained
+  family_sequence: 3
+  family_sequence_order: expressive -> restrained -> balanced
   variant_order: [day, evening, night]
   assignments:
     day:
@@ -117,8 +131,8 @@ lists:
       balanced: r-04-rolling-window
       expressive: r-05-normalise-results
 - name: L6
-  family_sequence: 3
-  family_sequence_order: expressive -> restrained -> balanced
+  family_sequence: 2
+  family_sequence_order: balanced -> expressive -> restrained
   variant_order: [day, evening, night]
   assignments:
     day:
@@ -151,8 +165,8 @@ lists:
       balanced: r-02-signif-round
       expressive: r-03-threshold-check
 - name: L8
-  family_sequence: 2
-  family_sequence_order: balanced -> expressive -> restrained
+  family_sequence: 3
+  family_sequence_order: expressive -> restrained -> balanced
   variant_order: [day, evening, night]
   assignments:
     day:
@@ -168,8 +182,8 @@ lists:
       balanced: r-01-read-station-log
       expressive: r-02-signif-round
 - name: L9
-  family_sequence: 3
-  family_sequence_order: expressive -> restrained -> balanced
+  family_sequence: 2
+  family_sequence_order: balanced -> expressive -> restrained
   variant_order: [day, evening, night]
   assignments:
     day:

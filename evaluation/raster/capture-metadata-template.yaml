@@ -15,6 +15,7 @@ display:
   model: ""
   brightness_setting: ""             # as set, not measured
   hdr_or_adaptive_colour: ""         # state of HDR / True Tone / auto-brightness
+  os_colour_temperature_filter: ""   # Night Shift/f.lux/night light: off, or on + strength
   profile: ""
 content:
   file_shown: ""                     # e.g. evaluation/r-corpus item or specimen

@@ -61,9 +61,9 @@ per-pixel area-weighted integral without ever integrating per unique pixel.
 4. Screenshot only the editor area where possible (crop later is fine);
    PNG, not JPEG. Note the display scale — 2× scaling doubles effective
    pixel dimensions.
-5. Fill in `capture-metadata-template.yaml` next to the PNG and commit (or
-   keep) both together; the report records the palette's SHA-256 so
-   palette drift is detectable.
+5. Fill in `capture-metadata-template.yaml` next to the PNG and keep both
+   together (committing is fine for small captures); the report records the
+   palette's SHA-256 so palette drift is detectable.
 
 **HDR and tone mapping.** HDR and OS tone mapping can change the pixel values
 in a PNG even when the theme is unchanged. Record the HDR state in

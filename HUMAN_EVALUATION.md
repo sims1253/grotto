@@ -18,7 +18,7 @@ One condition is a `family × variant` pair. With three families and Day,
 Evening, and Night variants there are nine conditions. Evaluate each condition
 with:
 
-1. a 10–15 minute structured scan task; and
+1. a 15–25 minute structured scan task; and
 2. a 60–120 minute sustained coding block on a different occasion or after a
    sufficient break.
 
@@ -83,8 +83,12 @@ three-family orders in successive blocks:
 | 3 | Expressive → Restrained → Balanced |
 
 Rotate which sequence is used for Day, Evening, and Night, then rotate again on
-a repeat. Randomly choose the first sequence with a recorded seed. Do not always
-put the presumed favourite last.
+a repeat. For the timed R trials, do not choose a sequence ad hoc: your assigned
+list in `evaluation/r-corpus/schedule.yaml` fixes the sequence deterministically
+(no RNG seed involved). Choose your one list before the first session by a
+recorded physical draw (for example, one slip from nine numbered 1–9) and record
+the list id in every session file; do not change it mid-study. Do not always put
+the presumed favourite last.
 
 Environmental variants cannot always be fully randomized without destroying
 their intended context. Across repeat days, use a balanced order where practical
@@ -98,7 +102,7 @@ blank neutral editor view. Then allow at least 5 minutes in the tested condition
 before rating it. This is a practical washout/adaptation convention, not a claim
 that visual adaptation has been eliminated. Avoid direct A/B flickering.
 
-## Part A — structured scan (10–15 minutes)
+## Part A — structured scan (15–25 minutes)
 
 Use the identical frozen multi-language specimens and editor state for every
 condition. For the short timed R scan/comprehension/seeded-error trials, use
@@ -122,8 +126,13 @@ order, without a palette legend:
    time. This probes semantic familiarity; colour distance alone cannot prove it.
 6. Inspect the critical states in normal colour, grayscale, and the project’s CVD
    simulations. Check whether icon, label, underline, border, shape, or placement
-   still communicates state. Simulation is an engineering check, not a substitute
-   for testing with people who have colour-vision deficiencies.
+   still communicates state. This inspection is an untimed engineering check
+   performed outside the timed portion of the scan; never include it in
+   timed-trial comparisons. Simulation is not a substitute for testing with
+   people who have colour-vision deficiencies.
+
+The 15–25 minute budget covers the timed scan activities only; the grayscale/CVD
+inspection in item 6 is untimed and excluded from all timing comparisons.
 
 Immediately record ratings and observations. Timing may reveal large failures,
 but this is not a speed contest and a single participant supplies no population
@@ -175,7 +184,7 @@ answers.
 
 A compact first pass is six to twelve days:
 
-- Days 1–3: one environmental context per day, all three 10–15 minute scan
+- Days 1–3: one environmental context per day, all three 15–25 minute scan
   conditions in counterbalanced order.
 - Days 4–12: one sustained block for each of the nine conditions, with family and
   variant order counterbalanced as practical and no more than two blocks per day.

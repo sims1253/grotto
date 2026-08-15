@@ -137,6 +137,44 @@ def test_schedule_counterbalancing():
             assert len(seen_on.get((item, *cond), [])) == 1, (item, cond)
 
 
+def test_schedule_positions_are_not_confounded_with_items():
+    """v3 property: an item's within-block ordinal position must VARY across
+    lists.  v2 assigned family sequences in lockstep with the item rotation,
+    which pinned r-01/r-04/r-07 to first, r-03/r-06/r-09 to third in every
+    list -- item difficulty perfectly confounded with practice/fatigue
+    position.  Each item must now occupy each position exactly 3 of 9 lists."""
+    schedule = _load("schedule.yaml")
+    manifest = _load("manifest.yaml")
+    items = sorted({i["id"] for i in manifest["items"]})
+    families = ["restrained", "balanced", "expressive"]
+    variants = ["day", "evening", "night"]
+    conditions = [(v, f) for v in variants for f in families]
+    item_index = {item: i for i, item in enumerate(items)}
+    seq_orders = {
+        1: ["restrained", "balanced", "expressive"],
+        2: ["balanced", "expressive", "restrained"],
+        3: ["expressive", "restrained", "balanced"],
+    }
+    from collections import Counter
+
+    pos_count: dict[str, Counter] = {item: Counter() for item in items}
+    for k, L in enumerate(schedule["lists"]):
+        order = seq_orders[L["family_sequence"]]
+        assert L["family_sequence_order"] == " -> ".join(order), L["name"]
+        # sequence mapping is the documented decoupled one: ((k*2) mod 3)+1
+        assert L["family_sequence"] == ((k * 2) % 3) + 1, L["name"]
+        inv = {}
+        for v, by_family in L["assignments"].items():
+            for fam, item in by_family.items():
+                inv[item] = (v, fam)
+        for item in items:
+            v, fam = inv[item]
+            assert (v, fam) == conditions[(item_index[item] + k) % 9]
+            pos_count[item][order.index(fam)] += 1
+    for item, c in pos_count.items():
+        assert c == Counter({0: 3, 1: 3, 2: 3}), (item, dict(c))
+
+
 def test_answer_key_patches_match_frozen_items():
     key = _load("answers/answer-key.yaml")
     manifest = _load("manifest.yaml")

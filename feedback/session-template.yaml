@@ -14,7 +14,8 @@ session:
   timezone: null
   phase: null # scan | sustained | cross_context
   order_position: null
-  randomization_seed: null
+  r_corpus_list: null # L1..L9 from schedule.yaml, drawn before the study
+  r_corpus_draw: null # how the list was chosen (e.g. "slip draw 2026-08-15")
 
 condition:
   blind_label: null
@@ -111,6 +112,8 @@ ratings:
     overall_preference: null
     delay_minutes: null
 
+# prominence is DIRECTIONAL, per HUMAN_EVALUATION.md: too_faint | appropriate |
+# too_prominent -- not a 1-7 number. Record the direction; qualify in notes.
 role_observations:
   comments: { prominence: null, notes: null }
   variables: { prominence: null, notes: null }
@@ -130,6 +133,18 @@ critical_state_checks:
     text_readable: null
     redundant_channel: null
     notes: null
+
+# One entry per timed R trial from the assigned schedule list
+# (evaluation/r-corpus). Graded against answers/answer-key.yaml afterwards.
+timed_r_trials:
+  - item_id: null # e.g. r-01-read-station-log
+    list_id: null # e.g. L4 (should match session.r_corpus_list)
+    family: null
+    variant: null
+    block_position: null # 1st | 2nd | 3rd timed trial in the session
+    response_ms: null
+    correct: null # true | false | partial (per the answer key)
+    error_kind: null # scan | comprehension | seeded_error | none
 
 semantic_recall:
   - token_id: null
