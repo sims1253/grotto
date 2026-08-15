@@ -1,23 +1,11 @@
-# Grotto R pilot corpus manifest (Phase 8b).
-#
-# PROVENANCE: project-authored pilot corpus (see provenance block). It is
-# frozen for this experiment but NOT externally established. If a CRAN-derived
-# corpus is added later, it lands as a SEPARATE manifest per CORPUS_RESEARCH.md
-# (package/version/URL/archive-sha256/path/line-range/license/attribution per
-# excerpt, at most 3 pinned tarballs, never committed). Never invent
-# provenance; never merge corpora silently.
-#
-# Metrics below are reproducible with tools/metrics.py (stdlib-only) and are
-# re-verified by tests. Matching on these features is approximate and still
-# needs piloting (CORPUS_RESEARCH.md); they screen for gross inequality only.
 version: 1
 corpus: grotto-r-pilot
 provenance:
   authorship: project-authored
-  statement: PROJECT-AUTHORED PILOT CORPUS. These excerpts were written for this experiment by the
-    Grotto project; they are NOT taken from CRAN, R-universe, or any external corpus, and no external
-    provenance is claimed. The corpus is FROZEN for this experiment but is NOT externally established
-    or validated as representative R code.
+  statement: PROJECT-AUTHORED PILOT CORPUS. These excerpts were written for this experiment by the Grotto
+    project; they are NOT taken from CRAN, R-universe, or any external corpus, and no external provenance
+    is claimed. The corpus is FROZEN for this experiment but is NOT externally established or validated
+    as representative R code.
   license: MIT (repository LICENSE; same terms as the project)
   copyright: Copyright (c) 2026 Maximilian Scholz
   external_sources: none
@@ -30,9 +18,9 @@ purpose:
 forms:
   available:
   - a
-  note: First pass ships ONE form of 9 items. Forms B and C (9 disjoint matched items each, for the
-    full 3x9 design) are a later increment; this manifest + tools/metrics.py + tasks + schedule formats
-    are the interface for adding them.
+  note: First pass ships ONE form of 9 items. Forms B and C (9 disjoint matched items each, for the full
+    3x9 design) are a later increment; this manifest + tools/metrics.py + tasks + schedule formats are
+    the interface for adding them.
 items:
 - id: r-01-read-station-log
   file: items/r-01-read-station-log.R
@@ -153,7 +141,7 @@ items:
   file: items/r-06-canonicalise-id.R
   form: a
   topic: regex canonicalisation of sample ids
-  sha256: 2f56f20e182f91ecef167ae3004503afbfc7f20f9621e6ee99176105b570e821
+  sha256: 804ba9b37f67220917f15bd69131a720a05a50346e76d2e20f0aec91fa2ccdc2
   metrics:
     lines: 43
     nonblank_lines: 37

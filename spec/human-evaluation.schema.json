@@ -20,46 +20,191 @@
     "semantic_recall",
     "free_text",
     "safety",
-    "interpretation_limits"
+    "interpretation_limits",
+    "timed_r_trials"
   ],
   "properties": {
-    "schema_version": { "const": "1.0" },
-    "record_status": { "enum": ["draft", "completed"] },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_status": {
+      "enum": [
+        "draft",
+        "completed"
+      ]
+    },
     "session": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["session_id", "participant_id", "date", "local_start", "local_end", "timezone", "phase", "order_position", "randomization_seed"],
+      "required": [
+        "session_id",
+        "participant_id",
+        "date",
+        "local_start",
+        "local_end",
+        "timezone",
+        "phase",
+        "order_position",
+        "r_corpus_list",
+        "r_corpus_draw"
+      ],
       "properties": {
-        "session_id": { "type": ["string", "null"] },
-        "participant_id": { "type": ["string", "null"] },
-        "date": { "type": ["string", "null"], "format": "date" },
-        "local_start": { "type": ["string", "null"] },
-        "local_end": { "type": ["string", "null"] },
-        "timezone": { "type": ["string", "null"] },
-        "phase": { "enum": ["scan", "sustained", "cross_context", null] },
-        "order_position": { "type": ["integer", "null"], "minimum": 1 },
-        "randomization_seed": { "type": ["string", "integer", "null"] }
+        "session_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "participant_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "local_start": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "local_end": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "timezone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "scan",
+            "sustained",
+            "cross_context",
+            null
+          ]
+        },
+        "order_position": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "r_corpus_list": {
+          "description": "L1..L9 from schedule.yaml, drawn before the study (replaces the v2 RNG seed)",
+          "enum": [
+            "L1",
+            "L2",
+            "L3",
+            "L4",
+            "L5",
+            "L6",
+            "L7",
+            "L8",
+            "L9",
+            null
+          ]
+        },
+        "r_corpus_draw": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "condition": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["blind_label", "family", "variant", "candidate_version", "intended_context", "switching"],
+      "required": [
+        "blind_label",
+        "family",
+        "variant",
+        "candidate_version",
+        "intended_context",
+        "switching"
+      ],
       "properties": {
-        "blind_label": { "type": ["string", "null"] },
-        "family": { "enum": ["restrained", "balanced", "expressive", null] },
-        "variant": { "enum": ["day", "evening", "night", null] },
-        "candidate_version": { "type": ["string", "null"] },
-        "intended_context": { "type": ["boolean", "null"] },
+        "blind_label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "family": {
+          "enum": [
+            "restrained",
+            "balanced",
+            "expressive",
+            null
+          ]
+        },
+        "variant": {
+          "enum": [
+            "day",
+            "evening",
+            "night",
+            null
+          ]
+        },
+        "candidate_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "intended_context": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
         "switching": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["mode", "trigger", "prior_family", "prior_variant"],
+          "required": [
+            "mode",
+            "trigger",
+            "prior_family",
+            "prior_variant"
+          ],
           "properties": {
-            "mode": { "enum": ["manual", "automatic", null] },
-            "trigger": { "type": ["string", "null"] },
-            "prior_family": { "type": ["string", "null"] },
-            "prior_variant": { "type": ["string", "null"] }
+            "mode": {
+              "enum": [
+                "manual",
+                "automatic",
+                null
+              ]
+            },
+            "trigger": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "prior_family": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "prior_variant": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
           }
         }
       }
@@ -67,72 +212,335 @@
     "display_context": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["device", "display", "os", "os_colour_mode", "icc_profile", "hdr", "brightness_setting", "automatic_brightness", "white_luminance_cd_m2", "viewing_distance_cm", "display_filters"],
+      "required": [
+        "device",
+        "display",
+        "os",
+        "os_colour_mode",
+        "icc_profile",
+        "hdr",
+        "brightness_setting",
+        "automatic_brightness",
+        "white_luminance_cd_m2",
+        "viewing_distance_cm",
+        "display_filters"
+      ],
       "properties": {
-        "device": { "type": ["string", "null"] },
-        "display": { "type": ["string", "null"] },
-        "panel_technology": { "type": ["string", "null"] },
-        "os": { "type": ["string", "null"] },
-        "os_colour_mode": { "type": ["string", "null"] },
-        "icc_profile": { "type": ["string", "null"] },
-        "hdr": { "type": ["boolean", "null"] },
-        "brightness_setting": { "type": ["string", "number", "null"] },
-        "automatic_brightness": { "type": ["boolean", "null"] },
-        "white_luminance_cd_m2": { "type": ["number", "null"], "minimum": 0 },
-        "viewing_distance_cm": { "type": ["number", "null"], "exclusiveMinimum": 0 },
-        "display_filters": { "type": ["string", "null"] }
+        "device": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "display": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "panel_technology": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "os": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "os_colour_mode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "icc_profile": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hdr": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "brightness_setting": {
+          "type": [
+            "string",
+            "number",
+            "null"
+          ]
+        },
+        "automatic_brightness": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "white_luminance_cd_m2": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "viewing_distance_cm": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "display_filters": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "environment": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["ambient_lux", "lux_instrument", "room_description", "window_light", "task_lighting", "reflections", "minutes_in_environment", "recent_bright_exposure", "recent_screen_minutes"],
+      "required": [
+        "ambient_lux",
+        "lux_instrument",
+        "room_description",
+        "window_light",
+        "task_lighting",
+        "reflections",
+        "minutes_in_environment",
+        "recent_bright_exposure",
+        "recent_screen_minutes"
+      ],
       "properties": {
-        "ambient_lux": { "type": ["number", "null"], "minimum": 0 },
-        "lux_instrument": { "type": ["string", "null"] },
-        "room_description": { "type": ["string", "null"] },
-        "window_light": { "type": ["string", "null"] },
-        "task_lighting": { "type": ["string", "null"] },
-        "reflections": { "type": ["string", "null"] },
-        "minutes_in_environment": { "type": ["number", "null"], "minimum": 0 },
-        "recent_bright_exposure": { "type": ["string", "null"] },
-        "recent_screen_minutes": { "type": ["number", "null"], "minimum": 0 }
+        "ambient_lux": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "lux_instrument": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "room_description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "window_light": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "task_lighting": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reflections": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "minutes_in_environment": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "recent_bright_exposure": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "recent_screen_minutes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
       }
     },
     "controls": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["editor", "font", "font_size", "font_weight", "line_height", "zoom", "layout", "content_or_task", "diagnostic_fixture", "differences_from_baseline"],
+      "required": [
+        "editor",
+        "font",
+        "font_size",
+        "font_weight",
+        "line_height",
+        "zoom",
+        "layout",
+        "content_or_task",
+        "diagnostic_fixture",
+        "differences_from_baseline"
+      ],
       "properties": {
-        "editor": { "type": ["string", "null"] },
-        "font": { "type": ["string", "null"] },
-        "font_size": { "type": ["string", "number", "null"] },
-        "font_weight": { "type": ["string", "number", "null"] },
-        "line_height": { "type": ["string", "number", "null"] },
-        "zoom": { "type": ["string", "number", "null"] },
-        "layout": { "type": ["string", "null"] },
-        "content_or_task": { "type": ["string", "null"] },
-        "language_activity": { "type": ["string", "null"] },
-        "task_difficulty": { "enum": ["low", "medium", "high", null] },
-        "diagnostic_fixture": { "type": ["string", "null"] },
-        "differences_from_baseline": { "type": ["string", "null"] }
+        "editor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "font": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "font_size": {
+          "type": [
+            "string",
+            "number",
+            "null"
+          ]
+        },
+        "font_weight": {
+          "type": [
+            "string",
+            "number",
+            "null"
+          ]
+        },
+        "line_height": {
+          "type": [
+            "string",
+            "number",
+            "null"
+          ]
+        },
+        "zoom": {
+          "type": [
+            "string",
+            "number",
+            "null"
+          ]
+        },
+        "layout": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "content_or_task": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "language_activity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "task_difficulty": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            null
+          ]
+        },
+        "diagnostic_fixture": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "differences_from_baseline": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "exposure": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["washout_theme", "washout_minutes", "adaptation_minutes", "planned_minutes", "actual_minutes", "editor_fraction", "interruptions", "checkpoints"],
+      "required": [
+        "washout_theme",
+        "washout_minutes",
+        "adaptation_minutes",
+        "planned_minutes",
+        "actual_minutes",
+        "editor_fraction",
+        "interruptions",
+        "checkpoints"
+      ],
       "properties": {
-        "washout_theme": { "type": ["string", "null"] },
-        "washout_minutes": { "type": ["number", "null"], "minimum": 0 },
-        "adaptation_minutes": { "type": ["number", "null"], "minimum": 0 },
-        "planned_minutes": { "type": ["number", "null"], "minimum": 0 },
-        "actual_minutes": { "type": ["number", "null"], "minimum": 0 },
-        "editor_fraction": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
-        "interruptions": { "type": ["integer", "null"], "minimum": 0 },
+        "washout_theme": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "washout_minutes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "adaptation_minutes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "planned_minutes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "actual_minutes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "editor_fraction": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "interruptions": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
         "checkpoints": {
           "type": "array",
-          "items": { "$ref": "#/$defs/checkpoint" }
+          "items": {
+            "$ref": "#/$defs/checkpoint"
+          }
         }
       }
     },
@@ -140,145 +548,564 @@
       "type": "object",
       "description": "Independent 1–7 ratings. Do not average into an aggregate score.",
       "additionalProperties": false,
-      "required": ["immediate", "delayed"],
+      "required": [
+        "immediate",
+        "delayed"
+      ],
       "properties": {
-        "immediate": { "$ref": "#/$defs/ratingSet" },
-        "delayed": { "$ref": "#/$defs/delayedRatingSet" }
+        "immediate": {
+          "$ref": "#/$defs/ratingSet"
+        },
+        "delayed": {
+          "$ref": "#/$defs/delayedRatingSet"
+        }
       }
     },
     "role_observations": {
       "type": "object",
-      "additionalProperties": { "$ref": "#/$defs/roleObservation" },
-      "propertyNames": { "enum": ["comments", "variables", "functions", "punctuation", "strings", "keywords", "types", "properties", "other"] }
+      "additionalProperties": {
+        "$ref": "#/$defs/roleObservation"
+      },
+      "propertyNames": {
+        "enum": [
+          "comments",
+          "variables",
+          "functions",
+          "punctuation",
+          "strings",
+          "keywords",
+          "types",
+          "properties",
+          "other"
+        ]
+      }
     },
     "critical_state_checks": {
       "type": "array",
-      "items": { "$ref": "#/$defs/criticalStateCheck" }
+      "items": {
+        "$ref": "#/$defs/criticalStateCheck"
+      }
     },
     "semantic_recall": {
       "type": "array",
-      "items": { "$ref": "#/$defs/semanticRecallTrial" }
+      "items": {
+        "$ref": "#/$defs/semanticRecallTrial"
+      }
     },
     "free_text": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["easiest", "missed_or_slow", "attention_grabbing", "annoying_after_duration", "switching_impression", "environment_fit", "metrics_judgment_disagreement", "other"],
+      "required": [
+        "easiest",
+        "missed_or_slow",
+        "attention_grabbing",
+        "annoying_after_duration",
+        "switching_impression",
+        "environment_fit",
+        "metrics_judgment_disagreement",
+        "other"
+      ],
       "properties": {
-        "easiest": { "type": ["string", "null"] },
-        "missed_or_slow": { "type": ["string", "null"] },
-        "attention_grabbing": { "type": ["string", "null"] },
-        "annoying_after_duration": { "type": ["string", "null"] },
-        "switching_impression": { "type": ["string", "null"] },
-        "environment_fit": { "type": ["string", "null"] },
-        "metrics_judgment_disagreement": { "type": ["string", "null"] },
-        "other": { "type": ["string", "null"] }
+        "easiest": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "missed_or_slow": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attention_grabbing": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "annoying_after_duration": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "switching_impression": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "environment_fit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metrics_judgment_disagreement": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "other": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "safety": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["stopped_early", "stop_reason", "discomfort_notes", "afterimage_or_visual_disturbance"],
+      "required": [
+        "stopped_early",
+        "stop_reason",
+        "discomfort_notes",
+        "afterimage_or_visual_disturbance"
+      ],
       "properties": {
-        "stopped_early": { "type": ["boolean", "null"] },
-        "stop_reason": { "type": ["string", "null"] },
-        "discomfort_notes": { "type": ["string", "null"] },
-        "afterimage_or_visual_disturbance": { "type": ["boolean", "null"] }
+        "stopped_early": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "stop_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "discomfort_notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "afterimage_or_visual_disturbance": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
       }
     },
     "interpretation_limits": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 1
+    },
+    "timed_r_trials": {
+      "description": "One entry per timed R trial from the assigned schedule list (evaluation/r-corpus).",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/timedRTrial"
+      }
     }
   },
   "$defs": {
-    "rating": { "type": ["integer", "null"], "minimum": 1, "maximum": 7 },
+    "rating": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 7
+    },
     "checkpoint": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["minute", "readability", "annoyance", "discomfort", "notes"],
+      "required": [
+        "minute",
+        "readability",
+        "annoyance",
+        "discomfort",
+        "notes"
+      ],
       "properties": {
-        "minute": { "type": ["number", "null"], "minimum": 0 },
-        "readability": { "$ref": "#/$defs/rating" },
-        "annoyance": { "$ref": "#/$defs/rating" },
-        "discomfort": { "$ref": "#/$defs/rating" },
-        "notes": { "type": ["string", "null"] }
+        "minute": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "readability": {
+          "$ref": "#/$defs/rating"
+        },
+        "annoyance": {
+          "$ref": "#/$defs/rating"
+        },
+        "discomfort": {
+          "$ref": "#/$defs/rating"
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "ratingSet": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["structure_scan", "ordinary_text_readability", "diagnostic_clarity", "selection_readability", "state_separation", "semantic_familiarity", "environment_fit", "glare", "muddy_text", "annoyance", "discomfort", "overall_preference"],
+      "required": [
+        "structure_scan",
+        "ordinary_text_readability",
+        "diagnostic_clarity",
+        "selection_readability",
+        "state_separation",
+        "semantic_familiarity",
+        "environment_fit",
+        "glare",
+        "muddy_text",
+        "annoyance",
+        "discomfort",
+        "overall_preference"
+      ],
       "properties": {
-        "structure_scan": { "$ref": "#/$defs/rating" },
-        "ordinary_text_readability": { "$ref": "#/$defs/rating" },
-        "diagnostic_clarity": { "$ref": "#/$defs/rating" },
-        "selection_readability": { "$ref": "#/$defs/rating" },
-        "state_separation": { "$ref": "#/$defs/rating" },
-        "semantic_familiarity": { "$ref": "#/$defs/rating" },
-        "environment_fit": { "$ref": "#/$defs/rating" },
-        "glare": { "$ref": "#/$defs/rating" },
-        "muddy_text": { "$ref": "#/$defs/rating" },
-        "annoyance": { "$ref": "#/$defs/rating" },
-        "discomfort": { "$ref": "#/$defs/rating" },
-        "overall_preference": { "$ref": "#/$defs/rating" }
+        "structure_scan": {
+          "$ref": "#/$defs/rating"
+        },
+        "ordinary_text_readability": {
+          "$ref": "#/$defs/rating"
+        },
+        "diagnostic_clarity": {
+          "$ref": "#/$defs/rating"
+        },
+        "selection_readability": {
+          "$ref": "#/$defs/rating"
+        },
+        "state_separation": {
+          "$ref": "#/$defs/rating"
+        },
+        "semantic_familiarity": {
+          "$ref": "#/$defs/rating"
+        },
+        "environment_fit": {
+          "$ref": "#/$defs/rating"
+        },
+        "glare": {
+          "$ref": "#/$defs/rating"
+        },
+        "muddy_text": {
+          "$ref": "#/$defs/rating"
+        },
+        "annoyance": {
+          "$ref": "#/$defs/rating"
+        },
+        "discomfort": {
+          "$ref": "#/$defs/rating"
+        },
+        "overall_preference": {
+          "$ref": "#/$defs/rating"
+        }
       }
     },
     "delayedRatingSet": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["structure_scan", "ordinary_text_readability", "diagnostic_clarity", "selection_readability", "state_separation", "semantic_familiarity", "environment_fit", "glare", "muddy_text", "annoyance", "discomfort", "overall_preference", "delay_minutes"],
+      "required": [
+        "structure_scan",
+        "ordinary_text_readability",
+        "diagnostic_clarity",
+        "selection_readability",
+        "state_separation",
+        "semantic_familiarity",
+        "environment_fit",
+        "glare",
+        "muddy_text",
+        "annoyance",
+        "discomfort",
+        "overall_preference",
+        "delay_minutes"
+      ],
       "properties": {
-        "structure_scan": { "$ref": "#/$defs/rating" },
-        "ordinary_text_readability": { "$ref": "#/$defs/rating" },
-        "diagnostic_clarity": { "$ref": "#/$defs/rating" },
-        "selection_readability": { "$ref": "#/$defs/rating" },
-        "state_separation": { "$ref": "#/$defs/rating" },
-        "semantic_familiarity": { "$ref": "#/$defs/rating" },
-        "environment_fit": { "$ref": "#/$defs/rating" },
-        "glare": { "$ref": "#/$defs/rating" },
-        "muddy_text": { "$ref": "#/$defs/rating" },
-        "annoyance": { "$ref": "#/$defs/rating" },
-        "discomfort": { "$ref": "#/$defs/rating" },
-        "overall_preference": { "$ref": "#/$defs/rating" },
-        "delay_minutes": { "type": ["number", "null"], "minimum": 0 }
+        "structure_scan": {
+          "$ref": "#/$defs/rating"
+        },
+        "ordinary_text_readability": {
+          "$ref": "#/$defs/rating"
+        },
+        "diagnostic_clarity": {
+          "$ref": "#/$defs/rating"
+        },
+        "selection_readability": {
+          "$ref": "#/$defs/rating"
+        },
+        "state_separation": {
+          "$ref": "#/$defs/rating"
+        },
+        "semantic_familiarity": {
+          "$ref": "#/$defs/rating"
+        },
+        "environment_fit": {
+          "$ref": "#/$defs/rating"
+        },
+        "glare": {
+          "$ref": "#/$defs/rating"
+        },
+        "muddy_text": {
+          "$ref": "#/$defs/rating"
+        },
+        "annoyance": {
+          "$ref": "#/$defs/rating"
+        },
+        "discomfort": {
+          "$ref": "#/$defs/rating"
+        },
+        "overall_preference": {
+          "$ref": "#/$defs/rating"
+        },
+        "delay_minutes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
       }
     },
     "roleObservation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["prominence", "notes"],
+      "required": [
+        "prominence",
+        "notes"
+      ],
       "properties": {
-        "prominence": { "enum": ["too_faint", "appropriate", "too_prominent", "mixed", "not_checked", null] },
-        "notes": { "type": ["string", "null"] }
+        "prominence": {
+          "enum": [
+            "too_faint",
+            "appropriate",
+            "too_prominent",
+            "mixed",
+            "not_checked",
+            null
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "criticalStateCheck": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["state", "view", "found", "distinguishable_without_hue", "text_readable", "redundant_channel", "notes"],
+      "required": [
+        "state",
+        "view",
+        "found",
+        "distinguishable_without_hue",
+        "text_readable",
+        "redundant_channel",
+        "notes"
+      ],
       "properties": {
-        "state": { "enum": ["error", "warning", "information", "success", "selection", "focus", "search", "breakpoint", "current_execution", "diff_added", "diff_removed"] },
-        "view": { "enum": ["normal", "grayscale", "protan", "deutan", "tritan"] },
-        "found": { "type": ["boolean", "null"] },
-        "distinguishable_without_hue": { "type": ["boolean", "null"] },
-        "text_readable": { "type": ["boolean", "null"] },
-        "redundant_channel": { "type": ["string", "null"] },
-        "notes": { "type": ["string", "null"] }
+        "state": {
+          "enum": [
+            "error",
+            "warning",
+            "information",
+            "success",
+            "selection",
+            "focus",
+            "search",
+            "breakpoint",
+            "current_execution",
+            "diff_added",
+            "diff_removed"
+          ]
+        },
+        "view": {
+          "enum": [
+            "normal",
+            "grayscale",
+            "protan",
+            "deutan",
+            "tritan"
+          ]
+        },
+        "found": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "distinguishable_without_hue": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "text_readable": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "redundant_channel": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "semanticRecallTrial": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["token_id", "expected_role", "answer", "result", "confidence", "response_ms", "after_switch"],
+      "required": [
+        "token_id",
+        "expected_role",
+        "answer",
+        "result",
+        "confidence",
+        "response_ms",
+        "after_switch"
+      ],
       "properties": {
-        "token_id": { "type": ["string", "null"] },
-        "expected_role": { "type": ["string", "null"] },
-        "answer": { "type": ["string", "null"] },
-        "result": { "enum": ["correct", "incorrect", "unsure", "not_scored", null] },
-        "confidence": { "$ref": "#/$defs/rating" },
-        "response_ms": { "type": ["number", "null"], "minimum": 0 },
-        "after_switch": { "type": ["boolean", "null"] }
+        "token_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expected_role": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "answer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "result": {
+          "enum": [
+            "correct",
+            "incorrect",
+            "unsure",
+            "not_scored",
+            null
+          ]
+        },
+        "confidence": {
+          "$ref": "#/$defs/rating"
+        },
+        "response_ms": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "after_switch": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "timedRTrial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "list_id",
+        "family",
+        "variant",
+        "block_position",
+        "response_ms",
+        "correct",
+        "error_kind"
+      ],
+      "properties": {
+        "item_id": {
+          "type": [
+            "string",
+            null
+          ]
+        },
+        "list_id": {
+          "enum": [
+            "L1",
+            "L2",
+            "L3",
+            "L4",
+            "L5",
+            "L6",
+            "L7",
+            "L8",
+            "L9",
+            null
+          ]
+        },
+        "family": {
+          "enum": [
+            "restrained",
+            "balanced",
+            "expressive",
+            null
+          ]
+        },
+        "variant": {
+          "enum": [
+            "day",
+            "evening",
+            "night",
+            null
+          ]
+        },
+        "block_position": {
+          "enum": [
+            1,
+            2,
+            3,
+            null
+          ]
+        },
+        "response_ms": {
+          "type": [
+            "number",
+            null
+          ],
+          "minimum": 0
+        },
+        "correct": {
+          "enum": [
+            true,
+            false,
+            "partial",
+            null
+          ]
+        },
+        "error_kind": {
+          "enum": [
+            "scan",
+            "comprehension",
+            "seeded_error",
+            "none",
+            null
+          ]
+        }
       }
     }
   }

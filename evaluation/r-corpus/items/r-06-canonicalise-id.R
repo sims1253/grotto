@@ -40,4 +40,4 @@ pair_label <- function(a, b, width = 2) {
 #   canon_id(c(" a-1 ", "A_01", "s3#a2"))
 #   #> [1] "A1"  "A01" "S3A2"
 #   pair_label("a1", "B14")
-#   #> [1] "A01/B14"
+#   #> [1] "a01/B14"

@@ -124,9 +124,11 @@ items:
       broken: '  inside <- !key %in% labels'
       why: >-
         membership inverted: every in-grid date is reported as outside and
-        every out-of-grid date is bucketed. counts[absent_name] <- 1 does not
-        crash: it grows the vector with an NA-labelled entry, so the grid
-        silently ends up with NA-named counts and wrong totals.
+        every out-of-grid date is bucketed. counts[absent] <- counts[absent] + 1
+        does not crash: character subassignment on the named vector extends it
+        with an NA-valued entry whose NAME is the absent month string (e.g.
+        an element named "2025-08" holding NA, not an NA name), so out-of-grid
+        months silently acquire NA counts and the totals are wrong.
 
   r-08-dominant-direction:
     scan: >
@@ -152,11 +154,13 @@ items:
       guarantee is the on.exit hook (fires on any exit, including error).
     comprehension: >
       pos is 1 (below the point) when the peak is above the mean line, else
-      3 (above the point), keeping the label off the curve.
+      3 (above the point).
     seeded_error:
       line: 29
       original: '       pos = ifelse(y[i_peak] > mean(y, na.rm = TRUE), 1, 3), cex = 0.8)'
       broken: '       pos = ifelse(y[i_peak] > mean(y, na.rm = TRUE), 3, 1), cex = 0.8)'
       why: >-
-        label positions swapped; the peak annotation now sits on the curve
-        exactly when the peak is above the mean.
+        label sides swapped (pos 1 <-> 3): the annotation lands on the
+        opposite side of the point from the original rule -- above the peak
+        when it exceeds the mean, below otherwise, where the curve's arms and
+        the dashed mean line sit.

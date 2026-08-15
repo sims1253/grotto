@@ -172,14 +172,13 @@ def analyze_screenshot(
             roles = None
     # declaration order from L1 (neutral hierarchy first) for tie-breaks
     order = {r.name: i for i, r in enumerate(roles)} if roles else {}
-    roles_sorted = sorted(palette.colors)
-    roles = roles_sorted
+    role_names = sorted(palette.colors)
     # Pixel measurement cannot distinguish roles that share one colour (e.g.
     # the Restrained strategy collapses comment/parameter/property).  All
     # accounting is therefore per UNIQUE colour, with the sharing made
     # explicit instead of being silently double-counted.
     unique_hex = sorted(set(palette.colors.values()))
-    hex_roles = {hx: [r for r in roles if palette[r] == hx] for hx in unique_hex}
+    hex_roles = {hx: [r for r in role_names if palette[r] == hx] for hx in unique_hex}
     hex8 = {hx: tuple(int(hx[i:i + 2], 16) for i in (1, 3, 5)) for hx in unique_hex}
     hex_oklab = {hx: _oklab_from_u8(*v) for hx, v in hex8.items()}
 
@@ -244,7 +243,7 @@ def analyze_screenshot(
 
     classified_total = sum(classified.values())
     by_category = {c: 0 for c in CATEGORIES}
-    nearest_by_role = {r: 0 for r in roles}
+    nearest_by_role = {r: 0 for r in role_names}
     shared = {}
     for hx, px in nearest.items():
         first = _representative(hex_roles[hx], order)
@@ -286,7 +285,7 @@ def analyze_screenshot(
             "sha256": hashlib.sha256(Path(palette_path).read_bytes()).hexdigest(),
             "name": palette.name,
             "variant": palette.variant,
-            "roles": len(roles),
+            "roles": len(role_names),
         },
         "classification": {
             "threshold_de_ok": threshold,
@@ -305,7 +304,7 @@ def analyze_screenshot(
             "classified_fraction": round(classified_total / total, 6),
             "unclassified_fraction": round(unclassified / total, 6),
             "nearest_by_role": {
-                r: {"fraction": round(nearest_by_role[r] / total, 6)} for r in roles
+                r: {"fraction": round(nearest_by_role[r] / total, 6)} for r in role_names
             },
             "nearest_by_category": {
                 c: {"fraction": round(v / total, 6)} for c, v in by_category.items()

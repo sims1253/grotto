@@ -343,3 +343,9 @@ semantic:
   - {selector: operator,               role: operator}
   - {selector: "*.deprecated",         font_style: strikethrough}
   - {selector: "*.documentation",      role: comment}
+  # fontStyle REPLACES all styles on a token, and the "*.deprecated" rule
+  # matches deprecated parameters as specifically as the parameter rule --
+  # without this explicit combination the parameter italic (the declared
+  # non-hue channel for parameter-ness) silently disappears exactly where
+  # both apply.
+  - {selector: "parameter.deprecated", font_style: "italic strikethrough"}

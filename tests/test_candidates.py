@@ -199,7 +199,7 @@ def test_category_caps_affect_the_solve(families, spec):
     t_err = families["a-restrained"].trace("night", "error")
     assert t_err.chroma_losses["category"] == "diagnostics"
     assert t_err.chroma_losses["ceiling"] == pytest.approx(b.category_caps["diagnostics"])
-    # a syntax role is ordinary -> A's ordinary cap (.120)
+    # a syntax role is ordinary -> A's ordinary cap (.075)
     t_kw = families["a-restrained"].trace("night", "keyword")
     assert t_kw.chroma_losses["category"] == "ordinary"
     assert t_kw.chroma_losses["ceiling"] == pytest.approx(b.category_caps["ordinary"])
