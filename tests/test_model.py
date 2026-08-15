@@ -12,7 +12,13 @@ from pathlib import Path
 
 import pytest
 
-from grotto.color import gamut_status, hex_to_oklch, max_chroma
+from grotto.color import (
+    gamut_map,
+    gamut_status,
+    hex_to_oklch,
+    max_chroma,
+    oklch_to_hex,
+)
 from grotto.contrast import wcag_contrast
 from grotto.environments import (
     EnvironmentBackground,
@@ -31,9 +37,11 @@ from grotto.model import (
     TransformError,
     _contrast_block,
     _evaluate_legibility,
+    _solve_contrast_role,
     adapt_hue,
     build_family,
     chroma_components,
+    circular_drift,
     signed_shortest_arc,
     validate_binding,
 )
@@ -95,6 +103,27 @@ def test_unknown_role_in_adjustment_is_rejected(spec):
     b = binding(adjustments={"nope": RoleAdjustment("nope", L=0.01)})
     with pytest.raises(BindingError, match="unknown roles"):
         validate_binding(b, spec)
+
+
+def _anchors_with_violet_hue(h: float) -> CandidateBinding:
+    anchors = {f: FamilyAnchor(f, h if f == "violet" else hue, 1.0)
+               for f, hue in FAMILY_HUES.items()}
+    return CandidateBinding("x", 1.0, anchors)
+
+
+def test_anchor_hue_outside_circle_is_rejected(spec):
+    """h=-10 and h=360 are malformed bindings.  The old nested modulo fallback
+    silently accepted both (-10 as 350, 360 as 0) while the error message
+    claimed "not in [0, 360)".  Anchors must arrive canonical."""
+    import re
+    for bad in (-10.0, 360.0):
+        with pytest.raises(BindingError, match=re.escape("not in [0, 360)")):
+            validate_binding(_anchors_with_violet_hue(bad), spec)
+
+
+def test_anchor_hue_circle_bounds_accept_zero_and_just_under_360(spec):
+    for good in (0.0, 359.9):
+        validate_binding(_anchors_with_violet_hue(good), spec)  # no raise
 
 
 def test_canonical_binding_is_deterministic_and_sorted(spec):
@@ -259,6 +288,51 @@ def test_foreground_ceiling_overridden_when_wcag_requires_it(spec):
         assert wcag_contrast(hx, fb2.variants["night"].palette["bg"]) >= 4.5 - 1e-6
 
 
+def test_night_ceiling_wins_between_wcag_floor_and_apca_preference(spec):
+    """Isolated night_ceiling branch of the lexicographic solve (priority 3).
+
+    Construct a synthetic night environment whose foreground ceiling sits
+    strictly BETWEEN the WCAG-solved floor lightness and the APCA-solved
+    preference: the ceiling must cap the preference (winning constraint
+    night_ceiling, L_final == ceiling) WITHOUT becoming the WCAG-override
+    branch, and the body-text floor must still hold at the capped L.
+    """
+    env = spec.environments
+    night = env.environments["night"]
+    bg = night.background
+    # the exact reference the transform solves against (model._build_variant)
+    bg_hex = oklch_to_hex(gamut_map((bg.L, bg.C, bg.h), "srgb")[0])
+    fg = spec.roles.roles["fg"]
+    h, _ = adapt_hue(spec, "night", fg, FAMILY_HUES[fg.family], None)
+
+    # probe solve with the ceiling removed -> L_pref is the pure WCAG/APCA
+    # resolution, so the test self-calibrates instead of hard-coding an L
+    open_env = replace(env, environments={
+        **env.environments, "night": replace(night, foreground_ceiling=None)})
+    _, probe = _solve_contrast_role(
+        fg, h, bg_hex, bg.L, "night", replace(spec, environments=open_env),
+        binding(),
+    )
+    L_wcag, L_pref = probe["L_wcag"], probe["L_pref"]
+    assert L_pref > L_wcag + 0.1, "no headroom to place a ceiling between them"
+    ceiling = (L_wcag + L_pref) / 2.0
+    assert L_wcag <= ceiling < L_pref  # ceiling feasible for WCAG, under APCA pref
+
+    capped_env = replace(env, environments={
+        **env.environments, "night": replace(night, foreground_ceiling=ceiling)})
+    fb = build_family(binding(), replace(spec, environments=capped_env))
+    t = fb.trace("night", "fg")
+    assert t.winning_constraint == "night_ceiling"
+    assert t.contrast["solve"]["winning_constraint"] == "night_ceiling"
+    # the ceiling won over the preference: L_final is exactly the ceiling
+    assert t.requested[0] == pytest.approx(ceiling, abs=1e-6)
+    # ... and it is NOT the WCAG-override branch (that would be wcag_floor)
+    assert "foreground_ceiling_overridden" not in t.conflicts
+    # the WCAG floor still holds at the ceiling-capped lightness
+    assert wcag_contrast(fb.variants["night"].palette["fg"],
+                         fb.variants["night"].palette["bg"]) >= 4.5 - 1e-6
+
+
 def test_configured_body_text_floor_is_not_hard_coded(spec):
     floors = {
         **spec.environments.accessibility_floors,
@@ -300,8 +374,9 @@ def test_transform_error_only_for_hard_constraints(spec):
     fb = build_family(binding(), spec)
     # a default-scale calibration binding produces many distance issues ...
     assert any("must_distinguish" in i for i in fb.issues)
-    # ... but the build still succeeds (ok may be True; issues are informational)
-    assert fb.ok in (True, False)
+    # ... but the build still succeeds and the floors hold: issues are
+    # informational, so ok must be True (WCAG is a hard gate, distance is not)
+    assert fb.ok is True
 
 
 # ===========================================================================
@@ -349,6 +424,64 @@ def test_cap_loss_bounded_by_absolute_ceiling(spec):
         t = fb.trace("night", r.name)
         # capped chroma never exceeds the ceiling
         assert t.chroma_losses["capped"] <= ceiling + 1e-9
+
+
+# ===========================================================================
+# 8b. chroma chain factorization (direct unit)
+# ===========================================================================
+
+
+def test_chroma_components_factorisation_identity(spec):
+    """requested == max_chroma * class_fraction * candidate * family * role *
+    environment_gain * night_term, verified from the returned dict alone with
+    every factor non-unit so the identity cannot pass vacuously."""
+    b = binding(
+        candidate_scale=1.1,
+        family_scales={"violet": 0.9},
+        role_scales={"keyword": 1.2},
+    )
+    role = spec.roles.roles["keyword"]  # violet, medium class, night_adaptation 0.8
+    env_name, L, h = "night", 0.72, 300.0
+    comps = chroma_components(spec, b, role, L, h, env_name)
+    env = spec.environments.environments[env_name]
+
+    assert comps["max_chroma"] == pytest.approx(max_chroma(L, h, "srgb"))
+    assert comps["class_fraction"] == pytest.approx(
+        spec.environments.chroma_classes["medium"])
+    assert comps["class_fraction_source"] == "environment"  # no candidate classes
+    assert comps["candidate_scale"] == pytest.approx(1.1)
+    assert comps["family_scale"] == pytest.approx(0.9)
+    assert comps["role_scale"] == pytest.approx(1.2)
+    assert comps["environment_gain"] == pytest.approx(env.chroma_gain)
+    # night term identity straight from the environment + role
+    assert comps["night_term"] == pytest.approx(
+        1.0 - env.chroma_attenuation * role.night_adaptation)
+
+    product = (
+        comps["max_chroma"] * comps["class_fraction"] * comps["candidate_scale"]
+        * comps["family_scale"] * comps["role_scale"] * comps["environment_gain"]
+        * comps["night_term"]
+    )
+    assert comps["requested"] == pytest.approx(product, rel=1e-12)
+
+
+def test_chroma_components_candidate_classes_override_with_fallback(spec):
+    """Phase 5 override path: a binding with chroma_classes set replaces the
+    shared fractions for the classes it declares; UNDECLARED classes fall back
+    to the environment value while the source flag still reports 'candidate'
+    for the whole binding."""
+    b = binding(chroma_classes={"medium": 0.33})
+    keyword = spec.roles.roles["keyword"]  # chroma_class medium
+    fg = spec.roles.roles["fg"]            # chroma_class trace
+
+    med = chroma_components(spec, b, keyword, 0.72, 300.0, "night")
+    assert med["class_fraction_source"] == "candidate"
+    assert med["class_fraction"] == pytest.approx(0.33)  # declared -> replaced
+
+    trace_cls = chroma_components(spec, b, fg, 0.6, 0.0, "night")
+    assert trace_cls["class_fraction_source"] == "candidate"
+    assert trace_cls["class_fraction"] == pytest.approx(
+        spec.environments.chroma_classes["trace"])  # undeclared -> environment
 
 
 # ===========================================================================
@@ -413,6 +546,26 @@ def test_hue_drift_is_bounded_by_cap_times_adaptation_times_weight(spec):
         assert drift <= bound, f"{role} drift {drift:.3f} > bound {bound:.3f}"
 
 
+def test_signed_shortest_arc_wrap_sign_and_drift_symmetry():
+    """Direct unit test for the circular-hue primitive the transform relies on:
+    wrap behaviour at 0/360, the [-180, 180) sign convention, and agreement
+    with circular_drift (its absolute value)."""
+    # wrap: 350 -> 10 crosses 0/360 and is +20, not -340
+    assert signed_shortest_arc(350.0, 10.0) == pytest.approx(20.0)
+    assert signed_shortest_arc(10.0, 350.0) == pytest.approx(-20.0)
+    # sign convention: positive = b clockwise from a (increasing hue)
+    assert signed_shortest_arc(100.0, 110.0) == pytest.approx(10.0)
+    assert signed_shortest_arc(110.0, 100.0) == pytest.approx(-10.0)
+    # exactly antipodal folds to -180 (documented in the model docstring);
+    # equivalent spellings across the wrap are zero apart
+    assert signed_shortest_arc(0.0, 180.0) == pytest.approx(-180.0)
+    assert signed_shortest_arc(0.0, 360.0) == pytest.approx(0.0)
+    assert signed_shortest_arc(359.9, 0.1) == pytest.approx(0.2)
+    # circular_drift is the absolute value, everywhere on the circle
+    for a, b in ((350.0, 10.0), (100.0, 240.0), (0.0, 180.0), (300.0, 70.0)):
+        assert circular_drift(a, b) == pytest.approx(abs(signed_shortest_arc(a, b)))
+
+
 def test_adapt_hue_unit_function():
     """adapt_hue direction = sign of shortest arc to the warm anchor."""
     h, info = adapt_hue(_dummy_env_spec_for_hue(), "night",
@@ -471,10 +624,32 @@ def test_adjustment_exceeding_bounds_is_rejected(spec):
         validate_binding(b, spec)
 
 
-def test_adjustment_is_clamped_not_extrapolated(spec):
+def test_adjustment_bound_violation_raises_binding_error(spec):
+    """Out-of-bounds adjustments are a MALFORMED binding (BindingError at
+    validation), never clamped or extrapolated by the transform."""
     b = binding(adjustments={"keyword": RoleAdjustment("keyword", h=999.0)})
-    with pytest.raises(BindingError):
+    with pytest.raises(BindingError, match="exceeds bound"):
         validate_binding(b, spec)
+
+
+def test_adjusted_role_max_chroma_is_evaluated_at_final_coordinates(spec):
+    """A lightness adjustment moves a role's solved L AFTER the chroma chain
+    was computed; the trace's max_chroma_at_L must be the gamut ceiling at the
+    FINAL (post-adjustment) coordinates -- it is the denominator of the
+    normalized C/max_chroma stability check, and a pre-adjustment value is a
+    stale denominator.  The swap is recorded, not silent."""
+    b = binding(adjustments={"fg": RoleAdjustment("fg", L=-0.03, rationale="probe")})
+    fb = build_family(b, spec)
+    for v in ("day", "evening", "night"):
+        t = fb.trace(v, "fg")
+        assert t.adjustments_applied["L"] == pytest.approx(-0.03, abs=1e-6), (
+            f"{v}: nudge rejected -- test no longer probes an applied adjustment"
+        )
+        L_final, _, h_final = t.requested
+        assert t.max_chroma_at_L == pytest.approx(
+            max_chroma(L_final, h_final, "srgb"), abs=1e-9), v
+        assert t.chroma_losses["max_chroma_reevaluated"] is True, v
+        assert any("re-evaluated" in d for d in t.derivation), v
 
 
 # ===========================================================================
@@ -537,12 +712,13 @@ def test_legibility_covers_all_co_occurring_surfaces(spec):
 
 
 def test_build_records_legibility_issues_when_present(spec):
-    # boost selection chroma/lightness via a surface step override is not needed;
-    # the default systematic output surfaces some legibility tensions.
+    # the default systematic output surfaces some legibility tensions: an ink
+    # role over a light surface wash (selection / search / debug) drops below
+    # the body-text floor, and the evaluator must say so with a WCAG value.
     fb = build_family(binding(), spec)
-    legibility = [i for i in fb.issues if "ink-on-surface" in i or "over " in i]
-    # the evaluator runs regardless; at minimum it considers the pairs
-    assert isinstance(legibility, list)
+    legibility = [i for i in fb.issues if "WCAG" in i and "over " in i]
+    assert legibility, "expected at least one ink-on-surface legibility warning"
+    assert all("ink-on-surface legibility" in i for i in legibility)
 
 
 # ===========================================================================

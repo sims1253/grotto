@@ -11,6 +11,13 @@ role variety (keywords, strings, numbers, functions, types, comments,
 operators, punctuation, builtins, tags, etc.).  Diagnostic roles
 (error/warning/...) are not natural inside source specimens, so the renderer
 shows them in a dedicated diagnostics panel instead of faking them here.
+
+Honesty note on Markdown: the ``**`` emphasis markers are labelled ``keyword``
+and inline code spans ``function`` as a RENDERER-LEVEL choice to make structure
+visible in the HTML reports; the VS Code mapping styles no markup.bold /
+markup.inline.raw equivalents, so the real editor renders those tokens as
+neutral ``fg``.  Do not treat the Markdown specimen row as a prediction of
+in-editor Markdown appearance.
 """
 
 from __future__ import annotations
@@ -65,13 +72,13 @@ PYTHON = _spec(
         [],
         [("constant", "DEFAULT_DECAY"), ("operator", " = "), ("number", "0.92")],
         [],
-        [("decorator", "@lru_cache"), ("punctuation", "("), ("builtin", "maxsize"), ("operator", "="), ("number", "128"), ("punctuation", ")")],
+        [("decorator", "@lru_cache"), ("punctuation", "("), ("parameter", "maxsize"), ("operator", "="), ("number", "128"), ("punctuation", ")")],
         [("keyword", "def "), ("function", "rolling_mean"), ("punctuation", "("), ("parameter", "values"), ("punctuation", ": "), ("builtin", "list"), ("punctuation", "["), ("type", "float"), ("punctuation", "], "), ("parameter", "decay"), ("punctuation", ": "), ("type", "float"), ("fg", " = "), ("constant", "DEFAULT_DECAY"), ("punctuation", ")"), ("fg", " -> "), ("type", "float"), ("punctuation", ":")],
         [("docstring", '    """Return the exponentially-smoothed mean of `values`."""')],
-        [("fg", "    "), ("builtin", "acc"), ("operator", " = "), ("number", "0.0")],
+        [("fg", "    "), ("fg", "acc"), ("operator", " = "), ("number", "0.0")],
         [("fg", "    "), ("keyword", "for "), ("parameter", "x"), ("fg", " "), ("keyword", "in "), ("parameter", "values"), ("punctuation", ":")],
-        [("fg", "        "), ("builtin", "acc"), ("operator", " = "), ("parameter", "decay"), ("operator", " * "), ("builtin", "acc"), ("operator", " + "), ("punctuation", "("), ("number", "1"), ("operator", " - "), ("parameter", "decay"), ("punctuation", ")"), ("operator", " * "), ("parameter", "x")],
-        [("fg", "    "), ("keyword", "return "), ("builtin", "acc")],
+        [("fg", "        "), ("fg", "acc"), ("operator", " = "), ("parameter", "decay"), ("operator", " * "), ("fg", "acc"), ("operator", " + "), ("punctuation", "("), ("number", "1"), ("operator", " - "), ("parameter", "decay"), ("punctuation", ")"), ("operator", " * "), ("parameter", "x")],
+        [("fg", "    "), ("keyword", "return "), ("fg", "acc")],
     ],
 )
 
@@ -89,10 +96,10 @@ RUST = _spec(
         [],
         [("keyword", "const "), ("constant", "DEFAULT_DECAY"), ("punctuation", ": "), ("type", "f64"), ("fg", " = "), ("number", "0.92"), ("punctuation", ";")],
         [],
-        [("decorator", "#[derive(Debug, Clone)]")],
+        [("decorator", "#[inline]")],
+        [("docstring", "/// Exponentially-smoothed mean of a slice.")],
         [("keyword", "pub "), ("keyword", "fn "), ("function", "rolling_mean"), ("punctuation", "("), ("parameter", "values"), ("punctuation", ": &["), ("type", "f64"), ("punctuation", "], "), ("parameter", "decay"), ("punctuation", ": "), ("type", "f64"), ("punctuation", ")"), ("fg", " -> "), ("type", "f64"), ("fg", " {")],
-        [("docstring", "    /// Exponentially-smoothed mean of a slice.")],
-        [("fg", "    "), ("keyword", "let "), ("builtin", "mut"), ("fg", " "), ("fg", "acc"), ("punctuation", ": "), ("type", "f64"), ("fg", " = "), ("number", "0.0"), ("punctuation", ";")],
+        [("fg", "    "), ("keyword", "let "), ("keyword", "mut"), ("fg", " "), ("fg", "acc"), ("punctuation", ": "), ("type", "f64"), ("fg", " = "), ("number", "0.0"), ("punctuation", ";")],
         [("fg", "    "), ("keyword", "for "), ("operator", "&"), ("parameter", "x"), ("fg", " "), ("keyword", "in "), ("parameter", "values"), ("fg", " {")],
         [("fg", "        "), ("fg", "acc"), ("fg", " = "), ("parameter", "decay"), ("operator", " * "), ("fg", "acc"), ("operator", " + "), ("punctuation", "("), ("number", "1.0"), ("operator", " - "), ("parameter", "decay"), ("punctuation", ")"), ("operator", " * "), ("parameter", "x"), ("punctuation", ";")],
         [("fg", "    "), ("punctuation", "}")],
@@ -231,18 +238,18 @@ R = _spec(
         [("comment", "# rolling.R -- exponential moving average")],
         [("builtin", "library"), ("punctuation", "("), ("namespace", "dplyr"), ("punctuation", ")")],
         [],
-        [("constant", "DEFAULT_DECAY"), ("fg", " <- "), ("number", "0.92")],
+        [("constant", "DEFAULT_DECAY"), ("operator", " <- "), ("number", "0.92")],
         [],
-        [("function", "rolling_mean"), ("fg", " <- "), ("keyword", "function"), ("punctuation", "("), ("parameter", "values"), ("punctuation", ", "), ("parameter", "decay"), ("fg", " = "), ("constant", "DEFAULT_DECAY"), ("punctuation", ") {")],
+        [("function", "rolling_mean"), ("operator", " <- "), ("keyword", "function"), ("punctuation", "("), ("parameter", "values"), ("punctuation", ", "), ("parameter", "decay"), ("operator", " = "), ("constant", "DEFAULT_DECAY"), ("punctuation", ") {")],
         [("docstring", "  #' Exponentially-smoothed mean of `values`.")],
-        [("fg", "  "), ("fg", "acc"), ("fg", " <- "), ("number", "0")],
+        [("fg", "  "), ("fg", "acc"), ("operator", " <- "), ("number", "0")],
         [("fg", "  "), ("keyword", "for "), ("punctuation", "("), ("parameter", "x"), ("fg", " "), ("keyword", "in"), ("fg", " "), ("parameter", "values"), ("punctuation", ") {")],
-        [("fg", "    "), ("fg", "acc"), ("fg", " <- "), ("parameter", "decay"), ("fg", " * "), ("fg", "acc"), ("fg", " + ("), ("number", "1"), ("fg", " - "), ("parameter", "decay"), ("fg", ") * "), ("parameter", "x")],
+        [("fg", "    "), ("fg", "acc"), ("operator", " <- "), ("parameter", "decay"), ("fg", " * "), ("fg", "acc"), ("fg", " + ("), ("number", "1"), ("fg", " - "), ("parameter", "decay"), ("fg", ") * "), ("parameter", "x")],
         [("fg", "  "), ("punctuation", "}")],
         [("fg", "  "), ("keyword", "return"), ("punctuation", "("), ("fg", "acc"), ("punctuation", ")")],
         [("punctuation", "}")],
         [],
-        [("fg", "result"), ("fg", " <- "), ("function", "rolling_mean"), ("punctuation", "("), ("builtin", "c"), ("punctuation", "("), ("number", "1"), ("punctuation", ", "), ("number", "2"), ("punctuation", ", "), ("number", "3"), ("punctuation", "))")],
+        [("fg", "result"), ("operator", " <- "), ("function", "rolling_mean"), ("punctuation", "("), ("builtin", "c"), ("punctuation", "("), ("number", "1"), ("punctuation", ", "), ("number", "2"), ("punctuation", ", "), ("number", "3"), ("punctuation", "))")],
         [("builtin", "print"), ("punctuation", "("), ("fg", "result"), ("punctuation", ")")],
     ],
 )

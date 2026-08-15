@@ -118,6 +118,15 @@ SURFACE_STEPS = {
 #: tighter than 1e-4 is false precision.
 SOLVE_TOL = 1e-4
 
+#: Noise tolerance for the normalized-chroma ordering check.  A sign flip
+#: where either side is smaller than this (in units of realized C/max_chroma)
+#: is a NEAR-TIE, not a real inversion: quantisation to 8-bit hex moves
+#: realized chroma by more than this in places.  Near-tie flips are still
+#: reported (``normalized_chroma_near_tie_flips``); they just do not fail the
+#: stability gate.  Nothing is hidden -- only the pass/fail decision ignores
+#: sub-threshold differences.
+CHROMA_ORDER_TIE_EPS = 0.02
+
 #: Co-occurring surfaces an ink role may land on; the transform evaluates ink
 #: legibility over each of these regardless of the ink's primary reference,
 #: because text can appear on any of them (DESIGN.md / roles.yaml notes).
@@ -365,7 +374,12 @@ def _effective_role(role: Role, binding: CandidateBinding) -> Role:
 
 
 def signed_shortest_arc(a: float, b: float) -> float:
-    """Signed shortest circular difference a->b, in (-180, 180]."""
+    """Signed shortest circular difference a->b, in [-180, 180).
+
+    Positive means b sits clockwise from a (increasing hue).  Exactly
+    antipodal inputs resolve to -180 (the modulo folds the +180 wrap back);
+    the magnitude is 180 either way, so only the sign convention is affected.
+    """
     return ((b - a + 180.0) % 360.0) - 180.0
 
 
@@ -408,9 +422,12 @@ def validate_binding(binding: CandidateBinding, spec: ModelSpec) -> None:
     for fam, a in sorted(binding.anchors.items()):
         if not (lo < a.family_scale <= hi):
             raise BindingError(f"anchor {fam}: family_scale {a.family_scale} not in ({lo}, {hi}]")
-        if not (0.0 <= a.h < 360.0 or a.h == 0.0):
-            if not (0.0 <= a.h % 360.0 < 360.0):
-                raise BindingError(f"anchor {fam}: hue {a.h} not in [0, 360)")
+        # Anchors must be canonical [0, 360) degrees.  No modulo fallback: it
+        # silently accepted -10 as 350 (and 360 as 0) while the error message
+        # claimed [0, 360) -- an out-of-range hue is a malformed binding, so
+        # the caller normalises before authoring, not the validator.
+        if not (0.0 <= a.h < 360.0):
+            raise BindingError(f"anchor {fam}: hue {a.h} not in [0, 360)")
 
     bad_roles = sorted(
         set(binding.role_scales) | set(binding.adjustments) | set(binding.role_overrides)
@@ -502,7 +519,9 @@ class RoleTrace:
     final_hex: str
     max_chroma_at_L: float
     chroma_losses: dict  # {"requested", "capped", "realized", "cap_loss",
-    #                      "gamut_loss", "total_loss", "realized_fraction"}
+    #                      "gamut_loss", "total_loss", "realized_fraction",
+    #                      "category", "ceiling", "class_fraction_source",
+    #                      optional "max_chroma_reevaluated"}
     adjustments_applied: dict  # {"L", "C", "h"} actually applied (bounded)
     contrast: dict  # contrast vs reference + co-occurring surfaces
     conflicts: list  # e.g. "wcag_apca_conflict", "foreground_ceiling_overridden"
@@ -898,6 +917,13 @@ def _trace_common(
     binding: CandidateBinding,
 ) -> dict:
     abs_ceiling = effective_ceiling(role, binding, spec)
+    # ``components`` was computed at the role's PRE-adjustment coordinates; an
+    # adjustment can move L (and h), and the realized chroma is gamut-mapped at
+    # the FINAL ones.  Re-evaluate the ceiling here so max_chroma_at_L -- the
+    # denominator of the normalized C/max_chroma stability check -- describes
+    # the colour actually emitted, not the one the solve started from.
+    mc_final = max_chroma(L, h, "srgb")
+    reevaluated = abs(mc_final - components["max_chroma"]) > 1e-6
     out = _realize_chroma(L, h, components, abs_ceiling)
     losses = {
         "requested": out["requested_C"],
@@ -912,8 +938,13 @@ def _trace_common(
         "ceiling": abs_ceiling,
         "class_fraction_source": components.get("class_fraction_source", "environment"),
     }
+    if reevaluated:
+        # An adjustment moved the coordinates enough to change the gamut
+        # ceiling; the fact is recorded instead of silently swapping the value.
+        losses["max_chroma_reevaluated"] = True
     return {"L": L, "h": h, "components": components, "losses": losses,
-            "capped": out["capped"], "realized": out["realized"]}
+            "capped": out["capped"], "realized": out["realized"],
+            "max_chroma_at_L": mc_final, "max_chroma_reevaluated": reevaluated}
 
 
 def _build_canvas(role, env, env_name):
@@ -1181,6 +1212,12 @@ def _build_variant(
                 f"adjustment applied L{applied['L']:+.4f} C{applied['C']:+.4f} "
                 f"h{applied['h']:+.3f}"
             )
+            if common["max_chroma_reevaluated"]:
+                derivation.append(
+                    "max_chroma re-evaluated at adjusted coordinates: "
+                    f"{components['max_chroma']:.4f} -> "
+                    f"{common['max_chroma_at_L']:.4f}"
+                )
         elif adjustment_rejected:
             derivation.append("adjustment rejected: combined nudge breached WCAG floor")
 
@@ -1195,7 +1232,9 @@ def _build_variant(
             role=r.name, paint=r.paint, variant=env_name, family=r.family,
             base_oklch=base, requested=(L, components["requested"], h),
             capped=common["capped"], realized=realized, final_hex=hx,
-            max_chroma_at_L=components["max_chroma"],
+            # The gamut ceiling at the FINAL (post-adjustment) coordinates --
+            # components["max_chroma"] is stale once an adjustment moves L/h.
+            max_chroma_at_L=common["max_chroma_at_L"],
             chroma_losses=losses, adjustments_applied=applied, contrast=contrast,
             conflicts=conflicts, winning_constraint=winning, derivation=derivation,
             issues=role_issues,
@@ -1457,16 +1496,27 @@ def family_stability_build(variants: dict[str, VariantBuild], spec: ModelSpec) -
 
     chromatic = [name for name in present_roles if is_chromatic(name)]
 
-    # (1) normalized C/max_chroma ordering preservation
+    # (1) normalized C/max_chroma ordering preservation.  A sign flip where
+    # BOTH sides are within CHROMA_ORDER_TIE_EPS is a near-tie, not a real
+    # inversion: 8-bit quantisation alone moves realized chroma by more than
+    # that in places, and calling it an inversion cries wolf.  Near-tie flips
+    # are still REPORTED (below), so the data is not hidden -- only the
+    # pass/fail decision ignores sub-threshold differences.
     nc_inversions = []
+    nc_near_ties = []
     for a, b in combinations(chromatic, 2):
         for v1, v2 in combinations(var_names, 2):
             da = normC[(a, v1)] - normC[(b, v1)]
             db = normC[(a, v2)] - normC[(b, v2)]
-            if abs(da) > 1e-3 and abs(db) > 1e-3 and (da > 0) != (db > 0):
-                nc_inversions.append(
-                    {"roles": [a, b], "variants": [v1, v2],
-                     "d1": round(da, 4), "d2": round(db, 4)})
+            if abs(da) <= 1e-3 or abs(db) <= 1e-3:
+                continue  # flat on at least one side: no ordering declared
+            if (da > 0) != (db > 0):
+                entry = {"roles": [a, b], "variants": [v1, v2],
+                         "d1": round(da, 4), "d2": round(db, 4)}
+                if abs(da) < CHROMA_ORDER_TIE_EPS or abs(db) < CHROMA_ORDER_TIE_EPS:
+                    nc_near_ties.append(entry)
+                else:
+                    nc_inversions.append(entry)
 
     # (2) cyclic family hue sequence preservation (not pairwise signed)
     families_used = sorted({role_by_name[n].family for n in chromatic})
@@ -1490,7 +1540,11 @@ def family_stability_build(variants: dict[str, VariantBuild], spec: ModelSpec) -
 
     # (3) non-vacuous realized salience proxy: within a family, higher declared
     # salience should carry >= normalized chroma (DESIGN.md: chroma is a
-    # salience channel).  A reversal is recorded; it is a soft signal.
+    # salience channel).  A reversal is recorded; it is a soft signal.  Roles
+    # with EQUAL declared salience impose no ordering on each other -- a
+    # "reversal" between them is a checker artifact, not a design violation,
+    # so tied pairs are skipped (this used to flag constant/decorator and
+    # search_match_current/debug_current, which sit at the same level).
     salience_reversals = []
     for fam in families_used:
         famroles = [role_by_name[n] for n in chromatic if role_by_name[n].family == fam]
@@ -1499,10 +1553,13 @@ def family_stability_build(variants: dict[str, VariantBuild], spec: ModelSpec) -
         for v in var_names:
             sr = sorted(famroles, key=lambda r: r.salience)
             for i in range(len(sr) - 1):
-                if normC[(sr[i].name, v)] - normC[(sr[i + 1].name, v)] > 2e-3:
+                lo, hi = sr[i], sr[i + 1]
+                if lo.salience == hi.salience:
+                    continue  # no ordering implied between equal levels
+                if normC[(lo.name, v)] - normC[(hi.name, v)] > 2e-3:
                     salience_reversals.append(
                         {"family": fam, "variant": v,
-                         "lower_salience": sr[i].name, "higher_salience": sr[i + 1].name})
+                         "lower_salience": lo.name, "higher_salience": hi.name})
 
     # (4) total hue drift INCLUDING adjustments (realized hue is post-adjustment)
     drift_violations = []
@@ -1528,6 +1585,8 @@ def family_stability_build(variants: dict[str, VariantBuild], spec: ModelSpec) -
             "total_hue_drift_including_adjustments",
         ],
         "normalized_chroma_inversions": nc_inversions,
+        "normalized_chroma_near_tie_flips": nc_near_ties,
+        "near_tie_epsilon": CHROMA_ORDER_TIE_EPS,
         "cyclic_family_sequence_preserved": sequence_preserved,
         "cyclic_family_sequence": {v: list(s) for v, s in seq.items()},
         "salience_proxy_reversals": salience_reversals,
@@ -1691,6 +1750,7 @@ __all__ = [
     "SURFACE_STEPS",
     "CO_OCCURRING_SURFACES",
     "NORMAL_SALIENCE",
+    "CHROMA_ORDER_TIE_EPS",
     "validate_binding",
     "chroma_components",
     "chroma_category",

@@ -168,3 +168,29 @@ def test_systematic_vs_hand_headline_finding():
     assert s["n_needing_adjustment"] > 0
     # ... but the mean dE is small: systematic is close to the designer's intent
     assert s["de_mean"] < 0.05
+
+
+# ===========================================================================
+# shared on-text threshold (chip ink decision unified with render.py)
+# ===========================================================================
+
+
+def test_variant_strip_chip_ink_uses_shared_on_text_threshold():
+    """The strip's black/white chip ink follows render.on_text_threshold;
+    the former local rule (OKLCH L > 0.55) chose black ink for mid-greys
+    like #999999 where every other renderer chose white."""
+    from types import SimpleNamespace
+
+    from grotto.family_report import _variant_strip
+    from grotto.render import on_text_threshold
+    from grotto.spec import Palette
+
+    pal = Palette("t", "night",
+                  {"bg": "#101014", "punct": "#999999", "keyword": "#d8b870"})
+    build = SimpleNamespace(variants={"night": SimpleNamespace(palette=pal)})
+    html = _variant_strip(build, "night")
+    for role, hx in pal.colors.items():
+        ink = "#000" if on_text_threshold(hx) else "#fff"
+        assert f"background:{hx};color:{ink}" in html, role
+    # the unification witness: #999999 previously rendered with black ink
+    assert "background:#999999;color:#fff" in html

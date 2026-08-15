@@ -25,7 +25,7 @@ def report():
 def test_report_has_expected_top_level_keys(report):
     assert report["schema"] == "grotto.palette-report"
     for k in ("palette", "provenance", "colors", "contrast_vs_bg",
-              "distance_matrix", "cvd", "spectral"):
+              "distance_matrix", "cvd", "salience_budget", "spectral"):
         assert k in report
 
 
@@ -97,8 +97,43 @@ def test_report_is_deterministic(report):
 def test_input_hash_changes_when_palette_changes():
     roles = RoleSpec.load(REPO / "spec/roles.yaml")
     dists = DistanceSpec.load(REPO / "spec/distance-matrix.yaml", roles)
+    env = Environments.load(REPO / "spec/environments.yaml")
     p1 = load(REPO / "themes/fixtures/eval-night-full.yaml")
     p2 = load(REPO / "themes/fixtures/eval-night.yaml")  # different role set
-    h1 = _input_hash(p1, roles, dists)
-    h2 = _input_hash(p2, roles, dists)
+    h1 = _input_hash(p1, roles, dists, env)
+    h2 = _input_hash(p2, roles, dists, env)
     assert h1 != h2
+
+
+def test_input_hash_covers_the_whole_effective_spec():
+    """Provenance means an unchanged hash implies unchanged inputs.  The hash
+    must therefore react to fields the OLD version ignored: distance
+    thresholds and the environments spec (band edges, floors)."""
+    from dataclasses import replace
+
+    roles = RoleSpec.load(REPO / "spec/roles.yaml")
+    dists = DistanceSpec.load(REPO / "spec/distance-matrix.yaml", roles)
+    env = Environments.load(REPO / "spec/environments.yaml")
+    pal = load(REPO / "themes/fixtures/eval-night-full.yaml")
+    base = _input_hash(pal, roles, dists, env)
+
+    stricter = replace(
+        dists,
+        thresholds={
+            **dists.thresholds,
+            "must_distinguish": {**dists.thresholds["must_distinguish"], "normal_vision": 0.2},
+        },
+    )
+    assert _input_hash(pal, roles, stricter, env) != base
+
+    # a shifted contrast band edge is a different effective spec
+    from grotto.environments import ContrastBand
+    moved = replace(
+        env,
+        contrast_bands={
+            **env.contrast_bands,
+            "high": ContrastBand("high", 74.0, env.contrast_bands["high"].max,
+                                 env.contrast_bands["high"].centre),
+        },
+    )
+    assert _input_hash(pal, roles, dists, moved) != base

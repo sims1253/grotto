@@ -17,11 +17,14 @@ from pathlib import Path
 
 import yaml
 
+from dataclasses import asdict
+
 from .contrast import contrast_report
 from .cvd import CVD_TYPES, simulate
 from .distance import delta_e_ok
 from .environments import Environments
-from .spectral import DISPLAYS, led_lcd, screen_melanopic
+from .model import _canonical_value
+from .spectral import DISPLAYS, screen_melanopic
 from .spec import (
     DistanceSpec,
     Palette,
@@ -30,6 +33,7 @@ from .spec import (
     check,
     coverage_model,
     missing_roles,
+    salience_coverage,
 )
 
 VERSION = "phase2"
@@ -40,17 +44,27 @@ VERSION = "phase2"
 # --------------------------------------------------------------------------
 
 
-def _input_hash(palette: Palette, roles: RoleSpec, dists: DistanceSpec) -> str:
-    h = hashlib.sha256()
-    h.update(palette.name.encode())
-    for role in sorted(palette.colors):
-        h.update(f"{role}={palette.colors[role]};".encode())
-    for role in sorted(roles.roles):
-        r = roles.roles[role]
-        h.update(f"{role}:{r.salience}:{r.family}:{r.contrast_target}:{r.cvd_priority};".encode())
-    for c in dists.constraints:
-        h.update(f"{c.kind}:{c.a}:{c.b};".encode())
-    return h.hexdigest()[:16]
+def _input_hash(
+    palette: Palette, roles: RoleSpec, dists: DistanceSpec, env: Environments
+) -> str:
+    """Hash the EFFECTIVE inputs, not a subset of them.
+
+    An unchanged hash must imply unchanged inputs.  The earlier version hashed
+    only role salience/family/target/priority and bare constraint pairs, so two
+    specs differing in thresholds, environments, floors, redundant channels or
+    any other field compared identical -- the opposite of provenance.  This
+    mirrors ``model._input_hash``: full dataclass dumps through a deterministic
+    canonicaliser (sorted keys, rounded floats).
+    """
+    payload = {
+        "palette_name": palette.name,
+        "colors": dict(sorted(palette.colors.items())),
+        "roles": asdict(roles),
+        "distances": asdict(dists),
+        "environments": asdict(env),
+    }
+    canonical = json.dumps(_canonical_value(payload), sort_keys=True)
+    return hashlib.sha256(canonical.encode()).hexdigest()[:16]
 
 
 # --------------------------------------------------------------------------
@@ -68,6 +82,10 @@ def palette_report_dict(
     display: str = "led-lcd",
 ) -> dict:
     """Build the full audit dictionary for one palette."""
+    if display not in DISPLAYS:
+        # Refuse silent substitution: computing with one display model while
+        # labelling the report with another would be a provenance lie.
+        raise ValueError(f"unknown display model {display!r}; have {sorted(DISPLAYS)}")
     audit = audit_palette(palette, roles)
     bg = palette.get("bg")
 
@@ -81,10 +99,20 @@ def palette_report_dict(
             spec = roles.roles.get(role)
             target = spec.contrast_target if spec else None
             measured_band = env.band_for_lc(abs(rep.apca))
+            # The declared bands deliberately overlap (e.g. comfortable
+            # 60-78 vs high 75-90), so band agreement must be tested as
+            # membership in the role's TARGET band, never as band-name
+            # equality -- ``band_for_lc`` returns the first containing band,
+            # which is an unrelated classification.  (model._contrast_block
+            # does the same; this was Phase-2 code drifting from Phase 4.)
+            in_target = (
+                target is not None
+                and env.contrast_bands[target].contains(abs(rep.apca))
+            )
             contrast[role] = {
                 "target_band": target,
                 "measured_band": measured_band.name if measured_band else None,
-                "band_match": (target is None) or (measured_band is not None and measured_band.name == target),
+                "band_match": (target is None) or in_target,
                 "wcag_ratio": round(rep.wcag, 4),
                 "wcag_aa_body": rep.wcag_aa_body,
                 "wcag_aa_large": rep.wcag_aa_large,
@@ -133,8 +161,7 @@ def palette_report_dict(
     if bg:
         try:
             cov = coverage_model(palette, coverage_kind)
-            disp = DISPLAYS[display]() if display in DISPLAYS else led_lcd()
-            res = screen_melanopic(cov, disp)
+            res = screen_melanopic(cov, DISPLAYS[display]())
             spectral = {
                 "display": display,
                 "coverage_kind": coverage_kind,
@@ -157,6 +184,43 @@ def palette_report_dict(
 
     missing = missing_roles(palette, roles)
 
+    # --- salience budget (DESIGN.md section 6) ---
+    # The budget rule is enforced here rather than in spec.py because the
+    # thresholds live in Layer 2 (spec/environments.yaml: salience_budget).
+    # Fractions are of non-background pixels from the declared coverage plan.
+    salience = None
+    budget = env.salience_budget or {}
+    try:
+        cov_sal = salience_coverage(palette, roles, coverage_kind)
+        salience = {
+            "coverage_kind": coverage_kind,
+            "fractions": {k: round(v, 6) for k, v in cov_sal.items()},
+            "budget": dict(budget),
+            "note": (
+                "DECLARED pixel estimate, not a screenshot measurement; "
+                "fractions are of non-background pixels the palette renders "
+                "as themselves (DESIGN.md section 6)."
+            ),
+        }
+        if budget:
+            salience["violations"] = []
+            for level_key, budget_key in (
+                ("at_or_above_3", "max_fraction_at_or_above_3"),
+                ("at_or_above_5", "max_fraction_at_or_above_5"),
+            ):
+                limit = budget.get(budget_key)
+                if limit is not None and cov_sal[level_key] > limit + 1e-9:
+                    salience["violations"].append(
+                        {
+                            "level": level_key,
+                            "fraction": round(cov_sal[level_key], 6),
+                            "limit": limit,
+                        }
+                    )
+            salience["ok"] = not salience["violations"]
+    except ValueError:
+        salience = {"error": "coverage model could not be built"}
+
     return {
         "schema": "grotto.palette-report",
         "schema_version": VERSION,
@@ -169,7 +233,7 @@ def palette_report_dict(
             "n_roles": len(palette),
         },
         "provenance": {
-            "input_hash": _input_hash(palette, roles, dists),
+            "input_hash": _input_hash(palette, roles, dists, env),
             "roles_spec_version": roles.version,
             "distance_spec_version": dists.version,
             "environments_version": env.version,
@@ -193,6 +257,7 @@ def palette_report_dict(
             ),
             "must_distinguish_pairs": cvd_pairs,
         },
+        "salience_budget": salience,
         "spectral": spectral,
     }
 
@@ -252,6 +317,21 @@ def to_text(report: dict) -> str:
                 f"{cv['deutan']['dichromat_de_1.0']:.3f} "
                 f"{cv['tritan']['dichromat_de_1.0']:.3f}")
         lines.append(line)
+    sal = report.get("salience_budget")
+    if sal and "fractions" in sal:
+        lines.append("")
+        lines.append(f"## salience budget ({sal.get('coverage_kind', 'code')} coverage, declared estimate)")
+        budget = sal.get("budget") or {}
+        for level, budget_key in (("at_or_above_3", "max_fraction_at_or_above_3"),
+                                  ("at_or_above_5", "max_fraction_at_or_above_5")):
+            frac = sal["fractions"].get(level, 0.0)
+            limit = budget.get(budget_key)
+            limit_s = f" (budget <= {limit * 100:.0f}%)" if isinstance(limit, (int, float)) else ""
+            lines.append(f"  {level}: {frac * 100:5.1f}% of non-bg pixels{limit_s}")
+        if sal.get("violations"):
+            lines.append(f"  <-- BUDGET VIOLATION: {len(sal['violations'])} level(s) over")
+        elif "ok" in sal:
+            lines.append("  within budget")
     if report.get("spectral") and "melanopic_ratio" in report.get("spectral", {}):
         s = report["spectral"]
         lines.append("")

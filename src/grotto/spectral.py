@@ -88,6 +88,16 @@ def _ocular_media_transmittance() -> np.ndarray:
     32-year-old observer's ocular media.  This is a shape approximation, not
     the tabulated CIE S 026 function; it matters mostly below ~440 nm where
     display emission is already small.
+
+    Measured bias vs the official tabulation (CIE S 026:2018 Table 2; pinned
+    peak-neighbourhood checks in tests/test_metrics.py): combined with the
+    Govardovskii template this proxy is within ~10% of s_mel at the 480-500 nm
+    peak but OVER-weights short wavelengths (~+40% at 450 nm -- this logistic
+    is more permissive than real lens transmittance) and UNDER-weights long
+    wavelengths (~-19% at 520, ~-30% at 550, ~-43% at 600 nm).  Consequence:
+    blue-vs-warm melanopic *ratios* rank consistently within the model but
+    their magnitude differences are exaggerated.  Do not quote absolute
+    percentages from this model.
     """
     return np.clip(1.0 / (1.0 + np.exp(-(LAMBDA - 400.0) / 14.0)), 0.0, 1.0)
 

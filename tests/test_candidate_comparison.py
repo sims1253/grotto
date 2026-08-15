@@ -69,8 +69,9 @@ def test_comparison_has_no_score_rank_or_winner(comparison):
     assert not (forbidden & set(comparison))
     for row in comparison["matrix"]:
         assert not (forbidden & set(row))
-    # the disclaimer text says "no winner" -- that must not be treated as a field
-    assert "winner" not in [k for k in comparison if k != "caveats"] or True
+    # the disclaimer text says "no winner" -- that must not be treated as a
+    # field name (caveats legitimately MENTION the word in prose)
+    assert "winner" not in [k for k in comparison if k != "caveats"]
 
 
 def test_matrix_is_descriptive_not_scored(comparison):
@@ -84,6 +85,16 @@ def test_matrix_is_descriptive_not_scored(comparison):
     # the mean realized chroma ordering is visible in the data but NOT asserted
     # as a verdict anywhere
     assert "verdict" not in cols and "score" not in cols
+
+
+def test_matrix_reuse_path_equals_standalone(families, spec, comparison):
+    """candidate_matrix must produce identical rows whether it reuses the
+    summaries compare_candidates already computed (the cheap path) or
+    recomputes them itself (the standalone path)."""
+    from grotto.candidate_report import candidate_matrix
+
+    assert (candidate_matrix(families, spec, comparison["per_candidate"])
+            == candidate_matrix(families, spec))
 
 
 # ===========================================================================
@@ -139,13 +150,47 @@ def test_area_categories_are_exhaustive():
 # ===========================================================================
 
 
-def test_cross_candidate_drift_shows_tag_strategy_difference(comparison):
+def test_cross_candidate_drift_nulls_achromatic_tag_hue(comparison):
+    """tag is the declared strategy differentiator (A/B azure/neutral vs C
+    violet), but A and B render it near-achromatically (OKLCH C < 0.02), so
+    every tag pair includes a side whose hue angle is noise: dH is reported
+    as None instead of a large meaningless number. dE/dL/dC stay numeric, and
+    chromatic roles (keyword) keep their numeric hue deltas."""
     drift = comparison["cross_candidate_drift_night"]
     tag = drift["per_role"]["tag"]
-    # A(neutral) vs B(azure) vs C(violet) -> large pairwise hue deltas by design
-    dh_ab = tag["candidate-a-restrained|candidate-b-balanced"]["dH_deg"]
-    dh_ac = tag["candidate-a-restrained|candidate-c-expressive"]["dH_deg"]
-    assert dh_ab > 100 and dh_ac > 100
+    for pair, d in tag.items():
+        assert d["dH_deg"] is None, f"{pair}: hue below the chroma floor must null"
+        for k in ("dE", "dL", "dC"):
+            assert d[k] is not None, f"{pair}.{k} stays defined"
+    kw = drift["per_role"]["keyword"]
+    assert all(d["dH_deg"] is not None for d in kw.values())
+
+
+def test_role_drift_hue_null_below_chroma_floor():
+    """Unit contract for _role_drift: EITHER side below _CHROMA_FLOOR (0.02)
+    nulls dH; dE/dL/dC remain defined for achromatic colours."""
+    from grotto.candidate_report import _role_drift
+
+    d = _role_drift("#1a1a1a", "#bf4040")  # near-neutral surface vs warm ink
+    assert d["dH_deg"] is None
+    for k in ("dE", "dL", "dC"):
+        assert isinstance(d[k], float)
+    assert _role_drift("#bf4040", "#4060bf")["dH_deg"] is not None  # both chromatic
+
+
+def test_drift_table_renders_dash_for_null_hue():
+    from grotto.candidate_report import _drift_table
+
+    drift = {
+        "candidate_pairs": ["x|y"],
+        "per_role": {
+            "bg": {"x|y": {"dE": 1.5, "dL": 0.01, "dC": -0.001, "dH_deg": None}},
+            "keyword": {"x|y": {"dE": 2.5, "dL": 0.02, "dC": 0.01, "dH_deg": 42.0}},
+        },
+    }
+    html = _drift_table(drift, "t", ["bg", "keyword"])
+    assert "dH - dC" in html       # null hue renders '-', never a fake number
+    assert "dH 42&deg;" in html    # numeric hue still renders with degrees
 
 
 def test_cross_variant_drift_notes_lightness_inversion(comparison):
@@ -208,6 +253,16 @@ def test_comparison_page_has_matrix_and_specimens(comparison, families, spec):
     # the side-by-side shows all three candidates
     for s in STRATEGIES:
         assert s in html
+
+
+def test_matrix_html_renders_mel_ratio_led_day(comparison, families, spec):
+    """mel_ratio_led_day was computed into every matrix row but never shown;
+    the HTML matrix renders it next to the LED night column (the text table
+    stays unchanged -- it is already at width)."""
+    html = candidate_comparison_html(comparison, families, spec)
+    assert "mel ratio LED day" in html
+    for m in comparison["matrix"]:
+        assert f'{m["mel_ratio_led_day"]:.3f}' in html
 
 
 def test_comparison_svg_is_valid(families, spec):

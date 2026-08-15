@@ -8,7 +8,7 @@ import pytest
 
 from grotto import render
 from grotto.environments import Environments
-from grotto.spec import DistanceSpec, RoleSpec, load
+from grotto.spec import DistanceSpec, Palette, RoleSpec, load
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -113,3 +113,81 @@ def test_stability_html_is_balanced(ctx):
 def test_on_text_picks_readable_contrast():
     assert render._on_text("#ffffff") == "#000"
     assert render._on_text("#000000") == "#fff"
+
+
+def test_on_text_threshold_is_the_shared_decision():
+    """One project-wide light/dark cutoff drives every renderer's chip ink."""
+    assert render.on_text_threshold("#ffffff") is True
+    assert render.on_text_threshold("#000000") is False
+    # #999999 sits in the band where family_report's former local rule
+    # (OKLCH L > 0.55) disagreed (L=0.683 but luminance=0.319): the unified
+    # decision is False, so those chips now take white ink
+    assert render.on_text_threshold("#999999") is False
+
+
+def test_cvd_select_has_exactly_one_change_handler(ctx):
+    """The CVD selector keeps ONLY the script listener; the old inline
+    onchange set document.body.className a second time per change."""
+    pal, roles, dists, env = ctx
+    html = render.palette_html_report(pal, roles, dists, env)
+    assert "onchange=" not in html
+    assert "addEventListener('change'" in html
+
+
+# --------------------------------------------------------------------------
+# Phase 3 reference rendering: warm/cool neutral split + honest '-' caption
+# --------------------------------------------------------------------------
+
+
+def test_warm_cool_balance_splits_boundary_roles_into_neutral(monkeypatch):
+    """A warm/cool score of exactly 0 (hue on the 150/330 deg boundary) is
+    NEUTRAL -- the same three-way split _classify_hue uses -- not a cool role.
+    Real reference hues never land exactly on the boundary, so the score is
+    forced to 0 here to exercise the branch."""
+    from grotto import reference_analysis as ra
+
+    monkeypatch.setattr(ra, "_warm_cool_score", lambda C, h: 0.0)
+    roles = RoleSpec.load(REPO / "spec/roles.yaml")
+    pal = Palette("t", "dark", {"bg": "#1a1a1a", "error": "#bf4040",
+                                "keyword": "#4060bf"})
+    wc = ra.warm_cool_balance(pal, roles)
+    assert wc["neutral_roles"] == ["error", "keyword"]
+    assert wc["warm_roles"] == [] and wc["cool_roles"] == []
+    assert (wc["n_warm_roles"] + wc["n_cool_roles"] + wc["n_neutral_roles"]
+            == wc["n_chromatic_roles"])
+
+
+def test_reference_analysis_html_lists_neutral_roles(monkeypatch, ctx):
+    """The warm/cool section of the per-reference page shows the neutral list
+    alongside warm/cool."""
+    from grotto import reference_analysis as ra
+
+    pal, roles, dists, env = ctx
+    monkeypatch.setattr(ra, "_warm_cool_score", lambda C, h: 0.0)
+    rv = ra.ReferenceVariant(
+        name="t", label="dark", palette=pal, source_url="", source_note="",
+        is_primary=True, source_ambiguous=False,
+    )
+    a = ra.analyze_reference(rv, roles, dists, env)
+    html = render.reference_analysis_html(a)
+    neutral = a["warm_cool_balance"]["neutral_roles"]
+    assert neutral  # the forced-zero patch makes every chromatic role neutral
+    assert f"neutral ({len(neutral)}): {', '.join(neutral)}" in html
+
+
+def test_reference_comparison_dash_covers_mapped_but_achromatic(ctx):
+    """The swatch '-' means unmapped OR mapped-but-achromatic (the hex lookup
+    only includes chromatic roles); the caption must say both."""
+    from grotto.reference_analysis import (
+        analyze_reference, compare_references, load_reference_file, primary_variant,
+    )
+
+    _pal, roles, dists, env = ctx
+    variants = load_reference_file(REPO / "themes/references/nord.yaml")
+    analyses = {
+        "nord": analyze_reference(primary_variant(variants), roles, dists, env)
+    }
+    c = compare_references(analyses, roles, dists, env)
+    html = render.reference_comparison_html(c, analyses)
+    assert "both mapped and chromatic" in html
+    assert "mapped but achromatic" in html

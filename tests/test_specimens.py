@@ -43,9 +43,7 @@ def test_plaintext_is_readable_and_nonempty(lang):
 
 def test_plaintext_roundtrips_through_spans():
     sp = S.specimen("python")
-    # rebuilding from spans yields exactly the same plaintext
-    rebuilt = "".join(t for _, t in sp.spans()) + "\n" if False else None
-    # line-joined plaintext equals joining all span text with newlines per line
+    # rebuilding from spans (joining each line's span text) yields the plaintext
     joined = "\n".join("".join(t for _, t in line) for line in sp.lines) + "\n"
     assert sp.plaintext() == joined
 

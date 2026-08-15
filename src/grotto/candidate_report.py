@@ -38,8 +38,9 @@ from .contrast import wcag_contrast
 from .cvd import CVD_TYPES, simulate
 from .distance import breakdown, delta_e_ok
 from .model import FamilyBuild, ModelSpec
+from .render import on_text_threshold
 from .candidates import DISPLAY_MODELS
-from .spec import Palette, RoleSpec, check
+from .spec import Palette, RoleSpec, check, salience_coverage
 from .spectral import DISPLAYS, led_lcd, screen_melanopic
 
 #: Declared estimate of each role's share of visible pixels in a typical code
@@ -58,7 +59,7 @@ DECLARED_AREA: dict[str, float] = {
     # syntax accents
     "keyword": 0.008, "string": 0.012, "number": 0.002, "constant": 0.002,
     "type": 0.004, "function": 0.006, "builtin": 0.002, "decorator": 0.001,
-    "namespace": 0.002, "tag": 0.010,
+    "namespace": 0.002, "tag": 0.010, "property": 0.002,
     # UI chrome
     "line_number": 0.006, "line_number_active": 0.0005, "ui_inactive": 0.004,
     "focus": 0.0003, "breakpoint": 0.0002, "deprecated": 0.0002,
@@ -277,7 +278,8 @@ def cvd_summary(palette: Palette, roles: RoleSpec, spec: ModelSpec) -> dict:
     a low retention is read as "compensated", not "failing".
     """
     pairs = []
-    worst_retention = 1.0
+    worst_retention = None  # None until a pair is measured: 1.0 would read as
+    #                      # "no collapse" when nothing was measured at all
     for c in spec.distances.of_kind("must_distinguish"):
         a, b = palette.get(c.a), palette.get(c.b)
         if not a or not b:
@@ -289,7 +291,8 @@ def cvd_summary(palette: Palette, roles: RoleSpec, spec: ModelSpec) -> dict:
             ret = (cde / normal) if normal > 1e-9 else 1.0
             per_kind[kind] = {"dichromat_de_1.0": round(cde, 6),
                               "retention": round(ret, 6)}
-            worst_retention = min(worst_retention, ret)
+            if worst_retention is None or ret < worst_retention:
+                worst_retention = ret
         redundant = bool(
             c.channel
             or any(roles[n].redundant_channels for n in (c.a, c.b) if n in roles)
@@ -298,7 +301,7 @@ def cvd_summary(palette: Palette, roles: RoleSpec, spec: ModelSpec) -> dict:
                       "cvd": per_kind, "redundant_channel": redundant})
     return {
         "n_pairs": len(pairs),
-        "worst_retention": round(worst_retention, 6),
+        "worst_retention": None if worst_retention is None else round(worst_retention, 6),
         "pairs": pairs,
         "note": (
             "Population-average dichromat (Brettel) models at severity 1.0. They "
@@ -317,12 +320,18 @@ def cvd_summary(palette: Palette, roles: RoleSpec, spec: ModelSpec) -> dict:
 def _role_drift(hex_a: str, hex_b: str) -> dict:
     La, Ca, ha = hex_to_oklch(hex_a)
     Lb, Cb, hb = hex_to_oklch(hex_b)
+    # Hue angle is noise below _CHROMA_FLOOR (the same convention the
+    # distributions / chroma_ordering sections use), so dH is reported as
+    # null -- never as a large, meaningless number -- when EITHER side is
+    # effectively achromatic. dE/dL/dC stay numeric: they remain well-defined
+    # for achromatic colours.
+    hue_meaningful = Ca >= _CHROMA_FLOOR and Cb >= _CHROMA_FLOOR
     dh = abs(((ha - hb + 180.0) % 360.0) - 180.0)
     return {
         "dE": round(delta_e_ok(hex_a, hex_b), 6),
         "dL": round(La - Lb, 6),
         "dC": round(Ca - Cb, 6),
-        "dH_deg": round(dh, 4),
+        "dH_deg": round(dh, 4) if hue_meaningful else None,
     }
 
 
@@ -374,32 +383,87 @@ def cross_candidate_drift(families: list[FamilyBuild], spec: ModelSpec,
 # ===========================================================================
 
 
+def salience_budget_summary(palette: Palette, spec: ModelSpec) -> dict:
+    """DESIGN.md section-6 salience budget for one palette: share of
+    non-background pixels (declared 'code' coverage estimate) at salience
+    >= 3 and >= 5, checked against ``spec.environments.salience_budget``.
+    An over-budget row is a design signal to report, never to tune away."""
+    cov = salience_coverage(palette, spec.roles, "code")
+    budget = spec.environments.salience_budget or {}
+    violations = []
+    for level_key, budget_key in (
+        ("at_or_above_3", "max_fraction_at_or_above_3"),
+        ("at_or_above_5", "max_fraction_at_or_above_5"),
+    ):
+        limit = budget.get(budget_key)
+        if limit is not None and cov[level_key] > limit + 1e-9:
+            violations.append({"level": level_key,
+                               "fraction": round(cov[level_key], 6),
+                               "limit": limit})
+    return {
+        "coverage_kind": "code",
+        "fractions": {k: round(v, 6) for k, v in cov.items()},
+        "budget": dict(budget),
+        "violations": violations,
+        "ok": not violations,
+        "note": ("declared estimate, not a screenshot measurement; fractions "
+                 "of non-background pixels the palette renders as themselves"),
+    }
+
+
 def _mean_realized_chroma(palette: Palette, roles: RoleSpec) -> float:
     cs = [hex_to_oklch(palette[r.name])[1] for r in roles if r.name in palette]
     return statistics.mean(cs) if cs else 0.0
 
 
-def _min_wcag(palette: Palette, roles: RoleSpec, spec: ModelSpec) -> float:
+def _min_wcag(palette: Palette, roles: RoleSpec, spec: ModelSpec) -> float | None:
     """Minimum WCAG over body-text roles (the 4.5 reading baseline).  Non-text
     roles (line numbers, muted chrome) legitimately sit near the 3.0 floor, so
-    they are excluded from this headline to avoid a false 'below 4.5' reading."""
+    they are excluded from this headline to avoid a false 'below 4.5' reading.
+    Returns None when the palette has no body-text roles at all -- 0.0 would
+    render as a vacuous failure under the same conditions."""
     bg = palette.bg
     vals = []
     for r in roles:
         if r.name in palette and r.accessibility_floor == "body_text":
             vals.append(wcag_contrast(palette[r.name], bg))
-    return min(vals) if vals else 0.0
+    return min(vals) if vals else None
 
 
-def candidate_matrix(families: list[FamilyBuild], spec: ModelSpec) -> list[dict]:
+def candidate_matrix(
+    families: list[FamilyBuild], spec: ModelSpec, per_candidate: dict | None = None
+) -> list[dict]:
+    """One descriptive row per candidate.
+
+    ``per_candidate`` is the already-computed block from ``compare_candidates``
+    (name -> variants -> {spectral_both_displays, distance_summary,
+    cvd_summary, salience_budget}).  Passing it lets the matrix REUSE those
+    summaries instead of recomputing them: ``cvd_summary`` re-simulates every
+    must_distinguish pair under 3 dichromat models and is the single most
+    expensive step in the report, so computing it twice per run doubles the
+    cost for zero new information.  When omitted (standalone use) the matrix
+    computes the summaries itself; either path yields identical rows.
+    """
     rows = []
     for f in families:
         night = f.variants["night"].palette
         day = f.variants["day"].palette
-        spec_n = spectral_both_displays(night)
-        spec_d = spectral_both_displays(day)
-        n_d = distance_summary(night, spec.roles, spec)
-        n_cvd = cvd_summary(night, spec.roles, spec)
+        if per_candidate is not None:
+            vn = per_candidate[f.binding.name]["variants"]["night"]
+            vd = per_candidate[f.binding.name]["variants"]["day"]
+            spec_n = vn["spectral_both_displays"]
+            spec_d = vd["spectral_both_displays"]
+            n_d = vn["distance_summary"]
+            n_cvd = vn["cvd_summary"]
+            sal_n = vn["salience_budget"]
+            sal_d = vd["salience_budget"]
+        else:
+            spec_n = spectral_both_displays(night)
+            spec_d = spectral_both_displays(day)
+            n_d = distance_summary(night, spec.roles, spec)
+            n_cvd = cvd_summary(night, spec.roles, spec)
+            sal_n = salience_budget_summary(night, spec)
+            sal_d = salience_budget_summary(day, spec)
         rows.append({
             "candidate": f.binding.name,
             "strategy": f.binding.meta.get("strategy"),
@@ -407,6 +471,8 @@ def candidate_matrix(families: list[FamilyBuild], spec: ModelSpec) -> list[dict]
             "ok": f.ok,
             "mean_realized_chroma_night": round(_mean_realized_chroma(night, spec.roles), 6),
             "mean_realized_chroma_day": round(_mean_realized_chroma(day, spec.roles), 6),
+            "salience3_night": sal_n["fractions"]["at_or_above_3"],
+            "salience3_day": sal_d["fractions"]["at_or_above_3"],
             "mel_ratio_led_night": spec_n["led-lcd"]["melanopic_ratio"],
             "mel_ratio_oled_night": spec_n["oled"]["melanopic_ratio"],
             "mel_ratio_led_day": spec_d["led-lcd"]["melanopic_ratio"],
@@ -415,7 +481,9 @@ def candidate_matrix(families: list[FamilyBuild], spec: ModelSpec) -> list[dict]
             "cvd_worst_retention_night": n_cvd["worst_retention"],
             "max_hue_drift_deg": (f.stability or {}).get("max_hue_drift_deg"),
             "stability_ok": (f.stability or {}).get("ok"),
-            "min_wcag_body_text_night": round(_min_wcag(night, spec.roles, spec), 4),
+            "min_wcag_body_text_night": (
+                round(mw, 4) if (mw := _min_wcag(night, spec.roles, spec)) is not None else None
+            ),
             "n_issues": len(f.issues),
         })
     return rows
@@ -499,12 +567,21 @@ def disagreement_log_template(families: list[FamilyBuild], spec: ModelSpec) -> d
     }
 
 
+def _is_legibility_issue(issue: str) -> bool:
+    """Legibility issues are the ones that name a WCAG failure -- the
+    ink-over-surface warnings AND the final-hex floor breaches.  Matched on
+    content, not phrasing, so a wording change in model.py cannot silently
+    zero the count."""
+    return "WCAG" in issue
+
+
 def flagged_tradeoffs(families: list[FamilyBuild], spec: ModelSpec) -> list[dict]:
     """Per-candidate tradeoffs, sourced from the binding's own meta plus the
     observed issue counts.  Flagged, not resolved."""
     out = []
     for f in families:
-        n_leg = sum(1 for i in f.issues if "over " in i or "ink-on-surface" in i)
+        n_leg = sum(1 for i in f.issues if _is_legibility_issue(i))
+        st = f.stability or {}
         out.append({
             "candidate": f.binding.name,
             "strategy": f.binding.meta.get("strategy"),
@@ -512,8 +589,13 @@ def flagged_tradeoffs(families: list[FamilyBuild], spec: ModelSpec) -> list[dict
             "declared_purpose": f.binding.meta.get("purpose"),
             "n_total_issues": len(f.issues),
             "n_legibility_issues": n_leg,
-            "stability_ok": (f.stability or {}).get("ok"),
-            "max_hue_drift_deg": (f.stability or {}).get("max_hue_drift_deg"),
+            "stability_ok": st.get("ok"),
+            "stability_detail": {
+                "material_inversions": len(st.get("normalized_chroma_inversions", [])),
+                "near_tie_flips": len(st.get("normalized_chroma_near_tie_flips", [])),
+                "salience_reversals": len(st.get("salience_proxy_reversals", [])),
+            },
+            "max_hue_drift_deg": st.get("max_hue_drift_deg"),
         })
     return out
 
@@ -546,6 +628,7 @@ def compare_candidates(families: list[FamilyBuild], spec: ModelSpec) -> dict:
                 "cvd_summary": cvd_summary(pal, spec.roles, spec),
                 "spectral_both_displays": spectral_both_displays(pal),
                 "area_category_weights": area_category_weights(pal),
+                "salience_budget": salience_budget_summary(pal, spec),
             }
     return {
         "schema": "grotto.candidate-comparison",
@@ -557,6 +640,7 @@ def compare_candidates(families: list[FamilyBuild], spec: ModelSpec) -> dict:
             "Restrained, Balanced, Expressive. This is NOT a ranking or a "
             "recommendation (DESIGN.md section 1)."
         ),
+        "salience_budget_thresholds": dict(spec.environments.salience_budget or {}),
         "area_model": {
             "categories": {c: list(r) for c, r in AREA_CATEGORIES.items()},
             "declared_weights": dict(sorted(DECLARED_AREA.items())),
@@ -566,7 +650,9 @@ def compare_candidates(families: list[FamilyBuild], spec: ModelSpec) -> dict:
                 "spectral comparison; this is not a screenshot measurement."
             ),
         },
-        "matrix": candidate_matrix(families, spec),
+        # the matrix reuses the summaries computed above instead of
+        # recomputing the expensive CVD/distance/spectral work per candidate
+        "matrix": candidate_matrix(families, spec, per_candidate),
         "per_candidate": per_candidate,
         "cross_candidate_drift_night": cross_candidate_drift(families, spec, "night"),
         "disagreement_log": disagreement_log_template(families, spec),
@@ -596,6 +682,7 @@ __all__ = [
     "SPECTRAL_CAVEAT",
     "area_coverage",
     "area_category_weights",
+    "salience_budget_summary",
     "spectral_both_displays",
     "distributions",
     "chroma_ordering",
@@ -720,7 +807,9 @@ def _scoped_css(scopes: dict[str, "Palette"]) -> str:
     return "\n".join(parts)
 
 
-def _specimen_cell(specimen, scope_id: str, palette) -> str:
+def _specimen_cell(specimen, palette) -> str:
+    # the surrounding wrapper div carries the scope-{...} class; the cell
+    # itself only needs the palette to resolve role -> css class
     lines = []
     for line in specimen.lines:
         parts = []
@@ -745,16 +834,11 @@ def _diagnostic_chips(scope_id: str, palette, roles) -> str:
             f'<span class="mark" title="{_esc(c)}">{_esc(_MARKER.get(c, c[0:1]))}</span>'
             for c in chans
         )
-        on = "#000" if _luma(hx) > 0.42 else "#fff"
+        on = "#000" if on_text_threshold(hx) else "#fff"
         chips.append(
             f'<span class="chip surface-{role}" style="color:{on}">{_esc(role)}{marks}</span>'
         )
     return f'<div class="diag">{"".join(chips)}</div>'
-
-
-def _luma(hx: str) -> float:
-    from .color import hex_to_srgb, relative_luminance
-    return relative_luminance(hex_to_srgb(hx))
 
 
 def _disclaimer_banner() -> str:
@@ -795,7 +879,7 @@ def candidate_family_specimens_html(family, spec) -> str:
         sp = SPEC.specimen(lang)
         cells = "".join(
             f'<div class="scope-{v}"><div class="cap">{_esc(v)}</div>'
-            f'{_specimen_cell(sp, v, family.variants[v].palette)}</div>'
+            f'{_specimen_cell(sp, family.variants[v].palette)}</div>'
             for v in ("day", "evening", "night")
         )
         rows.append(
@@ -809,34 +893,52 @@ def candidate_family_specimens_html(family, spec) -> str:
     return _doc(f"{family.name} -- family specimens", body + foot, extra_css=css)
 
 
-def _matrix_table(matrix: list[dict]) -> str:
+def _matrix_table(matrix: list[dict], budget3: float | None = None) -> str:
     head = ("<tr><th>candidate</th><th>strategy</th><th class='num'>mean C night</th>"
             "<th class='num'>mean C day</th><th class='num'>mel ratio LED night</th>"
-            "<th class='num'>mel ratio OLED night</th><th class='num'>dist err/warn</th>"
+            "<th class='num'>mel ratio LED day</th><th class='num'>mel ratio OLED night</th>"
+            "<th class='num'>dist err/warn</th>"
             "<th class='num'>CVD worst ret.</th><th class='num'>max drift&deg;</th>"
+            "<th class='num'>stability</th><th class='num'>sal&ge;3 night</th>"
             "<th class='num'>min WCAG body</th><th class='num'>issues</th></tr>")
     rows = []
     for m in matrix:
+        cvd = m["cvd_worst_retention_night"]
+        wcag = m["min_wcag_body_text_night"]
+        stab = m["stability_ok"]
+        stab_s = "-" if stab is None else ("ok" if stab else "INVERSIONS")
+        sal3 = m.get("salience3_night")
+        over = sal3 is not None and budget3 is not None and sal3 > budget3 + 1e-9
+        sal_s = "-" if sal3 is None else f"{sal3 * 100:.1f}%{'!' if over else ''}"
         rows.append(
             "<tr>"
             f'<td><b>{_esc(m["candidate"])}</b></td><td>{_esc(m["strategy"])}</td>'
             f'<td class="num">{m["mean_realized_chroma_night"]:.4f}</td>'
             f'<td class="num">{m["mean_realized_chroma_day"]:.4f}</td>'
             f'<td class="num">{m["mel_ratio_led_night"]:.3f}</td>'
+            f'<td class="num">{m["mel_ratio_led_day"]:.3f}</td>'
             f'<td class="num">{m["mel_ratio_oled_night"]:.3f}</td>'
             f'<td class="num">{m["distance_errors_night"]}/{m["distance_warnings_night"]}</td>'
-            f'<td class="num">{m["cvd_worst_retention_night"]:.2f}</td>'
+            f'<td class="num">{_fmt(cvd)}</td>'
             f'<td class="num">{_fmt(m["max_hue_drift_deg"])}</td>'
-            f'<td class="num {"ok" if m["min_wcag_body_text_night"]>=4.5 else "bad"}">{m["min_wcag_body_text_night"]:.2f}</td>'
+            f'<td class="num {"ok" if stab else "bad"}">{stab_s}</td>'
+            f'<td class="num {"bad" if over else ""}">{sal_s}</td>'
+            f'<td class="num {"ok" if wcag is not None and wcag >= 4.5 else "bad"}">{_fmt(wcag)}</td>'
             f'<td class="num">{m["n_issues"]}</td>'
             "</tr>"
         )
     return ("<table>" + head + "".join(rows) + "</table>"
             "<p class='meta'>Descriptive columns, NOT a score. Mean C = mean realized OKLCH chroma. "
-            "Mel ratio = nominal area-weighted melanopic/photopic (display white=1.0). "
+            "Mel ratio = nominal area-weighted melanopic/photopic (display white=1.0); night is "
+            "shown under both display models, day under the LED-LCD model. "
             "Dist err/warn = must/should distance-matrix violations. CVD worst ret. = smallest "
             "dE retention across must_distinguish pairs under dichromacy (low = a pair collapses; "
-            "check its redundant channel). min WCAG body = lowest body-text ratio (&ge;4.5 hard).</p>")
+            "check its redundant channel; '-' = no pairs present). stability = the D-5 gate "
+            "(material chroma-order inversions / family sequence / hue drift; near-tie flips are "
+            "reported but do not fail it). sal&ge;3 = declared share of non-background pixels at "
+            "salience >= 3 ('code' estimate); '!' breaches the environments.yaml salience_budget. "
+            "min WCAG body = lowest body-text ratio (&ge;4.5 hard; "
+            "'-' = no body-text roles present).</p>")
 
 
 def _fmt(v):
@@ -844,7 +946,10 @@ def _fmt(v):
 
 
 def _drift_table(drift: dict, title: str, focus_roles) -> str:
-    pairs = drift.get("candidate_pairs") or ["day", "night"]
+    # No silent fallback on a missing key: guessing "day/night" here would
+    # render every cell as '-' for a dict that is not pair-keyed, which looks
+    # like "no drift" instead of a bug.
+    pairs = drift["candidate_pairs"]
     head = f"<tr><th>role</th>" + "".join(f"<th class='num'>{_esc(p)}</th>" for p in pairs) + "</tr>"
     rows = []
     for role in focus_roles:
@@ -856,11 +961,17 @@ def _drift_table(drift: dict, title: str, focus_roles) -> str:
             if not d:
                 cells += '<td class="num meta">-</td>'
             else:
+                # dH '-' = at least one side effectively achromatic (C below
+                # the chroma floor); its hue angle is noise, not drift
+                dh_s = "-" if d["dH_deg"] is None else f'{d["dH_deg"]:.0f}&deg;'
                 cells += (f'<td class="num">dE {d["dE"]:.3f}<br>'
-                          f'<span class="meta">dH {d["dH_deg"]:.0f}&deg; dC {d["dC"]:+.3f} '
+                          f'<span class="meta">dH {dh_s} dC {d["dC"]:+.3f} '
                           f'dL {d["dL"]:+.3f}</span></td>')
         rows.append(f"<tr><td>{_esc(role)}</td>{cells}</tr>")
-    return f"<h2>{_esc(title)}</h2><table>" + head + "".join(rows) + "</table>"
+    return (f"<h2>{_esc(title)}</h2><table>" + head + "".join(rows) + "</table>"
+            "<p class='meta'>dH is '-' when either colour is effectively achromatic "
+            "(OKLCH chroma below the 0.02 floor): hue angle is noise there, not drift. "
+            "dE/dL/dC remain defined and are always shown.</p>")
 
 
 def _disagreement_block(log: dict) -> str:
@@ -917,7 +1028,15 @@ def candidate_comparison_html(comparison: dict, families, spec) -> str:
         + _disclaimer_banner()
         + _cvd_control()
     )
-    matrix = "<h2>Candidate matrix (descriptive, not a score)</h2>" + _matrix_table(comparison["matrix"])
+    matrix = (
+        "<h2>Candidate matrix (descriptive, not a score)</h2>"
+        + _matrix_table(
+            comparison["matrix"],
+            (comparison.get("salience_budget_thresholds") or {}).get(
+                "max_fraction_at_or_above_3"
+            ),
+        )
+    )
     # cross-candidate drift on a few identity-bearing roles
     focus = [r for r in ("keyword", "function", "string", "type", "tag", "error",
                          "warning", "selection", "diff_added", "diff_removed")
@@ -935,7 +1054,7 @@ def candidate_comparison_html(comparison: dict, families, spec) -> str:
             f'<div class="scope-{sid}"><div class="vhead">{_esc(f.binding.meta.get("strategy"))}<br>'
             f'<span class="meta">{_esc(f.binding.name)}</span></div>'
             f'<div class="cap">{_esc(sp.label)} &middot; {_esc(variant)}</div>'
-            f'{_specimen_cell(sp, sid, f.variants[variant].palette)}</div>'
+            f'{_specimen_cell(sp, f.variants[variant].palette)}</div>'
         )
     specimens = ("<h2>Side-by-side specimen (Python, night) &mdash; same code, three strategies</h2>"
                  '<div class="grid3">' + "".join(strip) + "</div>")
@@ -988,7 +1107,8 @@ def candidate_comparison_svg(families, spec) -> str:
 
 
 def _on_svg(hx: str) -> str:
-    return "#15161c" if _luma(hx) > 0.42 else "#fff"
+    # chrome-tinted inks, but the light/dark DECISION is the shared threshold
+    return "#15161c" if on_text_threshold(hx) else "#fff"
 
 
 def candidate_comparison_text(comparison: dict) -> str:
@@ -996,24 +1116,54 @@ def candidate_comparison_text(comparison: dict) -> str:
     lines = ["# Candidate comparison (Phase 6)", comparison["ordering_note"], ""]
     lines.append("## matrix (descriptive, not a score)")
     lines.append(f"{'candidate':26s} {'meanC_n':>8s} {'meanC_d':>8s} {'melLED':>7s} "
-                 f"{'melOLED':>7s} {'dErr':>5s} {'cvdRet':>7s} {'drift':>6s} {'wcag':>6s} {'iss':>5s}")
+                 f"{'melOLED':>7s} {'dErr':>5s} {'cvdRet':>7s} {'drift':>6s} "
+                 f"{'stability':>9s} {'sal3_n':>7s} {'wcag':>6s} {'iss':>5s}")
+    budget3 = (comparison.get("salience_budget_thresholds") or {}).get(
+        "max_fraction_at_or_above_3"
+    )
     for m in comparison["matrix"]:
+        stab = m["stability_ok"]
+        stab_s = "-" if stab is None else ("ok" if stab else "FAIL")
+        sal3 = m.get("salience3_night")
+        sal3_s = "-" if sal3 is None else f"{sal3 * 100:.1f}%"
+        if sal3 is not None and budget3 is not None and sal3 > budget3 + 1e-9:
+            sal3_s += "!"
         lines.append(
             f"{m['candidate']:26s} {m['mean_realized_chroma_night']:8.4f} "
             f"{m['mean_realized_chroma_day']:8.4f} {m['mel_ratio_led_night']:7.3f} "
             f"{m['mel_ratio_oled_night']:7.3f} {m['distance_errors_night']:5d} "
-            f"{m['cvd_worst_retention_night']:7.2f} {_fmt(m['max_hue_drift_deg']):>6s} "
-            f"{m['min_wcag_body_text_night']:6.2f} {m['n_issues']:5d}"
+            f"{_fmt(m['cvd_worst_retention_night']):>7s} {_fmt(m['max_hue_drift_deg']):>6s} "
+            f"{stab_s:>9s} {sal3_s:>7s} {_fmt(m['min_wcag_body_text_night']):>6s} {m['n_issues']:5d}"
         )
     lines.append("")
     lines.append("## flagged tradeoffs")
     for t in comparison["tradeoffs"]:
+        stab = t["stability_ok"]
+        stab_detail = t.get("stability_detail") or {}
+        stab_s = (
+            f"stability_ok={stab}"
+            f" (material inversions {stab_detail.get('material_inversions', '-')},"
+            f" near-tie flips {stab_detail.get('near_tie_flips', '-')},"
+            f" salience reversals {stab_detail.get('salience_reversals', '-')})"
+        )
         lines.append(f"  {t['candidate']}: {(t['declared_tradeoffs'] or '').strip()}")
+        lines.append(f"    {stab_s}")
     lines.append("")
     lines.append("## disagreement log (open for Phase 7)")
     for e in comparison["disagreement_log"]["entries"]:
         lines.append(f"  [{e['id']}] {e['visual_question']}")
     lines.append("")
+    lines.append(
+        "stability = the D-5 gate: material normalized-chroma inversions, cyclic "
+        "family sequence, hue drift <= threshold. Near-tie sign flips (both sides "
+        "within the tie epsilon) are reported but do not fail the gate; see "
+        "normalized_chroma_near_tie_flips in the YAML/JSON."
+    )
+    lines.append(
+        "sal3_n = declared share of non-background pixels at salience >= 3 "
+        "(night, 'code' coverage estimate); '!' marks a breach of the "
+        "environments.yaml salience_budget -- a design signal, not tuned away."
+    )
     for c in comparison["caveats"]:
         lines.append(f"  - {c}")
     return "\n".join(lines) + "\n"

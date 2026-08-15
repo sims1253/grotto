@@ -222,12 +222,13 @@ def test_category_caps_actually_bound_realized_chroma(families):
 
 
 def test_diagnostics_exempt_from_restraint(families, spec):
-    """Candidate A restrains ordinary syntax (.120) but diagnostics keep the
-    full .160 ceiling -- safety signals are not muted by the restraint."""
+    """Candidate A restrains ordinary syntax (.075) but diagnostics keep a
+    much higher ceiling (.150) -- safety signals are not muted by the
+    restraint."""
     b = families["a-restrained"].binding
     assert b.category_caps["ordinary"] < b.category_caps["diagnostics"]
     t_err = families["a-restrained"].trace("night", "error")
-    assert t_err.chroma_losses["ceiling"] == pytest.approx(0.160)
+    assert t_err.chroma_losses["ceiling"] == pytest.approx(0.150)
 
 
 # ===========================================================================
@@ -313,9 +314,11 @@ def test_role_scales_are_applied_in_provenance(families):
     """Candidate C's function/keyword boosts and string/builtin restraints are
     real inputs recorded in the chroma-chain components."""
     b = families["c-expressive"].binding
-    assert b.role_scales["function"] == pytest.approx(1.18)
-    assert b.role_scales["keyword"] == pytest.approx(1.10)
-    assert b.role_scales["string"] == pytest.approx(0.90)
+    # keyword/string at parity: the old 1.10/0.90 split inverted the chroma
+    # hierarchy across variants (13 material D-5 inversions); see the binding.
+    assert b.role_scales["function"] == pytest.approx(1.20)
+    assert b.role_scales["keyword"] == pytest.approx(1.0)
+    assert b.role_scales["string"] == pytest.approx(1.0)
     assert b.role_scales["builtin"] == pytest.approx(0.90)
 
 

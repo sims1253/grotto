@@ -37,9 +37,23 @@ def _esc(s) -> str:
     return escape(str(s), quote=True)
 
 
+def on_text_threshold(hex_color: str) -> bool:
+    """Whether DARK ink reads on ``hex_color`` -- the one shared chip-text cutoff.
+
+    Returns True when WCAG relative luminance exceeds 0.42.  That constant is
+    an arbitrary but serviceable midpoint, NOT a WCAG criterion (WCAG defines
+    contrast ratios between two colours, not a background-luminance split).
+    Only the DECISION is shared project-wide so renderers cannot disagree
+    about which chips count as "light"; each caller keeps its own ink PALETTE
+    (#000/#fff, or chrome-tinted near-black/near-white) -- see ``_on_text``
+    here, ``family_report._variant_strip`` and ``candidate_report._on_svg``.
+    """
+    return relative_luminance(hex_to_srgb(hex_color)) > 0.42
+
+
 def _on_text(hex_color: str) -> str:
-    """Black or white, whichever reads on ``hex_color``."""
-    return "#000" if relative_luminance(hex_to_srgb(hex_color)) > 0.42 else "#fff"
+    """Black or white, whichever reads on ``hex_color`` (see on_text_threshold)."""
+    return "#000" if on_text_threshold(hex_color) else "#fff"
 
 
 def _chip(hex_color: str, label: str, *, w: int = 84, h: int = 34) -> str:
@@ -169,7 +183,13 @@ def _contrast_table(palette: Palette, roles: RoleSpec, env: Environments) -> str
         spec = roles.roles.get(role)
         target = spec.contrast_target if spec else None
         band = _classify_band(env, abs(rep.apca))
-        target_ok = (target is None) or (band == target)
+        # Bands deliberately overlap (comfortable 60-78 vs high 75-90), so
+        # agreement is membership in the TARGET band, not band-name equality
+        # with ``band_for_lc``'s first-match classification (cf. report.py,
+        # model._contrast_block).
+        target_ok = (target is None) or (
+            env.contrast_bands[target].contains(abs(rep.apca))
+        )
         wcag_body = rep.wcag_aa_body
         rows.append(
             "<tr>"
@@ -304,7 +324,9 @@ def _specimens_section(palette: Palette) -> str:
         )
     control = (
         '<div class="controls"><label for="cvd">CVD view: </label>'
-        '<select id="cvd" onchange="document.body.className=\'view-\'+this.value">'
+        # the ONLY change handler is the script listener at the bottom of the
+        # page (an inline onchange here would set body.className a second time)
+        '<select id="cvd">'
         + "".join(f'<option value="{v}">{l}</option>' for v, l in _CVD_VIEWS)
         + "</select></div>"
     )
@@ -319,6 +341,47 @@ def _specimens_section(palette: Palette) -> str:
 # --------------------------------------------------------------------------
 # top-level reports
 # --------------------------------------------------------------------------
+
+
+def _salience_budget_section(palette: Palette, roles: RoleSpec, env: Environments) -> str:
+    """The DESIGN.md section-6 budget, measured from the declared coverage
+    plan.  Fractions are of non-background pixels; violations are flagged,
+    never tuned away."""
+    from .spec import salience_coverage
+
+    try:
+        sc = salience_coverage(palette, roles, "code")
+    except ValueError:
+        return "<p class='meta'>No coverage model (missing bg).</p>"
+    budget = env.salience_budget or {}
+    rows = []
+    ok = True
+    for level, label, key in (
+        ("at_or_above_3", "&ge; 3", "max_fraction_at_or_above_3"),
+        ("at_or_above_5", "&ge; 5", "max_fraction_at_or_above_5"),
+    ):
+        frac = sc[level]
+        limit = budget.get(key)
+        cls = "flag-ok"
+        note = "&ndash;"
+        if limit is not None:
+            note = f"{limit * 100:.0f}%"
+            if frac > limit + 1e-9:
+                cls = "flag-bad"
+                ok = False
+        rows.append(
+            f"<tr><td>salience {label}</td><td>{frac * 100:.1f}%</td>"
+            f"<td>{note}</td><td class='{cls}'>"
+            f"{'within' if (limit is None or frac <= limit + 1e-9) else 'OVER'}</td></tr>"
+        )
+    return (
+        "<table><tr><th>level</th><th>declared share of non-bg pixels</th>"
+        "<th>budget</th><th>status</th></tr>" + "".join(rows) + "</table>"
+        "<p class='meta'>Declared coverage estimate (spec.py COVERAGE_MODELS), "
+        "not a screenshot measurement. The budget makes \"too busy\" a number "
+        "(DESIGN.md section 6); an OVER row is a design signal, not an error "
+        "to be tuned away.</p>"
+    )
 
 
 def palette_html_report(
@@ -352,6 +415,7 @@ def palette_html_report(
         ("Swatches &amp; gamut", _swatch_grid(palette, roles)),
         ("Contrast (vs bg)", _contrast_table(palette, roles, env)),
         ("Distance-matrix violations", _distance_section(violations)),
+        ("Salience budget (declared estimate)", _salience_budget_section(palette, roles, env)),
         ("Diagnostics &amp; redundant channels", _diagnostics_panel(palette, roles)),
         ("CVD: must_distinguish pairs", _cvd_pairs_section(palette, dists)),
         ("Spectral (nominal display, exploratory)", _spectral_section(palette)),
@@ -395,7 +459,6 @@ def palette_svg_strip(palette: Palette, roles: RoleSpec) -> str:
             f'rx="3" />'
         )
         txt_color = _on_text(a.hex)
-        label = f"{a.role}  {a.hex}"
         rects.append(
             f'<text x="{x+6}" y="18" fill="{txt_color}">{_esc(a.role)}</text>'
             f'<text x="{x+6}" y="{h-8}" fill="{txt_color}">{a.hex}</text>'
@@ -441,7 +504,9 @@ th{{color:#9aa;font-weight:normal;font-size:.78rem;text-transform:uppercase;}}
         for i in (report.hue_order_inversions + report.chroma_rank_inversions)
     ) or '<tr><td colspan="4" class="meta">none</td></tr>'
 
-    # per-role drift table (chromatic roles only)
+    # per-role drift table (chromatic roles only); one column per variant,
+    # built from the report itself -- the body must not assume three variants
+    # just because the header below iterates them.
     role_rows = ""
     for role in sorted(report.roles):
         r = report.roles[role]
@@ -449,10 +514,14 @@ th{{color:#9aa;font-weight:normal;font-size:.78rem;text-transform:uppercase;}}
             continue
         drift = r.max_hue_drift if r.max_hue_drift is not None else float("nan")
         over = "bad" if (r.max_hue_drift or 0) > report.max_hue_drift_threshold else "ok"
+        hue_cells = "".join(
+            f"<td>{r.hue[v]:.1f}</td>"
+            for v in report.variants
+            if v in r.hue
+        )
         role_rows += (
             f"<tr><td>{_esc(role)}</td><td>{_esc(r.family)}</td>"
-            f"<td>{r.hue[report.variants[0]]:.1f}</td><td>{r.hue[report.variants[1]]:.1f}</td>"
-            f"<td>{r.hue[report.variants[2]]:.1f}</td>"
+            f"{hue_cells}"
             f'<td class="{over}">{drift:.2f}</td></tr>'
         )
 
@@ -472,7 +541,9 @@ th{{color:#9aa;font-weight:normal;font-size:.78rem;text-transform:uppercase;}}
         "<table><tr><th>role</th><th>family</th>"
         + "".join(f"<th>{_esc(v)} h&deg;</th>" for v in report.variants)
         + "<th>max drift&deg;</th></tr>" + role_rows + "</table>"
-        f"<p class='meta'>Salience rank preserved by construction: "
+        f"<p class='meta'>Salience rank check (spec coverage only; the rank "
+        f"itself is constant by construction, so this verifies the roles exist "
+        f"in the spec): "
         f"<b>{'yes' if report.salience_rank_preserved else 'no'}</b>. "
         "Achromatic/low-chroma roles are omitted (hue not meaningful below chroma floor).</p>"
         "</body></html>"
@@ -605,8 +676,10 @@ def reference_comparison_html(c: dict, analyses: dict[str, dict]) -> str:
     swatch_table = (
         "<h2>Swatch comparison (dark variant)</h2>"
         "<table><tr>" + sw_head + "</tr>" + "".join(sw_rows) + "</table>"
-        "<p class='meta'>Chromatic-role swatches use the reference's own hex for that role; "
-        "roles not mapped by a reference show '-'. Selection/diff alpha hexes are base-stripped.</p>"
+        "<p class='meta'>Swatches use the reference's own hex for each role that is "
+        "both mapped and chromatic (hue lookup comes from the warm/cool per-role map, "
+        "which excludes near-achromatic colours); a role that is unmapped OR mapped "
+        "but achromatic shows '-'. Selection/diff alpha hexes are base-stripped.</p>"
     )
 
     # --- mapping completeness ----------------------------------------------
@@ -741,7 +814,9 @@ def reference_analysis_html(a: dict) -> str:
     sec.append("<h2>Warm/cool balance</h2>"
                f"<p>chroma-weighted score: {_warm_cool_cell(wc['chroma_weighted_score'])}</p>"
                f"<p class='meta'>warm ({wc['n_warm_roles']}): {_esc(', '.join(wc['warm_roles']) or '-')}"
-               f"<br>cool ({wc['n_cool_roles']}): {_esc(', '.join(wc['cool_roles']) or '-')}</p>"
+               f"<br>cool ({wc['n_cool_roles']}): {_esc(', '.join(wc['cool_roles']) or '-')}"
+               f"<br>neutral ({wc['n_neutral_roles']}): {_esc(', '.join(wc['neutral_roles']) or '-')}"
+               " &larr; hue exactly on the 150/330&deg; boundary</p>"
                f"<p class='meta'>{_esc(wc['definition'])}</p>")
 
     # constraint coverage
@@ -800,8 +875,10 @@ def reference_comparison_svg(analyses: dict[str, dict], order: list[str]) -> str
     """A self-contained SVG strip comparing every reference's key colours.
 
     One row per reference (in the fixed ``order``); each row shows the bg
-    swatch, fg swatch, and the chromatic syntax/diagnostic roles that the
-    reference actually maps. Deterministic; no external resources.
+    swatch, fg swatch, and the syntax/diagnostic roles that are both mapped
+    and chromatic in that reference. A role that is unmapped OR mapped but
+    achromatic shows '-' (its hex never enters the chromatic per-role map).
+    Deterministic; no external resources.
     """
     key_roles = ("keyword", "string", "type", "function", "number",
                  "constant", "error", "warning", "diff_added", "diff_removed")

@@ -228,7 +228,8 @@ def test_cli_raster(tmp_path, palette):
 
 def test_shared_colour_ambiguity_is_reported(tmp_path, palette):
     """Roles sharing one hex cannot be separated by pixels -- must be explicit."""
-    # the Restrained evening candidate collapses fg/docstring/parameter/property
+    # the Restrained evening candidate collapses its near-neutral roles onto
+    # fg (deepened restraint: docstring/parameter/property/decorator/tag)
     shared_hex = palette["fg"]
     assert "parameter" in [r for r in palette.colors if palette[r] == shared_hex]
     # representative is the earliest-declared role (fg, a neutral)
@@ -239,7 +240,7 @@ def test_shared_colour_ambiguity_is_reported(tmp_path, palette):
     cls = rep["classification"]
     amb = cls["shared_colour_ambiguity"]
     assert shared_hex in amb
-    assert amb[shared_hex]["roles"] == ["docstring", "fg", "parameter", "property"]
+    assert amb[shared_hex]["roles"] == ["decorator", "docstring", "fg", "parameter", "property", "tag"]
     assert "fg" in amb[shared_hex]["roles"]
     assert amb[shared_hex]["fraction"] == pytest.approx(0.5, abs=1e-6)
     # accounting is fraction-consistent: classified + unclassified == 1

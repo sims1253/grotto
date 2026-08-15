@@ -71,7 +71,7 @@ from .contrast import contrast_report
 from .cvd import CVD_TYPES, simulate
 from .distance import breakdown, delta_e_ok
 from .environments import Environments
-from .spectral import DISPLAYS, led_lcd, screen_melanopic
+from .spectral import DISPLAYS, screen_melanopic
 from .spec import (
     CONSTRAINT_KINDS,
     DistanceSpec,
@@ -128,6 +128,10 @@ class ReferenceVariant:
     source_ambiguous: bool
     normalized_alpha_roles: tuple[str, ...] = ()
     extra_variant_labels: tuple[str, ...] = ()
+    #: stem of the YAML file this variant was loaded from (provenance; the
+    #: reference loader never sets Palette.meta["source_path"], so it cannot
+    #: be recovered from the palette).
+    file_stem: str = ""
 
 
 def _normalize_role_hex(value, role: str, normalized: list[str]) -> str | None:
@@ -223,6 +227,7 @@ def load_reference_file(path: str | Path) -> list[ReferenceVariant]:
                 source_ambiguous=False,  # finalised below
                 normalized_alpha_roles=norm,
                 extra_variant_labels=(),  # finalised below
+                file_stem=p.stem,
             )
         )
 
@@ -242,6 +247,7 @@ def load_reference_file(path: str | Path) -> list[ReferenceVariant]:
                 is_primary=False,
                 source_ambiguous=False,
                 normalized_alpha_roles=norm,
+                file_stem=p.stem,
             )
         )
 
@@ -268,6 +274,7 @@ def load_reference_file(path: str | Path) -> list[ReferenceVariant]:
                     is_primary=False,
                     source_ambiguous=False,
                     normalized_alpha_roles=norm,
+                    file_stem=p.stem,
                 )
             )
 
@@ -289,6 +296,7 @@ def load_reference_file(path: str | Path) -> list[ReferenceVariant]:
                 source_ambiguous=ambiguous,
                 normalized_alpha_roles=v.normalized_alpha_roles,
                 extra_variant_labels=tuple(extra_labels),
+                file_stem=v.file_stem,
             )
         )
     return out
@@ -526,7 +534,9 @@ def warm_cool_balance(palette: Palette, roles: RoleSpec) -> dict:
     * Each chromatic role gets a per-colour score ``cos(h - 60 deg)``: **+1** at
       the warm centre (amber, 60 deg), **-1** at the cool centre (azure,
       240 deg), **0** at the intermediate boundaries (150 deg / 330 deg).
-      A role is 'warm' when its score > 0, 'cool' when < 0.
+      A role is 'warm' when its score > 0, 'cool' when < 0, and 'neutral'
+      when exactly 0 -- the same three-way split ``_classify_hue`` uses, so a
+      boundary-hue role is never silently folded into the cool list.
     * The palette score is the **chroma-weighted mean** of the per-role scores:
       ``sum(C_i * score_i) / sum(C_i)``.  Weighting by chroma means a faint
       role moves the needle less than a saturated one.  Range [-1, +1]:
@@ -539,7 +549,7 @@ def warm_cool_balance(palette: Palette, roles: RoleSpec) -> dict:
     """
     from .color import hex_to_oklch
 
-    warm, cool = [], []
+    warm, cool, neutral = [], [], []
     num = 0.0
     den = 0.0
     per_role = {}
@@ -551,7 +561,14 @@ def warm_cool_balance(palette: Palette, roles: RoleSpec) -> dict:
         per_role[role] = {"hex": hx, "C": _r(C), "h": _r(h), "score": _r(s)}
         num += C * s
         den += C
-        (warm if s > 0 else cool).append(role)
+        # three-way split, mirroring _classify_hue: a score of exactly 0 is a
+        # genuinely intermediate hue (150/330 deg), not a cool one
+        if s > 0:
+            warm.append(role)
+        elif s < 0:
+            cool.append(role)
+        else:
+            neutral.append(role)
     score = num / den if den > 0 else 0.0
     return {
         "definition": (
@@ -565,8 +582,10 @@ def warm_cool_balance(palette: Palette, roles: RoleSpec) -> dict:
         "n_chromatic_roles": len(per_role),
         "n_warm_roles": len(warm),
         "n_cool_roles": len(cool),
+        "n_neutral_roles": len(neutral),
         "warm_roles": sorted(warm),
         "cool_roles": sorted(cool),
+        "neutral_roles": sorted(neutral),
         "per_role": {k: per_role[k] for k in sorted(per_role)},
         "note": (
             "Sign/magnitude are a coarse summary. Boundaries at 150/330 deg are "
@@ -591,8 +610,11 @@ def _spectral_section(palette: Palette, display: str = "led-lcd") -> dict | None
         cov = coverage_model(palette, "code")
     except ValueError:
         return {"error": "coverage model could not be built (no bg or unknown kind)"}
-    disp = DISPLAYS[display]() if display in DISPLAYS else led_lcd()
-    res = screen_melanopic(cov, disp)
+    if display not in DISPLAYS:
+        # Refuse silent substitution: computing with led-lcd while labelling
+        # the section with the requested name would be a provenance lie.
+        raise ValueError(f"unknown display model {display!r}; have {sorted(DISPLAYS)}")
+    res = screen_melanopic(cov, DISPLAYS[display]())
 
     bg_hexes = {
         palette.get(r) for r in ("bg", "bg_elevated", "bg_overlay") if palette.get(r)
@@ -694,7 +716,7 @@ def analyze_reference(
         "reference": {
             "name": variant.name,
             "label": variant.label,
-            "file_stem": variant.palette.meta.get("source_path", ""),
+            "file_stem": variant.file_stem,
             "source_url": variant.source_url,
             "source_note": variant.source_note,
             "is_primary": variant.is_primary,
@@ -943,6 +965,8 @@ def reference_text(a: dict) -> str:
              f"(+ warm, - cool)")
     L.append(f"  warm roles ({wc['n_warm_roles']}): {', '.join(wc['warm_roles']) or '-'}")
     L.append(f"  cool roles ({wc['n_cool_roles']}): {', '.join(wc['cool_roles']) or '-'}")
+    L.append(f"  neutral roles ({wc['n_neutral_roles']}): {', '.join(wc['neutral_roles']) or '-'}"
+             "  (hue exactly on the 150/330 deg boundary)")
     L.append(f"  definition: {wc['definition']}")
     L.append("")
 
@@ -1027,10 +1051,3 @@ def comparison_text(c: dict) -> str:
     for cv in c["caveats"]:
         L.append(f"  - {cv}")
     return "\n".join(L) + "\n"
-
-
-def esc(s) -> str:
-    """HTML-escape helper (kept here so text renderers share one definition)."""
-    from html import escape
-
-    return escape(str(s), quote=True)

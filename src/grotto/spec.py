@@ -749,3 +749,49 @@ def coverage_model(palette: Palette, kind: str = "code") -> dict[str, float]:
 
     total = sum(out.values())
     return {k: v / total for k, v in out.items()}
+
+
+def salience_coverage(
+    palette: Palette, roles: RoleSpec, kind: str = "code"
+) -> dict[str, float]:
+    """Pixel share of NON-BACKGROUND pixels at each salience level, from the
+    same declared coverage plan as ``coverage_model``.
+
+    This is the measurable form of the DESIGN.md section-6 budget rule
+    ("no more than ~10% of non-background pixels at salience >= 3, ~1% at
+    >= 5"): it makes "this theme is too busy" a number instead of a taste
+    argument.  The denominator counts non-background pixels the palette
+    renders as themselves; the numerator sums the plan fractions of those
+    roles whose declared salience reaches each level.
+
+    Still a DECLARED estimate, not a screenshot measurement -- the same
+    caveat as ``coverage_model``.  Thresholds live in
+    ``spec/environments.yaml: salience_budget``; comparing against them is the
+    caller's job (report.py / candidate_report.py), because Layer 1 does not
+    read Layer 2 parameters.
+    """
+    if kind not in COVERAGE_MODELS:
+        raise ValueError(f"unknown coverage model {kind!r}; have {sorted(COVERAGE_MODELS)}")
+
+    plan = COVERAGE_MODELS[kind]
+    # Denominator: non-background pixels the palette actually renders as
+    # themselves.  Shares of roles absent from the palette are excluded from
+    # BOTH sides -- their rendered appearance is unknown (coverage_model folds
+    # them into bg for spectral purposes, but calling them salient or quiet
+    # would be a guess either way).
+    denominator = sum(
+        frac for role, frac in plan.items()
+        if role != "bg" and palette.get(role)
+    )
+    out: dict[str, float] = {}
+    for level in range(0, 7):
+        num = sum(
+            frac
+            for role, frac in plan.items()
+            if role != "bg"
+            and palette.get(role)
+            and roles.roles.get(role) is not None
+            and roles.roles[role].salience >= level
+        )
+        out[f"at_or_above_{level}"] = (num / denominator) if denominator > 1e-9 else 0.0
+    return out

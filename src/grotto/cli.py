@@ -42,6 +42,7 @@ from .render import (
     reference_comparison_html,
 )
 from .spec import DistanceSpec, Palette, RoleSpec, load
+from .spectral import DISPLAYS
 from .raster import DEFAULT_CHUNK_ROWS as DEFAULT_RASTER_CHUNK_ROWS
 from .raster import DEFAULT_THRESHOLD as DEFAULT_RASTER_THRESHOLD
 from .stability import DEFAULT_MAX_HUE_DRIFT, cross_variant_report
@@ -383,7 +384,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_pal = sub.add_parser("palette", help="audit one palette (JSON/YAML/text + HTML/SVG)")
     p_pal.add_argument("palette")
     p_pal.add_argument("--out", default="out")
-    p_pal.add_argument("--display", default="led-lcd", choices=("led-lcd", "oled"))
+    p_pal.add_argument("--display", default="led-lcd", choices=sorted(DISPLAYS))
     p_pal.set_defaults(func=cmd_palette)
 
     p_stab = sub.add_parser("stability", help="cross-variant stability for a variant trio")
@@ -407,7 +408,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_ref.add_argument("--references-dir", default="themes/references")
     p_ref.add_argument("--out", default="out/references")
-    p_ref.add_argument("--display", default="led-lcd", choices=("led-lcd", "oled"))
+    p_ref.add_argument("--display", default="led-lcd", choices=sorted(DISPLAYS))
     p_ref.set_defaults(func=cmd_references)
 
     p_fam = sub.add_parser(
@@ -468,7 +469,14 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     ap = build_parser()
     args = ap.parse_args(argv)
-    return args.func(args)
+    try:
+        return args.func(args)
+    except (ValueError, OSError) as exc:
+        # User-input problems (unknown model, missing spec file, too few
+        # palettes, malformed input) must surface as a one-line error and a
+        # nonzero exit -- never as a raw traceback on the console.
+        print(f"grotto: error: {exc}", file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":
