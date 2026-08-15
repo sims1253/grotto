@@ -129,15 +129,24 @@ def test_required_workbench_keys(themes, mapping):
 
 def test_color_format_and_transparency_policy(themes):
     # Opaque everywhere except the ids whose policy contract expects alpha
-    # (spec/mappings/vscode.yaml): the four content-preserving secondary
-    # overlays at alpha 80 and editorUnnecessaryCode.opacity at alpha 66.
-    # These five are the ONLY RGBA ids; notably editor.selectionBackground
+    # (spec/mappings/vscode.yaml): every overlay that paints over editor
+    # content carries alpha 80 (secondary selection/search/hover overlays,
+    # the bracket-match fill, ALL diffEditor washes, and the debug
+    # stack-frame highlights), plus editorUnnecessaryCode.opacity at alpha
+    # 66.  These are the ONLY RGBA ids; notably editor.selectionBackground
     # and editor.findMatchBackground must stay opaque #rrggbb.
     alpha_exact = {
         "editor.inactiveSelectionBackground": "80",
         "editor.selectionHighlightBackground": "80",
         "editor.findMatchHighlightBackground": "80",
         "editor.hoverHighlightBackground": "80",
+        "editorBracketMatch.background": "80",
+        "diffEditor.insertedTextBackground": "80",
+        "diffEditor.removedTextBackground": "80",
+        "diffEditor.insertedLineBackground": "80",
+        "diffEditor.removedLineBackground": "80",
+        "editor.stackFrameHighlightBackground": "80",
+        "editor.focusedStackFrameHighlightBackground": "80",
         "editorUnnecessaryCode.opacity": "66",
     }
     for name, theme in themes.items():

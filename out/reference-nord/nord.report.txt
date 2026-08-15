@@ -1,6 +1,6 @@
 # nord  (dark, source=hex, NON-candidate)
   roles: 17 defined, 23 spec roles missing
-  input_hash: 21bf160ad6cb1efe
+  input_hash: 976caeb29b934abc
 
 ## colors (role: hex  oklch L C h  gamut)
   bg                 #2e3440  L0.324 C0.023 h264  sRGB=Y P3=Y
@@ -68,6 +68,11 @@
   fg/bg: 0.575 | 0.576 0.576 0.577
   comment/bg: 0.129 | 0.129 0.129 0.128
   error/bg: 0.311 | 0.226 0.293 0.313
+
+## salience budget (code coverage, declared estimate)
+  at_or_above_3:  19.2% of non-bg pixels (budget <= 22%)
+  at_or_above_5:   0.0% of non-bg pixels (budget <= 1%)
+  within budget
 
 ## spectral (nominal led-lcd, code coverage) -- exploratory
   melanopic/photopic ratio: 1.135 (display white = 1.0)

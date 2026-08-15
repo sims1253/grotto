@@ -4,7 +4,7 @@
   "reference": {
     "name": "nord",
     "label": "dark",
-    "file_stem": "",
+    "file_stem": "nord",
     "source_url": "https://raw.githubusercontent.com/nordtheme/nord/develop/src/nord.css",
     "source_note": "Palette from src/nord.css (`--nord0`..`--nord15` CSS custom properties) on the default `develop` branch. Each color's documented usage (copied from the CSS doc-comments) drives the role mapping below. Nord is a single 16-color palette used for both the light and dark shadings of its ports; this file records the dark shading (nord0..nord2 as backgrounds, nord4..nord6 as foregrounds).",
     "is_primary": true,
@@ -584,6 +584,7 @@
     "n_chromatic_roles": 14,
     "n_warm_roles": 7,
     "n_cool_roles": 7,
+    "n_neutral_roles": 0,
     "warm_roles": [
       "diff_added",
       "diff_removed",
@@ -602,6 +603,7 @@
       "selection",
       "type"
     ],
+    "neutral_roles": [],
     "per_role": {
       "bg": {
         "hex": "#2e3440",

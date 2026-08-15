@@ -4,7 +4,7 @@
   "reference": {
     "name": "material-palenight",
     "label": "dark",
-    "file_stem": "",
+    "file_stem": "palenight",
     "source_url": "https://raw.githubusercontent.com/whizkydee/vscode-material-palenight-theme/master/themes/palenight.json",
     "source_note": "vscode-material-palenight-theme `themes/palenight.json`. This is a VS Code TextMate theme (no separate named-palette file), so the palette below is the set of distinct colors actually used by the theme, reconstructed verbatim from the JSON's `colors` (UI) and `tokenColors` (syntax) maps. Roles are mapped from tokenColors scopes (e.g. `string` -> #C3E88D, `keyword`/`storage` -> #C792EA, `entity.name.function` -> #82AAFF) and from UI `colors` keys (editor.background, editorError.foreground, etc.).",
     "is_primary": true,
@@ -531,6 +531,7 @@
     "n_chromatic_roles": 15,
     "n_warm_roles": 7,
     "n_cool_roles": 8,
+    "n_neutral_roles": 0,
     "warm_roles": [
       "diff_added",
       "diff_removed",
@@ -550,6 +551,7 @@
       "keyword",
       "selection"
     ],
+    "neutral_roles": [],
     "per_role": {
       "bg": {
         "hex": "#292d3e",

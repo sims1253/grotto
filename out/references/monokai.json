@@ -4,7 +4,7 @@
   "reference": {
     "name": "monokai",
     "label": "dark",
-    "file_stem": "",
+    "file_stem": "monokai",
     "source_url": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-monokai/themes/monokai-color-theme.json",
     "source_note": "The classic Monokai as shipped with VS Code (extensions/theme-monokai/themes/monokai-color-theme.json). This theme has no single named-palette file; the palette below is reconstructed verbatim from the theme JSON's (a) header comment of base values, (b) editor/terminal `colors` map, and (c) `tokenColors` syntax rules. Roles are mapped from those same tokenColors rules (e.g. `string` -> #E6DB74, `keyword`/`storage` -> #F92672). Note: this is the open VS Code \"Monokai\", not the proprietary Monokai Pro.",
     "is_primary": true,
@@ -566,6 +566,7 @@
     "n_chromatic_roles": 13,
     "n_warm_roles": 8,
     "n_cool_roles": 5,
+    "n_neutral_roles": 0,
     "warm_roles": [
       "comment",
       "diff_added",
@@ -583,6 +584,7 @@
       "number",
       "type"
     ],
+    "neutral_roles": [],
     "per_role": {
       "builtin": {
         "hex": "#66d9ef",

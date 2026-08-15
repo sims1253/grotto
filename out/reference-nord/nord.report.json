@@ -10,7 +10,7 @@
     "n_roles": 17
   },
   "provenance": {
-    "input_hash": "21bf160ad6cb1efe",
+    "input_hash": "976caeb29b934abc",
     "roles_spec_version": 1,
     "distance_spec_version": 1,
     "environments_version": 1,
@@ -1003,6 +1003,25 @@
         }
       }
     ]
+  },
+  "salience_budget": {
+    "coverage_kind": "code",
+    "fractions": {
+      "at_or_above_0": 1.0,
+      "at_or_above_1": 0.692308,
+      "at_or_above_2": 0.461538,
+      "at_or_above_3": 0.192308,
+      "at_or_above_4": 0.038462,
+      "at_or_above_5": 0.0,
+      "at_or_above_6": 0.0
+    },
+    "budget": {
+      "max_fraction_at_or_above_3": 0.22,
+      "max_fraction_at_or_above_5": 0.01
+    },
+    "note": "DECLARED pixel estimate, not a screenshot measurement; fractions are of non-background pixels the palette renders as themselves (DESIGN.md section 6).",
+    "violations": [],
+    "ok": true
   },
   "spectral": {
     "display": "led-lcd",

@@ -4,7 +4,7 @@
   "reference": {
     "name": "solarized",
     "label": "dark",
-    "file_stem": "",
+    "file_stem": "solarized",
     "source_url": "https://ethanschoonover.com/solarized/",
     "source_note": "The 16-color palette is the canonical Solarized palette from ethanschoonover.com/solarized (the monotones base03..base3 + the 8 accents yellow/orange/red/magenta/violet/blue/cyan/green). Hex values were read from the site HTML and are identical to those defined in Ethan Schoonover's official vim colorscheme (altercation/vim-colors-solarized). The canonical `green` is #859900 (the site value); note the vim file ships an \"experimental\" #719e07 override that is NOT used here. Solarized's design is a single palette that serves both a dark and a light mode by swapping the monotone pairs (the website documents the base03:bg <-> base0:text and base02:highlight <-> base1 pairing), so both role mappings are recorded below. Syntax roles (keyword=green, string/number/constant=cyan, type=yellow, function=blue, ...) come from the official vim colorscheme's standard group definitions.",
     "is_primary": true,
@@ -531,6 +531,7 @@
     "n_chromatic_roles": 13,
     "n_warm_roles": 6,
     "n_cool_roles": 7,
+    "n_neutral_roles": 0,
     "warm_roles": [
       "diff_added",
       "diff_removed",
@@ -548,6 +549,7 @@
       "selection",
       "string"
     ],
+    "neutral_roles": [],
     "per_role": {
       "bg": {
         "hex": "#002b36",

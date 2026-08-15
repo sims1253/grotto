@@ -23,10 +23,11 @@ Labels used throughout:
 The most important finding in Phase 1 is negative.
 
 There is **no empirical evidence that any syntax colour scheme outperforms any
-other** [E, R-10]. The literature supports "highlighting beats no
-highlighting," weakly and with small samples, and is silent on the question
-this project actually asks. Nothing in the perceptual-colour-science literature
-tells you what colour a keyword should be.
+other** [E, R-10]. The evidence that highlighting beats no highlighting is
+itself mixed and small-sample -- the randomized results that exist point both
+ways -- and the literature is silent on the question this project actually
+asks. Nothing in the perceptual-colour-science literature tells you what colour
+a keyword should be.
 
 So this project cannot be, and should not claim to be, evidence-driven palette
 design. What it can honestly be is:
@@ -289,8 +290,17 @@ The brief's proposed hierarchy is broadly sound. Four changes:
 > sit at salience ≥ 3, and no more than ~1% at salience ≥ 5.
 
 This is a made-up number with a real purpose: it makes "this theme is too
-busy" a measurable property rather than a matter of taste. `coverage_model()`
-provides the pixel estimates to check it.
+busy" a measurable property rather than a matter of taste. It is enforced:
+`salience_coverage()` computes the fractions from the declared coverage plan
+and every palette report / candidate comparison carries a salience-budget
+section against these thresholds. Enforcement produced a finding and a
+decision: the declared hierarchy itself measures ~19% at salience >= 3 under
+the "code" estimate (keyword/string/function/type/number are exactly the
+roles the hierarchy wants marked, and no other salience-3 role carries
+coverage weight), so the original 0.10 budget contradicted the hierarchy.
+The hierarchy won: the >=3 limit is now 0.22 -- just above the measured
+design, so the check still catches drift toward busier palettes -- and this
+remains a judgment [J], not evidence about comfortable busyness.
 
 ---
 
@@ -468,7 +478,14 @@ transform and the prose do not silently disagree:
    overlap, so membership is tested against the role's *target* band.
 5. **Corrected stability**: normalized C/max_chroma ordering, cyclic family
    sequence (not pairwise signed hue), a non-vacuous realized salience proxy,
-   and total hue drift that includes the adjustment component.
+   and total hue drift that includes the adjustment component. Two further
+   checker corrections: (a) chroma-order inversions count a sign flip only
+   when BOTH sides exceed a small tie epsilon (`CHROMA_ORDER_TIE_EPS` -- 8-bit
+   quantisation alone moves realized chroma by more); near-tie flips are
+   reported in `normalized_chroma_near_tie_flips` but do not fail the gate;
+   (b) the salience proxy only orders roles with DIFFERENT declared salience
+   -- equal-level pairs imply no ordering, so flagging them was a checker
+   artifact.
 
 `BindingError` is raised for malformed bindings; `TransformError` only for
 infeasible hard constraints. Aesthetic, distance and legibility misses are

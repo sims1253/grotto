@@ -11,7 +11,7 @@ palette:
     '
   n_roles: 40
 provenance:
-  input_hash: ef64e4f80b0d5cae
+  input_hash: c3a43954b25f3d35
   roles_spec_version: 1
   distance_spec_version: 1
   environments_version: 1
@@ -761,7 +761,7 @@ contrast_vs_bg:
   fg:
     target_band: comfortable
     measured_band: high
-    band_match: false
+    band_match: true
     wcag_ratio: 11.706
     wcag_aa_body: true
     wcag_aa_large: true
@@ -1796,6 +1796,23 @@ cvd:
       tritan:
         dichromat_de_1.0: 0.523646
         anomaly_de_0.6: 0.527246
+salience_budget:
+  coverage_kind: code
+  fractions:
+    at_or_above_0: 1.0
+    at_or_above_1: 0.692308
+    at_or_above_2: 0.461538
+    at_or_above_3: 0.192308
+    at_or_above_4: 0.038462
+    at_or_above_5: 0.0
+    at_or_above_6: 0.0
+  budget:
+    max_fraction_at_or_above_3: 0.22
+    max_fraction_at_or_above_5: 0.01
+  note: DECLARED pixel estimate, not a screenshot measurement; fractions are of non-background pixels
+    the palette renders as themselves (DESIGN.md section 6).
+  violations: []
+  ok: true
 spectral:
   display: led-lcd
   coverage_kind: code

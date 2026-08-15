@@ -84,7 +84,7 @@ prefix matching (`string`, `keyword.control.r`, `entity.name.function.r`,
 **REditorSupport.r** is *recommended* for the evaluation (better R grammar and
 R Markdown embedding), but not required — the themes work with any grammar.
 
-### R call-argument normalization
+### Call-argument normalization (R, then TS/JS)
 
 The R grammar wraps whole argument lists in
 `meta.function-call.arguments.r > meta.function-call.r`; because the mapping
@@ -97,9 +97,21 @@ accessor renders as an operator rather than a keyword. **Limitation:** the
 override is keyed to the exact `.r` scope, so it normalizes only plain
 argument tokens that carry it — with no semantic tokens present, argument
 *names* with their own grammar scopes (strings, numbers, nested calls) keep
-those scopes' colours, and other languages' `meta.function-call.arguments`
-(no `.r`) are untouched. Verified with `Developer: Inspect Editor Tokens and
-Scopes` under Balanced Night; re-verify if the R grammar changes.
+those scopes' colours.
+
+The **TS/JS grammars have no `.arguments` child scope** — plain-identifier
+arguments sit directly inside `meta.function-call.ts` — so the same
+overpainting occurred there (visible in `console.log(rollingMean([1, 2, 3]))`
+in the TS specimen). Since no `.arguments` scope exists to key a narrow rule
+on, the mapping instead routes `variable.other.readwrite` /
+`variable.other.object` (which those argument tokens carry, and which match
+deeper than `meta.function-call`) to neutral `fg`; that is also the L1 intent
+(there is no `variable` role — variables are `fg`) and matches the
+semantic-token mapping. `meta.brace` is routed to `punctuation` for the same
+reason (bracket scopes in TS/JS are `meta.brace.*`, not `punctuation.*`).
+Verified with `Developer: Inspect Editor Tokens and Scopes` under Balanced
+Night for R; the TS/JS rules follow the same inspect-and-map loop and should
+be re-verified in a real editor. Re-check if a grammar changes.
 
 ## Known gaps and honesty notes
 
@@ -112,15 +124,21 @@ Scopes` under Balanced Night; re-verify if the R grammar changes.
 - Redundant non-hue channels VS Code does not let a theme control: squiggle
   shapes and diagnostic gutter icons (fixed UI), diff `+/-` gutter signs,
   selection borders (only the lightness offset survives). Strikethrough,
-  parameter italics and focus borders *are* honored. See the notes in
-  `spec/mappings/vscode.yaml`.
+  parameter italics, focus borders and the find-match *borders*
+  (`editor.findMatchBorder` / `editor.findMatchHighlightBorder`, which deliver
+  `search_match`/`search_match_current`'s declared border channel) *are*
+  honored. See the notes in `spec/mappings/vscode.yaml`.
 - Chrome colors are opaque by policy, per the official VS Code transparency
   guidance.  Ids that paint a highlight OVER editor content keep that content
-  readable with alpha 80: `editor.inactiveSelectionBackground`,
-  `editor.selectionHighlightBackground`, `editor.findMatchHighlightBackground`
-  and `editor.hoverHighlightBackground`; the primary selection and current
-  find match stay opaque.  `editorUnnecessaryCode.opacity` ships alpha 66 as
-  its contract expects.
+  readable with alpha 80: the secondary selection/search/hover overlays
+  (`editor.inactiveSelectionBackground`,
+  `editor.selectionHighlightBackground`,
+  `editor.findMatchHighlightBackground`, `editor.hoverHighlightBackground`),
+  the bracket-match fill (`editorBracketMatch.background`), every diffEditor
+  wash (word-level and whole-line inserted/removed), and the debug
+  stack-frame highlights.  The primary selection and the current find match
+  stay opaque.  `editorUnnecessaryCode.opacity` ships alpha 66 as its
+  contract expects.
 - Unmapped workbench keys fall back to VS Code defaults; the mapping covers
   canvas, chrome, line numbers, cursor/focus, selection, active line, search,
   diagnostics, diff, breakpoint/debug, panels/sidebar/lists, but not every id.

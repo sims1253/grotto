@@ -2,7 +2,7 @@ schema: grotto.family-build
 schema_version: phase4
 name: candidate-b-balanced
 is_candidate: true
-input_hash: 7ffb99008258b166
+input_hash: 18521825cc8cc25f
 ok: true
 binding:
   name: candidate-b-balanced
@@ -522,7 +522,8 @@ stability:
   - cyclic_family_sequence
   - realized_salience_proxy
   - total_hue_drift_including_adjustments
-  normalized_chroma_inversions:
+  normalized_chroma_inversions: []
+  normalized_chroma_near_tie_flips:
   - roles:
     - keyword
     - string
@@ -571,6 +572,7 @@ stability:
     - night
     d1: -0.1486
     d2: 0.0091
+  near_tie_epsilon: 0.02
   cyclic_family_sequence_preserved: true
   cyclic_family_sequence:
     day:
@@ -597,43 +599,11 @@ stability:
     - sand
     - sage
     - teal
-  salience_proxy_reversals:
-  - family: sand
-    variant: day
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: day
-    lower_salience: search_match_current
-    higher_salience: debug_current
-  - family: sand
-    variant: evening
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: evening
-    lower_salience: warning
-    higher_salience: search_match_current
-  - family: sand
-    variant: evening
-    lower_salience: search_match_current
-    higher_salience: debug_current
-  - family: sand
-    variant: night
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: night
-    lower_salience: warning
-    higher_salience: search_match_current
-  - family: sand
-    variant: night
-    lower_salience: search_match_current
-    higher_salience: debug_current
+  salience_proxy_reversals: []
   max_hue_drift_deg: 5.7
   drift_threshold_deg: 12
   drift_violations: []
-  ok: false
+  ok: true
 variants:
   day:
     palette:

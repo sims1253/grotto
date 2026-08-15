@@ -19,9 +19,11 @@
     "editor.inactiveSelectionBackground": "#dbe2ea80",
     "editor.selectionHighlightBackground": "#f6deba80",
     "editor.findMatchBackground": "#fcd291",
+    "editor.findMatchBorder": "#fcd291",
     "editor.findMatchHighlightBackground": "#f6deba80",
+    "editor.findMatchHighlightBorder": "#f6deba",
     "editor.hoverHighlightBackground": "#f6deba80",
-    "editorBracketMatch.background": "#dbe2ea",
+    "editorBracketMatch.background": "#dbe2ea80",
     "editorBracketMatch.border": "#1e3e5f",
     "focusBorder": "#1e3e5f",
     "list.focusOutline": "#1e3e5f",
@@ -32,10 +34,10 @@
     "editorUnnecessaryCode.opacity": "#6f6f6f66",
     "list.errorForeground": "#680d1e",
     "list.warningForeground": "#51380a",
-    "diffEditor.insertedTextBackground": "#dff0d4",
-    "diffEditor.removedTextBackground": "#f0e7e7",
-    "diffEditor.insertedLineBackground": "#dff0d4",
-    "diffEditor.removedLineBackground": "#f0e7e7",
+    "diffEditor.insertedTextBackground": "#dff0d480",
+    "diffEditor.removedTextBackground": "#f0e7e780",
+    "diffEditor.insertedLineBackground": "#dff0d480",
+    "diffEditor.removedLineBackground": "#f0e7e780",
     "diffEditor.diagonalFill": "#8c8c8c",
     "editorGutter.addedBackground": "#dff0d4",
     "editorGutter.modifiedBackground": "#f0e8de",
@@ -45,8 +47,8 @@
     "debugIcon.breakpointUnverifiedForeground": "#918c87",
     "debugIcon.breakpointCurrentStackframeForeground": "#1e3e5f",
     "debugIcon.breakpointStackframeForeground": "#1e3e5f",
-    "editor.stackFrameHighlightBackground": "#f6deba",
-    "editor.focusedStackFrameHighlightBackground": "#f6deba",
+    "editor.stackFrameHighlightBackground": "#f6deba80",
+    "editor.focusedStackFrameHighlightBackground": "#f6deba80",
     "debugToolBar.background": "#fdfbf7",
     "debugToolBar.border": "#8c8c8c",
     "editorGutter.background": "#f6f3ed",
@@ -108,7 +110,8 @@
   "tokenColors": [
     {
       "scope": [
-        "punctuation"
+        "punctuation",
+        "meta.brace"
       ],
       "settings": {
         "foreground": "#6f6f6f"
@@ -126,7 +129,6 @@
       "scope": [
         "comment.block.documentation",
         "string.quoted.docstring",
-        "comment.roxygen",
         "comment.line.roxygen"
       ],
       "settings": {
@@ -196,6 +198,15 @@
     {
       "scope": [
         "meta.function-call.arguments.r"
+      ],
+      "settings": {
+        "foreground": "#726d69"
+      }
+    },
+    {
+      "scope": [
+        "variable.other.readwrite",
+        "variable.other.object"
       ],
       "settings": {
         "foreground": "#726d69"
@@ -399,7 +410,7 @@
   "grotto": {
     "generator": "grotto-vscode/1",
     "palette": "candidate-b-balanced.day.yaml",
-    "palette_sha256": "a8a9526d24790c5f5484075fdce72fdc80fa3c13b46275a2307daa13d2479eaf",
+    "palette_sha256": "d683bf2b220e0b73fa199234d3bf00be52af682819a625ecb4d7be0580467872",
     "candidate": true,
     "note": "EVALUATION PREVIEW generated from a Phase 5 CANDIDATE palette. No theme is selected, ranked or final (DESIGN.md section 1)."
   }

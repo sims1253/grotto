@@ -16,11 +16,13 @@
 #   no benefit; if A reads as flat or indistinguishable, chroma earns its place.
 #
 # How the restraint is encoded (all first-class inputs, not post-hoc fakes)
-#   * chroma_classes: the lowest class fractions of the three candidates
-#     (none 0, trace .04, low .17, medium .47, high .72).
-#   * category_caps: ordinary chromatic capped at .120 (below B's .145 and C's
-#     .160); diagnostics stay at .160 so safety signals are NOT muted by the
-#     restraint.  neutral/warm-neutral are clamped very tight (.012 / .020) so a
+#   * chroma_classes: DEEPLY muted (none 0, trace .03, low .12, medium .26,
+#     high .50).  The first Phase-5 cut (.47/.72 medium/high) sat only ~15%
+#     below B and the candidates were perceptually near-identical (pairwise
+#     dE ~0.01-0.02 at night, below JND); the restraint now has real teeth.
+#   * category_caps: ordinary chromatic capped at .075 (half of B's .145);
+#     diagnostics stay at .150 so safety signals are NOT muted by the
+#     restraint.  neutral/warm-neutral are clamped tight (.008 / .014) so a
 #     "neutral" role never acquires a readable hue.
 #   * role_overrides: comments / docstrings / property / tag -> neutral trace;
 #     decorator -> sand trace.  No role_scale boosts -- nothing is made louder.
@@ -58,17 +60,17 @@ anchors:
 # Candidate-specific chroma-class fractions (REPLACE the shared environment set).
 chroma_classes:
   none:   0.0
-  trace:  0.04
-  low:    0.17
-  medium: 0.47
-  high:   0.72
+  trace:  0.03
+  low:    0.12
+  medium: 0.26
+  high:   0.50
 
 # Per-category absolute OKLCH chroma caps (REPLACE the single global ceiling).
 category_caps:
-  neutral:      0.012
-  warm-neutral: 0.020
-  ordinary:     0.120
-  diagnostics:  0.160   # safety signals keep full strength under restraint
+  neutral:      0.008
+  warm-neutral: 0.014
+  ordinary:     0.075
+  diagnostics:  0.150   # safety signals keep full strength under restraint
 
 # Semantic overrides: comments/docstrings/property/tag read as neutral trace;
 # decorator borrows the literal family at trace.  Ordinary variables (fg) and

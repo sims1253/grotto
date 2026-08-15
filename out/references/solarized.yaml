@@ -3,7 +3,7 @@ schema_version: phase3
 reference:
   name: solarized
   label: dark
-  file_stem: ''
+  file_stem: solarized
   source_url: https://ethanschoonover.com/solarized/
   source_note: 'The 16-color palette is the canonical Solarized palette from ethanschoonover.com/solarized
     (the monotones base03..base3 + the 8 accents yellow/orange/red/magenta/violet/blue/cyan/green). Hex
@@ -461,6 +461,7 @@ warm_cool_balance:
   n_chromatic_roles: 13
   n_warm_roles: 6
   n_cool_roles: 7
+  n_neutral_roles: 0
   warm_roles:
   - diff_added
   - diff_removed
@@ -476,6 +477,7 @@ warm_cool_balance:
   - number
   - selection
   - string
+  neutral_roles: []
   per_role:
     bg:
       hex: '#002b36'

@@ -3,7 +3,7 @@ schema_version: phase3
 reference:
   name: nord
   label: dark
-  file_stem: ''
+  file_stem: nord
   source_url: https://raw.githubusercontent.com/nordtheme/nord/develop/src/nord.css
   source_note: Palette from src/nord.css (`--nord0`..`--nord15` CSS custom properties) on the default
     `develop` branch. Each color's documented usage (copied from the CSS doc-comments) drives the role
@@ -501,6 +501,7 @@ warm_cool_balance:
   n_chromatic_roles: 14
   n_warm_roles: 7
   n_cool_roles: 7
+  n_neutral_roles: 0
   warm_roles:
   - diff_added
   - diff_removed
@@ -517,6 +518,7 @@ warm_cool_balance:
   - keyword
   - selection
   - type
+  neutral_roles: []
   per_role:
     bg:
       hex: '#2e3440'

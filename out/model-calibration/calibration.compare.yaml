@@ -1130,6 +1130,56 @@ systematic_stability:
   - realized_salience_proxy
   - total_hue_drift_including_adjustments
   normalized_chroma_inversions: []
+  normalized_chroma_near_tie_flips:
+  - roles:
+    - comment
+    - decorator
+    variants:
+    - day
+    - evening
+    d1: 0.0102
+    d2: -0.0204
+  - roles:
+    - comment
+    - decorator
+    variants:
+    - day
+    - night
+    d1: 0.0102
+    d2: -0.0221
+  - roles:
+    - comment
+    - namespace
+    variants:
+    - day
+    - evening
+    d1: 0.0102
+    d2: -0.0221
+  - roles:
+    - comment
+    - namespace
+    variants:
+    - day
+    - night
+    d1: 0.0102
+    d2: -0.0257
+  - roles:
+    - keyword
+    - string
+    variants:
+    - day
+    - evening
+    d1: -0.0045
+    d2: 0.0174
+  - roles:
+    - keyword
+    - string
+    variants:
+    - day
+    - night
+    d1: -0.0045
+    d2: 0.029
+  near_tie_epsilon: 0.02
   cyclic_family_sequence_preserved: true
   cyclic_family_sequence:
     day:
@@ -1156,31 +1206,7 @@ systematic_stability:
     - sand
     - sage
     - teal
-  salience_proxy_reversals:
-  - family: sand
-    variant: day
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: day
-    lower_salience: warning
-    higher_salience: search_match_current
-  - family: sand
-    variant: evening
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: evening
-    lower_salience: warning
-    higher_salience: search_match_current
-  - family: sand
-    variant: night
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: night
-    lower_salience: warning
-    higher_salience: search_match_current
+  salience_proxy_reversals: []
   max_hue_drift_deg: 5.85
   drift_threshold_deg: 12
   drift_violations: []
@@ -1381,22 +1407,6 @@ hand_tuned_stability:
     d1: -0.307
     d2: 0.0812
   - roles:
-    - type
-    - function
-    variants:
-    - day
-    - evening
-    d1: -0.0098
-    d2: 0.0025
-  - roles:
-    - type
-    - function
-    variants:
-    - evening
-    - night
-    d1: 0.0025
-    d2: -0.5766
-  - roles:
     - function
     - error
     variants:
@@ -1428,30 +1438,6 @@ hand_tuned_stability:
     - night
     d1: -0.3239
     d2: 0.2532
-  - roles:
-    - function
-    - info
-    variants:
-    - day
-    - evening
-    d1: 0.002
-    d2: -0.0083
-  - roles:
-    - function
-    - info
-    variants:
-    - evening
-    - night
-    d1: -0.0083
-    d2: 0.5531
-  - roles:
-    - function
-    - success
-    variants:
-    - day
-    - evening
-    d1: 0.0105
-    d2: -0.0271
   - roles:
     - function
     - success
@@ -1492,6 +1478,47 @@ hand_tuned_stability:
     - night
     d1: -0.2841
     d2: 0.2875
+  normalized_chroma_near_tie_flips:
+  - roles:
+    - type
+    - function
+    variants:
+    - day
+    - evening
+    d1: -0.0098
+    d2: 0.0025
+  - roles:
+    - type
+    - function
+    variants:
+    - evening
+    - night
+    d1: 0.0025
+    d2: -0.5766
+  - roles:
+    - function
+    - info
+    variants:
+    - day
+    - evening
+    d1: 0.002
+    d2: -0.0083
+  - roles:
+    - function
+    - info
+    variants:
+    - evening
+    - night
+    d1: -0.0083
+    d2: 0.5531
+  - roles:
+    - function
+    - success
+    variants:
+    - day
+    - evening
+    d1: 0.0105
+    d2: -0.0271
   - roles:
     - decorator
     - namespace
@@ -1540,6 +1567,7 @@ hand_tuned_stability:
     - night
     d1: 0.0094
     d2: -0.0284
+  near_tie_epsilon: 0.02
   cyclic_family_sequence_preserved: true
   cyclic_family_sequence:
     day:
@@ -1563,43 +1591,7 @@ hand_tuned_stability:
     - sand
     - sage
     - teal
-  salience_proxy_reversals:
-  - family: azure
-    variant: day
-    lower_salience: selection
-    higher_salience: function
-  - family: azure
-    variant: evening
-    lower_salience: selection
-    higher_salience: function
-  - family: azure
-    variant: night
-    lower_salience: function
-    higher_salience: info
-  - family: sand
-    variant: day
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: day
-    lower_salience: warning
-    higher_salience: search_match_current
-  - family: sand
-    variant: evening
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: evening
-    lower_salience: warning
-    higher_salience: search_match_current
-  - family: sand
-    variant: night
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: night
-    lower_salience: warning
-    higher_salience: search_match_current
+  salience_proxy_reversals: []
   max_hue_drift_deg: 7.048
   drift_threshold_deg: 12
   drift_violations: []

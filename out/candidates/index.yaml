@@ -8,22 +8,22 @@ candidates:
     low as WCAG floors and the distance matrix tolerate.
 
     '
-  input_hash: cf77d7e29855f702
+  input_hash: d449bd0427b7a85a
   ok: true
-  n_issues: 433
-  mean_realized_chroma: 0.025279
-  stability_ok: false
-  max_hue_drift_deg: 5.88
+  n_issues: 459
+  mean_realized_chroma: 0.015906
+  stability_ok: true
+  max_hue_drift_deg: 5.6
 - name: candidate-b-balanced
   strategy: balanced
   purpose: 'Baseline hypothesis: semantic colouration with a strong neutral foundation.
 
     '
-  input_hash: 7ffb99008258b166
+  input_hash: 18521825cc8cc25f
   ok: true
   n_issues: 426
   mean_realized_chroma: 0.031586
-  stability_ok: false
+  stability_ok: true
   max_hue_drift_deg: 5.7
 - name: candidate-c-expressive
   strategy: expressive
@@ -31,12 +31,12 @@ candidates:
     cost.
 
     '
-  input_hash: fbf70c2a610d42fe
+  input_hash: b5e62e028117d593
   ok: true
-  n_issues: 404
-  mean_realized_chroma: 0.03812
-  stability_ok: false
-  max_hue_drift_deg: 5.82
+  n_issues: 391
+  mean_realized_chroma: 0.04185
+  stability_ok: true
+  max_hue_drift_deg: 5.67
 ordering_note: Candidates are listed in binding-file (alphabetical) order, which by convention is Restrained,
   Balanced, Expressive. This is NOT a ranking or a recommendation (DESIGN.md section 1).
 disclaimer: All entries are CANDIDATE families. No aggregate score, winner, or recommendation is produced.

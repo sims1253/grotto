@@ -366,6 +366,14 @@ about shared construction than real hardware. They must not be presented as
 representative bounds. Measured SPDs from several actual displays are the main
 unresolved validation requirement.
 
+The action-spectrum proxy is itself biased against the official CIE S 026
+tabulation (tests/test_metrics.py pins the comparison against the published
+table): within ~10% at the 480-500 nm peak, but over-weighting short
+wavelengths (~+40% at 450 nm) and under-weighting long ones (~-30% at 550,
+~-43% at 600 nm). Within-model blue-vs-warm rankings remain consistent, but
+magnitude differences are exaggerated -- another reason absolute percentages
+from this model must never be quoted.
+
 ---
 
 ## Evidence-to-design ledger

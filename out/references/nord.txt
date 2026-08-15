@@ -22,6 +22,7 @@
   chroma-weighted score: +0.078  (+ warm, - cool)
   warm roles (7): diff_added, diff_removed, error, number, string, success, warning
   cool roles (7): bg, bg_elevated, comment, function, keyword, selection, type
+  neutral roles (0): -  (hue exactly on the 150/330 deg boundary)
   definition: Palette score = sum(C_i * cos(h_i - 60deg)) / sum(C_i) over chromatic roles (C >= 0.02). +1 warm (amber), -1 cool (azure), 0 at 150/330 deg. A convention on OKLCH hue, not a perceptual law.
 
 ## declared-constraint coverage & distances

@@ -211,6 +211,7 @@ Grotto reports several metrics *together* and treats disagreement as signal.
 | CVD simulation (protan/deutan/tritan) | `cvd` | dichromacy via Brettel 1997, anomaly via Machado 2009, tritan always Brettel. **Population-average dichromat models** — they detect collapse, they do not reproduce an individual's experience (R-9). |
 | Cross-variant stability | `stability` | hue drift, family/hue ordering, salience rank, chroma rank. Cross-variant dE is informational **only** (Day↔Night inverts lightness by design). |
 | Melanopic, area-weighted | `spectral` | **exploratory, nominal-display, within-model ranking only.** An sRGB triple does not determine a spectral power distribution; this never claims actual retinal exposure (R-4, R-5). |
+| Salience budget (D-6 check) | `spec`, `report` | pixel share of non-background roles at salience >= 3 / >= 5 from the DECLARED coverage plan, checked against `environments.yaml: salience_budget`. Declared estimate, not a screenshot measurement; violations are reported, never tuned away. |
 | Reference analysis (Phase 3) | `reference_analysis` | consistent six-reference comparison: background OKLCH (hue suppressed when achromatic), fg/bg WCAG+APCA, lightness/chroma distributions, declared-constraint coverage, chroma-weighted warm/cool balance, nominal spectral background-vs-token split, CVD behaviour. **Descriptive only; no ranking** (DESIGN.md §1). |
 | Environmental transform (Phase 4) | `model` | `build_family` derives day/evening/night from a semantic-anchor binding: ink jointly lightness+chroma-solved (lexicographic WCAG>ceiling>APCA>adjustment), surface perceptual steps, border non-text contrast, canvas authored; independent cap+gamut losses; warm-anchor hue attraction; corrected cross-variant stability. **NON-CANDIDATE experiment** (DESIGN.md §1). APCA experimental (R-11); WCAG floors hard. |
 | Candidate bindings & generation (Phase 5) | `candidates`, `model` | Three candidate bindings (Restrained / Balanced / Expressive) — each ONE semantic binding with its own chroma budget (class fractions + per-category caps) turned into day/evening/night by the SAME shared transform. Candidate-specific classes/caps are first-class inputs (in the hash/provenance); family may be overridden per role while the derivation PATH (paint) stays protected. Generated OKLCH-first/sRGB palettes under `themes/candidates/`. **CANDIDATE; no winner ranked.** |
@@ -277,6 +278,24 @@ Not done here: human evaluation (Phase 7) and the selection it informs.
 Reference themes are inputs only; the Phase 3 analysis is descriptive and
 draws no conclusion about which reference is "best"
 (DESIGN.md section 1). Phase 4 output is a NON-CANDIDATE experiment.
+
+Design-iteration notes (post first-installer feedback): the first Phase-5
+candidate set was perceptually near-identical (pairwise dE 0.011-0.020 at
+night -- below JND), because the candidates shared the hue anchors and
+lightness solve and differed only by ~15% chroma budgets. The bindings have
+been re-spread: A is now genuinely muted (medium class .26, ordinary cap
+.075), C is genuinely expressive (medium .75, cap .20, anchors diversified:
+teal 182 / azure 218 for gamut headroom at night / violet 321) and its old
+keyword-boost D-5 violation is fixed -- all three candidates now PASS the
+stability gate. Endpoint separation at night is now dE ~0.06 on the major
+roles (keyword/string/function), clearly visible side by side. The salience
+budget ships recalibrated at 0.22 (was 0.10): enforcement showed the
+hierarchy itself implies ~19% under the 'code' estimate, so the original
+number contradicted the design it was measuring (rationale in
+spec/environments.yaml). Known open tensions the reports still carry: the
+day diff/selection surface cluster sits below the must_distinguish floor in
+all candidates, and error/warning separation weakens in A -- flagged, not
+massaged.
 
 **Phase 5 (candidates)** and **Phase 6 (comparative evaluation)** are now
 implemented: three candidate bindings live under `spec/bindings/`, the nine

@@ -3,7 +3,7 @@ schema_version: phase3
 reference:
   name: monokai
   label: dark
-  file_stem: ''
+  file_stem: monokai
   source_url: https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-monokai/themes/monokai-color-theme.json
   source_note: 'The classic Monokai as shipped with VS Code (extensions/theme-monokai/themes/monokai-color-theme.json).
     This theme has no single named-palette file; the palette below is reconstructed verbatim from the
@@ -486,6 +486,7 @@ warm_cool_balance:
   n_chromatic_roles: 13
   n_warm_roles: 8
   n_cool_roles: 5
+  n_neutral_roles: 0
   warm_roles:
   - comment
   - diff_added
@@ -501,6 +502,7 @@ warm_cool_balance:
   - info
   - number
   - type
+  neutral_roles: []
   per_role:
     builtin:
       hex: '#66d9ef'

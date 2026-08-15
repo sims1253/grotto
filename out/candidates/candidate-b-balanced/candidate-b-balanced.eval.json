@@ -4,7 +4,7 @@
   "is_candidate": true,
   "name": "candidate-b-balanced",
   "strategy": "balanced",
-  "input_hash": "7ffb99008258b166",
+  "input_hash": "18521825cc8cc25f",
   "ok": true,
   "n_issues": 426,
   "binding": {
@@ -92,7 +92,7 @@
     "schema_version": "phase4",
     "name": "candidate-b-balanced",
     "is_candidate": true,
-    "input_hash": "7ffb99008258b166",
+    "input_hash": "18521825cc8cc25f",
     "ok": true,
     "binding": {
       "name": "candidate-b-balanced",
@@ -614,7 +614,8 @@
         "realized_salience_proxy",
         "total_hue_drift_including_adjustments"
       ],
-      "normalized_chroma_inversions": [
+      "normalized_chroma_inversions": [],
+      "normalized_chroma_near_tie_flips": [
         {
           "roles": [
             "keyword",
@@ -688,6 +689,7 @@
           "d2": 0.0091
         }
       ],
+      "near_tie_epsilon": 0.02,
       "cyclic_family_sequence_preserved": true,
       "cyclic_family_sequence": {
         "day": [
@@ -718,60 +720,11 @@
           "teal"
         ]
       },
-      "salience_proxy_reversals": [
-        {
-          "family": "sand",
-          "variant": "day",
-          "lower_salience": "constant",
-          "higher_salience": "decorator"
-        },
-        {
-          "family": "sand",
-          "variant": "day",
-          "lower_salience": "search_match_current",
-          "higher_salience": "debug_current"
-        },
-        {
-          "family": "sand",
-          "variant": "evening",
-          "lower_salience": "constant",
-          "higher_salience": "decorator"
-        },
-        {
-          "family": "sand",
-          "variant": "evening",
-          "lower_salience": "warning",
-          "higher_salience": "search_match_current"
-        },
-        {
-          "family": "sand",
-          "variant": "evening",
-          "lower_salience": "search_match_current",
-          "higher_salience": "debug_current"
-        },
-        {
-          "family": "sand",
-          "variant": "night",
-          "lower_salience": "constant",
-          "higher_salience": "decorator"
-        },
-        {
-          "family": "sand",
-          "variant": "night",
-          "lower_salience": "warning",
-          "higher_salience": "search_match_current"
-        },
-        {
-          "family": "sand",
-          "variant": "night",
-          "lower_salience": "search_match_current",
-          "higher_salience": "debug_current"
-        }
-      ],
+      "salience_proxy_reversals": [],
       "max_hue_drift_deg": 5.7,
       "drift_threshold_deg": 12,
       "drift_violations": [],
-      "ok": false
+      "ok": true
     },
     "variants": {
       "day": {
@@ -9332,7 +9285,7 @@
         "n_roles": 40
       },
       "provenance": {
-        "input_hash": "e87c27059f0eada6",
+        "input_hash": "bacb5a72a9b26a67",
         "roles_spec_version": 1,
         "distance_spec_version": 1,
         "environments_version": 1,
@@ -11665,6 +11618,25 @@
           }
         ]
       },
+      "salience_budget": {
+        "coverage_kind": "code",
+        "fractions": {
+          "at_or_above_0": 1.0,
+          "at_or_above_1": 0.692308,
+          "at_or_above_2": 0.461538,
+          "at_or_above_3": 0.192308,
+          "at_or_above_4": 0.038462,
+          "at_or_above_5": 0.0,
+          "at_or_above_6": 0.0
+        },
+        "budget": {
+          "max_fraction_at_or_above_3": 0.22,
+          "max_fraction_at_or_above_5": 0.01
+        },
+        "note": "DECLARED pixel estimate, not a screenshot measurement; fractions are of non-background pixels the palette renders as themselves (DESIGN.md section 6).",
+        "violations": [],
+        "ok": true
+      },
       "spectral": {
         "display": "led-lcd",
         "coverage_kind": "code",
@@ -11732,7 +11704,7 @@
         "n_roles": 40
       },
       "provenance": {
-        "input_hash": "6e72e97a56a1ef1d",
+        "input_hash": "f31d841e9ac75846",
         "roles_spec_version": 1,
         "distance_spec_version": 1,
         "environments_version": 1,
@@ -14297,6 +14269,25 @@
           }
         ]
       },
+      "salience_budget": {
+        "coverage_kind": "code",
+        "fractions": {
+          "at_or_above_0": 1.0,
+          "at_or_above_1": 0.692308,
+          "at_or_above_2": 0.461538,
+          "at_or_above_3": 0.192308,
+          "at_or_above_4": 0.038462,
+          "at_or_above_5": 0.0,
+          "at_or_above_6": 0.0
+        },
+        "budget": {
+          "max_fraction_at_or_above_3": 0.22,
+          "max_fraction_at_or_above_5": 0.01
+        },
+        "note": "DECLARED pixel estimate, not a screenshot measurement; fractions are of non-background pixels the palette renders as themselves (DESIGN.md section 6).",
+        "violations": [],
+        "ok": true
+      },
       "spectral": {
         "display": "led-lcd",
         "coverage_kind": "code",
@@ -14364,7 +14355,7 @@
         "n_roles": 40
       },
       "provenance": {
-        "input_hash": "e05e94c5e67f77d8",
+        "input_hash": "440ff2a536c2b030",
         "roles_spec_version": 1,
         "distance_spec_version": 1,
         "environments_version": 1,
@@ -17000,6 +16991,25 @@
             }
           }
         ]
+      },
+      "salience_budget": {
+        "coverage_kind": "code",
+        "fractions": {
+          "at_or_above_0": 1.0,
+          "at_or_above_1": 0.692308,
+          "at_or_above_2": 0.461538,
+          "at_or_above_3": 0.192308,
+          "at_or_above_4": 0.038462,
+          "at_or_above_5": 0.0,
+          "at_or_above_6": 0.0
+        },
+        "budget": {
+          "max_fraction_at_or_above_3": 0.22,
+          "max_fraction_at_or_above_5": 0.01
+        },
+        "note": "DECLARED pixel estimate, not a screenshot measurement; fractions are of non-background pixels the palette renders as themselves (DESIGN.md section 6).",
+        "violations": [],
+        "ok": true
       },
       "spectral": {
         "display": "led-lcd",

@@ -4,7 +4,7 @@
   "reference": {
     "name": "rose-pine",
     "label": "dark",
-    "file_stem": "",
+    "file_stem": "rose-pine",
     "source_url": "https://raw.githubusercontent.com/rose-pine/palette/main/palette.json",
     "source_note": "Palette roles (`base surface overlay muted subtle text love gold rose pine foam iris`) from rose-pine/palette `palette.json` (the built artifact), cross-checked against the official site rosepinetheme.com/palette. The `highlightLow/Med/High` values (alpha-overlay backgrounds used for selection/cursor) are NOT in palette.json; they come from `source/index.ts`, also cross-checked on the site. Role->color mapping is taken from the palette README \"Roles\" tables, which document each color's usage. NOTE: the README accent table documents strings, functions, builtins, booleans, object keys, parameters, punctuation/operators, errors/warnings/info and git states, but does NOT assign keyword/type/number at the palette level (those are left to individual editor ports), so they are null below. NOTE: palette.json (and the website) give dawn `text` as #464261; the stale `source/index.ts` still shows the older #575279 -- #464261 is used here.",
     "is_primary": true,
@@ -455,6 +455,7 @@
     "n_chromatic_roles": 16,
     "n_warm_roles": 6,
     "n_cool_roles": 10,
+    "n_neutral_roles": 0,
     "warm_roles": [
       "builtin",
       "constant",
@@ -475,6 +476,7 @@
       "punctuation",
       "selection"
     ],
+    "neutral_roles": [],
     "per_role": {
       "bg": {
         "hex": "#191724",

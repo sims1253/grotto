@@ -3,7 +3,7 @@ schema_version: phase3
 reference:
   name: rose-pine
   label: dark
-  file_stem: ''
+  file_stem: rose-pine
   source_url: https://raw.githubusercontent.com/rose-pine/palette/main/palette.json
   source_note: 'Palette roles (`base surface overlay muted subtle text love gold rose pine foam iris`)
     from rose-pine/palette `palette.json` (the built artifact), cross-checked against the official site
@@ -399,6 +399,7 @@ warm_cool_balance:
   n_chromatic_roles: 16
   n_warm_roles: 6
   n_cool_roles: 10
+  n_neutral_roles: 0
   warm_roles:
   - builtin
   - constant
@@ -417,6 +418,7 @@ warm_cool_balance:
   - info
   - punctuation
   - selection
+  neutral_roles: []
   per_role:
     bg:
       hex: '#191724'

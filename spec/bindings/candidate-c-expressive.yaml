@@ -14,15 +14,31 @@
 #   channels (string, builtin) so the busyness budget is not blown.
 #
 # How it is encoded
-#   * chroma_classes: highest fractions (none 0, trace .07, low .30, medium
-#     .66, high .80).
-#   * category_caps: ordinary .160 (the global ceiling); diagnostics .160;
-#     neutral .016; warm-neutral .036.
+#   * chroma_classes: the widest budget of the three (none 0, trace .07, low
+#     .28, medium .68, high .88) -- widened after the first Phase-5 cut
+#     (.66/.80) proved perceptually indistinguishable from B (pairwise dE
+#     ~0.01 at night, below JND).
+#   * category_caps: ordinary .190 (above the old .16 global ceiling, the
+#     point of an expressive candidate); diagnostics .200; neutral .016;
+#     warm-neutral .034.
+#   * anchors: MODEST HUE DIVERSIFICATION vs A/B (their teal 190 / azure
+#     244-250 / violet 304-308): teal -> 182, azure -> 218, violet -> 321.
+#     The azure move is load-bearing: at night ink lightness (L ~ .88) sRGB
+#     offers only C_max .061 at hue 246 but .086 at hue 218 (+40% headroom),
+#     so C's function/selection/focus can actually BE chromatic after dark.
+#     Family separations stay wide (teal-azure 36 deg, azure-violet 103 deg).
 #   * role_overrides: comment/docstring -> warm-neutral low; property -> azure
 #     trace; tag -> violet low (a deliberate categorical shift vs A/B's azure).
-#   * role_scales: function 1.18, keyword 1.10 (boost navigation drivers);
-#     string .90, builtin .90 (restrain large-area / error-adjacent channels).
-#     Ordinary variables and parameters stay neutral.
+#   * role_scales: function 1.20 (boost the navigation driver); keyword 1.0
+#     and string 1.0 -- the previous keyword 1.10 / string 0.90 combo pushed
+#     keyword above string in the dark variants while Day gamut kept it below,
+#     inverting the chroma hierarchy across variants (13 material D-5
+#     inversions); at parity the ordering holds as a near-tie.  string is NOT
+#     restrained despite being a large-area class: sage (h~126) is where the
+#     night gamut actually has headroom (C_max .237 at L .88 vs .06-.10 for
+#     violet/azure), so an expressive candidate that wants to be visible after
+#     dark must spend chroma there.  builtin .90 (error-adjacent).  Ordinary
+#     variables and parameters stay neutral.
 #
 # Tradeoffs (flagged, not resolved)
 #   + Strongest categorical / navigation cue of the three.
@@ -44,27 +60,27 @@ anchors:
   rose:         {h: 10,  family_scale: 1.0}
   sand:         {h: 86,  family_scale: 1.0}
   sage:         {h: 126, family_scale: 1.0}
-  teal:         {h: 188, family_scale: 1.0}
-  azure:        {h: 246, family_scale: 1.0}
-  violet:       {h: 318, family_scale: 1.0}
+  teal:         {h: 182, family_scale: 1.0}
+  azure:        {h: 218, family_scale: 1.0}   # gamut headroom: see header
+  violet:       {h: 321, family_scale: 1.0}
 
 chroma_classes:
   none:   0.0
   trace:  0.07
-  low:    0.30
-  medium: 0.66
-  high:   0.80
+  low:    0.28
+  medium: 0.75
+  high:   0.92
 
 category_caps:
   neutral:      0.016
-  warm-neutral: 0.036
-  ordinary:     0.160
-  diagnostics:  0.160
+  warm-neutral: 0.034
+  ordinary:     0.200
+  diagnostics:  0.200
 
 role_scales:
-  function: 1.18
-  keyword: 1.10
-  string: 0.90
+  function: 1.20
+  keyword: 1.0
+  string: 1.0
   builtin: 0.90
 
 role_overrides:

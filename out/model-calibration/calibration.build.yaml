@@ -2,7 +2,7 @@ schema: grotto.family-build
 schema_version: phase4
 name: calibration-experiment
 is_candidate: false
-input_hash: 4bde4b1026d195d9
+input_hash: 364f6f20e42cae29
 ok: true
 binding:
   name: calibration-experiment
@@ -523,6 +523,56 @@ stability:
   - realized_salience_proxy
   - total_hue_drift_including_adjustments
   normalized_chroma_inversions: []
+  normalized_chroma_near_tie_flips:
+  - roles:
+    - comment
+    - decorator
+    variants:
+    - day
+    - evening
+    d1: 0.0102
+    d2: -0.0204
+  - roles:
+    - comment
+    - decorator
+    variants:
+    - day
+    - night
+    d1: 0.0102
+    d2: -0.0221
+  - roles:
+    - comment
+    - namespace
+    variants:
+    - day
+    - evening
+    d1: 0.0102
+    d2: -0.0221
+  - roles:
+    - comment
+    - namespace
+    variants:
+    - day
+    - night
+    d1: 0.0102
+    d2: -0.0257
+  - roles:
+    - keyword
+    - string
+    variants:
+    - day
+    - evening
+    d1: -0.0045
+    d2: 0.0174
+  - roles:
+    - keyword
+    - string
+    variants:
+    - day
+    - night
+    d1: -0.0045
+    d2: 0.029
+  near_tie_epsilon: 0.02
   cyclic_family_sequence_preserved: true
   cyclic_family_sequence:
     day:
@@ -549,31 +599,7 @@ stability:
     - sand
     - sage
     - teal
-  salience_proxy_reversals:
-  - family: sand
-    variant: day
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: day
-    lower_salience: warning
-    higher_salience: search_match_current
-  - family: sand
-    variant: evening
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: evening
-    lower_salience: warning
-    higher_salience: search_match_current
-  - family: sand
-    variant: night
-    lower_salience: constant
-    higher_salience: decorator
-  - family: sand
-    variant: night
-    lower_salience: warning
-    higher_salience: search_match_current
+  salience_proxy_reversals: []
   max_hue_drift_deg: 5.85
   drift_threshold_deg: 12
   drift_violations: []
@@ -965,7 +991,7 @@ variants:
         - 0.0606
         - 0.0
         final_hex: '#8a5e6b'
-        max_chroma_at_L: 0.223976
+        max_chroma_at_L: 0.215866
         chroma_losses:
           requested: 0.060608
           capped: 0.060608
@@ -977,6 +1003,7 @@ variants:
           category: neutral
           ceiling: 0.16
           class_fraction_source: environment
+          max_chroma_reevaluated: true
         adjustments_applied:
           L: -0.02
           C: 0.0
@@ -1010,6 +1037,7 @@ variants:
         - 'chroma: requested 0.0606 -> capped 0.0606 (cap -0.0000) -> realized 0.0606 (gamut -0.0000),
           fraction 1.000'
         - adjustment applied L-0.0200 C+0.0000 h+0.000
+        - 'max_chroma re-evaluated at adjusted coordinates: 0.2240 -> 0.2159'
         issues: []
       constant:
         role: constant
@@ -1974,7 +2002,7 @@ variants:
         - 0.1427
         - 296.0
         final_hex: '#7658b6'
-        max_chroma_at_L: 0.286362
+        max_chroma_at_L: 0.2929
         chroma_losses:
           requested: 0.142651
           capped: 0.142651
@@ -1986,6 +2014,7 @@ variants:
           category: ordinary
           ceiling: 0.16
           class_fraction_source: environment
+          max_chroma_reevaluated: true
         adjustments_applied:
           L: 0.0
           C: 0.0
@@ -2018,6 +2047,7 @@ variants:
         - 'chroma: requested 0.1427 -> capped 0.1427 (cap -0.0000) -> realized 0.1427 (gamut -0.0000),
           fraction 1.000'
         - adjustment applied L+0.0000 C+0.0000 h-4.000
+        - 'max_chroma re-evaluated at adjusted coordinates: 0.2864 -> 0.2929'
         issues: []
       line_number:
         role: line_number
@@ -3492,7 +3522,7 @@ variants:
         - 0.0418
         - 0.45
         final_hex: '#aa8992'
-        max_chroma_at_L: 0.223343
+        max_chroma_at_L: 0.243492
         chroma_losses:
           requested: 0.041765
           capped: 0.041765
@@ -3504,6 +3534,7 @@ variants:
           category: neutral
           ceiling: 0.16
           class_fraction_source: environment
+          max_chroma_reevaluated: true
         adjustments_applied:
           L: -0.02
           C: 0.0
@@ -3536,6 +3567,7 @@ variants:
         - 'chroma: requested 0.0418 -> capped 0.0418 (cap -0.0000) -> realized 0.0418 (gamut -0.0000),
           fraction 1.000'
         - adjustment applied L-0.0200 C+0.0000 h+0.000
+        - 'max_chroma re-evaluated at adjusted coordinates: 0.2233 -> 0.2435'
         issues: []
       constant:
         role: constant
@@ -4497,7 +4529,7 @@ variants:
         - 0.0391
         - 297.68
         final_hex: '#c6beda'
-        max_chroma_at_L: 0.109787
+        max_chroma_at_L: 0.105049
         chroma_losses:
           requested: 0.039128
           capped: 0.039128
@@ -4509,6 +4541,7 @@ variants:
           category: ordinary
           ceiling: 0.16
           class_fraction_source: environment
+          max_chroma_reevaluated: true
         adjustments_applied:
           L: 0.0
           C: 0.0
@@ -4541,6 +4574,7 @@ variants:
         - 'chroma: requested 0.0391 -> capped 0.0391 (cap -0.0000) -> realized 0.0391 (gamut -0.0000),
           fraction 1.000'
         - adjustment applied L+0.0000 C+0.0000 h-4.000
+        - 'max_chroma re-evaluated at adjusted coordinates: 0.1098 -> 0.1050'
         issues: []
       line_number:
         role: line_number
@@ -6012,7 +6046,7 @@ variants:
         - 0.0309
         - 1.2
         final_hex: '#a38a91'
-        max_chroma_at_L: 0.227776
+        max_chroma_at_L: 0.248077
         chroma_losses:
           requested: 0.030943
           capped: 0.030943
@@ -6024,6 +6058,7 @@ variants:
           category: neutral
           ceiling: 0.16
           class_fraction_source: environment
+          max_chroma_reevaluated: true
         adjustments_applied:
           L: -0.02
           C: 0.0
@@ -6056,6 +6091,7 @@ variants:
         - 'chroma: requested 0.0309 -> capped 0.0309 (cap -0.0000) -> realized 0.0309 (gamut -0.0000),
           fraction 1.000'
         - adjustment applied L-0.0200 C+0.0000 h+0.000
+        - 'max_chroma re-evaluated at adjusted coordinates: 0.2278 -> 0.2481'
         issues: []
       constant:
         role: constant
@@ -7017,7 +7053,7 @@ variants:
         - 0.0322
         - 300.48
         final_hex: '#c5bed4'
-        max_chroma_at_L: 0.116234
+        max_chroma_at_L: 0.110672
         chroma_losses:
           requested: 0.032199
           capped: 0.032199
@@ -7029,6 +7065,7 @@ variants:
           category: ordinary
           ceiling: 0.16
           class_fraction_source: environment
+          max_chroma_reevaluated: true
         adjustments_applied:
           L: 0.0
           C: 0.0
@@ -7061,6 +7098,7 @@ variants:
         - 'chroma: requested 0.0322 -> capped 0.0322 (cap -0.0000) -> realized 0.0322 (gamut -0.0000),
           fraction 1.000'
         - adjustment applied L+0.0000 C+0.0000 h-4.000
+        - 'max_chroma re-evaluated at adjusted coordinates: 0.1162 -> 0.1107'
         issues: []
       line_number:
         role: line_number

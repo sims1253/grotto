@@ -17,11 +17,19 @@
 # arbitrary content and causes artifacts -- but ids that paint a highlight
 # OVER editor content have the opposite obligation: a fully opaque overlay
 # would hide the code, diagnostics and squiggles beneath it.  We therefore
-# emit opaque colors everywhere EXCEPT:
-#   * secondary overlays that must preserve the content under them, marked
-#     `alpha: "80"` (~50%) below: editor.inactiveSelectionBackground,
-#     editor.selectionHighlightBackground, editor.findMatchHighlightBackground
-#     and editor.hoverHighlightBackground;
+# emit opaque colors everywhere EXCEPT the content-preserving overlays marked
+# `alpha: "80"` (~50%) below:
+#   * secondary selection/search/hover overlays: editor.inactiveSelectionBackground,
+#     editor.selectionHighlightBackground, editor.findMatchHighlightBackground,
+#     editor.hoverHighlightBackground;
+#   * bracket-match fill (editorBracketMatch.background) -- the match is also
+#     carried by its focus border, so the fill can stay translucent
+#     (VS Code's own default themes use a border with a near-transparent fill);
+#   * ALL diffEditor washes (word-level inserted/removedTextBackground and the
+#     whole-line inserted/removedLineBackground) -- VS Code's default themes
+#     ship these with alpha for exactly this reason;
+#   * the debug stack-frame highlights (editor.stackFrameHighlightBackground /
+#     editor.focusedStackFrameHighlightBackground), which sit over live code;
 #   * editorUnnecessaryCode.opacity, whose documented contract expects alpha
 #     (the default themes ship 66 there too).
 # The PRIMARY editor.selectionBackground and editor.findMatchBackground stay
@@ -41,6 +49,9 @@
 #     Phase 4 transform solves both from the same canvas; the signs come free.
 #   * selection -- `redundant_channels: [lightness_offset, border]`: VS Code
 #     has no selectable selection border; only the lightness offset survives.
+#   * search_match / search_match_current -- `redundant_channels: [border]`:
+#     EXPRESSIBLE and mapped (editor.findMatchHighlightBorder /
+#     editor.findMatchBorder); the border channel is delivered, not dropped.
 #   * focus -- border channel is expressible (focusBorder/list.focusOutline).
 #   * breakpoint -- the gutter glyph shape is fixed; color only.
 #   * deprecated -- strikethrough IS expressible via fontStyle (invalid.
@@ -100,14 +111,17 @@ workbench:
   # selection / search / focus.  Secondary overlays composite over arbitrary
   # editor content, so they carry alpha 80 to keep that content readable
   # (transparency policy above); the primary selection and the current find
-  # match stay opaque to dominate the overlay stack.
+  # match stay opaque to dominate the overlay stack.  The find borders deliver
+  # search_match(_current)'s declared `border` redundant channel.
   editor.selectionBackground: selection
   editor.inactiveSelectionBackground: {role: selection, alpha: "80"}
   editor.selectionHighlightBackground: {role: search_match, alpha: "80"}
   editor.findMatchBackground: search_match_current
+  editor.findMatchBorder: search_match_current
   editor.findMatchHighlightBackground: {role: search_match, alpha: "80"}
+  editor.findMatchHighlightBorder: search_match
   editor.hoverHighlightBackground: {role: search_match, alpha: "80"}
-  editorBracketMatch.background: selection
+  editorBracketMatch.background: {role: selection, alpha: "80"}
   editorBracketMatch.border: focus
   focusBorder: focus
   list.focusOutline: focus
@@ -119,11 +133,13 @@ workbench:
   editorUnnecessaryCode.opacity: {role: deprecated, alpha: "66"}
   list.errorForeground: error
   list.warningForeground: warning
-  # diff (gutter +/- signs are VS Code UI, not theme colors)
-  diffEditor.insertedTextBackground: diff_added
-  diffEditor.removedTextBackground: diff_removed
-  diffEditor.insertedLineBackground: diff_added
-  diffEditor.removedLineBackground: diff_removed
+  # diff (gutter +/- signs are VS Code UI, not theme colors).  All diffEditor
+  # washes carry alpha 80: they paint over the content being reviewed, and
+  # VS Code's default themes ship these ids with alpha too.
+  diffEditor.insertedTextBackground: {role: diff_added, alpha: "80"}
+  diffEditor.removedTextBackground: {role: diff_removed, alpha: "80"}
+  diffEditor.insertedLineBackground: {role: diff_added, alpha: "80"}
+  diffEditor.removedLineBackground: {role: diff_removed, alpha: "80"}
   diffEditor.diagonalFill: ui_inactive
   editorGutter.addedBackground: diff_added
   editorGutter.modifiedBackground: diff_changed
@@ -134,8 +150,8 @@ workbench:
   debugIcon.breakpointUnverifiedForeground: fg_muted
   debugIcon.breakpointCurrentStackframeForeground: focus
   debugIcon.breakpointStackframeForeground: focus
-  editor.stackFrameHighlightBackground: debug_current
-  editor.focusedStackFrameHighlightBackground: debug_current
+  editor.stackFrameHighlightBackground: {role: debug_current, alpha: "80"}
+  editor.focusedStackFrameHighlightBackground: {role: debug_current, alpha: "80"}
   debugToolBar.background: bg_elevated
   debugToolBar.border: ui_inactive
   # gutter
@@ -239,10 +255,13 @@ required_workbench:
 # `font_style` entries carry the non-hue redundant channels.
 # ---------------------------------------------------------------------------
 textmate:
-  - {role: punctuation, scopes: [punctuation]}
+  # meta.brace covers the JS/TS grammars' meta.brace.{round,square,curly}
+  # bracket scopes, which do NOT live under `punctuation.*`; without this rule
+  # they fall outward to e.g. meta.function-call and get painted as function.
+  - {role: punctuation, scopes: [punctuation, meta.brace]}
   - {role: comment,     scopes: [comment]}
   - {role: docstring,   scopes: [comment.block.documentation, string.quoted.docstring,
-                                 comment.roxygen, comment.line.roxygen]}
+                                 comment.line.roxygen]}
   - {role: string,      scopes: [string]}
   - {role: number,      scopes: [constant.numeric]}
   - {role: constant,    scopes: [constant.language, constant.character.escape,
@@ -258,9 +277,16 @@ textmate:
   # names.  VS Code resolves the more specific scope, and later rules win
   # ties, so this NARROW `.r`-only rule paints plain R arguments back to
   # neutral `fg`; actual function names and nested calls still hit
-  # entity.name.function / support.function via the rule above.  Other
-  # languages' meta.function-call.arguments (no .r) are untouched.
+  # entity.name.function / support.function via the rule above.
   - {role: fg,          scopes: [meta.function-call.arguments.r]}
+  # TS/JS normalization: those grammars emit no meta.function-call.arguments
+  # child scope, so plain-identifier arguments sit directly inside
+  # meta.function-call and would inherit the function colour (same failure
+  # class as the R bug above).  variable.other.readwrite/object match deeper
+  # than meta.function-call, restoring fg for ordinary variables everywhere --
+  # which is also the L1 intent (there is no `variable` role; variables are
+  # fg) and matches the semantic-token mapping below.
+  - {role: fg,          scopes: [variable.other.readwrite, variable.other.object]}
   - {role: builtin,     scopes: [variable.language, support.function.builtin,
                                  support.variable, variable.other.predefined]}
   - {role: type,        scopes: [entity.name.type, entity.name.class,

@@ -3,7 +3,7 @@ schema_version: phase3
 reference:
   name: kanagawa-wave
   label: dark
-  file_stem: ''
+  file_stem: kanagawa
   source_url: https://raw.githubusercontent.com/rebelot/kanagawa.nvim/master/lua/kanagawa/colors.lua
   source_note: 'Palette table in lua/kanagawa/colors.lua (all named colors defined there, reproduced verbatim
     below). Semantic roles mapped from the `wave` theme function in lua/kanagawa/themes.lua, which assigns
@@ -500,6 +500,7 @@ warm_cool_balance:
   n_chromatic_roles: 17
   n_warm_roles: 10
   n_cool_roles: 7
+  n_neutral_roles: 0
   warm_roles:
   - constant
   - diff_added
@@ -519,6 +520,7 @@ warm_cool_balance:
   - punctuation
   - selection
   - type
+  neutral_roles: []
   per_role:
     bg_elevated:
       hex: '#2a2a37'

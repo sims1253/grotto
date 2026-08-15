@@ -2,15 +2,18 @@
 Candidates are listed in binding-file (alphabetical) order: Restrained, Balanced, Expressive. This is NOT a ranking or a recommendation (DESIGN.md section 1).
 
 ## matrix (descriptive, not a score)
-candidate                   meanC_n  meanC_d  melLED melOLED  dErr  cvdRet  drift   wcag   iss
-candidate-a-restrained       0.0190   0.0337   0.964   0.965    21    0.00   5.88   6.12   433
-candidate-b-balanced         0.0238   0.0417   0.951   0.952    20    0.08   5.70   6.12   426
-candidate-c-expressive       0.0286   0.0504   0.948   0.949    20    0.00   5.82   6.12   404
+candidate                   meanC_n  meanC_d  melLED melOLED  dErr  cvdRet  drift stability  sal3_n   wcag   iss
+candidate-a-restrained       0.0118   0.0212   0.973   0.973    21    0.00   5.60        ok   19.2%   6.12   459
+candidate-b-balanced         0.0238   0.0417   0.952   0.953    20    0.08   5.70        ok   19.2%   6.12   426
+candidate-c-expressive       0.0330   0.0519   0.945   0.946    19    0.09   5.67        ok   19.2%   6.12   391
 
 ## flagged tradeoffs
   candidate-a-restrained: Lowest chromatic attention hypothesis; weakest categorical cue and smallest CVD headroom. Nominal area-weighted spectral output is evaluated separately and is not inferred from chroma. Diagnostics are deliberately exempt from the restraint.
+    stability_ok=True (material inversions 0, near-tie flips 6, salience reversals 0)
   candidate-b-balanced: Categorical scanning should be comfortable; warm-tinted comments and azure-traced property are design judgements to be confirmed in Phase 7.
+    stability_ok=True (material inversions 0, near-tie flips 6, salience reversals 0)
   candidate-c-expressive: Strongest categorical/navigation cue; highest chromatic attention hypothesis, and the most likely to read as busy in call-dense or config-heavy files. Nominal area-weighted spectral output is evaluated separately and is not inferred from chroma. The violet tag shift spends a hue A/B keep on azure.
+    stability_ok=True (material inversions 0, near-tie flips 6, salience reversals 0)
 
 ## disagreement log (open for Phase 7)
   [A-chroma-vs-flatness] does A read as comfortably scannable, or as flat/indistinguishable?
@@ -18,6 +21,8 @@ candidate-c-expressive       0.0286   0.0504   0.948   0.949    20    0.00   5.8
   [tag-azure-vs-violet] does violet tag help or hurt key-scanning in YAML/JSON?
   [cvd-retention-vs-redundancy] do the redundant markers (underline/icon/gutter sign) actually carry the meaning under CVD?
 
+stability = the D-5 gate: material normalized-chroma inversions, cyclic family sequence, hue drift <= threshold. Near-tie sign flips (both sides within the tie epsilon) are reported but do not fail the gate; see normalized_chroma_near_tie_flips in the YAML/JSON.
+sal3_n = declared share of non-background pixels at salience >= 3 (night, 'code' coverage estimate); '!' marks a breach of the environments.yaml salience_budget -- a design signal, not tuned away.
   - WCAG 2.x ratios are the hard compliance floor; all candidates pass or generation fails (ok=True).
   - APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion (R-11).
   - CVD models are population-average dichromat simulations; they detect collapse, they do not certify accessibility or reproduce an individual's experience (R-9).

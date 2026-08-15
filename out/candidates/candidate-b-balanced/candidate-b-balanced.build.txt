@@ -1,6 +1,6 @@
-# candidate-b-balanced  (CANDIDATE)  ok=True  input_hash=7ffb99008258b166
+# candidate-b-balanced  (CANDIDATE)  ok=True  input_hash=18521825cc8cc25f
   note: CANDIDATE.  Not a finished/selected theme; no winner is ranked here (DESIGN.md section 1).
-  stability: ok=False  max_hue_drift=5.7deg (cap 12)  cyclic_seq_preserved=True  normC_inversions=6  salience_reversals=8
+  stability: ok=True  max_hue_drift=5.7deg (cap 12)  cyclic_seq_preserved=True  normC_inversions=0  salience_reversals=0
   issues: 426 (aesthetic/distance/legibility misses; informational)
 
 ## variant day
