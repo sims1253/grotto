@@ -280,3 +280,204 @@ numeric-n01" but: *the taste layer's night chroma caps and shared lightness
 bands cost ~24× on the worst distance-matrix margin, WCAG is not the binding
 constraint at night, and the real ceiling is dichromat survival of the
 highlight-surface cluster inside the sRGB gamut.*
+
+---
+
+# The middle frontier (NON-CANDIDATE, part 2)
+
+## 7. The question, and where the fences come from
+
+The owner looked at the installed "Grotto N-Explore" themes in a real editor
+and rejected the numeric frontier's *look*. Verbatim feedback:
+
+> "Not sure if the 3 new N ones are visually pleasing. the magenta is very
+> in-your-face."
+
+That is the primary design input for the middle frontier: optimise the SAME
+numeric objective (§3, unchanged) but INSIDE taste fences that keep grotto's
+character, and buy back as much margin as the fences allow. The fences are
+the direct answers to the rejection:
+
+* **Hue convention windows** per chromatic role (degrees OKLCH): string
+  95–165 · function 180–265 · keyword 275–335 · number/constant/decorator
+  40–110 · builtin 0–50 · type/namespace 160–215 · tag 95–165 or 180–265
+  (its committed family) · error 0–40 · warning 60–110 · info 180–265 ·
+  success 90–160 · diff_added 90–160 · diff_removed 0–40 · diff_changed
+  40–110 · search_match[_current] 40–110 · selection/focus 180–265 ·
+  breakpoint 0–40 · debug_current 40–110. Rationale: these are the learned
+  associations users bring; breaking them is what made N-Explore unpleasant.
+  Every committed candidate-b night hue is inside its window by construction.
+* **Lightness structure stays**: each chromatic ink's L may move at most
+  ±0.04 from its candidate-b night value; each highlight surface's L at most
+  ±0.06 (surface lightness spread is the distance-matrix-sanctioned
+  redundant channel — the deutan fix for the diff pairs was expected from
+  here, not from hue). The 17 neutral scaffold roles stay verbatim from
+  `candidate-b-balanced.night.yaml`, as in §4.
+* **Loudness ceilings** (the direct answer to "magenta in-your-face"):
+  syntax roles C ≤ 0.12, diagnostics ≤ 0.16, highlight surfaces ≤ 0.10, AND
+  every role ≤ 70 % of `max_chroma(L, h)` so nothing rides the gamut edge
+  (numeric-n01 had 17 of 23 roles at ≥ 99.5 % of the edge). These supersede
+  anything the margin objective wants.
+* **WCAG floors stay hard** against the background AND every co-occurring
+  surface — the committed candidate-b night palette carries 12
+  ink-over-surface violations (fg_muted / line_number / ui_inactive, floor
+  3.0, over selection / search_match / search_match_current / debug_current);
+  here they become constraints, not warnings.
+
+Two quantisation notes, documented because they matter for reproduction:
+projection keeps a small margin *inside* every fence (hue 1.5°, chroma
+0.002) because the palette ships as 8-bit hex and hue at very small chroma
+is ill-conditioned under rounding; the hex-space fence audit therefore
+checks hue windows only at C ≥ 0.02 (below the matrix's own JND anchor the
+hue channel carries no readable signal).
+
+## 8. Method (reuse, not rewrite)
+
+`scripts/middle_palette.py` imports `numeric_palette` and reuses its
+machinery: the term table and margin computation, gamut projection, the
+WCAG-feasible lightness interval (used to start inks legal), the greedy
+(J, J2) refinement loop and the multi-start driver — the latter two through
+two documented injection points (`numeric_palette._apply_move` and
+`._initial_state` are rebound to fence-aware versions), the diversity
+picker, the feasibility check, the metrics block and the specimen renderer.
+New code is only: fence projection and the fenced repairs (the numeric
+climb loops with fence bounds — a move whose floor is unreachable inside
+the fence is rejected), fenced sampling inside windows, fenced placement of
+matrix-ignored roles, and the same_family enforcement below.
+
+**same_family min-distance is an output gate, not just an objective term.**
+Every same_family pair of the distance matrix must END at
+dE ≥ `same_family.min_distance` (0.03, the file's own "still not identical"
+bound). After refinement, a deterministic repair pass runs a bounded
+coordinate search on any violating pair (numeric move set, fence-repaired),
+under two guards: no sibling same_family pair may (re)collapse (hard), and
+the global worst margin J may only be spent gradually (a tolerance ladder
+0.02 → 0.06 → 0.15 → 1.0: repair for free first, buy the constraint with
+margin if necessary). This kills the number/constant debt.
+
+Deterministic, seeded (default seed 20260816, 24 restarts × 16 samples × 30
+refine passes, ~45 s wall clock). Two consecutive full runs were diffed:
+byte-identical artifacts.
+
+## 9. Success criteria and the three-way comparison
+
+Night; margins normalised by their class threshold; bigger is better.
+`matrix` = the mission objective (worst must/should margin, without the
+anti-collapse floor); `meanC`/`maxC` = categorical loudness.
+
+| palette | J | matrix | must-N | must-CVD | should | min cat dE | meanC | maxC | min WCAG | WCAG viol | diff deutan dE | number/constant dE |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| candidate-b night | 0.000 | **0.021** | 0.059 | 0.021 | 0.164 | **0.000** | 0.041 | 0.081 | 2.70 | **12** | **0.002** | **0.000** |
+| middle-m01 | 0.282 | **0.282** | 0.301 | 0.282 | 0.363 | 0.047 | 0.106 | 0.119 | 3.01 | **0** | 0.026 | 0.117 |
+| middle-m02 | 0.267 | 0.267 | 0.330 | 0.267 | 0.363 | 0.051 | 0.107 | 0.118 | 3.00 | 0 | 0.025 | 0.083 |
+| middle-m03 | 0.264 | 0.264 | 0.267 | 0.264 | 0.363 | 0.011 | 0.109 | 0.118 | 3.01 | 0 | 0.024 | 0.092 |
+| numeric-n01 | **0.506** | **0.506** | 0.780 | 0.506 | 0.363 | 0.016 | 0.205 | 0.315 | 3.03 | 0 | 0.126 | 0.350 |
+
+The three verified debts of the committed candidate, and what the middle
+frontier did to each:
+
+* **(a) number/constant byte-identical (dE 0.000)** → **0.083–0.117**, all
+  ≥ the 0.03 same-family minimum (enforced as an output gate; m02 needed the
+  repair pass: 0.021 → 0.083, J unchanged). Fixed.
+* **(b) diff_added/diff_removed collapse to dE 0.002 under deutan** →
+  **0.024–0.026**, a 12–13× recovery of the collapse — but still below the
+  0.09 dichromat threshold. What the fences leave, measured exactly:
+  * pair-only bound inside all fences (hue windows, C ≤ 0.10, L ±0.06,
+    scaffold-ink WCAG): **dE 0.0547** (margin 0.61);
+  * joint bound of the diff cluster (diff_added + diff_removed + diff_changed
+    vs each other and vs the scaffold active_line, brute-forced by
+    coordinate descent over the fenced grids): **margin ≈ 0.26** — and the
+    greedy reaches 0.26–0.28. The gap between 0.61 and 0.26 is the *joint*
+    cost: diff_added must clear active_line, diff_changed and selection at
+    the same time, and the scaffold-ink WCAG floors pin all highlight
+    surfaces into a narrow lightness band (roughly L 0.215–0.26), so the
+    ±0.06 lightness-spread channel the redundant encoding was supposed to
+    use is mostly spent before the diff pair itself gets any. This — not
+    hue, not chroma — is what bounds the deutan fix under these fences.
+* **(c) 12 ink-over-surface WCAG violations** → **0** (surfaces darken to
+  the bottom of their fences until fg_muted / line_number / ui_inactive
+  clear 3.0; min contrast 3.00–3.01). Fixed.
+
+The margin/loudness tradeoff, stated plainly: candidate-b's committed
+tastes sit at worst matrix margin **0.021** with mean categorical chroma
+**0.041**; the unconstrained numeric frontier buys **0.506** (24×) at mean
+chroma **0.205** and max **0.315** — gamut-edge magenta. The middle frontier
+buys **0.267–0.282** (13–13.5×) at mean **0.106** and max **0.119**: roughly
+half the numeric margin for roughly half the numeric loudness, with every
+hue convention intact. Note also that the optimizer *spends the whole
+loudness budget the fences allow* (meanC ≈ 0.106 is 88 % of the 0.12 syntax
+cap) — the caps bind, the taste layer's old budgets do not exist anymore.
+
+What binds at the middle optimum is the same thing that binds at the
+numeric one — argmin in all three middles is a must-CVD term of the
+co-occurring-surface cluster (active_line/diff_added deutan·tritan,
+diff_added/diff_removed deutan) — but now bounded by the lightness fences
+and the scaffold-ink floors rather than by the sRGB gamut edge. The
+should-margin minimum (0.363) is the scaffold's own bg_elevated/bg_overlay
+pair, inherited verbatim from candidate-b, unchanged from §5.1.
+
+## 10. What the middle palettes look like (description, and honest doubts)
+
+Description of middle-m01 (the best): keyword violet at the cap
+(h 319.7, C 0.118), string sage-green at the cap (h 159, C 0.118), function
+light azure (L 0.92, C 0.086), type teal (h 208.5, C 0.10), number sand
+(h 108.5, C 0.115) vs constant rose-sand (h 41.5, C 0.097) — the literal
+pair now reads as two members of one warm family — builtin rose (h 1.5,
+C 0.10), tag sage (h 96.5, C 0.118), warning bright amber (L 0.92, C 0.137),
+selection a confident blue-violet wash (h 263.5, C 0.066), diff_added a
+green wash at h 145.8 and diff_removed a red wash at h 26.9, separated
+mostly by lightness (0.242 vs 0.215). Reads like Balanced Night with
+visibly more confident colours: same families, same lightness hierarchy,
+roughly 2.5× the chroma.
+
+Honest doubts — things the optimizer does inside the fences that a human
+may still not want, reported rather than hidden:
+
+* **It zeroes one diagnostic's chroma to buy lightness separation.** m01/m02
+  render error as a near-white achromatic mark (L 0.92, C 0.000–0.003);
+  m03 flips the trade (warning achromatic, error C 0.008). The hue windows
+  bind only when chroma is present — C = 0 voids the "error reads red"
+  intent while technically sitting at h 1.5. The fences as specified have
+  ceilings, not floors; whether diagnostics need a chroma floor is a fence
+  decision for the owner.
+* **diff_changed parks at the canvas floor** (L 0.215 = bg + 0.01, C 0.000)
+  in all three middles: a nearly invisible changed-line wash. No matrix pair
+  requires diff_changed to differ from *bg*, so the objective is blind to
+  its visibility. Same in candidate-b? No — candidate-b's diff_changed sits
+  at L 0.235 (ΔL 0.03 from bg), visible if subtle.
+* **m03 lets an unconstrained categorical pair drift to dE 0.011**
+  (constant/decorator — not a matrix same_family pair, so only the soft
+  anti-collapse floor applies at margin 0.37 > J). m01 keeps it at 0.047.
+* The **whole chroma budget is spent** everywhere the matrix allows; nothing
+  comes out quieter than the fences permit where margin is on the table.
+
+## 11. Where the middle-frontier artifacts live
+
+* `scripts/middle_palette.py` — the optimizer (additive; imports
+  `numeric_palette` and grotto modules only).
+* `out/middle-night/middle-m01..03.night.yaml` — the palettes (OKLCH yaml,
+  `candidate: false`); top-3 diverse picks (mean chromatic hue separation
+  18.5° / 25.8° / 22.0° between picks).
+* `out/middle-night/metrics.json`, `metrics.txt` — the three-way comparison
+  (candidate-b / middle / numeric-n01): worst margins by class, the three
+  debts, loudness, per-pair worst-10 with `distance.breakdown` channels.
+* `out/middle-night/variants.html` — dark side-by-side page: swatch strips +
+  the R specimen for candidate-b, middle-m01..03 and numeric-n01.
+* `out/middle-night/vscode-preview/` — and **installed** to
+  `/mnt/c/Users/m0hawk/.vscode/extensions/grotto-middle-exploration/`
+  (labels **Grotto M-Explore 01..03 Night**, uiTheme `vs-dark`, displayName
+  "Grotto Middle Exploration (NON-CANDIDATE)").
+* `tests/test_middle_palette.py` — fast reduced-subset tests: fences
+  enforced (hue windows, chroma caps incl. the 70 % gamut rule, on shipped
+  hexes AND authored coords), WCAG-vs-surfaces holds, number/constant ≥ 0.03
+  after a tiny run, determinism.
+
+Reproduce: `uv run python scripts/middle_palette.py` (`--no-install` skips
+the extension copy). Outputs are byte-stable; two consecutive full runs
+were diffed to confirm it.
+
+**Reminder: NON-CANDIDATE.** The middle frontier is the measured answer to
+"how much margin do the conventions and a loudness ceiling actually cost?"
+— about half of what throwing them away buys. Whether that trade, or the
+specific degenerate choices listed in §10, is desirable remains the owner's
+call.
