@@ -1,0 +1,235 @@
+schema: grotto.huerd-night
+huerd_version: 0.6.2 (local ../huerd, sann optimizer, cvd_safe=TRUE)
+mode: anchors
+pins:
+  bg: '#191714'
+  error: '#f2cdcd'
+  warning: '#f0d3a7'
+  keyword: '#cdbada'
+  string: '#aeca93'
+  function: '#cbdae7'
+  type: '#99cbc5'
+free_roles:
+  namespace:
+  - 160.0
+  - 215.0
+  number:
+  - 40.0
+  - 110.0
+  constant:
+  - 40.0
+  - 110.0
+  decorator:
+  - 40.0
+  - 110.0
+  builtin:
+  - 0.0
+  - 50.0
+  tag:
+  - 180.0
+  - 265.0
+syntax_cap: 0.12
+baselines:
+  candidate-b:
+    worst_margin: 0.021
+    must_normal: 0.059
+    must_cvd: 0.021
+    should: 0.164
+    same_family_min: 0.0
+    diff_cvd_worst: 0.002
+    num_const_dE: 0.0
+    mean_cat_chroma: 0.041
+    max_cat_chroma: 0.081
+    min_wcag: 3.36
+  middle-m01:
+    worst_margin: 0.282
+    must_normal: 0.301
+    must_cvd: 0.282
+    should: 0.363
+    same_family_min: 2.651
+    diff_cvd_worst: 0.026
+    num_const_dE: 0.117
+    mean_cat_chroma: 0.106
+    max_cat_chroma: 0.119
+    min_wcag: 3.36
+  numeric-n01:
+    worst_margin: 0.507
+    must_normal: 0.78
+    must_cvd: 0.507
+    should: 0.363
+    same_family_min: 4.431
+    diff_cvd_worst: 0.054
+    num_const_dE: 0.35
+    mean_cat_chroma: 0.205
+    max_cat_chroma: 0.315
+    min_wcag: 3.36
+results:
+- id: h01-raw
+  huerd_min_dist: 0.058
+  huerd_min_cvd: 0.01
+  assignment:
+    tag: '#00a7fd'
+    number: '#ff9600'
+    namespace: '#4f898e'
+    constant: '#6b8768'
+    decorator: '#5d79e4'
+    builtin: '#3e77ff'
+  metrics:
+    worst_margin: 0.021
+    must_normal: 0.059
+    must_cvd: 0.021
+    should: 0.363
+    same_family_min: 4.431
+    diff_cvd_worst: 0.002
+    num_const_dE: 0.246
+    mean_cat_chroma: 0.104
+    max_cat_chroma: 0.211
+    min_wcag: 3.36
+- id: h01-capped
+  huerd_min_dist: 0.058
+  huerd_min_cvd: 0.01
+  assignment:
+    tag: '#53a6e2'
+    number: '#e9a25d'
+    namespace: '#4f898e'
+    constant: '#6b8768'
+    decorator: '#677eca'
+    builtin: '#5d80cb'
+  metrics:
+    worst_margin: 0.021
+    must_normal: 0.059
+    must_cvd: 0.021
+    should: 0.363
+    same_family_min: 4.431
+    diff_cvd_worst: 0.002
+    num_const_dE: 0.213
+    mean_cat_chroma: 0.08
+    max_cat_chroma: 0.121
+    min_wcag: 3.36
+- id: h02-raw
+  huerd_min_dist: 0.058
+  huerd_min_cvd: 0.01
+  assignment:
+    builtin: '#ba696b'
+    namespace: '#00f9ff'
+    tag: '#00deff'
+    number: '#a67467'
+    constant: '#6b8768'
+    decorator: '#5e72ff'
+  metrics:
+    worst_margin: 0.021
+    must_normal: 0.059
+    must_cvd: 0.021
+    should: 0.363
+    same_family_min: 3.339
+    diff_cvd_worst: 0.002
+    num_const_dE: 0.1
+    mean_cat_chroma: 0.094
+    max_cat_chroma: 0.209
+    min_wcag: 3.36
+- id: h02-capped
+  huerd_min_dist: 0.058
+  huerd_min_cvd: 0.01
+  assignment:
+    builtin: '#ba696b'
+    namespace: '#68f3f8'
+    tag: '#55dbf5'
+    number: '#a67467'
+    constant: '#6b8768'
+    decorator: '#6c7ecc'
+  metrics:
+    worst_margin: 0.021
+    must_normal: 0.059
+    must_cvd: 0.021
+    should: 0.363
+    same_family_min: 3.339
+    diff_cvd_worst: 0.002
+    num_const_dE: 0.1
+    mean_cat_chroma: 0.079
+    max_cat_chroma: 0.12
+    min_wcag: 3.36
+- id: h03-raw
+  huerd_min_dist: 0.058
+  huerd_min_cvd: 0.01
+  assignment:
+    tag: '#0098ff'
+    builtin: '#c76254'
+    namespace: '#00cbfc'
+    number: '#ff0704'
+    constant: '#688864'
+    decorator: '#7272e8'
+  metrics:
+    worst_margin: 0.021
+    must_normal: 0.059
+    must_cvd: 0.021
+    should: 0.363
+    same_family_min: 3.691
+    diff_cvd_worst: 0.002
+    num_const_dE: 0.29
+    mean_cat_chroma: 0.116
+    max_cat_chroma: 0.256
+    min_wcag: 3.36
+- id: h03-capped
+  huerd_min_dist: 0.058
+  huerd_min_cvd: 0.01
+  assignment:
+    tag: '#5599db'
+    builtin: '#c26659'
+    namespace: '#4fc8f0'
+    number: '#c76b5e'
+    constant: '#688864'
+    decorator: '#767aca'
+  metrics:
+    worst_margin: 0.021
+    must_normal: 0.059
+    must_cvd: 0.021
+    should: 0.363
+    same_family_min: 2.908
+    diff_cvd_worst: 0.002
+    num_const_dE: 0.161
+    mean_cat_chroma: 0.087
+    max_cat_chroma: 0.121
+    min_wcag: 3.36
+- id: h04-raw
+  huerd_min_dist: 0.056
+  huerd_min_cvd: 0.01
+  assignment:
+    tag: '#688399'
+    namespace: '#608a5c'
+    number: '#708f00'
+    constant: '#cd5689'
+    decorator: '#9c59ff'
+    builtin: '#477bea'
+  metrics:
+    worst_margin: 0.021
+    must_normal: 0.059
+    must_cvd: 0.021
+    should: 0.363
+    same_family_min: 4.431
+    diff_cvd_worst: 0.002
+    num_const_dE: 0.277
+    mean_cat_chroma: 0.105
+    max_cat_chroma: 0.234
+    min_wcag: 3.36
+- id: h04-capped
+  huerd_min_dist: 0.056
+  huerd_min_cvd: 0.01
+  assignment:
+    tag: '#688399'
+    namespace: '#608a5c'
+    number: '#738d33'
+    constant: '#be6588'
+    decorator: '#9077c6'
+    builtin: '#5b80c9'
+  metrics:
+    worst_margin: 0.021
+    must_normal: 0.059
+    must_cvd: 0.021
+    should: 0.363
+    same_family_min: 4.431
+    diff_cvd_worst: 0.002
+    num_const_dE: 0.216
+    mean_cat_chroma: 0.081
+    max_cat_chroma: 0.12
+    min_wcag: 3.36
+note: NON-CANDIDATE exploration; assignment keeps learned hue conventions, huerd places the free colors.

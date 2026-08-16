@@ -481,3 +481,44 @@ were diffed to confirm it.
 — about half of what throwing them away buys. Whether that trade, or the
 specific degenerate choices listed in §10, is desirable remains the owner's
 call.
+
+---
+
+## huerd 0.6.2 experiment (fixed colors + CVD-safe objective)
+
+Question (owner): does the NEW huerd -- `generate_palette(include_colors=...)`
+with a working `cvd_safe` objective -- change the picture, and can we pin the
+non-negotiable anchors ("keep red for errors")?
+
+Setup: huerd installed from ../huerd into the user R library (nloptr built
+from source; the sann optimizer does not need it but the default cobyla
+does). Two pin modes: `diagnostics` (canvas + error + warning) and `anchors`
+(diagnostics + keyword/string/function/type at committed values). Free colors
+assigned to roles within the convention windows; nearest-hue fallback would
+be flagged (never silent) -- in anchors mode no run needed the fallback.
+`scripts/huerd_palette.py` + `scripts/huerd_generate.R`; results in
+`out/huerd-night/` (raw and chroma-capped variants, VS Code themes
+`Grotto H-Explore 01..03 Night`).
+
+Findings:
+
+1. **The new capabilities work as advertised**: pins are preserved verbatim,
+   the CVD-safe objective runs, and huerd fixed the number/constant collapse
+   wherever it had freedom (dE 0.000 -> 0.10-0.29, no convention breaks).
+2. **But the end-to-end worst margin does not move** (0.021, identical to
+   candidate-b): grotto's binding pairs live in the scaffold surfaces (the
+   diff/selection cluster under deutan) and the pinned diagnostics
+   themselves. A set-optimizer that must preserve those pins cannot fix
+   pairs among the pins. Freeing the surfaces for huerd is the identified
+   next experiment (requires adding ink-over-surface WCAG checks to this
+   pipeline first).
+3. **A pure set-optimizer fights role windows**: with 10 free roles the
+   max-min spread left 3-5 convention windows empty in every run -- hue
+   allocation to semantic slots is an assignment problem huerd does not
+   solve (it optimizes an unordered set). Anchor pinning is the workable
+   division of labor: conventions as pins, huerd for the free cluster.
+4. Re-running the earlier cross-check under 0.6.2 reproduces the 0.5.x-era
+   numbers exactly (the release changed generation/validation, not the
+   metric math).
+
+NON-CANDIDATE, as always.
