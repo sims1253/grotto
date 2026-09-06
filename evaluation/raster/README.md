@@ -12,9 +12,8 @@ It is a coarse area audit, nothing more.
   images, terminal output, extension decorations, zoom/scaling and window
   chrome all add colours the theme never defined. Exact-match and
   nearest-role numbers are coverage estimates under a documented threshold.
-- **Not a capture tool.** There is no automation, no browser, no Electron,
-  no VS Code control from this repo — the code binary is absent here by
-  design. You take the screenshot yourself.
+- **Not a capture tool.** This repo does not control VS Code or Zed. You take
+  the screenshot yourself.
 - **Not a light measurement.** Photopic/melanopic values are nominal,
   within-model, relative to the model display's white (see `spectral.py`);
   they say nothing about absolute light at your eye.
@@ -47,10 +46,11 @@ linear RGB — the display SPD is linear in linear RGB and the weighting is a
 linear functional, so one integration per display model equals the
 per-pixel area-weighted integral without ever integrating per unique pixel.
 
-## Capturing a screenshot (manual, your installed VS Code)
+## Capturing a screenshot (manual, your installed editor)
 
-1. Install the evaluation preview
-   (`editors/vscode/README.md`), pick the exact theme label you will analyse.
+1. Install either the VS Code or Zed evaluation preview, then pick the exact
+   theme label you will analyse. See `editors/vscode/README.md` or
+   `editors/zed/README.md`.
 2. Fix the environment first (same as any scan condition in
    `HUMAN_EVALUATION.md`): display brightness, OS colour profile, zoom,
    font size, panel layout; disable HDR/True Tone if you cannot hold them

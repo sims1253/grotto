@@ -29,8 +29,8 @@ spec/bindings/candidate-*.yaml  L2  candidate hue-anchor + chroma-budget binding
 themes/references/*.yaml        reference themes (Nord, Solarized, ...), hex, non-candidate
 themes/fixtures/*.yaml          evaluation fixtures, OKLCH-first, non-candidate
 themes/candidates/*.yaml        GENERATED candidate palettes, OKLCH-first (Phase 5)
-spec/mappings/vscode.yaml       L3 editor binding (VS Code)
-editors/vscode/                 GENERATED 9-theme VS Code evaluation preview (Phase 8a)
+spec/mappings/{vscode,zed}.yaml L3 editor bindings
+editors/{vscode,zed}/           GENERATED 9-theme editor evaluation previews (Phase 8a)
 evaluation/r-corpus/            frozen R pilot corpus for timed evaluation tasks (Phase 8b)
 evaluation/raster/              manual screenshot capture guide + metadata template (Phase 8c)
 src/grotto/                     implementation + evaluation tooling
@@ -46,12 +46,14 @@ editor scope names. Phase 3 reference analysis output lives under
 
 ## Evaluating the candidates
 
-- **View the nine theme variants:** install the generated VS Code
-  preview — see [editors/vscode/README.md](editors/vscode/README.md). The
-  palettes themselves live in [themes/candidates/](themes/candidates/README.md).
+- **View the nine theme variants:** install either the generated
+  [VS Code preview](editors/vscode/README.md) or
+  [Zed preview](editors/zed/README.md). Both use the same canonical palettes
+  from [themes/candidates/](themes/candidates/README.md).
 - **Rebuild the candidate and preview artifacts:** run
   `uv run grotto candidates --out out/candidates` for palettes and reports,
-  `uv run grotto vscode --out editors/vscode` for themes, and
+  `uv run grotto vscode --out editors/vscode` and
+  `uv run grotto zed --out editors/zed` for editor themes, and
   `uv run grotto specimens --out out/specimens` for visual fixtures.
 - **Run the human evaluation:** follow
   [HUMAN_EVALUATION.md](HUMAN_EVALUATION.md). Timed R tasks use the frozen
@@ -118,6 +120,10 @@ uv run grotto compare-families spec/bindings/calibration.yaml \
 # (matrix, drift, specimens/CVD/spectral visuals) under out/candidates/.
 # No score, rank, or recommendation is produced.
 uv run grotto candidates --out out/candidates
+
+# Phase 8a: regenerate the two static editor evaluation previews.
+uv run grotto vscode --out editors/vscode
+uv run grotto zed --out editors/zed
 ```
 
 Reports are **reproducible**: identical inputs produce byte-identical output

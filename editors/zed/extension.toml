@@ -1,0 +1,7 @@
+id = "grotto-evaluation-preview"
+name = "Grotto Evaluation Preview"
+description = "Nine unranked Day, Evening, and Night candidates for Grotto human evaluation."
+version = "0.1.0"
+schema_version = 1
+authors = ["Maximilian Scholz <dev.scholz@mailbox.org>"]
+repository = "https://github.com/sims1253/grotto"
