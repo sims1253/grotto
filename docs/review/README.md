@@ -5,6 +5,10 @@ the palette-authoring workflow, and develop one family from the Middle M01 Night
 experiment. Give Day its own authored palette. Keep Evening as an experiment
 until it offers a useful choice beyond the other two.
 
+The owner has rejected Numeric N01 as too intense and not visually pleasing.
+The [optimizer constraint proposal](optimizer-constraints.md) examines how to
+search for more restrained alternatives. Middle M01 remains unselected.
+
 This is a design proposal for review, not a selected theme or a rewrite of the
 runtime. The screenshots below are the evidence for my visual judgment. You may
 prefer a different look.
@@ -185,10 +189,9 @@ Replacing this boundary addresses the specific problem.
 | --- | --- | --- |
 | Smaller palette change | Expressive Night, then repair Day and UI states | Keeps a quiet look; current families remain close |
 | My recommendation | Middle M01, with quieter builtins and clearer errors; author a matching Day | More visible syntax roles; needs deliberate refinement |
-| Strong color throughout | Numeric N01, then revise the role colors and diff conventions | Much more saturated; highest risk of distracting accents |
+| Rejected reference | Numeric N01 | The owner finds it too intense and not visually pleasing |
 
-Choose the row closest to what you want, and point to any colors you want kept
-or changed. The architecture recommendation applies to all three. Huerd is shown
+Compare the remaining directions and point to colors you want kept or changed. The architecture recommendation applies to all three. Huerd is shown
 as a narrower alternative to help explain the tradeoff.
 
 You can try the existing inputs without installing into your normal profile:
