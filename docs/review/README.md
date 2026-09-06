@@ -1,5 +1,7 @@
 # Grotto: choose the theme, then simplify the system
 
+Additional review: [Summer memories — Pergola and Stone](../../out/summer-memories/README.md), each in Day and Night. The earlier proposals remain available.
+
 The [next-generation review](../../out/next-generation/README.md) now contains
 Cove, Grove, and Dusk in Day and Night, with examples and editor previews.
 

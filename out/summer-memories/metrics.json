@@ -1,0 +1,470 @@
+{
+  "pergola-day": {
+    "source_sha256": "916304a7c88e373324f19633cc14c548b998f99b4c4543913eb7ebcab3bee38e",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6819,
+    "fg_on_selection": 6.4645,
+    "max_syntax_chroma": 0.07079,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.6819,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "selection",
+        "ratio": 4.6819,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "selection",
+        "ratio": 4.6819,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "selection",
+        "ratio": 4.6819,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.7479,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "keyword": {
+        "requested": [
+          0.46,
+          0.05,
+          110
+        ],
+        "shipped": [
+          0.4604234512256253,
+          0.04986538147788409,
+          111.14234443072125
+        ]
+      },
+      "function": {
+        "requested": [
+          0.46,
+          0.045,
+          215
+        ],
+        "shipped": [
+          0.46075570185335996,
+          0.04554968941859017,
+          214.45759419778895
+        ]
+      },
+      "string": {
+        "requested": [
+          0.45,
+          0.055,
+          150
+        ],
+        "shipped": [
+          0.45002278867709183,
+          0.05468394349253921,
+          149.79512607085599
+        ]
+      },
+      "number": {
+        "requested": [
+          0.45,
+          0.085,
+          75
+        ],
+        "shipped": [
+          0.4492278485453131,
+          0.07078509512243181,
+          74.96644403990771
+        ]
+      },
+      "type": {
+        "requested": [
+          0.46,
+          0.035,
+          290
+        ],
+        "shipped": [
+          0.4598470889908559,
+          0.03552558540215834,
+          289.0859847374104
+        ]
+      }
+    },
+    "amber_ink_share": {
+      "r": 0.1336,
+      "typescript": 0.1101,
+      "python": 0.1469
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6819,
+      "failures": []
+    }
+  },
+  "pergola-night": {
+    "source_sha256": "8f41f48a36dff42a6932232f54f7be8b8e1508658a5c56c8892608e080d2ca09",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.1871,
+    "max_syntax_chroma": 0.08513,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "keyword": {
+        "requested": [
+          0.77,
+          0.05,
+          110
+        ],
+        "shipped": [
+          0.7713135353360469,
+          0.050612514056309385,
+          110.08113205986803
+        ]
+      },
+      "function": {
+        "requested": [
+          0.79,
+          0.045,
+          215
+        ],
+        "shipped": [
+          0.7888027127286442,
+          0.04530250035805531,
+          216.366619685166
+        ]
+      },
+      "string": {
+        "requested": [
+          0.75,
+          0.055,
+          150
+        ],
+        "shipped": [
+          0.7495537996346896,
+          0.054281877265713936,
+          150.09325122212445
+        ]
+      },
+      "number": {
+        "requested": [
+          0.8,
+          0.085,
+          75
+        ],
+        "shipped": [
+          0.7991660175581493,
+          0.08512739498560278,
+          74.91167281626467
+        ]
+      },
+      "type": {
+        "requested": [
+          0.77,
+          0.035,
+          290
+        ],
+        "shipped": [
+          0.7700468498277192,
+          0.03540188297376438,
+          289.21069802146906
+        ]
+      }
+    },
+    "amber_ink_share": {
+      "r": 0.1336,
+      "typescript": 0.1101,
+      "python": 0.1469
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  },
+  "stone-day": {
+    "source_sha256": "edf06e62819b36705d5750c24f4f0d395b368e7c1c81a994e3e559446343b31e",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6819,
+    "fg_on_selection": 6.4645,
+    "max_syntax_chroma": 0.07079,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.6819,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "selection",
+        "ratio": 4.6819,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "selection",
+        "ratio": 4.6819,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "selection",
+        "ratio": 4.6819,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.7479,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "keyword": {
+        "requested": [
+          0.46,
+          0.04000000000000001,
+          110
+        ],
+        "shipped": [
+          0.4592940404621731,
+          0.039908518603398856,
+          109.71341193110825
+        ]
+      },
+      "function": {
+        "requested": [
+          0.46,
+          0.045,
+          215
+        ],
+        "shipped": [
+          0.46075570185335996,
+          0.04554968941859017,
+          214.45759419778895
+        ]
+      },
+      "string": {
+        "requested": [
+          0.45,
+          0.044000000000000004,
+          150
+        ],
+        "shipped": [
+          0.4489932228671291,
+          0.04352379975770066,
+          149.3974849045376
+        ]
+      },
+      "number": {
+        "requested": [
+          0.45,
+          0.085,
+          75
+        ],
+        "shipped": [
+          0.4492278485453131,
+          0.07078509512243181,
+          74.96644403990771
+        ]
+      },
+      "type": {
+        "requested": [
+          0.46,
+          0.035,
+          290
+        ],
+        "shipped": [
+          0.4598470889908559,
+          0.03552558540215834,
+          289.0859847374104
+        ]
+      }
+    },
+    "amber_ink_share": {
+      "r": 0.1336,
+      "typescript": 0.1101,
+      "python": 0.1469
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6819,
+      "failures": []
+    }
+  },
+  "stone-night": {
+    "source_sha256": "156fe12152d6be692c67bb4ac28ea55b1031d92c20b68b0a1b3c8b7fc3dab5e2",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.1871,
+    "max_syntax_chroma": 0.08513,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "keyword": {
+        "requested": [
+          0.77,
+          0.04000000000000001,
+          110
+        ],
+        "shipped": [
+          0.7700213905044446,
+          0.03999874608003735,
+          110.5348528118917
+        ]
+      },
+      "function": {
+        "requested": [
+          0.79,
+          0.045,
+          215
+        ],
+        "shipped": [
+          0.7888027127286442,
+          0.04530250035805531,
+          216.366619685166
+        ]
+      },
+      "string": {
+        "requested": [
+          0.75,
+          0.044000000000000004,
+          150
+        ],
+        "shipped": [
+          0.7496102008310487,
+          0.04302071512218735,
+          150.6139030992825
+        ]
+      },
+      "number": {
+        "requested": [
+          0.8,
+          0.085,
+          75
+        ],
+        "shipped": [
+          0.7991660175581493,
+          0.08512739498560278,
+          74.91167281626467
+        ]
+      },
+      "type": {
+        "requested": [
+          0.77,
+          0.035,
+          290
+        ],
+        "shipped": [
+          0.7700468498277192,
+          0.03540188297376438,
+          289.21069802146906
+        ]
+      }
+    },
+    "amber_ink_share": {
+      "r": 0.1336,
+      "typescript": 0.1101,
+      "python": 0.1469
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  }
+}

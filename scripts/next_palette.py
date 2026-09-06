@@ -241,13 +241,18 @@ def editor_audit(palette, vs_theme, zed_theme):
     return {'backgrounds_checked': len(backgrounds), 'minimum_body_text_contrast': round(minimum, 4), 'failures': failures}
 
 
-def write_preview(palettes):
+def write_preview(palettes, out=OUT, profiles=PROFILES, intro=None, title="Grotto next generation"):
+    OUT = out
+    PROFILES = profiles
     css = '''body{margin:24px;background:#e8e8e8;color:#222;font:16px/1.5 system-ui,sans-serif}p{max-width:85ch}
     .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}h1{font-size:28px}h3{margin:0;padding:10px 14px;background:#ddd;color:#222;font-size:17px}
     article{background:var(--vbg);color:var(--vfg)}pre{font:13px/1.65 'DejaVu Sans Mono',monospace;margin:0;padding:14px;overflow:auto}
     .states{padding:0 14px 14px;font:13px/1.65 'DejaVu Sans Mono',monospace}.state{padding:6px 8px}.r-parameter{font-style:italic}select{font:inherit;padding:6px}
     .language[hidden]{display:none}@media(max-width:850px){.grid{grid-template-columns:minmax(0,1fr)}}'''
     body = '<h1>Grotto: next-generation palettes</h1><p>Three directions, each with Day and Night. Functions and builtins share a color. Numbers and constants share a color. These are code specimens, not editor screenshots.</p><p>Selection, search, and diff rows use opaque palette fills; editor overlays can differ. Every authored text/surface pair passes its configured contrast floor. Color-vision simulations remain checks, not certification.</p>'
+    if intro is not None:
+        body = '<h1>' + escape(title) + '</h1><p>' + escape(intro) + '</p><p>Browser code specimens, not editor screenshots. State rows use opaque fills; editor overlays can differ. Color-vision simulations are checks, not certification.</p><p><a href="../next-generation/comparison.html">Compare Cove, Grove and Dusk</a></p>'
+        css += '.grid{grid-template-columns:repeat(' + str(len(PROFILES)) + ',minmax(0,1fr))}@media(max-width:850px){.grid{grid-template-columns:minmax(0,1fr)}}'
     body += '<label>Language <select id="language">' + ''.join(f'<option value="{x}">{x.title()}</option>' for x in LANGUAGES) + '</select></label> <label>View <select id="view">' + ''.join(f'<option value="{x}">{x.title()}</option>' for x in ['normal', 'protan', 'deutan', 'tritan']) + '</select></label>'
     for lang in LANGUAGES:
         body += f'<div class="language" data-language="{lang}"' + (' hidden' if lang != 'r' else '') + '>'
@@ -262,10 +267,15 @@ def write_preview(palettes):
             body += '</div></section>'
         body += '</div>'
     js = "document.getElementById('language').onchange=e=>document.querySelectorAll('.language').forEach(x=>x.hidden=x.dataset.language!==e.target.value);document.getElementById('view').onchange=e=>document.body.className='view-'+e.target.value;"
-    (OUT / 'comparison.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Grotto next generation</title><style>' + css + _scoped_css(palettes) + '</style><body class="view-normal">' + body + '<script>' + js + '</script></body></html>')
+    (OUT / 'comparison.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + escape(title) + '</title><style>' + css + _scoped_css(palettes) + '</style><body class="view-normal">' + body + '<script>' + js + '</script></body></html>')
 
 
-def main():
+def main(out=OUT, profiles=PROFILES, builder=build_palette, generation='next-generation',
+         title='Grotto Next Generation Preview', intro=None,
+         note='Generated review palette; authored direction plus bounded shortfall/emphasis search.',
+         extra_inputs=()):
+    OUT = out
+    PROFILES = profiles
     OUT.mkdir(parents=True, exist_ok=True)
     palettes = {}; evidence = {}; contributions = []; zthemes = []
     vm = vscode._load_mapping(ROOT / 'spec/mappings/vscode.yaml', ROLES)
@@ -281,10 +291,10 @@ def main():
     zdir = OUT / 'zed-preview'; (zdir / 'themes').mkdir(parents=True, exist_ok=True)
     for profile in PROFILES:
         for variant in ('day', 'night'):
-            pal, metrics = build_palette(profile, variant)
+            pal, metrics = builder(profile, variant)
             key = pal.name; palettes[key] = pal
             data = {'name': key, 'variant': variant, 'format': 'oklch', 'candidate': False,
-                    'note': 'Generated review palette; authored direction plus bounded shortfall/emphasis search.',
+                    'note': note,
                     'colors': {r: dict(zip(('L', 'C', 'h'), hex_to_oklch(hx))) for r, hx in pal.items()}}
             path = OUT / f'{key}.yaml'; path.write_text(yaml.safe_dump(data, sort_keys=False))
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -300,10 +310,10 @@ def main():
             if metrics['editor_composites']['failures']:
                 raise ValueError(metrics['editor_composites']['failures'])
             evidence[key] = {'source_sha256': digest, **metrics}
-            print(key, 'min body contrast', metrics['minimum_body_text_contrast'], 'loss', metrics['initial_loss'], '->', metrics['final_loss'], flush=True)
+            print(key, 'min body contrast', metrics['minimum_body_text_contrast'], flush=True)
     (vdir / 'package.json').write_text(json.dumps({
-        'name': 'grotto-next-generation', 'displayName': 'Grotto Next Generation Preview',
-        'description': 'Cove, Grove, and Dusk in Day and Night. Experimental review themes.',
+        'name': 'grotto-' + generation, 'displayName': title,
+        'description': intro or 'Cove, Grove, and Dusk in Day and Night. Experimental review themes.',
         'version': '0.1.0', 'publisher': 'grotto-local', 'license': 'MIT',
         'repository': {'type': 'git', 'url': 'https://github.com/sims1253/grotto.git'},
         'engines': {'vscode': '^1.80.0'}, 'categories': ['Themes'],
@@ -311,13 +321,15 @@ def main():
     }, indent=2) + '\n')
     shutil.copyfile(ROOT / 'LICENSE', vdir / 'LICENSE')
     (vdir / 'README.md').write_text('# Grotto next-generation preview\n\nChoose Grotto Cove, Grove, or Dusk from Preferences: Color Theme. Each has Day\nand Night versions. These are experimental palettes with manual switching.\n\nCove uses blue functions and green strings. Grove uses green functions and\namber keywords. Dusk uses plum functions and gold strings.\n\nReport readability problems with the theme name, language, font, and UI state.\n')
-    (zdir / 'extension.toml').write_text('id = "grotto-next-generation"\nname = "Grotto Next Generation Preview"\nversion = "0.1.0"\nschema_version = 1\nauthors = ["Maximilian Scholz"]\nrepository = "https://github.com/sims1253/grotto"\n')
-    (zdir / 'themes/grotto.json').write_text(zed._dump({'$schema': zed.SCHEMA, 'name': 'Grotto Next Generation', 'author': 'Maximilian Scholz', 'themes': zthemes}))
+    (zdir / 'extension.toml').write_text(f'id = "grotto-{generation}"\nname = "{title}"\nversion = "0.1.0"\nschema_version = 1\nauthors = ["Maximilian Scholz"]\nrepository = "https://github.com/sims1253/grotto"\n')
+    if intro is not None:
+        (vdir / 'README.md').write_text(f'# {title}\n\n{intro}\n\nChoose a theme from Preferences: Color Theme. Each has Day and Night versions. Switching is manual. These are review themes.\n')
+    (zdir / 'themes/grotto.json').write_text(zed._dump({'$schema': zed.SCHEMA, 'name': title.removesuffix(' Preview'), 'author': 'Maximilian Scholz', 'themes': zthemes}))
     (zdir / 'provenance.json').write_text(json.dumps({k: v['source_sha256'] for k, v in evidence.items()}, indent=2) + '\n')
     (OUT / 'metrics.json').write_text(json.dumps(evidence, indent=2) + '\n')
     inputs = ['scripts/next_palette.py', 'spec/roles.yaml', 'spec/environments.yaml', 'spec/mappings/vscode.yaml', 'spec/mappings/zed.yaml', 'src/grotto/specimens.py', 'themes/candidates/candidate-b-balanced.day.yaml', 'themes/candidates/candidate-b-balanced.night.yaml']
-    (OUT / 'inputs.json').write_text(json.dumps({p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in inputs}, indent=2) + '\n')
-    write_preview(palettes)
+    (OUT / 'inputs.json').write_text(json.dumps({p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in [*inputs, *extra_inputs]}, indent=2) + '\n')
+    write_preview(palettes, OUT, PROFILES, intro, title if intro else "Grotto next generation")
 
 
 if __name__ == '__main__':
