@@ -1,5 +1,8 @@
 # Constraints for a less intense optimizer
 
+The [next-generation review](../../out/next-generation/README.md) now contains
+Cove, Grove, and Dusk in Day and Night, with examples and editor previews.
+
 Numeric N01 is rejected: the owner finds it too intense and not visually
 pleasing. This is a preference constraint for Grotto, not evidence that saturated
 palettes are universally bad. Middle M01 has not been selected.

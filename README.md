@@ -9,6 +9,9 @@ open work.
 
 ## Try a theme
 
+The latest [Cove, Grove, and Dusk previews](out/next-generation/README.md) include
+Day and Night versions, code comparisons, and a separate VS Code package.
+
 Follow the [VS Code installation guide](editors/vscode/README.md) or the
 [Zed installation guide](editors/zed/README.md), then choose a `Grotto` theme in
 your editor. Both extensions contain only static theme data.

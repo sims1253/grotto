@@ -1,5 +1,8 @@
 # Grotto: choose the theme, then simplify the system
 
+The [next-generation review](../../out/next-generation/README.md) now contains
+Cove, Grove, and Dusk in Day and Night, with examples and editor previews.
+
 My recommendation is to keep the measurement code and editor mappings, replace
 the palette-authoring workflow, and develop one family from the Middle M01 Night
 experiment. Give Day its own authored palette. Keep Evening as an experiment
