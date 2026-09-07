@@ -12,11 +12,17 @@ Cove, Grove and Dusk remain available in the [previous generation](../next-gener
 | Pergola | Pale stone with a green cast | Green-black shade |
 | Stone | Pale, slightly warm mineral grey | Nearly neutral charcoal |
 
-Both use olive keywords, blue functions, leaf-green strings, muted violet types
-and amber numbers/constants. Stone's greens are softer. Ordinary text is a
+Day uses ochre keywords, blue functions, leaf-green strings, violet types and
+copper numbers/constants. Its stronger colors address the first review, where
+the text looked almost uniformly grey. Night keeps the original softer colors
+and amber numbers/constants; Stone Night's greens are softer. Ordinary text is a
 slightly warm neutral. Red errors and amber warnings retain their usual roles.
 
 ## Compare code
+
+[Day color study](day-color-study.html) compares the original, increased chroma
+with the original hues, and the revised Day hues. It preserves the original
+Day colors from commit `e57b1f8` for review.
 
 ![Pergola and Stone Night on R](night-r-normal.png)
 
@@ -49,7 +55,7 @@ it passes the configured contrast floors, with 0.1 ratio headroom. Gamut handlin
 can also reduce chroma. There is no aesthetic search or beauty score in this
 generation. It reuses the earlier contrast checks, renderer and editor exporters.
 
-Frequent syntax colors stay relatively restrained. Amber belongs to numbers,
+Frequent syntax colors stay relatively restrained. Warm amber/copper belongs to numbers,
 constants and decorators, which occupy a smaller share of these specimens.
 That is a choice of role mapping, not a guaranteed coverage limit: a numeric
 configuration file can contain much more amber. Check one before choosing.

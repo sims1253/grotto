@@ -30,6 +30,17 @@ SYNTAX = {
 }
 
 
+# Day needs more chroma and clearer hue differences against pale stone.
+# Author it separately so changes here do not alter the Night composition.
+DAY_SYNTAX = {
+    'keyword': (.46, .090, 95),
+    'function': (.47, .115, 250),
+    'string': (.46, .100, 150),
+    'number': (.47, .115, 55),
+    'type': (.47, .100, 305),
+}
+
+
 def build_palette(profile, variant):
     dark = variant == 'night'
     p = PROFILES[profile]
@@ -61,10 +72,10 @@ def build_palette(profile, variant):
     for group, members in ng.GROUPS.items():
         day_L, night_L, chroma, hue = SYNTAX[group]
         # Stone's foliage is a little less colored; amber stays the same.
-        if profile == 'stone' and group in ('keyword', 'string'):
+        if dark and profile == 'stone' and group in ('keyword', 'string'):
             chroma *= .8
         for role in members:
-            raw[role] = (night_L if dark else day_L, chroma, hue)
+            raw[role] = (night_L, chroma, hue) if dark else DAY_SYNTAX[group]
     for role, hue, chroma in [('error', 28, .115), ('warning', 80, .09),
                               ('success', 150, .065), ('info', 215, .055),
                               ('focus', 80, .08), ('breakpoint', 28, .115)]:
