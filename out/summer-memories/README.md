@@ -20,6 +20,10 @@ slightly warm neutral. Red errors and amber warnings retain their usual roles.
 
 ## Compare code
 
+[Compare Grotto with established light themes](theme-comparison/README.md):
+Catppuccin Latte, GitHub Light Default, VS Code Light+ and Solarized Light,
+using the same code and TextMate grammars.
+
 [Stronger Day colors](day-strength-study.html) compares the previously preferred
 revision with the current, more colorful version. It keeps the chosen hues and
 allows Day syntax up to 98% of the available sRGB chroma, instead of 75%.
