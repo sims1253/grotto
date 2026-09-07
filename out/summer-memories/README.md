@@ -20,6 +20,11 @@ slightly warm neutral. Red errors and amber warnings retain their usual roles.
 
 ## Compare code
 
+[Stronger Day colors](day-strength-study.html) compares the previously preferred
+revision with the current, more colorful version. It keeps the chosen hues and
+allows Day syntax up to 98% of the available sRGB chroma, instead of 75%.
+Night, backgrounds and neutral text are unchanged.
+
 [Day color study](day-color-study.html) compares the original, increased chroma
 with the original hues, and the revised Day hues. It preserves the original
 Day colors from commit `e57b1f8` for review.
@@ -52,7 +57,8 @@ For Zed, choose **Install Dev Extension** and select
 
 The palette is authored directly. The generator repairs text lightness until
 it passes the configured contrast floors, with 0.1 ratio headroom. Gamut handling
-can also reduce chroma. There is no aesthetic search or beauty score in this
+can also reduce chroma. Day syntax uses a 98% gamut limit; other colors retain
+the 75% limit. These are design choices, not accessibility requirements. There is no aesthetic search or beauty score in this
 generation. It reuses the earlier contrast checks, renderer and editor exporters.
 
 Frequent syntax colors stay relatively restrained. Warm amber/copper belongs to numbers,

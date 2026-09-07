@@ -65,16 +65,16 @@ def surfaces(colors):
 
 
 @lru_cache(maxsize=32768)
-def color(L, C, h):
-    return oklch_to_hex((L, min(C, max_chroma(L, h) * 0.75), h % 360))
+def color(L, C, h, gamut_fraction=0.75):
+    return oklch_to_hex((L, min(C, max_chroma(L, h) * gamut_fraction), h % 360))
 
 
-def repair_ink(lch, variant, backgrounds, floor):
+def repair_ink(lch, variant, backgrounds, floor, gamut_fraction=0.75):
     """Move only lightness until the shipped hex passes, with 0.1 ratio headroom."""
     L, C, h = lch
     direction = 1 if variant == 'night' else -1
     for _ in range(201):
-        hx = color(L, C, h)
+        hx = color(L, C, h, gamut_fraction)
         if all(wcag_contrast(hx, bg) >= floor + 0.1 for bg in backgrounds):
             return hx
         L += direction * 0.002

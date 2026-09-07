@@ -33,11 +33,11 @@ SYNTAX = {
 # Day needs more chroma and clearer hue differences against pale stone.
 # Author it separately so changes here do not alter the Night composition.
 DAY_SYNTAX = {
-    'keyword': (.46, .090, 95),
-    'function': (.47, .115, 250),
-    'string': (.46, .100, 150),
-    'number': (.47, .115, 55),
-    'type': (.47, .100, 305),
+    'keyword': (.47, .115, 95),
+    'function': (.49, .170, 250),
+    'string': (.48, .150, 150),
+    'number': (.49, .160, 55),
+    'type': (.49, .180, 305),
 }
 
 
@@ -80,13 +80,16 @@ def build_palette(profile, variant):
                               ('success', 150, .065), ('info', 215, .055),
                               ('focus', 80, .08), ('breakpoint', 28, .115)]:
         raw[role] = (.78 if dark else .45, chroma, hue)
-    colors = {r: ng.color(*lch) for r, lch in raw.items()}
+    syntax_roles = {r for members in ng.GROUPS.values() for r in members}
+    # Day syntax may use nearly the full sRGB gamut; the old 75% cap muted it.
+    fractions = {r: .98 if not dark and r in syntax_roles else .75 for r in raw}
+    colors = {r: ng.color(*lch, fractions[r]) for r, lch in raw.items()}
     backgrounds = [colors[r] for r in ng.surfaces(colors)]
     for role in ng.ROLES:
         floor = ng.floor_for(role.name)
         if floor:
             refs = backgrounds if role.paint == 'ink' else [colors[role.contrast_reference or 'bg']]
-            colors[role.name] = ng.repair_ink(raw[role.name], variant, refs, floor)
+            colors[role.name] = ng.repair_ink(raw[role.name], variant, refs, floor, fractions[role.name])
     palette = Palette(f'{profile}-{variant}', variant, colors, meta={'candidate': False})
     metrics = ng.audit(palette)
     if metrics['contrast_failures']:

@@ -1,5 +1,5 @@
 {
-  "scripts/next_palette.py": "5d9296c391f45452d5aa8bf4b0412784a9aa4569213e328bfcf486d640ab2f2f",
+  "scripts/next_palette.py": "d929f5be76ed24ff1b0f10f6e237a98a483bfe270e75be9b05045fd829bf0e35",
   "spec/roles.yaml": "72671c5770b496dceb939c5e15f5fce8ecb12562afdaa30e5af29b356765fb03",
   "spec/environments.yaml": "594cf4d949debdc251e248c4483bb3c48968264900a2bd55b1175053ee161704",
   "spec/mappings/vscode.yaml": "dd9e30d30a3836c6dbb2540bab5401ac51d6d8d98e3f7c69dd3482b77306a860",
@@ -7,5 +7,5 @@
   "src/grotto/specimens.py": "f84e3eaf77f13435bac67e7ad09a93b5f8f33ebcf22fac602fb5239cd51a046c",
   "themes/candidates/candidate-b-balanced.day.yaml": "d683bf2b220e0b73fa199234d3bf00be52af682819a625ecb4d7be0580467872",
   "themes/candidates/candidate-b-balanced.night.yaml": "b75c5c7641ef64f78bbd112f8e15d2a254c1c6413a26aceaa938a57dee4fc5ff",
-  "scripts/memory_palette.py": "73b5315ee590abb270428dfcaf3041239d89994bbd47dfe8849e63c01a3de047"
+  "scripts/memory_palette.py": "820e5461bb35fd0b02d16c320b7ac077a882f8622582e1630b31f5fc643a44c7"
 }

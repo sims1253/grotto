@@ -1,11 +1,11 @@
 {
   "pergola-day": {
-    "source_sha256": "e6daa0fb7959d0c5a6abf366f117b73afda597d5ad15ac814a137ca6060a9d74",
+    "source_sha256": "8bdca1f3f8e8f1ac4d4540f0e692073d6885e2a740339f5ccadf67da4c639d06",
     "contrast_failures": [],
     "contrast_pairs_checked": 289,
-    "minimum_body_text_contrast": 4.6819,
+    "minimum_body_text_contrast": 4.6056,
     "fg_on_selection": 6.4645,
-    "max_syntax_chroma": 0.10045,
+    "max_syntax_chroma": 0.17972,
     "diagnostic_distances": {
       "protan": 0.0579,
       "deutan": 0.0089,
@@ -13,95 +13,95 @@
     },
     "lowest_body_text_pairs": [
       {
-        "ink": "fg_secondary",
+        "ink": "function",
         "surface": "selection",
-        "ratio": 4.6819,
+        "ratio": 4.6056,
         "floor": 4.5
       },
       {
-        "ink": "comment",
+        "ink": "builtin",
         "surface": "selection",
-        "ratio": 4.6819,
+        "ratio": 4.6056,
         "floor": 4.5
       },
       {
-        "ink": "docstring",
+        "ink": "string",
         "surface": "selection",
-        "ratio": 4.6819,
+        "ratio": 4.6064,
         "floor": 4.5
       },
       {
-        "ink": "deprecated",
-        "surface": "selection",
-        "ratio": 4.6819,
-        "floor": 4.5
-      },
-      {
-        "ink": "fg_secondary",
+        "ink": "function",
         "surface": "search_match_current",
-        "ratio": 4.7479,
+        "ratio": 4.6706,
+        "floor": 4.5
+      },
+      {
+        "ink": "builtin",
+        "surface": "search_match_current",
+        "ratio": 4.6706,
         "floor": 4.5
       }
     ],
     "authored_syntax": {
       "keyword": {
         "requested": [
-          0.46,
-          0.09,
+          0.47,
+          0.115,
           95
         ],
         "shipped": [
-          0.45833702710842394,
-          0.07077014843162507,
-          94.87463640475616
+          0.47166791615980996,
+          0.09490301167377484,
+          95.10351958740247
         ]
       },
       "function": {
         "requested": [
-          0.47,
-          0.115,
+          0.49,
+          0.17,
           250
         ],
         "shipped": [
-          0.4708012978715803,
-          0.09892469752493564,
-          249.5874769584226
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
         ]
       },
       "string": {
         "requested": [
-          0.46,
-          0.1,
+          0.48,
+          0.15,
           150
         ],
         "shipped": [
-          0.46121830606495157,
-          0.09622747038879746,
-          149.7109729311301
+          0.4713080387542194,
+          0.12745917504142193,
+          149.9783622701547
         ]
       },
       "number": {
         "requested": [
-          0.47,
-          0.115,
+          0.49,
+          0.16,
           55
         ],
         "shipped": [
-          0.4694172978136069,
-          0.08771723010956982,
-          54.75515313961262
+          0.48923585065459496,
+          0.11920763063785458,
+          54.75955985157336
         ]
       },
       "type": {
         "requested": [
-          0.47,
-          0.1,
+          0.49,
+          0.18,
           305
         ],
         "shipped": [
-          0.4705446830365814,
-          0.10045143366992898,
-          304.7617751261635
+          0.4904439194059155,
+          0.17972229543544269,
+          304.9638166258094
         ]
       }
     },
@@ -112,7 +112,7 @@
     },
     "editor_composites": {
       "backgrounds_checked": 29,
-      "minimum_body_text_contrast": 4.6819,
+      "minimum_body_text_contrast": 4.6056,
       "failures": []
     }
   },
@@ -234,12 +234,12 @@
     }
   },
   "stone-day": {
-    "source_sha256": "1a76fbd48e34cae801e72250f1cc345c83ae036a502317672760477dfeb518dd",
+    "source_sha256": "ce0ad5eb21e76fcb7b7e13185c2f3f24ae2556e139d45548c80e2fdcbd88bd73",
     "contrast_failures": [],
     "contrast_pairs_checked": 289,
-    "minimum_body_text_contrast": 4.6819,
+    "minimum_body_text_contrast": 4.6056,
     "fg_on_selection": 6.4645,
-    "max_syntax_chroma": 0.10045,
+    "max_syntax_chroma": 0.17972,
     "diagnostic_distances": {
       "protan": 0.0579,
       "deutan": 0.0089,
@@ -247,95 +247,95 @@
     },
     "lowest_body_text_pairs": [
       {
-        "ink": "fg_secondary",
+        "ink": "function",
         "surface": "selection",
-        "ratio": 4.6819,
+        "ratio": 4.6056,
         "floor": 4.5
       },
       {
-        "ink": "comment",
+        "ink": "builtin",
         "surface": "selection",
-        "ratio": 4.6819,
+        "ratio": 4.6056,
         "floor": 4.5
       },
       {
-        "ink": "docstring",
+        "ink": "string",
         "surface": "selection",
-        "ratio": 4.6819,
+        "ratio": 4.6064,
         "floor": 4.5
       },
       {
-        "ink": "deprecated",
-        "surface": "selection",
-        "ratio": 4.6819,
-        "floor": 4.5
-      },
-      {
-        "ink": "fg_secondary",
+        "ink": "function",
         "surface": "search_match_current",
-        "ratio": 4.7479,
+        "ratio": 4.6706,
+        "floor": 4.5
+      },
+      {
+        "ink": "builtin",
+        "surface": "search_match_current",
+        "ratio": 4.6706,
         "floor": 4.5
       }
     ],
     "authored_syntax": {
       "keyword": {
         "requested": [
-          0.46,
-          0.09,
+          0.47,
+          0.115,
           95
         ],
         "shipped": [
-          0.45833702710842394,
-          0.07077014843162507,
-          94.87463640475616
+          0.47166791615980996,
+          0.09490301167377484,
+          95.10351958740247
         ]
       },
       "function": {
         "requested": [
-          0.47,
-          0.115,
+          0.49,
+          0.17,
           250
         ],
         "shipped": [
-          0.4708012978715803,
-          0.09892469752493564,
-          249.5874769584226
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
         ]
       },
       "string": {
         "requested": [
-          0.46,
-          0.1,
+          0.48,
+          0.15,
           150
         ],
         "shipped": [
-          0.46121830606495157,
-          0.09622747038879746,
-          149.7109729311301
+          0.4713080387542194,
+          0.12745917504142193,
+          149.9783622701547
         ]
       },
       "number": {
         "requested": [
-          0.47,
-          0.115,
+          0.49,
+          0.16,
           55
         ],
         "shipped": [
-          0.4694172978136069,
-          0.08771723010956982,
-          54.75515313961262
+          0.48923585065459496,
+          0.11920763063785458,
+          54.75955985157336
         ]
       },
       "type": {
         "requested": [
-          0.47,
-          0.1,
+          0.49,
+          0.18,
           305
         ],
         "shipped": [
-          0.4705446830365814,
-          0.10045143366992898,
-          304.7617751261635
+          0.4904439194059155,
+          0.17972229543544269,
+          304.9638166258094
         ]
       }
     },
@@ -346,7 +346,7 @@
     },
     "editor_composites": {
       "backgrounds_checked": 29,
-      "minimum_body_text_contrast": 4.6819,
+      "minimum_body_text_contrast": 4.6056,
       "failures": []
     }
   },

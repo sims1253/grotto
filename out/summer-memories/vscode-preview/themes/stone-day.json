@@ -100,7 +100,7 @@
     "scrollbarSlider.background": "#d1ded5",
     "scrollbarSlider.hoverBackground": "#f1eadb",
     "scrollbarSlider.activeBackground": "#e8dbc1",
-    "textLink.foreground": "#295e90",
+    "textLink.foreground": "#0661a8",
     "textLink.activeForeground": "#6a5124",
     "gitDecoration.addedResourceForeground": "#3a6042",
     "gitDecoration.modifiedResourceForeground": "#6a5124",
@@ -140,7 +140,7 @@
         "string"
       ],
       "settings": {
-        "foreground": "#2a673a"
+        "foreground": "#066e31"
       }
     },
     {
@@ -148,7 +148,7 @@
         "constant.numeric"
       ],
       "settings": {
-        "foreground": "#804c26"
+        "foreground": "#924a05"
       }
     },
     {
@@ -159,7 +159,7 @@
         "variable.other.constant"
       ],
       "settings": {
-        "foreground": "#804c26"
+        "foreground": "#924a05"
       }
     },
     {
@@ -172,7 +172,7 @@
         "storage.modifier"
       ],
       "settings": {
-        "foreground": "#645725"
+        "foreground": "#6c5a05"
       }
     },
     {
@@ -192,7 +192,7 @@
         "meta.function-call"
       ],
       "settings": {
-        "foreground": "#295e90"
+        "foreground": "#0661a8"
       }
     },
     {
@@ -220,7 +220,7 @@
         "variable.other.predefined"
       ],
       "settings": {
-        "foreground": "#295e90"
+        "foreground": "#0661a8"
       }
     },
     {
@@ -234,7 +234,7 @@
         "support.type"
       ],
       "settings": {
-        "foreground": "#684b88"
+        "foreground": "#793bb0"
       }
     },
     {
@@ -264,7 +264,7 @@
         "support.module"
       ],
       "settings": {
-        "foreground": "#684b88"
+        "foreground": "#793bb0"
       }
     },
     {
@@ -274,7 +274,7 @@
         "entity.name.function.decorator"
       ],
       "settings": {
-        "foreground": "#804c26"
+        "foreground": "#924a05"
       }
     },
     {
@@ -285,7 +285,7 @@
         "markup.heading"
       ],
       "settings": {
-        "foreground": "#684b88"
+        "foreground": "#793bb0"
       }
     },
     {
@@ -311,10 +311,10 @@
       "foreground": "#4c4942"
     },
     "variable.readonly": {
-      "foreground": "#804c26"
+      "foreground": "#924a05"
     },
     "variable.defaultLibrary": {
-      "foreground": "#295e90"
+      "foreground": "#0661a8"
     },
     "parameter": {
       "foreground": "#4c4942",
@@ -331,68 +331,68 @@
       "foreground": "#4c4942"
     },
     "property.defaultLibrary": {
-      "foreground": "#295e90"
+      "foreground": "#0661a8"
     },
     "function": {
-      "foreground": "#295e90"
+      "foreground": "#0661a8"
     },
     "function.defaultLibrary": {
-      "foreground": "#295e90"
+      "foreground": "#0661a8"
     },
     "method": {
-      "foreground": "#295e90"
+      "foreground": "#0661a8"
     },
     "method.defaultLibrary": {
-      "foreground": "#295e90"
+      "foreground": "#0661a8"
     },
     "macro": {
-      "foreground": "#804c26"
+      "foreground": "#924a05"
     },
     "decorator": {
-      "foreground": "#804c26"
+      "foreground": "#924a05"
     },
     "type": {
-      "foreground": "#684b88"
+      "foreground": "#793bb0"
     },
     "type.defaultLibrary": {
-      "foreground": "#295e90"
+      "foreground": "#0661a8"
     },
     "typeParameter": {
-      "foreground": "#684b88",
+      "foreground": "#793bb0",
       "fontStyle": "italic"
     },
     "class": {
-      "foreground": "#684b88"
+      "foreground": "#793bb0"
     },
     "interface": {
-      "foreground": "#684b88"
+      "foreground": "#793bb0"
     },
     "struct": {
-      "foreground": "#684b88"
+      "foreground": "#793bb0"
     },
     "enum": {
-      "foreground": "#684b88"
+      "foreground": "#793bb0"
     },
     "enumMember": {
-      "foreground": "#804c26"
+      "foreground": "#924a05"
     },
     "event": {
-      "foreground": "#295e90"
+      "foreground": "#0661a8"
     },
     "namespace": {
-      "foreground": "#684b88"
+      "foreground": "#793bb0"
     },
     "module": {
-      "foreground": "#684b88"
+      "foreground": "#793bb0"
     },
     "keyword": {
-      "foreground": "#645725"
+      "foreground": "#6c5a05"
     },
     "string": {
-      "foreground": "#2a673a"
+      "foreground": "#066e31"
     },
     "number": {
-      "foreground": "#804c26"
+      "foreground": "#924a05"
     },
     "comment": {
       "foreground": "#5c5f57"
@@ -413,7 +413,7 @@
   "grotto": {
     "generator": "grotto-vscode/1",
     "palette": "stone-day.yaml",
-    "palette_sha256": "1a76fbd48e34cae801e72250f1cc345c83ae036a502317672760477dfeb518dd",
+    "palette_sha256": "ce0ad5eb21e76fcb7b7e13185c2f3f24ae2556e139d45548c80e2fdcbd88bd73",
     "candidate": false,
     "note": "Authored from the Grotto summer-memory brief; lightness repaired for contrast. No aesthetic optimization."
   }
