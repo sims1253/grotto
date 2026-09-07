@@ -12,13 +12,16 @@ Cove, Grove and Dusk remain available in the [previous generation](../next-gener
 | Pergola | Pale stone with a green cast | Green-black shade |
 | Stone | Pale, slightly warm mineral grey | Nearly neutral charcoal |
 
-Day uses ochre keywords, blue functions, leaf-green strings, violet types and
-copper numbers/constants. Its stronger colors address the first review, where
+Day uses yellow-green keywords, blue functions, leaf-green strings, violet types and
+copper numbers/constants. Parameters and properties use teal. Its stronger colors address the first review, where
 the text looked almost uniformly grey. Night keeps the original softer colors
 and amber numbers/constants; Stone Night's greens are softer. Ordinary text is a
 slightly warm neutral. Red errors and amber warnings retain their usual roles.
 
 ## Compare code
+
+[More color in recurring roles](coverage-study/README.md) compares the latest
+Day revision with its predecessor and the four reference themes.
 
 [Compare Grotto with established light themes](theme-comparison/README.md):
 Catppuccin Latte, GitHub Light Default, VS Code Light+ and Solarized Light,

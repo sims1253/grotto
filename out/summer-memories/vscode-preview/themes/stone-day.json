@@ -172,7 +172,7 @@
         "storage.modifier"
       ],
       "settings": {
-        "foreground": "#6c5a05"
+        "foreground": "#5c6405"
       }
     },
     {
@@ -242,7 +242,7 @@
         "variable.parameter"
       ],
       "settings": {
-        "foreground": "#4c4942",
+        "foreground": "#136868",
         "fontStyle": "italic"
       }
     },
@@ -254,7 +254,7 @@
         "entity.other.attribute-name"
       ],
       "settings": {
-        "foreground": "#4c4942"
+        "foreground": "#136868"
       }
     },
     {
@@ -317,18 +317,18 @@
       "foreground": "#0661a8"
     },
     "parameter": {
-      "foreground": "#4c4942",
+      "foreground": "#136868",
       "fontStyle": "italic"
     },
     "parameter.readonly": {
-      "foreground": "#4c4942",
+      "foreground": "#136868",
       "fontStyle": "italic"
     },
     "property": {
-      "foreground": "#4c4942"
+      "foreground": "#136868"
     },
     "property.readonly": {
-      "foreground": "#4c4942"
+      "foreground": "#136868"
     },
     "property.defaultLibrary": {
       "foreground": "#0661a8"
@@ -386,7 +386,7 @@
       "foreground": "#793bb0"
     },
     "keyword": {
-      "foreground": "#6c5a05"
+      "foreground": "#5c6405"
     },
     "string": {
       "foreground": "#066e31"
@@ -413,7 +413,7 @@
   "grotto": {
     "generator": "grotto-vscode/1",
     "palette": "stone-day.yaml",
-    "palette_sha256": "ce0ad5eb21e76fcb7b7e13185c2f3f24ae2556e139d45548c80e2fdcbd88bd73",
+    "palette_sha256": "13b2cb484da6b758f71940e5517ca6d68a7aa0b4b7615f3e654b81d7b032e99d",
     "candidate": false,
     "note": "Authored from the Grotto summer-memory brief; lightness repaired for contrast. No aesthetic optimization."
   }

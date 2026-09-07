@@ -172,7 +172,7 @@
         "storage.modifier"
       ],
       "settings": {
-        "foreground": "#5c6405"
+        "foreground": "#6c5a05"
       }
     },
     {
@@ -242,7 +242,7 @@
         "variable.parameter"
       ],
       "settings": {
-        "foreground": "#136868",
+        "foreground": "#4c4942",
         "fontStyle": "italic"
       }
     },
@@ -254,7 +254,7 @@
         "entity.other.attribute-name"
       ],
       "settings": {
-        "foreground": "#136868"
+        "foreground": "#4c4942"
       }
     },
     {
@@ -317,18 +317,18 @@
       "foreground": "#0661a8"
     },
     "parameter": {
-      "foreground": "#136868",
+      "foreground": "#4c4942",
       "fontStyle": "italic"
     },
     "parameter.readonly": {
-      "foreground": "#136868",
+      "foreground": "#4c4942",
       "fontStyle": "italic"
     },
     "property": {
-      "foreground": "#136868"
+      "foreground": "#4c4942"
     },
     "property.readonly": {
-      "foreground": "#136868"
+      "foreground": "#4c4942"
     },
     "property.defaultLibrary": {
       "foreground": "#0661a8"
@@ -386,7 +386,7 @@
       "foreground": "#793bb0"
     },
     "keyword": {
-      "foreground": "#5c6405"
+      "foreground": "#6c5a05"
     },
     "string": {
       "foreground": "#066e31"
@@ -413,7 +413,7 @@
   "grotto": {
     "generator": "grotto-vscode/1",
     "palette": "pergola-day.yaml",
-    "palette_sha256": "c47ead9a3bcf4f7f504b0237617d763d96babf8af39a7a33372c91c0156478b0",
+    "palette_sha256": "8bdca1f3f8e8f1ac4d4540f0e692073d6885e2a740339f5ccadf67da4c639d06",
     "candidate": false,
     "note": "Authored from the Grotto summer-memory brief; lightness repaired for contrast. No aesthetic optimization."
   }

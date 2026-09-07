@@ -80,7 +80,7 @@
         "terminal.ansi.green": "#3a6042ff",
         "terminal.ansi.yellow": "#6a5124ff",
         "terminal.ansi.blue": "#0661a8ff",
-        "terminal.ansi.magenta": "#6c5a05ff",
+        "terminal.ansi.magenta": "#5c6405ff",
         "terminal.ansi.cyan": "#793bb0ff",
         "terminal.ansi.white": "#5c5f57ff",
         "terminal.ansi.bright_black": "#6f6f69ff",
@@ -157,7 +157,7 @@
         ],
         "syntax": {
           "attribute": {
-            "color": "#4c4942ff"
+            "color": "#136868ff"
           },
           "boolean": {
             "color": "#924a05ff"
@@ -201,7 +201,7 @@
             "color": "#2d5d68ff"
           },
           "keyword": {
-            "color": "#6c5a05ff"
+            "color": "#5c6405ff"
           },
           "label": {
             "color": "#793bb0ff"
@@ -231,7 +231,7 @@
             "color": "#4c4942ff"
           },
           "property": {
-            "color": "#4c4942ff"
+            "color": "#136868ff"
           },
           "punctuation": {
             "color": "#585752ff"
@@ -289,7 +289,7 @@
             "color": "#4c4942ff"
           },
           "variable.parameter": {
-            "color": "#4c4942ff",
+            "color": "#136868ff",
             "font_style": "italic"
           },
           "variable.special": {
@@ -676,7 +676,7 @@
         "terminal.ansi.green": "#3a6042ff",
         "terminal.ansi.yellow": "#6a5124ff",
         "terminal.ansi.blue": "#0661a8ff",
-        "terminal.ansi.magenta": "#6c5a05ff",
+        "terminal.ansi.magenta": "#5c6405ff",
         "terminal.ansi.cyan": "#793bb0ff",
         "terminal.ansi.white": "#5c5f57ff",
         "terminal.ansi.bright_black": "#716e68ff",
@@ -753,7 +753,7 @@
         ],
         "syntax": {
           "attribute": {
-            "color": "#4c4942ff"
+            "color": "#136868ff"
           },
           "boolean": {
             "color": "#924a05ff"
@@ -797,7 +797,7 @@
             "color": "#2d5d68ff"
           },
           "keyword": {
-            "color": "#6c5a05ff"
+            "color": "#5c6405ff"
           },
           "label": {
             "color": "#793bb0ff"
@@ -827,7 +827,7 @@
             "color": "#4c4942ff"
           },
           "property": {
-            "color": "#4c4942ff"
+            "color": "#136868ff"
           },
           "punctuation": {
             "color": "#585752ff"
@@ -885,7 +885,7 @@
             "color": "#4c4942ff"
           },
           "variable.parameter": {
-            "color": "#4c4942ff",
+            "color": "#136868ff",
             "font_style": "italic"
           },
           "variable.special": {

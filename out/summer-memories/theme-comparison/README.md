@@ -32,7 +32,8 @@ and [metrics.json](metrics.json).
 ## What was compared
 
 All five themes use the same source text, TextMate grammars and font in Shiki
-4.4.3. Grotto uses the current exported VS Code Pergola Day theme. Stone Day has
+4.4.3. Grotto uses the exported VS Code Pergola Day theme from commit `e1f92f0`.
+The [newer coverage study](../coverage-study/README.md) contains the next revision. Stone Day has
 the same syntax colors and is omitted to avoid repetition. This checks actual
 TextMate mappings rather than substituting our own semantic role labels.
 VS Code semantic highlighting can change these assignments. These are browser

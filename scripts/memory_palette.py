@@ -33,7 +33,7 @@ SYNTAX = {
 # Day needs more chroma and clearer hue differences against pale stone.
 # Author it separately so changes here do not alter the Night composition.
 DAY_SYNTAX = {
-    'keyword': (.47, .115, 95),
+    'keyword': (.48, .130, 115),
     'function': (.49, .170, 250),
     'string': (.48, .150, 150),
     'number': (.49, .160, 55),
@@ -80,7 +80,11 @@ def build_palette(profile, variant):
                               ('success', 150, .065), ('info', 215, .055),
                               ('focus', 80, .08), ('breakpoint', 28, .115)]:
         raw[role] = (.78 if dark else .45, chroma, hue)
-    syntax_roles = {r for members in ng.GROUPS.values() for r in members}
+    if not dark:
+        # Color a few recurring identifiers; ordinary variables stay neutral.
+        raw['parameter'] = (.47, .075, 195)
+        raw['property'] = (.47, .075, 195)
+    syntax_roles = {r for members in ng.GROUPS.values() for r in members} | {'parameter', 'property'}
     # Day syntax may use nearly the full sRGB gamut; the old 75% cap muted it.
     fractions = {r: .98 if not dark and r in syntax_roles else .75 for r in raw}
     colors = {r: ng.color(*lch, fractions[r]) for r, lch in raw.items()}
@@ -95,7 +99,7 @@ def build_palette(profile, variant):
     if metrics['contrast_failures']:
         raise ValueError(metrics['contrast_failures'])
     metrics['authored_syntax'] = {r: {'requested': list(raw[r]), 'shipped': list(hex_to_oklch(colors[r]))}
-                                  for r in ng.GROUPS}
+                                  for r in (*ng.GROUPS, 'parameter', 'property')}
     metrics['amber_ink_share'] = {
         lang: round(sum(counts[r] for r in ng.GROUPS['number']) / sum(counts.values()), 4)
         for lang, counts in ng.COUNTS.items()
