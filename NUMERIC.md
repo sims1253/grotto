@@ -16,10 +16,12 @@ identical.** Verified root cause, in the Layer-2 transform:
    all candidates** (`spec/environments.yaml: contrast_bands`, plus
    `salience_apca_step`), so all candidates put (nearly) the same lightness on
    every role;
-2. chroma passes through a **multiplicative chain** (night
-   `chroma_attenuation: 0.35` × per-role `night_adaptation` × chroma-class
-   fractions × absolute caps ~0.14–0.20), so categorical roles land at
-   C ≈ 0.02–0.10;
+2. chroma passes through a **multiplicative chain**: gamut headroom, class
+   fraction, candidate/family/role scales, environment gain, and
+   `1 - chroma_attenuation * night_adaptation`. Night attenuation is 0.35,
+   so this last factor ranges from 0.65 to 1.0. Absolute chroma caps apply
+   afterward; they are ceilings, not multiplicative factors. Categorical
+   roles land at C ≈ 0.02–0.10;
 3. hue anchors are shared across candidates.
 
 Net effect: at night, categorical roles sit at almost the same lightness with

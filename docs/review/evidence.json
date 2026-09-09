@@ -1,0 +1,99 @@
+{
+  "restrained-night": {
+    "source": "themes/candidates/candidate-a-restrained.night.yaml",
+    "sha256": "a04d23754ef8fb5a182d3b9a4a60d6f1ed624580a391ff486d723493d7865662",
+    "fg_on_bg": 9.94,
+    "fg_on_selection": 8.66,
+    "comment_on_bg": 6.13,
+    "specimen_ink_min_on_bg": 6.12
+  },
+  "restrained-day": {
+    "source": "themes/candidates/candidate-a-restrained.day.yaml",
+    "sha256": "035fc0b4c2135c9764d1863b4b85c8a517125de8056ed53ad08331461ef64ca5",
+    "fg_on_bg": 4.58,
+    "fg_on_selection": 3.89,
+    "comment_on_bg": 4.5,
+    "specimen_ink_min_on_bg": 4.5
+  },
+  "restrained-evening": {
+    "source": "themes/candidates/candidate-a-restrained.evening.yaml",
+    "sha256": "5f8c29abf7189f68058fbbac5ab2e6857b5330f0fb23f3f3e91e4d720caedec7",
+    "fg_on_bg": 9.38,
+    "fg_on_selection": 7.92,
+    "comment_on_bg": 5.85,
+    "specimen_ink_min_on_bg": 5.85
+  },
+  "balanced-night": {
+    "source": "themes/candidates/candidate-b-balanced.night.yaml",
+    "sha256": "b75c5c7641ef64f78bbd112f8e15d2a254c1c6413a26aceaa938a57dee4fc5ff",
+    "fg_on_bg": 9.97,
+    "fg_on_selection": 8.62,
+    "comment_on_bg": 6.15,
+    "specimen_ink_min_on_bg": 6.12
+  },
+  "balanced-day": {
+    "source": "themes/candidates/candidate-b-balanced.day.yaml",
+    "sha256": "d683bf2b220e0b73fa199234d3bf00be52af682819a625ecb4d7be0580467872",
+    "fg_on_bg": 4.62,
+    "fg_on_selection": 3.92,
+    "comment_on_bg": 4.52,
+    "specimen_ink_min_on_bg": 4.52
+  },
+  "balanced-evening": {
+    "source": "themes/candidates/candidate-b-balanced.evening.yaml",
+    "sha256": "496023ba735f0f5675043128847e7798889b10fd4470b8fd3eb0363ea662f40f",
+    "fg_on_bg": 9.41,
+    "fg_on_selection": 7.97,
+    "comment_on_bg": 5.81,
+    "specimen_ink_min_on_bg": 5.81
+  },
+  "expressive-night": {
+    "source": "themes/candidates/candidate-c-expressive.night.yaml",
+    "sha256": "bdc2b043d4821d3fb7434243b87f513a296e9961feb754edc6eeec2954c74d12",
+    "fg_on_bg": 9.97,
+    "fg_on_selection": 8.66,
+    "comment_on_bg": 6.14,
+    "specimen_ink_min_on_bg": 6.12
+  },
+  "expressive-day": {
+    "source": "themes/candidates/candidate-c-expressive.day.yaml",
+    "sha256": "efdccde153d266474dd29b782d48d5d03689e410ccc35633c3954dc6f975dd02",
+    "fg_on_bg": 4.61,
+    "fg_on_selection": 3.92,
+    "comment_on_bg": 4.51,
+    "specimen_ink_min_on_bg": 4.51
+  },
+  "expressive-evening": {
+    "source": "themes/candidates/candidate-c-expressive.evening.yaml",
+    "sha256": "eba39b06ab031be7273d86c5f14fad068670fcc79435e13da8bfa47846faa5e8",
+    "fg_on_bg": 9.41,
+    "fg_on_selection": 7.94,
+    "comment_on_bg": 5.81,
+    "specimen_ink_min_on_bg": 5.81
+  },
+  "middle": {
+    "source": "out/middle-night/middle-m01.night.yaml",
+    "sha256": "1053c2ef76e869dfb7f77662ea36e2e3e365b2fb9856826440b3465135c2363b",
+    "fg_on_bg": 9.97,
+    "fg_on_selection": 9.46,
+    "comment_on_bg": 6.15,
+    "specimen_ink_min_on_bg": 6.12
+  },
+  "numeric": {
+    "source": "out/numeric-night/numeric-n01.night.yaml",
+    "sha256": "4ec50c6c466efb4acb2068cf2dc73877f099f20c675aa78ca91813605f0241e1",
+    "fg_on_bg": 9.97,
+    "fg_on_selection": 10.01,
+    "comment_on_bg": 6.15,
+    "specimen_ink_min_on_bg": 5.04
+  },
+  "huerd": {
+    "source": "out/huerd-night/results.json",
+    "sha256": "841abf9b34c6fda1231f4b221de1b7d861965b79b2d5ecf2594167d0a6cefa8c",
+    "fg_on_bg": 9.97,
+    "fg_on_selection": 8.62,
+    "comment_on_bg": 6.15,
+    "specimen_ink_min_on_bg": 4.51,
+    "construction": "Balanced Night plus h01-capped assignment; both source hashes are recorded above."
+  }
+}

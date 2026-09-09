@@ -1,7 +1,7 @@
 {
   "name": "grotto-evaluation-preview",
-  "displayName": "Grotto Theme Evaluation Preview",
-  "description": "Nine evaluation-preview themes (Restrained/Balanced/Expressive x Day/Evening/Night), generated from Grotto Phase 5 candidate palettes. No theme is selected or final.",
+  "displayName": "Grotto Themes \u2014 Preview",
+  "description": "Three coding color families for Day, Evening, and Night. An early preview for VS Code.",
   "version": "0.1.0",
   "publisher": "grotto-local",
   "license": "MIT",
@@ -60,5 +60,19 @@
         "path": "./themes/expressive-night.json"
       }
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sims1253/grotto.git",
+    "directory": "editors/vscode"
+  },
+  "homepage": "https://github.com/sims1253/grotto",
+  "bugs": {
+    "url": "https://github.com/sims1253/grotto/issues"
+  },
+  "files": [
+    "themes/*.json",
+    "README.md",
+    "LICENSE"
+  ]
 }

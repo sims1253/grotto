@@ -1,0 +1,1666 @@
+{
+  "tansy-day": {
+    "source_sha256": "257bfd4c9a6d259c55b1c31098bf0a9705e6eb28aeef465790504006cdf018de",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6056,
+    "fg_on_selection": 6.4511,
+    "max_syntax_chroma": 0.16974,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "number",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "constant",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "decorator",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "keyword",
+        "surface": "selection",
+        "ratio": 4.6132,
+        "floor": 4.5
+      },
+      {
+        "ink": "string",
+        "surface": "selection",
+        "ratio": 4.6364,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "builtin": {
+        "requested": [
+          0.49,
+          0.17,
+          300
+        ],
+        "shipped": [
+          0.4895303756726418,
+          0.16974294417075636,
+          300.0668526609881
+        ]
+      },
+      "constant": {
+        "requested": [
+          0.49,
+          0.15,
+          250
+        ],
+        "shipped": [
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
+        ]
+      },
+      "decorator": {
+        "requested": [
+          0.49,
+          0.15,
+          250
+        ],
+        "shipped": [
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
+        ]
+      },
+      "function": {
+        "requested": [
+          0.49,
+          0.17,
+          300
+        ],
+        "shipped": [
+          0.4895303756726418,
+          0.16974294417075636,
+          300.0668526609881
+        ]
+      },
+      "keyword": {
+        "requested": [
+          0.49,
+          0.13,
+          85
+        ],
+        "shipped": [
+          0.4867288362098326,
+          0.09794523812397238,
+          84.66992833956586
+        ]
+      },
+      "namespace": {
+        "requested": [
+          0.49,
+          0.12,
+          45
+        ],
+        "shipped": [
+          0.4900565531820452,
+          0.11991791262832772,
+          44.93523200521401
+        ]
+      },
+      "number": {
+        "requested": [
+          0.49,
+          0.15,
+          250
+        ],
+        "shipped": [
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
+        ]
+      },
+      "operator": {
+        "requested": [
+          0.455,
+          0.05,
+          300
+        ],
+        "shipped": [
+          0.45437584351403043,
+          0.05138716260999909,
+          300.63222327165533
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.46,
+          0.075,
+          165
+        ],
+        "shipped": [
+          0.45942332487469073,
+          0.0749379575465932,
+          164.59547515414508
+        ]
+      },
+      "property": {
+        "requested": [
+          0.46,
+          0.075,
+          165
+        ],
+        "shipped": [
+          0.45942332487469073,
+          0.0749379575465932,
+          164.59547515414508
+        ]
+      },
+      "string": {
+        "requested": [
+          0.49,
+          0.12,
+          165
+        ],
+        "shipped": [
+          0.4715868136525031,
+          0.09742074565062392,
+          164.69606815455717
+        ]
+      },
+      "tag": {
+        "requested": [
+          0.49,
+          0.12,
+          45
+        ],
+        "shipped": [
+          0.4900565531820452,
+          0.11991791262832772,
+          44.93523200521401
+        ]
+      },
+      "type": {
+        "requested": [
+          0.49,
+          0.12,
+          45
+        ],
+        "shipped": [
+          0.4900565531820452,
+          0.11991791262832772,
+          44.93523200521401
+        ]
+      }
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6056,
+      "failures": []
+    }
+  },
+  "tansy-night": {
+    "source_sha256": "946f0be2d2e65059f3d36707f3fa6736838a7b686e1aca220a0a7b5dcff9fabe",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.4327,
+    "max_syntax_chroma": 0.11955,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "builtin": {
+        "requested": [
+          0.79,
+          0.11,
+          300
+        ],
+        "shipped": [
+          0.7890709210649072,
+          0.11069412213087972,
+          299.97988432154773
+        ]
+      },
+      "constant": {
+        "requested": [
+          0.79,
+          0.095,
+          250
+        ],
+        "shipped": [
+          0.7889210198827903,
+          0.0959762942827948,
+          250.48356413004296
+        ]
+      },
+      "decorator": {
+        "requested": [
+          0.79,
+          0.095,
+          250
+        ],
+        "shipped": [
+          0.7889210198827903,
+          0.0959762942827948,
+          250.48356413004296
+        ]
+      },
+      "function": {
+        "requested": [
+          0.79,
+          0.11,
+          300
+        ],
+        "shipped": [
+          0.7890709210649072,
+          0.11069412213087972,
+          299.97988432154773
+        ]
+      },
+      "keyword": {
+        "requested": [
+          0.79,
+          0.12,
+          85
+        ],
+        "shipped": [
+          0.7896878808573367,
+          0.11954753873368348,
+          84.59264009288303
+        ]
+      },
+      "namespace": {
+        "requested": [
+          0.79,
+          0.1,
+          45
+        ],
+        "shipped": [
+          0.7901455712540008,
+          0.1000929440114325,
+          44.57855610572279
+        ]
+      },
+      "number": {
+        "requested": [
+          0.79,
+          0.095,
+          250
+        ],
+        "shipped": [
+          0.7889210198827903,
+          0.0959762942827948,
+          250.48356413004296
+        ]
+      },
+      "operator": {
+        "requested": [
+          0.74,
+          0.035,
+          300
+        ],
+        "shipped": [
+          0.7395624475400168,
+          0.03521763378863584,
+          300.72522924549526
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.77,
+          0.055,
+          165
+        ],
+        "shipped": [
+          0.7704917046210317,
+          0.05481432270660782,
+          165.4312682690278
+        ]
+      },
+      "property": {
+        "requested": [
+          0.77,
+          0.055,
+          165
+        ],
+        "shipped": [
+          0.7704917046210317,
+          0.05481432270660782,
+          165.4312682690278
+        ]
+      },
+      "string": {
+        "requested": [
+          0.79,
+          0.095,
+          165
+        ],
+        "shipped": [
+          0.78948506160236,
+          0.09488985001048549,
+          164.76757174431853
+        ]
+      },
+      "tag": {
+        "requested": [
+          0.79,
+          0.1,
+          45
+        ],
+        "shipped": [
+          0.7901455712540008,
+          0.1000929440114325,
+          44.57855610572279
+        ]
+      },
+      "type": {
+        "requested": [
+          0.79,
+          0.1,
+          45
+        ],
+        "shipped": [
+          0.7901455712540008,
+          0.1000929440114325,
+          44.57855610572279
+        ]
+      }
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  },
+  "fig-day": {
+    "source_sha256": "1b51aa72c6a707ea7154fc7a82db305eece4918e483aab0ea36f9789c5af671d",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6056,
+    "fg_on_selection": 6.505,
+    "max_syntax_chroma": 0.17094,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "number",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "constant",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "decorator",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "function",
+        "surface": "selection",
+        "ratio": 4.6064,
+        "floor": 4.5
+      },
+      {
+        "ink": "builtin",
+        "surface": "selection",
+        "ratio": 4.6064,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "builtin": {
+        "requested": [
+          0.49,
+          0.14,
+          150
+        ],
+        "shipped": [
+          0.4713080387542194,
+          0.12745917504142193,
+          149.9783622701547
+        ]
+      },
+      "constant": {
+        "requested": [
+          0.49,
+          0.15,
+          250
+        ],
+        "shipped": [
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
+        ]
+      },
+      "decorator": {
+        "requested": [
+          0.49,
+          0.15,
+          250
+        ],
+        "shipped": [
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
+        ]
+      },
+      "function": {
+        "requested": [
+          0.49,
+          0.14,
+          150
+        ],
+        "shipped": [
+          0.4713080387542194,
+          0.12745917504142193,
+          149.9783622701547
+        ]
+      },
+      "keyword": {
+        "requested": [
+          0.49,
+          0.17,
+          325
+        ],
+        "shipped": [
+          0.4901349726422156,
+          0.17093845937141436,
+          325.22855189220326
+        ]
+      },
+      "namespace": {
+        "requested": [
+          0.49,
+          0.12,
+          205
+        ],
+        "shipped": [
+          0.47606982995493663,
+          0.07962241549250446,
+          205.36052998545924
+        ]
+      },
+      "number": {
+        "requested": [
+          0.49,
+          0.15,
+          250
+        ],
+        "shipped": [
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
+        ]
+      },
+      "operator": {
+        "requested": [
+          0.455,
+          0.05,
+          150
+        ],
+        "shipped": [
+          0.4554647517442952,
+          0.05074500023460504,
+          150.39408483334608
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.46,
+          0.075,
+          250
+        ],
+        "shipped": [
+          0.46039881375603897,
+          0.0741850929774452,
+          249.71916463934718
+        ]
+      },
+      "property": {
+        "requested": [
+          0.46,
+          0.075,
+          250
+        ],
+        "shipped": [
+          0.46039881375603897,
+          0.0741850929774452,
+          249.71916463934718
+        ]
+      },
+      "string": {
+        "requested": [
+          0.49,
+          0.12,
+          85
+        ],
+        "shipped": [
+          0.4867288362098326,
+          0.09794523812397238,
+          84.66992833956586
+        ]
+      },
+      "tag": {
+        "requested": [
+          0.49,
+          0.12,
+          205
+        ],
+        "shipped": [
+          0.47606982995493663,
+          0.07962241549250446,
+          205.36052998545924
+        ]
+      },
+      "type": {
+        "requested": [
+          0.49,
+          0.12,
+          205
+        ],
+        "shipped": [
+          0.47606982995493663,
+          0.07962241549250446,
+          205.36052998545924
+        ]
+      }
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6056,
+      "failures": []
+    }
+  },
+  "fig-night": {
+    "source_sha256": "5a4b2efeade8f3621793a65d864bf9430aff7a20f97b4cd937db0dc7c4ccf640",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.4021,
+    "max_syntax_chroma": 0.12087,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "builtin": {
+        "requested": [
+          0.79,
+          0.1,
+          150
+        ],
+        "shipped": [
+          0.7900860144277286,
+          0.09966053801218415,
+          150.27466211546573
+        ]
+      },
+      "constant": {
+        "requested": [
+          0.79,
+          0.09,
+          250
+        ],
+        "shipped": [
+          0.7893614538361261,
+          0.09077672508049038,
+          250.4926783469583
+        ]
+      },
+      "decorator": {
+        "requested": [
+          0.79,
+          0.09,
+          250
+        ],
+        "shipped": [
+          0.7893614538361261,
+          0.09077672508049038,
+          250.4926783469583
+        ]
+      },
+      "function": {
+        "requested": [
+          0.79,
+          0.1,
+          150
+        ],
+        "shipped": [
+          0.7900860144277286,
+          0.09966053801218415,
+          150.27466211546573
+        ]
+      },
+      "keyword": {
+        "requested": [
+          0.79,
+          0.12,
+          325
+        ],
+        "shipped": [
+          0.7897565042159503,
+          0.12087426849708373,
+          325.19761919501093
+        ]
+      },
+      "namespace": {
+        "requested": [
+          0.79,
+          0.085,
+          205
+        ],
+        "shipped": [
+          0.7907571526012904,
+          0.08494723280949626,
+          204.21917795377115
+        ]
+      },
+      "number": {
+        "requested": [
+          0.79,
+          0.09,
+          250
+        ],
+        "shipped": [
+          0.7893614538361261,
+          0.09077672508049038,
+          250.4926783469583
+        ]
+      },
+      "operator": {
+        "requested": [
+          0.74,
+          0.035,
+          150
+        ],
+        "shipped": [
+          0.7390361119572872,
+          0.03457960198313378,
+          149.39039227095594
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.77,
+          0.055,
+          250
+        ],
+        "shipped": [
+          0.7708817115552226,
+          0.055327469772369416,
+          249.39862053929664
+        ]
+      },
+      "property": {
+        "requested": [
+          0.77,
+          0.055,
+          250
+        ],
+        "shipped": [
+          0.7708817115552226,
+          0.055327469772369416,
+          249.39862053929664
+        ]
+      },
+      "string": {
+        "requested": [
+          0.79,
+          0.115,
+          85
+        ],
+        "shipped": [
+          0.7902827584144179,
+          0.11499767447834859,
+          85.45901843942355
+        ]
+      },
+      "tag": {
+        "requested": [
+          0.79,
+          0.085,
+          205
+        ],
+        "shipped": [
+          0.7907571526012904,
+          0.08494723280949626,
+          204.21917795377115
+        ]
+      },
+      "type": {
+        "requested": [
+          0.79,
+          0.085,
+          205
+        ],
+        "shipped": [
+          0.7907571526012904,
+          0.08494723280949626,
+          204.21917795377115
+        ]
+      }
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  },
+  "rainstone-day": {
+    "source_sha256": "8362e2b0746c4f28c682bcadafdc6c6ea598b4c6cc4ad58a650ff2ad85dc2245",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6346,
+    "fg_on_selection": 6.4546,
+    "max_syntax_chroma": 0.18107,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "string",
+        "surface": "selection",
+        "ratio": 4.6346,
+        "floor": 4.5
+      },
+      {
+        "ink": "type",
+        "surface": "selection",
+        "ratio": 4.6525,
+        "floor": 4.5
+      },
+      {
+        "ink": "namespace",
+        "surface": "selection",
+        "ratio": 4.6525,
+        "floor": 4.5
+      },
+      {
+        "ink": "tag",
+        "surface": "selection",
+        "ratio": 4.6525,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.6819,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "builtin": {
+        "requested": [
+          0.49,
+          0.15,
+          50
+        ],
+        "shipped": [
+          0.49018764768230494,
+          0.1269023408327717,
+          50.1427932476902
+        ]
+      },
+      "constant": {
+        "requested": [
+          0.49,
+          0.16,
+          320
+        ],
+        "shipped": [
+          0.4891514893698781,
+          0.15951678116247775,
+          319.9282540809599
+        ]
+      },
+      "decorator": {
+        "requested": [
+          0.49,
+          0.16,
+          320
+        ],
+        "shipped": [
+          0.4891514893698781,
+          0.15951678116247775,
+          319.9282540809599
+        ]
+      },
+      "function": {
+        "requested": [
+          0.49,
+          0.15,
+          50
+        ],
+        "shipped": [
+          0.49018764768230494,
+          0.1269023408327717,
+          50.1427932476902
+        ]
+      },
+      "keyword": {
+        "requested": [
+          0.49,
+          0.18,
+          265
+        ],
+        "shipped": [
+          0.4896575630476524,
+          0.18107300891570235,
+          265.02638106326174
+        ]
+      },
+      "namespace": {
+        "requested": [
+          0.49,
+          0.12,
+          120
+        ],
+        "shipped": [
+          0.4764898693027198,
+          0.11097121666992107,
+          120.02013767872789
+        ]
+      },
+      "number": {
+        "requested": [
+          0.49,
+          0.16,
+          320
+        ],
+        "shipped": [
+          0.4891514893698781,
+          0.15951678116247775,
+          319.9282540809599
+        ]
+      },
+      "operator": {
+        "requested": [
+          0.455,
+          0.05,
+          190
+        ],
+        "shipped": [
+          0.4558968150516658,
+          0.0500905828090469,
+          189.979085132017
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.46,
+          0.075,
+          265
+        ],
+        "shipped": [
+          0.45980922267687846,
+          0.07478820761680355,
+          264.6002162269014
+        ]
+      },
+      "property": {
+        "requested": [
+          0.46,
+          0.075,
+          265
+        ],
+        "shipped": [
+          0.45980922267687846,
+          0.07478820761680355,
+          264.6002162269014
+        ]
+      },
+      "string": {
+        "requested": [
+          0.49,
+          0.12,
+          190
+        ],
+        "shipped": [
+          0.47399110982064296,
+          0.08006301199664786,
+          190.18495804706924
+        ]
+      },
+      "tag": {
+        "requested": [
+          0.49,
+          0.12,
+          120
+        ],
+        "shipped": [
+          0.4764898693027198,
+          0.11097121666992107,
+          120.02013767872789
+        ]
+      },
+      "type": {
+        "requested": [
+          0.49,
+          0.12,
+          120
+        ],
+        "shipped": [
+          0.4764898693027198,
+          0.11097121666992107,
+          120.02013767872789
+        ]
+      }
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6346,
+      "failures": []
+    }
+  },
+  "rainstone-night": {
+    "source_sha256": "bcbdc39badd6171cba6228b31fe37086ec73eba04295732f02dbf1b78aa82030",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.4242,
+    "max_syntax_chroma": 0.11988,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "builtin": {
+        "requested": [
+          0.79,
+          0.12,
+          50
+        ],
+        "shipped": [
+          0.7894220144601214,
+          0.11987978491226953,
+          50.27706176321811
+        ]
+      },
+      "constant": {
+        "requested": [
+          0.79,
+          0.105,
+          320
+        ],
+        "shipped": [
+          0.7910853901924602,
+          0.10482444230214395,
+          319.9337143268956
+        ]
+      },
+      "decorator": {
+        "requested": [
+          0.79,
+          0.105,
+          320
+        ],
+        "shipped": [
+          0.7910853901924602,
+          0.10482444230214395,
+          319.9337143268956
+        ]
+      },
+      "function": {
+        "requested": [
+          0.79,
+          0.12,
+          50
+        ],
+        "shipped": [
+          0.7894220144601214,
+          0.11987978491226953,
+          50.27706176321811
+        ]
+      },
+      "keyword": {
+        "requested": [
+          0.79,
+          0.12,
+          265
+        ],
+        "shipped": [
+          0.7904581050238337,
+          0.09741023023476103,
+          264.8691700614548
+        ]
+      },
+      "namespace": {
+        "requested": [
+          0.79,
+          0.095,
+          120
+        ],
+        "shipped": [
+          0.7898787539076482,
+          0.09488858323819903,
+          120.35516279406117
+        ]
+      },
+      "number": {
+        "requested": [
+          0.79,
+          0.105,
+          320
+        ],
+        "shipped": [
+          0.7910853901924602,
+          0.10482444230214395,
+          319.9337143268956
+        ]
+      },
+      "operator": {
+        "requested": [
+          0.74,
+          0.035,
+          190
+        ],
+        "shipped": [
+          0.7391775332590471,
+          0.034993164889379216,
+          191.7424113023895
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.77,
+          0.055,
+          265
+        ],
+        "shipped": [
+          0.7690914962931792,
+          0.05507587932754618,
+          265.20518039791193
+        ]
+      },
+      "property": {
+        "requested": [
+          0.77,
+          0.055,
+          265
+        ],
+        "shipped": [
+          0.7690914962931792,
+          0.05507587932754618,
+          265.20518039791193
+        ]
+      },
+      "string": {
+        "requested": [
+          0.79,
+          0.095,
+          190
+        ],
+        "shipped": [
+          0.7894736968409848,
+          0.09451156421651417,
+          190.26846647424907
+        ]
+      },
+      "tag": {
+        "requested": [
+          0.79,
+          0.095,
+          120
+        ],
+        "shipped": [
+          0.7898787539076482,
+          0.09488858323819903,
+          120.35516279406117
+        ]
+      },
+      "type": {
+        "requested": [
+          0.79,
+          0.095,
+          120
+        ],
+        "shipped": [
+          0.7898787539076482,
+          0.09488858323819903,
+          120.35516279406117
+        ]
+      }
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  },
+  "lantern-day": {
+    "source_sha256": "13f476a55de757dd73fd064359d7fabc4aea211955fd6ac0b452166d910fc9a7",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6116,
+    "fg_on_selection": 6.5307,
+    "max_syntax_chroma": 0.16954,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "keyword",
+        "surface": "selection",
+        "ratio": 4.6116,
+        "floor": 4.5
+      },
+      {
+        "ink": "function",
+        "surface": "selection",
+        "ratio": 4.6286,
+        "floor": 4.5
+      },
+      {
+        "ink": "builtin",
+        "surface": "selection",
+        "ratio": 4.6286,
+        "floor": 4.5
+      },
+      {
+        "ink": "type",
+        "surface": "selection",
+        "ratio": 4.6383,
+        "floor": 4.5
+      },
+      {
+        "ink": "namespace",
+        "surface": "selection",
+        "ratio": 4.6383,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "builtin": {
+        "requested": [
+          0.49,
+          0.14,
+          75
+        ],
+        "shipped": [
+          0.4882248208170665,
+          0.10120037631902731,
+          74.75104513248164
+        ]
+      },
+      "constant": {
+        "requested": [
+          0.49,
+          0.17,
+          295
+        ],
+        "shipped": [
+          0.489492529844726,
+          0.16953635963229127,
+          295.001949731553
+        ]
+      },
+      "decorator": {
+        "requested": [
+          0.49,
+          0.17,
+          295
+        ],
+        "shipped": [
+          0.489492529844726,
+          0.16953635963229127,
+          295.001949731553
+        ]
+      },
+      "function": {
+        "requested": [
+          0.49,
+          0.14,
+          75
+        ],
+        "shipped": [
+          0.4882248208170665,
+          0.10120037631902731,
+          74.75104513248164
+        ]
+      },
+      "keyword": {
+        "requested": [
+          0.49,
+          0.12,
+          195
+        ],
+        "shipped": [
+          0.47552813782573605,
+          0.07945394350063689,
+          194.81249433360642
+        ]
+      },
+      "namespace": {
+        "requested": [
+          0.49,
+          0.12,
+          250
+        ],
+        "shipped": [
+          0.48318390087514673,
+          0.11999569991801766,
+          250.11436624910317
+        ]
+      },
+      "number": {
+        "requested": [
+          0.49,
+          0.17,
+          295
+        ],
+        "shipped": [
+          0.489492529844726,
+          0.16953635963229127,
+          295.001949731553
+        ]
+      },
+      "operator": {
+        "requested": [
+          0.455,
+          0.05,
+          125
+        ],
+        "shipped": [
+          0.45559746637463805,
+          0.050231258307764905,
+          125.52262402219208
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.46,
+          0.075,
+          195
+        ],
+        "shipped": [
+          0.46048346465244816,
+          0.07513902652863956,
+          194.85992246265963
+        ]
+      },
+      "property": {
+        "requested": [
+          0.46,
+          0.075,
+          195
+        ],
+        "shipped": [
+          0.46048346465244816,
+          0.07513902652863956,
+          194.85992246265963
+        ]
+      },
+      "string": {
+        "requested": [
+          0.49,
+          0.12,
+          125
+        ],
+        "shipped": [
+          0.47551485083204875,
+          0.11751071201666359,
+          125.20726531662015
+        ]
+      },
+      "tag": {
+        "requested": [
+          0.49,
+          0.12,
+          250
+        ],
+        "shipped": [
+          0.48318390087514673,
+          0.11999569991801766,
+          250.11436624910317
+        ]
+      },
+      "type": {
+        "requested": [
+          0.49,
+          0.12,
+          250
+        ],
+        "shipped": [
+          0.48318390087514673,
+          0.11999569991801766,
+          250.11436624910317
+        ]
+      }
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6116,
+      "failures": []
+    }
+  },
+  "lantern-night": {
+    "source_sha256": "1f95260283c000b79ec072e6fcae93b0c8311a73295e4879c6c9d1d483cab2f2",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.4443,
+    "max_syntax_chroma": 0.13007,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "builtin": {
+        "requested": [
+          0.79,
+          0.13,
+          75
+        ],
+        "shipped": [
+          0.790671688883079,
+          0.13006794706211064,
+          75.2675002574964
+        ]
+      },
+      "constant": {
+        "requested": [
+          0.79,
+          0.105,
+          295
+        ],
+        "shipped": [
+          0.7895295627346488,
+          0.10502721775708244,
+          295.05104242377325
+        ]
+      },
+      "decorator": {
+        "requested": [
+          0.79,
+          0.105,
+          295
+        ],
+        "shipped": [
+          0.7895295627346488,
+          0.10502721775708244,
+          295.05104242377325
+        ]
+      },
+      "function": {
+        "requested": [
+          0.79,
+          0.13,
+          75
+        ],
+        "shipped": [
+          0.790671688883079,
+          0.13006794706211064,
+          75.2675002574964
+        ]
+      },
+      "keyword": {
+        "requested": [
+          0.79,
+          0.1,
+          195
+        ],
+        "shipped": [
+          0.790724273886907,
+          0.09999180736339931,
+          194.5097509099696
+        ]
+      },
+      "namespace": {
+        "requested": [
+          0.79,
+          0.085,
+          250
+        ],
+        "shipped": [
+          0.789866293828767,
+          0.08555026902756506,
+          250.51586179223997
+        ]
+      },
+      "number": {
+        "requested": [
+          0.79,
+          0.105,
+          295
+        ],
+        "shipped": [
+          0.7895295627346488,
+          0.10502721775708244,
+          295.05104242377325
+        ]
+      },
+      "operator": {
+        "requested": [
+          0.74,
+          0.035,
+          125
+        ],
+        "shipped": [
+          0.7401661313302861,
+          0.035117548009128904,
+          124.0087575500342
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.77,
+          0.055,
+          195
+        ],
+        "shipped": [
+          0.7706704881835084,
+          0.05526896226150852,
+          194.59455925954143
+        ]
+      },
+      "property": {
+        "requested": [
+          0.77,
+          0.055,
+          195
+        ],
+        "shipped": [
+          0.7706704881835084,
+          0.05526896226150852,
+          194.59455925954143
+        ]
+      },
+      "string": {
+        "requested": [
+          0.79,
+          0.1,
+          125
+        ],
+        "shipped": [
+          0.7898536189177844,
+          0.09998879748323336,
+          124.79202759736715
+        ]
+      },
+      "tag": {
+        "requested": [
+          0.79,
+          0.085,
+          250
+        ],
+        "shipped": [
+          0.789866293828767,
+          0.08555026902756506,
+          250.51586179223997
+        ]
+      },
+      "type": {
+        "requested": [
+          0.79,
+          0.085,
+          250
+        ],
+        "shipped": [
+          0.789866293828767,
+          0.08555026902756506,
+          250.51586179223997
+        ]
+      }
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  }
+}

@@ -1,0 +1,566 @@
+{
+  "pergola-day": {
+    "source_sha256": "c47ead9a3bcf4f7f504b0237617d763d96babf8af39a7a33372c91c0156478b0",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6056,
+    "fg_on_selection": 6.4645,
+    "max_syntax_chroma": 0.17972,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "function",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "builtin",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "string",
+        "surface": "selection",
+        "ratio": 4.6064,
+        "floor": 4.5
+      },
+      {
+        "ink": "keyword",
+        "surface": "selection",
+        "ratio": 4.6097,
+        "floor": 4.5
+      },
+      {
+        "ink": "function",
+        "surface": "search_match_current",
+        "ratio": 4.6706,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "keyword": {
+        "requested": [
+          0.48,
+          0.13,
+          115
+        ],
+        "shipped": [
+          0.47992736492024957,
+          0.10681968702437797,
+          115.14217081024846
+        ]
+      },
+      "function": {
+        "requested": [
+          0.49,
+          0.17,
+          250
+        ],
+        "shipped": [
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
+        ]
+      },
+      "string": {
+        "requested": [
+          0.48,
+          0.15,
+          150
+        ],
+        "shipped": [
+          0.4713080387542194,
+          0.12745917504142193,
+          149.9783622701547
+        ]
+      },
+      "number": {
+        "requested": [
+          0.49,
+          0.16,
+          55
+        ],
+        "shipped": [
+          0.48923585065459496,
+          0.11920763063785458,
+          54.75955985157336
+        ]
+      },
+      "type": {
+        "requested": [
+          0.49,
+          0.18,
+          305
+        ],
+        "shipped": [
+          0.4904439194059155,
+          0.17972229543544269,
+          304.9638166258094
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.47,
+          0.075,
+          195
+        ],
+        "shipped": [
+          0.4709469599120622,
+          0.07503855007452635,
+          194.9067661766992
+        ]
+      },
+      "property": {
+        "requested": [
+          0.47,
+          0.075,
+          195
+        ],
+        "shipped": [
+          0.4709469599120622,
+          0.07503855007452635,
+          194.9067661766992
+        ]
+      }
+    },
+    "amber_ink_share": {
+      "r": 0.1336,
+      "typescript": 0.1101,
+      "python": 0.1469
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6056,
+      "failures": []
+    }
+  },
+  "pergola-night": {
+    "source_sha256": "8f41f48a36dff42a6932232f54f7be8b8e1508658a5c56c8892608e080d2ca09",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.1871,
+    "max_syntax_chroma": 0.08513,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "keyword": {
+        "requested": [
+          0.77,
+          0.05,
+          110
+        ],
+        "shipped": [
+          0.7713135353360469,
+          0.050612514056309385,
+          110.08113205986803
+        ]
+      },
+      "function": {
+        "requested": [
+          0.79,
+          0.045,
+          215
+        ],
+        "shipped": [
+          0.7888027127286442,
+          0.04530250035805531,
+          216.366619685166
+        ]
+      },
+      "string": {
+        "requested": [
+          0.75,
+          0.055,
+          150
+        ],
+        "shipped": [
+          0.7495537996346896,
+          0.054281877265713936,
+          150.09325122212445
+        ]
+      },
+      "number": {
+        "requested": [
+          0.8,
+          0.085,
+          75
+        ],
+        "shipped": [
+          0.7991660175581493,
+          0.08512739498560278,
+          74.91167281626467
+        ]
+      },
+      "type": {
+        "requested": [
+          0.77,
+          0.035,
+          290
+        ],
+        "shipped": [
+          0.7700468498277192,
+          0.03540188297376438,
+          289.21069802146906
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.815,
+          0.012,
+          85
+        ],
+        "shipped": [
+          0.8150124984425706,
+          0.01193047242745934,
+          84.58291899996283
+        ]
+      },
+      "property": {
+        "requested": [
+          0.815,
+          0.012,
+          85
+        ],
+        "shipped": [
+          0.8150124984425706,
+          0.01193047242745934,
+          84.58291899996283
+        ]
+      }
+    },
+    "amber_ink_share": {
+      "r": 0.1336,
+      "typescript": 0.1101,
+      "python": 0.1469
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  },
+  "stone-day": {
+    "source_sha256": "13b2cb484da6b758f71940e5517ca6d68a7aa0b4b7615f3e654b81d7b032e99d",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6056,
+    "fg_on_selection": 6.4645,
+    "max_syntax_chroma": 0.17972,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "function",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "builtin",
+        "surface": "selection",
+        "ratio": 4.6056,
+        "floor": 4.5
+      },
+      {
+        "ink": "string",
+        "surface": "selection",
+        "ratio": 4.6064,
+        "floor": 4.5
+      },
+      {
+        "ink": "keyword",
+        "surface": "selection",
+        "ratio": 4.6097,
+        "floor": 4.5
+      },
+      {
+        "ink": "function",
+        "surface": "search_match_current",
+        "ratio": 4.6706,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "keyword": {
+        "requested": [
+          0.48,
+          0.13,
+          115
+        ],
+        "shipped": [
+          0.47992736492024957,
+          0.10681968702437797,
+          115.14217081024846
+        ]
+      },
+      "function": {
+        "requested": [
+          0.49,
+          0.17,
+          250
+        ],
+        "shipped": [
+          0.4854153726358728,
+          0.1357811355357878,
+          250.31280414527365
+        ]
+      },
+      "string": {
+        "requested": [
+          0.48,
+          0.15,
+          150
+        ],
+        "shipped": [
+          0.4713080387542194,
+          0.12745917504142193,
+          149.9783622701547
+        ]
+      },
+      "number": {
+        "requested": [
+          0.49,
+          0.16,
+          55
+        ],
+        "shipped": [
+          0.48923585065459496,
+          0.11920763063785458,
+          54.75955985157336
+        ]
+      },
+      "type": {
+        "requested": [
+          0.49,
+          0.18,
+          305
+        ],
+        "shipped": [
+          0.4904439194059155,
+          0.17972229543544269,
+          304.9638166258094
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.47,
+          0.075,
+          195
+        ],
+        "shipped": [
+          0.4709469599120622,
+          0.07503855007452635,
+          194.9067661766992
+        ]
+      },
+      "property": {
+        "requested": [
+          0.47,
+          0.075,
+          195
+        ],
+        "shipped": [
+          0.4709469599120622,
+          0.07503855007452635,
+          194.9067661766992
+        ]
+      }
+    },
+    "amber_ink_share": {
+      "r": 0.1336,
+      "typescript": 0.1101,
+      "python": 0.1469
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6056,
+      "failures": []
+    }
+  },
+  "stone-night": {
+    "source_sha256": "156fe12152d6be692c67bb4ac28ea55b1031d92c20b68b0a1b3c8b7fc3dab5e2",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.1871,
+    "max_syntax_chroma": 0.08513,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "comment",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "docstring",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      }
+    ],
+    "authored_syntax": {
+      "keyword": {
+        "requested": [
+          0.77,
+          0.04000000000000001,
+          110
+        ],
+        "shipped": [
+          0.7700213905044446,
+          0.03999874608003735,
+          110.5348528118917
+        ]
+      },
+      "function": {
+        "requested": [
+          0.79,
+          0.045,
+          215
+        ],
+        "shipped": [
+          0.7888027127286442,
+          0.04530250035805531,
+          216.366619685166
+        ]
+      },
+      "string": {
+        "requested": [
+          0.75,
+          0.044000000000000004,
+          150
+        ],
+        "shipped": [
+          0.7496102008310487,
+          0.04302071512218735,
+          150.6139030992825
+        ]
+      },
+      "number": {
+        "requested": [
+          0.8,
+          0.085,
+          75
+        ],
+        "shipped": [
+          0.7991660175581493,
+          0.08512739498560278,
+          74.91167281626467
+        ]
+      },
+      "type": {
+        "requested": [
+          0.77,
+          0.035,
+          290
+        ],
+        "shipped": [
+          0.7700468498277192,
+          0.03540188297376438,
+          289.21069802146906
+        ]
+      },
+      "parameter": {
+        "requested": [
+          0.815,
+          0.012,
+          85
+        ],
+        "shipped": [
+          0.8150124984425706,
+          0.01193047242745934,
+          84.58291899996283
+        ]
+      },
+      "property": {
+        "requested": [
+          0.815,
+          0.012,
+          85
+        ],
+        "shipped": [
+          0.8150124984425706,
+          0.01193047242745934,
+          84.58291899996283
+        ]
+      }
+    },
+    "amber_ink_share": {
+      "r": 0.1336,
+      "typescript": 0.1101,
+      "python": 0.1469
+    },
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  }
+}
