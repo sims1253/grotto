@@ -1,0 +1,16 @@
+{
+  "scripts/next_palette.py": "d929f5be76ed24ff1b0f10f6e237a98a483bfe270e75be9b05045fd829bf0e35",
+  "spec/roles.yaml": "72671c5770b496dceb939c5e15f5fce8ecb12562afdaa30e5af29b356765fb03",
+  "spec/environments.yaml": "594cf4d949debdc251e248c4483bb3c48968264900a2bd55b1175053ee161704",
+  "spec/mappings/vscode.yaml": "dd9e30d30a3836c6dbb2540bab5401ac51d6d8d98e3f7c69dd3482b77306a860",
+  "spec/mappings/zed.yaml": "ff5b64cd0cb6955b919ae190b6678058e22f46d6a244c442ced4a57dbc3cf8c0",
+  "src/grotto/specimens.py": "f84e3eaf77f13435bac67e7ad09a93b5f8f33ebcf22fac602fb5239cd51a046c",
+  "themes/candidates/candidate-b-balanced.day.yaml": "d683bf2b220e0b73fa199234d3bf00be52af682819a625ecb4d7be0580467872",
+  "themes/candidates/candidate-b-balanced.night.yaml": "b75c5c7641ef64f78bbd112f8e15d2a254c1c6413a26aceaa938a57dee4fc5ff",
+  "scripts/memory_palette.py": "7cfba7a5ae66416a1a2fb5b9d1972c95bf6d425f6816f2a062d4f40ee12f4941",
+  "scripts/study_palette.py": "72076b4fd3a535740bd2f67eea6b0d5f3bc0434772bea4e114a502882f236ab8",
+  "src/grotto/color.py": "1979f264ba04e015d05a73623ebb93f8574daebe0357271f3f6dbea4134afd99",
+  "src/grotto/contrast.py": "23b85726965c6b7717e799e2a4287b34851d6368240715f6c9be17b812dc029e",
+  "src/grotto/vscode.py": "22cbfbdde04c066b5997fe0dcc14f644b617194b96b364960eef589a7fd18db2",
+  "src/grotto/zed.py": "4f37cd1950f79c53fa91c078aa431982ee910688b5c2b7a1ab149b748429e04e"
+}

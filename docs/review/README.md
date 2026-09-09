@@ -1,5 +1,7 @@
 # Grotto: choose the theme, then simplify the system
 
+[Four additional studies: Tansy, Fig, Rainstone and Lantern](../../out/grotto-studies/README.md), each in Day and Night, with a gallery and pair comparisons.
+
 Additional review: [Summer memories — Pergola and Stone](../../out/summer-memories/README.md), each in Day and Night. The earlier proposals remain available.
 
 The [next-generation review](../../out/next-generation/README.md) now contains

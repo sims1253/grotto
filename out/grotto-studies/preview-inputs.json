@@ -1,0 +1,15 @@
+{
+  "shiki": "4.4.3",
+  "sha256": {
+    "out/grotto-studies/vscode-preview/themes/tansy-day.json": "e9958d740575bb6ee43d77f35465da317e29a595fd73c9d9ea0b59b8b356d4ea",
+    "out/grotto-studies/vscode-preview/themes/tansy-night.json": "abf1a722b6b8a70a5939b79e11cca41e45089215c90782eba42a2fc55e26182f",
+    "out/grotto-studies/vscode-preview/themes/fig-day.json": "6b8d2e681ff3c5b957b5c8541e612c5543efdcc8c7bf8dae7858a73eebf5b71e",
+    "out/grotto-studies/vscode-preview/themes/fig-night.json": "9d07f9e93ae9c594a96f3b4dd0b122b26e0c7f11269180e8dc0d549c56b7aceb",
+    "out/grotto-studies/vscode-preview/themes/rainstone-day.json": "0eb07f9653b88e4c86f886646f97c0e2bfde4c5f2125aaa8eef8dc23ed8b7860",
+    "out/grotto-studies/vscode-preview/themes/rainstone-night.json": "765b0451b7f27207b3532042f98402b4b82aa2f96cbce13de991ce86d2d4ce11",
+    "out/grotto-studies/vscode-preview/themes/lantern-day.json": "664522b00defb1d4ac1d42b2f05a0cff96cb561b9f9f7da8c5972cb05b15cddc",
+    "out/grotto-studies/vscode-preview/themes/lantern-night.json": "c6da2ff9d2700e95f2e2ac87983652f8ebbe058c941fd9eb53a08d81937b532d",
+    "out/summer-memories/vscode-preview/themes/pergola-day.json": "cb9d25558b4bc184d9eba532e4e3ca4ba9195afc873da44156bea0f8bcb6c4f2",
+    "out/summer-memories/vscode-preview/themes/pergola-night.json": "5d4dc51b9ffd2f63af8a12bf18bf74b55b5ee6203a084536fd5d9e38f23a921c"
+  }
+}

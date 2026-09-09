@@ -1,0 +1,67 @@
+{
+  "name": "grotto-studies",
+  "displayName": "Grotto Studies Preview",
+  "description": "Four different uses of color from the Grotto setting. Tansy, Fig, Rainstone and Lantern each have Day and Night versions.",
+  "version": "0.1.0",
+  "publisher": "grotto-local",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sims1253/grotto.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "files": [
+    "themes/*.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto Tansy Day",
+        "uiTheme": "vs",
+        "path": "themes/tansy-day.json"
+      },
+      {
+        "label": "Grotto Tansy Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/tansy-night.json"
+      },
+      {
+        "label": "Grotto Fig Day",
+        "uiTheme": "vs",
+        "path": "themes/fig-day.json"
+      },
+      {
+        "label": "Grotto Fig Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/fig-night.json"
+      },
+      {
+        "label": "Grotto Rainstone Day",
+        "uiTheme": "vs",
+        "path": "themes/rainstone-day.json"
+      },
+      {
+        "label": "Grotto Rainstone Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/rainstone-night.json"
+      },
+      {
+        "label": "Grotto Lantern Day",
+        "uiTheme": "vs",
+        "path": "themes/lantern-day.json"
+      },
+      {
+        "label": "Grotto Lantern Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/lantern-night.json"
+      }
+    ]
+  }
+}
