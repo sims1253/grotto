@@ -273,7 +273,7 @@ def write_preview(palettes, out=OUT, profiles=PROFILES, intro=None, title="Grott
 def main(out=OUT, profiles=PROFILES, builder=build_palette, generation='next-generation',
          title='Grotto Next Generation Preview', intro=None,
          note='Generated review palette; authored direction plus bounded shortfall/emphasis search.',
-         extra_inputs=()):
+         extra_inputs=(), mapping_adjuster=None):
     OUT = out
     PROFILES = profiles
     OUT.mkdir(parents=True, exist_ok=True)
@@ -287,6 +287,8 @@ def main(out=OUT, profiles=PROFILES, builder=build_palette, generation='next-gen
         zm.style[name] = role
         zm.style[f'{name}.border'] = role
     zm.style['editor.document_highlight.write_background'] = {'role': 'selection', 'alpha': '4d'}
+    if mapping_adjuster is not None:
+        mapping_adjuster(vm, zm)
     vdir = OUT / 'vscode-preview'; (vdir / 'themes').mkdir(parents=True, exist_ok=True)
     zdir = OUT / 'zed-preview'; (zdir / 'themes').mkdir(parents=True, exist_ok=True)
     for profile in PROFILES:
@@ -299,7 +301,7 @@ def main(out=OUT, profiles=PROFILES, builder=build_palette, generation='next-gen
             path = OUT / f'{key}.yaml'; path.write_text(yaml.safe_dump(data, sort_keys=False))
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
             assert Palette.from_yaml(path).colors == pal.colors
-            label = f'Grotto {profile.title()} {variant.title()}'
+            label = f'Grotto {profile.replace("-", " ").title()} {variant.title()}'
             theme = vscode._build_theme(pal, label, variant, vm, source_name=path.name, source_sha256=digest)
             theme['grotto'].update(candidate=False, note=data['note'])
             rel = f'themes/{key}.json'; (vdir / rel).write_text(vscode._dump(theme))
