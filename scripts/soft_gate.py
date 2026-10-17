@@ -36,6 +36,7 @@ from grotto.spec import Palette  # noqa: E402
 
 import numeric_palette as np_  # noqa: E402
 import middle_palette as mp  # noqa: E402
+import soft_metric as sm  # noqa: E402
 
 
 def gate(path: Path) -> list[str]:
@@ -74,12 +75,20 @@ def gate(path: Path) -> list[str]:
                 f"{name}: same_family {a}/{b} dE {de:.4f} < {th}"
             )
 
-    # 5. The palette must not have gone achromatic where the design needs a
-    #    hue: an error that renders grey technically sits inside its window.
-    for role in ("error", "diff_removed", "diff_added"):
+    # 5. Chroma floor: a role with a hue convention must carry that hue.
+    #    Read from soft_metric.CHROMA_FLOOR, which is the repo's own
+    #    HUE_AUDIT_MIN_CHROMA.  Without this the search's degenerate
+    #    optimum is grey -- documented in NUMERIC.md sections 5.3 and 10,
+    #    and reproduced by run 0 of this session.
+    from grotto.color import hex_to_oklch
+
+    for role in problem.chromatic:
         c = hex_to_oklch(hexes[role])[1]
-        if c < 0.010:
-            problems.append(f"{name}: {role} is achromatic (C={c:.4f})")
+        if c < sm.CHROMA_FLOOR - sm.CHROMA_FLOOR_TOL:
+            problems.append(
+                f"{name}: {role} below the chroma floor "
+                f"(C={c:.4f} < {sm.CHROMA_FLOOR})"
+            )
 
     return problems
 

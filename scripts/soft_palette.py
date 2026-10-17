@@ -102,6 +102,34 @@ class SoftProblem(mp.MiddleProblem):
         }
         self._emph_total = sum(self._emph_roles.values()) or 1.0
 
+    # -- chroma floor ----------------------------------------------------
+
+    def chroma_floor(self, role: str) -> float:
+        """Declared floor for a chromatic role (soft_metric.CHROMA_FLOOR).
+
+        Every inherited fence is a ceiling.  A ceiling-only feasible set has a
+        degenerate optimum, and this objective walks straight into it: a term
+        that has cleared its threshold contributes exactly zero, so grey is
+        always the cheapest way to stay cleared.  Run 0 of this session
+        rendered ``error`` at C 0.0011 for exactly that reason -- the same
+        pathology NUMERIC.md sections 5.3 and 10 record for the numeric and
+        middle frontiers.  The floor is the repo's own HUE_AUDIT_MIN_CHROMA,
+        reused rather than reinvented.
+        """
+        return sm.CHROMA_FLOOR
+
+    def fence_lch(self, role, L, C, h):
+        """MiddleProblem.fence_lch plus the floor: raise chroma to it."""
+        L, C, h = super().fence_lch(role, L, C, h)
+        floor = self.chroma_floor(role)
+        if C < floor:
+            C = min(floor, self.chroma_ceiling(role, L, h))
+            # If the ceiling is below the floor the role cannot be legal; keep
+            # the ceiling so the WCAG/gamut repairs still govern and the fence
+            # audit reports it rather than silently emitting grey.
+            C = max(C, 0.0)
+        return (L, C, h)
+
     # -- emphasis ---------------------------------------------------------
 
     def chroma_table(self, hexes: dict[str, str]) -> dict[str, float]:
@@ -151,6 +179,19 @@ class SoftProblem(mp.MiddleProblem):
 # ===========================================================================
 # Greedy coordinate refinement on the soft objective
 # ===========================================================================
+
+
+def _apply_move(problem, role, lch, axis, d, hexes):
+    """middle_palette._apply_move_fenced, then the chroma floor.
+
+    The floor has to be applied to the MOVE, not only to the emitted hex: a
+    move that lands below it is not a legal palette, and letting the search
+    evaluate it anyway would make the floor invisible to the ascent.
+    """
+    got = mp._apply_move_fenced(problem, role, lch, axis, d, hexes)
+    if got is None:
+        return None
+    return problem.fence_lch(role, *got)
 
 
 def soft_refine(
@@ -217,7 +258,7 @@ def soft_refine(
             best = None
             best_util = util
             for axis, d in moves:
-                got = mp._apply_move_fenced(problem, role, state[role], axis, d, hexes)
+                got = _apply_move(problem, role, state[role], axis, d, hexes)
                 if got is None:
                     continue
                 new_hex = oklch_to_hex(np_.project_chroma(*problem.fence_lch(role, *got)))

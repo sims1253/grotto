@@ -128,6 +128,38 @@ SURFACE_ROLES = frozenset(
     }
 )
 
+#: Minimum chroma for every chromatic role: a role with a hue convention must
+#: actually carry that hue.
+#:
+#: NOT a new number.  It is the repository's own declared "hue is
+#: perceptually present" threshold, ``HUE_AUDIT_MIN_CHROMA`` in
+#: ``scripts/middle_palette.py`` -- the chroma below which that fence audit
+#: skips the hue-window check because the hue channel carries no readable
+#: signal.  Reading a floor off the same constant that already decides
+#: whether hue matters keeps the two in agreement.
+#:
+#: Why a floor at all: every fence in the middle search is a CEILING.  A
+#: ceiling-only search has a degenerate optimum, and this repository has hit
+#: it repeatedly -- NUMERIC.md §5.3 ("keyword, string and success sit at
+#: L ~= 0.98-0.99 with almost no chroma"), §10 ("it zeroes one diagnostic's
+#: chroma to buy lightness separation"; "diff_changed parks at the canvas
+#: floor ... a nearly invisible changed-line wash"), and PR #2's own
+#: ``docs/review/optimizer-constraints.md`` ("The fences as specified have
+#: ceilings, not floors; whether diagnostics need a chroma floor is a fence
+#: decision for the owner").  Under the shortfall objective this is not a
+#: corner case: a term that has cleared its threshold contributes exactly
+#: zero, so achromatic is always the cheapest way to stay cleared.
+#:
+#: Owner decision (this session): diagnostics, diff and search states carry
+#: meaning by hue and must keep it.  The floor applies to every chromatic
+#: role; 0.02 is well under the 0.10-0.16 class caps, so it constrains only
+#: the degenerate tail, never a palette a person chose.
+CHROMA_FLOOR = 0.02
+
+#: Hex-round tolerance for the chroma floor, the same scale the fence audit
+#: already uses for its chroma ceilings (CHROMA_AUDIT_TOL).
+CHROMA_FLOOR_TOL = 0.0015
+
 
 # ===========================================================================
 # Area model
