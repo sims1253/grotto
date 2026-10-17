@@ -85,8 +85,17 @@ def confidence(log: list[dict]) -> tuple[float, float, float]:
 
 
 def revert() -> None:
-    sh(["git", "checkout", "--", "."])
-    sh(["git", "clean", "-fd", "-e", ".auto/", "-e", ".venv/"])
+    """Undo the experiment's code changes.
+
+    Scoped to the paths an experiment is allowed to touch.  A blanket
+    ``git checkout -- .`` was wrong: it destroyed documentation edits made
+    between runs, because ``git checkout`` restores every tracked file to HEAD
+    regardless of who changed it.  That silently cost this session the
+    prompt.md history of runs 1 and 2.
+    """
+    sh(["git", "checkout", "--", "scripts", "src"])
+    sh(["git", "clean", "-fd", "-e", ".auto/", "-e", ".venv/",
+        "-e", "out/soft-night/", "-e", "out/middle-night/"])
 
 
 def main() -> None:
