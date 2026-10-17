@@ -62,7 +62,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts"))
 
-from grotto.color import oklch_to_hex  # noqa: E402
+from grotto.color import hex_to_oklch, oklch_to_hex  # noqa: E402
 
 import numeric_palette as np_  # noqa: E402
 import middle_palette as mp  # noqa: E402
@@ -220,35 +220,45 @@ def soft_refine(
     terms = problem.terms
     vals = problem.term_values(hexes)
     exp = sm.SHORTFALL_EXP
-    loss = sum(max(0.0, 1.0 - v) ** exp for v in vals) / max(len(vals), 1)
+    loss_total = sum(max(0.0, 1.0 - v) ** exp for v in vals)
+    loss = loss_total / max(len(vals), 1)
     chroma = problem.chroma_table(hexes)
     emph = problem.emphasis_from(chroma)
     util = problem.utility_from(hexes, loss)
 
     def eval_with(role: str, new_hex: str):
-        """(utility, updated term values) with only this role's terms redone."""
+        """(utility, delta) with only this role's terms recomputed.
+
+        The shortfall is a SUM over the whole term table, but a move on one
+        role can only change that role's terms -- so the sum is maintained
+        incrementally (adjust the delta, add it to a running total) instead
+        of re-reduced over all 162 terms per candidate.  Same numbers, O(terms
+        for this role) instead of O(all terms).
+        """
+        ids = problem.term_ids_by_role.get(role, ())
         updates = {}
-        for i in problem.term_ids_by_role.get(role, ()):  # roles the matrix ignores have none
+        delta = 0.0
+        for i in ids:
             t = terms[i]
             ha = new_hex if t["a"] == role else hexes[t["a"]]
             hb = new_hex if t["b"] == role else hexes[t["b"]]
             if t["kind"] == "normal":
-                updates[i] = np_._dE(np_._oklab_of(ha), np_._oklab_of(hb)) / t["th"]
+                v2 = np_._dE(np_._oklab_of(ha), np_._oklab_of(hb)) / t["th"]
             else:
-                updates[i] = (
+                v2 = (
                     np_._dE(np_._sim_oklab(ha, t["kind"]), np_._sim_oklab(hb, t["kind"]))
                     / t["th"]
                 )
-        tot = 0.0
-        for i, v in enumerate(vals):
-            v2 = updates.get(i, v)
-            tot += max(0.0, 1.0 - v2) ** exp
+            v1 = vals[i]
+            updates[i] = v2
+            delta += max(0.0, 1.0 - v2) ** exp - max(0.0, 1.0 - v1) ** exp
         e = emph
         w = problem._emph_roles.get(role, 0.0)
         if w > 0.0:
             e += w * (hex_to_oklch(new_hex)[1] - chroma.get(role, 0.0)) / problem._emph_total
         excess = max(0.0, (e - sm.EMPHASIS_BUDGET) / sm.EMPHASIS_BUDGET)
-        return 1.0 - (tot / max(len(vals), 1)) - sm.EMPHASIS_WEIGHT * excess, updates
+        sep2 = (loss_total + delta) / max(len(vals), 1)
+        return 1.0 - sep2 - sm.EMPHASIS_WEIGHT * excess, updates
 
     for _ in range(max_passes):
         improved = False
@@ -270,10 +280,13 @@ def soft_refine(
                 got, new_hex, updates = best
                 state[role] = got
                 hexes[role] = new_hex
-                vals = [updates.get(i, v) for i, v in enumerate(vals)]
+                for i, v2 in updates.items():
+                    delta = max(0.0, 1.0 - v2) ** exp - max(0.0, 1.0 - vals[i]) ** exp
+                    loss_total += delta
+                    vals[i] = v2
                 if role in chroma:
                     chroma[role] = hex_to_oklch(new_hex)[1]
-                loss = sum(max(0.0, 1.0 - v) ** exp for v in vals) / max(len(vals), 1)
+                loss = loss_total / max(len(vals), 1)
                 emph = problem.emphasis_from(chroma)
                 util = best_util
                 improved = True
@@ -331,6 +344,270 @@ def run_search(
     return unique
 
 
+#: Rounding the YAML writer applies to authored coordinates before they are
+#: turned back into a hex.  Reproduced exactly so the search can predict, not
+#: guess, what the written file will contain.
+_YAML_L = 6
+_YAML_H = 4
+
+
+def shipped_hexes(problem: SoftProblem, state: dict) -> dict[str, str]:
+    """The hexes the WRITTEN palette will contain, computed without writing.
+
+    ``write_palette_yaml`` stores authored OKLCH rounded to 6/4 decimals and
+    ``Palette.from_yaml`` converts that back to a hex.  The result can differ
+    by one 8-bit step from ``problem.hexes(state)`` -- enough to turn a
+    salience pair the repair believes it fixed into one the gate reads as
+    still broken.  Since the hex IS the theme, every constraint and repair in
+    this script is evaluated against the hexes the file will really carry.
+
+    The authored coordinates deliberately stay strictly inside the fences
+    (``fence_audit_state`` allows no quantisation slack), so this is not a
+    licence for the hexes to leave them: ``fence_audit`` keeps the 0.006
+    lightness tolerance for exactly that one-step rounding.
+    """
+    out = dict(problem.scaffold_hex)
+    for r, (L, C, h) in state.items():
+        rounded = (round(L, _YAML_L), round(C, _YAML_L), round(h % 360.0, _YAML_H))
+        out[r] = oklch_to_hex(np_.project_chroma(*rounded))
+    return out
+
+
+def repair_wcag(problem: SoftProblem, state: dict, rounds: int = 8) -> list[str]:
+    """Restore every WCAG floor on the SHIPPED hexes after a repair pass.
+
+    Why this exists: a repair that nudges a surface by one lightness step can
+    push its 8-bit hex across a contrast floor the authored coordinates still
+    satisfied (``wcag line_number on diff_changed: 2.999 < 3.0``).  The floor
+    is a property of the hex the user sees, so it is re-established on the
+    hex, not on the coordinates.
+
+    Moves the SURFACE, never the ink: the inks carry the reading baseline, and
+    the surfaces are what a repair pass was adjusting.  Scaffold surfaces
+    cannot move and are left for the caller to report.
+    """
+    import re
+
+    for _ in range(rounds):
+        hexes = shipped_hexes(problem, state)
+        bad = np_.check_feasible(problem, hexes)
+        if not bad:
+            return []
+        progressed = False
+        for entry in bad:
+            m = re.match(r"(?:inherited: )?wcag (\S+) on (\S+): ", entry)
+            if not m:
+                continue
+            surf = m.group(2)
+            if surf not in problem.chromatic:
+                continue  # scaffold surface: not ours to move
+            got = _apply_move(problem, surf, state[surf], "L", -0.004, hexes)
+            if got is None or got[0] >= state[surf][0] - 1e-9:
+                continue
+            state[surf] = got
+            hexes = shipped_hexes(problem, state)
+            progressed = True
+        if not progressed:
+            break
+    return np_.check_feasible(problem, shipped_hexes(problem, state))
+
+
+# ===========================================================================
+# Post-refinement repair: the salience channel
+# ===========================================================================
+
+#: Same tolerance the gate and src/grotto/model.py use.
+SAL_RANK_TOL = 2e-3
+
+#: Chroma-fraction step used by the repair, and how many steps it may take
+#: per pair before giving up on raising the higher-salience role.
+SAL_REPAIR_STEP = 0.06
+SAL_REPAIR_STEPS = 24
+
+#: How many times the post-refinement repair sequence may run before the
+#: search gives up and asserts.  Repairs interact; one pass is not enough.
+POST_ROUNDS = 6
+
+
+def _sf_unrepaired(sf: list[dict]) -> list[dict]:
+    """same_family repairs that failed on a pair the optimizer owns."""
+    return [e for e in sf if not e.get("repaired", True)]
+
+
+def _normc(lch_hex: str) -> float:
+    """Normalised chroma, C / max_chroma(L, h) -- the salience channel.
+
+    Exactly the quantity src/grotto/model.py's realised-salience proxy
+    compares, so the repair and the gate cannot disagree about what they
+    measure.
+    """
+    from grotto.color import hex_to_oklch, max_chroma
+
+    L, C, h = hex_to_oklch(lch_hex)
+    mc = max_chroma(L, h, "srgb")
+    return (C / mc) if mc > 1e-9 else 0.0
+
+
+def salience_violations(problem: SoftProblem, hexes: dict[str, str]) -> list[tuple]:
+    """Every within-family salience reversal in a palette, as tuples.
+
+    Same definition as the gate and as ``src/grotto/model.py``: within a hue
+    family, higher declared salience carries >= normalised chroma, tied
+    salience imposes no ordering.
+    """
+    from grotto.color import max_chroma
+
+    roles = problem.roles_spec.roles
+    fams: dict[str, list[str]] = {}
+    for r in problem.chromatic:
+        fams.setdefault(roles[r].family, []).append(r)
+    out: list[tuple] = []
+    for fam, members in sorted(fams.items()):
+        if len(members) < 2:
+            continue
+        sr = sorted(members, key=lambda r: roles[r].salience)
+        for lo, hi in zip(sr, sr[1:]):
+            if roles[lo].salience == roles[hi].salience:
+                continue
+            def normc(role: str) -> float:
+                L, C, h = hex_to_oklch(hexes[role])
+                mc = max_chroma(L, h, "srgb")
+                return (C / mc) if mc > 1e-9 else 0.0
+
+            gap = normc(lo) - normc(hi)
+            if gap > SAL_RANK_TOL:
+                out.append((fam, lo, hi, gap))
+    return out
+
+
+def _violations_touching(problem: SoftProblem, state: dict, role: str) -> int:
+    """Salience reversals involving ``role`` in the palette the file will carry.
+
+    Cheap enough to call inside the repair inner loops: only the (at most two)
+    neighbouring pairs of ``role`` in its hue family are examined, so this is
+    a handful of gamut-boundary bisections rather than a full sweep.
+    """
+    roles = problem.roles_spec.roles
+    fam = roles[role].family
+    members = sorted(
+        (r for r in problem.chromatic if roles[r].family == fam),
+        key=lambda r: roles[r].salience,
+    )
+    hexes = shipped_hexes(problem, state)
+    n = 0
+    for lo, hi in zip(members, members[1:]):
+        if roles[lo].salience == roles[hi].salience:
+            continue
+        if role not in (lo, hi):
+            continue
+        if _normc(hexes[lo]) - _normc(hexes[hi]) > SAL_RANK_TOL:
+            n += 1
+    return n
+
+
+def boost_normc(problem: SoftProblem, state: dict, role: str) -> bool:
+    """Raise one role's normalised chroma as far as its fences allow.
+
+    The salience channel is NORMALISED chroma, ``C / max_chroma(L, h)``, so
+    it can be raised two ways: by raising ``C``, or by moving to a place where
+    the sRGB gamut holds less chroma.  Raising ``C`` alone is not enough here:
+    ``breakpoint`` (salience 5) is already at its chroma ceiling while the
+    lower-salience ``diff_removed`` cannot go quieter, because the chroma floor
+    holds it at 0.02.  Moving hue or lightness buys the same fraction without
+    adding colour, which is also the more restrained answer.
+
+    Every accepted move must not increase the number of salience reversals
+    ``role`` takes part in.  Without that guard the repairs fight each other:
+    boosting ``breakpoint`` past ``diff_removed`` fixes one pair and breaks
+    ``breakpoint``/``error``, whose fallback then quietly undoes the boost.
+
+    Returns True if the role moved.
+    """
+    current = _normc(shipped_hexes(problem, state)[role])
+    violations = _violations_touching(problem, state, role)
+    moved = False
+    for _ in range(SAL_REPAIR_STEPS):
+        hx = shipped_hexes(problem, state)
+        best = None
+        best_nc = current
+        best_v = violations
+        for axis, d in MOVES:
+            got = _apply_move(problem, role, state[role], axis, d, hx)
+            if got is None:
+                continue
+            probe = dict(state)
+            probe[role] = got
+            nc = _normc(shipped_hexes(problem, probe)[role])
+            if nc <= best_nc + 1e-6:
+                continue
+            v = _violations_touching(problem, probe, role)
+            if v > best_v:
+                continue  # would fix this pair by breaking the neighbour's
+            best_nc, best_v, best = nc, v, got
+        if best is None:
+            break
+        state[role] = best
+        current, violations = best_nc, best_v
+        moved = True
+    return moved
+
+
+def enforce_salience_rank(problem: SoftProblem, state: dict) -> list[dict]:
+    """Repair within-family salience reversals.  HARD output constraint.
+
+    Same architecture as ``middle_palette.enforce_same_family_min``: the
+    objective does not model it (nothing in the distance matrix ranks
+    attention), so it cannot be traded off inside the ascent -- it is repaired
+    afterwards, inside the same fences, through the same move machinery, and
+    then re-checked.
+
+    Two passes per violating pair: raise the higher-salience role's normalised
+    chroma (``boost_normc``), and only then, if that was not enough, lower the
+    lower-salience role's chroma.  Both passes accept a move only if it does
+    not increase the reversals the moved role takes part in, which is what
+    makes the sequence converge instead of oscillating.
+
+    Progress is measured in normalised chroma, never in coordinates: the
+    chroma ceiling clamps a coordinate move to no change while the surrounding
+    hexes still shift, so a coordinate test reports "no progress" on moves
+    that are in fact repairing the pair.
+
+    Reports what it could not fix rather than hiding it.
+    """
+    report: list[dict] = []
+    for fam, lo, hi, _gap in salience_violations(problem, shipped_hexes(problem, state)):
+        for _ in range(POST_ROUNDS):
+            hexes = shipped_hexes(problem, state)
+            if _normc(hexes[lo]) - _normc(hexes[hi]) <= SAL_RANK_TOL:
+                break
+            if not boost_normc(problem, state, hi):
+                break
+        hexes = shipped_hexes(problem, state)
+        for _ in range(POST_ROUNDS):
+            if _normc(hexes[lo]) - _normc(hexes[hi]) <= SAL_RANK_TOL:
+                break
+            before = _violations_touching(problem, state, lo)
+            prev = _normc(hexes[lo])
+            got = _apply_move(problem, lo, state[lo], "f", -SAL_REPAIR_STEP, hexes)
+            if got is None:
+                break
+            state[lo] = got
+            hexes = shipped_hexes(problem, state)
+            after = _violations_touching(problem, state, lo)
+            if after > before or _normc(hexes[lo]) >= prev - 1e-9:
+                break  # no progress, or it would break the neighbour's pair
+        gap = _normc(hexes[lo]) - _normc(hexes[hi])
+        if gap > SAL_RANK_TOL:
+            report.append({
+                "family": fam,
+                "lower_salience": lo,
+                "higher_salience": hi,
+                "repaired": False,
+                "normc_gap": round(gap, 5),
+            })
+    return report
+
+
 # ===========================================================================
 # Driver
 # ===========================================================================
@@ -374,26 +651,56 @@ def main() -> None:
     entries = []
     for i, r in enumerate(picked, 1):
         state = mp.place_unconstrained_fenced(problem, dict(r["state"]))
-        sf = mp.enforce_same_family_min(problem, state)
-        unfixable = [
-            e for e in sf
-            if not e["repaired"] and any(role in problem.chromatic for role in e["pair"])
-        ]
-        assert not unfixable, f"same_family min-distance unrepairable: {unfixable}"
-        hexes = problem.hexes(state)
-        bad = np_.check_feasible(problem, hexes)
-        assert not bad, f"hard constraint violation: {bad}"
+        # Repairs are run to a FIXED POINT, not once each.  They interact:
+        # nudging a surface to restore a WCAG floor changes its lightness,
+        # which changes max_chroma(L, h), which changes its normalised chroma
+        # and can re-open a salience pair the previous repair had just fixed.
+        # Running the sequence repeatedly is what makes the emitted palette
+        # satisfy every hard output constraint at once.
+        sf_all: list[dict] = []
+        sal_all: list[dict] = []
+        for _ in range(POST_ROUNDS):
+            sf = mp.enforce_same_family_min(problem, state)
+            sal = enforce_salience_rank(problem, state)
+            bad = repair_wcag(problem, state)
+            sf_all, sal_all = sf, sal
+            if not bad and not sal and not _sf_unrepaired(sf):
+                break
+        assert not bad, f"WCAG unrepairable on the shipped hexes: {bad}"
+        assert not _sf_unrepaired(sf_all), f"same_family unrepairable: {_sf_unrepaired(sf_all)}"
+        assert not [e for e in sal_all if not e["repaired"]], (
+            f"salience rank unrepairable: {[e for e in sal_all if not e['repaired']]}"
+        )
+        assert not salience_violations(problem, shipped_hexes(problem, state)), (
+            "repairs did not converge: "
+            f"{salience_violations(problem, shipped_hexes(problem, state))}"
+        )
+        sf, sal = sf_all, sal_all
+        hexes = shipped_hexes(problem, state)
         fences = problem.fence_audit(hexes) + problem.fence_audit_state(state)
         assert not fences, f"left the fences: {fences}"
-        sc = problem.state_score(state)
         name = f"soft-s{i:02d}"
+        # The written file must reproduce exactly the colours everything else
+        # agreed on.  If it does not, the search refuses to emit rather than
+        # shipping a palette that fails its own gate after the fact.
+        probe = out / f".verify-{name}.night.yaml"
+        mp.write_palette_yaml(probe, name, state, problem, args.seed, {})
+        from grotto.spec import Palette as _P
+
+        reread = {r: str(v) for r, v in _P.from_yaml(probe).colors.items()}
+        drift = [r for r in problem.chromatic if reread[r] != hexes[r]]
+        probe.unlink()
+        assert not drift, f"written palette drifts from the shipped hexes: {drift}"
+        sc = problem.state_score(state)
         path = out / f"{name}.night.yaml"
         mp.write_palette_yaml(
             path, name, state, problem, args.seed,
             {"restart-kind": r["kind"], "utility": round(sc["utility"], 5),
              "sep": round(sc["sep"], 5), "emphasis": round(sc["emph"], 5),
              "worst-margin": round(sc["worst_margin"], 5),
-             "at-target": sc["at_target"]},
+             "at-target": sc["at_target"],
+             "same-family-repairs": len(sf),
+             "salience-repairs": len([e for e in sal if e["repaired"]])},
         )
         entries.append({"label": name, "state": state, "hexes": hexes,
                         "metrics": sc, "source_name": path.name,

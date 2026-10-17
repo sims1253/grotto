@@ -32,11 +32,49 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts"))
 
 from grotto.color import hex_to_oklch  # noqa: E402
-from grotto.spec import Palette  # noqa: E402
+from grotto.spec import Palette, RoleSpec, salience_coverage  # noqa: E402
 
 import numeric_palette as np_  # noqa: E402
 import middle_palette as mp  # noqa: E402
 import soft_metric as sm  # noqa: E402
+
+#: DESIGN.md section 6, enforced in spec/environments.yaml: salience_budget.
+#: Read, never edited.
+SAL_BUDGET_3 = 0.22
+SAL_BUDGET_5 = 0.01
+
+#: DESIGN.md hard conflict O4-vs-O2 states the channel explicitly: "chroma is
+#: a salience channel", and the project's own realised-salience proxy
+#: (``src/grotto/model.py``) checks it WITHIN A HUE FAMILY, comparing
+#: NORMALISED chroma (C / max_chroma(L, h)), skipping pairs whose declared
+#: salience is tied.  This gate reuses that definition rather than inventing a
+#: stricter one: an earlier attempt here checked LIGHTNESS rank across all
+#: roles and flagged the committed candidate palettes, which would have been a
+#: checker artefact dressed up as a design constraint.
+#:
+#: Tolerance is the same 2e-3 the model uses.
+#:
+#: PROMOTED TO HARD HERE, deliberately and against the model's own default.
+#: ``model.py`` calls this "a soft signal" and leaves it out of ``ok``.  That
+#: is right for a checker reporting on hand-authored palettes.  It is wrong
+#: for an optimiser, which is why this gate differs from the model:
+#:
+#:   * the committed candidate-b Night palette scores ZERO reversals, so the
+#:     design property is achievable inside these fences -- zero is the
+#:     achievable target, not an aspiration;
+#:   * the shortfall objective is structurally blind to it (nothing in the
+#:     distance matrix ranks attention), so left unchecked a search drifts
+#:     into reversals as chroma moves -- measured: 5 reversals in the soft
+#:     search's first admissible palette, against 0 for candidate-b and 1 for
+#:     middle-m01;
+#:   * DESIGN.md states chroma IS the salience channel, so a reversal
+#:     mis-ranks attention, which is the thing the theme is for.
+#:
+#: The cost of this choice is real and was paid: utility fell when the gate
+#: landed.  That is the point.  A palette that buys its separation by
+#: inverting the attention hierarchy is worse, and the number saying otherwise
+#: is the number being wrong.
+SAL_RANK_TOL = 2e-3
 
 
 def gate(path: Path) -> list[str]:
@@ -89,6 +127,54 @@ def gate(path: Path) -> list[str]:
                 f"{name}: {role} below the chroma floor "
                 f"(C={c:.4f} < {sm.CHROMA_FLOOR})"
             )
+
+    # 6. DESIGN.md section 6 -- the salience budget.  "Too busy" has to stay
+    #    measurable, and it is NOT in the shortfall objective: nothing in the
+    #    distance matrix notices a palette that gets uniformly louder.
+    #    Read from spec/environments.yaml, never tuned away.
+    roles_spec = problem.roles_spec
+    cov = salience_coverage(palette, roles_spec, "code")
+    for key, limit in (("at_or_above_3", SAL_BUDGET_3), ("at_or_above_5", SAL_BUDGET_5)):
+        if cov[key] > limit + 1e-9:
+            problems.append(
+                f"{name}: salience budget breached -- {key}={cov[key]:.4f} > {limit}"
+            )
+
+    # 7. DESIGN.md hard conflict O4-vs-O2, resolved in the DESIGN: making pairs
+    #    CVD-robust by lightness-separating them "consumes the lightness axis
+    #    that salience also needs", and the resolution is redundant NON-COLOUR
+    #    channels rather than a distorted palette.  The shortfall objective is
+    #    blind to this -- widening SURFACE_L_DELTA / INK_L_DELTA raised utility
+    #    in the sensitivity probe -- so the salience channel is checked here,
+    #    where the objective cannot see it.  Definition taken from
+    #    src/grotto/model.py's realised-salience proxy: within a hue family,
+    #    higher declared salience carries >= normalised chroma.
+    from grotto.color import max_chroma
+
+    roles_spec = problem.roles_spec
+    fams: dict[str, list[str]] = {}
+    for r in problem.chromatic:
+        fams.setdefault(roles_spec.roles[r].family, []).append(r)
+    for fam, members in sorted(fams.items()):
+        if len(members) < 2:
+            continue
+        sr = sorted(members, key=lambda r: roles_spec.roles[r].salience)
+        for lo, hi in zip(sr, sr[1:]):
+            if roles_spec.roles[lo].salience == roles_spec.roles[hi].salience:
+                continue  # tied levels impose no ordering
+            def normc(role: str) -> float:
+                L, C, h = hex_to_oklch(hexes[role])
+                mc = max_chroma(L, h, "srgb")
+                return (C / mc) if mc > 1e-9 else 0.0
+
+            if normc(lo) - normc(hi) > SAL_RANK_TOL:
+                problems.append(
+                    f"{name}: salience reversal in family {fam} -- "
+                    f"{lo}(sal {roles_spec.roles[lo].salience}) "
+                    f"normC {normc(lo):.4f} > "
+                    f"{hi}(sal {roles_spec.roles[hi].salience}) "
+                    f"normC {normc(hi):.4f}"
+                )
 
     return problems
 
