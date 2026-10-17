@@ -702,8 +702,14 @@ def main() -> None:
              "same-family-repairs": len(sf),
              "salience-repairs": len([e for e in sal if e["repaired"]])},
         )
+        # Two metric blocks on purpose: `score` is this session's soft
+        # objective, `metrics` is the middle-frontier report block the shared
+        # renderer expects, so the preview page is directly comparable with
+        # out/middle-night and out/numeric-night.
         entries.append({"label": name, "state": state, "hexes": hexes,
-                        "metrics": sc, "source_name": path.name,
+                        "score": sc,
+                        "metrics": mp.middle_palette_metrics(problem, hexes),
+                        "source_name": path.name,
                         "kind": f"soft ({r['kind']} restart)"})
         print(
             f"[palette] {name}: utility={sc['utility']:.4f} sep={sc['sep']:.4f} "
@@ -711,12 +717,43 @@ def main() -> None:
             f"atTarget={sc['at_target']}/{sc['terms']}"
         )
 
-    # The committed candidate-b Night palette, scored on the same instrument,
-    # so every run reports its own reference point.
     base_path = REPO / "themes/candidates" / np_.SCAFFOLD_SOURCE
     base = sm.score(base_path)
-    m01_path = REPO / "out/middle-night/middle-m01.night.yaml"
-    n01_path = REPO / "out/numeric-night/numeric-n01.night.yaml"
+    # Comparison entries for the preview page: the committed candidate-b Night
+    # palette first, then the picks, then the rejected numeric frontier last --
+    # the same ordering middle_palette.py uses, so the three pages read alike.
+    base_hexes = shipped_hexes(problem, problem.baseline_lch)
+    entries.insert(
+        0,
+        {"label": "candidate-b-balanced", "kind": "committed candidate (baseline)",
+         "hexes": base_hexes, "score": sm.score(base_path),
+         "metrics": mp.middle_palette_metrics(problem, base_hexes),
+         "source_name": np_.SCAFFOLD_SOURCE, "state": problem.baseline_lch},
+    )
+    for ref_path, ref_label in (
+        (REPO / "out/middle-night/middle-m01.night.yaml", "middle-m01"),
+        (REPO / "out/numeric-night/numeric-n01.night.yaml", "numeric-n01"),
+    ):
+        if ref_path.exists():
+            ref_colors = {r: str(v) for r, v in _P.from_yaml(ref_path).colors.items()}
+            ref_hexes = {r: ref_colors[r] for r in problem.present if r in ref_colors}
+            entries.append(
+                {"label": ref_label, "kind": "frontier reference",
+                 "hexes": ref_hexes, "score": sm.score(ref_path),
+                 "metrics": mp.middle_palette_metrics(problem, ref_hexes),
+                 "source_name": ref_path.name, "state": None}
+            )
+
+    # Installable preview: the deliverable.  A palette nobody can look at is
+    # not finished, and every conclusion in this session rests on appearance
+    # judgements the owner has to make in a real editor.
+    mp.write_variants_html(out / "variants.html", problem, entries)
+    mp.write_vscode_extension(
+        out / "vscode-preview", problem,
+        [{"label": e["label"], "hexes": e["hexes"], "source_name": e["source_name"],
+          "sha": "soft-exploration"} for e in entries if e["label"].startswith("soft-")],
+        k=3, install=not args.no_install,
+    )
 
     metrics = {
         "schema": "grotto.soft-night",
@@ -749,14 +786,13 @@ def main() -> None:
         f"sep={base['sep']:.4f} emph={base['emph']:.4f} "
         f"worst={base['worst_margin']:.4f} wcag_violations={base['wcag_violations']}"
     )
-    for ref in (m01_path, n01_path):
-        if ref.exists():
-            r = sm.score(ref)
-            print(
-                f"[reference] {ref.name}: utility={r['utility']:.4f} "
-                f"sep={r['sep']:.4f} emph={r['emph']:.4f} "
-                f"worst={r['worst_margin']:.4f}"
-            )
+    for e in entries[2:]:
+        r = e["score"]
+        print(
+            f"[reference] {e['label']}: utility={r['utility']:.4f} "
+            f"sep={r['sep']:.4f} emph={r['emph']:.4f} "
+            f"worst={r['worst_margin']:.4f}"
+        )
     print(f"[done] {time.monotonic() - t0:.1f}s total; artifacts in {out}")
 
 
