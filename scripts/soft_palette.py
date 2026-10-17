@@ -63,6 +63,7 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts"))
 
 from grotto.color import hex_to_oklch, oklch_to_hex  # noqa: E402
+from grotto.spec import Palette  # noqa: E402
 
 import numeric_palette as np_  # noqa: E402
 import middle_palette as mp  # noqa: E402
@@ -608,6 +609,57 @@ def enforce_salience_rank(problem: SoftProblem, state: dict) -> list[dict]:
     return report
 
 
+def finalize(problem: SoftProblem, state: dict, out: Path) -> dict | None:
+    """Run every hard output constraint over a refined palette, to a fixed point.
+
+    Returns ``{state, hexes, score}`` for a palette that satisfies every gate,
+    or ``None`` when a constraint could not be met -- the caller reports that
+    rather than emitting a palette that fails its own gate afterwards.
+
+    The constraints here are REPAIRS, not filters: they move colours, so the
+    result can score worse than its input.  That is why selection happens on
+    this function's output and not on the ascent's.
+    """
+    state = mp.place_unconstrained_fenced(problem, dict(state))
+    # Repairs interact: nudging a surface to restore a WCAG floor changes its
+    # lightness, which changes max_chroma(L, h), which changes its normalised
+    # chroma and re-opens a salience pair the previous repair had just fixed.
+    # Running the sequence repeatedly is what makes the emitted palette
+    # satisfy every hard output constraint at once.
+    sf = sal = bad = []
+    for _ in range(POST_ROUNDS):
+        sf = mp.enforce_same_family_min(problem, state)
+        sal = enforce_salience_rank(problem, state)
+        bad = repair_wcag(problem, state)
+        if not bad and not sal and not _sf_unrepaired(sf):
+            break
+    if bad:
+        return {"error": f"WCAG unrepairable: {bad}"}
+    if _sf_unrepaired(sf):
+        return {"error": f"same_family unrepairable: {_sf_unrepaired(sf)}"}
+    unrepaired = [e for e in sal if not e["repaired"]]
+    if unrepaired:
+        return {"error": f"salience rank unrepairable: {unrepaired}"}
+    left = salience_violations(problem, shipped_hexes(problem, state))
+    if left:
+        return {"error": f"repairs did not converge: {left}"}
+    hexes = shipped_hexes(problem, state)
+    fences = problem.fence_audit(hexes) + problem.fence_audit_state(state)
+    if fences:
+        return {"error": f"left the fences: {fences}"}
+    # The written file must reproduce exactly the colours everything else
+    # agreed on.  If it does not, refuse to emit rather than ship a palette
+    # that fails its own gate after the fact.
+    probe = out / ".verify.night.yaml"
+    mp.write_palette_yaml(probe, "verify", state, problem, 0, {})
+    reread = {r: str(v) for r, v in Palette.from_yaml(probe).colors.items()}
+    drift = [r for r in problem.chromatic if reread[r] != hexes[r]]
+    probe.unlink()
+    if drift:
+        return {"error": f"written palette drifts from the shipped hexes: {drift}"}
+    return {"state": state, "hexes": hexes, "score": problem.state_score(state)}
+
+
 # ===========================================================================
 # Driver
 # ===========================================================================
@@ -622,6 +674,8 @@ def main() -> None:
     ap.add_argument("--samples", type=int, default=8)
     ap.add_argument("--refine-passes", type=int, default=12)
     ap.add_argument("--n-palettes", type=int, default=1)
+    ap.add_argument("--select", type=int, default=3,
+                    help="candidates to post-process before picking the best final one")
     ap.add_argument("--out", default="out/soft-night")
     ap.add_argument("--no-install", action="store_true")
     args = ap.parse_args()
@@ -647,60 +701,46 @@ def main() -> None:
         f"best utility={results[0]['utility']:.4f}"
     )
 
-    picked = np_.diverse_pick(results, args.n_palettes, min_mean_dh=15.0)
-    entries = []
-    for i, r in enumerate(picked, 1):
-        state = mp.place_unconstrained_fenced(problem, dict(r["state"]))
-        # Repairs are run to a FIXED POINT, not once each.  They interact:
-        # nudging a surface to restore a WCAG floor changes its lightness,
-        # which changes max_chroma(L, h), which changes its normalised chroma
-        # and can re-open a salience pair the previous repair had just fixed.
-        # Running the sequence repeatedly is what makes the emitted palette
-        # satisfy every hard output constraint at once.
-        sf_all: list[dict] = []
-        sal_all: list[dict] = []
-        for _ in range(POST_ROUNDS):
-            sf = mp.enforce_same_family_min(problem, state)
-            sal = enforce_salience_rank(problem, state)
-            bad = repair_wcag(problem, state)
-            sf_all, sal_all = sf, sal
-            if not bad and not sal and not _sf_unrepaired(sf):
-                break
-        assert not bad, f"WCAG unrepairable on the shipped hexes: {bad}"
-        assert not _sf_unrepaired(sf_all), f"same_family unrepairable: {_sf_unrepaired(sf_all)}"
-        assert not [e for e in sal_all if not e["repaired"]], (
-            f"salience rank unrepairable: {[e for e in sal_all if not e['repaired']]}"
-        )
-        assert not salience_violations(problem, shipped_hexes(problem, state)), (
-            "repairs did not converge: "
-            f"{salience_violations(problem, shipped_hexes(problem, state))}"
-        )
-        sf, sal = sf_all, sal_all
-        hexes = shipped_hexes(problem, state)
-        fences = problem.fence_audit(hexes) + problem.fence_audit_state(state)
-        assert not fences, f"left the fences: {fences}"
-        name = f"soft-s{i:02d}"
-        # The written file must reproduce exactly the colours everything else
-        # agreed on.  If it does not, the search refuses to emit rather than
-        # shipping a palette that fails its own gate after the fact.
-        probe = out / f".verify-{name}.night.yaml"
-        mp.write_palette_yaml(probe, name, state, problem, args.seed, {})
-        from grotto.spec import Palette as _P
+    # ---- selection on the FINAL palette, not the pre-repair one ----------
+    # The hard output constraints are REPAIRS, not filters: they move colours
+    # after the ascent has finished.  A repair can REORDER candidates.
+    # Measured at the full budget: the best pre-repair candidate (utility
+    # 0.9479) finished post-repair at 0.9360, while a slightly worse starting
+    # point finished at 0.9365.  Ranking on the pre-repair score therefore
+    # picks the wrong palette -- so post-process the strongest few candidates
+    # and keep the best result of the WHOLE pipeline.
+    shortlist = np_.diverse_pick(results, args.select, min_mean_dh=15.0)
+    print(f"[select] post-processing {len(shortlist)} candidate(s); keeping the best "
+          f"FINAL utility, not the best pre-repair one")
+    finished = []
+    for r in shortlist:
+        done = finalize(problem, dict(r["state"]), out)
+        if "error" in done:
+            # Reported, never silent: a dropped candidate is information about
+            # where the repairs cannot reach, not a rounding error to hide.
+            print(f"[select]   {r['kind']}: dropped -- {done['error']}")
+            continue
+        finished.append({"state": done["state"], "hexes": done["hexes"],
+                         "score": done["score"], "kind": r["kind"],
+                         "pre": r["utility"]})
+        print(f"[select]   {r['kind']}: pre-repair {r['utility']:.4f} "
+              f"-> final {done['score']['utility']:.4f}")
+    if not finished:
+        raise SystemExit("no candidate survived post-processing")
+    finished.sort(key=lambda d: -d["score"]["utility"])
 
-        reread = {r: str(v) for r, v in _P.from_yaml(probe).colors.items()}
-        drift = [r for r in problem.chromatic if reread[r] != hexes[r]]
-        probe.unlink()
-        assert not drift, f"written palette drifts from the shipped hexes: {drift}"
-        sc = problem.state_score(state)
+    entries = []
+    for i, d in enumerate(finished[: args.n_palettes], 1):
+        state, hexes, sc = d["state"], d["hexes"], d["score"]
+        name = f"soft-s{i:02d}"
         path = out / f"{name}.night.yaml"
         mp.write_palette_yaml(
             path, name, state, problem, args.seed,
-            {"restart-kind": r["kind"], "utility": round(sc["utility"], 5),
+            {"restart-kind": d["kind"], "utility": round(sc["utility"], 5),
              "sep": round(sc["sep"], 5), "emphasis": round(sc["emph"], 5),
              "worst-margin": round(sc["worst_margin"], 5),
              "at-target": sc["at_target"],
-             "same-family-repairs": len(sf),
-             "salience-repairs": len([e for e in sal if e["repaired"]])},
+             "pre-repair-utility": round(d["pre"], 5)},
         )
         # Two metric blocks on purpose: `score` is this session's soft
         # objective, `metrics` is the middle-frontier report block the shared
@@ -710,7 +750,7 @@ def main() -> None:
                         "score": sc,
                         "metrics": mp.middle_palette_metrics(problem, hexes),
                         "source_name": path.name,
-                        "kind": f"soft ({r['kind']} restart)"})
+                        "kind": f"soft ({d['kind']} restart)"})
         print(
             f"[palette] {name}: utility={sc['utility']:.4f} sep={sc['sep']:.4f} "
             f"emph={sc['emph']:.4f} worst={sc['worst_margin']:.4f} "
@@ -735,7 +775,7 @@ def main() -> None:
         (REPO / "out/numeric-night/numeric-n01.night.yaml", "numeric-n01"),
     ):
         if ref_path.exists():
-            ref_colors = {r: str(v) for r, v in _P.from_yaml(ref_path).colors.items()}
+            ref_colors = {r: str(v) for r, v in Palette.from_yaml(ref_path).colors.items()}
             ref_hexes = {r: ref_colors[r] for r in problem.present if r in ref_colors}
             entries.append(
                 {"label": ref_label, "kind": "frontier reference",
