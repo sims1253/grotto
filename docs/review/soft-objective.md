@@ -69,8 +69,14 @@ the penalty starts pulling; below it, no palette could be produced at all.
 | candidate-c expressive night | 0.8022 | 0.1978 | 0.0271 | 0.000 | 12 |
 | fig-vivid night (PR #2 draft) | ~0.79 | 0.190 | 0.059 | 0.000 | 1 |
 | middle-m01 night | 0.9361 | 0.0592 | 0.0456 | 0.282 | 0 |
-| **soft-s01 night (this work)** | **0.9365** | 0.0635 | 0.0405 | 0.132 | 0 |
+| **soft-s01 night (this work)** | **0.9392** | 0.0608 | 0.0426 | 0.215 | 0 |
 | numeric-n01 night (**rejected**) | 0.6605 | 0.0228 | 0.0857 | 0.507 | 0 |
+
+Note what the shipped palette is *not* doing: its worst pair (0.215) is still
+below the middle frontier's (0.282) while its mean shortfall is no worse and
+its loudness is lower. The shortfall objective spends its budget evenly across
+all 162 terms instead of protecting one pair — which is the behaviour the
+proposal asked for and the reason `worst` alone is the wrong number to report.
 
 The load-bearing row is the last one. The rejected numeric frontier has the
 **best** separation of anything ever produced in this repository and the
@@ -329,10 +335,21 @@ does not encode.
 
 ```bash
 uv run python scripts/soft_palette.py --restarts 24 --samples 16 \
-    --refine-passes 30 --out out/soft-night          # the deliverable
+    --refine-passes 30 --select 6 --out out/soft-night   # the deliverable
 uv run python scripts/soft_metric.py out/soft-night/*.night.yaml   # score it
 uv run python scripts/soft_gate.py out/soft-night     # hard gates
 ```
+
+The shipped `out/soft-night/soft-s01.night.yaml` is the run recorded at seed
+20260817: **utility 0.9392**, emphasis 0.0426, zero WCAG violations, zero
+salience reversals, zero fence violations, all 162 terms scored.
+
+One honest wart: the `free` restart kind is dropped on some seeds because the
+salience repairs do not converge on the `rose` family — `breakpoint`
+(salience 5), `error` (6) and `diff_removed` (3) are three levels in one hue
+family, all needing monotone normalised chroma, inside fences authored for a
+different purpose. That is the repair's weak point and it is reported per
+candidate rather than silently swallowed.
 
 Deterministic and byte-stable for a fixed seed; `--seed` reproduces any
 individual palette. The benchmark used during the search lives in

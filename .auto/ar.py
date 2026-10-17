@@ -156,18 +156,23 @@ def main() -> None:
             print("no runs yet")
             return
         c, imp, noise = confidence(log)
-        best = max((e for e in log if metric_of(e) is not None),
-                   key=lambda e: metric_of(e), default=None)
+        best = max(
+            (e for e in log
+             if metric_of(e) is not None and e["status"] == "keep"
+             and (e.get("asi") or {}).get("instrument_change") is None),
+            key=lambda e: metric_of(e), default=None,
+        )
         print(f"runs {len(log)}  kept {sum(1 for e in log if e['status']=='keep')}"
               f"  discarded {sum(1 for e in log if e['status']!='keep')}")
         if best:
             print(f"best utility {metric_of(best):.4f} (run {best['n']}) {best['description']}")
         print(f"gain {imp:+.4f}  noise floor {noise:.5f}  confidence {c:.1f}x")
-        print("\nrecent:")
+        print("\nrecent:  (* = instrument changed; excluded from gain/best)")
         for e in log[-12:]:
             m = metric_of(e)
             ms = f"{m:.4f}" if m is not None else "  -  "
-            print(f"  {e['n']:>3} {e['status']:<14} {ms}  {e['description'][:70]}")
+            flag = "*" if (e.get("asi") or {}).get("instrument_change") else " "
+            print(f" {flag}{e['n']:>3} {e['status']:<14} {ms}  {e['description'][:68]}")
         return
 
     if cmd == "show":
