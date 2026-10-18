@@ -144,10 +144,21 @@ excuse is hollow.
 
 This is the load-bearing result. The previous session established that the
 remaining separation gap is not reachable by better search, and attributed it to
-the fences. **Half of it is not reachable by any palette at all**, because the
-thing that is supposed to carry it does not exist in the editor. No search will
-find a `selection` border, and no amount of lightness separates two borders by
-shape.
+the fences. The obvious next question is whether it is reachable by *any*
+palette at all — and the answer, measured in §9, is **yes**.
+
+So the channel claim and the palette claim have to be kept apart:
+
+* **The channel claim stands.** VS Code has no selectable selection border, and
+  two borders of different colour are still two borders. Whatever carries these
+  two pairs, it is not what D-3 says carries them.
+* **The palette claim was too strong.** A valid lightness seating of all seven
+  surfaces exists on 0.21 of the OKLab L axis (§9). The palette does not take it
+  because the spec tells it these pairs are already covered — so the search
+  spends that lightness on salience and emphasis instead.
+
+That is a sharper failure than "the palette cannot do it". It is a **spec bug
+producing a palette defect**: an excused pair is an unpurchased one.
 
 ---
 
@@ -175,12 +186,13 @@ channel is not merely non-independent, it is *diagnostic* of the problem.
   DESIGN.md as a side effect of a measurement. §7 proposes the amendment; it is
   not applied. `tests/test_channels.py` asserts the current behaviour so the
   change cannot happen by accident.
-- **It does not claim the two pairs are unfixable.** They are fixable *at the
-  mapping layer*, which is the point: a selection border that VS Code does not
-  support cannot be added by us, but `search_match` vs `search_match_current`
-  could in principle be given genuinely different shapes (border vs
-  border-plus-underline), and that is an editor-capability question, not a
-  palette question.
+- **It does not claim the two pairs are unfixable.** They are fixable two ways,
+  and §8 measures the second. At the mapping layer: a selection border that VS
+  Code does not support cannot be added by us, but `search_match` vs
+  `search_match_current` could in principle be given genuinely different shapes
+  (border vs border-plus-underline) — an editor-capability question. At the
+  palette layer: the surfaces *are* separable on lightness, and the fence is
+  ~1.6× tighter than the requirement. Neither is applied here.
 - **It does not re-litigate the previous session's ranking.** The salience-rank
   gate, the shortfall objective and the saturation evidence are untouched. The
   audit is orthogonal: it runs on all four palettes and returns the same two
@@ -200,13 +212,14 @@ Two options, both owner decisions, neither taken here.
 **Option A — make the test pair-scoped.** Replace `_has_redundancy` with
 `grotto.channels.judge`, so a CVD failure is a warning only when a delivered
 channel puts different marks on the two roles. Cost: these two pairs become
-errors on **every** palette, including all three committed candidates. That is
-probably the correct outcome — they *are* unresolvable at the palette layer —
-but it makes the current gate unpassable, so it needs a matching decision about
-what a passing theme looks like. The honest version of Option A pairs the
-tightened test with a *mapping-layer* obligation the gate can check: "a pair
-that no palette can resolve must be carried by a channel the adapter verifies
-it emits."
+errors on **every** palette, including all three committed candidates. §8 prices
+what that actually demands: the worst surface moves **0.0985** OKLab L against a
+declared fence of **±0.06**. So Option A is not merely a re-labelling — it makes
+the fence the binding constraint and says so, which is the argument for widening
+it by roughly 1.6× on the surface roles. The honest version of Option A pairs the
+tightened test with a *mapping-layer* obligation the gate can check: "a pair that
+no palette can resolve must be carried by a channel the adapter verifies it
+emits."
 
 **Option B — close the two declarations and re-state the obligation.**
 `active_line` currently declares **no** channels at all (`cvd_priority: low`)
@@ -221,12 +234,87 @@ in a report. Option A is the one that would have caught this earlier.
 
 ---
 
-## 8. Reproducing
+## 8. Is the gap reachable by any palette? (the measurement §4 defers to)
+
+`docs/review/soft-objective.md` §7 flagged Earendil's system theme as prior art:
+solve contrast *backwards* — given a background and a required ratio, derive the
+lightness — instead of searching for colours and scoring them afterwards.
+`contrast.solve_lightness` is that inverse, and `scripts/contrast_solve.py`
+asks the fair question: could it have produced this theme?
+
+**Part 1 — can a contrast requirement express these shortfalls at all?**
+
+**No. Zero of sixteen.** A contrast target says *"this ink must read on that
+surface"*. Every one of the sixteen CVD shortfalls is a **peer** obligation —
+two surfaces that must differ from each other, or two inks that must differ from
+each other — and neither is a readability constraint against a background.
+Classifying by `paint`:
+
+| type | count | example |
+|---|---:|---|
+| readability-typed (ink on a surface) | **0** | — |
+| peer-typed (surface/surface, ink/ink) | **16** | `selection` / `active_line` |
+
+This is worth stating plainly because it is the most transferable result here:
+the inverse-contrast approach and this shortfall list do not intersect. Solving
+contrast backwards would have produced a perfectly readable palette and left
+every one of these pairs exactly where it was.
+
+**Part 2 — is the surface cluster separable on lightness anyway?**
+
+Holding hue and chroma fixed, the requirement `sqrt(dL² + rest²) ≥ limit`
+rearranges to a minimum lightness gap per pair, and seating 7 surfaces under 11
+pairwise minimums on a line is solvable exactly — enumerate the orderings, place
+each surface as early as its constraints allow. Not a sample: exact, at n! = 5040.
+
+| | normal vision | deutan @ 1.0 |
+|---|---:|---:|
+| constrained surface pairs | 11 | 11 |
+| required lightness gap | 0.052 – 0.126 | 0.084 – 0.130 |
+| tightest seating (exact) | **0.2065** of the axis | **0.3200** of the axis |
+| total OKLab L moved, least-movement seating | 0.4421 | 0.6065 |
+| worst single surface | 0.0985 | 0.2075 |
+| readability cost | none | `diff_added` → 4.06:1 |
+
+**Feasible, with roughly 0.68 of the axis to spare.** The surfaces are close
+together and the required gaps are small; nothing about the problem is
+over-constrained.
+
+So the conclusion of §4 sharpens rather than reverses:
+
+* The **channel** claim stands. VS Code has no selectable selection border, and
+  two borders of different colour are still two borders. Whatever carries these
+  two pairs is not what D-3 says carries them.
+* The **palette** claim was too strong. A valid lightness seating exists. The
+  palette does not take it because the spec tells it these pairs are already
+  covered — so the search spends that lightness on salience and emphasis.
+
+That is a **spec bug producing a palette defect**: an excused pair is an
+unpurchased one. And it puts a number on §7's Option A — the worst single
+surface has to move **0.0985** against a declared fence of **±0.06**, so the
+fence is roughly 1.6× too tight for the requirement it is protecting.
+
+### An earlier version of this section was wrong
+
+The first implementation computed a *lower bound* via longest-path relaxation
+over the constraint graph and reported the cluster as provably infeasible
+(2.33 on a 1.0 axis). That graph has cycles, so a longest-path relaxation over
+it is unbounded and the number was meaningless. The exact enumeration above
+replaces it. Recording this because a bound that inflates without limit looks
+exactly like a proof, and it was not one.
+
+---
+
+## 9. Reproducing
 
 ```bash
 uv run python scripts/channel_audit.py out/soft-night/soft-s01.night.yaml
-uv run pytest tests/test_channels.py -q
+uv run python scripts/contrast_solve.py out/soft-night/soft-s01.night.yaml
+uv run python scripts/soft_preview.py out/soft-night out/soft-night/soft-s01.night.yaml
+uv run pytest tests/test_channels.py tests/test_contrast_solve.py -q
 ```
 
-17 tests. The vocabulary tests are the ones that matter long-term: they are what
-stops "VS Code draws a squiggle" from becoming folklore.
+`scripts/soft_preview.py` renders the sheet as authored and under deutan; the
+lower half is the surface cluster, which is the region this document is about.
+The vocabulary tests in `test_channels.py` are the ones that matter long-term:
+they are what stops "VS Code draws a squiggle" from becoming folklore.
