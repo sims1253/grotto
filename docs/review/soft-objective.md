@@ -331,6 +331,14 @@ That is the next piece of work, and it is not an optimisation: it is the
 verification that the mapping delivers the channel the palette deliberately
 does not encode.
 
+**Done — see [redundant-channel-audit.md](redundant-channel-audit.md).** The
+verification is run and the answer is no, for two pairs. `selection`/
+`active_line` and `search_match`/`search_match_current` are warned about today
+on channels that do not discriminate them: VS Code has no selectable selection
+border, and two borders of different colour are still two borders. Both pairs
+are unresolvable at the palette layer in *every* palette in the repository, so
+half the gap named above was never a search problem at all.
+
 ## 9. Reproducing
 
 ```bash

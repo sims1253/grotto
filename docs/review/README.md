@@ -142,6 +142,18 @@ These are population-average simulations, not an individual vision assessment.
 Night's foreground contrast also stays about 10:1 across these options. Warmer
 hues alone do not demonstrate lower glare, comfort, or less light exposure.
 
+That paragraph is a design position, and it is right. It is also, as written,
+only checkable by eye. The [redundant-channel audit](redundant-channel-audit.md)
+turns it into a measurement: of the sixteen `must_distinguish` pairs that fall
+short of the CVD threshold on the current Night palette, fourteen are genuinely
+carried by a channel a user can see (gutter signs, squiggle styles, a ring), and
+**two are excused by a channel that does not discriminate them** —
+`selection`/`active_line`, where VS Code has no selectable selection border, and
+`search_match`/`search_match_current`, where two borders of different colour are
+still two borders. Those two are unresolvable at the palette layer in every
+palette in the repository. The audit does not change any gate; it reports which
+excuses hold.
+
 ## Rebuild the authoring layer, not the project
 
 The useful parts already work independently of the generator:
