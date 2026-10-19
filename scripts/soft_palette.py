@@ -176,6 +176,8 @@ SCAFFOLD_L_OVERRIDES = {"fg_muted": 0.585, "line_number": 0.585, "ui_inactive": 
 #: also passes the middle audit.
 SOFT_HUE_WINDOWS = {
     "diff_added": ((120.0, 160.0),),
+    # same_family with diff_added (spec/distance-matrix.yaml): one green.
+    "success": ((120.0, 160.0),),
     "diff_removed": ((10.0, 40.0),),
 }
 
