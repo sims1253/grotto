@@ -30,6 +30,15 @@ mp = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(mp)
 np = mp.np  # the reused numeric_palette machinery, as the script sees it
 
+#: The soft-objective search reuses middle_palette's writer.  Load it the same
+#: way so the provenance test can assert against the real constant rather than
+#: a copy of it.
+_sp_spec = importlib.util.spec_from_file_location(
+    "soft_palette", REPO / "scripts/soft_palette.py"
+)
+sp = importlib.util.module_from_spec(_sp_spec)
+_sp_spec.loader.exec_module(sp)
+
 from grotto.color import hex_to_oklch, max_chroma, oklch_to_hex
 from grotto.spec import Palette
 
@@ -215,3 +224,35 @@ def test_written_yaml_is_loadable_non_candidate_palette(tmp_path):
     out2 = tmp_path / "middle-test-2.night.yaml"
     mp.write_palette_yaml(out2, "middle-test", state, problem, 7, {"j": 0.0})
     assert out.read_bytes() == out2.read_bytes()
+
+
+def test_provenance_override_names_the_real_generator(tmp_path):
+    """A shipped artifact must not claim a generator or objective it lacks.
+
+    soft_palette.py reuses this writer but optimises a shortfall + emphasis
+    budget, not the max-min margin. Provenance is a first-class honesty
+    mechanism here, so the override has to reach the header, `source`, the
+    note, `meta.generated` and `meta.objective` -- not just one of them.
+    """
+    problem = _problem()
+    # scaffold-only is enough: this test is about the header, not the colours
+    state: dict = {}
+    default = tmp_path / "default.yaml"
+    override = tmp_path / "override.yaml"
+
+    mp.write_palette_yaml(default, "t", state, problem, 1, {})
+    mp.write_palette_yaml(
+        override, "t", state, problem, 1, {},
+        provenance=sp.SOFT_PROVENANCE,
+    )
+
+    d, o = default.read_text(), override.read_text()
+    assert "middle_palette.py" in d and "middle-optimizer" in d
+    assert "soft_palette.py" in o, "header must name the real generator"
+    assert "source: soft-objective" in o
+    assert "generated: soft-objective" in o
+    # the objective string must describe the shortfall objective, not max-min
+    assert "min(dE/0.13" not in o, "must not claim the max-min objective"
+    assert "shortfall" in o.lower() or "max(0" in o
+    # and the default is untouched by the existence of the parameter
+    assert d == default.read_text()

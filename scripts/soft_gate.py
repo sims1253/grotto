@@ -39,9 +39,22 @@ import middle_palette as mp  # noqa: E402
 import soft_metric as sm  # noqa: E402
 
 #: DESIGN.md section 6, enforced in spec/environments.yaml: salience_budget.
-#: Read, never edited.
-SAL_BUDGET_3 = 0.22
-SAL_BUDGET_5 = 0.01
+#: Read, never edited -- this gate's whole job is to be the non-negotiable
+#: backpressure, so a hardcoded copy here could silently diverge from the spec
+#: and stop pressuring anything.  Loaded from the spec, with the literal values
+#: kept only as a fallback for running this file outside the repo.
+def _salience_budgets() -> tuple[float, float]:
+    try:
+        from grotto.environments import Environments
+
+        budget = Environments.load(REPO / "spec/environments.yaml").salience_budget
+        return (float(budget["max_fraction_at_or_above_3"]),
+                float(budget["max_fraction_at_or_above_5"]))
+    except Exception:  # noqa: BLE001 - a research script must still run standalone
+        return (0.22, 0.01)
+
+
+SAL_BUDGET_3, SAL_BUDGET_5 = _salience_budgets()
 
 #: DESIGN.md hard conflict O4-vs-O2 states the channel explicitly: "chroma is
 #: a salience channel", and the project's own realised-salience proxy

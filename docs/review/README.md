@@ -145,14 +145,15 @@ hues alone do not demonstrate lower glare, comfort, or less light exposure.
 That paragraph is a design position, and it is right. It is also, as written,
 only checkable by eye. The [redundant-channel audit](redundant-channel-audit.md)
 turns it into a measurement: of the sixteen `must_distinguish` pairs that fall
-short of the CVD threshold on the current Night palette, fourteen are genuinely
-carried by a channel a user can see (gutter signs, squiggle styles, a ring), and
-**two are excused by a channel that does not discriminate them** —
-`selection`/`active_line`, where VS Code has no selectable selection border, and
-`search_match`/`search_match_current`, where two borders of different colour are
-still two borders. Those two are unresolvable at the palette layer in every
-palette in the repository. The audit does not change any gate; it reports which
-excuses hold.
+short of the CVD threshold on the current Night palette, thirteen are genuinely
+carried by a channel a user can see (diff gutter signs, an underline, a ring),
+and **three are excused by a channel that does not discriminate them** —
+`error`/`warning`, where VS Code renders both as the same `4px double`
+underline, `selection`/`active_line`, where VS Code has no selectable selection
+border, and `search_match`/`search_match_current`, where two borders of
+different colour are still two borders. All three appear in every palette in
+the repository. The audit does not change any gate; it reports which excuses
+hold.
 
 ## Rebuild the authoring layer, not the project
 

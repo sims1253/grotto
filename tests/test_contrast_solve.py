@@ -88,6 +88,24 @@ def test_solve_respects_the_requested_polarity():
     assert not away.reachable
 
 
+@pytest.mark.parametrize("bg,prefer", [(DARK_BG, "lighter"), ("#e8e6e1", "darker")])
+@pytest.mark.parametrize("target", [3.0, 4.5, 7.0])
+def test_both_polarities_actually_hit_the_target(bg, prefer, target):
+    """Reachability is not the same as correctness.
+
+    The darker polarity was seeded with an inverted bisection bracket: it still
+    terminated and still reported reachable=True, but returned a colour that
+    missed the target.  Asserting the ACHIEVED contrast on both polarities is
+    what catches that; asserting `reachable` alone does not.
+    """
+    r = solve_lightness(bg, target, prefer=prefer, model="wcag")
+    assert r.reachable, f"{prefer} {target} reported unreachable"
+    assert wcag_contrast(r.hex, bg) == pytest.approx(target, rel=0.02), (
+        f"{prefer} polarity returned {wcag_contrast(r.hex, bg):.3f} for a "
+        f"{target} target"
+    )
+
+
 def test_unknown_model_is_rejected():
     with pytest.raises(ValueError, match="unknown contrast model"):
         solve_lightness(DARK_BG, 4.5, model="nope")

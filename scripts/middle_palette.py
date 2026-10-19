@@ -849,28 +849,51 @@ YAML_HEADER = """\
 
 def write_palette_yaml(
     path: Path, name: str, state: dict, problem: MiddleProblem, seed: int,
-    extra_meta: dict,
+    extra_meta: dict, *, provenance: dict | None = None,
 ) -> None:
-    lines = [YAML_HEADER]
+    """Write the palette YAML, with an optional provenance override.
+
+    ``provenance`` lets a caller that reuses this writer but runs a DIFFERENT
+    objective -- soft_palette.py optimises a shortfall + emphasis budget, not
+    the max-min margin -- name itself honestly.  Provenance is a first-class
+    honesty mechanism in this repository, so a shipped artifact must not claim a
+    generator and an objective it did not come from.
+
+    The default reproduces this module's own output byte-for-byte; its committed
+    artifacts are byte-compared by tests.
+    """
+    prov = {
+        "header": YAML_HEADER,
+        "source": "middle-optimizer",
+        "note_lines": [
+            "  NON-CANDIDATE middle exploration. Numeric objective, taste fences:",
+            "  hue windows, L +/-0.04 ink / +/-0.06 surface, chroma caps 0.12/0.16/0.10",
+            "  and 70% of the sRGB gamut edge, WCAG floors vs every co-occurring",
+            "  surface. NOT a candidate; promotion is a human decision.",
+        ],
+        "objective": ("'min(dE/0.13 must-normal, dE/0.09 must-CVD, "
+                      "2.0*dE/0.08 should, dE/0.03 anti-collapse)'"),
+        "fences": "hue-windows+L-deltas+chroma-caps+0.70-gamut (see scripts/middle_palette.py)",
+    }
+    prov.update(provenance or {})
+
+    lines = [prov["header"]]
     lines += [
         f"name: {name}",
         "variant: night",
         "format: oklch",
         "candidate: false",
-        "source: middle-optimizer",
+        f"source: {prov['source']}",
         f"seed: {seed}",
         "note: >",
-        "  NON-CANDIDATE middle exploration. Numeric objective, taste fences:",
-        "  hue windows, L +/-0.04 ink / +/-0.06 surface, chroma caps 0.12/0.16/0.10",
-        "  and 70% of the sRGB gamut edge, WCAG floors vs every co-occurring",
-        "  surface. NOT a candidate; promotion is a human decision.",
+        *prov["note_lines"],
         "meta:",
         "  candidate: false",
-        "  generated: middle-optimizer",
+        f"  generated: {prov['source']}",
         f"  seed: {seed}",
-        "  objective: 'min(dE/0.13 must-normal, dE/0.09 must-CVD, 2.0*dE/0.08 should, dE/0.03 anti-collapse)'",
+        f"  objective: {prov['objective']}",
         f"  scaffold: {np.SCAFFOLD_SOURCE}",
-        "  fences: hue-windows+L-deltas+chroma-caps+0.70-gamut (see scripts/middle_palette.py)",
+        f"  fences: {prov['fences']}",
     ]
     for k, v in sorted(extra_meta.items()):
         lines.append(f"  {k}: {v}")

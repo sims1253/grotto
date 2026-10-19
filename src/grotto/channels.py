@@ -21,15 +21,21 @@ CVD, which declared channel -- if any -- actually covers that pair?  The answer
 is what tells the palette author where the remaining separation gap lives.
 
 Vocabulary, not inference.  The marks below are facts about what an editor
-*draws*, not about what a palette scores: VS Code renders the wavy squiggle,
-the ``+``/``-`` gutter signs and the gutter glyphs from the severity and the
-diff, not from theme colours.  ``spec/mappings/vscode.yaml`` cannot tell you
-this, which is why the mapping's own prose block has to -- and why this table
-is asserted against ``roles.yaml`` in the tests instead of being derived.
+*draws*, not about what a palette scores: VS Code renders the squiggle, the
+``+``/``-`` gutter signs and the gutter glyphs from the severity and the diff,
+not from theme colours.  The mapping half of ``spec/mappings/vscode.yaml`` can
+tell you *which* colour id a role is bound to, and the stylesheet keys its marks
+on exactly that id -- so the squiggle marks are derived from the mapping, while
+the gutter vocabulary is asserted here and covered by tests.  Deriving the
+squiggle is deliberate: an earlier version hardcoded "wavy for errors, dotted
+for warnings", which VS Code has never rendered (all of error/warning/info are
+``4px double``; only hint is dotted), and the mistake understated the audit's
+own result.
 
 Boundaries:
   * report-only -- ``spec.check()`` is unchanged and keeps its severities;
-  * host facts are declared here and covered by tests, never silently edited;
+  * host facts are declared or derived, and covered by tests, never silently
+    edited;
   * delivery is read from the mapping, so a mapping change is visible.
 """
 
@@ -70,20 +76,26 @@ class Channel:
     note: str = ""
 
 
-# VS Code draws diagnostics from the severity, not from theme colours, so these
-# marks exist at runtime and no palette can remove them.
+# VS Code renders diagnostics from the severity, not from theme colours, so
+# these marks exist at runtime and no palette can remove them.
+#
+# Only the glyph margin markers that actually exist.  There are NO diagnostic
+# glyphs: marker decorations carry className/overviewRuler/minimap only, and
+# MarkerSeverity has no Success member, so an earlier version of this table
+# listing error:x / warning:! / success:v was asserting marks the editor does
+# not draw.
 _GUTTER_MARKS = {
     "diff_added": "+",
     "diff_removed": "-",
-    "error": "x",
-    "warning": "!",
-    "success": "v",
-    "breakpoint": "o",
-    "debug_current": ">",
 }
 
-# VS Code draws wavy for errors and dotted for warnings; plain tokens get none.
-_SQUIGGLE_MARKS = {"error": "wavy", "warning": "dotted"}
+# Squiggles, keyed by which editor colour id the role is bound to.  All three
+# of error/warning/info render as `border-bottom: 4px double` -- one mark, not
+# three -- and only Hint is `2px dotted`.  Derived from the mapping in
+# load_delivery() rather than listed here, so the table cannot claim a
+# distinction the stylesheet does not make.
+_DOUBLE_IDS = ("editorerror", "editorwarning", "editorinfo")
+_DOTTED_IDS = ("editorhint",)
 
 # Genuinely theme-controlled: fontStyle in the generated token/semantic rules.
 # Which roles it reaches is read from the mapping, not listed here.
@@ -96,22 +108,26 @@ _STRIKE_CH = Channel(
 CHANNELS: dict[str, Channel] = {
     "gutter_sign": Channel(
         "gutter_sign", "gutter", True, "host", dict(_GUTTER_MARKS),
-        "VS Code UI glyphs, not theme colours.",
+        "VS Code diff-margin codicons, not theme colours.",
     ),
     "gutter_icon": Channel(
-        "gutter_icon", "gutter", True, "host", dict(_GUTTER_MARKS),
-        "Same host glyph family; shape varies with severity.",
+        "gutter_icon", "gutter", True, "host", {},
+        "No diagnostic glyph-margin icons exist in the editor; this channel "
+        "only reaches roles the host draws a codicon for.",
     ),
     "gutter_shape": Channel("gutter_shape", "gutter", True, "host",
                             {"breakpoint": "disc"}),
     "gutter_arrow": Channel("gutter_arrow", "gutter", True, "host",
                              {"debug_current": ">"}),
     "underline_wavy": Channel(
-        "underline_wavy", "text", True, "host", dict(_SQUIGGLE_MARKS),
-        "Squiggle is drawn by the host from severity.",
+        "underline_wavy", "text", True, "host", {},
+        "The spec's name for the double underline. error, warning and info "
+        "all render as `4px double`, so they share one mark and the channel "
+        "cannot separate them from each other.",
     ),
     "underline_dotted": Channel(
-        "underline_dotted", "text", True, "host", dict(_SQUIGGLE_MARKS),
+        "underline_dotted", "text", True, "host", {},
+        "Hint only: `2px dotted`.",
     ),
     "strikethrough": _STRIKE_CH,
     "border": Channel(
@@ -138,19 +154,26 @@ class Delivery:
 
     border_roles: frozenset[str] = frozenset()
     strikethrough_roles: frozenset[str] = frozenset()
+    double_underline_roles: frozenset[str] = frozenset()
+    dotted_underline_roles: frozenset[str] = frozenset()
     source: str = ""
 
     def marks_for(self, ch: Channel) -> dict[str, str]:
         """The marks this channel actually renders, for the roles it reaches.
 
-        ``border`` and ``strikethrough`` are theme-controlled, so the mapping is
-        the only authority on whether they are delivered at all.  The remaining
-        channels are drawn by the host and their vocabulary is fixed.
+        Everything here is derived from the mapping rather than asserted here,
+        because the host facts this table encodes are exactly the kind that
+        drift: a stylesheet revision can make "error and warning differ" false
+        without touching this repository.
         """
         if ch.name == "border":
             return {r: "ring" for r in self.border_roles}
         if ch.name == "strikethrough":
             return {r: "line" for r in self.strikethrough_roles}
+        if ch.name == "underline_wavy":
+            return {r: "double" for r in self.double_underline_roles}
+        if ch.name == "underline_dotted":
+            return {r: "dotted" for r in self.dotted_underline_roles}
         return dict(ch.marks)
 
 
@@ -178,7 +201,21 @@ def load_delivery(mapping_path: str | Path = DEFAULT_MAPPING) -> Delivery:
         for r in d["textmate"]
         if "strikethrough" in str(r.get("font_style", ""))
     }
-    return Delivery(frozenset(border), frozenset(strike), str(mapping_path))
+    # Which squiggle a role gets follows from the editor colour id it is bound
+    # to, because that is what the stylesheet keys on.  Derived, not asserted:
+    # an earlier version hardcoded "error wavy, warning dotted", which no VS
+    # Code release has ever rendered.
+    double = {
+        role_of(v) for k, v in d["workbench"].items()
+        if k.lower().startswith(_DOUBLE_IDS)
+    }
+    dotted = {
+        role_of(v) for k, v in d["workbench"].items()
+        if k.lower().startswith(_DOTTED_IDS)
+    }
+
+    return Delivery(frozenset(border), frozenset(strike),
+                    frozenset(double), frozenset(dotted), str(mapping_path))
 
 
 # --------------------------------------------------------------------------

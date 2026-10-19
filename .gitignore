@@ -10,3 +10,4 @@ dist/
 # autoresearch session state
 .auto/work/
 .auto/last.json
+.auto/summary.html

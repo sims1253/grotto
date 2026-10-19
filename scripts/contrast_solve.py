@@ -20,17 +20,21 @@ shortfalls by `paint` says how many the solve can even speak to.
 **Part 2 -- feasibility for the ones it cannot.**  Holding hue and chroma and
 moving only lightness, is there any assignment of L to the surface cluster that
 clears every must-distinguish threshold?  That is placement on a line with
-pairwise minimum separations, and it gets two answers:
+pairwise minimum separations, answered exactly: enumerate the orderings and
+place each surface as early as its neighbours allow, then take the best.  At
+seven surfaces that is 5040 orderings -- free, and the reason this stays a
+script rather than becoming a gate over all 40 roles.
 
-  * a CONSTRUCTION -- seat each surface as early as its neighbours allow.  If it
-    fits on [0,1] the cluster is feasible on lightness alone, and the shortfall
-    was a search failure.
-  * a LOWER BOUND -- the longest weighted path through the constraint graph.  Its
-    length is the minimum span any seating can occupy.  If that alone exceeds
-    1.0, no seating exists, no search will find one, and the gap is structural.
+An earlier version computed a *lower bound* by longest-path relaxation and
+reported the cluster as provably infeasible at 2.33 on a 1.0 axis.  The
+constraint graph has cycles, so that relaxation is unbounded and the number was
+meaningless -- it read as a proof without being one.  Do not reintroduce it; the
+exact enumeration replaced it.  See docs/review/redundant-channel-audit.md §8.
 
-The lower bound is what makes a negative answer trustworthy: it is a proof, not
-a sample.
+Finally the seating is slid to minimise total movement, because a minimum-SPAN
+seating is a feasibility witness rather than a palette: it piles every
+unconstrained surface against the left edge.  The slide is exact (a 1-D median)
+and the result is verified against every pair rather than assumed.
 """
 
 from __future__ import annotations

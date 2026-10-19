@@ -260,15 +260,21 @@ def solve_lightness(
         return SolveResult(far_L, oklch_to_hex((far_L, chroma, hue)), bg_hex,
                            model, target, far, False, far_lost == 0.0, far_lost)
 
-    a, b = lo, hi
+    # The bracket invariant is: `a` MISSES the target, `b` MEETS it.  Going
+    # lighter that is (lo, hi) -- the background is too close, white is far.
+    # Going darker it is (hi, lo), because there the background is the FAILING
+    # end and black is the meeting one.  Seeding it the other way round still
+    # terminates and still returns reachable=True, but hands back a colour that
+    # does not meet the target.
+    a, b = (lo, hi) if side == "lighter" else (hi, lo)
     for _ in range(max_iter):
-        mid = (a + b) / 2
         if abs(b - a) < tol:
             break
+        mid = (a + b) / 2
         if probe(mid)[0] < target:
-            a = mid
+            a = mid          # mid is on the missing side; narrow towards b
         else:
-            b = mid
+            b = mid          # mid already meets it; narrow towards a
     L = (a + b) / 2
     achieved, lost = probe(L)
     lch, _ = gamut_map((L, chroma, hue), "srgb")

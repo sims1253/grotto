@@ -33,19 +33,20 @@ from grotto.spec import Palette, RoleSpec, check
 REPO = Path(__file__).resolve().parents[1]
 MAPPING = REPO / "spec/mappings/vscode.yaml"
 
-# The two pairs the audit exists for: both are surface-vs-surface, both are
-# excused today by a role-level channel test, and neither channel survives.
+# The pairs the audit exists for. All are excused today by a role-level
+# channel test, and no channel discriminates them as rendered.
 UNCOVERED = [
-    ("selection", "active_line"),
-    ("search_match", "search_match_current"),
+    ("error", "warning"),                  # one mark: both are `4px double`
+    ("selection", "active_line"),          # no selection border exists
+    ("search_match", "search_match_current"),  # two borders, one shape
 ]
 
 # Pairs whose excuse does hold, one per channel kind -- the audit must not
 # simply report everything as uncovered.
 COVERED = [
     ("diff_added", "diff_removed"),        # + / - gutter signs
-    ("error", "warning"),                  # wavy vs dotted
-    ("error", "string"),                   # squiggle vs nothing
+    ("error", "string"),                   # double underline vs nothing
+    ("error", "success"),                  # double vs dotted underline
     ("selection", "search_match_current"),  # a ring vs no ring
 ]
 
@@ -86,12 +87,46 @@ def test_lightness_offset_is_never_independent():
     assert not covers(ch, "selection", "active_line", Delivery())
 
 
-def test_coverage_requires_two_different_marks():
-    d = Delivery()
+def test_coverage_requires_two_different_marks(delivery):
     wavy = CHANNELS["underline_wavy"]
-    assert covers(wavy, "error", "string", d)        # squiggle vs none
-    assert covers(wavy, "error", "warning", d)       # wavy vs dotted
-    assert not covers(wavy, "string", "number", d)   # neither has a mark
+    # error carries the double underline, string carries nothing
+    assert covers(wavy, "error", "string", delivery)
+    # neither side is underlined
+    assert not covers(wavy, "string", "number", delivery)
+
+
+def test_error_and_warning_share_one_underline_mark(delivery):
+    """The fact this vocabulary got wrong once, and must not get wrong again.
+
+    VS Code renders `.squiggly-error`, `.squiggly-warning` and
+    `.squiggly-info` identically -- `border-bottom: 4px double` -- differing
+    only in colour.  Only `.squiggly-hint` is `2px dotted`
+    (vscode release/1.95 src/vs/editor/browser/widget/codeEditor/editor.css).
+    An earlier version of this table asserted wavy-vs-dotted and therefore
+    reported one pair fewer uncovered than the editor actually warrants.
+    """
+    marks = delivery.marks_for(CHANNELS["underline_wavy"])
+    assert marks.get("error") == marks.get("warning") == "double"
+    assert not covers(CHANNELS["underline_wavy"], "error", "warning", delivery)
+
+
+def test_only_hint_gets_the_dotted_underline(delivery):
+    marks = delivery.marks_for(CHANNELS["underline_dotted"])
+    assert marks.get("success") == "dotted"      # editorHint.foreground -> success
+    assert marks.get("error") is None
+
+
+def test_no_diagnostic_glyph_margin_icons_exist(delivery):
+    """Marker decorations carry no glyph, and MarkerSeverity has no Success."""
+    gutter = delivery.marks_for(CHANNELS["gutter_icon"])
+    for role in ("error", "warning", "success"):
+        assert gutter.get(role) is None, (
+            f"{role} has no glyph-margin icon; asserting one re-introduces the "
+            f"false host fact this test exists to prevent"
+        )
+    signs = delivery.marks_for(CHANNELS["gutter_sign"])
+    assert signs.get("diff_added") == "+"
+    assert signs.get("diff_removed") == "-"
 
 
 def test_same_mark_does_not_cover():
@@ -196,7 +231,7 @@ def test_role_level_agrees_with_spec(roles):
         )
 
 
-def test_audit_flags_exactly_the_two_known_pairs():
+def test_audit_flags_exactly_the_three_known_pairs():
     palette = Palette.from_yaml(
         REPO / "out/soft-night/soft-s01.night.yaml"
     )

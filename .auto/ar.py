@@ -190,7 +190,8 @@ def main() -> None:
             if key in (e.get("asi") or {}):
                 m = metric_of(e)
                 ms = f"{m:.4f}" if m is not None else "  -  "
-                print(f"{e['n']:>3} {e['status']:<14} {ms}  {e[key]}  | {e['description']}")
+                print(f"{e['n']:>3} {e['status']:<14} {ms}  "
+                      f"{(e.get('asi') or {})[key]}  | {e['description']}")
         return
 
     print(__doc__)
