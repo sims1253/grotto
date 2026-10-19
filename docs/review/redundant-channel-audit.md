@@ -210,13 +210,21 @@ channel is not merely non-independent, it is *diagnostic* of the problem.
 
 ## 6. What this does not claim
 
-- **It does not amend D-3, and `check()` still passes.** Promoting these two
-  CVD shortfalls from warning to error is a design decision about the severity
+- **It does not amend D-3, and it does not touch `check()`.** Promoting the CVD
+  shortfalls from warning to error is a design decision about the severity
   ladder, not a bug fix. The rule as written is unambiguous — "a warning if one
   [role declares a channel] does" — and this repository does not change
   DESIGN.md as a side effect of a measurement. §7 proposes the amendment; it is
   not applied. `tests/test_channels.py` asserts the current behaviour so the
   change cannot happen by accident.
+- **The excuse D-3 describes is the *CVD* one, and only the CVD one.** These
+  pairs already fail the *normal-vision* floor on every palette in the
+  repository — 0.085, 0.047 and 0.099 on `soft-s01` against 0.130 — and a
+  normal-vision failure is an unconditional error in `check()`. So none of this
+  is news at the normal end: the palettes already carry those errors. What is
+  excused today is the *dichromat* finding, on the grounds that a declared
+  channel carries the pair; that is the claim this document measures, and the
+  one §7 would tighten.
 - **It does not claim the three pairs are unfixable.** They are fixable two ways,
   and §8 measures the second. At the mapping layer: a selection border that VS
   Code does not support cannot be added by us, but `search_match` vs
@@ -245,8 +253,11 @@ Two options, both owner decisions, neither taken here.
 
 **Option A — make the test pair-scoped.** Replace `_has_redundancy` with
 `grotto.channels.judge`, so a CVD failure is a warning only when a delivered
-channel puts different marks on the two roles. Cost: these three pairs become
-errors on **every** palette, including all three committed candidates. §8 prices
+channel puts different marks on the two roles. Cost: the *CVD* findings for
+these three pairs become errors on **every** palette, including all three
+committed candidates. (Their normal-vision findings are already errors — see
+§6 — so this closes the last excused dimension rather than adding a new
+failure.) §8 prices
 what that actually demands: the worst surface moves **0.0985** OKLab L against a
 declared fence of **±0.06**. So Option A is not merely a re-labelling — it makes
 the fence the binding constraint and says so, which is the argument for widening

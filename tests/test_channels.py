@@ -217,6 +217,36 @@ def test_they_are_warnings_today_not_errors(pair, roles):
     )
 
 
+@pytest.mark.parametrize("pair", UNCOVERED)
+def test_normal_vision_failure_is_an_error_on_every_palette(roles, pair):
+    """D-3's channel excuse is the CVD one; the normal floor is unconditional.
+
+    ``spec.check()`` applies ``_has_redundancy`` only to the CVD branch.  A
+    normal-vision failure is an error whether or not a channel is declared, so
+    all three audited pairs are already errors in every palette in the
+    repository.  The audit's §6 and §7 depend on that being true: what this
+    module would newly tighten is the *CVD* finding, not the normal one.
+    """
+    dists = _dists()
+    for path in (
+        REPO / "out/soft-night/soft-s01.night.yaml",
+        REPO / "themes/candidates/candidate-a-restrained.night.yaml",
+        REPO / "themes/candidates/candidate-b-balanced.night.yaml",
+        REPO / "themes/candidates/candidate-c-expressive.night.yaml",
+    ):
+        palette = Palette.from_yaml(path)
+        normal = [
+            v for v in check(palette, roles, dists)
+            if {v.constraint.a, v.constraint.b} == set(pair)
+            and v.condition == "normal"
+        ]
+        assert normal, f"{pair} has no normal-vision finding on {path.name}"
+        assert all(v.severity == "error" for v in normal), (
+            f"{pair} normal-vision finding is not an error on {path.name}; "
+            f"the channel excuse has leaked into the normal branch"
+        )
+
+
 def test_role_level_agrees_with_spec(roles):
     """``role_level`` restates ``spec._has_redundancy``; they must not drift.
 
