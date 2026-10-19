@@ -49,7 +49,7 @@ done
 
 # Independent scoring: one process, one palette each, no search code imported.
 uv run python scripts/soft_metric.py --json \
-    $(for s in $SEEDS; do printf '%s/soft-s01.night.yaml ' "$WORK/seed-$s"; done) \
+    $(for s in $SEEDS; do printf '%s/soft2-s01.night.yaml ' "$WORK/seed-$s"; done) \
     >"$WORK/scores.json"
 
 uv run python - "$WORK/scores.json" "$WORK" <<'PY'

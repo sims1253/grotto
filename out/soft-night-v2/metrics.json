@@ -1,0 +1,1482 @@
+{
+  "fences": {
+    "chroma_floor": 0.02,
+    "gates": [
+      "salience-rank (normalised chroma)",
+      "surface prominence (dE off canvas)"
+    ],
+    "inherited": "scripts/middle_palette.py (hue windows, L deltas, chroma caps, 70% gamut)",
+    "lightness_offset_l_delta": {
+      "ink_down": 0.08,
+      "surface": 0.12
+    },
+    "role_chroma_floor": {
+      "breakpoint": 0.05,
+      "error": 0.065,
+      "warning": 0.065
+    },
+    "role_l_max": {
+      "breakpoint": 0.86,
+      "error": 0.83,
+      "warning": 0.86
+    },
+    "scaffold_l_overrides": {
+      "fg_muted": 0.585,
+      "line_number": 0.585,
+      "ui_inactive": 0.585
+    },
+    "soft_hue_windows": {
+      "diff_added": [
+        [
+          120.0,
+          160.0
+        ]
+      ],
+      "diff_removed": [
+        [
+          10.0,
+          40.0
+        ]
+      ],
+      "success": [
+        [
+          120.0,
+          160.0
+        ]
+      ]
+    }
+  },
+  "generated_by": "scripts/soft_palette.py",
+  "objective": {
+    "acceptance": "strict on utility; no mean-margin tie-break",
+    "area_class_share": {
+      "dominant": 0.55,
+      "major": 0.22,
+      "minor": 0.1,
+      "trace": 0.02
+    },
+    "emphasis": "area-weighted mean chroma; measured character share for inks, declared area_class share for surfaces (canvas excluded)",
+    "emphasis_budget": 0.045,
+    "emphasis_weight": 0.35,
+    "formula": "utility = 1 - SEP - EMPHASIS_WEIGHT * EMPHASIS_EXCESS",
+    "shortfall": "SEP = mean over all terms of max(0, 1 - margin)**SHORTFALL_EXP",
+    "shortfall_exp": 2.0,
+    "surface_area_weight": 0.6
+  },
+  "palettes": [
+    {
+      "hexes": {
+        "active_line": "#1f1e1d",
+        "bg": "#191714",
+        "bg_elevated": "#211e1b",
+        "bg_overlay": "#282521",
+        "breakpoint": "#f2d1d0",
+        "builtin": "#ccbebd",
+        "comment": "#a0968a",
+        "constant": "#d9bd95",
+        "debug_current": "#2b2316",
+        "decorator": "#cbc0af",
+        "deprecated": "#979797",
+        "diff_added": "#1c1f1a",
+        "diff_changed": "#201e19",
+        "diff_removed": "#261b1b",
+        "docstring": "#cbbfb3",
+        "error": "#f2cdcd",
+        "fg": "#c4c1bd",
+        "fg_muted": "#7d7b79",
+        "fg_secondary": "#999794",
+        "focus": "#cbdbea",
+        "function": "#cbdae7",
+        "info": "#aac4db",
+        "keyword": "#cdbada",
+        "line_number": "#7c7c7c",
+        "line_number_active": "#c1c1c1",
+        "namespace": "#b1c5c2",
+        "number": "#d9bd95",
+        "operator": "#c1c1c1",
+        "parameter": "#c4c1bd",
+        "property": "#bfc2c3",
+        "punctuation": "#979797",
+        "search_match": "#2b2317",
+        "search_match_current": "#342815",
+        "selection": "#202529",
+        "string": "#aeca93",
+        "success": "#a8cc8b",
+        "tag": "#b9c2cb",
+        "type": "#99cbc5",
+        "ui_inactive": "#7c7c7c",
+        "warning": "#f0d3a7"
+      },
+      "kind": "committed candidate (baseline)",
+      "label": "candidate-b-balanced",
+      "metrics": {
+        "argmin": {
+          "class": "anticollapse_normal",
+          "pair": [
+            "number",
+            "constant"
+          ]
+        },
+        "diff_added_removed_deutan_de": 0.0019,
+        "diff_added_removed_normal_de": 0.0238,
+        "max_categorical_chroma": 0.0806,
+        "mean_categorical_chroma": 0.0411,
+        "min_categorical_de": 0.0,
+        "min_wcag": 3.411,
+        "number_constant_de": 0.0,
+        "total_categorical_chroma": 0.4114,
+        "wcag_check_count": 261,
+        "wcag_violations": 0,
+        "worst_margin_anticollapse": 0.0,
+        "worst_margin_matrix": 0.0209,
+        "worst_margin_must_cvd": 0.0209,
+        "worst_margin_must_normal": 0.0589,
+        "worst_margin_overall": 0.0,
+        "worst_margin_should": 0.1639,
+        "worst_pairs": [
+          {
+            "class": "anticollapse_normal",
+            "dC": 0.0,
+            "dH": 0.0,
+            "dL": 0.0,
+            "de": 0.0,
+            "margin": 0.0,
+            "pair": [
+              "number",
+              "constant"
+            ],
+            "threshold": 0.03
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0071,
+            "dH": 0.0278,
+            "dL": 0.0014,
+            "de": 0.0019,
+            "margin": 0.0209,
+            "pair": [
+              "diff_added",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0006,
+            "dH": 0.0077,
+            "dL": 0.0012,
+            "de": 0.0025,
+            "margin": 0.0278,
+            "pair": [
+              "diff_added",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_protan",
+            "dC": 0.0006,
+            "dH": 0.0077,
+            "dL": 0.0012,
+            "de": 0.0035,
+            "margin": 0.0387,
+            "pair": [
+              "diff_added",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0151,
+            "dH": 0.0086,
+            "dL": 0.0,
+            "de": 0.0038,
+            "margin": 0.0423,
+            "pair": [
+              "active_line",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0077,
+            "dH": 0.0167,
+            "dL": 0.0003,
+            "de": 0.004,
+            "margin": 0.0444,
+            "pair": [
+              "diff_removed",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.008,
+            "dH": 0.0073,
+            "dL": 0.0015,
+            "de": 0.004,
+            "margin": 0.0447,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0006,
+            "dH": 0.0077,
+            "dL": 0.0012,
+            "de": 0.0077,
+            "margin": 0.0589,
+            "pair": [
+              "diff_added",
+              "diff_changed"
+            ],
+            "threshold": 0.13
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0242,
+            "dH": 0.0565,
+            "dL": 0.0007,
+            "de": 0.0054,
+            "margin": 0.0597,
+            "pair": [
+              "error",
+              "warning"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.008,
+            "dH": 0.0073,
+            "dL": 0.0015,
+            "de": 0.0057,
+            "margin": 0.0632,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          }
+        ]
+      },
+      "score": {
+        "argmin": [
+          "number",
+          "constant",
+          "anticollapse_normal"
+        ],
+        "at_target": 68,
+        "emph": 0.019891426126610115,
+        "emph_excess": 0.0,
+        "emph_ink": 0.02283723116990674,
+        "emph_surface": 0.015078019193118903,
+        "emphasis_budget": 0.045,
+        "emphasis_weight": 0.35,
+        "max_cat_chroma": 0.08057626052835037,
+        "mean_cat_chroma": 0.041144609688251496,
+        "mean_margin": 1.5855102473716218,
+        "min_anticollapse": 0.0,
+        "min_must_cvd": 0.020931676908626056,
+        "min_must_normal": 0.058903686865021,
+        "min_should": 0.1639134701332426,
+        "missing_roles": [],
+        "palette": "candidate-b-balanced.night.yaml",
+        "sep": 0.21044372019541555,
+        "terms": 162,
+        "utility": 0.7895562798045844,
+        "wcag_violations": 12,
+        "worst_margin": 0.0
+      },
+      "source_name": "candidate-b-balanced.night.yaml",
+      "state": {
+        "breakpoint": [
+          0.887136,
+          0.037433,
+          18.396
+        ],
+        "builtin": [
+          0.811828,
+          0.016368,
+          19.122
+        ],
+        "constant": [
+          0.81144,
+          0.062318,
+          75.926
+        ],
+        "debug_current": [
+          0.26,
+          0.024454,
+          77.024
+        ],
+        "decorator": [
+          0.811537,
+          0.026045,
+          75.926
+        ],
+        "diff_added": [
+          0.235,
+          0.011679,
+          131.52
+        ],
+        "diff_changed": [
+          0.235,
+          0.008878,
+          76.78
+        ],
+        "diff_removed": [
+          0.235,
+          0.016992,
+          18.66
+        ],
+        "error": [
+          0.88,
+          0.040856,
+          18.33
+        ],
+        "focus": [
+          0.882574,
+          0.027323,
+          246.96
+        ],
+        "function": [
+          0.88,
+          0.024422,
+          244.3
+        ],
+        "info": [
+          0.807267,
+          0.042829,
+          245.44
+        ],
+        "keyword": [
+          0.813672,
+          0.048997,
+          312.010667
+        ],
+        "namespace": [
+          0.806102,
+          0.022026,
+          188.336
+        ],
+        "number": [
+          0.81144,
+          0.062318,
+          75.926
+        ],
+        "search_match": [
+          0.26,
+          0.023482,
+          76.78
+        ],
+        "search_match_current": [
+          0.285,
+          0.036061,
+          77.024
+        ],
+        "selection": [
+          0.26,
+          0.011407,
+          245.44
+        ],
+        "string": [
+          0.803385,
+          0.079112,
+          129.784
+        ],
+        "success": [
+          0.801929,
+          0.095236,
+          131.52
+        ],
+        "tag": [
+          0.810178,
+          0.016239,
+          243.92
+        ],
+        "type": [
+          0.804161,
+          0.052544,
+          188.336
+        ],
+        "warning": [
+          0.88,
+          0.065598,
+          77.146
+        ]
+      }
+    },
+    {
+      "hexes": {
+        "active_line": "#1f1e1d",
+        "bg": "#191714",
+        "bg_elevated": "#211e1b",
+        "bg_overlay": "#282521",
+        "breakpoint": "#f0c1b1",
+        "builtin": "#dec8cd",
+        "comment": "#a0968a",
+        "constant": "#d9ad9c",
+        "debug_current": "#312620",
+        "decorator": "#daa983",
+        "deprecated": "#979797",
+        "diff_added": "#283415",
+        "diff_changed": "#26140d",
+        "diff_removed": "#541e28",
+        "docstring": "#cbbfb3",
+        "error": "#ecac98",
+        "fg": "#c4c1bd",
+        "fg_muted": "#7d7b79",
+        "fg_secondary": "#999794",
+        "focus": "#d4e2f4",
+        "function": "#bcdef2",
+        "info": "#73bde8",
+        "keyword": "#a9b1e8",
+        "line_number": "#7c7c7c",
+        "line_number_active": "#c1c1c1",
+        "namespace": "#87d4d5",
+        "number": "#eaa084",
+        "operator": "#c1c1c1",
+        "parameter": "#c4c1bd",
+        "property": "#bfc2c3",
+        "punctuation": "#979797",
+        "search_match": "#26140a",
+        "search_match_current": "#4d2515",
+        "selection": "#162d60",
+        "string": "#99ddbd",
+        "success": "#6bbd58",
+        "tag": "#78d3c3",
+        "type": "#6cc4be",
+        "ui_inactive": "#7c7c7c",
+        "warning": "#d8d86f"
+      },
+      "kind": "soft (ladder restart)",
+      "label": "soft2-s01",
+      "metrics": {
+        "argmin": {
+          "class": "must_deutan",
+          "pair": [
+            "diff_added",
+            "diff_removed"
+          ]
+        },
+        "diff_added_removed_deutan_de": 0.0243,
+        "diff_added_removed_normal_de": 0.1149,
+        "max_categorical_chroma": 0.097,
+        "mean_categorical_chroma": 0.0716,
+        "min_categorical_de": 0.0306,
+        "min_wcag": 3.1264,
+        "number_constant_de": 0.0416,
+        "total_categorical_chroma": 0.716,
+        "wcag_check_count": 261,
+        "wcag_violations": 0,
+        "worst_margin_anticollapse": 1.0203,
+        "worst_margin_matrix": 0.2704,
+        "worst_margin_must_cvd": 0.2704,
+        "worst_margin_must_normal": 0.591,
+        "worst_margin_overall": 0.2704,
+        "worst_margin_should": 0.3632,
+        "worst_pairs": [
+          {
+            "class": "must_deutan",
+            "dC": 0.0277,
+            "dH": 0.1346,
+            "dL": 0.0143,
+            "de": 0.0243,
+            "margin": 0.2704,
+            "pair": [
+              "diff_added",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0013,
+            "dH": 0.0011,
+            "dL": 0.029,
+            "de": 0.0291,
+            "margin": 0.3632,
+            "pair": [
+              "bg_elevated",
+              "bg_overlay"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0007,
+            "dH": 0.0013,
+            "dL": 0.0315,
+            "de": 0.0315,
+            "margin": 0.3941,
+            "pair": [
+              "bg",
+              "bg_elevated"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "must_protan",
+            "dC": 0.0784,
+            "dH": 0.0408,
+            "dL": 0.084,
+            "de": 0.0423,
+            "margin": 0.4695,
+            "pair": [
+              "active_line",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0423,
+            "dH": 0.1772,
+            "dL": 0.0053,
+            "de": 0.0471,
+            "margin": 0.5239,
+            "pair": [
+              "selection",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0743,
+            "dH": 0.0284,
+            "dL": 0.0127,
+            "de": 0.0505,
+            "margin": 0.5609,
+            "pair": [
+              "error",
+              "fg"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.019,
+            "dH": 0.0205,
+            "dL": 0.0403,
+            "de": 0.0471,
+            "margin": 0.5892,
+            "pair": [
+              "builtin",
+              "fg"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0743,
+            "dH": 0.0284,
+            "dL": 0.0127,
+            "de": 0.0768,
+            "margin": 0.591,
+            "pair": [
+              "error",
+              "fg"
+            ],
+            "threshold": 0.13
+          },
+          {
+            "class": "must_protan",
+            "dC": 0.0743,
+            "dH": 0.0284,
+            "dL": 0.0127,
+            "de": 0.054,
+            "margin": 0.6003,
+            "pair": [
+              "error",
+              "fg"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0013,
+            "dH": 0.1787,
+            "dL": 0.0438,
+            "de": 0.0559,
+            "margin": 0.6214,
+            "pair": [
+              "error",
+              "string"
+            ],
+            "threshold": 0.09
+          }
+        ]
+      },
+      "score": {
+        "at_target": 124,
+        "emph": 0.0404990606643593,
+        "emph_excess": 0.0,
+        "mean_margin": 2.323543819651055,
+        "sep": 0.02034149270411121,
+        "terms": 162,
+        "utility": 0.9796585072958888,
+        "worst_margin": 0.27040947447980956
+      },
+      "source_name": "soft2-s01.night.yaml",
+      "state": {
+        "breakpoint": [
+          0.847136,
+          0.05843930053710937,
+          38.5
+        ],
+        "builtin": [
+          0.851828,
+          0.02660013516665633,
+          1.5
+        ],
+        "constant": [
+          0.7823768849766463,
+          0.05776308177151073,
+          41.5
+        ],
+        "debug_current": [
+          0.28,
+          0.02,
+          50.0
+        ],
+        "decorator": [
+          0.7715369999999999,
+          0.07718590166334544,
+          59.65807563250767
+        ],
+        "diff_added": [
+          0.3049999999999999,
+          0.05336575317382812,
+          127.37709504209133
+        ],
+        "diff_changed": [
+          0.215,
+          0.031825765338851494,
+          42.558705624554364
+        ],
+        "diff_removed": [
+          0.31999999999999995,
+          0.08143600652198899,
+          11.5
+        ],
+        "error": [
+          0.8,
+          0.08062939453125,
+          38.5
+        ],
+        "focus": [
+          0.9080600296128424,
+          0.02924815367773014,
+          256.0539065201703
+        ],
+        "function": [
+          0.8818017537709226,
+          0.045296142578125,
+          235.60334281217212
+        ],
+        "info": [
+          0.7673,
+          0.09578060913085937,
+          235.0
+        ],
+        "keyword": [
+          0.7736719999999999,
+          0.07960400390625,
+          278.25002910098107
+        ],
+        "namespace": [
+          0.8214546799875229,
+          0.07606903956796657,
+          196.3020369473903
+        ],
+        "number": [
+          0.77144,
+          0.09650692749023437,
+          41.5
+        ],
+        "search_match": [
+          0.215,
+          0.034815616563443716,
+          50.5
+        ],
+        "search_match_current": [
+          0.31499999999999995,
+          0.06520046997070311,
+          41.5
+        ],
+        "selection": [
+          0.31,
+          0.09502352153777649,
+          263.5
+        ],
+        "string": [
+          0.843385,
+          0.08185261523061028,
+          163.5
+        ],
+        "success": [
+          0.721929,
+          0.158,
+          139.92959277851995
+        ],
+        "tag": [
+          0.8042591748648369,
+          0.0906473763073346,
+          181.5
+        ],
+        "type": [
+          0.764161,
+          0.08538849731867397,
+          190.1660896591592
+        ],
+        "warning": [
+          0.86,
+          0.12775069318800106,
+          108.5
+        ]
+      }
+    },
+    {
+      "hexes": {
+        "active_line": "#1f1e1d",
+        "bg": "#191714",
+        "bg_elevated": "#211e1b",
+        "bg_overlay": "#282521",
+        "breakpoint": "#f0c1b1",
+        "builtin": "#e6a0b3",
+        "comment": "#a0968a",
+        "constant": "#c8aea5",
+        "debug_current": "#37190d",
+        "decorator": "#b5b6a8",
+        "deprecated": "#979797",
+        "diff_added": "#0f260c",
+        "diff_changed": "#291208",
+        "diff_removed": "#3e1221",
+        "docstring": "#cbbfb3",
+        "error": "#f2cabd",
+        "fg": "#c4c1bd",
+        "fg_muted": "#6d6b68",
+        "fg_secondary": "#999794",
+        "focus": "#9af7e6",
+        "function": "#98eaf4",
+        "info": "#99b4e8",
+        "keyword": "#e29cdd",
+        "line_number": "#6b6b6b",
+        "line_number_active": "#c1c1c1",
+        "namespace": "#6fd6c4",
+        "number": "#eaa084",
+        "operator": "#c1c1c1",
+        "parameter": "#c4c1bd",
+        "property": "#bfc2c3",
+        "punctuation": "#979797",
+        "search_match": "#2a1208",
+        "search_match_current": "#272111",
+        "selection": "#0c1f48",
+        "string": "#a0bb9c",
+        "success": "#bbc563",
+        "tag": "#8acdea",
+        "type": "#69c8dd",
+        "ui_inactive": "#6b6b6b",
+        "warning": "#ebca6c"
+      },
+      "kind": "frontier reference",
+      "label": "soft-s01 (v1)",
+      "metrics": {
+        "argmin": {
+          "class": "must_protan",
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ]
+        },
+        "diff_added_removed_deutan_de": 0.0318,
+        "diff_added_removed_normal_de": 0.1192,
+        "max_categorical_chroma": 0.1183,
+        "mean_categorical_chroma": 0.0761,
+        "min_categorical_de": 0.032,
+        "min_wcag": 3.0005,
+        "number_constant_de": 0.0641,
+        "total_categorical_chroma": 0.7613,
+        "wcag_check_count": 261,
+        "wcag_violations": 0,
+        "worst_margin_anticollapse": 1.0682,
+        "worst_margin_matrix": 0.215,
+        "worst_margin_must_cvd": 0.215,
+        "worst_margin_must_normal": 0.361,
+        "worst_margin_overall": 0.215,
+        "worst_margin_should": 0.3632,
+        "worst_pairs": [
+          {
+            "class": "must_protan",
+            "dC": 0.0683,
+            "dH": 0.0418,
+            "dL": 0.0237,
+            "de": 0.0194,
+            "margin": 0.215,
+            "pair": [
+              "active_line",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0705,
+            "dH": 0.0759,
+            "dL": 0.0217,
+            "de": 0.0219,
+            "margin": 0.2432,
+            "pair": [
+              "error",
+              "warning"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0257,
+            "dH": 0.1441,
+            "dL": 0.0093,
+            "de": 0.0226,
+            "margin": 0.2511,
+            "pair": [
+              "selection",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0526,
+            "dH": 0.037,
+            "dL": 0.0063,
+            "de": 0.0247,
+            "margin": 0.2749,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0127,
+            "dH": 0.083,
+            "dL": 0.0284,
+            "de": 0.0256,
+            "margin": 0.2841,
+            "pair": [
+              "diff_added",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0683,
+            "dH": 0.0418,
+            "dL": 0.0237,
+            "de": 0.0259,
+            "margin": 0.2878,
+            "pair": [
+              "active_line",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0526,
+            "dH": 0.037,
+            "dL": 0.0063,
+            "de": 0.0295,
+            "margin": 0.3281,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0157,
+            "dH": 0.1527,
+            "dL": 0.0173,
+            "de": 0.0318,
+            "margin": 0.353,
+            "pair": [
+              "diff_added",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0149,
+            "dH": 0.0296,
+            "dL": 0.0344,
+            "de": 0.0469,
+            "margin": 0.361,
+            "pair": [
+              "search_match",
+              "search_match_current"
+            ],
+            "threshold": 0.13
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0013,
+            "dH": 0.0011,
+            "dL": 0.029,
+            "de": 0.0291,
+            "margin": 0.3632,
+            "pair": [
+              "bg_elevated",
+              "bg_overlay"
+            ],
+            "threshold": 0.08
+          }
+        ]
+      },
+      "score": {
+        "argmin": [
+          "active_line",
+          "diff_removed",
+          "must_protan"
+        ],
+        "at_target": 108,
+        "emph": 0.04256865947139995,
+        "emph_excess": 0.0,
+        "emph_ink": 0.0365863027990122,
+        "emph_surface": 0.05234375207334069,
+        "emphasis_budget": 0.045,
+        "emphasis_weight": 0.35,
+        "max_cat_chroma": 0.11832467109076289,
+        "mean_cat_chroma": 0.07613071867807808,
+        "mean_margin": 2.266021738593402,
+        "min_anticollapse": 1.0682151753543119,
+        "min_must_cvd": 0.2150330518019761,
+        "min_must_normal": 0.36096523226657223,
+        "min_should": 0.36324127277271345,
+        "missing_roles": [],
+        "palette": "soft-s01.night.yaml",
+        "sep": 0.06076751021726365,
+        "terms": 162,
+        "utility": 0.9392324897827363,
+        "wcag_violations": 0,
+        "worst_margin": 0.2150330518019761
+      },
+      "source_name": "soft-s01.night.yaml",
+      "state": null
+    },
+    {
+      "hexes": {
+        "active_line": "#1f1e1d",
+        "bg": "#191714",
+        "bg_elevated": "#211e1b",
+        "bg_overlay": "#282521",
+        "breakpoint": "#f0bfbe",
+        "builtin": "#ea9ab0",
+        "comment": "#a0968a",
+        "constant": "#eaa084",
+        "debug_current": "#251f0c",
+        "decorator": "#e9a460",
+        "deprecated": "#979797",
+        "diff_added": "#0e2610",
+        "diff_changed": "#191919",
+        "diff_removed": "#300c09",
+        "docstring": "#cbbfb3",
+        "error": "#e4e4e4",
+        "fg": "#c4c1bd",
+        "fg_muted": "#6d6b68",
+        "fg_secondary": "#999794",
+        "focus": "#a9f7ea",
+        "function": "#9ef7f4",
+        "info": "#b5c5e1",
+        "keyword": "#d79ce5",
+        "line_number": "#6b6b6b",
+        "line_number_active": "#c1c1c1",
+        "namespace": "#66c2d6",
+        "number": "#bbba5f",
+        "operator": "#c1c1c1",
+        "parameter": "#c4c1bd",
+        "property": "#bfc2c3",
+        "punctuation": "#979797",
+        "search_match": "#2a1208",
+        "search_match_current": "#37190d",
+        "selection": "#0c1b3c",
+        "string": "#69c997",
+        "success": "#cbaf5d",
+        "tag": "#e4ce6f",
+        "type": "#75deee",
+        "ui_inactive": "#6b6b6b",
+        "warning": "#edec79"
+      },
+      "kind": "frontier reference",
+      "label": "middle-m01",
+      "metrics": {
+        "argmin": {
+          "class": "must_deutan",
+          "pair": [
+            "active_line",
+            "diff_added"
+          ]
+        },
+        "diff_added_removed_deutan_de": 0.0259,
+        "diff_added_removed_normal_de": 0.0982,
+        "max_categorical_chroma": 0.1195,
+        "mean_categorical_chroma": 0.1061,
+        "min_categorical_de": 0.0467,
+        "min_wcag": 3.0142,
+        "number_constant_de": 0.117,
+        "total_categorical_chroma": 1.0608,
+        "wcag_check_count": 261,
+        "wcag_violations": 0,
+        "worst_margin_anticollapse": 1.5572,
+        "worst_margin_matrix": 0.2816,
+        "worst_margin_must_cvd": 0.2816,
+        "worst_margin_must_normal": 0.3014,
+        "worst_margin_overall": 0.2816,
+        "worst_margin_should": 0.3632,
+        "worst_pairs": [
+          {
+            "class": "must_deutan",
+            "dC": 0.0483,
+            "dH": 0.0361,
+            "dL": 0.0065,
+            "de": 0.0253,
+            "margin": 0.2816,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0483,
+            "dH": 0.0361,
+            "dL": 0.0065,
+            "de": 0.0255,
+            "margin": 0.2832,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0088,
+            "dH": 0.1133,
+            "dL": 0.0265,
+            "de": 0.0259,
+            "margin": 0.2881,
+            "pair": [
+              "diff_added",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.016,
+            "dH": 0.1212,
+            "dL": 0.0116,
+            "de": 0.0271,
+            "margin": 0.3008,
+            "pair": [
+              "selection",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0084,
+            "dH": 0.0008,
+            "dL": 0.0383,
+            "de": 0.0392,
+            "margin": 0.3014,
+            "pair": [
+              "search_match",
+              "search_match_current"
+            ],
+            "threshold": 0.13
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.1378,
+            "dH": 0.1303,
+            "dL": 0.0018,
+            "de": 0.0277,
+            "margin": 0.3076,
+            "pair": [
+              "error",
+              "warning"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0013,
+            "dH": 0.0011,
+            "dL": 0.029,
+            "de": 0.0291,
+            "margin": 0.3632,
+            "pair": [
+              "bg_elevated",
+              "bg_overlay"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0596,
+            "dH": 0.0145,
+            "dL": 0.0024,
+            "de": 0.0331,
+            "margin": 0.3683,
+            "pair": [
+              "diff_removed",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_protan",
+            "dC": 0.0596,
+            "dH": 0.0145,
+            "dL": 0.0024,
+            "de": 0.0336,
+            "margin": 0.3737,
+            "pair": [
+              "diff_removed",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0483,
+            "dH": 0.0361,
+            "dL": 0.0065,
+            "de": 0.0507,
+            "margin": 0.3903,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.13
+          }
+        ]
+      },
+      "score": {
+        "argmin": [
+          "active_line",
+          "diff_added",
+          "must_deutan"
+        ],
+        "at_target": 121,
+        "emph": 0.04561068357116133,
+        "emph_excess": 0.013570746025807429,
+        "emph_ink": 0.047943913926528435,
+        "emph_surface": 0.041798215670234694,
+        "emphasis_budget": 0.045,
+        "emphasis_weight": 0.35,
+        "max_cat_chroma": 0.1194886710158409,
+        "mean_cat_chroma": 0.10608033012804537,
+        "mean_margin": 2.792139262391824,
+        "min_anticollapse": 1.557150141057676,
+        "min_must_cvd": 0.2816497052482395,
+        "min_must_normal": 0.30139379684366546,
+        "min_should": 0.36324127277271345,
+        "missing_roles": [],
+        "palette": "middle-m01.night.yaml",
+        "sep": 0.05916718345279402,
+        "terms": 162,
+        "utility": 0.9360830554381734,
+        "wcag_violations": 0,
+        "worst_margin": 0.2816497052482395
+      },
+      "source_name": "middle-m01.night.yaml",
+      "state": null
+    },
+    {
+      "hexes": {
+        "active_line": "#1f1e1d",
+        "bg": "#191714",
+        "bg_elevated": "#211e1b",
+        "bg_overlay": "#282521",
+        "breakpoint": "#f5af00",
+        "builtin": "#fa00f5",
+        "comment": "#a0968a",
+        "constant": "#2d9f00",
+        "debug_current": "#061d32",
+        "decorator": "#009f2f",
+        "deprecated": "#979797",
+        "diff_added": "#470001",
+        "diff_changed": "#0c0066",
+        "diff_removed": "#3c0049",
+        "docstring": "#cbbfb3",
+        "error": "#ff3f14",
+        "fg": "#c4c1bd",
+        "fg_muted": "#6d6b68",
+        "fg_secondary": "#999794",
+        "focus": "#fdffe1",
+        "function": "#ee00fc",
+        "info": "#f39dd7",
+        "keyword": "#e5fffe",
+        "line_number": "#6b6b6b",
+        "line_number_active": "#c1c1c1",
+        "namespace": "#e71eff",
+        "number": "#ff3d00",
+        "operator": "#c1c1c1",
+        "parameter": "#c4c1bd",
+        "property": "#bfc2c3",
+        "punctuation": "#979797",
+        "search_match": "#43002d",
+        "search_match_current": "#092700",
+        "selection": "#04005f",
+        "string": "#fffbfb",
+        "success": "#f3ffff",
+        "tag": "#74fb00",
+        "type": "#2589ff",
+        "ui_inactive": "#6b6b6b",
+        "warning": "#b0ff00"
+      },
+      "kind": "frontier reference",
+      "label": "numeric-n01",
+      "metrics": {
+        "argmin": {
+          "class": "must_deutan",
+          "pair": [
+            "selection",
+            "active_line"
+          ]
+        },
+        "diff_added_removed_deutan_de": 0.1262,
+        "diff_added_removed_normal_de": 0.1313,
+        "max_categorical_chroma": 0.315,
+        "mean_categorical_chroma": 0.2052,
+        "min_categorical_de": 0.0159,
+        "min_wcag": 3.0269,
+        "number_constant_de": 0.3496,
+        "total_categorical_chroma": 2.0518,
+        "wcag_check_count": 261,
+        "wcag_violations": 0,
+        "worst_margin_anticollapse": 0.5313,
+        "worst_margin_matrix": 0.5065,
+        "worst_margin_must_cvd": 0.5065,
+        "worst_margin_must_normal": 0.7804,
+        "worst_margin_overall": 0.5065,
+        "worst_margin_should": 0.3632,
+        "worst_pairs": [
+          {
+            "class": "should_normal",
+            "dC": 0.0013,
+            "dH": 0.0011,
+            "dL": 0.029,
+            "de": 0.0291,
+            "margin": 0.3632,
+            "pair": [
+              "bg_elevated",
+              "bg_overlay"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0007,
+            "dH": 0.0013,
+            "dL": 0.0315,
+            "de": 0.0315,
+            "margin": 0.3941,
+            "pair": [
+              "bg",
+              "bg_elevated"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0228,
+            "dH": 0.0482,
+            "dL": 0.0102,
+            "de": 0.0329,
+            "margin": 0.4112,
+            "pair": [
+              "keyword",
+              "string"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.1479,
+            "dH": 0.2152,
+            "dL": 0.014,
+            "de": 0.0456,
+            "margin": 0.5065,
+            "pair": [
+              "selection",
+              "active_line"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0754,
+            "dH": 0.2514,
+            "dL": 0.0187,
+            "de": 0.0472,
+            "margin": 0.5247,
+            "pair": [
+              "selection",
+              "search_match_current"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.1232,
+            "dH": 0.1213,
+            "dL": 0.0248,
+            "de": 0.0477,
+            "margin": 0.53,
+            "pair": [
+              "active_line",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "anticollapse_normal",
+            "dC": 0.0087,
+            "dH": 0.0132,
+            "dL": 0.002,
+            "de": 0.0159,
+            "margin": 0.5313,
+            "pair": [
+              "function",
+              "namespace"
+            ],
+            "threshold": 0.03
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.1479,
+            "dH": 0.2152,
+            "dL": 0.014,
+            "de": 0.0514,
+            "margin": 0.5709,
+            "pair": [
+              "selection",
+              "active_line"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0233,
+            "dH": 0.1377,
+            "dL": 0.0105,
+            "de": 0.0539,
+            "margin": 0.5987,
+            "pair": [
+              "diff_added",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0999,
+            "dH": 0.036,
+            "dL": 0.0143,
+            "de": 0.0545,
+            "margin": 0.6055,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          }
+        ]
+      },
+      "score": {
+        "argmin": [
+          "selection",
+          "active_line",
+          "must_deutan"
+        ],
+        "at_target": 130,
+        "emph": 0.08571668426701218,
+        "emph_excess": 0.904815205933604,
+        "emph_ink": 0.07675170125077387,
+        "emph_surface": 0.1003653493262251,
+        "emphasis_budget": 0.045,
+        "emphasis_weight": 0.35,
+        "max_cat_chroma": 0.3149603654288321,
+        "mean_cat_chroma": 0.20517917647869713,
+        "mean_margin": 5.072732672947096,
+        "min_anticollapse": 0.5312520789667549,
+        "min_must_cvd": 0.5065031882056289,
+        "min_must_normal": 0.7804209028381048,
+        "min_should": 0.36324127277271345,
+        "missing_roles": [],
+        "palette": "numeric-n01.night.yaml",
+        "sep": 0.022822149413469456,
+        "terms": 162,
+        "utility": 0.6604925285097691,
+        "wcag_violations": 0,
+        "worst_margin": 0.5065031882056289
+      },
+      "source_name": "numeric-n01.night.yaml",
+      "state": null
+    }
+  ],
+  "reference": {
+    "argmin": [
+      "number",
+      "constant",
+      "anticollapse_normal"
+    ],
+    "at_target": 68,
+    "emph": 0.019891426126610115,
+    "emph_excess": 0.0,
+    "emph_ink": 0.02283723116990674,
+    "emph_surface": 0.015078019193118903,
+    "emphasis_budget": 0.045,
+    "emphasis_weight": 0.35,
+    "max_cat_chroma": 0.08057626052835037,
+    "mean_cat_chroma": 0.041144609688251496,
+    "mean_margin": 1.5855102473716218,
+    "min_anticollapse": 0.0,
+    "min_must_cvd": 0.020931676908626056,
+    "min_must_normal": 0.058903686865021,
+    "min_should": 0.1639134701332426,
+    "missing_roles": [],
+    "palette": "candidate-b-balanced.night.yaml",
+    "sep": 0.21044372019541555,
+    "terms": 162,
+    "utility": 0.7895562798045844,
+    "wcag_violations": 12,
+    "worst_margin": 0.0
+  },
+  "refine_passes": 30,
+  "restarts": 24,
+  "samples": 16,
+  "schema": "grotto.soft-night",
+  "schema_version": "1",
+  "seed": 20260817,
+  "wall_seconds": 1986.92
+}
