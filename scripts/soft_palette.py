@@ -890,8 +890,8 @@ def enforce_salience_rank(problem: SoftProblem, state: dict) -> list[dict]:
     then re-checked.
 
     Two passes per violating pair: raise the higher-salience role's normalised
-    chroma (``boost_normc``), and only then, if that was not enough, lower the
-    lower-salience role's chroma.  Both passes accept a move only if it does
+    chroma (``boost_normc``) and lower the lower-salience role's chroma, in
+    whichever order leaves the better final utility.  Both passes accept a move only if it does
     not increase the reversals the moved role takes part in, which is what
     makes the sequence converge instead of oscillating.
 
@@ -904,36 +904,70 @@ def enforce_salience_rank(problem: SoftProblem, state: dict) -> list[dict]:
     """
     report: list[dict] = []
     for fam, lo, hi, _gap in salience_violations(problem, shipped_hexes(problem, state)):
-        for _ in range(POST_ROUNDS):
-            hexes = shipped_hexes(problem, state)
-            if _normc(hexes[lo]) - _normc(hexes[hi]) <= SAL_RANK_TOL:
-                break
-            if not boost_normc(problem, state, hi):
-                break
-        hexes = shipped_hexes(problem, state)
-        for _ in range(POST_ROUNDS):
-            if _normc(hexes[lo]) - _normc(hexes[hi]) <= SAL_RANK_TOL:
-                break
-            before = _violations_touching(problem, state, lo)
-            prev = _normc(hexes[lo])
-            got = _apply_move(problem, lo, state[lo], "f", -SAL_REPAIR_STEP, hexes)
-            if got is None:
-                break
-            state[lo] = got
-            hexes = shipped_hexes(problem, state)
-            after = _violations_touching(problem, state, lo)
-            if after > before or _normc(hexes[lo]) >= prev - 1e-9:
-                break  # no progress, or it would break the neighbour's pair
-        gap = _normc(hexes[lo]) - _normc(hexes[hi])
-        if gap > SAL_RANK_TOL:
+        # Either order can be the cheap one.  Raising the higher-salience role
+        # first was the only order until run 10, and it paid ~0.02 utility on
+        # every seed: ``error`` has 9 objective terms, ``breakpoint`` (placed
+        # after the ascent, no terms at all) is free to quiet.  So both orders
+        # run on copies and the better FINAL utility wins.
+        tried = []
+        for order in ((_raise_normc, _lower_normc), (_lower_normc, _raise_normc)):
+            trial = dict(state)
+            for step in order:
+                step(problem, trial, lo, hi)
+            hx = shipped_hexes(problem, trial)
+            gap = _normc(hx[lo]) - _normc(hx[hi])
+            tried.append((gap <= SAL_RANK_TOL, _shipped_utility(problem, trial), -gap, trial))
+        fixed, _u, neg_gap, best = max(tried, key=lambda t: (t[0], t[1], t[2]))
+        state.clear()
+        state.update(best)
+        if not fixed:
             report.append({
                 "family": fam,
                 "lower_salience": lo,
                 "higher_salience": hi,
                 "repaired": False,
-                "normc_gap": round(gap, 5),
+                "normc_gap": round(-neg_gap, 5),
             })
     return report
+
+
+def _shipped_utility(problem: SoftProblem, state: dict) -> float:
+    hexes = shipped_hexes(problem, state)
+    return problem.utility_from(hexes, sm.shortfall(problem.term_values(hexes))["sep"])
+
+
+def _raise_normc(problem: SoftProblem, state: dict, lo: str, hi: str) -> None:
+    """Raise the higher-salience role until the pair is in order (or stuck)."""
+    for _ in range(POST_ROUNDS):
+        hexes = shipped_hexes(problem, state)
+        if _normc(hexes[lo]) - _normc(hexes[hi]) <= SAL_RANK_TOL:
+            return
+        if not boost_normc(problem, state, hi):
+            return
+
+
+def _lower_normc(problem: SoftProblem, state: dict, lo: str, hi: str) -> None:
+    """Quiet the lower-salience role's chroma until the pair is in order.
+
+    A step that makes no progress, or that would reverse one of the role's
+    other pairs, is undone rather than left in place.
+    """
+    hexes = shipped_hexes(problem, state)
+    for _ in range(SAL_REPAIR_STEPS):
+        if _normc(hexes[lo]) - _normc(hexes[hi]) <= SAL_RANK_TOL:
+            return
+        before = _violations_touching(problem, state, lo)
+        prev_nc = _normc(hexes[lo])
+        prev = state[lo]
+        got = _apply_move(problem, lo, state[lo], "f", -SAL_REPAIR_STEP, hexes)
+        if got is None:
+            return
+        state[lo] = got
+        hexes = shipped_hexes(problem, state)
+        if (_violations_touching(problem, state, lo) > before
+                or _normc(hexes[lo]) >= prev_nc - 1e-9):
+            state[lo] = prev
+            return
 
 
 def repair_prominence(problem: SoftProblem, state: dict, steps: int = 30) -> None:
