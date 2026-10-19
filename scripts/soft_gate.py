@@ -1,7 +1,8 @@
 """Hard-constraint gate for the soft-objective palette search.
 
-Independent of ``scripts/soft_palette.py``: it re-reads the palettes the
-benchmark produced and asserts every constraint that must never trade for a
+Independent of the search's REPORT: it re-reads the palettes the
+benchmark produced (it imports ``scripts/soft_palette.py`` only for the
+declared fence table, never for a score) and asserts every constraint that must never trade for a
 better utility number.  Empty output means the run is admissible; any line on
 stdout means the run must be discarded, whatever it scored.
 
@@ -12,7 +13,8 @@ Gates, in order of how badly it would be to break them:
    numeric/middle searches treat as hard.  8-bit hex, after rounding.
 2. **sRGB gamut**: no emitted colour outside the displayable triangle.
 3. **Taste fences** from ``scripts/middle_palette.py``: hue convention
-   windows, the ink/surface lightness deltas around candidate-b Night, the
+   windows, the ink/surface lightness deltas around candidate-b Night (wider
+   only for roles whose spec declares ``lightness_offset``), the
    class chroma caps and the 70%-of-gamut rule.  Checked on the shipped hexes
    and on the authored OKLCH coordinates.
 4. **same_family.min_distance** (0.03, read from ``spec/distance-matrix.yaml``)
@@ -37,6 +39,7 @@ from grotto.spec import Palette, RoleSpec, salience_coverage  # noqa: E402
 import numeric_palette as np_  # noqa: E402
 import middle_palette as mp  # noqa: E402
 import soft_metric as sm  # noqa: E402
+import soft_palette as sp  # noqa: E402
 
 #: DESIGN.md section 6, enforced in spec/environments.yaml: salience_budget.
 #: Read, never edited -- this gate's whole job is to be the non-negotiable
@@ -95,7 +98,10 @@ def gate(path: Path) -> list[str]:
     name = path.name
     palette = Palette.from_yaml(path)
     colors = {r: str(v) for r, v in palette.colors.items()}
-    problem = mp.MiddleProblem()
+    # The search's own problem: its fences are the ones the palette was
+    # built inside (middle fences, widened only where the spec declares a
+    # lightness_offset channel -- soft_palette.SoftProblem.l_range).
+    problem = sp.SoftProblem()
     hexes = {r: colors[r] for r in problem.present if r in colors}
 
     missing = [r for r in problem.present if r not in colors]

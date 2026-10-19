@@ -149,6 +149,22 @@ import soft_metric as sm  # noqa: E402
 
 DEFAULT_SEED = 20260817
 
+#: Declared trial settings: the lightness fence for roles whose spec entry
+#: lists ``lightness_offset`` as a redundant channel (see SoftProblem.l_range).
+#: Every other role keeps middle_palette's INK_L_DELTA / SURFACE_L_DELTA.
+OFFSET_INK_L_DELTA = 0.08
+OFFSET_SURFACE_L_DELTA = 0.12
+
+#: Declared trial setting: scaffold inks lifted off candidate-b's lightness.
+#:
+#: Every highlight surface must keep every floored scaffold ink legible on
+#: it.  ``fg_muted`` and ``line_number`` sit on the 3.0:1 non-text floor at
+#: L 0.528, which caps EVERY surface at L ~0.25; with surfaces held at the
+#: canvas +0.01, the whole selection/search/diff cluster had a 0.035 band of
+#: lightness to share.  Lifting the two inks moves that cap to ~0.31, where
+#: the 4.5:1 body-text inks (comment, punctuation) take over.
+SCAFFOLD_L_OVERRIDES = {"fg_muted": 0.585, "line_number": 0.585, "ui_inactive": 0.585}
+
 #: Deterministic move list, inherited from the numeric search.  Each entry is
 #: (axis, delta): hue degrees, absolute OKLCH lightness, or a fraction of the
 #: role's chroma ceiling.
@@ -172,6 +188,13 @@ class SoftProblem(mp.MiddleProblem):
 
     def __init__(self, chromatic=tuple(np_.CHROMATIC_ROLES)):
         super().__init__(chromatic=chromatic)
+        # Scaffold lightness overrides (see SCAFFOLD_L_OVERRIDES).  Applied
+        # before anything reads a scaffold hex, so the WCAG caps they induce
+        # on the highlight surfaces are the overridden ones.
+        for r, L in SCAFFOLD_L_OVERRIDES.items():
+            _, C, h = self.scaffold[r]
+            self.scaffold[r] = (L, C, h)
+            self.scaffold_hex[r] = oklch_to_hex(np_.project_chroma(L, C, h))
         self.area = sm.area_table()
         # Roles the emphasis sum counts, with their weights resolved once.
         self._emph_roles = {
@@ -181,7 +204,35 @@ class SoftProblem(mp.MiddleProblem):
         }
         self._emph_total = sum(self._emph_roles.values()) or 1.0
 
-    # -- chroma floor ----------------------------------------------------
+    # -- lightness fences ------------------------------------------------
+
+    def l_range(self, role: str) -> tuple[float, float]:
+        """The middle fence, widened for roles that DECLARE lightness.
+
+        ``spec/roles.yaml`` lists ``lightness_offset`` among the redundant
+        channels of selection, search_match_current, the diff washes, error,
+        success and focus -- and ``spec/distance-matrix.yaml`` names
+        "lightness_and_icon" / "lightness_and_gutter_sign" as the redundant
+        encoding of error/warning and diff_added/diff_removed.  A fence of
+        +/-0.06 cannot deliver that channel: the redundant-channel audit
+        (docs/review/redundant-channel-audit.md §8) measured that the worst
+        surface has to move 0.0985 (normal) to 0.1734 (deutan).  So the spec's
+        own declaration widens the fence, role by role; every other role keeps
+        the middle frontier's fence unchanged.
+        """
+        lo, hi = super().l_range(role)
+        if "lightness_offset" in self.roles_spec.roles[role].redundant_channels:
+            base = self.baseline_lch[role][0]
+            if self.paint[role] in ("ink", "border"):
+                # Inks widen DOWNWARD only: candidate-b's inks already sit at
+                # L 0.80-0.89, and above that the sRGB gamut holds too little
+                # chroma for the hue to survive (an early probe parked
+                # ``error`` at L 0.96, C 0.012 -- white, below the floor).
+                lo = min(lo, base - OFFSET_INK_L_DELTA)
+            else:
+                lo = min(lo, base - OFFSET_SURFACE_L_DELTA)
+                hi = max(hi, base + OFFSET_SURFACE_L_DELTA)
+        return (lo, hi)
 
     def chroma_floor(self, role: str) -> float:
         """Declared floor for a chromatic role (soft_metric.CHROMA_FLOOR).
