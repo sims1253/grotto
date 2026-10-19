@@ -19,6 +19,7 @@ completes in seconds; the full 23-role run is exercised by the script itself.
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
@@ -256,3 +257,62 @@ def test_provenance_override_names_the_real_generator(tmp_path):
     assert "shortfall" in o.lower() or "max(0" in o
     # and the default is untouched by the existence of the parameter
     assert d == default.read_text()
+
+
+def test_no_committed_soft_artifact_names_the_middle_optimizer():
+    """Every face of the shipped deliverable names its own generator.
+
+    The palette YAML was fixed first, and review then found the same false
+    provenance on the other two faces: `variants.html` still headlined the
+    middle-frontier optimizer, and the installable extension still shipped as
+    `grotto-middle-exploration` with a `middle-explore` theme file.  A reader
+    of any single face must be able to tell which search produced it, so this
+    checks the committed artifacts rather than the writer's arguments.
+    """
+    soft = REPO / "out/soft-night"
+    offenders = []
+    # What must not appear is not the *words* "middle frontier" -- the banner
+    # legitimately contrasts these palettes with it -- but any claim to BE it:
+    # its heading, its generator string, its package name, its theme slug.
+    forbidden = (
+        "Middle-frontier Night palettes",                      # its h1
+        "Middle palettes optimise the SAME numeric objective",  # its banner
+        "middle-optimizer",                                    # its source/generated
+        "grotto-middle-exploration",                           # its package name
+        "middle-explore-0",                                    # its theme file slug
+    )
+    for path in sorted(soft.rglob("*")):
+        if not path.is_file() or path.suffix not in {".html", ".json", ".yaml"}:
+            continue
+        text = path.read_text(encoding="utf-8")
+        for needle in forbidden:
+            if needle in text:
+                offenders.append(f"{path.relative_to(REPO)}: {needle}")
+    assert not offenders, f"soft deliverable identifies as the middle optimizer: {offenders}"
+
+    assert "Soft-objective" in (soft / "variants.html").read_text(encoding="utf-8")
+    pkg = json.loads((soft / "vscode-preview/package.json").read_text(encoding="utf-8"))
+    assert pkg["name"] == "grotto-soft-objective"
+    assert "soft-objective" in pkg["description"]
+    assert (soft / "vscode-preview/themes/soft-explore-01-night.json").exists(), (
+        "the theme file must be named after the search that produced it"
+    )
+
+
+def test_the_middle_defaults_still_reproduce_the_middle_artifacts():
+    """The override is additive: the default identity is the middle identity.
+
+    `out/middle-night/` is the committed output of this module's own run, so it
+    is the byte-level statement of what "default" means.  If a future change
+    renames the default package or theme slug, that directory stops matching
+    and this fails -- which is the point.
+    """
+    pkg = json.loads(
+        (REPO / "out/middle-night/vscode-preview/package.json").read_text(encoding="utf-8")
+    )
+    assert pkg["name"] == "grotto-middle-exploration"
+    assert "middle-frontier" in pkg["description"]
+    assert (REPO / "out/middle-night/vscode-preview/themes/middle-explore-01-night.json").exists()
+    assert "Middle-frontier" in (REPO / "out/middle-night/variants.html").read_text(
+        encoding="utf-8"
+    )

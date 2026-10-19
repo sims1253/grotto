@@ -1,7 +1,7 @@
 {
-  "name": "grotto-middle-exploration",
-  "displayName": "Grotto Middle Exploration (NON-CANDIDATE)",
-  "description": "Night themes from the middle-frontier optimizer (numeric objective inside taste fences); exploration material, not a candidate.",
+  "name": "grotto-soft-objective",
+  "displayName": "Grotto Soft Objective (NON-CANDIDATE)",
+  "description": "Night themes from the soft-objective optimizer (shortfall + emphasis budget inside the middle frontier's taste fences); exploration material, not a candidate.",
   "version": "0.0.1",
   "publisher": "grotto-exploration",
   "engines": {
@@ -13,9 +13,9 @@
   "contributes": {
     "themes": [
       {
-        "label": "Grotto M-Explore 01 Night",
+        "label": "Grotto S-Explore 01 Night",
         "uiTheme": "vs-dark",
-        "path": "themes/middle-explore-01-night.json"
+        "path": "themes/soft-explore-01-night.json"
       }
     ]
   }

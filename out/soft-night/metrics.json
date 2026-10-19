@@ -1,65 +1,56 @@
 {
-  "schema": "grotto.soft-night",
-  "schema_version": "1",
+  "fences": "inherited unchanged from scripts/middle_palette.py",
   "generated_by": "scripts/soft_palette.py",
-  "seed": 20260817,
-  "restarts": 24,
-  "samples": 16,
-  "refine_passes": 30,
   "objective": {
-    "formula": "utility = 1 - SEP - EMPHASIS_WEIGHT * EMPHASIS_EXCESS",
-    "shortfall": "SEP = mean over all terms of max(0, 1 - margin)**SHORTFALL_EXP",
-    "shortfall_exp": 2.0,
-    "emphasis": "area-weighted mean chroma; measured character share for inks, declared area_class share for surfaces (canvas excluded)",
-    "emphasis_budget": 0.045,
-    "emphasis_weight": 0.35,
+    "acceptance": "strict on utility; no mean-margin tie-break",
     "area_class_share": {
       "dominant": 0.55,
       "major": 0.22,
       "minor": 0.1,
       "trace": 0.02
     },
-    "surface_area_weight": 0.6,
-    "acceptance": "strict on utility; no mean-margin tie-break"
+    "emphasis": "area-weighted mean chroma; measured character share for inks, declared area_class share for surfaces (canvas excluded)",
+    "emphasis_budget": 0.045,
+    "emphasis_weight": 0.35,
+    "formula": "utility = 1 - SEP - EMPHASIS_WEIGHT * EMPHASIS_EXCESS",
+    "shortfall": "SEP = mean over all terms of max(0, 1 - margin)**SHORTFALL_EXP",
+    "shortfall_exp": 2.0,
+    "surface_area_weight": 0.6
   },
-  "fences": "inherited unchanged from scripts/middle_palette.py",
   "palettes": [
     {
-      "label": "candidate-b-balanced",
-      "kind": "committed candidate (baseline)",
       "hexes": {
         "active_line": "#1f1e1d",
         "bg": "#191714",
         "bg_elevated": "#211e1b",
         "bg_overlay": "#282521",
-        "comment": "#a0968a",
-        "deprecated": "#979797",
-        "docstring": "#cbbfb3",
-        "fg": "#c4c1bd",
-        "fg_muted": "#6d6b68",
-        "fg_secondary": "#999794",
-        "line_number": "#6b6b6b",
-        "line_number_active": "#c1c1c1",
-        "operator": "#c1c1c1",
-        "parameter": "#c4c1bd",
-        "property": "#bfc2c3",
-        "punctuation": "#979797",
-        "ui_inactive": "#6b6b6b",
         "breakpoint": "#f2d1d0",
         "builtin": "#ccbebd",
+        "comment": "#a0968a",
         "constant": "#d9bd95",
         "debug_current": "#2b2316",
         "decorator": "#cbc0af",
+        "deprecated": "#979797",
         "diff_added": "#1c1f1a",
         "diff_changed": "#201e19",
         "diff_removed": "#261b1b",
+        "docstring": "#cbbfb3",
         "error": "#f2cdcd",
+        "fg": "#c4c1bd",
+        "fg_muted": "#6d6b68",
+        "fg_secondary": "#999794",
         "focus": "#cbdbea",
         "function": "#cbdae7",
         "info": "#aac4db",
         "keyword": "#cdbada",
+        "line_number": "#6b6b6b",
+        "line_number_active": "#c1c1c1",
         "namespace": "#b1c5c2",
         "number": "#d9bd95",
+        "operator": "#c1c1c1",
+        "parameter": "#c4c1bd",
+        "property": "#bfc2c3",
+        "punctuation": "#979797",
         "search_match": "#2b2317",
         "search_match_current": "#342815",
         "selection": "#202529",
@@ -67,192 +58,195 @@
         "success": "#a8cc8b",
         "tag": "#b9c2cb",
         "type": "#99cbc5",
+        "ui_inactive": "#6b6b6b",
         "warning": "#f0d3a7"
       },
-      "score": {
-        "palette": "candidate-b-balanced.night.yaml",
-        "utility": 0.7895562798045844,
-        "sep": 0.21044372019541555,
-        "emph": 0.019891426126610115,
-        "emph_ink": 0.02283723116990674,
-        "emph_surface": 0.015078019193118903,
-        "emph_excess": 0.0,
-        "worst_margin": 0.0,
-        "mean_margin": 1.5855102473716218,
-        "terms": 162,
-        "at_target": 68,
-        "min_must_normal": 0.058903686865021,
-        "min_must_cvd": 0.020931676908626056,
-        "min_should": 0.1639134701332426,
-        "min_anticollapse": 0.0,
-        "mean_cat_chroma": 0.041144609688251496,
-        "max_cat_chroma": 0.08057626052835037,
+      "kind": "committed candidate (baseline)",
+      "label": "candidate-b-balanced",
+      "metrics": {
+        "argmin": {
+          "class": "anticollapse_normal",
+          "pair": [
+            "number",
+            "constant"
+          ]
+        },
+        "diff_added_removed_deutan_de": 0.0019,
+        "diff_added_removed_normal_de": 0.0238,
+        "max_categorical_chroma": 0.0806,
+        "mean_categorical_chroma": 0.0411,
+        "min_categorical_de": 0.0,
+        "min_wcag": 2.6983,
+        "number_constant_de": 0.0,
+        "total_categorical_chroma": 0.4114,
+        "wcag_check_count": 261,
         "wcag_violations": 12,
-        "missing_roles": [],
+        "worst_margin_anticollapse": 0.0,
+        "worst_margin_matrix": 0.0209,
+        "worst_margin_must_cvd": 0.0209,
+        "worst_margin_must_normal": 0.0589,
+        "worst_margin_overall": 0.0,
+        "worst_margin_should": 0.1639,
+        "worst_pairs": [
+          {
+            "class": "anticollapse_normal",
+            "dC": 0.0,
+            "dH": 0.0,
+            "dL": 0.0,
+            "de": 0.0,
+            "margin": 0.0,
+            "pair": [
+              "number",
+              "constant"
+            ],
+            "threshold": 0.03
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0071,
+            "dH": 0.0278,
+            "dL": 0.0014,
+            "de": 0.0019,
+            "margin": 0.0209,
+            "pair": [
+              "diff_added",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0006,
+            "dH": 0.0077,
+            "dL": 0.0012,
+            "de": 0.0025,
+            "margin": 0.0278,
+            "pair": [
+              "diff_added",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_protan",
+            "dC": 0.0006,
+            "dH": 0.0077,
+            "dL": 0.0012,
+            "de": 0.0035,
+            "margin": 0.0387,
+            "pair": [
+              "diff_added",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0151,
+            "dH": 0.0086,
+            "dL": 0.0,
+            "de": 0.0038,
+            "margin": 0.0423,
+            "pair": [
+              "active_line",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0077,
+            "dH": 0.0167,
+            "dL": 0.0003,
+            "de": 0.004,
+            "margin": 0.0444,
+            "pair": [
+              "diff_removed",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.008,
+            "dH": 0.0073,
+            "dL": 0.0015,
+            "de": 0.004,
+            "margin": 0.0447,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0006,
+            "dH": 0.0077,
+            "dL": 0.0012,
+            "de": 0.0077,
+            "margin": 0.0589,
+            "pair": [
+              "diff_added",
+              "diff_changed"
+            ],
+            "threshold": 0.13
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0242,
+            "dH": 0.0565,
+            "dL": 0.0007,
+            "de": 0.0054,
+            "margin": 0.0597,
+            "pair": [
+              "error",
+              "warning"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.008,
+            "dH": 0.0073,
+            "dL": 0.0015,
+            "de": 0.0057,
+            "margin": 0.0632,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          }
+        ]
+      },
+      "score": {
         "argmin": [
           "number",
           "constant",
           "anticollapse_normal"
         ],
+        "at_target": 68,
+        "emph": 0.019891426126610115,
+        "emph_excess": 0.0,
+        "emph_ink": 0.02283723116990674,
+        "emph_surface": 0.015078019193118903,
         "emphasis_budget": 0.045,
-        "emphasis_weight": 0.35
-      },
-      "metrics": {
-        "worst_margin_overall": 0.0,
-        "worst_margin_matrix": 0.0209,
-        "argmin": {
-          "pair": [
-            "number",
-            "constant"
-          ],
-          "class": "anticollapse_normal"
-        },
-        "worst_margin_must_normal": 0.0589,
-        "worst_margin_must_cvd": 0.0209,
-        "worst_margin_should": 0.1639,
-        "worst_margin_anticollapse": 0.0,
-        "min_categorical_de": 0.0,
-        "mean_categorical_chroma": 0.0411,
-        "total_categorical_chroma": 0.4114,
-        "min_wcag": 2.6983,
+        "emphasis_weight": 0.35,
+        "max_cat_chroma": 0.08057626052835037,
+        "mean_cat_chroma": 0.041144609688251496,
+        "mean_margin": 1.5855102473716218,
+        "min_anticollapse": 0.0,
+        "min_must_cvd": 0.020931676908626056,
+        "min_must_normal": 0.058903686865021,
+        "min_should": 0.1639134701332426,
+        "missing_roles": [],
+        "palette": "candidate-b-balanced.night.yaml",
+        "sep": 0.21044372019541555,
+        "terms": 162,
+        "utility": 0.7895562798045844,
         "wcag_violations": 12,
-        "wcag_check_count": 261,
-        "worst_pairs": [
-          {
-            "pair": [
-              "number",
-              "constant"
-            ],
-            "class": "anticollapse_normal",
-            "de": 0.0,
-            "threshold": 0.03,
-            "margin": 0.0,
-            "dL": 0.0,
-            "dC": 0.0,
-            "dH": 0.0
-          },
-          {
-            "pair": [
-              "diff_added",
-              "diff_removed"
-            ],
-            "class": "must_deutan",
-            "de": 0.0019,
-            "threshold": 0.09,
-            "margin": 0.0209,
-            "dL": 0.0014,
-            "dC": 0.0071,
-            "dH": 0.0278
-          },
-          {
-            "pair": [
-              "diff_added",
-              "diff_changed"
-            ],
-            "class": "must_deutan",
-            "de": 0.0025,
-            "threshold": 0.09,
-            "margin": 0.0278,
-            "dL": 0.0012,
-            "dC": 0.0006,
-            "dH": 0.0077
-          },
-          {
-            "pair": [
-              "diff_added",
-              "diff_changed"
-            ],
-            "class": "must_protan",
-            "de": 0.0035,
-            "threshold": 0.09,
-            "margin": 0.0387,
-            "dL": 0.0012,
-            "dC": 0.0006,
-            "dH": 0.0077
-          },
-          {
-            "pair": [
-              "active_line",
-              "diff_removed"
-            ],
-            "class": "must_deutan",
-            "de": 0.0038,
-            "threshold": 0.09,
-            "margin": 0.0423,
-            "dL": 0.0,
-            "dC": 0.0151,
-            "dH": 0.0086
-          },
-          {
-            "pair": [
-              "diff_removed",
-              "diff_changed"
-            ],
-            "class": "must_deutan",
-            "de": 0.004,
-            "threshold": 0.09,
-            "margin": 0.0444,
-            "dL": 0.0003,
-            "dC": 0.0077,
-            "dH": 0.0167
-          },
-          {
-            "pair": [
-              "active_line",
-              "diff_added"
-            ],
-            "class": "must_tritan",
-            "de": 0.004,
-            "threshold": 0.09,
-            "margin": 0.0447,
-            "dL": 0.0015,
-            "dC": 0.008,
-            "dH": 0.0073
-          },
-          {
-            "pair": [
-              "diff_added",
-              "diff_changed"
-            ],
-            "class": "must_normal",
-            "de": 0.0077,
-            "threshold": 0.13,
-            "margin": 0.0589,
-            "dL": 0.0012,
-            "dC": 0.0006,
-            "dH": 0.0077
-          },
-          {
-            "pair": [
-              "error",
-              "warning"
-            ],
-            "class": "must_tritan",
-            "de": 0.0054,
-            "threshold": 0.09,
-            "margin": 0.0597,
-            "dL": 0.0007,
-            "dC": 0.0242,
-            "dH": 0.0565
-          },
-          {
-            "pair": [
-              "active_line",
-              "diff_added"
-            ],
-            "class": "must_deutan",
-            "de": 0.0057,
-            "threshold": 0.09,
-            "margin": 0.0632,
-            "dL": 0.0015,
-            "dC": 0.008,
-            "dH": 0.0073
-          }
-        ],
-        "max_categorical_chroma": 0.0806,
-        "diff_added_removed_deutan_de": 0.0019,
-        "diff_added_removed_normal_de": 0.0238,
-        "number_constant_de": 0.0
+        "worst_margin": 0.0
       },
       "source_name": "candidate-b-balanced.night.yaml",
       "state": {
@@ -374,12 +368,293 @@
       }
     },
     {
+      "hexes": {
+        "active_line": "#1f1e1d",
+        "bg": "#191714",
+        "bg_elevated": "#211e1b",
+        "bg_overlay": "#282521",
+        "breakpoint": "#f0c1b1",
+        "builtin": "#e6a0b3",
+        "comment": "#a0968a",
+        "constant": "#c8aea5",
+        "debug_current": "#37190d",
+        "decorator": "#b5b6a8",
+        "deprecated": "#979797",
+        "diff_added": "#0f260c",
+        "diff_changed": "#291208",
+        "diff_removed": "#3e1221",
+        "docstring": "#cbbfb3",
+        "error": "#f2cabd",
+        "fg": "#c4c1bd",
+        "fg_muted": "#6d6b68",
+        "fg_secondary": "#999794",
+        "focus": "#9af7e6",
+        "function": "#98eaf4",
+        "info": "#99b4e8",
+        "keyword": "#e29cdd",
+        "line_number": "#6b6b6b",
+        "line_number_active": "#c1c1c1",
+        "namespace": "#6fd6c4",
+        "number": "#eaa084",
+        "operator": "#c1c1c1",
+        "parameter": "#c4c1bd",
+        "property": "#bfc2c3",
+        "punctuation": "#979797",
+        "search_match": "#2a1208",
+        "search_match_current": "#272111",
+        "selection": "#0c1f48",
+        "string": "#a0bb9c",
+        "success": "#bbc563",
+        "tag": "#8acdea",
+        "type": "#69c8dd",
+        "ui_inactive": "#6b6b6b",
+        "warning": "#ebca6c"
+      },
+      "kind": "soft (bseed restart)",
       "label": "soft-s01",
+      "metrics": {
+        "argmin": {
+          "class": "must_protan",
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ]
+        },
+        "diff_added_removed_deutan_de": 0.0318,
+        "diff_added_removed_normal_de": 0.1192,
+        "max_categorical_chroma": 0.1183,
+        "mean_categorical_chroma": 0.0761,
+        "min_categorical_de": 0.032,
+        "min_wcag": 3.0005,
+        "number_constant_de": 0.0641,
+        "total_categorical_chroma": 0.7613,
+        "wcag_check_count": 261,
+        "wcag_violations": 0,
+        "worst_margin_anticollapse": 1.0682,
+        "worst_margin_matrix": 0.215,
+        "worst_margin_must_cvd": 0.215,
+        "worst_margin_must_normal": 0.361,
+        "worst_margin_overall": 0.215,
+        "worst_margin_should": 0.3632,
+        "worst_pairs": [
+          {
+            "class": "must_protan",
+            "dC": 0.0683,
+            "dH": 0.0418,
+            "dL": 0.0237,
+            "de": 0.0194,
+            "margin": 0.215,
+            "pair": [
+              "active_line",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0705,
+            "dH": 0.0759,
+            "dL": 0.0217,
+            "de": 0.0219,
+            "margin": 0.2432,
+            "pair": [
+              "error",
+              "warning"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0257,
+            "dH": 0.1441,
+            "dL": 0.0093,
+            "de": 0.0226,
+            "margin": 0.2511,
+            "pair": [
+              "selection",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0526,
+            "dH": 0.037,
+            "dL": 0.0063,
+            "de": 0.0247,
+            "margin": 0.2749,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0127,
+            "dH": 0.083,
+            "dL": 0.0284,
+            "de": 0.0256,
+            "margin": 0.2841,
+            "pair": [
+              "diff_added",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0683,
+            "dH": 0.0418,
+            "dL": 0.0237,
+            "de": 0.0259,
+            "margin": 0.2878,
+            "pair": [
+              "active_line",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0526,
+            "dH": 0.037,
+            "dL": 0.0063,
+            "de": 0.0295,
+            "margin": 0.3281,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0157,
+            "dH": 0.1527,
+            "dL": 0.0173,
+            "de": 0.0318,
+            "margin": 0.353,
+            "pair": [
+              "diff_added",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0149,
+            "dH": 0.0296,
+            "dL": 0.0344,
+            "de": 0.0469,
+            "margin": 0.361,
+            "pair": [
+              "search_match",
+              "search_match_current"
+            ],
+            "threshold": 0.13
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0013,
+            "dH": 0.0011,
+            "dL": 0.029,
+            "de": 0.0291,
+            "margin": 0.3632,
+            "pair": [
+              "bg_elevated",
+              "bg_overlay"
+            ],
+            "threshold": 0.08
+          }
+        ]
+      },
+      "score": {
+        "at_target": 108,
+        "emph": 0.04256865947139995,
+        "emph_excess": 0.0,
+        "mean_margin": 2.2660217385934023,
+        "sep": 0.06076751021726365,
+        "terms": 162,
+        "utility": 0.9392324897827363,
+        "worst_margin": 0.2150330518019761
+      },
+      "source_name": "soft-s01.night.yaml",
       "state": {
-        "selection": [
-          0.25171809205522616,
-          0.08105353759765624,
+        "breakpoint": [
+          0.847136,
+          0.05843930053710937,
+          38.5
+        ],
+        "builtin": [
+          0.7783218975559604,
+          0.08670355594282306,
+          1.5
+        ],
+        "constant": [
+          0.77144,
+          0.03323281528305705,
+          41.5
+        ],
+        "debug_current": [
+          0.255,
+          0.05241513061523437,
+          41.5
+        ],
+        "decorator": [
+          0.7715369999999999,
+          0.02,
+          108.5
+        ],
+        "diff_added": [
+          0.24274937677473818,
+          0.054834411621093745,
+          141.72278098526795
+        ],
+        "diff_changed": [
+          0.215,
+          0.042219970703125,
+          43.5
+        ],
+        "diff_removed": [
+          0.2580605498977729,
+          0.07104306030273437,
+          1.5
+        ],
+        "error": [
+          0.87,
+          0.04834027099609375,
+          38.5
+        ],
+        "focus": [
+          0.9121981164258249,
+          0.09172177124023437,
+          181.5
+        ],
+        "function": [
+          0.8890406982726696,
+          0.08072552490234375,
+          204.6427212861432
+        ],
+        "info": [
+          0.7673,
+          0.08079495239257811,
           263.5
+        ],
+        "keyword": [
+          0.7814865028266984,
+          0.1179448243005318,
+          329.0470107003366
+        ],
+        "namespace": [
+          0.809081345129636,
+          0.09995407032610817,
+          181.18631332147783
+        ],
+        "number": [
+          0.77144,
+          0.09650692749023437,
+          41.5
         ],
         "search_match": [
           0.215,
@@ -391,813 +666,538 @@
           0.029850229492187498,
           93.23276937504434
         ],
-        "diff_added": [
-          0.24274937677473818,
-          0.054834411621093745,
-          141.72278098526795
-        ],
-        "diff_removed": [
-          0.2580605498977729,
-          0.07104306030273437,
-          1.5
-        ],
-        "diff_changed": [
-          0.215,
-          0.042219970703125,
-          43.5
-        ],
-        "debug_current": [
-          0.255,
-          0.05241513061523437,
-          41.5
-        ],
-        "keyword": [
-          0.7814865028266984,
-          0.1179448243005318,
-          329.0470107003366
+        "selection": [
+          0.25171809205522616,
+          0.08105353759765624,
+          263.5
         ],
         "string": [
           0.763385,
           0.05300080515418527,
           140.96589538162695
         ],
-        "number": [
-          0.77144,
-          0.09650692749023437,
-          41.5
-        ],
-        "constant": [
-          0.77144,
-          0.03323281528305705,
-          41.5
-        ],
-        "type": [
-          0.7829205437169684,
-          0.09410900878906249,
-          213.5
-        ],
-        "function": [
-          0.8890406982726696,
-          0.08072552490234375,
-          204.6427212861432
-        ],
-        "builtin": [
-          0.7783218975559604,
-          0.08670355594282306,
-          1.5
-        ],
-        "decorator": [
-          0.7715369999999999,
-          0.02,
-          108.5
-        ],
-        "namespace": [
-          0.809081345129636,
-          0.09995407032610817,
-          181.18631332147783
+        "success": [
+          0.7950092277626385,
+          0.12278351615665488,
+          113.73672341479735
         ],
         "tag": [
           0.8138896043617058,
           0.07921888757542075,
           226.55774700783505
         ],
-        "error": [
-          0.87,
-          0.04834027099609375,
-          38.5
+        "type": [
+          0.7829205437169684,
+          0.09410900878906249,
+          213.5
         ],
         "warning": [
           0.8478552175627558,
           0.11930584716796874,
           90.5
-        ],
-        "info": [
-          0.7673,
-          0.08079495239257811,
-          263.5
-        ],
-        "success": [
-          0.7950092277626385,
-          0.12278351615665488,
-          113.73672341479735
-        ],
-        "focus": [
-          0.9121981164258249,
-          0.09172177124023437,
-          181.5
-        ],
-        "breakpoint": [
-          0.847136,
-          0.05843930053710937,
-          38.5
         ]
-      },
+      }
+    },
+    {
       "hexes": {
         "active_line": "#1f1e1d",
         "bg": "#191714",
         "bg_elevated": "#211e1b",
         "bg_overlay": "#282521",
+        "breakpoint": "#f0bfbe",
+        "builtin": "#ea9ab0",
         "comment": "#a0968a",
+        "constant": "#eaa084",
+        "debug_current": "#251f0c",
+        "decorator": "#e9a460",
         "deprecated": "#979797",
+        "diff_added": "#0e2610",
+        "diff_changed": "#191919",
+        "diff_removed": "#300c09",
         "docstring": "#cbbfb3",
+        "error": "#e4e4e4",
         "fg": "#c4c1bd",
         "fg_muted": "#6d6b68",
         "fg_secondary": "#999794",
+        "focus": "#a9f7ea",
+        "function": "#9ef7f4",
+        "info": "#b5c5e1",
+        "keyword": "#d79ce5",
         "line_number": "#6b6b6b",
         "line_number_active": "#c1c1c1",
+        "namespace": "#66c2d6",
+        "number": "#bbba5f",
         "operator": "#c1c1c1",
         "parameter": "#c4c1bd",
         "property": "#bfc2c3",
         "punctuation": "#979797",
-        "ui_inactive": "#6b6b6b",
-        "selection": "#0c1f48",
         "search_match": "#2a1208",
-        "search_match_current": "#272111",
-        "diff_added": "#0f260c",
-        "diff_removed": "#3e1221",
-        "diff_changed": "#291208",
-        "debug_current": "#37190d",
-        "keyword": "#e29cdd",
-        "string": "#a0bb9c",
-        "number": "#eaa084",
-        "constant": "#c8aea5",
-        "type": "#69c8dd",
-        "function": "#98eaf4",
-        "builtin": "#e6a0b3",
-        "decorator": "#b5b6a8",
-        "namespace": "#6fd6c4",
-        "tag": "#8acdea",
-        "error": "#f2cabd",
-        "warning": "#ebca6c",
-        "info": "#99b4e8",
-        "success": "#bbc563",
-        "focus": "#9af7e6",
-        "breakpoint": "#f0c1b1"
+        "search_match_current": "#37190d",
+        "selection": "#0c1b3c",
+        "string": "#69c997",
+        "success": "#cbaf5d",
+        "tag": "#e4ce6f",
+        "type": "#75deee",
+        "ui_inactive": "#6b6b6b",
+        "warning": "#edec79"
       },
-      "score": {
-        "utility": 0.9392324897827363,
-        "sep": 0.06076751021726365,
-        "emph": 0.04256865947139995,
-        "emph_excess": 0.0,
-        "worst_margin": 0.2150330518019761,
-        "mean_margin": 2.2660217385934023,
-        "at_target": 108,
-        "terms": 162
-      },
+      "kind": "frontier reference",
+      "label": "middle-m01",
       "metrics": {
-        "worst_margin_overall": 0.215,
-        "worst_margin_matrix": 0.215,
         "argmin": {
+          "class": "must_deutan",
           "pair": [
             "active_line",
-            "diff_removed"
-          ],
-          "class": "must_protan"
+            "diff_added"
+          ]
         },
-        "worst_margin_must_normal": 0.361,
-        "worst_margin_must_cvd": 0.215,
-        "worst_margin_should": 0.3632,
-        "worst_margin_anticollapse": 1.0682,
-        "min_categorical_de": 0.032,
-        "mean_categorical_chroma": 0.0761,
-        "total_categorical_chroma": 0.7613,
-        "min_wcag": 3.0005,
-        "wcag_violations": 0,
+        "diff_added_removed_deutan_de": 0.0259,
+        "diff_added_removed_normal_de": 0.0982,
+        "max_categorical_chroma": 0.1195,
+        "mean_categorical_chroma": 0.1061,
+        "min_categorical_de": 0.0467,
+        "min_wcag": 3.0142,
+        "number_constant_de": 0.117,
+        "total_categorical_chroma": 1.0608,
         "wcag_check_count": 261,
+        "wcag_violations": 0,
+        "worst_margin_anticollapse": 1.5572,
+        "worst_margin_matrix": 0.2816,
+        "worst_margin_must_cvd": 0.2816,
+        "worst_margin_must_normal": 0.3014,
+        "worst_margin_overall": 0.2816,
+        "worst_margin_should": 0.3632,
         "worst_pairs": [
           {
+            "class": "must_deutan",
+            "dC": 0.0483,
+            "dH": 0.0361,
+            "dL": 0.0065,
+            "de": 0.0253,
+            "margin": 0.2816,
             "pair": [
               "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0483,
+            "dH": 0.0361,
+            "dL": 0.0065,
+            "de": 0.0255,
+            "margin": 0.2832,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0088,
+            "dH": 0.1133,
+            "dL": 0.0265,
+            "de": 0.0259,
+            "margin": 0.2881,
+            "pair": [
+              "diff_added",
               "diff_removed"
             ],
-            "class": "must_protan",
-            "de": 0.0194,
-            "threshold": 0.09,
-            "margin": 0.215,
-            "dL": 0.0237,
-            "dC": 0.0683,
-            "dH": 0.0418
+            "threshold": 0.09
           },
           {
-            "pair": [
-              "error",
-              "warning"
-            ],
             "class": "must_tritan",
-            "de": 0.0219,
-            "threshold": 0.09,
-            "margin": 0.2432,
-            "dL": 0.0217,
-            "dC": 0.0705,
-            "dH": 0.0759
-          },
-          {
+            "dC": 0.016,
+            "dH": 0.1212,
+            "dL": 0.0116,
+            "de": 0.0271,
+            "margin": 0.3008,
             "pair": [
               "selection",
               "diff_added"
             ],
-            "class": "must_tritan",
-            "de": 0.0226,
-            "threshold": 0.09,
-            "margin": 0.2511,
-            "dL": 0.0093,
-            "dC": 0.0257,
-            "dH": 0.1441
+            "threshold": 0.09
           },
           {
-            "pair": [
-              "active_line",
-              "diff_added"
-            ],
-            "class": "must_tritan",
-            "de": 0.0247,
-            "threshold": 0.09,
-            "margin": 0.2749,
-            "dL": 0.0063,
-            "dC": 0.0526,
-            "dH": 0.037
-          },
-          {
-            "pair": [
-              "diff_added",
-              "diff_changed"
-            ],
-            "class": "must_deutan",
-            "de": 0.0256,
-            "threshold": 0.09,
-            "margin": 0.2841,
-            "dL": 0.0284,
-            "dC": 0.0127,
-            "dH": 0.083
-          },
-          {
-            "pair": [
-              "active_line",
-              "diff_removed"
-            ],
-            "class": "must_deutan",
-            "de": 0.0259,
-            "threshold": 0.09,
-            "margin": 0.2878,
-            "dL": 0.0237,
-            "dC": 0.0683,
-            "dH": 0.0418
-          },
-          {
-            "pair": [
-              "active_line",
-              "diff_added"
-            ],
-            "class": "must_deutan",
-            "de": 0.0295,
-            "threshold": 0.09,
-            "margin": 0.3281,
-            "dL": 0.0063,
-            "dC": 0.0526,
-            "dH": 0.037
-          },
-          {
-            "pair": [
-              "diff_added",
-              "diff_removed"
-            ],
-            "class": "must_deutan",
-            "de": 0.0318,
-            "threshold": 0.09,
-            "margin": 0.353,
-            "dL": 0.0173,
-            "dC": 0.0157,
-            "dH": 0.1527
-          },
-          {
+            "class": "must_normal",
+            "dC": 0.0084,
+            "dH": 0.0008,
+            "dL": 0.0383,
+            "de": 0.0392,
+            "margin": 0.3014,
             "pair": [
               "search_match",
               "search_match_current"
             ],
-            "class": "must_normal",
-            "de": 0.0469,
-            "threshold": 0.13,
-            "margin": 0.361,
-            "dL": 0.0344,
-            "dC": 0.0149,
-            "dH": 0.0296
+            "threshold": 0.13
           },
           {
+            "class": "must_tritan",
+            "dC": 0.1378,
+            "dH": 0.1303,
+            "dL": 0.0018,
+            "de": 0.0277,
+            "margin": 0.3076,
+            "pair": [
+              "error",
+              "warning"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0013,
+            "dH": 0.0011,
+            "dL": 0.029,
+            "de": 0.0291,
+            "margin": 0.3632,
             "pair": [
               "bg_elevated",
               "bg_overlay"
             ],
-            "class": "should_normal",
-            "de": 0.0291,
-            "threshold": 0.08,
-            "margin": 0.3632,
-            "dL": 0.029,
-            "dC": 0.0013,
-            "dH": 0.0011
+            "threshold": 0.08
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0596,
+            "dH": 0.0145,
+            "dL": 0.0024,
+            "de": 0.0331,
+            "margin": 0.3683,
+            "pair": [
+              "diff_removed",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_protan",
+            "dC": 0.0596,
+            "dH": 0.0145,
+            "dL": 0.0024,
+            "de": 0.0336,
+            "margin": 0.3737,
+            "pair": [
+              "diff_removed",
+              "diff_changed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0483,
+            "dH": 0.0361,
+            "dL": 0.0065,
+            "de": 0.0507,
+            "margin": 0.3903,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.13
           }
-        ],
-        "max_categorical_chroma": 0.1183,
-        "diff_added_removed_deutan_de": 0.0318,
-        "diff_added_removed_normal_de": 0.1192,
-        "number_constant_de": 0.0641
-      },
-      "source_name": "soft-s01.night.yaml",
-      "kind": "soft (bseed restart)"
-    },
-    {
-      "label": "middle-m01",
-      "kind": "frontier reference",
-      "hexes": {
-        "operator": "#c1c1c1",
-        "diff_removed": "#300c09",
-        "keyword": "#d79ce5",
-        "function": "#9ef7f4",
-        "diff_changed": "#191919",
-        "fg": "#c4c1bd",
-        "breakpoint": "#f0bfbe",
-        "fg_secondary": "#999794",
-        "type": "#75deee",
-        "namespace": "#66c2d6",
-        "search_match_current": "#37190d",
-        "bg_elevated": "#211e1b",
-        "number": "#bbba5f",
-        "ui_inactive": "#6b6b6b",
-        "bg": "#191714",
-        "tag": "#e4ce6f",
-        "diff_added": "#0e2610",
-        "property": "#bfc2c3",
-        "bg_overlay": "#282521",
-        "success": "#cbaf5d",
-        "string": "#69c997",
-        "line_number_active": "#c1c1c1",
-        "punctuation": "#979797",
-        "constant": "#eaa084",
-        "docstring": "#cbbfb3",
-        "line_number": "#6b6b6b",
-        "focus": "#a9f7ea",
-        "fg_muted": "#6d6b68",
-        "error": "#e4e4e4",
-        "warning": "#edec79",
-        "builtin": "#ea9ab0",
-        "active_line": "#1f1e1d",
-        "deprecated": "#979797",
-        "comment": "#a0968a",
-        "parameter": "#c4c1bd",
-        "search_match": "#2a1208",
-        "selection": "#0c1b3c",
-        "debug_current": "#251f0c",
-        "info": "#b5c5e1",
-        "decorator": "#e9a460"
+        ]
       },
       "score": {
-        "palette": "middle-m01.night.yaml",
-        "utility": 0.9360830554381734,
-        "sep": 0.05916718345279402,
-        "emph": 0.04561068357116133,
-        "emph_ink": 0.047943913926528435,
-        "emph_surface": 0.041798215670234694,
-        "emph_excess": 0.013570746025807429,
-        "worst_margin": 0.2816497052482395,
-        "mean_margin": 2.792139262391824,
-        "terms": 162,
-        "at_target": 121,
-        "min_must_normal": 0.30139379684366546,
-        "min_must_cvd": 0.2816497052482395,
-        "min_should": 0.36324127277271345,
-        "min_anticollapse": 1.557150141057676,
-        "mean_cat_chroma": 0.10608033012804537,
-        "max_cat_chroma": 0.1194886710158409,
-        "wcag_violations": 0,
-        "missing_roles": [],
         "argmin": [
           "active_line",
           "diff_added",
           "must_deutan"
         ],
+        "at_target": 121,
+        "emph": 0.04561068357116133,
+        "emph_excess": 0.013570746025807429,
+        "emph_ink": 0.047943913926528435,
+        "emph_surface": 0.041798215670234694,
         "emphasis_budget": 0.045,
-        "emphasis_weight": 0.35
-      },
-      "metrics": {
-        "worst_margin_overall": 0.2816,
-        "worst_margin_matrix": 0.2816,
-        "argmin": {
-          "pair": [
-            "active_line",
-            "diff_added"
-          ],
-          "class": "must_deutan"
-        },
-        "worst_margin_must_normal": 0.3014,
-        "worst_margin_must_cvd": 0.2816,
-        "worst_margin_should": 0.3632,
-        "worst_margin_anticollapse": 1.5572,
-        "min_categorical_de": 0.0467,
-        "mean_categorical_chroma": 0.1061,
-        "total_categorical_chroma": 1.0608,
-        "min_wcag": 3.0142,
+        "emphasis_weight": 0.35,
+        "max_cat_chroma": 0.1194886710158409,
+        "mean_cat_chroma": 0.10608033012804537,
+        "mean_margin": 2.792139262391824,
+        "min_anticollapse": 1.557150141057676,
+        "min_must_cvd": 0.2816497052482395,
+        "min_must_normal": 0.30139379684366546,
+        "min_should": 0.36324127277271345,
+        "missing_roles": [],
+        "palette": "middle-m01.night.yaml",
+        "sep": 0.05916718345279402,
+        "terms": 162,
+        "utility": 0.9360830554381734,
         "wcag_violations": 0,
-        "wcag_check_count": 261,
-        "worst_pairs": [
-          {
-            "pair": [
-              "active_line",
-              "diff_added"
-            ],
-            "class": "must_deutan",
-            "de": 0.0253,
-            "threshold": 0.09,
-            "margin": 0.2816,
-            "dL": 0.0065,
-            "dC": 0.0483,
-            "dH": 0.0361
-          },
-          {
-            "pair": [
-              "active_line",
-              "diff_added"
-            ],
-            "class": "must_tritan",
-            "de": 0.0255,
-            "threshold": 0.09,
-            "margin": 0.2832,
-            "dL": 0.0065,
-            "dC": 0.0483,
-            "dH": 0.0361
-          },
-          {
-            "pair": [
-              "diff_added",
-              "diff_removed"
-            ],
-            "class": "must_deutan",
-            "de": 0.0259,
-            "threshold": 0.09,
-            "margin": 0.2881,
-            "dL": 0.0265,
-            "dC": 0.0088,
-            "dH": 0.1133
-          },
-          {
-            "pair": [
-              "selection",
-              "diff_added"
-            ],
-            "class": "must_tritan",
-            "de": 0.0271,
-            "threshold": 0.09,
-            "margin": 0.3008,
-            "dL": 0.0116,
-            "dC": 0.016,
-            "dH": 0.1212
-          },
-          {
-            "pair": [
-              "search_match",
-              "search_match_current"
-            ],
-            "class": "must_normal",
-            "de": 0.0392,
-            "threshold": 0.13,
-            "margin": 0.3014,
-            "dL": 0.0383,
-            "dC": 0.0084,
-            "dH": 0.0008
-          },
-          {
-            "pair": [
-              "error",
-              "warning"
-            ],
-            "class": "must_tritan",
-            "de": 0.0277,
-            "threshold": 0.09,
-            "margin": 0.3076,
-            "dL": 0.0018,
-            "dC": 0.1378,
-            "dH": 0.1303
-          },
-          {
-            "pair": [
-              "bg_elevated",
-              "bg_overlay"
-            ],
-            "class": "should_normal",
-            "de": 0.0291,
-            "threshold": 0.08,
-            "margin": 0.3632,
-            "dL": 0.029,
-            "dC": 0.0013,
-            "dH": 0.0011
-          },
-          {
-            "pair": [
-              "diff_removed",
-              "diff_changed"
-            ],
-            "class": "must_deutan",
-            "de": 0.0331,
-            "threshold": 0.09,
-            "margin": 0.3683,
-            "dL": 0.0024,
-            "dC": 0.0596,
-            "dH": 0.0145
-          },
-          {
-            "pair": [
-              "diff_removed",
-              "diff_changed"
-            ],
-            "class": "must_protan",
-            "de": 0.0336,
-            "threshold": 0.09,
-            "margin": 0.3737,
-            "dL": 0.0024,
-            "dC": 0.0596,
-            "dH": 0.0145
-          },
-          {
-            "pair": [
-              "active_line",
-              "diff_added"
-            ],
-            "class": "must_normal",
-            "de": 0.0507,
-            "threshold": 0.13,
-            "margin": 0.3903,
-            "dL": 0.0065,
-            "dC": 0.0483,
-            "dH": 0.0361
-          }
-        ],
-        "max_categorical_chroma": 0.1195,
-        "diff_added_removed_deutan_de": 0.0259,
-        "diff_added_removed_normal_de": 0.0982,
-        "number_constant_de": 0.117
+        "worst_margin": 0.2816497052482395
       },
       "source_name": "middle-m01.night.yaml",
       "state": null
     },
     {
-      "label": "numeric-n01",
-      "kind": "frontier reference",
       "hexes": {
-        "operator": "#c1c1c1",
-        "diff_removed": "#3c0049",
-        "keyword": "#e5fffe",
-        "function": "#ee00fc",
-        "diff_changed": "#0c0066",
-        "fg": "#c4c1bd",
-        "breakpoint": "#f5af00",
-        "fg_secondary": "#999794",
-        "type": "#2589ff",
-        "namespace": "#e71eff",
-        "search_match_current": "#092700",
-        "bg_elevated": "#211e1b",
-        "number": "#ff3d00",
-        "ui_inactive": "#6b6b6b",
-        "bg": "#191714",
-        "tag": "#74fb00",
-        "diff_added": "#470001",
-        "property": "#bfc2c3",
-        "bg_overlay": "#282521",
-        "success": "#f3ffff",
-        "string": "#fffbfb",
-        "line_number_active": "#c1c1c1",
-        "punctuation": "#979797",
-        "constant": "#2d9f00",
-        "docstring": "#cbbfb3",
-        "line_number": "#6b6b6b",
-        "focus": "#fdffe1",
-        "fg_muted": "#6d6b68",
-        "error": "#ff3f14",
-        "warning": "#b0ff00",
-        "builtin": "#fa00f5",
         "active_line": "#1f1e1d",
-        "deprecated": "#979797",
+        "bg": "#191714",
+        "bg_elevated": "#211e1b",
+        "bg_overlay": "#282521",
+        "breakpoint": "#f5af00",
+        "builtin": "#fa00f5",
         "comment": "#a0968a",
-        "parameter": "#c4c1bd",
-        "search_match": "#43002d",
-        "selection": "#04005f",
+        "constant": "#2d9f00",
         "debug_current": "#061d32",
+        "decorator": "#009f2f",
+        "deprecated": "#979797",
+        "diff_added": "#470001",
+        "diff_changed": "#0c0066",
+        "diff_removed": "#3c0049",
+        "docstring": "#cbbfb3",
+        "error": "#ff3f14",
+        "fg": "#c4c1bd",
+        "fg_muted": "#6d6b68",
+        "fg_secondary": "#999794",
+        "focus": "#fdffe1",
+        "function": "#ee00fc",
         "info": "#f39dd7",
-        "decorator": "#009f2f"
+        "keyword": "#e5fffe",
+        "line_number": "#6b6b6b",
+        "line_number_active": "#c1c1c1",
+        "namespace": "#e71eff",
+        "number": "#ff3d00",
+        "operator": "#c1c1c1",
+        "parameter": "#c4c1bd",
+        "property": "#bfc2c3",
+        "punctuation": "#979797",
+        "search_match": "#43002d",
+        "search_match_current": "#092700",
+        "selection": "#04005f",
+        "string": "#fffbfb",
+        "success": "#f3ffff",
+        "tag": "#74fb00",
+        "type": "#2589ff",
+        "ui_inactive": "#6b6b6b",
+        "warning": "#b0ff00"
+      },
+      "kind": "frontier reference",
+      "label": "numeric-n01",
+      "metrics": {
+        "argmin": {
+          "class": "must_deutan",
+          "pair": [
+            "selection",
+            "active_line"
+          ]
+        },
+        "diff_added_removed_deutan_de": 0.1262,
+        "diff_added_removed_normal_de": 0.1313,
+        "max_categorical_chroma": 0.315,
+        "mean_categorical_chroma": 0.2052,
+        "min_categorical_de": 0.0159,
+        "min_wcag": 3.0269,
+        "number_constant_de": 0.3496,
+        "total_categorical_chroma": 2.0518,
+        "wcag_check_count": 261,
+        "wcag_violations": 0,
+        "worst_margin_anticollapse": 0.5313,
+        "worst_margin_matrix": 0.5065,
+        "worst_margin_must_cvd": 0.5065,
+        "worst_margin_must_normal": 0.7804,
+        "worst_margin_overall": 0.5065,
+        "worst_margin_should": 0.3632,
+        "worst_pairs": [
+          {
+            "class": "should_normal",
+            "dC": 0.0013,
+            "dH": 0.0011,
+            "dL": 0.029,
+            "de": 0.0291,
+            "margin": 0.3632,
+            "pair": [
+              "bg_elevated",
+              "bg_overlay"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0007,
+            "dH": 0.0013,
+            "dL": 0.0315,
+            "de": 0.0315,
+            "margin": 0.3941,
+            "pair": [
+              "bg",
+              "bg_elevated"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "should_normal",
+            "dC": 0.0228,
+            "dH": 0.0482,
+            "dL": 0.0102,
+            "de": 0.0329,
+            "margin": 0.4112,
+            "pair": [
+              "keyword",
+              "string"
+            ],
+            "threshold": 0.08
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.1479,
+            "dH": 0.2152,
+            "dL": 0.014,
+            "de": 0.0456,
+            "margin": 0.5065,
+            "pair": [
+              "selection",
+              "active_line"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0754,
+            "dH": 0.2514,
+            "dL": 0.0187,
+            "de": 0.0472,
+            "margin": 0.5247,
+            "pair": [
+              "selection",
+              "search_match_current"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.1232,
+            "dH": 0.1213,
+            "dL": 0.0248,
+            "de": 0.0477,
+            "margin": 0.53,
+            "pair": [
+              "active_line",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "anticollapse_normal",
+            "dC": 0.0087,
+            "dH": 0.0132,
+            "dL": 0.002,
+            "de": 0.0159,
+            "margin": 0.5313,
+            "pair": [
+              "function",
+              "namespace"
+            ],
+            "threshold": 0.03
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.1479,
+            "dH": 0.2152,
+            "dL": 0.014,
+            "de": 0.0514,
+            "margin": 0.5709,
+            "pair": [
+              "selection",
+              "active_line"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_tritan",
+            "dC": 0.0233,
+            "dH": 0.1377,
+            "dL": 0.0105,
+            "de": 0.0539,
+            "margin": 0.5987,
+            "pair": [
+              "diff_added",
+              "diff_removed"
+            ],
+            "threshold": 0.09
+          },
+          {
+            "class": "must_deutan",
+            "dC": 0.0999,
+            "dH": 0.036,
+            "dL": 0.0143,
+            "de": 0.0545,
+            "margin": 0.6055,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.09
+          }
+        ]
       },
       "score": {
-        "palette": "numeric-n01.night.yaml",
-        "utility": 0.6604925285097691,
-        "sep": 0.022822149413469456,
-        "emph": 0.08571668426701218,
-        "emph_ink": 0.07675170125077387,
-        "emph_surface": 0.1003653493262251,
-        "emph_excess": 0.904815205933604,
-        "worst_margin": 0.5065031882056289,
-        "mean_margin": 5.072732672947096,
-        "terms": 162,
-        "at_target": 130,
-        "min_must_normal": 0.7804209028381048,
-        "min_must_cvd": 0.5065031882056289,
-        "min_should": 0.36324127277271345,
-        "min_anticollapse": 0.5312520789667549,
-        "mean_cat_chroma": 0.20517917647869713,
-        "max_cat_chroma": 0.3149603654288321,
-        "wcag_violations": 0,
-        "missing_roles": [],
         "argmin": [
           "selection",
           "active_line",
           "must_deutan"
         ],
+        "at_target": 130,
+        "emph": 0.08571668426701218,
+        "emph_excess": 0.904815205933604,
+        "emph_ink": 0.07675170125077387,
+        "emph_surface": 0.1003653493262251,
         "emphasis_budget": 0.045,
-        "emphasis_weight": 0.35
-      },
-      "metrics": {
-        "worst_margin_overall": 0.5065,
-        "worst_margin_matrix": 0.5065,
-        "argmin": {
-          "pair": [
-            "selection",
-            "active_line"
-          ],
-          "class": "must_deutan"
-        },
-        "worst_margin_must_normal": 0.7804,
-        "worst_margin_must_cvd": 0.5065,
-        "worst_margin_should": 0.3632,
-        "worst_margin_anticollapse": 0.5313,
-        "min_categorical_de": 0.0159,
-        "mean_categorical_chroma": 0.2052,
-        "total_categorical_chroma": 2.0518,
-        "min_wcag": 3.0269,
+        "emphasis_weight": 0.35,
+        "max_cat_chroma": 0.3149603654288321,
+        "mean_cat_chroma": 0.20517917647869713,
+        "mean_margin": 5.072732672947096,
+        "min_anticollapse": 0.5312520789667549,
+        "min_must_cvd": 0.5065031882056289,
+        "min_must_normal": 0.7804209028381048,
+        "min_should": 0.36324127277271345,
+        "missing_roles": [],
+        "palette": "numeric-n01.night.yaml",
+        "sep": 0.022822149413469456,
+        "terms": 162,
+        "utility": 0.6604925285097691,
         "wcag_violations": 0,
-        "wcag_check_count": 261,
-        "worst_pairs": [
-          {
-            "pair": [
-              "bg_elevated",
-              "bg_overlay"
-            ],
-            "class": "should_normal",
-            "de": 0.0291,
-            "threshold": 0.08,
-            "margin": 0.3632,
-            "dL": 0.029,
-            "dC": 0.0013,
-            "dH": 0.0011
-          },
-          {
-            "pair": [
-              "bg",
-              "bg_elevated"
-            ],
-            "class": "should_normal",
-            "de": 0.0315,
-            "threshold": 0.08,
-            "margin": 0.3941,
-            "dL": 0.0315,
-            "dC": 0.0007,
-            "dH": 0.0013
-          },
-          {
-            "pair": [
-              "keyword",
-              "string"
-            ],
-            "class": "should_normal",
-            "de": 0.0329,
-            "threshold": 0.08,
-            "margin": 0.4112,
-            "dL": 0.0102,
-            "dC": 0.0228,
-            "dH": 0.0482
-          },
-          {
-            "pair": [
-              "selection",
-              "active_line"
-            ],
-            "class": "must_deutan",
-            "de": 0.0456,
-            "threshold": 0.09,
-            "margin": 0.5065,
-            "dL": 0.014,
-            "dC": 0.1479,
-            "dH": 0.2152
-          },
-          {
-            "pair": [
-              "selection",
-              "search_match_current"
-            ],
-            "class": "must_tritan",
-            "de": 0.0472,
-            "threshold": 0.09,
-            "margin": 0.5247,
-            "dL": 0.0187,
-            "dC": 0.0754,
-            "dH": 0.2514
-          },
-          {
-            "pair": [
-              "active_line",
-              "diff_removed"
-            ],
-            "class": "must_tritan",
-            "de": 0.0477,
-            "threshold": 0.09,
-            "margin": 0.53,
-            "dL": 0.0248,
-            "dC": 0.1232,
-            "dH": 0.1213
-          },
-          {
-            "pair": [
-              "function",
-              "namespace"
-            ],
-            "class": "anticollapse_normal",
-            "de": 0.0159,
-            "threshold": 0.03,
-            "margin": 0.5313,
-            "dL": 0.002,
-            "dC": 0.0087,
-            "dH": 0.0132
-          },
-          {
-            "pair": [
-              "selection",
-              "active_line"
-            ],
-            "class": "must_tritan",
-            "de": 0.0514,
-            "threshold": 0.09,
-            "margin": 0.5709,
-            "dL": 0.014,
-            "dC": 0.1479,
-            "dH": 0.2152
-          },
-          {
-            "pair": [
-              "diff_added",
-              "diff_removed"
-            ],
-            "class": "must_tritan",
-            "de": 0.0539,
-            "threshold": 0.09,
-            "margin": 0.5987,
-            "dL": 0.0105,
-            "dC": 0.0233,
-            "dH": 0.1377
-          },
-          {
-            "pair": [
-              "active_line",
-              "diff_added"
-            ],
-            "class": "must_deutan",
-            "de": 0.0545,
-            "threshold": 0.09,
-            "margin": 0.6055,
-            "dL": 0.0143,
-            "dC": 0.0999,
-            "dH": 0.036
-          }
-        ],
-        "max_categorical_chroma": 0.315,
-        "diff_added_removed_deutan_de": 0.1262,
-        "diff_added_removed_normal_de": 0.1313,
-        "number_constant_de": 0.3496
+        "worst_margin": 0.5065031882056289
       },
       "source_name": "numeric-n01.night.yaml",
       "state": null
     }
   ],
   "reference": {
-    "palette": "candidate-b-balanced.night.yaml",
-    "utility": 0.7895562798045844,
-    "sep": 0.21044372019541555,
-    "emph": 0.019891426126610115,
-    "emph_ink": 0.02283723116990674,
-    "emph_surface": 0.015078019193118903,
-    "emph_excess": 0.0,
-    "worst_margin": 0.0,
-    "mean_margin": 1.5855102473716218,
-    "terms": 162,
-    "at_target": 68,
-    "min_must_normal": 0.058903686865021,
-    "min_must_cvd": 0.020931676908626056,
-    "min_should": 0.1639134701332426,
-    "min_anticollapse": 0.0,
-    "mean_cat_chroma": 0.041144609688251496,
-    "max_cat_chroma": 0.08057626052835037,
-    "wcag_violations": 12,
-    "missing_roles": [],
     "argmin": [
       "number",
       "constant",
       "anticollapse_normal"
     ],
+    "at_target": 68,
+    "emph": 0.019891426126610115,
+    "emph_excess": 0.0,
+    "emph_ink": 0.02283723116990674,
+    "emph_surface": 0.015078019193118903,
     "emphasis_budget": 0.045,
-    "emphasis_weight": 0.35
+    "emphasis_weight": 0.35,
+    "max_cat_chroma": 0.08057626052835037,
+    "mean_cat_chroma": 0.041144609688251496,
+    "mean_margin": 1.5855102473716218,
+    "min_anticollapse": 0.0,
+    "min_must_cvd": 0.020931676908626056,
+    "min_must_normal": 0.058903686865021,
+    "min_should": 0.1639134701332426,
+    "missing_roles": [],
+    "palette": "candidate-b-balanced.night.yaml",
+    "sep": 0.21044372019541555,
+    "terms": 162,
+    "utility": 0.7895562798045844,
+    "wcag_violations": 12,
+    "worst_margin": 0.0
   },
-  "wall_seconds": 119.91
+  "refine_passes": 30,
+  "restarts": 24,
+  "samples": 16,
+  "schema": "grotto.soft-night",
+  "schema_version": "1",
+  "seed": 20260817,
+  "wall_seconds": 110.51
 }

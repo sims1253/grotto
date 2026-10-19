@@ -1,5 +1,5 @@
 {
-  "name": "Grotto M-Explore 01 Night",
+  "name": "Grotto S-Explore 01 Night",
   "type": "dark",
   "semanticHighlighting": true,
   "colors": {
@@ -415,6 +415,6 @@
     "palette": "soft-s01.night.yaml",
     "palette_sha256": "soft-exploration",
     "candidate": false,
-    "note": "NON-CANDIDATE middle-exploration theme (branch dev/numeric-palettes). Numeric objective inside taste fences; see NUMERIC.md."
+    "note": "NON-CANDIDATE soft-objective theme (branch feat/pr-theme-autoresearch). Shortfall + emphasis objective inside taste fences; see docs/review/soft-objective.md."
   }
 }

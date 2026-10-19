@@ -103,6 +103,47 @@ SOFT_PROVENANCE = {
         "- 0.35 * max(0,(emphasis-0.045)/0.045)'"
     ),
     "fences": "hue-windows+L-deltas+chroma-caps+0.70-gamut+CHROMA_FLOOR+salience-rank (see scripts/soft_palette.py)",
+    # The page the shared renderer writes, and the installable extension.  All
+    # three faces of the deliverable have to name this search, not the one the
+    # shared code was written for.
+    "html": {
+        "title": "soft night palettes",
+        "h1": "Soft-objective Night palettes &middot; NON-CANDIDATE",
+        "banner": (
+            "NON-CANDIDATE exploration (branch feat/pr-theme-autoresearch). "
+            "These palettes optimise a SHORTFALL objective "
+            "(1 - mean max(0,1-m)^2 over the 162 margin terms) plus an "
+            "area-weighted EMPHASIS budget, NOT the max-min margin J that the "
+            "N-Explore and middle-frontier palettes optimise. Both terms pay "
+            "nothing above target, so the search has no incentive to buy "
+            "saturation. Fences are the middle frontier's: hue convention "
+            "windows, lightness +/-0.04/0.06 around candidate-b night, chroma "
+            "caps (syntax 0.12, diagnostics 0.16, surfaces 0.10, 70% of the "
+            "gamut edge) and WCAG floors vs every co-occurring surface, plus a "
+            "chroma floor at HUE_AUDIT_MIN_CHROMA and a hard within-family "
+            "salience-rank gate (DESIGN.md D-3). candidate-b night is the "
+            "baseline; numeric-n01 is the unconstrained frontier for reference."
+        ),
+    },
+    "extension": {
+        "slug": "soft-explore",
+        "label_prefix": "Grotto S-Explore",
+        "pkg_name": "grotto-soft-objective",
+        "display": "Grotto Soft Objective (NON-CANDIDATE)",
+        "description": (
+            "Night themes from the soft-objective optimizer (shortfall + "
+            "emphasis budget inside the middle frontier's taste fences); "
+            "exploration material, not a candidate."
+        ),
+        "theme_note": (
+            "NON-CANDIDATE soft-objective theme (branch "
+            "feat/pr-theme-autoresearch). Shortfall + emphasis objective inside "
+            "taste fences; see docs/review/soft-objective.md."
+        ),
+        "source_note": "NON-CANDIDATE soft-objective exploration",
+        "source_name_default": "soft",
+        "source_value": "soft-objective",
+    },
 }
 import soft_metric as sm  # noqa: E402
 
@@ -825,12 +866,16 @@ def main() -> None:
     # Installable preview: the deliverable.  A palette nobody can look at is
     # not finished, and every conclusion in this session rests on appearance
     # judgements the owner has to make in a real editor.
-    mp.write_variants_html(out / "variants.html", problem, entries)
+    mp.write_variants_html(
+        out / "variants.html", problem, entries,
+        provenance=SOFT_PROVENANCE["html"],
+    )
     mp.write_vscode_extension(
         out / "vscode-preview", problem,
         [{"label": e["label"], "hexes": e["hexes"], "source_name": e["source_name"],
           "sha": "soft-exploration"} for e in entries if e["label"].startswith("soft-")],
         k=3, install=not args.no_install,
+        provenance=SOFT_PROVENANCE["extension"],
     )
 
     metrics = {
@@ -858,7 +903,13 @@ def main() -> None:
         "reference": base,
         "wall_seconds": round(time.monotonic() - t0, 2),
     }
-    (out / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n", encoding="utf-8")
+    # sort_keys keeps this artifact byte-stable across runs: the palette is
+    # seeded and deterministic, so any other ordering churn would be pure
+    # noise in review.  `wall_seconds` is the one field that must vary -- it is
+    # a run statistic, not a claim about the palette.
+    (out / "metrics.json").write_text(
+        json.dumps(metrics, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     print(
         f"[reference] candidate-b night: utility={base['utility']:.4f} "
         f"sep={base['sep']:.4f} emph={base['emph']:.4f} "

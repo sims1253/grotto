@@ -26,11 +26,14 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
 from contrast_solve import (  # noqa: E402
+    _span_for,
+    best_seating,
     classify,
     min_span_exact,
     required_gaps,
     shortfalls,
     slide_to_min_movement,
+    span_ties,
     verify_seating,
 )
 from grotto.spec import DistanceSpec, Palette, RoleSpec  # noqa: E402
@@ -221,3 +224,68 @@ def test_longest_path_style_relaxation_is_unbounded_on_cycles():
     spans = [_span_for(o, need) for o in permutations("abc")]
     assert min(spans) == pytest.approx(0.8)
     assert min(spans) > 1.0 - 0.8, "a triangle of 0.4 gaps cannot fit in 1.0"
+
+
+def test_span_ties_are_common_and_the_seating_is_chosen_deterministically():
+    """The tie-break bug: the printed cost depended on which tie won.
+
+    Several orderings routinely achieve the minimum span, and for the shipped
+    palette the span-optimal set has >1 member at both conditions.  Picking one
+    of them by "first strictly smaller span wins" made the least-movement row
+    environment-dependent -- two machines reported 0.6065 and 0.7429 total
+    movement for the same palette, both valid seatings, because a float-level
+    difference in the CVD simulation chose a different tie.
+    """
+    palette = Palette.from_yaml(REPO / "out/soft-night/soft-s01.night.yaml")
+    roles = RoleSpec.load(REPO / "spec/roles.yaml")
+    dists = DistanceSpec.load(REPO / "spec/distance-matrix.yaml")
+
+    for cvd, span_expected in ((None, 0.2065), ("deutan", 0.3200)):
+        surfaces, need = required_gaps(palette, dists, roles, cvd=cvd)
+        span, tied = span_ties(surfaces, need)
+        assert span == pytest.approx(span_expected, abs=1e-3)
+        assert len(tied) > 1, (
+            "if this ever has one member the tie-break bug is untestable here; "
+            "pick another palette rather than deleting the test"
+        )
+        # every span-optimal ordering really does achieve the span
+        for order, _witness in tied:
+            assert _span_for(order, need)[0] == pytest.approx(span, abs=1e-9)
+
+        current = {r: hex_to_oklch(palette.get(r))[0] for r in surfaces}
+        by_total = best_seating(tied, need, current, objective="total")
+        by_worst = best_seating(tied, need, current, objective="worst")
+
+        # both are valid seatings that clear every pair
+        assert not verify_seating(by_total, need)
+        assert not verify_seating(by_worst, need)
+
+        total = sum(abs(by_total[r] - current[r]) for r in surfaces)
+        total_mm = sum(abs(by_worst[r] - current[r]) for r in surfaces)
+        worst = max(abs(by_total[r] - current[r]) for r in surfaces)
+        worst_mm = max(abs(by_worst[r] - current[r]) for r in surfaces)
+        # the total-minimising seating is no worse in total than the minimax one
+        assert total <= total_mm + 1e-12
+        # and the minimax seating is no worse at the worst surface
+        assert worst_mm <= worst + 1e-12
+
+
+def test_best_seating_is_stable_across_tie_order():
+    """Reversing the candidate order must not change the chosen cost.
+
+    The original bug: the winner was whichever ordering the loop reached
+    first.  Here the input order is permuted and the answers must agree.
+    """
+    palette = Palette.from_yaml(REPO / "out/soft-night/soft-s01.night.yaml")
+    roles = RoleSpec.load(REPO / "spec/roles.yaml")
+    dists = DistanceSpec.load(REPO / "spec/distance-matrix.yaml")
+    surfaces, need = required_gaps(palette, dists, roles, cvd="deutan")
+    _span, tied = span_ties(surfaces, need)
+    current = {r: hex_to_oklch(palette.get(r))[0] for r in surfaces}
+
+    forwards = best_seating(tied, need, current, objective="total")
+    backwards = best_seating(list(reversed(tied)), need, current, objective="total")
+    for r in surfaces:
+        assert forwards[r] == pytest.approx(backwards[r]), (
+            f"{r} moved depending on the order the ties were offered in"
+        )

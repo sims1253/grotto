@@ -166,11 +166,12 @@ the mapping** (`editorError`/`editorWarning`/`editorInfo` → one shared mark;
 | `candidate-b-balanced.night` | 0.028 | 0.027 | 0.058 |
 | `candidate-c-expressive.night` | 0.026 | 0.027 | 0.100 |
 
-(threshold 0.130 under normal vision; every cell above passes it, which is why
-the spec tolerates them. Under CVD the floor is 0.090 and these three pairs fall
-to 0.022–0.046. Across all sixteen short pairs the CVD band is 0.019–0.088, so
-these three are not outliers in *size* — they are outliers in having no
-delivered channel.)
+(threshold 0.130 under normal vision — and every cell above sits *below* it, so
+each is already an unconditional `error` in `check()`; the declared-channel
+excuse applies only to the CVD branch, see §6. Under CVD the floor is 0.090 and
+these three pairs fall to 0.022–0.046. Across all sixteen short pairs the CVD
+band is 0.019–0.088, so these three are not outliers in *size* — they are
+outliers in having no delivered channel.)
 
 This is the load-bearing result. The previous session established that the
 remaining separation gap is not reachable by better search, and attributed it to
@@ -258,13 +259,14 @@ these three pairs become errors on **every** palette, including all three
 committed candidates. (Their normal-vision findings are already errors — see
 §6 — so this closes the last excused dimension rather than adding a new
 failure.) §8 prices
-what that actually demands: the worst surface moves **0.0985** OKLab L against a
-declared fence of **±0.06**. So Option A is not merely a re-labelling — it makes
-the fence the binding constraint and says so, which is the argument for widening
-it by roughly 1.6× on the surface roles. The honest version of Option A pairs the
-tightened test with a *mapping-layer* obligation the gate can check: "a pair that
-no palette can resolve must be carried by a channel the adapter verifies it
-emits."
+what that actually demands: the worst surface must move **0.0985** OKLab L
+under normal vision and **0.1734** under deutan, against a declared fence of
+**±0.06**. So Option A is not merely a re-labelling — it makes the fence the
+binding constraint and says so, which is the argument for widening it by
+roughly **1.6× to 2.9×** on the surface roles. The honest version of Option A
+pairs the tightened test with a *mapping-layer* obligation the gate can check:
+"a pair that no palette can resolve must be carried by a channel the adapter
+verifies it emits."
 
 **Option B — close the two declarations and re-state the obligation.**
 `active_line` currently declares **no** channels at all (`cvd_priority: low`)
@@ -331,9 +333,20 @@ each surface as early as its constraints allow. Not a sample: exact, at n! = 504
 | constrained surface pairs | 11 | 11 |
 | required lightness gap | 0.052 – 0.126 | 0.084 – 0.130 |
 | tightest seating (exact) | **0.2065** of the axis | **0.3200** of the axis |
-| total OKLab L moved, least-movement seating | 0.4421 | 0.6065 |
-| worst single surface | 0.0985 | 0.2075 |
+| orderings that achieve that span | 104 | 112 |
+| least total movement | 0.4421 | 0.6065 |
+| least possible worst single surface | **0.0985** | **0.1734** |
 | readability cost | none | `diff_added` → 4.06:1 |
+
+The tie count is not decoration. Those spans are achieved by hundreds of
+orderings, and they are *different* seatings with different costs, so "the
+least-movement seating" is only well defined once the minimisation runs over all
+of them. The script now does that (`span_ties` + `best_seating`); before, it
+kept whichever tie a float comparison reached first, and the printed cost moved
+between machines (0.6065 on one, 0.7429 on another, same palette, both valid).
+Minimising the *total* moved L and minimising the *worst single surface* are
+different objectives that pick different orderings — 0.2075 versus 0.1734 at the
+worst surface — so both are printed rather than one standing in for the other.
 
 **Feasible, with roughly 0.68 of the axis to spare.** The surfaces are close
 together and the required gaps are small; nothing about the problem is
@@ -350,8 +363,12 @@ So the conclusion of §4 sharpens rather than reverses:
 
 That is a **spec bug producing a palette defect**: an excused pair is an
 unpurchased one. And it puts a number on §7's Option A — the worst single
-surface has to move **0.0985** against a declared fence of **±0.06**, so the
-fence is roughly 1.6× too tight for the requirement it is protecting.
+surface has to move **0.0985** (normal vision) or **0.1734** (deutan) against a
+declared fence of **±0.06**, so the fence is roughly **1.6× to 2.9× too tight**
+for the requirement it is protecting. (The movement is measured from the
+palette's authored lightness while the fence constrains its distance from
+`candidate-b`, so the ratio is indicative rather than exact; either way the
+allowed movement is smaller than the required one.)
 
 ### An earlier version of this section was wrong
 

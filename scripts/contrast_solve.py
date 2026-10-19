@@ -140,6 +140,12 @@ def min_span_exact(surfaces, need) -> tuple[float, dict[str, float]]:
     enumerating the orderings and taking the best is exact rather than a bound
     or a sample.  It costs n! -- free for a seven-surface cluster, and the
     reason this stays a script rather than becoming a gate over all 40 roles.
+
+    Prefer :func:`span_ties` for anything you intend to report.  Several
+    orderings routinely tie at the minimum span, and this returns whichever one
+    the loop happened to see first -- which depends on float-level differences
+    in the CVD simulation between library versions, so its *seating* is not
+    reproducible even though its *span* is.
     """
     best_span, best_x, best_order = float("inf"), {}, ()
     for order in permutations(sorted(surfaces)):
@@ -147,6 +153,52 @@ def min_span_exact(surfaces, need) -> tuple[float, dict[str, float]]:
         if span < best_span:
             best_span, best_x, best_order = span, x, order
     return best_span, best_x, best_order
+
+
+def span_ties(surfaces, need, *, tol: float = 1e-9
+              ) -> tuple[float, list[tuple[tuple[str, ...], dict[str, float]]]]:
+    """Every ordering that achieves the minimum span, within ``tol``.
+
+    Ties are the norm, not the exception -- seven surfaces under eleven
+    pairwise minimums leaves a lot of slack -- so the set of span-optimal
+    orderings is the honest input to any *cost* question.  Picking one of them
+    arbitrarily made the printed least-movement row environment-dependent: two
+    machines running the same script reported 0.6065 and 0.7429 total movement
+    for the same palette, both valid, because a float difference chose a
+    different tie.
+    """
+    best, out = float("inf"), []
+    for order in permutations(sorted(surfaces)):
+        span, x = _span_for(order, need)
+        if span < best - tol:
+            best, out = span, [(order, x)]
+        elif span <= best + tol:
+            out.append((order, x))
+    return best, out
+
+
+def best_seating(tied, need, current, *, objective: str = "total",
+                 lo: float = 0.0, hi: float = 1.0) -> dict[str, float]:
+    """The cheapest seating among the span-optimal orderings.
+
+    ``objective`` is the cost being minimised: ``"total"`` sums the movement of
+    every surface, ``"worst"`` minimises the largest single move.  They are
+    different questions and can pick different orderings -- minimising the total
+    does not minimise the worst surface -- so the report prints both rather than
+    letting one stand in for the other.
+    """
+    def cost(seats: dict[str, float]) -> float:
+        moves = [abs(seats[r] - current[r]) for r in seats]
+        return sum(moves) if objective == "total" else max(moves)
+
+    best, best_cost = None, float("inf")
+    for order, _witness in tied:
+        seats = slide_to_min_movement(order, need, current, lo=lo, hi=hi)
+        c = cost(seats)
+        if c < best_cost - 1e-12:
+            best, best_cost = seats, c
+    assert best is not None, "no span-optimal ordering to seat"
+    return best
 
 
 def slide_to_min_movement(order, need, current, *, lo=0.0, hi=1.0) -> dict[str, float]:
@@ -218,18 +270,26 @@ def report(path: Path) -> None:
             print(f"  {label}: no surface pairs to seat")
             continue
 
-        span, _witness, order = min_span_exact(surfaces, need)
+        span, tied = span_ties(surfaces, need)
         current = {r: hex_to_oklch(palette.get(r))[0] for r in surfaces}
-        seats = slide_to_min_movement(order, need, current)
+        seats = best_seating(tied, need, current, objective="total")
+        minimax = best_seating(tied, need, current, objective="worst")
         residual = verify_seating(seats, need)
         moved = sum(abs(seats[r] - current[r]) for r in surfaces)
         worst_move = max(abs(seats[r] - current[r]) for r in surfaces)
+        mm_worst = max(abs(minimax[r] - current[r]) for r in surfaces)
+        mm_total = sum(abs(minimax[r] - current[r]) for r in surfaces)
         gaps = list(need.values())
 
         print(f"  {label}: {len(surfaces)} surfaces, {len(need)} constrained pairs")
         print(f"     required lightness gap: min {min(gaps):.4f}, max {max(gaps):.4f}")
         print(f"     tightest seating (exact, over all orderings): {span:.4f} "
               f"of the 1.0 axis")
+        print(f"        ({len(tied)} ordering(s) share that span; the seatings "
+              f"below minimise")
+        print(f"         movement over all of them, so they do not depend on "
+              f"which tie a")
+        print(f"         float comparison happened to keep)")
 
         if span > 1.0:
             print(f"     => INFEASIBLE: every ordering needs at least {span:.4f}, "
@@ -240,9 +300,10 @@ def report(path: Path) -> None:
                   f"{len(residual)} pair(s)")
         else:
             print(f"     => FEASIBLE. A valid seating sits {span:.4f} of the axis;")
-            print(f"        the least-movement one moves the surfaces by "
-                  f"{moved:.4f} OKLab L in total")
-            print(f"        (worst single surface {worst_move:.4f})")
+            print(f"        least TOTAL movement: {moved:.4f} OKLab L in total "
+                  f"(worst single surface {worst_move:.4f})")
+            print(f"        least WORST movement: {mm_worst:.4f} at the worst "
+                  f"surface ({mm_total:.4f} in total)")
             for r in sorted(surfaces, key=lambda s: seats[s]):
                 print(f"          {r:22s} L {current[r]:.3f} -> {seats[r]:.3f}")
         print()

@@ -338,7 +338,7 @@ verification is run and the answer is no, for three pairs. `error`/`warning`
 (two borders of different colour are still two borders) are warned about today
 on channels that do not discriminate them. §8 of that document then retracts the
 obvious conclusion: the surface cluster *is* separable on lightness, and the
-fence is ~1.6× tighter than the requirement — so this was never a search
+fence is 1.6–2.9× tighter than the requirement — so this was never a search
 problem so much as a specification one.
 
 ## 9. Reproducing
