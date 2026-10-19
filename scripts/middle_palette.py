@@ -849,28 +849,51 @@ YAML_HEADER = """\
 
 def write_palette_yaml(
     path: Path, name: str, state: dict, problem: MiddleProblem, seed: int,
-    extra_meta: dict,
+    extra_meta: dict, *, provenance: dict | None = None,
 ) -> None:
-    lines = [YAML_HEADER]
+    """Write the palette YAML, with an optional provenance override.
+
+    ``provenance`` lets a caller that reuses this writer but runs a DIFFERENT
+    objective -- soft_palette.py optimises a shortfall + emphasis budget, not
+    the max-min margin -- name itself honestly.  Provenance is a first-class
+    honesty mechanism in this repository, so a shipped artifact must not claim a
+    generator and an objective it did not come from.
+
+    The default reproduces this module's own output byte-for-byte; its committed
+    artifacts are byte-compared by tests.
+    """
+    prov = {
+        "header": YAML_HEADER,
+        "source": "middle-optimizer",
+        "note_lines": [
+            "  NON-CANDIDATE middle exploration. Numeric objective, taste fences:",
+            "  hue windows, L +/-0.04 ink / +/-0.06 surface, chroma caps 0.12/0.16/0.10",
+            "  and 70% of the sRGB gamut edge, WCAG floors vs every co-occurring",
+            "  surface. NOT a candidate; promotion is a human decision.",
+        ],
+        "objective": ("'min(dE/0.13 must-normal, dE/0.09 must-CVD, "
+                      "2.0*dE/0.08 should, dE/0.03 anti-collapse)'"),
+        "fences": "hue-windows+L-deltas+chroma-caps+0.70-gamut (see scripts/middle_palette.py)",
+    }
+    prov.update(provenance or {})
+
+    lines = [prov["header"]]
     lines += [
         f"name: {name}",
         "variant: night",
         "format: oklch",
         "candidate: false",
-        "source: middle-optimizer",
+        f"source: {prov['source']}",
         f"seed: {seed}",
         "note: >",
-        "  NON-CANDIDATE middle exploration. Numeric objective, taste fences:",
-        "  hue windows, L +/-0.04 ink / +/-0.06 surface, chroma caps 0.12/0.16/0.10",
-        "  and 70% of the sRGB gamut edge, WCAG floors vs every co-occurring",
-        "  surface. NOT a candidate; promotion is a human decision.",
+        *prov["note_lines"],
         "meta:",
         "  candidate: false",
-        "  generated: middle-optimizer",
+        f"  generated: {prov['source']}",
         f"  seed: {seed}",
-        "  objective: 'min(dE/0.13 must-normal, dE/0.09 must-CVD, 2.0*dE/0.08 should, dE/0.03 anti-collapse)'",
+        f"  objective: {prov['objective']}",
         f"  scaffold: {np.SCAFFOLD_SOURCE}",
-        "  fences: hue-windows+L-deltas+chroma-caps+0.70-gamut (see scripts/middle_palette.py)",
+        f"  fences: {prov['fences']}",
     ]
     for k, v in sorted(extra_meta.items()):
         lines.append(f"  {k}: {v}")
@@ -889,10 +912,16 @@ def _esc(s: str) -> str:
     return np._esc(s)
 
 
-def write_variants_html(path: Path, problem: MiddleProblem, entries: list[dict]) -> None:
-    """Self-contained dark page (numeric_palette.write_variants_html, with
-    the middle banner): swatch strips + the R specimen per palette, candidate-b
-    first, then the middle picks, then numeric-n01 as the frontier reference."""
+def write_variants_html(path: Path, problem: MiddleProblem, entries: list[dict],
+                        *, provenance: dict | None = None) -> None:
+    """Self-contained dark page: swatch strips + the R specimen per palette,
+    candidate-b first, then the middle picks, then numeric-n01 as the frontier
+    reference.
+
+    ``provenance`` overrides the page title, heading and banner, so a caller
+    running a different search does not ship a page that headlines someone
+    else's objective.  Default: this module's own middle-frontier wording.
+    """
     from grotto.specimens import specimen
 
     r_spec = specimen("r")
@@ -938,11 +967,8 @@ def write_variants_html(path: Path, problem: MiddleProblem, entries: list[dict])
         ".banner{background:#1f212b;padding:.6em .8em;border-radius:6px;margin:.8em 0;"
         "border-left:3px solid #8a7a4a}"
     )
-    html = (
-        "<!doctype html><html><head><meta charset='utf-8'>"
-        "<title>middle night palettes</title><style>" + css + "</style></head><body>"
-        "<h1>Middle-frontier Night palettes &middot; NON-CANDIDATE</h1>"
-        "<div class='banner'>NON-CANDIDATE exploration (branch dev/numeric-palettes). "
+    banner = (provenance or {}).get("banner") or (
+        "NON-CANDIDATE exploration (branch dev/numeric-palettes). "
         "Middle palettes optimise the SAME numeric objective as the N-Explore themes "
         "(worst normalised distance-matrix margin, normal + simulated dichromat vision) "
         "but INSIDE taste fences: hue convention windows, lightness +/-0.04/0.06 around "
@@ -950,7 +976,14 @@ def write_variants_html(path: Path, problem: MiddleProblem, entries: list[dict])
         "70% of the gamut edge) and WCAG floors vs every co-occurring surface. Provenance: "
         "the owner rejected the unconstrained numeric look &mdash; <i>&ldquo;"
         + _esc(OWNER_FEEDBACK) + "&rdquo;</i>. candidate-b night is the baseline; "
-        "numeric-n01 is the unconstrained frontier for reference.</div>"
+        "numeric-n01 is the unconstrained frontier for reference."
+    )
+    html = (
+        "<!doctype html><html><head><meta charset='utf-8'>"
+        f"<title>{(provenance or {}).get('title', 'middle night palettes')}</title>"
+        "<style>" + css + "</style></head><body>"
+        f"<h1>{(provenance or {}).get('h1', 'Middle-frontier Night palettes &middot; NON-CANDIDATE')}</h1>"
+        "<div class='banner'>" + banner + "</div>"
         + "".join(cells)
         + "</body></html>"
     )
@@ -959,12 +992,37 @@ def write_variants_html(path: Path, problem: MiddleProblem, entries: list[dict])
 
 def write_vscode_extension(
     out_dir: Path, problem: MiddleProblem, entries: list[dict], k: int = 3,
-    install: bool = True,
+    install: bool = True, *, provenance: dict | None = None,
 ) -> Path:
     """Top-K themes through the existing mapping, labels
     'Grotto M-Explore 01..03 Night'; copied into the real extensions dir
-    unless suppressed (same pattern as numeric_palette.write_vscode_extension)."""
+    unless suppressed (same pattern as numeric_palette.write_vscode_extension).
+
+    ``provenance`` overrides the package identity, the display prefix, the
+    theme slug and the per-theme note, so a caller running a different search
+    does not ship an installable extension that names someone else's optimizer.
+    Default: this module's own middle-frontier wording.
+    """
     from grotto import vscode as gv
+
+    prov = {
+        "slug": "middle-explore",
+        "label_prefix": "Grotto M-Explore",
+        "pkg_name": "grotto-middle-exploration",
+        "display": "Grotto Middle Exploration (NON-CANDIDATE)",
+        "description": ("Night themes from the middle-frontier optimizer "
+                        "(numeric objective inside taste fences); exploration "
+                        "material, not a candidate."),
+        "theme_note": ("NON-CANDIDATE middle-exploration theme (branch "
+                       "dev/numeric-palettes). Numeric objective inside taste "
+                       "fences; see NUMERIC.md."),
+        "source_note": "NON-CANDIDATE middle exploration",
+        "source_name_default": "middle",
+        "source_sha_default": "middle-exploration",
+        "source_value": "middle-optimizer",
+        "source_label": "Middle-frontier",
+    }
+    prov.update(provenance or {})
 
     mapping = gv._load_mapping(REPO / "spec/mappings/vscode.yaml", problem.roles_spec)
     themes_dir = out_dir / "themes"
@@ -973,31 +1031,26 @@ def write_vscode_extension(
     for i, e in enumerate(entries[:k], 1):
         pal = Palette(
             e["label"], "night", e["hexes"], source="hex",
-            note="NON-CANDIDATE middle exploration",
-            meta={"candidate": False, "generated": "middle-optimizer"},
+            note=prov["source_note"],
+            meta={"candidate": False, "generated": prov["source_value"]},
         )
         theme = gv._build_theme(
-            pal, f"Grotto M-Explore {i:02d} Night", "night", mapping,
-            source_name=e.get("source_name", "middle"),
-            source_sha256=e.get("sha", "middle-exploration"),
+            pal, f"{prov['label_prefix']} {i:02d} Night", "night", mapping,
+            source_name=e.get("source_name", prov["source_name_default"]),
+            source_sha256=e.get("sha", prov["source_sha_default"]),
         )
         theme["grotto"]["candidate"] = False
-        theme["grotto"]["note"] = (
-            "NON-CANDIDATE middle-exploration theme (branch dev/numeric-palettes). "
-            "Numeric objective inside taste fences; see NUMERIC.md."
-        )
-        rel = f"themes/middle-explore-{i:02d}-night.json"
+        theme["grotto"]["note"] = prov["theme_note"]
+        rel = f"themes/{prov['slug']}-{i:02d}-night.json"
         (out_dir / rel).write_text(gv._dump(theme), encoding="utf-8", newline="\n")
         themes.append(
-            {"label": f"Grotto M-Explore {i:02d} Night", "uiTheme": "vs-dark", "path": rel}
+            {"label": f"{prov['label_prefix']} {i:02d} Night",
+             "uiTheme": "vs-dark", "path": rel}
         )
     pkg = {
-        "name": "grotto-middle-exploration",
-        "displayName": "Grotto Middle Exploration (NON-CANDIDATE)",
-        "description": (
-            "Night themes from the middle-frontier optimizer (numeric objective "
-            "inside taste fences); exploration material, not a candidate."
-        ),
+        "name": prov["pkg_name"],
+        "displayName": prov["display"],
+        "description": prov["description"],
         "version": "0.0.1",
         "publisher": "grotto-exploration",
         "engines": {"vscode": "^1.70.0"},
@@ -1008,13 +1061,14 @@ def write_vscode_extension(
     if install:
         import shutil
 
-        if VSCODE_INSTALL_DIR.parent.exists():
-            if VSCODE_INSTALL_DIR.exists():
-                shutil.rmtree(VSCODE_INSTALL_DIR)
-            shutil.copytree(out_dir, VSCODE_INSTALL_DIR)
-            print(f"[install] extension copied to {VSCODE_INSTALL_DIR}")
+        install_dir = VSCODE_INSTALL_DIR.parent / prov["pkg_name"]
+        if install_dir.parent.exists():
+            if install_dir.exists():
+                shutil.rmtree(install_dir)
+            shutil.copytree(out_dir, install_dir)
+            print(f"[install] extension copied to {install_dir}")
         else:
-            print(f"[install] {VSCODE_INSTALL_DIR.parent} not found; skipping install")
+            print(f"[install] {install_dir.parent} not found; skipping install")
     return out_dir
 
 
