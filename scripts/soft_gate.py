@@ -195,6 +195,17 @@ def gate(path: Path) -> list[str]:
                     f"normC {normc(hi):.4f}"
                 )
 
+    # 8. Surface prominence rank: inside a hue family, a higher-salience
+    #    highlight surface stands at least as far off the canvas (OKLab dE)
+    #    as a lower-salience one.  Normalised chroma alone flatters a wash
+    #    parked next to the canvas; see soft_palette.prominence_violations.
+    for fam, lo, hi, gap in sp.prominence_violations(problem, hexes):
+        problems.append(
+            f"{name}: surface prominence reversal in family {fam} -- "
+            f"{lo}(sal {roles_spec.roles[lo].salience}) stands {gap:.4f} "
+            f"further off the canvas than {hi}(sal {roles_spec.roles[hi].salience})"
+        )
+
     return problems
 
 

@@ -52,6 +52,7 @@ NON-CANDIDATE: everything this script writes is exploration material.
 from __future__ import annotations
 
 import argparse
+import functools
 import json
 import random
 import sys
@@ -165,6 +166,43 @@ OFFSET_SURFACE_L_DELTA = 0.12
 #: the 4.5:1 body-text inks (comment, punctuation) take over.
 SCAFFOLD_L_OVERRIDES = {"fg_muted": 0.585, "line_number": 0.585, "ui_inactive": 0.585}
 
+#: Declared trial setting: hue windows NARROWER than the middle frontier's,
+#: for roles whose convention the wider window does not actually protect.
+#: OKLCH h 90-120 at surface lightness reads olive/khaki, not green, and
+#: h 0-10 reads crimson-magenta, not red.  Once the surfaces were given a
+#: lightness axis (run 7) the search walked ``diff_added`` to h 95: CVD
+#: separation bought by breaking "added is green" for everyone.  Each window
+#: here is a subset of middle_palette.HUE_WINDOWS, so a palette inside these
+#: also passes the middle audit.
+SOFT_HUE_WINDOWS = {
+    "diff_added": ((120.0, 160.0),),
+    "diff_removed": ((10.0, 40.0),),
+}
+
+
+def soft_project_hue(role: str, h: float) -> float:
+    """middle_palette.project_hue, then into the narrower soft window."""
+    h = mp.project_hue(role, h)
+    windows = SOFT_HUE_WINDOWS.get(role)
+    if windows is None:
+        return h
+    best, best_d = None, None
+    for lo, hi in windows:
+        for h_turn in (h - 360.0, h, h + 360.0):
+            cand = min(max(h_turn, lo + mp.HUE_MARGIN), hi - mp.HUE_MARGIN)
+            d = mp._circ_dh(h, cand)
+            if best_d is None or d < best_d:
+                best, best_d = cand, d
+    return best % 360.0
+
+
+def _in_soft_window(role: str, h: float, tol: float = 0.0) -> bool:
+    return any(
+        lo - tol <= h % 360.0 <= hi + tol
+        for lo, hi in SOFT_HUE_WINDOWS.get(role, ((0.0, 360.0),))
+    )
+
+
 #: Deterministic move list, inherited from the numeric search.  Each entry is
 #: (axis, delta): hue degrees, absolute OKLCH lightness, or a fraction of the
 #: role's chroma ceiling.
@@ -203,6 +241,29 @@ class SoftProblem(mp.MiddleProblem):
             if r in self.present and float(self.area[r]["weight"]) > 0.0
         }
         self._emph_total = sum(self._emph_roles.values()) or 1.0
+        # Salience pairs the gate checks (adjacent, non-tied members of a hue
+        # family), indexed by role for the ascent's reversal guard.
+        roles = self.roles_spec.roles
+        fams: dict[str, list[str]] = {}
+        for r in self.chromatic:
+            fams.setdefault(roles[r].family, []).append(r)
+        self.sal_pairs: dict[str, list[tuple[str, str]]] = {}
+        for members in fams.values():
+            sr = sorted(members, key=lambda r: roles[r].salience)
+            for lo, hi in zip(sr, sr[1:]):
+                if roles[lo].salience != roles[hi].salience:
+                    self.sal_pairs.setdefault(lo, []).append((lo, hi))
+                    self.sal_pairs.setdefault(hi, []).append((lo, hi))
+        # Surface prominence pairs: every (lower, higher)-salience pair of
+        # highlight SURFACES inside one hue family (see prominence_violations).
+        self.prom_pairs: dict[str, list[tuple[str, str]]] = {}
+        for members in fams.values():
+            surf = [r for r in members if self.paint[r] == "surface"]
+            for lo in surf:
+                for hi in surf:
+                    if roles[lo].salience < roles[hi].salience:
+                        self.prom_pairs.setdefault(lo, []).append((lo, hi))
+                        self.prom_pairs.setdefault(hi, []).append((lo, hi))
 
     # -- lightness fences ------------------------------------------------
 
@@ -249,8 +310,9 @@ class SoftProblem(mp.MiddleProblem):
         return sm.CHROMA_FLOOR
 
     def fence_lch(self, role, L, C, h):
-        """MiddleProblem.fence_lch plus the floor: raise chroma to it."""
-        L, C, h = super().fence_lch(role, L, C, h)
+        """MiddleProblem.fence_lch, inside the soft hue windows, plus the
+        chroma floor: raise chroma to it."""
+        L, C, h = super().fence_lch(role, L, C, soft_project_hue(role, h))
         floor = self.chroma_floor(role)
         if C < floor:
             C = min(floor, self.chroma_ceiling(role, L, h))
@@ -259,6 +321,22 @@ class SoftProblem(mp.MiddleProblem):
             # audit reports it rather than silently emitting grey.
             C = max(C, 0.0)
         return (L, C, h)
+
+    def fence_audit(self, hexes):
+        """The middle audit plus the narrower soft hue windows."""
+        out = super().fence_audit(hexes)
+        for r in SOFT_HUE_WINDOWS:
+            L, C, h = hex_to_oklch(hexes[r])
+            if C >= mp.HUE_AUDIT_MIN_CHROMA and not _in_soft_window(r, h, mp.HUE_AUDIT_TOL):
+                out.append(f"hue {r}: {h:.2f} outside soft window {SOFT_HUE_WINDOWS[r]}")
+        return out
+
+    def fence_audit_state(self, state):
+        out = super().fence_audit_state(state)
+        for r in SOFT_HUE_WINDOWS:
+            if r in state and not _in_soft_window(r, state[r][2]):
+                out.append(f"hue {r}: {state[r][2]:.2f} outside soft window {SOFT_HUE_WINDOWS[r]}")
+        return out
 
     # -- emphasis ---------------------------------------------------------
 
@@ -343,6 +421,16 @@ def soft_refine(
     tie-break: an uncapped tie-break is exactly the incentive the proposal
     asks to remove, and it would let the search buy margin the shortfall
     already scores at zero.
+
+    Acceptance is LEXICOGRAPHIC per role: first fewer salience/prominence
+    reversals the moved role takes part in, then utility.  The objective
+    cannot see salience, so without this the ascent walks into palettes the
+    post-repair cannot recover: once the surfaces had a lightness axis it
+    parked ``error`` at L 0.92, C 0.02 -- near-white, below ``breakpoint`` in
+    normalised chroma by 0.19, a gap no bounded repair closes.  A reversal
+    the gate would reject is never worth any utility, so ranking it first
+    costs nothing admissible, and it lets the ascent climb OUT of a reversal
+    a random start put it in.
     """
     from grotto.color import hex_to_oklch
 
@@ -397,13 +485,16 @@ def soft_refine(
                 continue
             best = None
             best_util = util
+            best_rev = _reversals_at(problem, hexes, role, hexes[role])
             for axis, d in moves:
                 got = _apply_move(problem, role, state[role], axis, d, hexes)
                 if got is None:
                     continue
                 new_hex = oklch_to_hex(np_.project_chroma(*problem.fence_lch(role, *got)))
                 u, updates = eval_with(role, new_hex)
-                if u > best_util + 1e-12:
+                rev = _reversals_at(problem, hexes, role, new_hex)
+                if rev < best_rev or (rev == best_rev and u > best_util + 1e-12):
+                    best_rev = rev
                     best_util = u
                     best = (got, new_hex, updates)
             if best is not None:
@@ -449,6 +540,9 @@ def run_search(
         pool = []
         for _ in range(samples):
             st = mp._initial_state_fenced(problem, rng, kind)
+            # The sampler only knows the middle windows; bring the sample's
+            # AUTHORED coordinates into the soft ones, as every later move is.
+            st = {r: problem.fence_lch(r, *v) for r, v in st.items()}
             pool.append((problem.state_score(st)["utility"], st))
         pool.sort(key=lambda t: -t[0])
         for _, st in pool[:refine_top]:
@@ -564,6 +658,7 @@ def _sf_unrepaired(sf: list[dict]) -> list[dict]:
     return [e for e in sf if not e.get("repaired", True)]
 
 
+@functools.lru_cache(maxsize=None)
 def _normc(lch_hex: str) -> float:
     """Normalised chroma, C / max_chroma(L, h) -- the salience channel.
 
@@ -576,6 +671,107 @@ def _normc(lch_hex: str) -> float:
     L, C, h = hex_to_oklch(lch_hex)
     mc = max_chroma(L, h, "srgb")
     return (C / mc) if mc > 1e-9 else 0.0
+
+
+def _reversals_at(problem: SoftProblem, hexes: dict[str, str], role: str, new_hex: str) -> int:
+    """Salience reversals ``role`` takes part in if it were ``new_hex``.
+
+    Same pairs as ``salience_violations`` (adjacent, non-tied members of the
+    role's hue family), on the in-search hexes; ``_normc`` is cached by hex so
+    this is cheap enough for the ascent's inner loop.
+    """
+    n = 0
+    for lo, hi in problem.sal_pairs.get(role, ()):
+        a = new_hex if lo == role else hexes[lo]
+        b = new_hex if hi == role else hexes[hi]
+        if _normc_fast(a) - _normc_fast(b) > SAL_RANK_TOL:
+            n += 1
+    bg = hexes["bg"]
+    for lo, hi in problem.prom_pairs.get(role, ()):
+        a = new_hex if lo == role else hexes[lo]
+        b = new_hex if hi == role else hexes[hi]
+        if _prominence(a, bg) - _prominence(b, bg) > PROM_RANK_TOL:
+            n += 1
+    return n
+
+
+def _in_srgb_fast(L: float, C: float, h: float) -> bool:
+    """OKLCH -> linear sRGB in closed form (Ottosson's matrices)."""
+    import math
+
+    a = C * math.cos(math.radians(h))
+    b = C * math.sin(math.radians(h))
+    l_ = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3
+    m_ = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3
+    s_ = (L - 0.0894841775 * a - 1.2914855480 * b) ** 3
+    eps = 1e-6
+    for v in (
+        4.0767416621 * l_ - 3.3077115913 * m_ + 0.2309699292 * s_,
+        -1.2684380046 * l_ + 2.6097574011 * m_ - 0.3413193965 * s_,
+        -0.0041960863 * l_ - 0.7034186147 * m_ + 1.7076147010 * s_,
+    ):
+        if v < -eps or v > 1.0 + eps:
+            return False
+    return True
+
+
+@functools.lru_cache(maxsize=None)
+def _normc_fast(lch_hex: str) -> float:
+    """``_normc`` with a closed-form gamut test, for the ascent's guard only.
+
+    ``grotto.color.max_chroma`` bisects through coloraide at ~1 ms a call,
+    which put the guard over the benchmark's wall-clock cap.  The guard is a
+    search heuristic; ``finalize`` and the gate still use the exact
+    definition, so a disagreement can only cost a dropped candidate, never
+    an inadmissible palette.
+    """
+    L, C, h = hex_to_oklch(lch_hex)
+    if not _in_srgb_fast(L, 0.0, h):
+        return 0.0
+    lo, hi = 0.0, 0.5
+    while hi - lo > 1e-5:
+        mid = (lo + hi) / 2
+        if _in_srgb_fast(L, mid, h):
+            lo = mid
+        else:
+            hi = mid
+    return (C / lo) if lo > 1e-9 else 0.0
+
+
+#: Tolerance of the surface prominence rank, in OKLab dE from the canvas.
+PROM_RANK_TOL = 1e-3
+
+
+@functools.lru_cache(maxsize=None)
+def _prominence(surf_hex: str, bg_hex: str) -> float:
+    """How far a highlight surface stands off the canvas: OKLab dE."""
+    return np_._dE(np_._oklab_of(surf_hex), np_._oklab_of(bg_hex))
+
+
+def prominence_violations(problem: SoftProblem, hexes: dict[str, str]) -> list[tuple]:
+    """Surface prominence reversals: (family, lower, higher, gap).
+
+    For a background WASH the attention channel is not chroma alone but how
+    far the wash stands off the canvas.  Normalised chroma flatters a wash
+    parked next to the canvas, where the gamut is small: run 8's first
+    probe shipped ``search_match_current`` (salience 5) at L 0.215, C 0.020
+    -- the dimmest surface on screen -- beside a brighter ``search_match``
+    (salience 4), and the normalised-chroma gate passed it.  So inside a hue
+    family a higher-salience surface must stand at least as far off the
+    canvas as a lower-salience one.
+    """
+    bg = hexes["bg"]
+    out = []
+    seen = set()
+    for pairs in problem.prom_pairs.values():
+        for lo, hi in pairs:
+            if (lo, hi) in seen:
+                continue
+            seen.add((lo, hi))
+            gap = _prominence(hexes[lo], bg) - _prominence(hexes[hi], bg)
+            if gap > PROM_RANK_TOL:
+                out.append((problem.roles_spec.roles[lo].family, lo, hi, gap))
+    return sorted(out)
 
 
 def salience_violations(problem: SoftProblem, hexes: dict[str, str]) -> list[tuple]:
@@ -738,6 +934,43 @@ def enforce_salience_rank(problem: SoftProblem, state: dict) -> list[dict]:
     return report
 
 
+def repair_prominence(problem: SoftProblem, state: dict, steps: int = 30) -> None:
+    """Restore the surface prominence rank by moving SURFACES only.
+
+    For a reversed pair, first push the higher-salience surface further off
+    the canvas, then pull the lower-salience one toward it -- each move on
+    the lightness or chroma axis, through the fenced move machinery (so WCAG,
+    gamut and every fence still hold), and accepted only if it shrinks the
+    gap without adding a salience or prominence reversal elsewhere.
+    """
+    for _ in range(steps):
+        hexes = shipped_hexes(problem, state)
+        bad = prominence_violations(problem, hexes)
+        if not bad:
+            return
+        _fam, lo, hi, gap = bad[0]
+        moved = False
+        for role, moves in ((hi, (("L", 0.01), ("f", 0.12))),
+                            (lo, (("L", -0.01), ("f", -0.12)))):
+            before = _reversals_at(problem, hexes, role, hexes[role])
+            for axis, d in moves:
+                got = _apply_move(problem, role, state[role], axis, d, hexes)
+                if got is None:
+                    continue
+                probe = dict(state)
+                probe[role] = got
+                hx = shipped_hexes(problem, probe)
+                g2 = (_prominence(hx[lo], hx["bg"]) - _prominence(hx[hi], hx["bg"]))
+                if g2 < gap - 1e-6 and _reversals_at(problem, hx, role, hx[role]) <= before:
+                    state[role] = got
+                    moved = True
+                    break
+            if moved:
+                break
+        if not moved:
+            return
+
+
 def finalize(problem: SoftProblem, state: dict, out: Path) -> dict | None:
     """Run every hard output constraint over a refined palette, to a fixed point.
 
@@ -750,6 +983,10 @@ def finalize(problem: SoftProblem, state: dict, out: Path) -> dict | None:
     this function's output and not on the ascent's.
     """
     state = mp.place_unconstrained_fenced(problem, dict(state))
+    # The placement grid knows the middle fences, not the chroma floor.
+    for r in problem.chromatic:
+        if not problem.term_ids_by_role.get(r):
+            state[r] = problem.fence_lch(r, *state[r])
     # Repairs interact: nudging a surface to restore a WCAG floor changes its
     # lightness, which changes max_chroma(L, h), which changes its normalised
     # chroma and re-opens a salience pair the previous repair had just fixed.
@@ -772,6 +1009,10 @@ def finalize(problem: SoftProblem, state: dict, out: Path) -> dict | None:
     left = salience_violations(problem, shipped_hexes(problem, state))
     if left:
         return {"error": f"repairs did not converge: {left}"}
+    repair_prominence(problem, state)
+    prom = prominence_violations(problem, shipped_hexes(problem, state))
+    if prom:
+        return {"error": f"surface prominence reversed: {prom}"}
     hexes = shipped_hexes(problem, state)
     fences = problem.fence_audit(hexes) + problem.fence_audit_state(state)
     if fences:
@@ -810,6 +1051,7 @@ def main() -> None:
     args = ap.parse_args()
 
     t0 = time.monotonic()
+    c0 = time.process_time()
     out = REPO / args.out
     out.mkdir(parents=True, exist_ok=True)
     problem = SoftProblem()
@@ -973,7 +1215,8 @@ def main() -> None:
             f"sep={r['sep']:.4f} emph={r['emph']:.4f} "
             f"worst={r['worst_margin']:.4f}"
         )
-    print(f"[done] {time.monotonic() - t0:.1f}s total; artifacts in {out}")
+    print(f"[done] {time.monotonic() - t0:.1f}s total, "
+          f"{time.process_time() - c0:.1f}s cpu; artifacts in {out}")
 
 
 if __name__ == "__main__":

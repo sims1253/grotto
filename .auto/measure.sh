@@ -16,11 +16,14 @@ RESTARTS=${AR_RESTARTS:-4}
 SAMPLES=${AR_SAMPLES:-8}
 PASSES=${AR_PASSES:-10}
 SEEDS=${AR_SEEDS:-"20260817 20260818 20260819"}
-# Wall-clock cap per seed.  The budget above is fixed in ITERATIONS so the
+# CPU-time cap per seed.  The budget above is fixed in ITERATIONS so the
 # search stays byte-deterministic; this cap stops the benchmark being won by
 # brute force (more restarts, bigger move set) instead of by a better search.
 # Baseline was 12.6 s/seed, so this allows a real improvement to cost
 # something.  Exceeding it fails the measurement.
+# It is PROCESS CPU time, not wall clock: this runs on a shared 2-core VM,
+# and under another job's load the unchanged run-7 search measured 17.5 s
+# wall -- a cap on wall time measured the neighbours, not the search.
 SEED_CAP=${AR_SEED_CAP:-16.0}
 WORK=${AR_WORK:-.auto/work}
 
@@ -32,12 +35,12 @@ for seed in $SEEDS; do
       --seed "$seed" --restarts "$RESTARTS" --samples "$SAMPLES" \
       --refine-passes "$PASSES" --out "$WORK/seed-$seed" --no-install \
       >"$WORK/seed-$seed.log" 2>&1
-  secs=$(sed -n 's/^\[done\] \([0-9.]*\)s total.*/\1/p' "$WORK/seed-$seed.log" | head -1)
+  secs=$(sed -n 's/^\[done\] [0-9.]*s total, \([0-9.]*\)s cpu.*/\1/p' "$WORK/seed-$seed.log" | head -1)
   if [ -z "$secs" ]; then
     echo "MEASURE FAILED: seed $seed produced no [done] line"
     tail -20 "$WORK/seed-$seed.log"; exit 1
   fi
-  echo "seed $seed: ${secs}s (cap ${SEED_CAP}s)"
+  echo "seed $seed: ${secs}s cpu (cap ${SEED_CAP}s)"
   awk -v s="$secs" -v c="$SEED_CAP" 'BEGIN { exit !(s <= c) }' || {
     echo "MEASURE FAILED: seed $seed took ${secs}s, over the ${SEED_CAP}s cap"
     exit 1
