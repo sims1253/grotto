@@ -205,6 +205,24 @@ def _in_soft_window(role: str, h: float, tol: float = 0.0) -> bool:
     )
 
 
+#: Declared trial setting: ``error`` must READ as red.  It is the most
+#: salient role in spec/roles.yaml (6), yet with only the generic 0.02 floor
+#: the ascent parked it at L 0.92, C 0.02 -- a pale pink the preview's
+#: diagnostics strip shows as indistinguishable from body text.  The shortfall
+#: objective pays nothing for an error that looks like an error, so it is a
+#: constraint: chroma >= 0.065 (candidate-b night has 0.041, soft-s01 0.048 --
+#: both visibly washed out), at L <= 0.83: above that the 70%-of-gamut
+#: ceiling for a red hue falls below the floor (0.060 at L 0.84, 0.044 at
+#: 0.88).  With the lightness_offset fence that leaves error in [0.80, 0.83].
+#: ``warning`` (salience 5) showed the same pathology one seed later -- L 0.92,
+#: C 0.034, a pale peach -- so it gets the same floor, at L <= 0.86 where the
+#: ceiling clears it across its whole 60-110 window.
+#: ``breakpoint`` -- the red gutter dot -- has no objective terms at all, and
+#: the placement that maximises its distance to everything else chose
+#: L 0.93, C 0.02: a white dot.  Same floor, at L <= 0.86.
+ROLE_CHROMA_FLOOR = {"error": 0.065, "warning": 0.065, "breakpoint": 0.05}
+ROLE_L_MAX = {"error": 0.83, "warning": 0.86, "breakpoint": 0.86}
+
 #: Deterministic move list, inherited from the numeric search.  Each entry is
 #: (axis, delta): hue degrees, absolute OKLCH lightness, or a fraction of the
 #: role's chroma ceiling.
@@ -284,6 +302,8 @@ class SoftProblem(mp.MiddleProblem):
         the middle frontier's fence unchanged.
         """
         lo, hi = super().l_range(role)
+        if role in ROLE_L_MAX:
+            hi = min(hi, ROLE_L_MAX[role])
         if "lightness_offset" in self.roles_spec.roles[role].redundant_channels:
             base = self.baseline_lch[role][0]
             if self.paint[role] in ("ink", "border"):
@@ -309,7 +329,7 @@ class SoftProblem(mp.MiddleProblem):
         middle frontiers.  The floor is the repo's own HUE_AUDIT_MIN_CHROMA,
         reused rather than reinvented.
         """
-        return sm.CHROMA_FLOOR
+        return max(sm.CHROMA_FLOOR, ROLE_CHROMA_FLOOR.get(role, 0.0))
 
     def fence_lch(self, role, L, C, h):
         """MiddleProblem.fence_lch, inside the soft hue windows, plus the

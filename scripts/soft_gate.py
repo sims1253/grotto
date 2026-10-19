@@ -141,10 +141,11 @@ def gate(path: Path) -> list[str]:
 
     for role in problem.chromatic:
         c = hex_to_oklch(hexes[role])[1]
-        if c < sm.CHROMA_FLOOR - sm.CHROMA_FLOOR_TOL:
+        floor = problem.chroma_floor(role)  # generic floor, or a declared role floor
+        if c < floor - sm.CHROMA_FLOOR_TOL:
             problems.append(
                 f"{name}: {role} below the chroma floor "
-                f"(C={c:.4f} < {sm.CHROMA_FLOOR})"
+                f"(C={c:.4f} < {floor})"
             )
 
     # 6. DESIGN.md section 6 -- the salience budget.  "Too busy" has to stay

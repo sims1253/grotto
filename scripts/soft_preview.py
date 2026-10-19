@@ -56,13 +56,26 @@ BORDER = "#2a323d"
 INK_DIM = "#8b98a5"
 INK_FAINT = "#6b7783"
 
-#: The five co-occurring surfaces the audit is about, in draw order.
+#: The seven co-occurring surfaces the audit is about, in draw order.
 CLUSTER = [
     ("selection", "selection", "selected text"),
     ("active_line", "active_line", "active line"),
     ("diff_added", "diff_added", "added"),
     ("diff_removed", "diff_removed", "removed"),
+    ("diff_changed", "diff_changed", "changed"),
+    ("search_match", "search_match", "match"),
     ("search_match_current", "search_match_current", "current match"),
+]
+
+#: Diagnostics as VS Code draws them: error/warning/info share one
+#: ``4px double`` underline and differ only by colour (redundant-channel
+#: audit §4); hint is dotted.  The message text uses the role colour too,
+#: as the hover and problems panel do.
+DIAGNOSTICS = [
+    ("error", "error", "rolling_mean(values, decy)", "object 'decy' not found"),
+    ("warning", "warning", "library(dplyr)", "package loaded but unused"),
+    ("info", "info", "acc <- 0", "consider vapply()"),
+    ("success", "success", "result <- rolling_mean(...)", "tests passed"),
 ]
 
 
@@ -140,6 +153,43 @@ def _cluster_half(d, palette, x, y, w, title, *, cvd: str | None) -> int:
     return y
 
 
+def _diag_half(d, palette, x, y, w, title, *, cvd: str | None) -> int:
+    """Diagnostics on the canvas: underline + message per severity, plus the
+    gutter marks (breakpoint dot, focus ring).  Returns the y after it."""
+    f = _font(MONO, FS)
+    fb = _font(MONO_B, FS_SM)
+    sim = (lambda hx: simulate(hx, cvd, 1.0)) if cvd else (lambda hx: hx)
+    d.text((x, y), title, font=fb, fill=INK_DIM)
+    y += FS_SM + 12
+    canvas = sim(palette.get("bg"))
+    h = 14 + (LH + 12) * len(DIAGNOSTICS) + LH + 14
+    d.rounded_rectangle((x, y, x + w, y + h), radius=6, fill=canvas,
+                        outline=BORDER, width=1)
+    ty = y + 12
+    for role, _key, code, msg in DIAGNOSTICS:
+        col = sim(palette.get(role))
+        d.ellipse((x + 10, ty + 6, x + 20, ty + 16), fill=col)
+        cx = x + 30
+        d.text((cx, ty), code, font=f, fill=sim(palette.get("fg")))
+        tw = d.textlength(code, font=f)
+        if role != "success":
+            # 4px double: two 1px rules, 3px apart
+            d.line((cx, ty + LH - 2, cx + tw, ty + LH - 2), fill=col, width=1)
+            d.line((cx, ty + LH + 1, cx + tw, ty + LH + 1), fill=col, width=1)
+        d.text((cx + tw + 16, ty), msg, font=f, fill=col)
+        ty += LH + 12
+    # gutter marks
+    bp = sim(palette.get("breakpoint"))
+    d.ellipse((x + 10, ty + 5, x + 22, ty + 17), fill=bp)
+    d.text((x + 30, ty), "breakpoint", font=f, fill=bp)
+    fx = x + 30 + d.textlength("breakpoint", font=f) + 30
+    focus = sim(palette.get("focus"))
+    d.rectangle((fx, ty - 2, fx + d.textlength("focus ring", font=f) + 12, ty + LH),
+                outline=focus, width=1)
+    d.text((fx + 6, ty), "focus ring", font=f, fill=focus)
+    return y + h + 12
+
+
 def sheet(palette_path: Path, out_dir: Path) -> Path:
     palette = Palette.from_yaml(palette_path)
     bg = palette.get("bg")
@@ -154,8 +204,9 @@ def sheet(palette_path: Path, out_dir: Path) -> Path:
     spec_h = 22 + FS_SM + 10 + LH * len(spec_rows) + 26
     band_lines = _cluster_lines(max_chars=int((cols - 40) / CHAR_W))
     clus_h = 22 + FS_SM + 12 + (14 + LH * len(band_lines) + 12 + 12) * len(CLUSTER) + 10
+    diag_h = 22 + FS_SM + 12 + 14 + (LH + 12) * len(DIAGNOSTICS) + LH + 14 + 12 + 10
     foot = 56
-    H = PAD + head + spec_h + 26 + clus_h + foot + PAD
+    H = PAD + head + spec_h + 26 + clus_h + 26 + diag_h + foot + PAD
     im = Image.new("RGB", (W, H), BG_PANEL)
     d = ImageDraw.Draw(im)
 
@@ -169,7 +220,9 @@ def sheet(palette_path: Path, out_dir: Path) -> Path:
 
     # ---- code specimens, two languages ----
     y = PAD + head
-    _panel(d, (PAD, y, W - PAD, y + spec_h - 14))
+    # On the palette's OWN canvas: a neutral card here would show the syntax
+    # colours against a background the theme never draws.
+    _panel(d, (PAD, y, W - PAD, y + spec_h - 14), fill=bg)
     d.text((PAD + INSET, y + 10), "code specimens", font=_font(MONO_B, FS_SM), fill=INK_DIM)
     for i, lang in enumerate(("r", "typescript")):
         cx = PAD + INSET + i * (cols + GUTTER)
@@ -188,11 +241,23 @@ def sheet(palette_path: Path, out_dir: Path) -> Path:
     _cluster_half(d, palette, PAD + INSET + cols + GUTTER, top, cols,
                   "deutan @ 1.0", cvd="deutan")
 
+    # ---- diagnostics, as authored and under tritanopia ----
+    # Tritan, not deutan: error/warning are a red/amber pair that tritanopia
+    # collapses (both land on its confusion axis; audit §7).
+    y = PAD + head + spec_h + 26 + clus_h + 26
+    _panel(d, (PAD, y, W - PAD, y + diag_h - 14))
+    d.text((PAD + INSET, y + 10), "diagnostics — as authored, and under tritanopia",
+           font=_font(MONO_B, FS_SM), fill=INK_DIM)
+    top = y + 10 + FS_SM + 12
+    _diag_half(d, palette, PAD + INSET, top, cols, "as authored", cvd=None)
+    _diag_half(d, palette, PAD + INSET + cols + GUTTER, top, cols,
+               "tritan @ 1.0", cvd="tritan")
+
     # ---- footer ----
-    fy = PAD + head + spec_h + 26 + clus_h - 4
+    fy = PAD + head + spec_h + 26 + clus_h + 26 + diag_h - 4
     d.text((PAD, fy),
            "Sources: scripts/soft_preview.py  ·  specimens from grotto.specimens  ·  "
-           "deutan via grotto.cvd.simulate  ·  ink cutoff from grotto.render",
+           "CVD via grotto.cvd.simulate  ·  ink cutoff from grotto.render",
            font=_font(MONO, 10), fill=INK_FAINT)
 
     out_dir.mkdir(parents=True, exist_ok=True)
