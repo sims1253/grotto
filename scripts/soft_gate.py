@@ -101,7 +101,10 @@ def gate(path: Path) -> list[str]:
     # The search's own problem: its fences are the ones the palette was
     # built inside (middle fences, widened only where the spec declares a
     # lightness_offset channel -- soft_palette.SoftProblem.l_range).
-    problem = sp.SoftProblem()
+    import yaml
+
+    meta = (yaml.safe_load(path.read_text(encoding="utf-8")).get("meta") or {})
+    problem = sp.SoftProblem(profile=str(meta.get("profile", "default")))
     hexes = {r: colors[r] for r in problem.present if r in colors}
 
     missing = [r for r in problem.present if r not in colors]

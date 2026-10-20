@@ -248,10 +248,14 @@ def channel_covered_cvd(problem) -> set[tuple[str, str]]:
     }
 
 
-def instrument_terms(problem) -> list[dict]:
+def instrument_terms(problem, channel_credit: bool = True) -> list[dict]:
     """The full v2 term table: the matrix terms, minus channel-discharged
-    CVD terms, plus the surface terms."""
-    covered = channel_covered_cvd(problem)
+    CVD terms, plus the surface terms.
+
+    ``channel_credit=False`` keeps every CVD term: CVD is scored on COLOUR
+    ALONE.  That is the objective of the experimental CVD profile.
+    """
+    covered = channel_covered_cvd(problem) if channel_credit else set()
     base = [
         t for t in problem.terms
         if not (t["cls"] == "must" and t["kind"] != "normal"
@@ -387,7 +391,13 @@ def shortfall(vals: list[float], exp: float = SHORTFALL_EXP) -> dict:
     }
 
 
-def score(palette_path: Path) -> dict:
+def cvd_colour_only(problem, hexes: dict[str, str]) -> tuple[int, int]:
+    """(passing, total) must-pair CVD checks on colour alone, no channel credit."""
+    cvd = [t for t in problem.terms if t["cls"] == "must" and t["kind"] != "normal"]
+    return sum(1 for t in cvd if term_value(t, hexes) >= 1.0), len(cvd)
+
+
+def score(palette_path: Path, channel_credit: bool = True) -> dict:
     """Every number the benchmark reports, re-derived from one palette file."""
     palette = Palette.from_yaml(palette_path)
     colors = {r: str(v) for r, v in palette.colors.items()}
@@ -395,7 +405,8 @@ def score(palette_path: Path) -> dict:
     hexes = {r: colors[r] for r in problem.present if r in colors}
     missing = [r for r in problem.present if r not in colors]
     ev = np_.evaluate(problem, hexes)   # v1 monitors (J, per-class minima)
-    terms = instrument_terms(problem)
+    cvd_pass, cvd_total = cvd_colour_only(problem, hexes)
+    terms = instrument_terms(problem, channel_credit=channel_credit)
     vals = [term_value(t, hexes) for t in terms]
     sf = shortfall(vals)
     vis = {t["a"]: v for t, v in zip(terms, vals) if t["cls"] == "visibility"}
@@ -433,6 +444,9 @@ def score(palette_path: Path) -> dict:
         "missing_roles": missing,
         "argmin": list(ev["argmin"]),
         "instrument_version": INSTRUMENT_VERSION,
+        "channel_credit": channel_credit,
+        "cvd_pass": cvd_pass,
+        "cvd_total": cvd_total,
         "min_visibility": min(vis.values()) if vis else 0.0,
         "visibility": vis,
         "min_surface_anticollapse": min(
@@ -448,25 +462,28 @@ def main() -> None:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("palettes", nargs="+")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--colour-only", action="store_true",
+                    help="score CVD on colour alone (no credit for drawn channels)")
     args = ap.parse_args()
     rows = []
     for p in args.palettes:
         path = Path(p)
         if not path.is_absolute():
             path = REPO / path
-        rows.append(score(path))
+        rows.append(score(path, channel_credit=not args.colour_only))
     if args.json:
         print(json.dumps(rows, indent=2))
         return
     hdr = (f"{'palette':<34}{'utility':>9}{'sep':>8}{'emph':>8}{'worst':>8}"
-           f"{'meanM':>8}{'tgt':>5}{'meanC':>7}{'maxC':>7}{'wcag':>6}")
+           f"{'meanM':>8}{'tgt':>5}{'meanC':>7}{'maxC':>7}{'wcag':>6}{'cvd':>7}")
     print(hdr)
     print("-" * len(hdr))
     for r in rows:
         print(f"{r['palette']:<34}{r['utility']:>9.4f}{r['sep']:>8.4f}"
               f"{r['emph']:>8.4f}{r['worst_margin']:>8.4f}{r['mean_margin']:>8.4f}"
               f"{r['at_target']:>5d}{r['mean_cat_chroma']:>7.3f}"
-              f"{r['max_cat_chroma']:>7.3f}{r['wcag_violations']:>6d}")
+              f"{r['max_cat_chroma']:>7.3f}{r['wcag_violations']:>6d}"
+              f"{r['cvd_pass']:>4d}/{r['cvd_total']}")
 
 
 if __name__ == "__main__":

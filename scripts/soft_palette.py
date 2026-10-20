@@ -159,9 +159,29 @@ SOFT_PROVENANCE = {
 #: point, and docs/review/redundant-channel-audit.md pins numbers to them.
 PALETTE_PREFIX = "soft2-s"
 DEFAULT_OUT = "out/soft-night-v2"
+CVD_PREFIX = "soft2-cvd-s"
+CVD_OUT = "out/soft-night-v2-cvd"
 import soft_metric as sm  # noqa: E402
 
 DEFAULT_SEED = 20260817
+
+#: Search profiles.  ``default`` is Grotto Night.  ``cvd`` is the
+#: experimental colour-vision-deficiency variant: it scores CVD on COLOUR
+#: ALONE (no credit for gutter signs or squiggles) and relaxes only fences
+#: that do not protect normal-vision legibility.  WCAG floors, convention
+#: hue windows, the salience and prominence ranks and the diagnostic chroma
+#: floors are identical in both.
+#:
+#:   channel_credit  CVD terms a drawn channel covers count as met
+#:   ink_l_down      extra downward lightness room for EVERY ink, on top of
+#:                   the middle fence (candidate-b's L - 0.04).  The ink
+#:                   fence is taste: legibility is the WCAG floor.
+#:   ink_l_min       absolute floor for that room (keeps inks bright enough
+#:                   that a dark theme still reads as one)
+PROFILES = {
+    "default": {"channel_credit": True, "ink_l_down": 0.0, "ink_l_min": 0.0},
+    "cvd": {"channel_credit": False, "ink_l_down": 0.0, "ink_l_min": 0.0},
+}
 
 #: Declared trial settings: the lightness fence for roles whose spec entry
 #: lists ``lightness_offset`` as a redundant channel (see SoftProblem.l_range).
@@ -257,8 +277,10 @@ class SoftProblem(mp.MiddleProblem):
     table constrains.
     """
 
-    def __init__(self, chromatic=tuple(np_.CHROMATIC_ROLES)):
+    def __init__(self, chromatic=tuple(np_.CHROMATIC_ROLES), profile: str = "default"):
         super().__init__(chromatic=chromatic)
+        self.profile = profile
+        self.prof = PROFILES[profile]
         # Scaffold lightness overrides (see SCAFFOLD_L_OVERRIDES).  Applied
         # before anything reads a scaffold hex, so the WCAG caps they induce
         # on the highlight surfaces are the overridden ones.
@@ -269,7 +291,7 @@ class SoftProblem(mp.MiddleProblem):
         self.area = sm.area_table()
         # Instrument v2's surface terms: the search optimises exactly the term
         # table the instrument scores (soft_metric.surface_terms).
-        self.terms = sm.instrument_terms(self)
+        self.terms = sm.instrument_terms(self, channel_credit=self.prof["channel_credit"])
         self.term_ids_by_role = {}
         for i, t in enumerate(self.terms):
             for r in (t["a"], t["b"]):
@@ -338,6 +360,8 @@ class SoftProblem(mp.MiddleProblem):
             else:
                 lo = min(lo, base - OFFSET_SURFACE_L_DELTA)
                 hi = max(hi, base + OFFSET_SURFACE_L_DELTA)
+        if self.prof["ink_l_down"] and self.paint[role] in ("ink", "border"):
+            lo = min(lo, max(lo - self.prof["ink_l_down"], self.prof["ink_l_min"]))
         return (lo, hi)
 
     def chroma_floor(self, role: str) -> float:
@@ -1121,15 +1145,18 @@ def main() -> None:
     ap.add_argument("--n-palettes", type=int, default=1)
     ap.add_argument("--select", type=int, default=3,
                     help="candidates to post-process before picking the best final one")
-    ap.add_argument("--out", default=DEFAULT_OUT)
+    ap.add_argument("--out", default=None,
+                    help=f"default {DEFAULT_OUT}, or {CVD_OUT} for --profile cvd")
+    ap.add_argument("--profile", choices=sorted(PROFILES), default="default")
     ap.add_argument("--no-install", action="store_true")
     args = ap.parse_args()
 
     t0 = time.monotonic()
     c0 = time.process_time()
-    out = REPO / args.out
+    out = REPO / (args.out or (CVD_OUT if args.profile == "cvd" else DEFAULT_OUT))
     out.mkdir(parents=True, exist_ok=True)
-    problem = SoftProblem()
+    problem = SoftProblem(profile=args.profile)
+    prefix = CVD_PREFIX if args.profile == "cvd" else PALETTE_PREFIX
     print(
         f"[problem] {len(problem.chromatic)} chromatic roles inside the middle "
         f"fences; {len(problem.terms)} objective terms; "
@@ -1178,11 +1205,12 @@ def main() -> None:
     entries = []
     for i, d in enumerate(finished[: args.n_palettes], 1):
         state, hexes, sc = d["state"], d["hexes"], d["score"]
-        name = f"{PALETTE_PREFIX}{i:02d}"
+        name = f"{prefix}{i:02d}"
         path = out / f"{name}.night.yaml"
         mp.write_palette_yaml(
             path, name, state, problem, args.seed,
-            {"restart-kind": d["kind"], "utility": round(sc["utility"], 5),
+            {"profile": args.profile,
+             "restart-kind": d["kind"], "utility": round(sc["utility"], 5),
              "sep": round(sc["sep"], 5), "emphasis": round(sc["emph"], 5),
              "worst-margin": round(sc["worst_margin"], 5),
              "at-target": sc["at_target"],
@@ -1242,7 +1270,7 @@ def main() -> None:
     mp.write_vscode_extension(
         out / "vscode-preview", problem,
         [{"label": e["label"], "hexes": e["hexes"], "source_name": e["source_name"],
-          "sha": "soft-exploration"} for e in entries if e["label"].startswith(PALETTE_PREFIX)],
+          "sha": "soft-exploration"} for e in entries if e["label"].startswith(prefix)],
         k=3, install=not args.no_install,
         provenance=SOFT_PROVENANCE["extension"],
     )
