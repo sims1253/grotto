@@ -6,6 +6,8 @@ A dark VS Code theme on a warm brown-black background.
 
 Body text has a 10:1 contrast ratio against the background. Code stays at 4.5:1 or above on the background and on every highlight, and placeholder text and line numbers stay at 3:1 or above. Selection, search matches, and added, removed, and changed lines each get a distinct tint. Errors are red, warnings are yellow, and success is green.
 
+Grotto is built for color vision deficiency. Every color pair that must stay apart is checked under simulated protanopia, deuteranopia, and tritanopia. Most pairs stay apart by color alone. Where color can't do it, as with added and removed diff lines, VS Code also marks the difference without color, using the `+` and `-` gutter signs or the error underline.
+
 ## Install
 
 From the repository root, copy the extension into your VS Code extensions folder:
