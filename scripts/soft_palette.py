@@ -178,9 +178,18 @@ DEFAULT_SEED = 20260817
 #:                   fence is taste: legibility is the WCAG floor.
 #:   ink_l_min       absolute floor for that room (keeps inks bright enough
 #:                   that a dark theme still reads as one)
+#:   scaffold_l      extra scaffold lightness overrides on top of
+#:                   SCAFFOLD_L_OVERRIDES.  Lifting the 4.5:1 mid-grey inks
+#:                   (comments, punctuation) and the 3:1 muted ones raises
+#:                   the ceiling every highlight surface lives under.
 PROFILES = {
-    "default": {"channel_credit": True, "ink_l_down": 0.0, "ink_l_min": 0.0},
-    "cvd": {"channel_credit": False, "ink_l_down": 0.10, "ink_l_min": 0.66},
+    "default": {"channel_credit": True, "ink_l_down": 0.0, "ink_l_min": 0.0,
+                "scaffold_l": {}},
+    "cvd": {"channel_credit": False, "ink_l_down": 0.10, "ink_l_min": 0.66,
+            "scaffold_l": {"comment": 0.72, "punctuation": 0.72,
+                           "fg_secondary": 0.72, "deprecated": 0.72,
+                           "fg_muted": 0.62, "line_number": 0.62,
+                           "ui_inactive": 0.62}},
 }
 
 #: Declared trial settings: the lightness fence for roles whose spec entry
@@ -284,7 +293,7 @@ class SoftProblem(mp.MiddleProblem):
         # Scaffold lightness overrides (see SCAFFOLD_L_OVERRIDES).  Applied
         # before anything reads a scaffold hex, so the WCAG caps they induce
         # on the highlight surfaces are the overridden ones.
-        for r, L in SCAFFOLD_L_OVERRIDES.items():
+        for r, L in {**SCAFFOLD_L_OVERRIDES, **self.prof["scaffold_l"]}.items():
             _, C, h = self.scaffold[r]
             self.scaffold[r] = (L, C, h)
             self.scaffold_hex[r] = oklch_to_hex(np_.project_chroma(L, C, h))
