@@ -17,7 +17,15 @@ terms): surface visibility bands read from `model.SURFACE_STEPS`, surface
 anti-collapse, and CVD terms credited where `grotto.channels.judge` finds a
 delivered channel. Numbers before and after run 13 are NOT comparable; re-score
 references with `soft_metric.py`. The search optimises `sm.instrument_terms`, the
-same table. Shipped soft2-s01 scores 0.9828 on v2.
+same table.
+
+**Profiles (run 15 on).** `soft_palette.PROFILES`: `default` is Grotto Night
+(now with 0.10 extra downward ink room and a 0.05 syntax chroma floor; shipped
+0.9853). `cvd` is the experimental variant, benchmarked with
+`AR_PROFILE=cvd uv run python .auto/ar.py measure` and scored colour-only.
+Its log entries carry `profile=cvd` and are flagged as instrument changes.
+It ships to `out/soft-night-v2-cvd` (68/78 CVD checks on colour alone).
+docs/review/soft-objective-v2.md §7.
 
 ## Status: converged inside the declared design. Read this first.
 

@@ -24,6 +24,20 @@ To try the theme without installing it:
 code --extensionDevelopmentPath="$PWD/out/soft-night-v2/vscode-preview"
 ```
 
-Grotto is a preview. If something is hard to read, [open an issue](https://github.com/sims1253/grotto/issues) with the language, the font, and a code sample.
+## Experimental: Grotto Night CVD
+
+![Grotto Night CVD showing R and TypeScript code](docs/grotto-night-cvd.png)
+
+A variant for color vision deficiency. VS Code still draws the gutter signs and underlines, but this variant doesn't count on them. It tries to keep colors apart by color alone. It has a darker background and more lightness difference between colors that must not be confused. It keeps 68 of 78 must-differ color pairs apart under simulated protanopia, deuteranopia, and tritanopia, against 63 for Grotto Night. The same contrast floors apply.
+
+Install it the same way. It sits next to Grotto Night instead of replacing it:
+
+```bash
+cp -r out/soft-night-v2-cvd/vscode-preview ~/.vscode/extensions/grotto-soft-objective-v2-cvd
+```
+
+Then choose **Grotto S2-CVD 01 Night**.
+
+Both themes are previews. If something is hard to read, [open an issue](https://github.com/sims1253/grotto/issues) with the theme, the language, the font, and a code sample.
 
 [MIT license](LICENSE).

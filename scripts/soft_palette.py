@@ -154,6 +154,26 @@ SOFT_PROVENANCE = {
     },
 }
 
+#: The experimental CVD variant's identity: its own package and theme slug,
+#: so it installs NEXT TO Grotto Night instead of replacing it.
+CVD_PROVENANCE = {
+    **SOFT_PROVENANCE,
+    "note_lines": SOFT_PROVENANCE["note_lines"] + [
+        "  EXPERIMENTAL CVD profile: CVD scored on colour alone, darker canvas,",
+        "  wider ink and surface lightness fences (soft_palette.PROFILES['cvd']).",
+    ],
+    "html": {**SOFT_PROVENANCE["html"],
+             "title": "soft night palettes v2 -- CVD",
+             "h1": "Soft-objective Night palettes v2, CVD variant &middot; EXPERIMENTAL"},
+    "extension": {**SOFT_PROVENANCE["extension"],
+                  "slug": "soft2-cvd",
+                  "label_prefix": "Grotto S2-CVD",
+                  "pkg_name": "grotto-soft-objective-v2-cvd",
+                  "display": "Grotto Soft Objective v2 CVD (EXPERIMENTAL)",
+                  "description": ("Experimental colour-vision-deficiency variant of "
+                                  "the v2 soft-objective Night theme.")},
+}
+
 #: Palette names and default output directory of this (v2) search.  v1's
 #: artifacts in out/soft-night stay as committed: they are the comparison
 #: point, and docs/review/redundant-channel-audit.md pins numbers to them.
@@ -1189,6 +1209,7 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     problem = SoftProblem(profile=args.profile)
     prefix = CVD_PREFIX if args.profile == "cvd" else PALETTE_PREFIX
+    prov = CVD_PROVENANCE if args.profile == "cvd" else SOFT_PROVENANCE
     print(
         f"[problem] {len(problem.chromatic)} chromatic roles inside the middle "
         f"fences; {len(problem.terms)} objective terms; "
@@ -1247,7 +1268,7 @@ def main() -> None:
              "worst-margin": round(sc["worst_margin"], 5),
              "at-target": sc["at_target"],
              "pre-repair-utility": round(d["pre"], 5)},
-            provenance=SOFT_PROVENANCE,
+            provenance=prov,
         )
         # Two metric blocks on purpose: `score` is this session's soft
         # objective, `metrics` is the middle-frontier report block the shared
@@ -1297,14 +1318,14 @@ def main() -> None:
     # judgements the owner has to make in a real editor.
     mp.write_variants_html(
         out / "variants.html", problem, entries,
-        provenance=SOFT_PROVENANCE["html"],
+        provenance=prov["html"],
     )
     mp.write_vscode_extension(
         out / "vscode-preview", problem,
         [{"label": e["label"], "hexes": e["hexes"], "source_name": e["source_name"],
           "sha": "soft-exploration"} for e in entries if e["label"].startswith(prefix)],
         k=3, install=not args.no_install,
-        provenance=SOFT_PROVENANCE["extension"],
+        provenance=prov["extension"],
     )
 
     metrics = {

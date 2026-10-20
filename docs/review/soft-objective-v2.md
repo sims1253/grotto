@@ -8,7 +8,7 @@ rendered sheet as well as scored. Runs 7–12 were measured on the **unchanged
 v1 instrument**. Run 13 then fixes two blind spots in the instrument itself
 (§6), and the shipped palette is re-searched on it.
 
-**Result.** `out/soft-night-v2/soft2-s01.night.yaml` scores **0.9828** on
+**Result.** `out/soft-night-v2/soft2-s01.night.yaml` scores **0.9853** on
 instrument v2, against **0.9561** for #3's soft-s01 and **0.8644** for the
 committed candidate-b. Zero WCAG violations, zero salience reversals, zero
 prominence reversals. On the v1 instrument, the run-12 palette scored 0.9797
@@ -20,7 +20,8 @@ which v1's own shipped palette now fails (washed-out `error`, see §2).
 | candidate-b balanced night (committed) | 0.8644 | 0.1356 | 0.0199 | 0.000 | 79/127 |
 | middle-m01 | 0.9513 | 0.0440 | 0.0456 | 0.282 | 98 |
 | soft-s01 (v1, PR #3) | 0.9561 | 0.0439 | 0.0426 | 0.215 | 94 |
-| **soft2-s01 (this PR)** | **0.9828** | **0.0172** | 0.0446 | 0.363 | **104** |
+| **soft2-s01 (this PR)** | **0.9853** | **0.0147** | 0.0429 | 0.174 | **110** |
+| soft2-cvd-s01 (experimental, §7) | 0.9843 | 0.0157 | 0.0407 | 0.340 | 110 |
 | numeric-n01 (rejected) | 0.6554 | 0.0279 | 0.0857 | 0.507 | 108 |
 
 Emphasis stays under the 0.045 budget. The tripwire still holds: numeric-n01
@@ -117,6 +118,8 @@ is the price of an error that looks like an error, and it is paid.
 | 11 | post-process 5 candidates, not 3 | 0.9845 | 0.0025 | discard (identical) |
 | 12 | diagnostic chroma floors + preview | 0.9783 | 0.0029 | keep (constraint) |
 | 13* | **instrument v2** (§6), search optimises its table | 0.9827 | 0.0003 | keep — *not comparable with ≤ 12* |
+| 14 | inks get 0.10 more downward room | 0.9848 | 0.0003 | discard: `function` faded to C 0.03, plain text |
+| 15 | same, plus a 0.05 chroma floor for syntax inks | 0.9844 | 0.0012 | keep |
 
 **Benchmark change, declared:** the per-seed cap is now **process CPU time**
 (still 16 s), not wall clock. This VM is a shared 2-core machine. Under
@@ -129,16 +132,17 @@ fences are.
 
 ## 5. What is left, and whose call it is
 
-Remaining SEP on the shipped palette is 0.0172 (instrument v2), and it
-splits into three parts.
+Remaining SEP on the shipped palette is 0.0147 (instrument v2). It splits
+three ways.
 
-* **35%: two scaffold-only should-pairs** no search can move, `bg`/`bg_elevated`
+* **42%: two scaffold-only should-pairs** no search can move, `bg`/`bg_elevated`
   (dE 0.033 vs 0.08) and `bg_elevated`/`bg_overlay` (0.027). Closing them
   means much larger elevation steps for panels. That is the open DESIGN
   question Q-2 (direction and size of elevation), and **is the owner's**.
-* **~37%: visibility overshoot**: the diff washes (ΔE ~0.115 vs `minimal`'s
-  0.030–0.055) and selection (0.14 vs `low`'s 0.055–0.08). This is the matrix
+* **43%: visibility overshoot**: the diff washes (margin 0.47, so about 2× past
+  `minimal`), selection (0.60) and `search_match` (0.72). This is the matrix
   contradiction in §6, also the owner's.
+* **15%: must pairs**, below.
 
 The rest is spread thin: `error` against `builtin` and `fg` under normal vision
 (error's red is held to L ≤ 0.83 by its chroma floor, close to the rose-family
@@ -207,7 +211,8 @@ Rescored on instrument v2 (127 terms; **not comparable** with v1 numbers):
 | middle-m01 | 0.9361 | 0.9513 |
 | soft-s01 (#3) | 0.9392 | 0.9561 |
 | soft2-s01 as shipped after run 12 | 0.9797 | 0.9746 |
-| **soft2-s01 (re-searched on v2)** | — | **0.9828** |
+| soft2-s01 re-searched on v2 (run 13) | — | 0.9828 |
+| **soft2-s01 as shipped (run 15, §7)** | — | **0.9853** |
 | numeric-n01 (rejected) | 0.6605 | 0.6554 |
 
 The tripwire holds: numeric-n01 is still last. Re-searching on v2 separates
@@ -223,12 +228,69 @@ other for large adjacent fields, and the score now shows the compromise instead
 of hiding it. Which one gives is the owner's call: a lower must threshold for
 surface/surface pairs, or a `low` target for the diff washes.
 
-## 7. Reproducing
+## 7. Experimental: a CVD variant, and which fences only cost (run 15, cvd runs 1–10)
+
+`--profile cvd` (`soft_palette.PROFILES`) scores CVD on **colour alone**, with no
+credit for the gutter signs and underlines, and relaxes fences that do not
+protect normal-vision legibility. The WCAG floors, the convention windows, the
+salience and prominence ranks and the diagnostic chroma floors are identical in
+both profiles. `.auto/measure.sh` takes `AR_PROFILE=cvd`, and `soft_metric.py
+--colour-only` scores it.
+
+| cvd run | change | colour-only utility | CVD pass /78 | verdict |
+|---|---|---|---|---|
+| 1 | objective only | 0.9764 | 52.0 | baseline: the fences bind, not the objective |
+| 2 | inks 0.10 more downward room (floor L 0.66) | 0.9820 | 62.3 | keep |
+| 3 | 0.16 room, floor 0.60 | 0.9787 | 57.7 | discard: the local search does worse in a bigger space |
+| 4 | syntax chroma cap 0.12 → 0.16 | 0.9818 | 63.0 | discard: the cap does not bind (max C 0.124) |
+| 5 | lift comments to L 0.72, muted inks to 0.62 | 0.9834 | 63.3 | kept, then ablated in run 8 |
+| 6 | visibility bands one class louder | — | 62.0 | discard: the band does not hold the washes |
+| 7 | **darker canvas** 0.205 → 0.165 | 0.9824 | **66.7** | keep |
+| 8 | undo run 5 | 0.9835 | 66.0 | keep: same result, comments unchanged |
+| 10 | surfaces 0.06 more room, held at canvas + 0.01 | 0.9853 | 64.7 | keep |
+
+The finding behind run 7 is geometry. The added and removed washes need about
+0.09 of lightness between them, and between each of them and the active line,
+once dichromacy removes their hue. With the canvas at 0.205 the washes had
+0.215–0.355 to share. That is too little room at any fence setting, and the
+ceiling comes from comments needing 4.5:1 on every highlight. A darker canvas
+is the only lever that adds room at the bottom.
+
+Two traps, both found in renders or by the gate:
+
+* Without a canvas floor in the fence, cvd run 10 reached 70/78 by sinking
+  `selection` to L 0.085 under a 0.165 canvas. That is a near-black hole too
+  dark to carry its hue, and the gate rejected it. Surfaces now stay at
+  canvas + 0.01 in both profiles.
+* Run 14 brought the ink relaxation to Grotto Night: 0.9827 → 0.9848. The
+  ascent spent the room muting `function` to C 0.03, so `rolling_mean` read as
+  plain near-white text. Run 15 adds `SYNTAX_CHROMA_FLOOR = 0.05` for
+  categorical inks and keeps the relaxation. Fences that only cost are now
+  gone from Grotto Night too: 54 → 63 of 78 CVD checks pass on colour alone,
+  as a side effect.
+
+Shipped, both at full budget and both admitted by the gate:
+
+| | utility (v2) | colour-only utility | CVD pass /78 | canvas |
+|---|---|---|---|---|
+| Grotto Night `out/soft-night-v2/soft2-s01` | 0.9853 | 0.9758 | 63 | L 0.205 |
+| Grotto Night CVD `out/soft-night-v2-cvd/soft2-cvd-s01` | 0.9843 | 0.9858 | **68** | L 0.165 |
+
+The CVD variant installs next to Grotto Night (`grotto-soft-objective-v2-cvd`).
+The 10 checks it still misses are almost all surfaces against `active_line`
+and `selection` under tritan and protan. Holding the active line at canvas +
+0.03 ("a very small lightness step", `spec/roles.yaml`) is what leaves them.
+
+## 8. Reproducing
 
 ```bash
 uv run python scripts/soft_palette.py --restarts 24 --samples 16 \
     --refine-passes 30 --select 6 --no-install          # -> out/soft-night-v2
 uv run python scripts/soft_gate.py out/soft-night-v2
+uv run python scripts/soft_palette.py --profile cvd --restarts 24 --samples 16 \
+    --refine-passes 30 --select 6 --no-install          # -> out/soft-night-v2-cvd
+uv run python scripts/soft_metric.py --colour-only out/soft-night-v2/soft2-s01.night.yaml \
+    out/soft-night-v2-cvd/soft2-cvd-s01.night.yaml
 uv run python scripts/soft_metric.py out/soft-night/soft-s01.night.yaml \
     out/soft-night-v2/soft2-s01.night.yaml
 uv run python scripts/soft_preview.py out/soft-night-v2 \

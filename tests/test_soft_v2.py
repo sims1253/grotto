@@ -81,12 +81,11 @@ def test_lightness_fences(problem):
             assert hi <= base + sp.mp.INK_L_DELTA + 1e-9, r
             assert lo <= base - sp.mp.INK_L_DELTA + 1e-9, r
             assert lo >= min(prof["ink_l_min"], base - sp.mp.INK_L_DELTA) - 1e-9, r
-        elif declared:
-            assert lo == pytest.approx(base - sp.OFFSET_SURFACE_L_DELTA), r
-            assert hi == pytest.approx(base + sp.OFFSET_SURFACE_L_DELTA), r
         else:
-            assert lo == pytest.approx(base - sp.mp.SURFACE_L_DELTA), r
-            assert hi == pytest.approx(base + sp.mp.SURFACE_L_DELTA), r
+            d = sp.OFFSET_SURFACE_L_DELTA if declared else sp.mp.SURFACE_L_DELTA
+            floor = problem.scaffold["bg"][0] + 0.01   # a wash sits above the canvas
+            assert lo == pytest.approx(max(base - d, floor)), r
+            assert hi == pytest.approx(base + d), r
 
 
 # -- convention windows ------------------------------------------------------
@@ -215,3 +214,41 @@ def test_rejected_numeric_frontier_still_ranks_last():
     for other in ("out/middle-night/middle-m01.night.yaml", str(V1.relative_to(REPO)),
                   str(V2.relative_to(REPO))):
         assert sp.sm.score(REPO / other)["utility"] > n01, other
+
+
+# -- the experimental CVD variant ----------------------------------------------
+
+CVD = REPO / "out/soft-night-v2-cvd/soft2-cvd-s01.night.yaml"
+
+
+def test_cvd_profile_scores_cvd_on_colour_alone():
+    default, cvd = sp.SoftProblem(), sp.SoftProblem(profile="cvd")
+    n_cvd = lambda p: sum(1 for t in p.terms if t["cls"] == "must" and t["kind"] != "normal")
+    assert n_cvd(cvd) == 78
+    assert n_cvd(default) < n_cvd(cvd)          # default credits drawn channels
+
+
+@pytest.mark.parametrize("profile", sorted(sp.PROFILES))
+def test_surfaces_never_sit_below_the_canvas(profile):
+    p = sp.SoftProblem(profile=profile)
+    for r in p.chromatic:
+        if p.paint[r] == "surface":
+            assert p.l_range(r)[0] >= p.scaffold["bg"][0] + 0.01 - 1e-9, (profile, r)
+
+
+def test_shipped_cvd_variant_passes_the_gate_and_beats_night_on_colour_alone():
+    assert gate_mod.gate(CVD) == []
+    night = sp.sm.score(V2, channel_credit=False)
+    cvd = sp.sm.score(CVD, channel_credit=False)
+    assert cvd["cvd_pass"] > night["cvd_pass"]
+    assert cvd["wcag_violations"] == 0
+
+
+def test_cvd_variant_installs_next_to_night():
+    import json
+
+    names = {
+        json.loads((REPO / d / "vscode-preview/package.json").read_text())["name"]
+        for d in ("out/soft-night-v2", "out/soft-night-v2-cvd")
+    }
+    assert len(names) == 2

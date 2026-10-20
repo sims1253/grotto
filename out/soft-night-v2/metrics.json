@@ -273,6 +273,9 @@
           "anticollapse_normal"
         ],
         "at_target": 79,
+        "channel_credit": true,
+        "cvd_pass": 18,
+        "cvd_total": 78,
         "emph": 0.019891426126610115,
         "emph_excess": 0.0,
         "emph_ink": 0.02283723116990674,
@@ -432,68 +435,68 @@
         "bg": "#191714",
         "bg_elevated": "#211e1b",
         "bg_overlay": "#282521",
-        "breakpoint": "#f0bdca",
-        "builtin": "#f0c4ad",
+        "breakpoint": "#ea9b98",
+        "builtin": "#ecad8d",
         "comment": "#a0968a",
-        "constant": "#ecb099",
-        "debug_current": "#27230e",
-        "decorator": "#daa986",
+        "constant": "#e6bcac",
+        "debug_current": "#2e1f0e",
+        "decorator": "#efc5a5",
         "deprecated": "#979797",
-        "diff_added": "#1f3615",
+        "diff_added": "#173715",
         "diff_changed": "#1b1b09",
-        "diff_removed": "#4b1923",
+        "diff_removed": "#4c1822",
         "docstring": "#cbbfb3",
-        "error": "#eca7ba",
+        "error": "#e57598",
         "fg": "#c4c1bd",
         "fg_muted": "#7d7b79",
         "fg_secondary": "#999794",
-        "focus": "#a4c2eb",
-        "function": "#78e3de",
-        "info": "#b1d4db",
-        "keyword": "#a8b1e8",
+        "focus": "#d0deed",
+        "function": "#62bbe5",
+        "info": "#55a598",
+        "keyword": "#a39be3",
         "line_number": "#7c7c7c",
         "line_number_active": "#c1c1c1",
-        "namespace": "#7cd4c3",
-        "number": "#eaa084",
+        "namespace": "#91d4d6",
+        "number": "#da8261",
         "operator": "#c1c1c1",
         "parameter": "#c4c1bd",
         "property": "#bfc2c3",
         "punctuation": "#979797",
         "search_match": "#2a1208",
         "search_match_current": "#313115",
-        "selection": "#182e5c",
-        "string": "#a4ba97",
-        "success": "#99bb5c",
-        "tag": "#9de29d",
-        "type": "#6ec4cc",
+        "selection": "#1a2d58",
+        "string": "#b2d6be",
+        "success": "#6fdc8e",
+        "tag": "#a5cae0",
+        "type": "#75c9a0",
         "ui_inactive": "#7c7c7c",
-        "warning": "#d8d86f"
+        "warning": "#b1b05a"
       },
-      "kind": "soft (ladder restart)",
+      "kind": "soft (bseed restart)",
       "label": "soft2-s01",
       "metrics": {
         "argmin": {
           "class": "visibility_band",
           "pair": [
-            "diff_removed",
+            "diff_added",
             "bg"
           ]
         },
-        "diff_added_removed_deutan_de": 0.0208,
-        "diff_added_removed_normal_de": 0.1242,
-        "max_categorical_chroma": 0.1172,
-        "mean_categorical_chroma": 0.0832,
-        "min_categorical_de": 0.0318,
-        "min_wcag": 3.1196,
-        "number_constant_de": 0.0406,
-        "total_categorical_chroma": 0.8324,
+        "diff_added_removed_deutan_de": 0.0157,
+        "diff_added_removed_normal_de": 0.1352,
+        "max_categorical_chroma": 0.1185,
+        "mean_categorical_chroma": 0.0801,
+        "min_categorical_de": 0.0317,
+        "min_wcag": 3.1255,
+        "number_constant_de": 0.1493,
+        "total_categorical_chroma": 0.8009,
         "wcag_check_count": 261,
         "wcag_violations": 0,
-        "worst_margin_anticollapse": 1.0451,
-        "worst_margin_matrix": 0.6353,
-        "worst_margin_must_cvd": 0.9621,
-        "worst_margin_must_normal": 0.6353,
-        "worst_margin_overall": 0.4759,
+        "worst_margin_anticollapse": 1.0572,
+        "worst_margin_matrix": 0.7265,
+        "worst_margin_must_cvd": 0.9239,
+        "worst_margin_must_normal": 0.7387,
+        "worst_margin_overall": 0.4671,
         "worst_margin_should": 0.3632,
         "worst_pairs": [
           {
@@ -524,24 +527,11 @@
           },
           {
             "class": "visibility_band",
-            "dC": 0.0697,
-            "dH": 0.0487,
-            "dL": 0.0888,
-            "de": 0.0143,
-            "margin": 0.4759,
-            "pair": [
-              "diff_removed",
-              "bg"
-            ],
-            "threshold": 0.03
-          },
-          {
-            "class": "visibility_band",
-            "dC": 0.0558,
-            "dH": 0.0355,
-            "dL": 0.0987,
-            "de": 0.0143,
-            "margin": 0.4778,
+            "dC": 0.0627,
+            "dH": 0.0427,
+            "dL": 0.097,
+            "de": 0.014,
+            "margin": 0.4671,
             "pair": [
               "diff_added",
               "bg"
@@ -550,55 +540,29 @@
           },
           {
             "class": "visibility_band",
-            "dC": 0.0804,
-            "dH": 0.1431,
-            "dL": 0.1052,
-            "de": 0.0313,
-            "margin": 0.5682,
+            "dC": 0.0723,
+            "dH": 0.0496,
+            "dL": 0.0888,
+            "de": 0.0141,
+            "margin": 0.4691,
+            "pair": [
+              "diff_removed",
+              "bg"
+            ],
+            "threshold": 0.03
+          },
+          {
+            "class": "visibility_band",
+            "dC": 0.0747,
+            "dH": 0.1334,
+            "dL": 0.1007,
+            "de": 0.0329,
+            "margin": 0.5984,
             "pair": [
               "selection",
               "bg"
             ],
             "threshold": 0.055
-          },
-          {
-            "class": "must_normal",
-            "dC": 0.0251,
-            "dH": 0.0602,
-            "dL": 0.0536,
-            "de": 0.0826,
-            "margin": 0.6353,
-            "pair": [
-              "error",
-              "builtin"
-            ],
-            "threshold": 0.13
-          },
-          {
-            "class": "must_normal",
-            "dC": 0.078,
-            "dH": 0.059,
-            "dL": 0.0129,
-            "de": 0.084,
-            "margin": 0.6461,
-            "pair": [
-              "error",
-              "fg"
-            ],
-            "threshold": 0.13
-          },
-          {
-            "class": "must_normal",
-            "dC": 0.0599,
-            "dH": 0.0392,
-            "dL": 0.0687,
-            "de": 0.0923,
-            "margin": 0.7099,
-            "pair": [
-              "active_line",
-              "diff_added"
-            ],
-            "threshold": 0.13
           },
           {
             "class": "visibility_band",
@@ -615,104 +579,143 @@
           },
           {
             "class": "must_normal",
-            "dC": 0.0738,
-            "dH": 0.0391,
-            "dL": 0.0588,
-            "de": 0.0953,
-            "margin": 0.7331,
+            "dC": 0.0669,
+            "dH": 0.0469,
+            "dL": 0.0671,
+            "de": 0.096,
+            "margin": 0.7387,
+            "pair": [
+              "active_line",
+              "diff_added"
+            ],
+            "threshold": 0.13
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0765,
+            "dH": 0.0398,
+            "dL": 0.0589,
+            "de": 0.0974,
+            "margin": 0.7493,
             "pair": [
               "active_line",
               "diff_removed"
+            ],
+            "threshold": 0.13
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.038,
+            "dH": 0.0297,
+            "dL": 0.086,
+            "de": 0.0978,
+            "margin": 0.7525,
+            "pair": [
+              "diff_added",
+              "diff_changed"
+            ],
+            "threshold": 0.13
+          },
+          {
+            "class": "must_normal",
+            "dC": 0.0008,
+            "dH": 0.0508,
+            "dL": 0.0902,
+            "de": 0.1022,
+            "margin": 0.7859,
+            "pair": [
+              "search_match",
+              "search_match_current"
             ],
             "threshold": 0.13
           }
         ]
       },
       "score": {
-        "at_target": 104,
-        "emph": 0.04461649343736287,
+        "at_target": 110,
+        "emph": 0.04292464420672978,
         "emph_excess": 0.0,
-        "mean_margin": 2.6348104826223273,
-        "sep": 0.01721171088028254,
+        "mean_margin": 2.7920265697908935,
+        "sep": 0.014655385592095749,
         "terms": 127,
-        "utility": 0.9827882891197175,
+        "utility": 0.9853446144079042,
         "worst_margin": 0.36324127277271345
       },
       "source_name": "soft2-s01.night.yaml",
       "state": {
         "breakpoint": [
-          0.847136,
-          0.06080517578125,
-          1.5
+          0.767136,
+          0.09447750854492187,
+          22.5
         ],
         "builtin": [
-          0.851828,
-          0.05909524570231133,
+          0.7994089791050648,
+          0.08582230415375414,
           48.5
         ],
         "constant": [
-          0.8075867241001621,
-          0.0775555324979349,
+          0.8267168413239018,
+          0.053636284334300996,
           41.5
         ],
         "debug_current": [
-          0.254907825143819,
-          0.035148010765983465,
-          100.39788725094114
+          0.25204250821803553,
+          0.03666749775629271,
+          67.94081582374001
         ],
         "decorator": [
-          0.7715369999999999,
-          0.07468850514101476,
-          56.84283650160555
+          0.851537,
+          0.06485950517766208,
+          58.675342398853914
         ],
         "diff_added": [
-          0.305,
-          0.06316036987304686,
-          137.35226952593865
+          0.30230475209377355,
+          0.06948428076180851,
+          142.68607639994144
         ],
         "diff_changed": [
           0.215,
-          0.03004040708164011,
+          0.030577514648437498,
           108.5
         ],
         "diff_removed": [
-          0.295,
-          0.0758921825653971,
+          0.29499999999999993,
+          0.08009427090945268,
           11.5
         ],
         "error": [
-          0.8,
-          0.08429302978515624,
+          0.7000000000000001,
+          0.14274003163724222,
           1.5
         ],
         "focus": [
-          0.8062148993352349,
-          0.06707035095888705,
-          256.0598605906504
+          0.8935645344521052,
+          0.025941443172972048,
+          251.42293169259565
         ],
         "function": [
-          0.8507652351748891,
-          0.10002903039638077,
-          191.39949076066017
+          0.7525120291017962,
+          0.10456585693359374,
+          231.3088505165672
         ],
         "info": [
-          0.847267,
-          0.038348559570312496,
-          210.0
+          0.6673,
+          0.08193249511718749,
+          181.5
         ],
         "keyword": [
-          0.7736719999999999,
-          0.07916607666015624,
-          276.5
+          0.7239153403983485,
+          0.10337424320398399,
+          288.92820561694384
         ],
         "namespace": [
-          0.8092361304850234,
-          0.08908775024819349,
-          180.02226828315008
+          0.8260683119527444,
+          0.06735972750879612,
+          198.05753541476466
         ],
         "number": [
-          0.77144,
-          0.09650332629169872,
+          0.6936677248371246,
+          0.118,
           41.5
         ],
         "search_match": [
@@ -721,38 +724,38 @@
           41.5
         ],
         "search_match_current": [
-          0.305,
-          0.044185302734374994,
+          0.3066486793723065,
+          0.04443096923828124,
           108.5
         ],
         "selection": [
-          0.31,
-          0.0867046599738352,
+          0.30728933976264433,
+          0.08031590055400864,
           263.5
         ],
         "string": [
-          0.763385,
-          0.055182359875147746,
-          133.4959065973854
+          0.843385,
+          0.05,
+          156.0946992228258
         ],
         "success": [
-          0.7448386630835242,
-          0.12782865525591489,
-          125.66909624292754
+          0.8109701163597374,
+          0.1502329280646165,
+          150.96439350401283
         ],
         "tag": [
-          0.8491825219575142,
-          0.11711191664018719,
-          144.5776037505492
+          0.819365743121284,
+          0.05,
+          233.51852600466756
         ],
         "type": [
-          0.7701167678823893,
-          0.0841709295494183,
-          203.51390527925417
+          0.7696875387173319,
+          0.1017828588927478,
+          161.5
         ],
         "warning": [
-          0.86,
-          0.1280731813036313,
+          0.74,
+          0.11002392578124999,
           108.5
         ]
       }
@@ -966,6 +969,9 @@
           "must_protan"
         ],
         "at_target": 94,
+        "channel_credit": true,
+        "cvd_pass": 44,
+        "cvd_total": 78,
         "emph": 0.04256865947139995,
         "emph_excess": 0.0,
         "emph_ink": 0.0365863027990122,
@@ -1212,6 +1218,9 @@
           "must_deutan"
         ],
         "at_target": 98,
+        "channel_credit": true,
+        "cvd_pass": 51,
+        "cvd_total": 78,
         "emph": 0.04561068357116133,
         "emph_excess": 0.013570746025807429,
         "emph_ink": 0.047943913926528435,
@@ -1458,6 +1467,9 @@
           "must_deutan"
         ],
         "at_target": 108,
+        "channel_credit": true,
+        "cvd_pass": 55,
+        "cvd_total": 78,
         "emph": 0.08571668426701218,
         "emph_excess": 0.904815205933604,
         "emph_ink": 0.07675170125077387,
@@ -1503,6 +1515,9 @@
       "anticollapse_normal"
     ],
     "at_target": 79,
+    "channel_credit": true,
+    "cvd_pass": 18,
+    "cvd_total": 78,
     "emph": 0.019891426126610115,
     "emph_excess": 0.0,
     "emph_ink": 0.02283723116990674,
@@ -1543,5 +1558,5 @@
   "schema": "grotto.soft-night",
   "schema_version": "1",
   "seed": 20260817,
-  "wall_seconds": 88.16
+  "wall_seconds": 93.39
 }
