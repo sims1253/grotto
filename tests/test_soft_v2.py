@@ -66,23 +66,27 @@ def test_lifted_muted_inks_raise_the_surface_ceiling(problem):
     assert wcag_contrast(old_muted, surf) < 3.0
 
 
-def test_lightness_fence_widens_only_where_the_spec_declares_it(problem):
+def test_lightness_fences(problem):
+    """Surfaces widen only where the spec declares lightness_offset.  Inks
+    widen DOWNWARD only (``ink_l_down``, never below ``ink_l_min``): the ink
+    fence is taste, WCAG is the legibility floor, and above ~0.9 a hue cannot
+    hold chroma."""
     roles = problem.roles_spec.roles
+    prof = sp.PROFILES["default"]
     for r in problem.chromatic:
         base = problem.baseline_lch[r][0]
         lo, hi = problem.l_range(r)
         declared = "lightness_offset" in roles[r].redundant_channels
-        ink = problem.paint[r] in ("ink", "border")
-        if not declared:
-            d = sp.mp.INK_L_DELTA if ink else sp.mp.SURFACE_L_DELTA
-            assert lo == pytest.approx(base - d), r
-        elif ink:
-            assert lo == pytest.approx(base - sp.OFFSET_INK_L_DELTA), r
-            # inks never widen upward: above ~0.9 a hue cannot hold chroma
+        if problem.paint[r] in ("ink", "border"):
             assert hi <= base + sp.mp.INK_L_DELTA + 1e-9, r
-        else:
+            assert lo <= base - sp.mp.INK_L_DELTA + 1e-9, r
+            assert lo >= min(prof["ink_l_min"], base - sp.mp.INK_L_DELTA) - 1e-9, r
+        elif declared:
             assert lo == pytest.approx(base - sp.OFFSET_SURFACE_L_DELTA), r
             assert hi == pytest.approx(base + sp.OFFSET_SURFACE_L_DELTA), r
+        else:
+            assert lo == pytest.approx(base - sp.mp.SURFACE_L_DELTA), r
+            assert hi == pytest.approx(base + sp.mp.SURFACE_L_DELTA), r
 
 
 # -- convention windows ------------------------------------------------------
@@ -120,7 +124,8 @@ def test_prominence_rank_flags_a_dim_current_match(problem):
 
 def test_role_chroma_floors_flag_v1s_washed_out_error(problem):
     assert problem.chroma_floor("error") == sp.ROLE_CHROMA_FLOOR["error"]
-    assert problem.chroma_floor("keyword") == sp.sm.CHROMA_FLOOR
+    assert problem.chroma_floor("keyword") == sp.SYNTAX_CHROMA_FLOOR
+    assert problem.chroma_floor("info") == sp.sm.CHROMA_FLOOR
     found = gate_mod.gate(V1)
     assert any("error below the chroma floor" in f for f in found), found
 

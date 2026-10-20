@@ -185,7 +185,7 @@ DEFAULT_SEED = 20260817
 #:                   share, too little for the ~0.09 lightness gaps the
 #:                   red/green diff pairs need once hue collapses.
 PROFILES = {
-    "default": {"channel_credit": True, "ink_l_down": 0.0, "ink_l_min": 0.0,
+    "default": {"channel_credit": True, "ink_l_down": 0.10, "ink_l_min": 0.66,
                 "scaffold_l": {}},
     "cvd": {"channel_credit": False, "ink_l_down": 0.10, "ink_l_min": 0.66,
             "scaffold_l": {"bg": 0.165, "bg_elevated": 0.198, "bg_overlay": 0.225,
@@ -262,6 +262,12 @@ def _in_soft_window(role: str, h: float, tol: float = 0.0) -> bool:
 #: ``breakpoint`` -- the red gutter dot -- has no objective terms at all, and
 #: the placement that maximises its distance to everything else chose
 #: L 0.93, C 0.02: a white dot.  Same floor, at L <= 0.86.
+#: Declared trial setting: every categorical syntax ink keeps at least this
+#: chroma, so it reads as its hue.  With more lightness room the ascent
+#: otherwise mutes the most frequent syntax colour to save emphasis budget
+#: (``function`` at C 0.03: plain near-white text).
+SYNTAX_CHROMA_FLOOR = 0.05
+
 ROLE_CHROMA_FLOOR = {"error": 0.065, "warning": 0.065, "breakpoint": 0.05}
 ROLE_L_MAX = {"error": 0.83, "warning": 0.86, "breakpoint": 0.86}
 
@@ -385,7 +391,10 @@ class SoftProblem(mp.MiddleProblem):
         middle frontiers.  The floor is the repo's own HUE_AUDIT_MIN_CHROMA,
         reused rather than reinvented.
         """
-        return max(sm.CHROMA_FLOOR, ROLE_CHROMA_FLOOR.get(role, 0.0))
+        floor = max(sm.CHROMA_FLOOR, ROLE_CHROMA_FLOOR.get(role, 0.0))
+        if role in np_.CATEGORICAL_ROLES:
+            floor = max(floor, SYNTAX_CHROMA_FLOOR)
+        return floor
 
     def fence_lch(self, role, L, C, h):
         """MiddleProblem.fence_lch, inside the soft hue windows, plus the
@@ -393,6 +402,12 @@ class SoftProblem(mp.MiddleProblem):
         L, C, h = super().fence_lch(role, L, C, soft_project_hue(role, h))
         floor = self.chroma_floor(role)
         if C < floor:
+            # A floor the gamut cannot hold at this lightness (a blue near
+            # L 0.9) is met by stepping DOWN in lightness, inside the fence,
+            # not by clipping chroma below it.
+            lo = self.l_range(role)[0]
+            while self.chroma_ceiling(role, L, h) < floor and L - 0.005 >= lo:
+                L -= 0.005
             C = min(floor, self.chroma_ceiling(role, L, h))
             # If the ceiling is below the floor the role cannot be legal; keep
             # the ceiling so the WCAG/gamut repairs still govern and the fence
