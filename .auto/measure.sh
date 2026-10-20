@@ -16,13 +16,23 @@ RESTARTS=${AR_RESTARTS:-4}
 SAMPLES=${AR_SAMPLES:-8}
 PASSES=${AR_PASSES:-10}
 SEEDS=${AR_SEEDS:-"20260817 20260818 20260819"}
-# Wall-clock cap per seed.  The budget above is fixed in ITERATIONS so the
+# CPU-time cap per seed.  The budget above is fixed in ITERATIONS so the
 # search stays byte-deterministic; this cap stops the benchmark being won by
 # brute force (more restarts, bigger move set) instead of by a better search.
 # Baseline was 12.6 s/seed, so this allows a real improvement to cost
 # something.  Exceeding it fails the measurement.
+# It is PROCESS CPU time, not wall clock: this runs on a shared 2-core VM,
+# and under another job's load the unchanged run-7 search measured 17.5 s
+# wall -- a cap on wall time measured the neighbours, not the search.
 SEED_CAP=${AR_SEED_CAP:-16.0}
 WORK=${AR_WORK:-.auto/work}
+# AR_PROFILE=cvd benchmarks the experimental CVD variant: same budget, scored
+# with CVD on colour alone.
+PROFILE=${AR_PROFILE:-default}
+VARIANT=night
+if [ "$PROFILE" = cvd ]; then PREFIX=soft2-cvd-s; SCORE_FLAGS=--colour-only;
+elif [ "$PROFILE" = day ]; then PREFIX=soft2-day-s; SCORE_FLAGS=; VARIANT=day;
+else PREFIX=soft2-s; SCORE_FLAGS=; fi
 
 rm -rf "$WORK"
 mkdir -p "$WORK"
@@ -31,13 +41,14 @@ for seed in $SEEDS; do
   uv run python scripts/soft_palette.py \
       --seed "$seed" --restarts "$RESTARTS" --samples "$SAMPLES" \
       --refine-passes "$PASSES" --out "$WORK/seed-$seed" --no-install \
+      --profile "$PROFILE" \
       >"$WORK/seed-$seed.log" 2>&1
-  secs=$(sed -n 's/^\[done\] \([0-9.]*\)s total.*/\1/p' "$WORK/seed-$seed.log" | head -1)
+  secs=$(sed -n 's/^\[done\] [0-9.]*s total, \([0-9.]*\)s cpu.*/\1/p' "$WORK/seed-$seed.log" | head -1)
   if [ -z "$secs" ]; then
     echo "MEASURE FAILED: seed $seed produced no [done] line"
     tail -20 "$WORK/seed-$seed.log"; exit 1
   fi
-  echo "seed $seed: ${secs}s (cap ${SEED_CAP}s)"
+  echo "seed $seed: ${secs}s cpu (cap ${SEED_CAP}s)"
   awk -v s="$secs" -v c="$SEED_CAP" 'BEGIN { exit !(s <= c) }' || {
     echo "MEASURE FAILED: seed $seed took ${secs}s, over the ${SEED_CAP}s cap"
     exit 1
@@ -45,8 +56,8 @@ for seed in $SEEDS; do
 done
 
 # Independent scoring: one process, one palette each, no search code imported.
-uv run python scripts/soft_metric.py --json \
-    $(for s in $SEEDS; do printf '%s/soft-s01.night.yaml ' "$WORK/seed-$s"; done) \
+uv run python scripts/soft_metric.py --json $SCORE_FLAGS \
+    $(for s in $SEEDS; do printf '%s/%s01.%s.yaml ' "$WORK/seed-$s" "$PREFIX" "$VARIANT"; done) \
     >"$WORK/scores.json"
 
 uv run python - "$WORK/scores.json" "$WORK" <<'PY'
@@ -80,6 +91,8 @@ m = {
     "min_must_cvd": mean_of("min_must_cvd"),
     "min_should": mean_of("min_should"),
     "min_anticollapse": mean_of("min_anticollapse"),
+    "cvd_pass": mean_of("cvd_pass"),
+    "min_visibility": mean_of("min_visibility"),
     "seed_spread": spread,
     "worst_seed_utility": min(utils),
 }

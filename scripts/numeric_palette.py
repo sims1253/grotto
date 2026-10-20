@@ -233,8 +233,8 @@ def _dE(lab_a: tuple, lab_b: tuple) -> float:
     return math.dist(lab_a, lab_b)
 
 
-def _load_scaffold_source() -> dict[str, tuple[float, float, float]]:
-    raw = yaml.safe_load((REPO / "themes/candidates" / SCAFFOLD_SOURCE).read_text())
+def _load_scaffold_source(source: str = SCAFFOLD_SOURCE) -> dict[str, tuple[float, float, float]]:
+    raw = yaml.safe_load((REPO / "themes/candidates" / source).read_text())
     return {
         r: (float(v["L"]), float(v["C"]), float(v["h"]))
         for r, v in raw["colors"].items()
@@ -259,13 +259,19 @@ class NumericProblem:
     * the co-occurring surface set inks must stay legible over.
     """
 
-    def __init__(self, chromatic: tuple[str, ...] = CHROMATIC_ROLES):
+    def __init__(self, chromatic: tuple[str, ...] = CHROMATIC_ROLES,
+                 scaffold_source: str = SCAFFOLD_SOURCE):
         self.roles_spec = RoleSpec.load(REPO / "spec/roles.yaml")
         self.envs = Environments.load(REPO / "spec/environments.yaml")
         self.dists = DistanceSpec.load(
             REPO / "spec/distance-matrix.yaml", self.roles_spec
         )
-        authored = _load_scaffold_source()
+        authored = _load_scaffold_source(scaffold_source)
+        self.scaffold_source = scaffold_source
+        #: "dark" when the canvas is darker than mid-grey (Night, Evening),
+        #: "light" for Day.  The repairs read it to know which way an ink must
+        #: move to gain contrast and which side of the canvas a wash sits on.
+        self.polarity = "dark" if authored["bg"][0] < 0.5 else "light"
         unknown = [r for r in chromatic if r not in authored]
         if unknown:
             raise ValueError(f"chromatic roles not in scaffold source: {unknown}")
@@ -505,7 +511,7 @@ def wcag_at(L: float, C: float, h: float, ref_hex: str) -> float:
 
 def feasible_l_interval(
     ref_hex: str, floor: float, h: float, c_frac: float = 1.0,
-    tol: float = 1e-3,
+    tol: float = 1e-3, polarity: str = "dark",
 ) -> tuple[float, float] | None:
     """WCAG-feasible lightness interval [lo, 1.0] against ``ref_hex``.
 
@@ -520,6 +526,20 @@ def feasible_l_interval(
         C = c_frac * maxc(L, h)
         return wcag_at(L, C, h, ref_hex) >= floor
 
+    if polarity == "light":
+        # Light canvas: contrast rises as L FALLS, so the set is [0, hi].
+        if not ok(0.0):
+            return None
+        if ok(1.0):
+            return (0.0, 1.0)
+        lo, hi = 0.0, 1.0
+        while hi - lo > tol:
+            mid = (lo + hi) / 2
+            if ok(mid):
+                lo = mid
+            else:
+                hi = mid
+        return (0.0, round(lo, 4))
     if not ok(1.0):
         return None
     if ok(0.0):

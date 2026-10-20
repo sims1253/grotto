@@ -1,74 +1,51 @@
 # Grotto
 
-Grotto is a set of experimental coding themes for VS Code and Zed. Three color
-families, Restrained, Balanced, and Expressive, each have Day, Evening, and Night
-variants. Day is light; Evening and Night are dark. You switch them manually.
+Warm VS Code themes in two variants: Grotto Night on a brown-black background and Grotto Day on an off-white one.
 
-The themes are ready to try. Choosing and refining a family for release is still
-open work.
+![Grotto Night showing R and TypeScript code](docs/grotto-night.png)
 
-## Try a theme
+![Grotto Day showing R and TypeScript code](docs/grotto-day.png)
 
-The latest [Cove, Grove, and Dusk previews](out/next-generation/README.md) include
-Day and Night versions, code comparisons, and a separate VS Code package.
+In both, body text has a 10:1 contrast ratio against the background. Code stays at 4.5:1 or above on the background and on every highlight, and placeholder text and line numbers stay at 3:1 or above. Selection, search matches, and added, removed, and changed lines each get a distinct tint. Errors are red, warnings are yellow, and success is green.
 
-Follow the [VS Code installation guide](editors/vscode/README.md) or the
-[Zed installation guide](editors/zed/README.md), then choose a `Grotto` theme in
-your editor. Both extensions contain only static theme data.
+Grotto Night is built for color vision deficiency. Every color pair that must stay apart is checked under simulated protanopia, deuteranopia, and tritanopia. Most pairs stay apart by color alone. Where color can't do it, as with added and removed diff lines, VS Code also marks the difference without color, using the `+` and `-` gutter signs or the error underline.
 
-These are the Night palettes:
+## Install
 
-![Night palette comparison for Restrained, Balanced, and Expressive](out/candidates/comparison.svg)
-
-For code examples, open [the comparison report](out/candidates/comparison.html)
-from a local checkout. It includes specimens and diagnostic states under normal
-and simulated color vision. Your editor's grammar and font affect the result.
-
-Use familiar code for a session. Check comments, selected text, search matches,
-errors, warnings, and diffs. [Report an issue](https://github.com/sims1253/grotto/issues)
-with the family, variant, editor, language, font, and an example of what was hard
-to read. The [formal evaluation protocol](HUMAN_EVALUATION.md) is optional for
-people who want a structured comparison.
-
-## What needs work
-
-The [visual design review](docs/review/README.md) compares the current themes
-with the Night experiments and proposes a simpler authoring path.
-
-The Night families can look too similar. Some Day selection and diff colors
-are too close, and error/warning separation weakens in Restrained. The
-[Night experiments](NUMERIC.md) explore alternatives; they are not included in
-the editor previews.
-
-Before a public release, choose a family, resolve its readability problems, and
-test the packaged themes in real editors. Capture editor screenshots and share
-the tested VSIX as a prerelease. Marketplace publication also needs a registered
-publisher; the package currently uses the local `grotto-local` identity.
-
-## Develop
-
-From the repository root, with Python 3.12+ and uv:
+From the repository root, copy the extension into your VS Code extensions folder:
 
 ```bash
-uv sync --locked
-uv run pytest -q
+cp -r out/soft-night-v2/vscode-preview ~/.vscode/extensions/grotto-soft-objective-v2
 ```
 
-[The toolkit guide](docs/TOOLKIT.md) covers regeneration and evaluation. VSIX
-packaging commands live in the [VS Code guide](editors/vscode/README.md).
+For Grotto Day, also copy its extension:
 
-Color roles, palettes, and editor mappings are separate:
-
-```text
-spec/roles.yaml + spec/environments.yaml + spec/bindings/
-  -> themes/candidates/       generated palettes
-     + spec/mappings/        editor-specific rules
-       -> editors/           installable themes
+```bash
+cp -r out/soft-day-v2/vscode-preview ~/.vscode/extensions/grotto-soft-objective-v2-day
 ```
 
-The toolkit checks contrast, color separation, and consistency between variants.
-These checks expose tradeoffs; they do not establish a preferred theme or a
-health benefit. See the [design](DESIGN.md) and [research](RESEARCH.md) for the
-reasoning and limits.
+Restart VS Code, run **Preferences: Color Theme**, and choose **Grotto S2-Explore 01 Night** or **Grotto S2-Explore 01 Day**.
+
+To try the theme without installing it:
+
+```bash
+code --extensionDevelopmentPath="$PWD/out/soft-night-v2/vscode-preview"
+```
+
+## Experimental: Grotto Night CVD
+
+![Grotto Night CVD showing R and TypeScript code](docs/grotto-night-cvd.png)
+
+A variant for color vision deficiency. VS Code still draws the gutter signs and underlines, but this variant doesn't count on them. It tries to keep colors apart by color alone. It has a darker background and more lightness difference between colors that must not be confused. It keeps 68 of 78 must-differ color pairs apart under simulated protanopia, deuteranopia, and tritanopia, against 63 for Grotto Night. The same contrast floors apply.
+
+Install it the same way. It sits next to Grotto Night instead of replacing it:
+
+```bash
+cp -r out/soft-night-v2-cvd/vscode-preview ~/.vscode/extensions/grotto-soft-objective-v2-cvd
+```
+
+Then choose **Grotto S2-CVD 01 Night**.
+
+All three themes are previews. If something is hard to read, [open an issue](https://github.com/sims1253/grotto/issues) with the theme, the language, the font, and a code sample.
 
 [MIT license](LICENSE).
