@@ -1,12 +1,14 @@
 # Grotto
 
-A dark VS Code theme on a warm brown-black background.
+Warm VS Code themes in two variants: Grotto Night on a brown-black background and Grotto Day on an off-white one.
 
 ![Grotto Night showing R and TypeScript code](docs/grotto-night.png)
 
-Body text has a 10:1 contrast ratio against the background. Code stays at 4.5:1 or above on the background and on every highlight, and placeholder text and line numbers stay at 3:1 or above. Selection, search matches, and added, removed, and changed lines each get a distinct tint. Errors are red, warnings are yellow, and success is green.
+![Grotto Day showing R and TypeScript code](docs/grotto-day.png)
 
-Grotto is built for color vision deficiency. Every color pair that must stay apart is checked under simulated protanopia, deuteranopia, and tritanopia. Most pairs stay apart by color alone. Where color can't do it, as with added and removed diff lines, VS Code also marks the difference without color, using the `+` and `-` gutter signs or the error underline.
+In both, body text has a 10:1 contrast ratio against the background. Code stays at 4.5:1 or above on the background and on every highlight, and placeholder text and line numbers stay at 3:1 or above. Selection, search matches, and added, removed, and changed lines each get a distinct tint. Errors are red, warnings are yellow, and success is green.
+
+Grotto Night is built for color vision deficiency. Every color pair that must stay apart is checked under simulated protanopia, deuteranopia, and tritanopia. Most pairs stay apart by color alone. Where color can't do it, as with added and removed diff lines, VS Code also marks the difference without color, using the `+` and `-` gutter signs or the error underline.
 
 ## Install
 
@@ -16,7 +18,13 @@ From the repository root, copy the extension into your VS Code extensions folder
 cp -r out/soft-night-v2/vscode-preview ~/.vscode/extensions/grotto-soft-objective-v2
 ```
 
-Restart VS Code, run **Preferences: Color Theme**, and choose **Grotto S2-Explore 01 Night**.
+For Grotto Day, also copy its extension:
+
+```bash
+cp -r out/soft-day-v2/vscode-preview ~/.vscode/extensions/grotto-soft-objective-v2-day
+```
+
+Restart VS Code, run **Preferences: Color Theme**, and choose **Grotto S2-Explore 01 Night** or **Grotto S2-Explore 01 Day**.
 
 To try the theme without installing it:
 
@@ -38,6 +46,6 @@ cp -r out/soft-night-v2-cvd/vscode-preview ~/.vscode/extensions/grotto-soft-obje
 
 Then choose **Grotto S2-CVD 01 Night**.
 
-Both themes are previews. If something is hard to read, [open an issue](https://github.com/sims1253/grotto/issues) with the theme, the language, the font, and a code sample.
+All three themes are previews. If something is hard to read, [open an issue](https://github.com/sims1253/grotto/issues) with the theme, the language, the font, and a code sample.
 
 [MIT license](LICENSE).

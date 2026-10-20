@@ -26,6 +26,8 @@ same table.
 Its log entries carry `profile=cvd` and are flagged as instrument changes.
 It ships to `out/soft-night-v2-cvd` (68/78 CVD checks on colour alone).
 docs/review/soft-objective-v2.md §7.
+`day` is Grotto Day: light polarity (the repairs read `problem.polarity`),
+`AR_PROFILE=day`, ships to `out/soft-day-v2` (0.9720). §8.
 
 ## Status: converged inside the declared design. Read this first.
 

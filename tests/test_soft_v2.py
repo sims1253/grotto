@@ -229,11 +229,17 @@ def test_cvd_profile_scores_cvd_on_colour_alone():
 
 
 @pytest.mark.parametrize("profile", sorted(sp.PROFILES))
-def test_surfaces_never_sit_below_the_canvas(profile):
+def test_surfaces_sit_on_the_far_side_of_the_canvas(profile):
+    """A wash is lighter than a dark canvas and darker than a light one."""
     p = sp.SoftProblem(profile=profile)
+    bg = p.scaffold["bg"][0]
     for r in p.chromatic:
         if p.paint[r] == "surface":
-            assert p.l_range(r)[0] >= p.scaffold["bg"][0] + 0.01 - 1e-9, (profile, r)
+            lo, hi = p.l_range(r)
+            if p.polarity == "light":
+                assert hi <= bg - 0.01 + 1e-9, (profile, r)
+            else:
+                assert lo >= bg + 0.01 - 1e-9, (profile, r)
 
 
 def test_shipped_cvd_variant_passes_the_gate_and_beats_night_on_colour_alone():
@@ -252,3 +258,43 @@ def test_cvd_variant_installs_next_to_night():
         for d in ("out/soft-night-v2", "out/soft-night-v2-cvd")
     }
     assert len(names) == 2
+
+
+# -- Grotto Day --------------------------------------------------------------
+
+DAY = REPO / "out/soft-day-v2/soft2-day-s01.day.yaml"
+
+
+def test_day_profile_is_light_and_mirrors_nights_contrast():
+    day = sp.SoftProblem(profile="day")
+    night = sp.SoftProblem()
+    assert day.polarity == "light" and night.polarity == "dark"
+    for r in ("fg", "comment", "fg_muted"):
+        d = wcag_contrast(day.scaffold_hex[r], day.scaffold_hex["bg"])
+        n = wcag_contrast(night.scaffold_hex[r], night.scaffold_hex["bg"])
+        assert d == pytest.approx(n, abs=0.05), r
+
+
+def test_light_repairs_move_inks_darker():
+    """On a light canvas an ink gains contrast by getting DARKER."""
+    day = sp.SoftProblem(profile="day")
+    hexes = day.hexes(day.baseline_lch)
+    lo, hi = day.l_range("keyword")
+    got = sp.mp.repair_ink_fenced(day, "keyword", hi, 0.05, 300.0, hexes)
+    assert got is not None and got[0] <= hi
+
+
+def test_shipped_day_passes_the_gate():
+    assert gate_mod.gate(DAY) == []
+    r = sp.sm.score(DAY)
+    assert r["wcag_violations"] == 0
+    cb = sp.sm.score(REPO / "themes/candidates/candidate-b-balanced.day.yaml")
+    assert r["utility"] > cb["utility"]
+
+
+def test_day_extension_is_a_light_theme():
+    import json
+
+    pkg = json.loads((REPO / "out/soft-day-v2/vscode-preview/package.json").read_text())
+    assert pkg["name"] == "grotto-soft-objective-v2-day"
+    assert all(t["uiTheme"] == "vs" for t in pkg["contributes"]["themes"])

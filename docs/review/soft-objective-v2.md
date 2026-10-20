@@ -281,7 +281,50 @@ The 10 checks it still misses are almost all surfaces against `active_line`
 and `selection` under tritan and protan. Holding the active line at canvas +
 0.03 ("a very small lightness step", `spec/roles.yaml`) is what leaves them.
 
-## 8. Reproducing
+## 8. Grotto Day (day run 1)
+
+`--profile day` runs the same search on a light canvas. The repairs had
+assumed a dark one throughout. They now read `problem.polarity`, which is
+"light" when the canvas is lighter than mid-grey. An ink gains contrast by
+getting darker, a wash sits below the canvas and gains ink contrast by
+getting lighter, and WCAG repair moves surfaces up. Night is the default
+everywhere, and its shipped palettes regenerate byte-for-byte.
+
+Starting from candidate-b Day did not work as committed. Its body text sits at
+4.9:1 and its syntax at about 5.5:1, so every tinted highlight left its inks
+below 4.5:1 (163 WCAG violations). Day therefore keeps candidate-b Day's
+canvas, panels, hues and chroma, and moves two things.
+
+* **The neutral inks** are re-solved to Grotto Night's contrast ratios against
+  their own canvas: body 10.0:1, comments 6.1:1, muted 4.2:1. Same hierarchy,
+  mirrored polarity.
+* **The syntax inks' fences** are centred where each reaches candidate-b
+  Night's contrast, capped at 6.5:1.
+
+Two settings came from looking at renders:
+
+* Uncapped, Night's 8–10:1 put syntax near-black and it lost its hue. Light
+  themes usually keep syntax around 5–7:1, hence the 6.5:1 cap.
+* A canvas-level pastel is all chroma. The search match shipped at L 0.955,
+  C 0.095, a neon yellow. Day caps highlight chroma at 0.06.
+
+Also, by day amber holds the 0.065 warning floor only at L ≥ 0.44, so
+`warning` gets its own range (0.44–0.52, about 7:1). And `finalize` now
+re-projects every role through the soft fences and refuses a palette below a
+chroma floor. Day had shipped `decorator` at C 0.043, after the middle
+same-family repair moved it without knowing the floor.
+
+| | utility (v2) | WCAG violations | CVD fails, uncovered by a drawn channel |
+|---|---|---|---|
+| candidate-b Day (committed) | 0.8906 | 163 | 8 (margins 0.3–0.5) |
+| **Grotto Day `out/soft-day-v2/soft2-day-s01`** | **0.9720** | 0 | 6 (margins 0.6–0.9) |
+
+On colour alone Day misses more CVD checks than candidate-b Day (41 against
+33). Darker inks hold less chroma, so the extra misses are syntax pairs, and
+VS Code's underline and gutter signs cover them. The README claims colour-blind
+support for Night only.
+
+## 9. Reproducing
 
 ```bash
 uv run python scripts/soft_palette.py --restarts 24 --samples 16 \
@@ -289,6 +332,8 @@ uv run python scripts/soft_palette.py --restarts 24 --samples 16 \
 uv run python scripts/soft_gate.py out/soft-night-v2
 uv run python scripts/soft_palette.py --profile cvd --restarts 24 --samples 16 \
     --refine-passes 30 --select 6 --no-install          # -> out/soft-night-v2-cvd
+uv run python scripts/soft_palette.py --profile day --restarts 24 --samples 16 \
+    --refine-passes 30 --select 6 --no-install          # -> out/soft-day-v2
 uv run python scripts/soft_metric.py --colour-only out/soft-night-v2/soft2-s01.night.yaml \
     out/soft-night-v2-cvd/soft2-cvd-s01.night.yaml
 uv run python scripts/soft_metric.py out/soft-night/soft-s01.night.yaml \

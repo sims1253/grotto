@@ -1278,12 +1278,22 @@ def finalize(problem: SoftProblem, state: dict, out: Path) -> dict | None:
     sf = sal = bad = []
     for _ in range(POST_ROUNDS):
         sf = mp.enforce_same_family_min(problem, state)
+        # middle_palette's same-family repair moves through ITS fences, which
+        # know no chroma floor (Day shipped ``decorator`` at C 0.043 < 0.05
+        # this way).  Re-project every role through the soft fences.
+        for r in problem.chromatic:
+            state[r] = problem.fence_lch(r, *state[r])
         sal = enforce_salience_rank(problem, state)
         bad = repair_wcag(problem, state)
         if not bad and not sal and not _sf_unrepaired(sf):
             break
     if bad:
         return {"error": f"WCAG unrepairable: {bad}"}
+    shipped = shipped_hexes(problem, state)
+    low = [r for r in problem.chromatic
+           if hex_to_oklch(shipped[r])[1] < problem.chroma_floor(r) - sm.CHROMA_FLOOR_TOL]
+    if low:
+        return {"error": f"below the chroma floor: {low}"}
     if _sf_unrepaired(sf):
         return {"error": f"same_family unrepairable: {_sf_unrepaired(sf)}"}
     unrepaired = [e for e in sal if not e["repaired"]]
