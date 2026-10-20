@@ -186,8 +186,9 @@ DEFAULT_SEED = 20260817
 #:                   red/green diff pairs need once hue collapses.
 PROFILES = {
     "default": {"channel_credit": True, "ink_l_down": 0.10, "ink_l_min": 0.66,
-                "scaffold_l": {}},
+                "surf_l_extra": 0.0, "scaffold_l": {}},
     "cvd": {"channel_credit": False, "ink_l_down": 0.10, "ink_l_min": 0.66,
+            "surf_l_extra": 0.06,
             "scaffold_l": {"bg": 0.165, "bg_elevated": 0.198, "bg_overlay": 0.225,
                            "active_line": 0.195}},
 }
@@ -375,6 +376,13 @@ class SoftProblem(mp.MiddleProblem):
             else:
                 lo = min(lo, base - OFFSET_SURFACE_L_DELTA)
                 hi = max(hi, base + OFFSET_SURFACE_L_DELTA)
+        if self.paint[role] == "surface":
+            lo, hi = lo - self.prof["surf_l_extra"], hi + self.prof["surf_l_extra"]
+            # A highlight is a wash ABOVE the canvas: the middle repair already
+            # holds surfaces at canvas + 0.01, but the fence did not, and a
+            # wider fence let ``selection`` sink to L 0.085 -- a near-black
+            # hole under a 0.165 canvas, too dark to carry its hue.
+            lo = max(lo, self.scaffold["bg"][0] + 0.01)
         if self.prof["ink_l_down"] and self.paint[role] in ("ink", "border"):
             lo = min(lo, max(lo - self.prof["ink_l_down"], self.prof["ink_l_min"]))
         return (lo, hi)
