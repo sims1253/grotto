@@ -174,6 +174,28 @@ CVD_PROVENANCE = {
                                   "the v2 soft-objective Night theme.")},
 }
 
+#: Grotto Day: its own variant, package and theme slug.
+DAY_PROVENANCE = {
+    **SOFT_PROVENANCE,
+    "variant": "day",
+    "header": SOFT_PROVENANCE["header"].replace(
+        "soft-objective Night palette", "soft-objective Day palette"),
+    "note_lines": SOFT_PROVENANCE["note_lines"] + [
+        "  DAY profile: candidate-b day canvas, neutral inks re-solved to Grotto",
+        "  Night's contrast ratios, light-polarity repairs (PROFILES['day']).",
+    ],
+    "html": {**SOFT_PROVENANCE["html"],
+             "title": "soft day palettes v2",
+             "h1": "Soft-objective Day palettes v2 &middot; NON-CANDIDATE"},
+    "extension": {**SOFT_PROVENANCE["extension"],
+                  "variant": "day",
+                  "slug": "soft2-day",
+                  "label_prefix": "Grotto S2-Explore",
+                  "pkg_name": "grotto-soft-objective-v2-day",
+                  "display": "Grotto Soft Objective v2 Day (NON-CANDIDATE)",
+                  "description": "Day (light) theme from the v2 soft-objective search."},
+}
+
 #: Palette names and default output directory of this (v2) search.  v1's
 #: artifacts in out/soft-night stay as committed: they are the comparison
 #: point, and docs/review/redundant-channel-audit.md pins numbers to them.
@@ -181,6 +203,8 @@ PALETTE_PREFIX = "soft2-s"
 DEFAULT_OUT = "out/soft-night-v2"
 CVD_PREFIX = "soft2-cvd-s"
 CVD_OUT = "out/soft-night-v2-cvd"
+DAY_PREFIX = "soft2-day-s"
+DAY_OUT = "out/soft-day-v2"
 import soft_metric as sm  # noqa: E402
 
 DEFAULT_SEED = 20260817
@@ -211,7 +235,49 @@ PROFILES = {
             "surf_l_extra": 0.06,
             "scaffold_l": {"bg": 0.165, "bg_elevated": 0.198, "bg_overlay": 0.225,
                            "active_line": 0.195}},
+    # Grotto Day.  Light polarity: "toward the canvas" is UP, so ink_l_down
+    # widens inks upward to at most ink_l_max.  The neutral scaffold keeps
+    # candidate-b day's canvas and panels; its inks are re-solved to Grotto
+    # Night's contrast ratios (match_night_contrast) -- candidate-b day's body
+    # text sits at 4.9:1, so every tinted highlight stranded its inks
+    # (163 WCAG violations as committed).
+    "day": {"channel_credit": True, "ink_l_down": 0.10, "ink_l_max": 0.62,
+            "surf_l_extra": 0.0, "scaffold_l": {},
+            "scaffold_source": "candidate-b-balanced.day.yaml",
+            "match_night_contrast": True,
+            # Amber holds the 0.065 warning floor only at L >= 0.44 under the
+            # 70% gamut rule; Night's contrast would put it at 0.30, a brown.
+            "role_l": {"warning": (0.44, 0.52)},
+            # Night's 8-10:1 ink contrast is near-black on a light canvas:
+            # syntax lost its hue.  Light themes keep syntax around 5-7:1.
+            "ink_ratio_cap": 6.5,
+            # A canvas-level pastel is ALL chroma: C 0.095 at L 0.955 read as
+            # a neon yellow search match.  Washes stay gentle by day.
+            "surface_cap": 0.06},
 }
+
+#: Neutral scaffold inks whose Day lightness is solved to Grotto Night's
+#: contrast ratio against its own canvas.
+NIGHT_MATCHED_INKS = (
+    "fg", "fg_secondary", "fg_muted", "comment", "docstring", "punctuation",
+    "operator", "line_number", "line_number_active", "ui_inactive",
+    "deprecated", "parameter", "property",
+)
+
+
+def _solve_l_for_ratio(target: float, C: float, h: float, bg_hex: str) -> float:
+    """Lightness, below a light canvas, at which (L, C, h) reaches ``target``
+    WCAG contrast against ``bg_hex``.  Contrast rises as L falls."""
+    from grotto.contrast import wcag_contrast
+
+    lo, hi = 0.0, 1.0
+    for _ in range(40):
+        mid = (lo + hi) / 2
+        if wcag_contrast(oklch_to_hex(np_.project_chroma(mid, C, h)), bg_hex) >= target:
+            lo = mid
+        else:
+            hi = mid
+    return round(lo, 4)
 
 #: Declared trial settings: the lightness fence for roles whose spec entry
 #: lists ``lightness_offset`` as a redundant channel (see SoftProblem.l_range).
@@ -314,13 +380,42 @@ class SoftProblem(mp.MiddleProblem):
     """
 
     def __init__(self, chromatic=tuple(np_.CHROMATIC_ROLES), profile: str = "default"):
-        super().__init__(chromatic=chromatic)
+        prof = PROFILES[profile]
+        super().__init__(chromatic=chromatic,
+                         scaffold_source=prof.get("scaffold_source", np_.SCAFFOLD_SOURCE))
         self.profile = profile
-        self.prof = PROFILES[profile]
+        self.prof = prof
         # Scaffold lightness overrides (see SCAFFOLD_L_OVERRIDES).  Applied
         # before anything reads a scaffold hex, so the WCAG caps they induce
-        # on the highlight surfaces are the overridden ones.
-        for r, L in {**SCAFFOLD_L_OVERRIDES, **self.prof["scaffold_l"]}.items():
+        # on the highlight surfaces are the overridden ones.  The Night
+        # overrides are Night numbers; Day solves its own.
+        overrides = dict(SCAFFOLD_L_OVERRIDES) if self.polarity == "dark" else {}
+        if prof.get("match_night_contrast"):
+            from grotto.contrast import wcag_contrast
+
+            night = np_._load_scaffold_source()
+            night_bg = oklch_to_hex(np_.project_chroma(*night["bg"]))
+            for r in NIGHT_MATCHED_INKS:
+                L, C, h = night[r]
+                L = SCAFFOLD_L_OVERRIDES.get(r, L)
+                ratio = wcag_contrast(oklch_to_hex(np_.project_chroma(L, C, h)), night_bg)
+                _, C, h = self.scaffold[r]
+                overrides[r] = _solve_l_for_ratio(ratio, C, h, self.scaffold_hex["bg"])
+            # The chromatic inks' fence CENTRES move the same way: candidate-b
+            # day's syntax sits at ~5.5:1 at best, so on any tinted highlight
+            # its inks had no legal lightness at all.  Each ink is centred
+            # where it reaches the contrast candidate-b NIGHT gives it, with
+            # Day's own hue and chroma.
+            for r in self.chromatic:
+                if self.paint[r] not in ("ink", "border"):
+                    continue
+                L, C, h = night[r]
+                ratio = wcag_contrast(oklch_to_hex(np_.project_chroma(L, C, h)), night_bg)
+                ratio = min(ratio, prof.get("ink_ratio_cap", ratio))
+                _, Cd, hd = self.baseline_lch[r]
+                self.baseline_lch[r] = (
+                    _solve_l_for_ratio(ratio, Cd, hd, self.scaffold_hex["bg"]), Cd, hd)
+        for r, L in {**overrides, **self.prof["scaffold_l"]}.items():
             _, C, h = self.scaffold[r]
             self.scaffold[r] = (L, C, h)
             self.scaffold_hex[r] = oklch_to_hex(np_.project_chroma(L, C, h))
@@ -385,26 +480,40 @@ class SoftProblem(mp.MiddleProblem):
         lo, hi = super().l_range(role)
         if role in ROLE_L_MAX:
             hi = min(hi, ROLE_L_MAX[role])
+        if role in self.prof.get("role_l", {}):
+            return self.prof["role_l"][role]
+        light = self.polarity == "light"
         if "lightness_offset" in self.roles_spec.roles[role].redundant_channels:
             base = self.baseline_lch[role][0]
             if self.paint[role] in ("ink", "border"):
-                # Inks widen DOWNWARD only: candidate-b's inks already sit at
-                # L 0.80-0.89, and above that the sRGB gamut holds too little
+                # Inks widen TOWARD the canvas only (down at night, up by
+                # day): at night candidate-b's inks already sit at L
+                # 0.80-0.89, and above that the sRGB gamut holds too little
                 # chroma for the hue to survive (an early probe parked
                 # ``error`` at L 0.96, C 0.012 -- white, below the floor).
-                lo = min(lo, base - OFFSET_INK_L_DELTA)
+                if light:
+                    hi = max(hi, base + OFFSET_INK_L_DELTA)
+                else:
+                    lo = min(lo, base - OFFSET_INK_L_DELTA)
             else:
                 lo = min(lo, base - OFFSET_SURFACE_L_DELTA)
                 hi = max(hi, base + OFFSET_SURFACE_L_DELTA)
         if self.paint[role] == "surface":
             lo, hi = lo - self.prof["surf_l_extra"], hi + self.prof["surf_l_extra"]
-            # A highlight is a wash ABOVE the canvas: the middle repair already
-            # holds surfaces at canvas + 0.01, but the fence did not, and a
-            # wider fence let ``selection`` sink to L 0.085 -- a near-black
-            # hole under a 0.165 canvas, too dark to carry its hue.
-            lo = max(lo, self.scaffold["bg"][0] + 0.01)
+            # A highlight is a wash on the far side of the canvas from the
+            # inks: the middle repair already holds surfaces 0.01 off the
+            # canvas, but the fence did not, and a wider fence let
+            # ``selection`` sink to L 0.085 -- a near-black hole under a
+            # 0.165 canvas, too dark to carry its hue.
+            if light:
+                hi = min(hi, self.scaffold["bg"][0] - 0.01)
+            else:
+                lo = max(lo, self.scaffold["bg"][0] + 0.01)
         if self.prof["ink_l_down"] and self.paint[role] in ("ink", "border"):
-            lo = min(lo, max(lo - self.prof["ink_l_down"], self.prof["ink_l_min"]))
+            if light:
+                hi = max(hi, min(hi + self.prof["ink_l_down"], self.prof["ink_l_max"]))
+            else:
+                lo = min(lo, max(lo - self.prof["ink_l_down"], self.prof["ink_l_min"]))
         return (lo, hi)
 
     def chroma_floor(self, role: str) -> float:
@@ -431,11 +540,19 @@ class SoftProblem(mp.MiddleProblem):
         floor = self.chroma_floor(role)
         if C < floor:
             # A floor the gamut cannot hold at this lightness (a blue near
-            # L 0.9) is met by stepping DOWN in lightness, inside the fence,
-            # not by clipping chroma below it.
-            lo = self.l_range(role)[0]
-            while self.chroma_ceiling(role, L, h) < floor and L - 0.005 >= lo:
-                L -= 0.005
+            # L 0.9 at night, a dark yellow near L 0.3 by day) is met by
+            # moving to the NEAREST lightness inside the fence that can hold
+            # it, not by clipping chroma below it.
+            if self.chroma_ceiling(role, L, h) < floor:
+                lo, hi = self.l_range(role)
+                for k in range(1, 200):
+                    for L2 in (L - 0.005 * k, L + 0.005 * k):
+                        if lo <= L2 <= hi and self.chroma_ceiling(role, L2, h) >= floor:
+                            L = L2
+                            break
+                    else:
+                        continue
+                    break
             C = min(floor, self.chroma_ceiling(role, L, h))
             # If the ceiling is below the floor the role cannot be legal; keep
             # the ceiling so the WCAG/gamut repairs still govern and the fence
@@ -443,9 +560,21 @@ class SoftProblem(mp.MiddleProblem):
             C = max(C, 0.0)
         return (L, C, h)
 
+    def chroma_ceiling(self, role: str, L: float, h: float) -> float:
+        c = super().chroma_ceiling(role, L, h)
+        cap = self.prof.get("surface_cap")
+        if cap is not None and role in mp.HIGHLIGHT_SURFACE_ROLES:
+            c = min(c, max(0.0, cap - mp.CHROMA_MARGIN))
+        return c
+
     def fence_audit(self, hexes):
         """The middle audit plus the narrower soft hue windows."""
         out = super().fence_audit(hexes)
+        cap = self.prof.get("surface_cap")
+        if cap is not None:
+            for r in mp.HIGHLIGHT_SURFACE_ROLES:
+                if r in hexes and hex_to_oklch(hexes[r])[1] > cap + mp.CHROMA_AUDIT_TOL:
+                    out.append(f"chroma {r}: {hex_to_oklch(hexes[r])[1]:.4f} > profile surface cap {cap}")
         for r in SOFT_HUE_WINDOWS:
             L, C, h = hex_to_oklch(hexes[r])
             if C >= mp.HUE_AUDIT_MIN_CHROMA and not _in_soft_window(r, h, mp.HUE_AUDIT_TOL):
@@ -742,8 +871,11 @@ def repair_wcag(problem: SoftProblem, state: dict, rounds: int = 8) -> list[str]
             surf = m.group(2)
             if surf not in problem.chromatic:
                 continue  # scaffold surface: not ours to move
-            got = _apply_move(problem, surf, state[surf], "L", -0.004, hexes)
-            if got is None or got[0] >= state[surf][0] - 1e-9:
+            # The wash moves toward the canvas and away from the inks: down
+            # at night, up by day.
+            d = 0.004 if problem.polarity == "light" else -0.004
+            got = _apply_move(problem, surf, state[surf], "L", d, hexes)
+            if got is None or (got[0] - state[surf][0]) * d <= 1e-9:
                 continue
             state[surf] = got
             hexes = shipped_hexes(problem, state)
@@ -1198,18 +1330,19 @@ def main() -> None:
     ap.add_argument("--select", type=int, default=3,
                     help="candidates to post-process before picking the best final one")
     ap.add_argument("--out", default=None,
-                    help=f"default {DEFAULT_OUT}, or {CVD_OUT} for --profile cvd")
+                    help=f"default {DEFAULT_OUT}; {CVD_OUT} for --profile cvd, {DAY_OUT} for day")
     ap.add_argument("--profile", choices=sorted(PROFILES), default="default")
     ap.add_argument("--no-install", action="store_true")
     args = ap.parse_args()
 
     t0 = time.monotonic()
     c0 = time.process_time()
-    out = REPO / (args.out or (CVD_OUT if args.profile == "cvd" else DEFAULT_OUT))
+    out = REPO / (args.out or {"cvd": CVD_OUT, "day": DAY_OUT}.get(args.profile, DEFAULT_OUT))
     out.mkdir(parents=True, exist_ok=True)
     problem = SoftProblem(profile=args.profile)
-    prefix = CVD_PREFIX if args.profile == "cvd" else PALETTE_PREFIX
-    prov = CVD_PROVENANCE if args.profile == "cvd" else SOFT_PROVENANCE
+    prefix = {"cvd": CVD_PREFIX, "day": DAY_PREFIX}.get(args.profile, PALETTE_PREFIX)
+    prov = {"cvd": CVD_PROVENANCE, "day": DAY_PROVENANCE}.get(args.profile, SOFT_PROVENANCE)
+    variant = prov.get("variant", "night")
     print(
         f"[problem] {len(problem.chromatic)} chromatic roles inside the middle "
         f"fences; {len(problem.terms)} objective terms; "
@@ -1259,7 +1392,7 @@ def main() -> None:
     for i, d in enumerate(finished[: args.n_palettes], 1):
         state, hexes, sc = d["state"], d["hexes"], d["score"]
         name = f"{prefix}{i:02d}"
-        path = out / f"{name}.night.yaml"
+        path = out / f"{name}.{variant}.yaml"
         mp.write_palette_yaml(
             path, name, state, problem, args.seed,
             {"profile": args.profile,
@@ -1285,7 +1418,7 @@ def main() -> None:
             f"atTarget={sc['at_target']}/{sc['terms']}"
         )
 
-    base_path = REPO / "themes/candidates" / np_.SCAFFOLD_SOURCE
+    base_path = REPO / "themes/candidates" / problem.scaffold_source
     base = sm.score(base_path)
     # Comparison entries for the preview page: the committed candidate-b Night
     # palette first, then the picks, then the rejected numeric frontier last --
@@ -1296,13 +1429,14 @@ def main() -> None:
         {"label": "candidate-b-balanced", "kind": "committed candidate (baseline)",
          "hexes": base_hexes, "score": sm.score(base_path),
          "metrics": mp.middle_palette_metrics(problem, base_hexes),
-         "source_name": np_.SCAFFOLD_SOURCE, "state": problem.baseline_lch},
+         "source_name": problem.scaffold_source, "state": problem.baseline_lch},
     )
-    for ref_path, ref_label in (
+    night_refs = (
         (REPO / "out/soft-night/soft-s01.night.yaml", "soft-s01 (v1)"),
         (REPO / "out/middle-night/middle-m01.night.yaml", "middle-m01"),
         (REPO / "out/numeric-night/numeric-n01.night.yaml", "numeric-n01"),
-    ):
+    )
+    for ref_path, ref_label in (night_refs if variant == "night" else ()):
         if ref_path.exists():
             ref_colors = {r: str(v) for r, v in Palette.from_yaml(ref_path).colors.items()}
             ref_hexes = {r: ref_colors[r] for r in problem.present if r in ref_colors}
@@ -1371,7 +1505,7 @@ def main() -> None:
         json.dumps(metrics, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
     print(
-        f"[reference] candidate-b night: utility={base['utility']:.4f} "
+        f"[reference] {problem.scaffold_source}: utility={base['utility']:.4f} "
         f"sep={base['sep']:.4f} emph={base['emph']:.4f} "
         f"worst={base['worst_margin']:.4f} wcag_violations={base['wcag_violations']}"
     )

@@ -216,7 +216,7 @@ def gate(path: Path) -> list[str]:
 def main() -> None:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else "out/soft-night")
     if root.is_dir():
-        paths = sorted(root.rglob("*.night.yaml"))
+        paths = sorted([*root.rglob("*.night.yaml"), *root.rglob("*.day.yaml")])
     elif root.exists():
         paths = [root]
     else:

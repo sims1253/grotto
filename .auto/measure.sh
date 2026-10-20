@@ -29,7 +29,10 @@ WORK=${AR_WORK:-.auto/work}
 # AR_PROFILE=cvd benchmarks the experimental CVD variant: same budget, scored
 # with CVD on colour alone.
 PROFILE=${AR_PROFILE:-default}
-if [ "$PROFILE" = cvd ]; then PREFIX=soft2-cvd-s; SCORE_FLAGS=--colour-only; else PREFIX=soft2-s; SCORE_FLAGS=; fi
+VARIANT=night
+if [ "$PROFILE" = cvd ]; then PREFIX=soft2-cvd-s; SCORE_FLAGS=--colour-only;
+elif [ "$PROFILE" = day ]; then PREFIX=soft2-day-s; SCORE_FLAGS=; VARIANT=day;
+else PREFIX=soft2-s; SCORE_FLAGS=; fi
 
 rm -rf "$WORK"
 mkdir -p "$WORK"
@@ -54,7 +57,7 @@ done
 
 # Independent scoring: one process, one palette each, no search code imported.
 uv run python scripts/soft_metric.py --json $SCORE_FLAGS \
-    $(for s in $SEEDS; do printf '%s/%s01.night.yaml ' "$WORK/seed-$s" "$PREFIX"; done) \
+    $(for s in $SEEDS; do printf '%s/%s01.%s.yaml ' "$WORK/seed-$s" "$PREFIX" "$VARIANT"; done) \
     >"$WORK/scores.json"
 
 uv run python - "$WORK/scores.json" "$WORK" <<'PY'
