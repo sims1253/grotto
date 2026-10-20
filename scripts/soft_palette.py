@@ -179,19 +179,17 @@ DEFAULT_SEED = 20260817
 #:   ink_l_min       absolute floor for that room (keeps inks bright enough
 #:                   that a dark theme still reads as one)
 #:   scaffold_l      extra scaffold lightness overrides on top of
-#:                   SCAFFOLD_L_OVERRIDES.  Lifting the 4.5:1 mid-grey inks
-#:                   (comments, punctuation) and the 3:1 muted ones raises
-#:                   the ceiling every highlight surface lives under.
+#:                   SCAFFOLD_L_OVERRIDES.  The CVD variant drops the canvas
+#:                   (and the panels and active line with it, same steps):
+#:                   with the canvas at 0.205 the washes had 0.215-0.355 to
+#:                   share, too little for the ~0.09 lightness gaps the
+#:                   red/green diff pairs need once hue collapses.
 PROFILES = {
     "default": {"channel_credit": True, "ink_l_down": 0.0, "ink_l_min": 0.0,
                 "scaffold_l": {}},
     "cvd": {"channel_credit": False, "ink_l_down": 0.10, "ink_l_min": 0.66,
             "scaffold_l": {"bg": 0.165, "bg_elevated": 0.198, "bg_overlay": 0.225,
-                           "active_line": 0.195,
-                           "comment": 0.72, "punctuation": 0.72,
-                           "fg_secondary": 0.72, "deprecated": 0.72,
-                           "fg_muted": 0.62, "line_number": 0.62,
-                           "ui_inactive": 0.62}},
+                           "active_line": 0.195}},
 }
 
 #: Declared trial settings: the lightness fence for roles whose spec entry
