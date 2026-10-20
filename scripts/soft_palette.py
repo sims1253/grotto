@@ -104,7 +104,7 @@ SOFT_PROVENANCE = {
         "  NOT a candidate; promotion is a human decision.",
     ],
     "objective": (
-        "'1 - mean(max(0,1-m)^2 over 162 margin terms) "
+        "'1 - mean(max(0,1-m)^2 over 187 margin terms, instrument v2) "
         "- 0.35 * max(0,(emphasis-0.045)/0.045)'"
     ),
     "fences": ("v2 = middle fences + lifted muted inks + lightness_offset fences + "
@@ -119,7 +119,7 @@ SOFT_PROVENANCE = {
         "banner": (
             "NON-CANDIDATE exploration (branch feat/palette-autoresearch-2). "
             "These palettes optimise a SHORTFALL objective "
-            "(1 - mean max(0,1-m)^2 over the 162 margin terms) plus an "
+            "(1 - mean max(0,1-m)^2 over the 187 margin terms of instrument v2, which adds surface visibility bands) plus an "
             "area-weighted EMPHASIS budget, NOT the max-min margin J that the "
             "N-Explore and middle-frontier palettes optimise. Fences are the "
             "middle frontier's with the v2 declared changes: fg_muted, "
@@ -267,6 +267,13 @@ class SoftProblem(mp.MiddleProblem):
             self.scaffold[r] = (L, C, h)
             self.scaffold_hex[r] = oklch_to_hex(np_.project_chroma(L, C, h))
         self.area = sm.area_table()
+        # Instrument v2's surface terms: the search optimises exactly the term
+        # table the instrument scores (soft_metric.surface_terms).
+        self.terms = sm.instrument_terms(self)
+        self.term_ids_by_role = {}
+        for i, t in enumerate(self.terms):
+            for r in (t["a"], t["b"]):
+                self.term_ids_by_role.setdefault(r, []).append(i)
         # Roles the emphasis sum counts, with their weights resolved once.
         self._emph_roles = {
             r: float(self.area[r]["weight"])
@@ -297,6 +304,9 @@ class SoftProblem(mp.MiddleProblem):
                     if roles[lo].salience < roles[hi].salience:
                         self.prom_pairs.setdefault(lo, []).append((lo, hi))
                         self.prom_pairs.setdefault(hi, []).append((lo, hi))
+
+    def term_values(self, hexes: dict[str, str]) -> list[float]:
+        return [sm.term_value(t, hexes) for t in self.terms]
 
     # -- lightness fences ------------------------------------------------
 
@@ -485,7 +495,7 @@ def soft_refine(
         The shortfall is a SUM over the whole term table, but a move on one
         role can only change that role's terms -- so the sum is maintained
         incrementally (adjust the delta, add it to a running total) instead
-        of re-reduced over all 162 terms per candidate.  Same numbers, O(terms
+        of re-reduced over all 187 terms per candidate.  Same numbers, O(terms
         for this role) instead of O(all terms).
         """
         ids = problem.term_ids_by_role.get(role, ())
@@ -493,15 +503,11 @@ def soft_refine(
         delta = 0.0
         for i in ids:
             t = terms[i]
-            ha = new_hex if t["a"] == role else hexes[t["a"]]
-            hb = new_hex if t["b"] == role else hexes[t["b"]]
-            if t["kind"] == "normal":
-                v2 = np_._dE(np_._oklab_of(ha), np_._oklab_of(hb)) / t["th"]
-            else:
-                v2 = (
-                    np_._dE(np_._sim_oklab(ha, t["kind"]), np_._sim_oklab(hb, t["kind"]))
-                    / t["th"]
-                )
+            pair = {
+                t["a"]: new_hex if t["a"] == role else hexes[t["a"]],
+                t["b"]: new_hex if t["b"] == role else hexes[t["b"]],
+            }
+            v2 = sm.term_value(t, pair)
             v1 = vals[i]
             updates[i] = v2
             delta += max(0.0, 1.0 - v2) ** exp - max(0.0, 1.0 - v1) ** exp

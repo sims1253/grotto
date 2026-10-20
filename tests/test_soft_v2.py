@@ -157,7 +157,56 @@ def test_shipped_v2_palette_passes_the_gate():
     assert gate_mod.gate(V2) == []
 
 
-def test_shipped_v2_beats_v1_on_the_unchanged_instrument():
+def test_shipped_v2_beats_v1():
     v1, v2 = sp.sm.score(V1), sp.sm.score(V2)
-    assert v2["utility"] > v1["utility"] + 0.03
+    assert v2["utility"] > v1["utility"] + 0.015
     assert v2["wcag_violations"] == 0
+
+
+# -- instrument v2 ----------------------------------------------------------------
+
+
+def test_committed_transform_output_sits_in_every_visibility_band():
+    """The bands read model.SURFACE_STEPS; candidate-b night IS that
+    transform's output, so it must land in-band on every surface.  If it does
+    not, the instrument is measuring something the spec did not declare."""
+    r = sp.sm.score(REPO / "themes/candidates/candidate-b-balanced.night.yaml")
+    assert r["visibility"], "no visibility terms"
+    assert min(r["visibility"].values()) >= 0.98, r["visibility"]
+
+
+def test_visibility_band_is_two_sided():
+    lo, hi = sp.sm.visibility_band("minimal")
+    assert sp.sm.band_margin((lo + hi) / 2, lo, hi) >= 1.0
+    assert sp.sm.band_margin(lo / 2, lo, hi) == pytest.approx(0.5)   # vanishes
+    assert sp.sm.band_margin(hi * 2, lo, hi) == pytest.approx(0.5)   # shouts
+    assert sp.sm.visibility_band("maximal")[1] == float("inf")
+
+
+def test_only_channel_covered_pairs_lose_their_cvd_terms(problem):
+    covered = sp.sm.channel_covered_cvd(problem)
+    assert ("diff_added", "diff_removed") in covered            # +/- gutter sign
+    for pair in (("error", "warning"), ("search_match", "search_match_current"),
+                 ("selection", "active_line")):
+        assert tuple(sorted(pair)) not in {tuple(sorted(p)) for p in covered}, pair
+    terms = sp.sm.instrument_terms(problem)
+    kinds = {(t["a"], t["b"], t["kind"]) for t in terms if t["cls"] == "must"}
+    assert ("diff_added", "diff_removed", "normal") in kinds    # normal vision stays
+    assert not any(a == "diff_added" and b == "diff_removed" and k != "normal"
+                   for a, b, k in kinds)
+    assert ("error", "warning", "tritan") in kinds
+
+
+def test_search_and_instrument_score_the_same_table(problem):
+    hexes = _hexes(V2, problem)
+    u = problem.utility_from(hexes, sp.sm.shortfall(problem.term_values(hexes))["sep"])
+    assert u == pytest.approx(sp.sm.score(V2)["utility"], abs=1e-12)
+
+
+def test_rejected_numeric_frontier_still_ranks_last():
+    """The v1 tripwire: an instrument that puts numeric-n01 back on top has
+    regressed to the max-min objective."""
+    n01 = sp.sm.score(REPO / "out/numeric-night/numeric-n01.night.yaml")["utility"]
+    for other in ("out/middle-night/middle-m01.night.yaml", str(V1.relative_to(REPO)),
+                  str(V2.relative_to(REPO))):
+        assert sp.sm.score(REPO / other)["utility"] > n01, other
