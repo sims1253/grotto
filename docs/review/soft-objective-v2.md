@@ -3,26 +3,28 @@
 Companion to [soft-objective.md](soft-objective.md) (v1, PR #3) and
 [redundant-channel-audit.md](redundant-channel-audit.md). v1 ended
 "converged inside the declared design" and left the design decisions to the
-owner. This round takes those decisions, one at a time, each measured on the
-**unchanged instrument** (`scripts/soft_metric.py`) and each looked at in a
-rendered sheet, not just scored.
+owner. This round takes those decisions, one at a time, each looked at in a
+rendered sheet as well as scored. Runs 7–12 were measured on the **unchanged
+v1 instrument**. Run 13 then fixes two blind spots in the instrument itself
+(§6), and the shipped palette is re-searched on it.
 
-**Result.** `out/soft-night-v2/soft2-s01.night.yaml` — utility **0.9797**
-against v1's **0.9392** and the committed candidate-b's 0.7896. Zero WCAG
-violations, zero salience reversals, zero prominence reversals, 124 of 162
-terms at target (v1: 108). It got there under a gate that is **stricter** than
-v1's, which v1's own shipped palette now fails (washed-out `error`, see §4).
+**Result.** `out/soft-night-v2/soft2-s01.night.yaml` scores **0.9828** on
+instrument v2, against **0.9561** for #3's soft-s01 and **0.8644** for the
+committed candidate-b. Zero WCAG violations, zero salience reversals, zero
+prominence reversals. On the v1 instrument, the run-12 palette scored 0.9797
+against v1's 0.9392. It got there under a gate that is **stricter** than v1's,
+which v1's own shipped palette now fails (washed-out `error`, see §2).
 
-| palette | utility | SEP | EMPH | worst | at target |
+| palette (instrument v2) | utility | SEP | EMPH | worst J | at target |
 |---|---|---|---|---|---|
-| candidate-b balanced night (committed) | 0.7896 | 0.2104 | 0.0199 | 0.000 | — |
-| middle-m01 | 0.9361 | 0.0592 | 0.0456 | 0.282 | — |
-| soft-s01 (v1, PR #3) | 0.9392 | 0.0608 | 0.0426 | 0.215 | 108 |
-| **soft2-s01 (v2)** | **0.9797** | **0.0203** | 0.0405 | 0.270 | **124** |
-| numeric-n01 (rejected) | 0.6605 | 0.0228 | 0.0857 | 0.507 | — |
+| candidate-b balanced night (committed) | 0.8644 | 0.1356 | 0.0199 | 0.000 | 79/127 |
+| middle-m01 | 0.9513 | 0.0440 | 0.0456 | 0.282 | 98 |
+| soft-s01 (v1, PR #3) | 0.9561 | 0.0439 | 0.0426 | 0.215 | 94 |
+| **soft2-s01 (this PR)** | **0.9828** | **0.0172** | 0.0446 | 0.363 | **104** |
+| numeric-n01 (rejected) | 0.6554 | 0.0279 | 0.0857 | 0.507 | 108 |
 
-Loudness did not go up: EMPH 0.0405, under v1. The tripwire still holds:
-numeric-n01 ranks last.
+Emphasis stays under the 0.045 budget. The tripwire still holds: numeric-n01
+ranks last.
 
 ![soft2-s01](../../out/soft-night-v2/preview-soft2-s01.night.png)
 
@@ -103,7 +105,7 @@ is the price of an error that looks like an error, and it is paid.
 
 ## 4. Benchmark record
 
-`.auto/log.jsonl`, runs 7–12 (fixed budget, three seeds, `.auto/measure.sh`):
+`.auto/log.jsonl`, runs 7–13 (fixed budget, three seeds, `.auto/measure.sh`):
 
 | run | change | utility | spread | verdict |
 |---|---|---|---|---|
@@ -114,6 +116,7 @@ is the price of an error that looks like an error, and it is paid.
 | 10 | salience repair tries both orders | 0.9845 | 0.0025 | keep |
 | 11 | post-process 5 candidates, not 3 | 0.9845 | 0.0025 | discard (identical) |
 | 12 | diagnostic chroma floors + preview | 0.9783 | 0.0029 | keep (constraint) |
+| 13* | **instrument v2** (§6), search optimises its table | 0.9827 | 0.0003 | keep — *not comparable with ≤ 12* |
 
 **Benchmark change, declared:** the per-seed cap is now **process CPU time**
 (still 16 s), not wall clock. This VM is a shared 2-core machine. Under
@@ -126,22 +129,29 @@ fences are.
 
 ## 5. What is left, and whose call it is
 
-Remaining SEP on the shipped palette is 0.0203. About a quarter of it is two
-**scaffold-only** should-pairs that no search can move: `bg`/`bg_elevated`
-(dE 0.033 vs 0.08) and `bg_elevated`/`bg_overlay` (0.027). Closing them means
-much larger elevation steps for panels. That is the open DESIGN question Q-2
-(direction and size of elevation), and **is the owner's**.
+Remaining SEP on the shipped palette is 0.0172 (instrument v2), and it
+splits into three parts.
 
-The rest is the irreducible red/green core: `diff_added`/`diff_removed` under
-deutan, and the tritan error/warning pair. Both now sit well above v1's
-margins, but D-3's redundant channels (gutter signs, a distinct diagnostic
-mark) remain the real fix, as the channel audit says.
+* **35%: two scaffold-only should-pairs** no search can move, `bg`/`bg_elevated`
+  (dE 0.033 vs 0.08) and `bg_elevated`/`bg_overlay` (0.027). Closing them
+  means much larger elevation steps for panels. That is the open DESIGN
+  question Q-2 (direction and size of elevation), and **is the owner's**.
+* **~37%: visibility overshoot**: the diff washes (ΔE ~0.115 vs `minimal`'s
+  0.030–0.055) and selection (0.14 vs `low`'s 0.055–0.08). This is the matrix
+  contradiction in §6, also the owner's.
 
-Visible in the sheet and not scored: `diff_changed` and `search_match` are
-both dark sand-brown washes and nearly the same colour. They are not a
-`must_distinguish` pair in `spec/distance-matrix.yaml`, so nothing asks for a
-difference. If they co-occur in practice (a search inside a modified hunk), the
-matrix should say so.
+The rest is spread thin: `error` against `builtin` and `fg` under normal vision
+(error's red is held to L ≤ 0.83 by its chroma floor, close to the rose-family
+`builtin`), `active_line` against the diff washes, and the three pairs the
+channel audit found **uncovered**: error/warning (tritan),
+search_match/current and selection/active_line. Those three still need a
+genuinely distinct mark in the mapping, as the audit says. No palette
+setting supplies one.
+
+Earlier in this round, `diff_changed` and `search_match` shipped as two
+nearly identical browns. Instrument v2's surface anti-collapse and visibility
+terms now separate them (olive vs rust). If a search inside a modified hunk
+matters, the matrix should also make it a `must_distinguish` pair.
 
 Not done, deliberately:
 
@@ -152,7 +162,68 @@ Not done, deliberately:
 * v1's artifacts in `out/soft-night/` are untouched. Several tests and the
   channel audit pin numbers to them, and they are the comparison point.
 
-## 6. Reproducing
+## 6. Instrument v2: what the scoring script could not see (run 13)
+
+Everything above was measured on v1's `soft_metric.py`, unchanged. Looking at
+the sheets turned up two blind spots in the instrument itself, and both are
+now fixed in `scripts/soft_metric.py` (`INSTRUMENT_VERSION = 2`). The search
+optimises exactly the instrument's term table, and a test asserts they agree
+to 1e-12.
+
+**a. No surface was ever compared to the canvas.** The matrix pairs surfaces
+with each other, never with `bg`, so a wash could vanish into the background
+or shout off it at no cost. v2 (run 12) did both. `search_match` (target
+`low`) sat at ΔE 0.030, identical to `diff_changed`. Meanwhile selection and
+the diff washes stood 2–4× further off the canvas than their class allows.
+That is the O4-vs-O2 trade (CVD separation bought with lightness), which
+DESIGN.md resolves *against*.
+
+The spec already says how far a surface should stand off the canvas:
+`model.SURFACE_STEPS`, keyed by the role's `contrast_target` (minimal 0.030,
+low 0.055, comfortable 0.080, …). The new **visibility** term reads a band
+from a class's step to the next class's, with margin `min(ΔE/lo, hi/ΔE)`. It
+uses the same bounded shortfall as every other term. Validation: the committed
+candidate-b night, which is that transform's output, is in-band on all eight
+surfaces (0.99–1.12). Alongside it, the matrix's own "still not identical"
+anti-collapse floor (0.03) now also covers co-occurring surface pairs the
+matrix leaves unconstrained, not only categorical inks.
+
+**b. CVD terms the spec says are already discharged.** The matrix's CVD floor
+reads "pairs that cannot meet this must carry a redundant channel": the floor
+*or* a channel. `grotto.channels.judge` (#3's audit) answers that per pair,
+against what VS Code actually draws. v2 credits only those pairs, and only
+their CVD terms (53 of them, e.g. diff added/removed via the `+`/`−` gutter
+sign). Normal-vision terms always stay, and so does every term of the three
+pairs the audit found uncovered (error/warning, search_match/current,
+selection/active_line).
+
+Rescored on instrument v2 (127 terms; **not comparable** with v1 numbers):
+
+| palette | v1 utility | v2 utility |
+|---|---|---|
+| candidate-a restrained | 0.7900 | 0.8006 |
+| candidate-b balanced (committed) | 0.7896 | 0.8644 |
+| candidate-c expressive | 0.8022 | 0.8763 |
+| middle-m01 | 0.9361 | 0.9513 |
+| soft-s01 (#3) | 0.9392 | 0.9561 |
+| soft2-s01 as shipped after run 12 | 0.9797 | 0.9746 |
+| **soft2-s01 (re-searched on v2)** | — | **0.9828** |
+| numeric-n01 (rejected) | 0.6605 | 0.6554 |
+
+The tripwire holds: numeric-n01 is still last. Re-searching on v2 separates
+"changed" from "match" (olive and rust instead of two identical browns) and
+pulls `search_match` up to its `low` step.
+
+**What v2 makes visible rather than solves.** The diff washes still settle
+about 2× past the `minimal` band. That is not a search failure. The matrix asks
+two washes to be 0.13 apart under normal vision, and two washes that each stand
+≤ 0.055 off the canvas cannot be. `distance-matrix.yaml`'s 0.13 (a
+text-recognition threshold) and `SURFACE_STEPS`' `minimal` contradict each
+other for large adjacent fields, and the score now shows the compromise instead
+of hiding it. Which one gives is the owner's call: a lower must threshold for
+surface/surface pairs, or a `low` target for the diff washes.
+
+## 7. Reproducing
 
 ```bash
 uv run python scripts/soft_palette.py --restarts 24 --samples 16 \

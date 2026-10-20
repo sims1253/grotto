@@ -30,54 +30,54 @@ meta:
   candidate: false
   generated: soft-objective
   seed: 20260817
-  objective: '1 - mean(max(0,1-m)^2 over 162 margin terms) - 0.35 * max(0,(emphasis-0.045)/0.045)'
+  objective: '1 - mean(max(0,1-m)^2 over 187 margin terms, instrument v2) - 0.35 * max(0,(emphasis-0.045)/0.045)'
   scaffold: candidate-b-balanced.night.yaml
   fences: v2 = middle fences + lifted muted inks + lightness_offset fences + convention hue windows + role chroma floors + salience-rank + surface prominence (see scripts/soft_palette.py)
-  at-target: 124
-  emphasis: 0.0405
-  pre-repair-utility: 0.97966
+  at-target: 104
+  emphasis: 0.04462
+  pre-repair-utility: 0.98279
   restart-kind: ladder
-  sep: 0.02034
-  utility: 0.97966
-  worst-margin: 0.27041
+  sep: 0.01721
+  utility: 0.98279
+  worst-margin: 0.36324
 colors:
   active_line: {L: 0.235, C: 0.001888, h: 70.0}
   bg: {L: 0.205, C: 0.007, h: 70.0}
   bg_elevated: {L: 0.238, C: 0.008, h: 70.0}
   bg_overlay: {L: 0.265, C: 0.009, h: 70.0}
-  breakpoint: {L: 0.847136, C: 0.058439, h: 38.5}
-  builtin: {L: 0.851828, C: 0.0266, h: 1.5}
+  breakpoint: {L: 0.847136, C: 0.060805, h: 1.5}
+  builtin: {L: 0.851828, C: 0.059095, h: 48.5}
   comment: {L: 0.677322, C: 0.020842, h: 69.9733}
-  constant: {L: 0.782377, C: 0.057763, h: 41.5}
-  debug_current: {L: 0.28, C: 0.02, h: 50.0}
-  decorator: {L: 0.771537, C: 0.077186, h: 59.6581}
+  constant: {L: 0.807587, C: 0.077556, h: 41.5}
+  debug_current: {L: 0.254908, C: 0.035148, h: 100.3979}
+  decorator: {L: 0.771537, C: 0.074689, h: 56.8428}
   deprecated: {L: 0.674799, C: 0.0, h: 70.0}
-  diff_added: {L: 0.305, C: 0.053366, h: 127.3771}
-  diff_changed: {L: 0.215, C: 0.031826, h: 42.5587}
-  diff_removed: {L: 0.32, C: 0.081436, h: 11.5}
+  diff_added: {L: 0.305, C: 0.06316, h: 137.3523}
+  diff_changed: {L: 0.215, C: 0.03004, h: 108.5}
+  diff_removed: {L: 0.295, C: 0.075892, h: 11.5}
   docstring: {L: 0.81076, C: 0.021624, h: 69.9733}
-  error: {L: 0.8, C: 0.080629, h: 38.5}
+  error: {L: 0.8, C: 0.084293, h: 1.5}
   fg: {L: 0.810858, C: 0.00564, h: 70.0}
   fg_muted: {L: 0.585, C: 0.004232, h: 70.0}
   fg_secondary: {L: 0.676255, C: 0.005428, h: 70.0}
-  focus: {L: 0.90806, C: 0.029248, h: 256.0539}
-  function: {L: 0.881802, C: 0.045296, h: 235.6033}
-  info: {L: 0.7673, C: 0.095781, h: 235.0}
-  keyword: {L: 0.773672, C: 0.079604, h: 278.25}
+  focus: {L: 0.806215, C: 0.06707, h: 256.0599}
+  function: {L: 0.850765, C: 0.100029, h: 191.3995}
+  info: {L: 0.847267, C: 0.038349, h: 210.0}
+  keyword: {L: 0.773672, C: 0.079166, h: 276.5}
   line_number: {L: 0.585, C: 0.0, h: 70.0}
   line_number_active: {L: 0.809402, C: 0.0, h: 70.0}
-  namespace: {L: 0.821455, C: 0.076069, h: 196.302}
-  number: {L: 0.77144, C: 0.096507, h: 41.5}
+  namespace: {L: 0.809236, C: 0.089088, h: 180.0223}
+  number: {L: 0.77144, C: 0.096503, h: 41.5}
   operator: {L: 0.809402, C: 0.0, h: 70.0}
   parameter: {L: 0.810858, C: 0.00564, h: 70.0}
   property: {L: 0.811246, C: 0.003847, h: 242.4}
   punctuation: {L: 0.674799, C: 0.0, h: 70.0}
-  search_match: {L: 0.215, C: 0.034816, h: 50.5}
-  search_match_current: {L: 0.315, C: 0.0652, h: 41.5}
-  selection: {L: 0.31, C: 0.095024, h: 263.5}
-  string: {L: 0.843385, C: 0.081853, h: 163.5}
-  success: {L: 0.721929, C: 0.158, h: 139.9296}
-  tag: {L: 0.804259, C: 0.090647, h: 181.5}
-  type: {L: 0.764161, C: 0.085388, h: 190.1661}
+  search_match: {L: 0.215, C: 0.043902, h: 41.5}
+  search_match_current: {L: 0.305, C: 0.044185, h: 108.5}
+  selection: {L: 0.31, C: 0.086705, h: 263.5}
+  string: {L: 0.763385, C: 0.055182, h: 133.4959}
+  success: {L: 0.744839, C: 0.127829, h: 125.6691}
+  tag: {L: 0.849183, C: 0.117112, h: 144.5776}
+  type: {L: 0.770117, C: 0.084171, h: 203.5139}
   ui_inactive: {L: 0.585, C: 0.0, h: 70.0}
-  warning: {L: 0.86, C: 0.127751, h: 108.5}
+  warning: {L: 0.86, C: 0.128073, h: 108.5}

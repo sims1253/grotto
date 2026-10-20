@@ -12,6 +12,13 @@ shipped `out/soft-night-v2/soft2-s01` 0.9797 vs v1 0.9392. The seed cap is
 now CPU time. The default output is now `out/soft-night-v2`; v1's
 `out/soft-night` is frozen.
 
+**Run 13 changed the instrument** (`soft_metric.INSTRUMENT_VERSION = 2`, 127
+terms): surface visibility bands read from `model.SURFACE_STEPS`, surface
+anti-collapse, and CVD terms credited where `grotto.channels.judge` finds a
+delivered channel. Numbers before and after run 13 are NOT comparable; re-score
+references with `soft_metric.py`. The search optimises `sm.instrument_terms`, the
+same table. Shipped soft2-s01 scores 0.9828 on v2.
+
 ## Status: converged inside the declared design. Read this first.
 
 The optimisation target has hit its ceiling, measured three independent ways
