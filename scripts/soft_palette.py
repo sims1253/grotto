@@ -180,7 +180,7 @@ DEFAULT_SEED = 20260817
 #:                   that a dark theme still reads as one)
 PROFILES = {
     "default": {"channel_credit": True, "ink_l_down": 0.0, "ink_l_min": 0.0},
-    "cvd": {"channel_credit": False, "ink_l_down": 0.0, "ink_l_min": 0.0},
+    "cvd": {"channel_credit": False, "ink_l_down": 0.10, "ink_l_min": 0.66},
 }
 
 #: Declared trial settings: the lightness fence for roles whose spec entry
