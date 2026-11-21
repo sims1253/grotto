@@ -19,6 +19,7 @@ completes in seconds; the full 23-role run is exercised by the script itself.
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
@@ -29,6 +30,15 @@ _spec = importlib.util.spec_from_file_location(
 mp = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(mp)
 np = mp.np  # the reused numeric_palette machinery, as the script sees it
+
+#: The soft-objective search reuses middle_palette's writer.  Load it the same
+#: way so the provenance test can assert against the real constant rather than
+#: a copy of it.
+_sp_spec = importlib.util.spec_from_file_location(
+    "soft_palette", REPO / "scripts/soft_palette.py"
+)
+sp = importlib.util.module_from_spec(_sp_spec)
+_sp_spec.loader.exec_module(sp)
 
 from grotto.color import hex_to_oklch, max_chroma, oklch_to_hex
 from grotto.spec import Palette
@@ -215,3 +225,94 @@ def test_written_yaml_is_loadable_non_candidate_palette(tmp_path):
     out2 = tmp_path / "middle-test-2.night.yaml"
     mp.write_palette_yaml(out2, "middle-test", state, problem, 7, {"j": 0.0})
     assert out.read_bytes() == out2.read_bytes()
+
+
+def test_provenance_override_names_the_real_generator(tmp_path):
+    """A shipped artifact must not claim a generator or objective it lacks.
+
+    soft_palette.py reuses this writer but optimises a shortfall + emphasis
+    budget, not the max-min margin. Provenance is a first-class honesty
+    mechanism here, so the override has to reach the header, `source`, the
+    note, `meta.generated` and `meta.objective` -- not just one of them.
+    """
+    problem = _problem()
+    # scaffold-only is enough: this test is about the header, not the colours
+    state: dict = {}
+    default = tmp_path / "default.yaml"
+    override = tmp_path / "override.yaml"
+
+    mp.write_palette_yaml(default, "t", state, problem, 1, {})
+    mp.write_palette_yaml(
+        override, "t", state, problem, 1, {},
+        provenance=sp.SOFT_PROVENANCE,
+    )
+
+    d, o = default.read_text(), override.read_text()
+    assert "middle_palette.py" in d and "middle-optimizer" in d
+    assert "soft_palette.py" in o, "header must name the real generator"
+    assert "source: soft-objective" in o
+    assert "generated: soft-objective" in o
+    # the objective string must describe the shortfall objective, not max-min
+    assert "min(dE/0.13" not in o, "must not claim the max-min objective"
+    assert "shortfall" in o.lower() or "max(0" in o
+    # and the default is untouched by the existence of the parameter
+    assert d == default.read_text()
+
+
+def test_no_committed_soft_artifact_names_the_middle_optimizer():
+    """Every face of the shipped deliverable names its own generator.
+
+    The palette YAML was fixed first, and review then found the same false
+    provenance on the other two faces: `variants.html` still headlined the
+    middle-frontier optimizer, and the installable extension still shipped as
+    `grotto-middle-exploration` with a `middle-explore` theme file.  A reader
+    of any single face must be able to tell which search produced it, so this
+    checks the committed artifacts rather than the writer's arguments.
+    """
+    soft = REPO / "out/soft-night"
+    offenders = []
+    # What must not appear is not the *words* "middle frontier" -- the banner
+    # legitimately contrasts these palettes with it -- but any claim to BE it:
+    # its heading, its generator string, its package name, its theme slug.
+    forbidden = (
+        "Middle-frontier Night palettes",                      # its h1
+        "Middle palettes optimise the SAME numeric objective",  # its banner
+        "middle-optimizer",                                    # its source/generated
+        "grotto-middle-exploration",                           # its package name
+        "middle-explore-0",                                    # its theme file slug
+    )
+    for path in sorted(soft.rglob("*")):
+        if not path.is_file() or path.suffix not in {".html", ".json", ".yaml"}:
+            continue
+        text = path.read_text(encoding="utf-8")
+        for needle in forbidden:
+            if needle in text:
+                offenders.append(f"{path.relative_to(REPO)}: {needle}")
+    assert not offenders, f"soft deliverable identifies as the middle optimizer: {offenders}"
+
+    assert "Soft-objective" in (soft / "variants.html").read_text(encoding="utf-8")
+    pkg = json.loads((soft / "vscode-preview/package.json").read_text(encoding="utf-8"))
+    assert pkg["name"] == "grotto-soft-objective"
+    assert "soft-objective" in pkg["description"]
+    assert (soft / "vscode-preview/themes/soft-explore-01-night.json").exists(), (
+        "the theme file must be named after the search that produced it"
+    )
+
+
+def test_the_middle_defaults_still_reproduce_the_middle_artifacts():
+    """The override is additive: the default identity is the middle identity.
+
+    `out/middle-night/` is the committed output of this module's own run, so it
+    is the byte-level statement of what "default" means.  If a future change
+    renames the default package or theme slug, that directory stops matching
+    and this fails -- which is the point.
+    """
+    pkg = json.loads(
+        (REPO / "out/middle-night/vscode-preview/package.json").read_text(encoding="utf-8")
+    )
+    assert pkg["name"] == "grotto-middle-exploration"
+    assert "middle-frontier" in pkg["description"]
+    assert (REPO / "out/middle-night/vscode-preview/themes/middle-explore-01-night.json").exists()
+    assert "Middle-frontier" in (REPO / "out/middle-night/variants.html").read_text(
+        encoding="utf-8"
+    )
