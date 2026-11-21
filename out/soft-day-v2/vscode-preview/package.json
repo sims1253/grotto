@@ -1,0 +1,22 @@
+{
+  "name": "grotto-soft-objective-v2-day",
+  "displayName": "Grotto Soft Objective v2 Day (NON-CANDIDATE)",
+  "description": "Day (light) theme from the v2 soft-objective search.",
+  "version": "0.0.1",
+  "publisher": "grotto-exploration",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto S2-Explore 01 Day",
+        "uiTheme": "vs",
+        "path": "themes/soft2-day-01-day.json"
+      }
+    ]
+  }
+}

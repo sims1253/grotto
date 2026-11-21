@@ -1,7 +1,8 @@
 """Hard-constraint gate for the soft-objective palette search.
 
-Independent of ``scripts/soft_palette.py``: it re-reads the palettes the
-benchmark produced and asserts every constraint that must never trade for a
+Independent of the search's REPORT: it re-reads the palettes the
+benchmark produced (it imports ``scripts/soft_palette.py`` only for the
+declared fence table, never for a score) and asserts every constraint that must never trade for a
 better utility number.  Empty output means the run is admissible; any line on
 stdout means the run must be discarded, whatever it scored.
 
@@ -12,7 +13,8 @@ Gates, in order of how badly it would be to break them:
    numeric/middle searches treat as hard.  8-bit hex, after rounding.
 2. **sRGB gamut**: no emitted colour outside the displayable triangle.
 3. **Taste fences** from ``scripts/middle_palette.py``: hue convention
-   windows, the ink/surface lightness deltas around candidate-b Night, the
+   windows, the ink/surface lightness deltas around candidate-b Night (wider
+   only for roles whose spec declares ``lightness_offset``), the
    class chroma caps and the 70%-of-gamut rule.  Checked on the shipped hexes
    and on the authored OKLCH coordinates.
 4. **same_family.min_distance** (0.03, read from ``spec/distance-matrix.yaml``)
@@ -37,6 +39,7 @@ from grotto.spec import Palette, RoleSpec, salience_coverage  # noqa: E402
 import numeric_palette as np_  # noqa: E402
 import middle_palette as mp  # noqa: E402
 import soft_metric as sm  # noqa: E402
+import soft_palette as sp  # noqa: E402
 
 #: DESIGN.md section 6, enforced in spec/environments.yaml: salience_budget.
 #: Read, never edited -- this gate's whole job is to be the non-negotiable
@@ -95,7 +98,13 @@ def gate(path: Path) -> list[str]:
     name = path.name
     palette = Palette.from_yaml(path)
     colors = {r: str(v) for r, v in palette.colors.items()}
-    problem = mp.MiddleProblem()
+    # The search's own problem: its fences are the ones the palette was
+    # built inside (middle fences, widened only where the spec declares a
+    # lightness_offset channel -- soft_palette.SoftProblem.l_range).
+    import yaml
+
+    meta = (yaml.safe_load(path.read_text(encoding="utf-8")).get("meta") or {})
+    problem = sp.SoftProblem(profile=str(meta.get("profile", "default")))
     hexes = {r: colors[r] for r in problem.present if r in colors}
 
     missing = [r for r in problem.present if r not in colors]
@@ -135,10 +144,11 @@ def gate(path: Path) -> list[str]:
 
     for role in problem.chromatic:
         c = hex_to_oklch(hexes[role])[1]
-        if c < sm.CHROMA_FLOOR - sm.CHROMA_FLOOR_TOL:
+        floor = problem.chroma_floor(role)  # generic floor, or a declared role floor
+        if c < floor - sm.CHROMA_FLOOR_TOL:
             problems.append(
                 f"{name}: {role} below the chroma floor "
-                f"(C={c:.4f} < {sm.CHROMA_FLOOR})"
+                f"(C={c:.4f} < {floor})"
             )
 
     # 6. DESIGN.md section 6 -- the salience budget.  "Too busy" has to stay
@@ -189,13 +199,24 @@ def gate(path: Path) -> list[str]:
                     f"normC {normc(hi):.4f}"
                 )
 
+    # 8. Surface prominence rank: inside a hue family, a higher-salience
+    #    highlight surface stands at least as far off the canvas (OKLab dE)
+    #    as a lower-salience one.  Normalised chroma alone flatters a wash
+    #    parked next to the canvas; see soft_palette.prominence_violations.
+    for fam, lo, hi, gap in sp.prominence_violations(problem, hexes):
+        problems.append(
+            f"{name}: surface prominence reversal in family {fam} -- "
+            f"{lo}(sal {roles_spec.roles[lo].salience}) stands {gap:.4f} "
+            f"further off the canvas than {hi}(sal {roles_spec.roles[hi].salience})"
+        )
+
     return problems
 
 
 def main() -> None:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else "out/soft-night")
     if root.is_dir():
-        paths = sorted(root.rglob("*.night.yaml"))
+        paths = sorted([*root.rglob("*.night.yaml"), *root.rglob("*.day.yaml")])
     elif root.exists():
         paths = [root]
     else:

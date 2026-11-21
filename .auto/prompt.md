@@ -1,5 +1,34 @@
 # Autoresearch: soft-objective Night palette search (Grotto)
 
+## v2 (branch feat/palette-autoresearch-2) — read docs/review/soft-objective-v2.md
+
+Runs 7–12 below the v1 record. v1's "converged" verdict was right about the
+search and wrong about the cause: the surface cluster was boxed into a 0.035 L
+band by the 3:1 muted inks, not by the fence. v2 lifts them, widens fences only
+where the spec declares `lightness_offset`, adds convention windows, a surface
+prominence rank and diagnostic chroma floors (all hard, all in the gate), and
+fixes the salience repair's order. Benchmark 0.9369 → 0.9783 (stricter gate);
+shipped `out/soft-night-v2/soft2-s01` 0.9797 vs v1 0.9392. The seed cap is
+now CPU time. The default output is now `out/soft-night-v2`; v1's
+`out/soft-night` is frozen.
+
+**Run 13 changed the instrument** (`soft_metric.INSTRUMENT_VERSION = 2`, 127
+terms): surface visibility bands read from `model.SURFACE_STEPS`, surface
+anti-collapse, and CVD terms credited where `grotto.channels.judge` finds a
+delivered channel. Numbers before and after run 13 are NOT comparable; re-score
+references with `soft_metric.py`. The search optimises `sm.instrument_terms`, the
+same table.
+
+**Profiles (run 15 on).** `soft_palette.PROFILES`: `default` is Grotto Night
+(now with 0.10 extra downward ink room and a 0.05 syntax chroma floor; shipped
+0.9853). `cvd` is the experimental variant, benchmarked with
+`AR_PROFILE=cvd uv run python .auto/ar.py measure` and scored colour-only.
+Its log entries carry `profile=cvd` and are flagged as instrument changes.
+It ships to `out/soft-night-v2-cvd` (68/78 CVD checks on colour alone).
+docs/review/soft-objective-v2.md §7.
+`day` is Grotto Day: light polarity (the repairs read `problem.polarity`),
+`AR_PROFILE=day`, ships to `out/soft-day-v2` (0.9720). §8.
+
 ## Status: converged inside the declared design. Read this first.
 
 The optimisation target has hit its ceiling, measured three independent ways

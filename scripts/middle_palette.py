@@ -238,8 +238,9 @@ class MiddleProblem(np.NumericProblem):
     min(class cap, GAMUT_FRACTION_CAP * max_chroma(L, h)).
     """
 
-    def __init__(self, chromatic=tuple(np.CHROMATIC_ROLES)):
-        super().__init__(chromatic=chromatic)
+    def __init__(self, chromatic=tuple(np.CHROMATIC_ROLES),
+                 scaffold_source: str = np.SCAFFOLD_SOURCE):
+        super().__init__(chromatic=chromatic, scaffold_source=scaffold_source)
         missing = [r for r in self.chromatic if r not in HUE_WINDOWS]
         assert not missing, f"roles without hue windows: {missing}"
         assert set(HUE_WINDOWS) == set(np.CHROMATIC_ROLES), (
@@ -359,18 +360,22 @@ def repair_ink_fenced(
         hx = oklch_to_hex((Lx, Cx, h))
         return all(wcag_contrast(hx, ref) >= floor for ref in refs)
 
+    # Contrast rises away from the canvas: up on a dark one, down on a light one.
+    light = getattr(problem, "polarity", "dark") == "light"
+    far = Llo if light else Lhi
+    step = -0.005 if light else 0.005
     Lc = L
     Cc = min(C, problem.chroma_ceiling(role, Lc, h))
     while True:
         if ok(Lc, Cc):
             return (Lc, Cc, h)
-        if Lc >= Lhi - 1e-9:
+        if abs(Lc - far) <= 1e-9:
             break
-        Lc = min(Lc + 0.005, Lhi)
+        Lc = max(Lc + step, far) if light else min(Lc + step, far)
         Cc = min(C, problem.chroma_ceiling(role, Lc, h))
-    # last resort inside the fence: the quietest legal colour at fence max
-    if ok(Lhi, 0.0):
-        return (Lhi, 0.0, h)
+    # last resort inside the fence: the quietest legal colour at the far edge
+    if ok(far, 0.0):
+        return (far, 0.0, h)
     return None
 
 
@@ -389,7 +394,13 @@ def repair_surface_fenced(
     anywhere in the fence -- the move is rejected."""
     h = project_hue(role, h)
     Llo, Lhi = problem.l_range(role)
-    Llo = max(Llo, problem.scaffold["bg"][0] + 0.01)
+    light = getattr(problem, "polarity", "dark") == "light"
+    if light:
+        # A wash on a light canvas sits BELOW it and gains ink contrast by
+        # getting lighter -- the mirror image of the dark case.
+        Lhi = min(Lhi, problem.scaffold["bg"][0] - 0.01)
+    else:
+        Llo = max(Llo, problem.scaffold["bg"][0] + 0.01)
     L = min(max(L, Llo), Lhi)
     inks = [
         (problem.floors[r], problem.scaffold_hex[r])
@@ -400,17 +411,18 @@ def repair_surface_fenced(
         hx = oklch_to_hex((Lx, Cx, h))
         return all(wcag_contrast(ink_hex, hx) >= floor for floor, ink_hex in inks)
 
+    near = Lhi if light else Llo
     Lc = L
     Cc = min(C, problem.chroma_ceiling(role, Lc, h))
     while True:
         if ok(Lc, Cc):
             return (Lc, Cc, h)
-        if Lc <= Llo + 1e-9:
+        if abs(Lc - near) <= 1e-9:
             break
-        Lc = max(Lc - 0.005, Llo)
+        Lc = min(Lc + 0.005, near) if light else max(Lc - 0.005, near)
         Cc = min(C, problem.chroma_ceiling(role, Lc, h))
-    if ok(Llo, 0.0):
-        return (Llo, 0.0, h)
+    if ok(near, 0.0):
+        return (near, 0.0, h)
     return None
 
 
@@ -528,14 +540,22 @@ def _initial_state_fenced(problem, rng, kind):
             Llo, Lhi = problem.l_range(r)
             # reuse the numeric WCAG-feasible lightness interval (vs bg, at
             # the 70% gamut fraction the ceiling uses) to start inks legal
+            light = getattr(problem, "polarity", "dark") == "light"
             iv = np.feasible_l_interval(
                 problem.scaffold_hex["bg"], problem.floors[r], h,
                 c_frac=GAMUT_FRACTION_CAP,
+                **({"polarity": "light"} if light else {}),
             )
-            wcag_lo = iv[0] if iv is not None else Llo
-            L = l_ladder[li] if l_ladder is not None else rng.uniform(
-                min(max(wcag_lo, Llo), Lhi), Lhi
-            )
+            if light:
+                wcag_hi = iv[1] if iv is not None else Lhi
+                L = l_ladder[li] if l_ladder is not None else rng.uniform(
+                    Llo, max(min(wcag_hi, Lhi), Llo)
+                )
+            else:
+                wcag_lo = iv[0] if iv is not None else Llo
+                L = l_ladder[li] if l_ladder is not None else rng.uniform(
+                    min(max(wcag_lo, Llo), Lhi), Lhi
+                )
             li += 1
             got = repair_ink_fenced(problem, r, L, f * problem.chroma_ceiling(r, L, h), h, hexes)
         else:
@@ -544,17 +564,20 @@ def _initial_state_fenced(problem, rng, kind):
                 t = s_ladder[si] / max(len(surfaces) - 1, 1)
                 si += 1
                 L = Llo + (Lhi - Llo) * (0.15 + 0.7 * t)
+            elif getattr(problem, "polarity", "dark") == "light":
+                L = rng.uniform(max(Llo, Lhi - 0.06), Lhi)
             else:
                 L = rng.uniform(Llo, min(Lhi, Llo + 0.06))
             got = repair_surface_fenced(problem, r, L, f * problem.chroma_ceiling(r, L, h), h)
         if got is None:
             # cannot happen with this canvas (probes show big slack); the
             # fallback keeps the search total: quietest legal fence point.
-            Lhi = problem.l_range(r)[1]
+            Llo_, Lhi_ = problem.l_range(r)
+            light = getattr(problem, "polarity", "dark") == "light"
             if problem.paint[r] in ("ink", "border"):
-                got = repair_ink_fenced(problem, r, Lhi, 0.0, h, hexes)
+                got = repair_ink_fenced(problem, r, Llo_ if light else Lhi_, 0.0, h, hexes)
             else:
-                got = repair_surface_fenced(problem, r, problem.l_range(r)[0], 0.0, h)
+                got = repair_surface_fenced(problem, r, Lhi_ if light else Llo_, 0.0, h)
             if got is None:
                 raise RuntimeError(f"role {r} infeasible inside its fences")
         state[r] = got
@@ -880,7 +903,7 @@ def write_palette_yaml(
     lines = [prov["header"]]
     lines += [
         f"name: {name}",
-        "variant: night",
+        f"variant: {prov.get('variant', 'night')}",
         "format: oklch",
         "candidate: false",
         f"source: {prov['source']}",
@@ -892,7 +915,7 @@ def write_palette_yaml(
         f"  generated: {prov['source']}",
         f"  seed: {seed}",
         f"  objective: {prov['objective']}",
-        f"  scaffold: {np.SCAFFOLD_SOURCE}",
+        f"  scaffold: {getattr(problem, 'scaffold_source', np.SCAFFOLD_SOURCE)}",
         f"  fences: {prov['fences']}",
     ]
     for k, v in sorted(extra_meta.items()):
@@ -1023,6 +1046,9 @@ def write_vscode_extension(
         "source_label": "Middle-frontier",
     }
     prov.update(provenance or {})
+    variant = prov.get("variant", "night")
+    vlabel = variant.capitalize()
+    ui_theme = "vs" if variant == "day" else "vs-dark"
 
     mapping = gv._load_mapping(REPO / "spec/mappings/vscode.yaml", problem.roles_spec)
     themes_dir = out_dir / "themes"
@@ -1030,22 +1056,22 @@ def write_vscode_extension(
     themes = []
     for i, e in enumerate(entries[:k], 1):
         pal = Palette(
-            e["label"], "night", e["hexes"], source="hex",
+            e["label"], variant, e["hexes"], source="hex",
             note=prov["source_note"],
             meta={"candidate": False, "generated": prov["source_value"]},
         )
         theme = gv._build_theme(
-            pal, f"{prov['label_prefix']} {i:02d} Night", "night", mapping,
+            pal, f"{prov['label_prefix']} {i:02d} {vlabel}", variant, mapping,
             source_name=e.get("source_name", prov["source_name_default"]),
             source_sha256=e.get("sha", prov["source_sha_default"]),
         )
         theme["grotto"]["candidate"] = False
         theme["grotto"]["note"] = prov["theme_note"]
-        rel = f"themes/{prov['slug']}-{i:02d}-night.json"
+        rel = f"themes/{prov['slug']}-{i:02d}-{variant}.json"
         (out_dir / rel).write_text(gv._dump(theme), encoding="utf-8", newline="\n")
         themes.append(
-            {"label": f"{prov['label_prefix']} {i:02d} Night",
-             "uiTheme": "vs-dark", "path": rel}
+            {"label": f"{prov['label_prefix']} {i:02d} {vlabel}",
+             "uiTheme": ui_theme, "path": rel}
         )
     pkg = {
         "name": prov["pkg_name"],

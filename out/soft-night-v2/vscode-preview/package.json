@@ -1,0 +1,22 @@
+{
+  "name": "grotto-soft-objective-v2",
+  "displayName": "Grotto Soft Objective v2 (NON-CANDIDATE)",
+  "description": "Night themes from the soft-objective optimizer, v2 (shortfall + emphasis budget; lifted muted inks, lightness_offset fences, convention windows, diagnostic chroma floors); exploration material, not a candidate.",
+  "version": "0.0.1",
+  "publisher": "grotto-exploration",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto S2-Explore 01 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/soft2-explore-01-night.json"
+      }
+    ]
+  }
+}

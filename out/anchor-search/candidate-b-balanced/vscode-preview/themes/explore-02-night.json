@@ -405,6 +405,9 @@
     },
     "*.documentation": {
       "foreground": "#a0968a"
+    },
+    "parameter.deprecated": {
+      "fontStyle": "italic strikethrough"
     }
   },
   "grotto": {
