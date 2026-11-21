@@ -1,0 +1,1285 @@
+<!doctype html><html><head><meta charset='utf-8'><title>candidate-b-balanced -- family specimens</title><style>
+* { box-sizing:border-box; }
+body { margin:0; background:#15161c; color:#d7d9e2;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:13px; line-height:1.5; padding:18px; }
+h1 { font-size:1.45rem; margin:0 0 .2em; }
+h2 { font-size:1.08rem; margin:1.5em 0 .5em; border-bottom:1px solid #2a2c38; padding-bottom:.2em; }
+h3 { font-size:.95rem; margin:1.1em 0 .35em; color:#aeb2c6; }
+.meta { color:#8b8ea0; font-size:.82rem; }
+.banner { background:#1f212b; padding:.6em .8em; border-radius:6px; margin:.7em 0; border-left:3px solid #4a5d8a; }
+.warn { border-left-color:#a35; }
+.controls { position:sticky; top:0; background:#15161c; padding:8px 0; z-index:3; }
+.controls select { background:#1f212b; color:#d7d9e2; border:1px solid #3a3c48; border-radius:4px; padding:3px 7px; }
+table { border-collapse:collapse; width:100%; background:#1b1d26; border-radius:6px; overflow:hidden; margin:.4em 0; }
+th,td { text-align:left; padding:5px 8px; border-bottom:1px solid #2a2c38; vertical-align:top; }
+th { color:#8b8ea0; font-weight:normal; font-size:.74rem; text-transform:uppercase; letter-spacing:.04em; }
+td.num,th.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.specimen { background:var(--vbg,#111); color:var(--vfg,#eee); padding:8px 10px; border-radius:5px;
+  margin:0; white-space:pre; overflow:auto; tab-size:2; font-size:11.5px; line-height:1.45; }
+.specwrap { margin:0; }
+.cap { color:#8b8ea0; font-size:.72rem; margin:2px 0 1px; }
+.vhead { color:#aeb2c6; font-weight:bold; font-size:.8rem; margin:0 0 4px; }
+.grid3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.diag { display:flex; flex-wrap:wrap; gap:4px; margin:4px 0; }
+.chip { display:inline-flex; align-items:center; gap:3px; border-radius:3px; padding:1px 5px;
+  font-size:.72rem; box-shadow:inset 0 0 0 1px rgba(255,255,255,.12); }
+.mark { color:#15161c; font-weight:bold; font-size:.7rem; opacity:.85; }
+.sw { display:inline-block; width:11px; height:11px; border-radius:2px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14); vertical-align:middle; margin-right:4px; }
+.bad { color:#f88; } .ok { color:#9ad; } .flag { color:#dc8; }
+.foot { color:#8b8ea0; font-size:.75rem; margin-top:2em; border-top:1px solid #2a2c38; padding-top:.6em; }
+ul.caveats { margin:.3em 0; padding-left:1.2em; } ul.caveats li { margin:.25em 0; }
+pre.mono { background:#1b1d26; padding:8px 10px; border-radius:5px; overflow:auto; white-space:pre-wrap; }
+
+body.view-normal .scope-day{--vbg:#f6f3ed;--vfg:#726d69;}
+body.view-normal .scope-day .r-bg{color:#f6f3ed}
+body.view-normal .scope-day .surface-bg{background-color:#f6f3ed}
+body.view-normal .scope-day .r-bg_elevated{color:#fdfbf7}
+body.view-normal .scope-day .surface-bg_elevated{background-color:#fdfbf7}
+body.view-normal .scope-day .r-bg_overlay{color:#ffffff}
+body.view-normal .scope-day .surface-bg_overlay{background-color:#ffffff}
+body.view-normal .scope-day .r-fg{color:#726d69}
+body.view-normal .scope-day .surface-fg{background-color:#726d69}
+body.view-normal .scope-day .r-fg_secondary{color:#736f6a}
+body.view-normal .scope-day .surface-fg_secondary{background-color:#736f6a}
+body.view-normal .scope-day .r-fg_muted{color:#918c87}
+body.view-normal .scope-day .surface-fg_muted{background-color:#918c87}
+body.view-normal .scope-day .r-comment{color:#7b6d5f}
+body.view-normal .scope-day .surface-comment{background-color:#7b6d5f}
+body.view-normal .scope-day .r-docstring{color:#7a6c5e}
+body.view-normal .scope-day .surface-docstring{background-color:#7a6c5e}
+body.view-normal .scope-day .r-punctuation{color:#6f6f6f}
+body.view-normal .scope-day .surface-punctuation{background-color:#6f6f6f}
+body.view-normal .scope-day .r-operator{color:#6e6e6e}
+body.view-normal .scope-day .surface-operator{background-color:#6e6e6e}
+body.view-normal .scope-day .r-line_number{color:#8c8c8c}
+body.view-normal .scope-day .surface-line_number{background-color:#8c8c8c}
+body.view-normal .scope-day .r-line_number_active{color:#696969}
+body.view-normal .scope-day .surface-line_number_active{background-color:#696969}
+body.view-normal .scope-day .r-ui_inactive{color:#8c8c8c}
+body.view-normal .scope-day .surface-ui_inactive{background-color:#8c8c8c}
+body.view-normal .scope-day .r-active_line{color:#ebe9e7}
+body.view-normal .scope-day .surface-active_line{background-color:#ebe9e7}
+body.view-normal .scope-day .r-selection{color:#dbe2ea}
+body.view-normal .scope-day .surface-selection{background-color:#dbe2ea}
+body.view-normal .scope-day .r-focus{color:#1e3e5f}
+body.view-normal .scope-day .surface-focus{background-color:#1e3e5f}
+body.view-normal .scope-day .r-keyword{color:#8552ae}
+body.view-normal .scope-day .surface-keyword{background-color:#8552ae}
+body.view-normal .scope-day .r-string{color:#4f7335}
+body.view-normal .scope-day .surface-string{background-color:#4f7335}
+body.view-normal .scope-day .r-number{color:#826536}
+body.view-normal .scope-day .surface-number{background-color:#826536}
+body.view-normal .scope-day .r-constant{color:#826536}
+body.view-normal .scope-day .surface-constant{background-color:#826536}
+body.view-normal .scope-day .r-type{color:#3a7272}
+body.view-normal .scope-day .surface-type{background-color:#3a7272}
+body.view-normal .scope-day .r-function{color:#214467}
+body.view-normal .scope-day .surface-function{background-color:#214467}
+body.view-normal .scope-day .r-parameter{color:#726d69}
+body.view-normal .scope-day .surface-parameter{background-color:#726d69}
+body.view-normal .scope-day .r-property{color:#6a6f75}
+body.view-normal .scope-day .surface-property{background-color:#6a6f75}
+body.view-normal .scope-day .r-builtin{color:#8b5e5e}
+body.view-normal .scope-day .surface-builtin{background-color:#8b5e5e}
+body.view-normal .scope-day .r-decorator{color:#746857}
+body.view-normal .scope-day .surface-decorator{background-color:#746857}
+body.view-normal .scope-day .r-namespace{color:#5d7272}
+body.view-normal .scope-day .surface-namespace{background-color:#5d7272}
+body.view-normal .scope-day .r-tag{color:#576c81}
+body.view-normal .scope-day .surface-tag{background-color:#576c81}
+body.view-normal .scope-day .r-error{color:#680d1e}
+body.view-normal .scope-day .surface-error{background-color:#680d1e}
+body.view-normal .scope-day .r-warning{color:#51380a}
+body.view-normal .scope-day .surface-warning{background-color:#51380a}
+body.view-normal .scope-day .r-info{color:#356899}
+body.view-normal .scope-day .surface-info{background-color:#356899}
+body.view-normal .scope-day .r-success{color:#4b6e33}
+body.view-normal .scope-day .surface-success{background-color:#4b6e33}
+body.view-normal .scope-day .r-diff_added{color:#dff0d4}
+body.view-normal .scope-day .surface-diff_added{background-color:#dff0d4}
+body.view-normal .scope-day .r-diff_removed{color:#f0e7e7}
+body.view-normal .scope-day .surface-diff_removed{background-color:#f0e7e7}
+body.view-normal .scope-day .r-diff_changed{color:#f0e8de}
+body.view-normal .scope-day .surface-diff_changed{background-color:#f0e8de}
+body.view-normal .scope-day .r-search_match{color:#f6deba}
+body.view-normal .scope-day .surface-search_match{background-color:#f6deba}
+body.view-normal .scope-day .r-search_match_current{color:#fcd291}
+body.view-normal .scope-day .surface-search_match_current{background-color:#fcd291}
+body.view-normal .scope-day .r-breakpoint{color:#730f22}
+body.view-normal .scope-day .surface-breakpoint{background-color:#730f22}
+body.view-normal .scope-day .r-debug_current{color:#f6deba}
+body.view-normal .scope-day .surface-debug_current{background-color:#f6deba}
+body.view-normal .scope-day .r-deprecated{color:#6f6f6f}
+body.view-normal .scope-day .surface-deprecated{background-color:#6f6f6f}
+body.view-protan .scope-day{--vbg:#f5f3ed;--vfg:#6f6d69;}
+body.view-protan .scope-day .r-bg{color:#f5f3ed}
+body.view-protan .scope-day .surface-bg{background-color:#f5f3ed}
+body.view-protan .scope-day .r-bg_elevated{color:#fdfbf7}
+body.view-protan .scope-day .surface-bg_elevated{background-color:#fdfbf7}
+body.view-protan .scope-day .r-bg_overlay{color:#ffffff}
+body.view-protan .scope-day .surface-bg_overlay{background-color:#ffffff}
+body.view-protan .scope-day .r-fg{color:#6f6d69}
+body.view-protan .scope-day .surface-fg{background-color:#6f6d69}
+body.view-protan .scope-day .r-fg_secondary{color:#716f6a}
+body.view-protan .scope-day .surface-fg_secondary{background-color:#716f6a}
+body.view-protan .scope-day .r-fg_muted{color:#8e8c87}
+body.view-protan .scope-day .surface-fg_muted{background-color:#8e8c87}
+body.view-protan .scope-day .r-comment{color:#736e5f}
+body.view-protan .scope-day .surface-comment{background-color:#736e5f}
+body.view-protan .scope-day .r-docstring{color:#726d5e}
+body.view-protan .scope-day .surface-docstring{background-color:#726d5e}
+body.view-protan .scope-day .r-punctuation{color:#6f6f6f}
+body.view-protan .scope-day .surface-punctuation{background-color:#6f6f6f}
+body.view-protan .scope-day .r-operator{color:#6e6e6e}
+body.view-protan .scope-day .surface-operator{background-color:#6e6e6e}
+body.view-protan .scope-day .r-line_number{color:#8c8c8c}
+body.view-protan .scope-day .surface-line_number{background-color:#8c8c8c}
+body.view-protan .scope-day .r-line_number_active{color:#696969}
+body.view-protan .scope-day .surface-line_number_active{background-color:#696969}
+body.view-protan .scope-day .r-ui_inactive{color:#8c8c8c}
+body.view-protan .scope-day .surface-ui_inactive{background-color:#8c8c8c}
+body.view-protan .scope-day .r-active_line{color:#eae9e7}
+body.view-protan .scope-day .surface-active_line{background-color:#eae9e7}
+body.view-protan .scope-day .r-selection{color:#dee2ea}
+body.view-protan .scope-day .surface-selection{background-color:#dee2ea}
+body.view-protan .scope-day .r-focus{color:#273d5f}
+body.view-protan .scope-day .surface-focus{background-color:#273d5f}
+body.view-protan .scope-day .r-keyword{color:#0060a6}
+body.view-protan .scope-day .surface-keyword{background-color:#0060a6}
+body.view-protan .scope-day .r-string{color:#7b6e35}
+body.view-protan .scope-day .surface-string{background-color:#7b6e35}
+body.view-protan .scope-day .r-number{color:#736736}
+body.view-protan .scope-day .surface-number{background-color:#736736}
+body.view-protan .scope-day .r-constant{color:#736736}
+body.view-protan .scope-day .surface-constant{background-color:#736736}
+body.view-protan .scope-day .r-type{color:#6c6e72}
+body.view-protan .scope-day .surface-type{background-color:#6c6e72}
+body.view-protan .scope-day .r-function{color:#2b4367}
+body.view-protan .scope-day .surface-function{background-color:#2b4367}
+body.view-protan .scope-day .r-parameter{color:#6f6d69}
+body.view-protan .scope-day .surface-parameter{background-color:#6f6d69}
+body.view-protan .scope-day .r-property{color:#6c6f75}
+body.view-protan .scope-day .surface-property{background-color:#6c6f75}
+body.view-protan .scope-day .r-builtin{color:#66645e}
+body.view-protan .scope-day .surface-builtin{background-color:#66645e}
+body.view-protan .scope-day .r-decorator{color:#6e6957}
+body.view-protan .scope-day .surface-decorator{background-color:#6e6957}
+body.view-protan .scope-day .r-namespace{color:#6f7072}
+body.view-protan .scope-day .surface-namespace{background-color:#6f7072}
+body.view-protan .scope-day .r-tag{color:#606b81}
+body.view-protan .scope-day .surface-tag{background-color:#606b81}
+body.view-protan .scope-day .r-error{color:#28251f}
+body.view-protan .scope-day .surface-error{background-color:#28251f}
+body.view-protan .scope-day .r-warning{color:#443a0a}
+body.view-protan .scope-day .surface-warning{background-color:#443a0a}
+body.view-protan .scope-day .r-info{color:#466799}
+body.view-protan .scope-day .surface-info{background-color:#466799}
+body.view-protan .scope-day .r-success{color:#766933}
+body.view-protan .scope-day .surface-success{background-color:#766933}
+body.view-protan .scope-day .r-diff_added{color:#f6edd4}
+body.view-protan .scope-day .surface-diff_added{background-color:#f6edd4}
+body.view-protan .scope-day .r-diff_removed{color:#e8e8e7}
+body.view-protan .scope-day .surface-diff_removed{background-color:#e8e8e7}
+body.view-protan .scope-day .r-diff_changed{color:#ece9de}
+body.view-protan .scope-day .surface-diff_changed{background-color:#ece9de}
+body.view-protan .scope-day .r-search_match{color:#ebe0ba}
+body.view-protan .scope-day .surface-search_match{background-color:#ebe0ba}
+body.view-protan .scope-day .r-search_match_current{color:#e8d591}
+body.view-protan .scope-day .surface-search_match_current{background-color:#e8d591}
+body.view-protan .scope-day .r-breakpoint{color:#2c2a23}
+body.view-protan .scope-day .surface-breakpoint{background-color:#2c2a23}
+body.view-protan .scope-day .r-debug_current{color:#ebe0ba}
+body.view-protan .scope-day .surface-debug_current{background-color:#ebe0ba}
+body.view-protan .scope-day .r-deprecated{color:#6f6f6f}
+body.view-protan .scope-day .surface-deprecated{background-color:#6f6f6f}
+body.view-deutan .scope-day{--vbg:#f5f3ed;--vfg:#706e69;}
+body.view-deutan .scope-day .r-bg{color:#f5f3ed}
+body.view-deutan .scope-day .surface-bg{background-color:#f5f3ed}
+body.view-deutan .scope-day .r-bg_elevated{color:#fdfbf7}
+body.view-deutan .scope-day .surface-bg_elevated{background-color:#fdfbf7}
+body.view-deutan .scope-day .r-bg_overlay{color:#ffffff}
+body.view-deutan .scope-day .surface-bg_overlay{background-color:#ffffff}
+body.view-deutan .scope-day .r-fg{color:#706e69}
+body.view-deutan .scope-day .surface-fg{background-color:#706e69}
+body.view-deutan .scope-day .r-fg_secondary{color:#72706a}
+body.view-deutan .scope-day .surface-fg_secondary{background-color:#72706a}
+body.view-deutan .scope-day .r-fg_muted{color:#8f8d87}
+body.view-deutan .scope-day .surface-fg_muted{background-color:#8f8d87}
+body.view-deutan .scope-day .r-comment{color:#75705f}
+body.view-deutan .scope-day .surface-comment{background-color:#75705f}
+body.view-deutan .scope-day .r-docstring{color:#746f5e}
+body.view-deutan .scope-day .surface-docstring{background-color:#746f5e}
+body.view-deutan .scope-day .r-punctuation{color:#6f6f6f}
+body.view-deutan .scope-day .surface-punctuation{background-color:#6f6f6f}
+body.view-deutan .scope-day .r-operator{color:#6e6e6e}
+body.view-deutan .scope-day .surface-operator{background-color:#6e6e6e}
+body.view-deutan .scope-day .r-line_number{color:#8c8c8c}
+body.view-deutan .scope-day .surface-line_number{background-color:#8c8c8c}
+body.view-deutan .scope-day .r-line_number_active{color:#696969}
+body.view-deutan .scope-day .surface-line_number_active{background-color:#696969}
+body.view-deutan .scope-day .r-ui_inactive{color:#8c8c8c}
+body.view-deutan .scope-day .surface-ui_inactive{background-color:#8c8c8c}
+body.view-deutan .scope-day .r-active_line{color:#eae9e7}
+body.view-deutan .scope-day .surface-active_line{background-color:#eae9e7}
+body.view-deutan .scope-day .r-selection{color:#dde1ea}
+body.view-deutan .scope-day .surface-selection{background-color:#dde1ea}
+body.view-deutan .scope-day .r-focus{color:#253d5f}
+body.view-deutan .scope-day .surface-focus{background-color:#253d5f}
+body.view-deutan .scope-day .r-keyword{color:#426fad}
+body.view-deutan .scope-day .surface-keyword{background-color:#426fad}
+body.view-deutan .scope-day .r-string{color:#726637}
+body.view-deutan .scope-day .surface-string{background-color:#726637}
+body.view-deutan .scope-day .r-number{color:#776b35}
+body.view-deutan .scope-day .surface-number{background-color:#776b35}
+body.view-deutan .scope-day .r-constant{color:#776b35}
+body.view-deutan .scope-day .surface-constant{background-color:#776b35}
+body.view-deutan .scope-day .r-type{color:#626773}
+body.view-deutan .scope-day .surface-type{background-color:#626773}
+body.view-deutan .scope-day .r-function{color:#294267}
+body.view-deutan .scope-day .surface-function{background-color:#294267}
+body.view-deutan .scope-day .r-parameter{color:#706e69}
+body.view-deutan .scope-day .surface-parameter{background-color:#706e69}
+body.view-deutan .scope-day .r-property{color:#6c6e75}
+body.view-deutan .scope-day .surface-property{background-color:#6c6e75}
+body.view-deutan .scope-day .r-builtin{color:#716c5d}
+body.view-deutan .scope-day .surface-builtin{background-color:#716c5d}
+body.view-deutan .scope-day .r-decorator{color:#706a57}
+body.view-deutan .scope-day .surface-decorator{background-color:#706a57}
+body.view-deutan .scope-day .r-namespace{color:#6b6d72}
+body.view-deutan .scope-day .surface-namespace{background-color:#6b6d72}
+body.view-deutan .scope-day .r-tag{color:#5e6a81}
+body.view-deutan .scope-day .surface-tag{background-color:#5e6a81}
+body.view-deutan .scope-day .r-error{color:#40381a}
+body.view-deutan .scope-day .surface-error{background-color:#40381a}
+body.view-deutan .scope-day .r-warning{color:#473d08}
+body.view-deutan .scope-day .surface-warning{background-color:#473d08}
+body.view-deutan .scope-day .r-info{color:#426599}
+body.view-deutan .scope-day .surface-info{background-color:#426599}
+body.view-deutan .scope-day .r-success{color:#6d6235}
+body.view-deutan .scope-day .surface-success{background-color:#6d6235}
+body.view-deutan .scope-day .r-diff_added{color:#f0e9d5}
+body.view-deutan .scope-day .surface-diff_added{background-color:#f0e9d5}
+body.view-deutan .scope-day .r-diff_removed{color:#eae9e7}
+body.view-deutan .scope-day .surface-diff_removed{background-color:#eae9e7}
+body.view-deutan .scope-day .r-diff_changed{color:#ede9de}
+body.view-deutan .scope-day .surface-diff_changed{background-color:#ede9de}
+body.view-deutan .scope-day .r-search_match{color:#eee2ba}
+body.view-deutan .scope-day .surface-search_match{background-color:#eee2ba}
+body.view-deutan .scope-day .r-search_match_current{color:#edd990}
+body.view-deutan .scope-day .surface-search_match_current{background-color:#edd990}
+body.view-deutan .scope-day .r-breakpoint{color:#473f1d}
+body.view-deutan .scope-day .surface-breakpoint{background-color:#473f1d}
+body.view-deutan .scope-day .r-debug_current{color:#eee2ba}
+body.view-deutan .scope-day .surface-debug_current{background-color:#eee2ba}
+body.view-deutan .scope-day .r-deprecated{color:#6f6f6f}
+body.view-deutan .scope-day .surface-deprecated{background-color:#6f6f6f}
+body.view-tritan .scope-day{--vbg:#f7f2f3;--vfg:#736c6d;}
+body.view-tritan .scope-day .r-bg{color:#f7f2f3}
+body.view-tritan .scope-day .surface-bg{background-color:#f7f2f3}
+body.view-tritan .scope-day .r-bg_elevated{color:#fefafb}
+body.view-tritan .scope-day .surface-bg_elevated{background-color:#fefafb}
+body.view-tritan .scope-day .r-bg_overlay{color:#ffffff}
+body.view-tritan .scope-day .surface-bg_overlay{background-color:#ffffff}
+body.view-tritan .scope-day .r-fg{color:#736c6d}
+body.view-tritan .scope-day .surface-fg{background-color:#736c6d}
+body.view-tritan .scope-day .r-fg_secondary{color:#746e6f}
+body.view-tritan .scope-day .surface-fg_secondary{background-color:#746e6f}
+body.view-tritan .scope-day .r-fg_muted{color:#928b8c}
+body.view-tritan .scope-day .surface-fg_muted{background-color:#928b8c}
+body.view-tritan .scope-day .r-comment{color:#7d6b6d}
+body.view-tritan .scope-day .surface-comment{background-color:#7d6b6d}
+body.view-tritan .scope-day .r-docstring{color:#7c6a6c}
+body.view-tritan .scope-day .surface-docstring{background-color:#7c6a6c}
+body.view-tritan .scope-day .r-punctuation{color:#6f6f6f}
+body.view-tritan .scope-day .surface-punctuation{background-color:#6f6f6f}
+body.view-tritan .scope-day .r-operator{color:#6e6e6e}
+body.view-tritan .scope-day .surface-operator{background-color:#6e6e6e}
+body.view-tritan .scope-day .r-line_number{color:#8c8c8c}
+body.view-tritan .scope-day .surface-line_number{background-color:#8c8c8c}
+body.view-tritan .scope-day .r-line_number_active{color:#696969}
+body.view-tritan .scope-day .surface-line_number_active{background-color:#696969}
+body.view-tritan .scope-day .r-ui_inactive{color:#8c8c8c}
+body.view-tritan .scope-day .surface-ui_inactive{background-color:#8c8c8c}
+body.view-tritan .scope-day .r-active_line{color:#ebe9e9}
+body.view-tritan .scope-day .surface-active_line{background-color:#ebe9e9}
+body.view-tritan .scope-day .r-selection{color:#dae3e7}
+body.view-tritan .scope-day .surface-selection{background-color:#dae3e7}
+body.view-tritan .scope-day .r-focus{color:#14424f}
+body.view-tritan .scope-day .surface-focus{background-color:#14424f}
+body.view-tritan .scope-day .r-keyword{color:#786567}
+body.view-tritan .scope-day .surface-keyword{background-color:#786567}
+body.view-tritan .scope-day .r-string{color:#5a6c73}
+body.view-tritan .scope-day .surface-string{background-color:#5a6c73}
+body.view-tritan .scope-day .r-number{color:#865f63}
+body.view-tritan .scope-day .surface-number{background-color:#865f63}
+body.view-tritan .scope-day .r-constant{color:#865f63}
+body.view-tritan .scope-day .surface-constant{background-color:#865f63}
+body.view-tritan .scope-day .r-type{color:#3f7080}
+body.view-tritan .scope-day .surface-type{background-color:#3f7080}
+body.view-tritan .scope-day .r-function{color:#164856}
+body.view-tritan .scope-day .surface-function{background-color:#164856}
+body.view-tritan .scope-day .r-parameter{color:#736c6d}
+body.view-tritan .scope-day .surface-parameter{background-color:#736c6d}
+body.view-tritan .scope-day .r-property{color:#696f72}
+body.view-tritan .scope-day .surface-property{background-color:#696f72}
+body.view-tritan .scope-day .r-builtin{color:#8b5d62}
+body.view-tritan .scope-day .surface-builtin{background-color:#8b5d62}
+body.view-tritan .scope-day .r-decorator{color:#766667}
+body.view-tritan .scope-day .surface-decorator{background-color:#766667}
+body.view-tritan .scope-day .r-namespace{color:#5e7179}
+body.view-tritan .scope-day .surface-namespace{background-color:#5e7179}
+body.view-tritan .scope-day .r-tag{color:#556e78}
+body.view-tritan .scope-day .surface-tag{background-color:#556e78}
+body.view-tritan .scope-day .r-error{color:#680c21}
+body.view-tritan .scope-day .surface-error{background-color:#680c21}
+body.view-tritan .scope-day .r-warning{color:#543437}
+body.view-tritan .scope-day .surface-warning{background-color:#543437}
+body.view-tritan .scope-day .r-info{color:#266d82}
+body.view-tritan .scope-day .surface-info{background-color:#266d82}
+body.view-tritan .scope-day .r-success{color:#55676f}
+body.view-tritan .scope-day .surface-success{background-color:#55676f}
+body.view-tritan .scope-day .r-diff_added{color:#e4ecf0}
+body.view-tritan .scope-day .surface-diff_added{background-color:#e4ecf0}
+body.view-tritan .scope-day .r-diff_removed{color:#f0e7e8}
+body.view-tritan .scope-day .surface-diff_removed{background-color:#f0e7e8}
+body.view-tritan .scope-day .r-diff_changed{color:#f1e6e7}
+body.view-tritan .scope-day .surface-diff_changed{background-color:#f1e6e7}
+body.view-tritan .scope-day .r-search_match{color:#fad9dc}
+body.view-tritan .scope-day .surface-search_match{background-color:#fad9dc}
+body.view-tritan .scope-day .r-search_match_current{color:#ffcbd0}
+body.view-tritan .scope-day .surface-search_match_current{background-color:#ffcbd0}
+body.view-tritan .scope-day .r-breakpoint{color:#730e25}
+body.view-tritan .scope-day .surface-breakpoint{background-color:#730e25}
+body.view-tritan .scope-day .r-debug_current{color:#fad9dc}
+body.view-tritan .scope-day .surface-debug_current{background-color:#fad9dc}
+body.view-tritan .scope-day .r-deprecated{color:#6f6f6f}
+body.view-tritan .scope-day .surface-deprecated{background-color:#6f6f6f}
+body.view-normal .scope-evening{--vbg:#1c1e23;--vfg:#c6c2bd;}
+body.view-normal .scope-evening .r-bg{color:#1c1e23}
+body.view-normal .scope-evening .surface-bg{background-color:#1c1e23}
+body.view-normal .scope-evening .r-bg_elevated{color:#25282d}
+body.view-normal .scope-evening .surface-bg_elevated{background-color:#25282d}
+body.view-normal .scope-evening .r-bg_overlay{color:#2c2f35}
+body.view-normal .scope-evening .surface-bg_overlay{background-color:#2c2f35}
+body.view-normal .scope-evening .r-fg{color:#c6c2bd}
+body.view-normal .scope-evening .surface-fg{background-color:#c6c2bd}
+body.view-normal .scope-evening .r-fg_secondary{color:#9b9894}
+body.view-normal .scope-evening .surface-fg_secondary{background-color:#9b9894}
+body.view-normal .scope-evening .r-fg_muted{color:#6f6d69}
+body.view-normal .scope-evening .surface-fg_muted{background-color:#6f6d69}
+body.view-normal .scope-evening .r-comment{color:#a59687}
+body.view-normal .scope-evening .surface-comment{background-color:#a59687}
+body.view-normal .scope-evening .r-docstring{color:#cfc0b0}
+body.view-normal .scope-evening .surface-docstring{background-color:#cfc0b0}
+body.view-normal .scope-evening .r-punctuation{color:#999999}
+body.view-normal .scope-evening .surface-punctuation{background-color:#999999}
+body.view-normal .scope-evening .r-operator{color:#c3c3c3}
+body.view-normal .scope-evening .surface-operator{background-color:#c3c3c3}
+body.view-normal .scope-evening .r-line_number{color:#6d6d6d}
+body.view-normal .scope-evening .surface-line_number{background-color:#6d6d6d}
+body.view-normal .scope-evening .r-line_number_active{color:#c3c3c3}
+body.view-normal .scope-evening .surface-line_number_active{background-color:#c3c3c3}
+body.view-normal .scope-evening .r-ui_inactive{color:#6d6d6d}
+body.view-normal .scope-evening .surface-ui_inactive{background-color:#6d6d6d}
+body.view-normal .scope-evening .r-active_line{color:#262524}
+body.view-normal .scope-evening .surface-active_line{background-color:#262524}
+body.view-normal .scope-evening .r-selection{color:#252c33}
+body.view-normal .scope-evening .surface-selection{background-color:#252c33}
+body.view-normal .scope-evening .r-focus{color:#cbdced}
+body.view-normal .scope-evening .surface-focus{background-color:#cbdced}
+body.view-normal .scope-evening .r-keyword{color:#d0bbe1}
+body.view-normal .scope-evening .surface-keyword{background-color:#d0bbe1}
+body.view-normal .scope-evening .r-string{color:#a5cf85}
+body.view-normal .scope-evening .surface-string{background-color:#a5cf85}
+body.view-normal .scope-evening .r-number{color:#e1bd86}
+body.view-normal .scope-evening .surface-number{background-color:#e1bd86}
+body.view-normal .scope-evening .r-constant{color:#e1bd86}
+body.view-normal .scope-evening .surface-constant{background-color:#e1bd86}
+body.view-normal .scope-evening .r-type{color:#8cceca}
+body.view-normal .scope-evening .surface-type{background-color:#8cceca}
+body.view-normal .scope-evening .r-function{color:#cbdcec}
+body.view-normal .scope-evening .surface-function{background-color:#cbdcec}
+body.view-normal .scope-evening .r-parameter{color:#c6c2bd}
+body.view-normal .scope-evening .surface-parameter{background-color:#c6c2bd}
+body.view-normal .scope-evening .r-property{color:#c0c3c5}
+body.view-normal .scope-evening .surface-property{background-color:#c0c3c5}
+body.view-normal .scope-evening .r-builtin{color:#d1bebe}
+body.view-normal .scope-evening .surface-builtin{background-color:#d1bebe}
+body.view-normal .scope-evening .r-decorator{color:#cfc1ab}
+body.view-normal .scope-evening .surface-decorator{background-color:#cfc1ab}
+body.view-normal .scope-evening .r-namespace{color:#adc8c6}
+body.view-normal .scope-evening .surface-namespace{background-color:#adc8c6}
+body.view-normal .scope-evening .r-tag{color:#b8c4cf}
+body.view-normal .scope-evening .surface-tag{background-color:#b8c4cf}
+body.view-normal .scope-evening .r-error{color:#f5d2d1}
+body.view-normal .scope-evening .surface-error{background-color:#f5d2d1}
+body.view-normal .scope-evening .r-warning{color:#f4d6a7}
+body.view-normal .scope-evening .surface-warning{background-color:#f4d6a7}
+body.view-normal .scope-evening .r-info{color:#aac6e1}
+body.view-normal .scope-evening .surface-info{background-color:#aac6e1}
+body.view-normal .scope-evening .r-success{color:#a2d081}
+body.view-normal .scope-evening .surface-success{background-color:#a2d081}
+body.view-normal .scope-evening .r-diff_added{color:#22271f}
+body.view-normal .scope-evening .surface-diff_added{background-color:#22271f}
+body.view-normal .scope-evening .r-diff_removed{color:#2f2121}
+body.view-normal .scope-evening .surface-diff_removed{background-color:#2f2121}
+body.view-normal .scope-evening .r-diff_changed{color:#28251f}
+body.view-normal .scope-evening .surface-diff_changed{background-color:#28251f}
+body.view-normal .scope-evening .r-search_match{color:#34291a}
+body.view-normal .scope-evening .surface-search_match{background-color:#34291a}
+body.view-normal .scope-evening .r-search_match_current{color:#3e2e15}
+body.view-normal .scope-evening .surface-search_match_current{background-color:#3e2e15}
+body.view-normal .scope-evening .r-breakpoint{color:#f5d2d1}
+body.view-normal .scope-evening .surface-breakpoint{background-color:#f5d2d1}
+body.view-normal .scope-evening .r-debug_current{color:#342919}
+body.view-normal .scope-evening .surface-debug_current{background-color:#342919}
+body.view-normal .scope-evening .r-deprecated{color:#999999}
+body.view-normal .scope-evening .surface-deprecated{background-color:#999999}
+body.view-protan .scope-evening{--vbg:#1c1e23;--vfg:#c4c2bd;}
+body.view-protan .scope-evening .r-bg{color:#1c1e23}
+body.view-protan .scope-evening .surface-bg{background-color:#1c1e23}
+body.view-protan .scope-evening .r-bg_elevated{color:#26282d}
+body.view-protan .scope-evening .surface-bg_elevated{background-color:#26282d}
+body.view-protan .scope-evening .r-bg_overlay{color:#2c2f35}
+body.view-protan .scope-evening .surface-bg_overlay{background-color:#2c2f35}
+body.view-protan .scope-evening .r-fg{color:#c4c2bd}
+body.view-protan .scope-evening .surface-fg{background-color:#c4c2bd}
+body.view-protan .scope-evening .r-fg_secondary{color:#9a9894}
+body.view-protan .scope-evening .surface-fg_secondary{background-color:#9a9894}
+body.view-protan .scope-evening .r-fg_muted{color:#6e6d69}
+body.view-protan .scope-evening .surface-fg_muted{background-color:#6e6d69}
+body.view-protan .scope-evening .r-comment{color:#9c9787}
+body.view-protan .scope-evening .surface-comment{background-color:#9c9787}
+body.view-protan .scope-evening .r-docstring{color:#c7c1b0}
+body.view-protan .scope-evening .surface-docstring{background-color:#c7c1b0}
+body.view-protan .scope-evening .r-punctuation{color:#999999}
+body.view-protan .scope-evening .surface-punctuation{background-color:#999999}
+body.view-protan .scope-evening .r-operator{color:#c3c3c3}
+body.view-protan .scope-evening .surface-operator{background-color:#c3c3c3}
+body.view-protan .scope-evening .r-line_number{color:#6d6d6d}
+body.view-protan .scope-evening .surface-line_number{background-color:#6d6d6d}
+body.view-protan .scope-evening .r-line_number_active{color:#c3c3c3}
+body.view-protan .scope-evening .surface-line_number_active{background-color:#c3c3c3}
+body.view-protan .scope-evening .r-ui_inactive{color:#6d6d6d}
+body.view-protan .scope-evening .surface-ui_inactive{background-color:#6d6d6d}
+body.view-protan .scope-evening .r-active_line{color:#252524}
+body.view-protan .scope-evening .surface-active_line{background-color:#252524}
+body.view-protan .scope-evening .r-selection{color:#282c33}
+body.view-protan .scope-evening .surface-selection{background-color:#282c33}
+body.view-protan .scope-evening .r-focus{color:#d3dbed}
+body.view-protan .scope-evening .surface-focus{background-color:#d3dbed}
+body.view-protan .scope-evening .r-keyword{color:#afbfe1}
+body.view-protan .scope-evening .surface-keyword{background-color:#afbfe1}
+body.view-protan .scope-evening .r-string{color:#dbc985}
+body.view-protan .scope-evening .surface-string{background-color:#dbc985}
+body.view-protan .scope-evening .r-number{color:#d0c086}
+body.view-protan .scope-evening .surface-number{background-color:#d0c086}
+body.view-protan .scope-evening .r-constant{color:#d0c086}
+body.view-protan .scope-evening .surface-constant{background-color:#d0c086}
+body.view-protan .scope-evening .r-type{color:#c7c8ca}
+body.view-protan .scope-evening .surface-type{background-color:#c7c8ca}
+body.view-protan .scope-evening .r-function{color:#d4dbec}
+body.view-protan .scope-evening .surface-function{background-color:#d4dbec}
+body.view-protan .scope-evening .r-parameter{color:#c4c2bd}
+body.view-protan .scope-evening .surface-parameter{background-color:#c4c2bd}
+body.view-protan .scope-evening .r-property{color:#c2c3c5}
+body.view-protan .scope-evening .surface-property{background-color:#c2c3c5}
+body.view-protan .scope-evening .r-builtin{color:#c1c0be}
+body.view-protan .scope-evening .surface-builtin{background-color:#c1c0be}
+body.view-protan .scope-evening .r-decorator{color:#c9c2ab}
+body.view-protan .scope-evening .surface-decorator{background-color:#c9c2ab}
+body.view-protan .scope-evening .r-namespace{color:#c5c5c6}
+body.view-protan .scope-evening .surface-namespace{background-color:#c5c5c6}
+body.view-protan .scope-evening .r-tag{color:#bec3cf}
+body.view-protan .scope-evening .surface-tag{background-color:#bec3cf}
+body.view-protan .scope-evening .r-error{color:#d8d6d1}
+body.view-protan .scope-evening .surface-error{background-color:#d8d6d1}
+body.view-protan .scope-evening .r-warning{color:#e6d8a7}
+body.view-protan .scope-evening .surface-warning{background-color:#e6d8a7}
+body.view-protan .scope-evening .r-info{color:#b7c5e1}
+body.view-protan .scope-evening .surface-info{background-color:#b7c5e1}
+body.view-protan .scope-evening .r-success{color:#dcc981}
+body.view-protan .scope-evening .surface-success{background-color:#dcc981}
+body.view-protan .scope-evening .r-diff_added{color:#28261f}
+body.view-protan .scope-evening .surface-diff_added{background-color:#28261f}
+body.view-protan .scope-evening .r-diff_removed{color:#232321}
+body.view-protan .scope-evening .surface-diff_removed{background-color:#232321}
+body.view-protan .scope-evening .r-diff_changed{color:#27251f}
+body.view-protan .scope-evening .surface-diff_changed{background-color:#27251f}
+body.view-protan .scope-evening .r-search_match{color:#2e2a1a}
+body.view-protan .scope-evening .surface-search_match{background-color:#2e2a1a}
+body.view-protan .scope-evening .r-search_match_current{color:#362f15}
+body.view-protan .scope-evening .surface-search_match_current{background-color:#362f15}
+body.view-protan .scope-evening .r-breakpoint{color:#d8d6d1}
+body.view-protan .scope-evening .surface-breakpoint{background-color:#d8d6d1}
+body.view-protan .scope-evening .r-debug_current{color:#2e2a19}
+body.view-protan .scope-evening .surface-debug_current{background-color:#2e2a19}
+body.view-protan .scope-evening .r-deprecated{color:#999999}
+body.view-protan .scope-evening .surface-deprecated{background-color:#999999}
+body.view-deutan .scope-evening{--vbg:#1c1e23;--vfg:#c5c3bd;}
+body.view-deutan .scope-evening .r-bg{color:#1c1e23}
+body.view-deutan .scope-evening .surface-bg{background-color:#1c1e23}
+body.view-deutan .scope-evening .r-bg_elevated{color:#25282d}
+body.view-deutan .scope-evening .surface-bg_elevated{background-color:#25282d}
+body.view-deutan .scope-evening .r-bg_overlay{color:#2c2f35}
+body.view-deutan .scope-evening .surface-bg_overlay{background-color:#2c2f35}
+body.view-deutan .scope-evening .r-fg{color:#c5c3bd}
+body.view-deutan .scope-evening .surface-fg{background-color:#c5c3bd}
+body.view-deutan .scope-evening .r-fg_secondary{color:#9a9894}
+body.view-deutan .scope-evening .surface-fg_secondary{background-color:#9a9894}
+body.view-deutan .scope-evening .r-fg_muted{color:#6f6d69}
+body.view-deutan .scope-evening .surface-fg_muted{background-color:#6f6d69}
+body.view-deutan .scope-evening .r-comment{color:#9f9987}
+body.view-deutan .scope-evening .surface-comment{background-color:#9f9987}
+body.view-deutan .scope-evening .r-docstring{color:#c9c3b0}
+body.view-deutan .scope-evening .surface-docstring{background-color:#c9c3b0}
+body.view-deutan .scope-evening .r-punctuation{color:#999999}
+body.view-deutan .scope-evening .surface-punctuation{background-color:#999999}
+body.view-deutan .scope-evening .r-operator{color:#c3c3c3}
+body.view-deutan .scope-evening .surface-operator{background-color:#c3c3c3}
+body.view-deutan .scope-evening .r-line_number{color:#6d6d6d}
+body.view-deutan .scope-evening .surface-line_number{background-color:#6d6d6d}
+body.view-deutan .scope-evening .r-line_number_active{color:#c3c3c3}
+body.view-deutan .scope-evening .surface-line_number_active{background-color:#c3c3c3}
+body.view-deutan .scope-evening .r-ui_inactive{color:#6d6d6d}
+body.view-deutan .scope-evening .surface-ui_inactive{background-color:#6d6d6d}
+body.view-deutan .scope-evening .r-active_line{color:#262524}
+body.view-deutan .scope-evening .surface-active_line{background-color:#262524}
+body.view-deutan .scope-evening .r-selection{color:#272b33}
+body.view-deutan .scope-evening .surface-selection{background-color:#272b33}
+body.view-deutan .scope-evening .r-focus{color:#d1daed}
+body.view-deutan .scope-evening .surface-focus{background-color:#d1daed}
+body.view-deutan .scope-evening .r-keyword{color:#b8c5e0}
+body.view-deutan .scope-evening .surface-keyword{background-color:#b8c5e0}
+body.view-deutan .scope-evening .r-string{color:#cfbf87}
+body.view-deutan .scope-evening .surface-string{background-color:#cfbf87}
+body.view-deutan .scope-evening .r-number{color:#d4c385}
+body.view-deutan .scope-evening .surface-number{background-color:#d4c385}
+body.view-deutan .scope-evening .r-constant{color:#d4c385}
+body.view-deutan .scope-evening .surface-constant{background-color:#d4c385}
+body.view-deutan .scope-evening .r-type{color:#babfcb}
+body.view-deutan .scope-evening .surface-type{background-color:#babfcb}
+body.view-deutan .scope-evening .r-function{color:#d1daec}
+body.view-deutan .scope-evening .surface-function{background-color:#d1daec}
+body.view-deutan .scope-evening .r-parameter{color:#c5c3bd}
+body.view-deutan .scope-evening .surface-parameter{background-color:#c5c3bd}
+body.view-deutan .scope-evening .r-property{color:#c1c2c5}
+body.view-deutan .scope-evening .surface-property{background-color:#c1c2c5}
+body.view-deutan .scope-evening .r-builtin{color:#c5c3be}
+body.view-deutan .scope-evening .surface-builtin{background-color:#c5c3be}
+body.view-deutan .scope-evening .r-decorator{color:#cbc3ab}
+body.view-deutan .scope-evening .surface-decorator{background-color:#cbc3ab}
+body.view-deutan .scope-evening .r-namespace{color:#bfc1c7}
+body.view-deutan .scope-evening .surface-namespace{background-color:#bfc1c7}
+body.view-deutan .scope-evening .r-tag{color:#bdc2cf}
+body.view-deutan .scope-evening .surface-tag{background-color:#bdc2cf}
+body.view-deutan .scope-evening .r-error{color:#e0dcd0}
+body.view-deutan .scope-evening .surface-error{background-color:#e0dcd0}
+body.view-deutan .scope-evening .r-warning{color:#eadba6}
+body.view-deutan .scope-evening .surface-warning{background-color:#eadba6}
+body.view-deutan .scope-evening .r-info{color:#b4c2e1}
+body.view-deutan .scope-evening .surface-info{background-color:#b4c2e1}
+body.view-deutan .scope-evening .r-success{color:#cfbf83}
+body.view-deutan .scope-evening .surface-success{background-color:#cfbf83}
+body.view-deutan .scope-evening .r-diff_added{color:#27251f}
+body.view-deutan .scope-evening .surface-diff_added{background-color:#27251f}
+body.view-deutan .scope-evening .r-diff_removed{color:#272521}
+body.view-deutan .scope-evening .surface-diff_removed{background-color:#272521}
+body.view-deutan .scope-evening .r-diff_changed{color:#27251f}
+body.view-deutan .scope-evening .surface-diff_changed{background-color:#27251f}
+body.view-deutan .scope-evening .r-search_match{color:#302b1a}
+body.view-deutan .scope-evening .surface-search_match{background-color:#302b1a}
+body.view-deutan .scope-evening .r-search_match_current{color:#383114}
+body.view-deutan .scope-evening .surface-search_match_current{background-color:#383114}
+body.view-deutan .scope-evening .r-breakpoint{color:#e0dcd0}
+body.view-deutan .scope-evening .surface-breakpoint{background-color:#e0dcd0}
+body.view-deutan .scope-evening .r-debug_current{color:#302b19}
+body.view-deutan .scope-evening .surface-debug_current{background-color:#302b19}
+body.view-deutan .scope-evening .r-deprecated{color:#999999}
+body.view-deutan .scope-evening .surface-deprecated{background-color:#999999}
+body.view-tritan .scope-evening{--vbg:#1b1f20;--vfg:#c7c1c2;}
+body.view-tritan .scope-evening .r-bg{color:#1b1f20}
+body.view-tritan .scope-evening .surface-bg{background-color:#1b1f20}
+body.view-tritan .scope-evening .r-bg_elevated{color:#24282a}
+body.view-tritan .scope-evening .surface-bg_elevated{background-color:#24282a}
+body.view-tritan .scope-evening .r-bg_overlay{color:#2b3032}
+body.view-tritan .scope-evening .surface-bg_overlay{background-color:#2b3032}
+body.view-tritan .scope-evening .r-fg{color:#c7c1c2}
+body.view-tritan .scope-evening .surface-fg{background-color:#c7c1c2}
+body.view-tritan .scope-evening .r-fg_secondary{color:#9c9798}
+body.view-tritan .scope-evening .surface-fg_secondary{background-color:#9c9798}
+body.view-tritan .scope-evening .r-fg_muted{color:#706c6d}
+body.view-tritan .scope-evening .surface-fg_muted{background-color:#706c6d}
+body.view-tritan .scope-evening .r-comment{color:#a79496}
+body.view-tritan .scope-evening .surface-comment{background-color:#a79496}
+body.view-tritan .scope-evening .r-docstring{color:#d1bebf}
+body.view-tritan .scope-evening .surface-docstring{background-color:#d1bebf}
+body.view-tritan .scope-evening .r-punctuation{color:#999999}
+body.view-tritan .scope-evening .surface-punctuation{background-color:#999999}
+body.view-tritan .scope-evening .r-operator{color:#c3c3c3}
+body.view-tritan .scope-evening .surface-operator{background-color:#c3c3c3}
+body.view-tritan .scope-evening .r-line_number{color:#6d6d6d}
+body.view-tritan .scope-evening .surface-line_number{background-color:#6d6d6d}
+body.view-tritan .scope-evening .r-line_number_active{color:#c3c3c3}
+body.view-tritan .scope-evening .surface-line_number_active{background-color:#c3c3c3}
+body.view-tritan .scope-evening .r-ui_inactive{color:#6d6d6d}
+body.view-tritan .scope-evening .surface-ui_inactive{background-color:#6d6d6d}
+body.view-tritan .scope-evening .r-active_line{color:#262525}
+body.view-tritan .scope-evening .surface-active_line{background-color:#262525}
+body.view-tritan .scope-evening .r-selection{color:#242d30}
+body.view-tritan .scope-evening .surface-selection{background-color:#242d30}
+body.view-tritan .scope-evening .r-focus{color:#cadde6}
+body.view-tritan .scope-evening .surface-focus{background-color:#cadde6}
+body.view-tritan .scope-evening .r-keyword{color:#cbc1c2}
+body.view-tritan .scope-evening .surface-keyword{background-color:#cbc1c2}
+body.view-tritan .scope-evening .r-string{color:#b1c5ce}
+body.view-tritan .scope-evening .surface-string{background-color:#b1c5ce}
+body.view-tritan .scope-evening .r-number{color:#e7b6bb}
+body.view-tritan .scope-evening .surface-number{background-color:#e7b6bb}
+body.view-tritan .scope-evening .r-constant{color:#e7b6bb}
+body.view-tritan .scope-evening .surface-constant{background-color:#e7b6bb}
+body.view-tritan .scope-evening .r-type{color:#92cae0}
+body.view-tritan .scope-evening .surface-type{background-color:#92cae0}
+body.view-tritan .scope-evening .r-function{color:#cadde6}
+body.view-tritan .scope-evening .surface-function{background-color:#cadde6}
+body.view-tritan .scope-evening .r-parameter{color:#c7c1c2}
+body.view-tritan .scope-evening .surface-parameter{background-color:#c7c1c2}
+body.view-tritan .scope-evening .r-property{color:#c0c3c5}
+body.view-tritan .scope-evening .surface-property{background-color:#c0c3c5}
+body.view-tritan .scope-evening .r-builtin{color:#d1bec0}
+body.view-tritan .scope-evening .surface-builtin{background-color:#d1bec0}
+body.view-tritan .scope-evening .r-decorator{color:#d2bec0}
+body.view-tritan .scope-evening .surface-decorator{background-color:#d2bec0}
+body.view-tritan .scope-evening .r-namespace{color:#afc6d1}
+body.view-tritan .scope-evening .surface-namespace{background-color:#afc6d1}
+body.view-tritan .scope-evening .r-tag{color:#b7c5cb}
+body.view-tritan .scope-evening .surface-tag{background-color:#b7c5cb}
+body.view-tritan .scope-evening .r-error{color:#f6d1d5}
+body.view-tritan .scope-evening .surface-error{background-color:#f6d1d5}
+body.view-tritan .scope-evening .r-warning{color:#f9d0d4}
+body.view-tritan .scope-evening .surface-warning{background-color:#f9d0d4}
+body.view-tritan .scope-evening .r-info{color:#a7c8d6}
+body.view-tritan .scope-evening .surface-info{background-color:#a7c8d6}
+body.view-tritan .scope-evening .r-success{color:#afc6d0}
+body.view-tritan .scope-evening .surface-success{background-color:#afc6d0}
+body.view-tritan .scope-evening .r-diff_added{color:#232627}
+body.view-tritan .scope-evening .surface-diff_added{background-color:#232627}
+body.view-tritan .scope-evening .r-diff_removed{color:#2f2122}
+body.view-tritan .scope-evening .surface-diff_removed{background-color:#2f2122}
+body.view-tritan .scope-evening .r-diff_changed{color:#292425}
+body.view-tritan .scope-evening .surface-diff_changed{background-color:#292425}
+body.view-tritan .scope-evening .r-search_match{color:#362728}
+body.view-tritan .scope-evening .surface-search_match{background-color:#362728}
+body.view-tritan .scope-evening .r-search_match_current{color:#402b2d}
+body.view-tritan .scope-evening .surface-search_match_current{background-color:#402b2d}
+body.view-tritan .scope-evening .r-breakpoint{color:#f6d1d5}
+body.view-tritan .scope-evening .surface-breakpoint{background-color:#f6d1d5}
+body.view-tritan .scope-evening .r-debug_current{color:#362728}
+body.view-tritan .scope-evening .surface-debug_current{background-color:#362728}
+body.view-tritan .scope-evening .r-deprecated{color:#999999}
+body.view-tritan .scope-evening .surface-deprecated{background-color:#999999}
+body.view-normal .scope-night{--vbg:#191714;--vfg:#c4c1bd;}
+body.view-normal .scope-night .r-bg{color:#191714}
+body.view-normal .scope-night .surface-bg{background-color:#191714}
+body.view-normal .scope-night .r-bg_elevated{color:#211e1b}
+body.view-normal .scope-night .surface-bg_elevated{background-color:#211e1b}
+body.view-normal .scope-night .r-bg_overlay{color:#282521}
+body.view-normal .scope-night .surface-bg_overlay{background-color:#282521}
+body.view-normal .scope-night .r-fg{color:#c4c1bd}
+body.view-normal .scope-night .surface-fg{background-color:#c4c1bd}
+body.view-normal .scope-night .r-fg_secondary{color:#999794}
+body.view-normal .scope-night .surface-fg_secondary{background-color:#999794}
+body.view-normal .scope-night .r-fg_muted{color:#6d6b68}
+body.view-normal .scope-night .surface-fg_muted{background-color:#6d6b68}
+body.view-normal .scope-night .r-comment{color:#a0968a}
+body.view-normal .scope-night .surface-comment{background-color:#a0968a}
+body.view-normal .scope-night .r-docstring{color:#cbbfb3}
+body.view-normal .scope-night .surface-docstring{background-color:#cbbfb3}
+body.view-normal .scope-night .r-punctuation{color:#979797}
+body.view-normal .scope-night .surface-punctuation{background-color:#979797}
+body.view-normal .scope-night .r-operator{color:#c1c1c1}
+body.view-normal .scope-night .surface-operator{background-color:#c1c1c1}
+body.view-normal .scope-night .r-line_number{color:#6b6b6b}
+body.view-normal .scope-night .surface-line_number{background-color:#6b6b6b}
+body.view-normal .scope-night .r-line_number_active{color:#c1c1c1}
+body.view-normal .scope-night .surface-line_number_active{background-color:#c1c1c1}
+body.view-normal .scope-night .r-ui_inactive{color:#6b6b6b}
+body.view-normal .scope-night .surface-ui_inactive{background-color:#6b6b6b}
+body.view-normal .scope-night .r-active_line{color:#1f1e1d}
+body.view-normal .scope-night .surface-active_line{background-color:#1f1e1d}
+body.view-normal .scope-night .r-selection{color:#202529}
+body.view-normal .scope-night .surface-selection{background-color:#202529}
+body.view-normal .scope-night .r-focus{color:#cbdbea}
+body.view-normal .scope-night .surface-focus{background-color:#cbdbea}
+body.view-normal .scope-night .r-keyword{color:#cdbada}
+body.view-normal .scope-night .surface-keyword{background-color:#cdbada}
+body.view-normal .scope-night .r-string{color:#aeca93}
+body.view-normal .scope-night .surface-string{background-color:#aeca93}
+body.view-normal .scope-night .r-number{color:#d9bd95}
+body.view-normal .scope-night .surface-number{background-color:#d9bd95}
+body.view-normal .scope-night .r-constant{color:#d9bd95}
+body.view-normal .scope-night .surface-constant{background-color:#d9bd95}
+body.view-normal .scope-night .r-type{color:#99cbc5}
+body.view-normal .scope-night .surface-type{background-color:#99cbc5}
+body.view-normal .scope-night .r-function{color:#cbdae7}
+body.view-normal .scope-night .surface-function{background-color:#cbdae7}
+body.view-normal .scope-night .r-parameter{color:#c4c1bd}
+body.view-normal .scope-night .surface-parameter{background-color:#c4c1bd}
+body.view-normal .scope-night .r-property{color:#bfc2c3}
+body.view-normal .scope-night .surface-property{background-color:#bfc2c3}
+body.view-normal .scope-night .r-builtin{color:#ccbebd}
+body.view-normal .scope-night .surface-builtin{background-color:#ccbebd}
+body.view-normal .scope-night .r-decorator{color:#cbc0af}
+body.view-normal .scope-night .surface-decorator{background-color:#cbc0af}
+body.view-normal .scope-night .r-namespace{color:#b1c5c2}
+body.view-normal .scope-night .surface-namespace{background-color:#b1c5c2}
+body.view-normal .scope-night .r-tag{color:#b9c2cb}
+body.view-normal .scope-night .surface-tag{background-color:#b9c2cb}
+body.view-normal .scope-night .r-error{color:#f2cdcd}
+body.view-normal .scope-night .surface-error{background-color:#f2cdcd}
+body.view-normal .scope-night .r-warning{color:#f0d3a7}
+body.view-normal .scope-night .surface-warning{background-color:#f0d3a7}
+body.view-normal .scope-night .r-info{color:#aac4db}
+body.view-normal .scope-night .surface-info{background-color:#aac4db}
+body.view-normal .scope-night .r-success{color:#a8cc8b}
+body.view-normal .scope-night .surface-success{background-color:#a8cc8b}
+body.view-normal .scope-night .r-diff_added{color:#1c1f1a}
+body.view-normal .scope-night .surface-diff_added{background-color:#1c1f1a}
+body.view-normal .scope-night .r-diff_removed{color:#261b1b}
+body.view-normal .scope-night .surface-diff_removed{background-color:#261b1b}
+body.view-normal .scope-night .r-diff_changed{color:#201e19}
+body.view-normal .scope-night .surface-diff_changed{background-color:#201e19}
+body.view-normal .scope-night .r-search_match{color:#2b2317}
+body.view-normal .scope-night .surface-search_match{background-color:#2b2317}
+body.view-normal .scope-night .r-search_match_current{color:#342815}
+body.view-normal .scope-night .surface-search_match_current{background-color:#342815}
+body.view-normal .scope-night .r-breakpoint{color:#f2d1d0}
+body.view-normal .scope-night .surface-breakpoint{background-color:#f2d1d0}
+body.view-normal .scope-night .r-debug_current{color:#2b2316}
+body.view-normal .scope-night .surface-debug_current{background-color:#2b2316}
+body.view-normal .scope-night .r-deprecated{color:#979797}
+body.view-normal .scope-night .surface-deprecated{background-color:#979797}
+body.view-protan .scope-night{--vbg:#181714;--vfg:#c3c1bd;}
+body.view-protan .scope-night .r-bg{color:#181714}
+body.view-protan .scope-night .surface-bg{background-color:#181714}
+body.view-protan .scope-night .r-bg_elevated{color:#1f1e1b}
+body.view-protan .scope-night .surface-bg_elevated{background-color:#1f1e1b}
+body.view-protan .scope-night .r-bg_overlay{color:#272521}
+body.view-protan .scope-night .surface-bg_overlay{background-color:#272521}
+body.view-protan .scope-night .r-fg{color:#c3c1bd}
+body.view-protan .scope-night .surface-fg{background-color:#c3c1bd}
+body.view-protan .scope-night .r-fg_secondary{color:#989794}
+body.view-protan .scope-night .surface-fg_secondary{background-color:#989794}
+body.view-protan .scope-night .r-fg_muted{color:#6c6b68}
+body.view-protan .scope-night .surface-fg_muted{background-color:#6c6b68}
+body.view-protan .scope-night .r-comment{color:#9b978a}
+body.view-protan .scope-night .surface-comment{background-color:#9b978a}
+body.view-protan .scope-night .r-docstring{color:#c4c0b3}
+body.view-protan .scope-night .surface-docstring{background-color:#c4c0b3}
+body.view-protan .scope-night .r-punctuation{color:#979797}
+body.view-protan .scope-night .surface-punctuation{background-color:#979797}
+body.view-protan .scope-night .r-operator{color:#c1c1c1}
+body.view-protan .scope-night .surface-operator{background-color:#c1c1c1}
+body.view-protan .scope-night .r-line_number{color:#6b6b6b}
+body.view-protan .scope-night .surface-line_number{background-color:#6b6b6b}
+body.view-protan .scope-night .r-line_number_active{color:#c1c1c1}
+body.view-protan .scope-night .surface-line_number_active{background-color:#c1c1c1}
+body.view-protan .scope-night .r-ui_inactive{color:#6b6b6b}
+body.view-protan .scope-night .surface-ui_inactive{background-color:#6b6b6b}
+body.view-protan .scope-night .r-active_line{color:#1e1e1d}
+body.view-protan .scope-night .surface-active_line{background-color:#1e1e1d}
+body.view-protan .scope-night .r-selection{color:#232529}
+body.view-protan .scope-night .surface-selection{background-color:#232529}
+body.view-protan .scope-night .r-focus{color:#d3daea}
+body.view-protan .scope-night .surface-focus{background-color:#d3daea}
+body.view-protan .scope-night .r-keyword{color:#b0beda}
+body.view-protan .scope-night .surface-keyword{background-color:#b0beda}
+body.view-protan .scope-night .r-string{color:#d4c593}
+body.view-protan .scope-night .surface-string{background-color:#d4c593}
+body.view-protan .scope-night .r-number{color:#cbbf95}
+body.view-protan .scope-night .surface-number{background-color:#cbbf95}
+body.view-protan .scope-night .r-constant{color:#cbbf95}
+body.view-protan .scope-night .surface-constant{background-color:#cbbf95}
+body.view-protan .scope-night .r-type{color:#c7c6c5}
+body.view-protan .scope-night .surface-type{background-color:#c7c6c5}
+body.view-protan .scope-night .r-function{color:#d3d9e7}
+body.view-protan .scope-night .surface-function{background-color:#d3d9e7}
+body.view-protan .scope-night .r-parameter{color:#c3c1bd}
+body.view-protan .scope-night .surface-parameter{background-color:#c3c1bd}
+body.view-protan .scope-night .r-property{color:#c1c2c3}
+body.view-protan .scope-night .surface-property{background-color:#c1c2c3}
+body.view-protan .scope-night .r-builtin{color:#c0c0bd}
+body.view-protan .scope-night .surface-builtin{background-color:#c0c0bd}
+body.view-protan .scope-night .r-decorator{color:#c6c1af}
+body.view-protan .scope-night .surface-decorator{background-color:#c6c1af}
+body.view-protan .scope-night .r-namespace{color:#c3c3c2}
+body.view-protan .scope-night .surface-namespace{background-color:#c3c3c2}
+body.view-protan .scope-night .r-tag{color:#bdc1cb}
+body.view-protan .scope-night .surface-tag{background-color:#bdc1cb}
+body.view-protan .scope-night .r-error{color:#d3d1cd}
+body.view-protan .scope-night .surface-error{background-color:#d3d1cd}
+body.view-protan .scope-night .r-warning{color:#e3d5a7}
+body.view-protan .scope-night .surface-warning{background-color:#e3d5a7}
+body.view-protan .scope-night .r-info{color:#b7c3db}
+body.view-protan .scope-night .surface-info{background-color:#b7c3db}
+body.view-protan .scope-night .r-success{color:#d7c68b}
+body.view-protan .scope-night .surface-success{background-color:#d7c68b}
+body.view-protan .scope-night .r-diff_added{color:#201f1a}
+body.view-protan .scope-night .surface-diff_added{background-color:#201f1a}
+body.view-protan .scope-night .r-diff_removed{color:#1d1c1b}
+body.view-protan .scope-night .surface-diff_removed{background-color:#1d1c1b}
+body.view-protan .scope-night .r-diff_changed{color:#201e19}
+body.view-protan .scope-night .surface-diff_changed{background-color:#201e19}
+body.view-protan .scope-night .r-search_match{color:#272417}
+body.view-protan .scope-night .surface-search_match{background-color:#272417}
+body.view-protan .scope-night .r-search_match_current{color:#2e2915}
+body.view-protan .scope-night .surface-search_match_current{background-color:#2e2915}
+body.view-protan .scope-night .r-breakpoint{color:#d7d5d0}
+body.view-protan .scope-night .surface-breakpoint{background-color:#d7d5d0}
+body.view-protan .scope-night .r-debug_current{color:#272416}
+body.view-protan .scope-night .surface-debug_current{background-color:#272416}
+body.view-protan .scope-night .r-deprecated{color:#979797}
+body.view-protan .scope-night .surface-deprecated{background-color:#979797}
+body.view-deutan .scope-night{--vbg:#181714;--vfg:#c3c1bd;}
+body.view-deutan .scope-night .r-bg{color:#181714}
+body.view-deutan .scope-night .surface-bg{background-color:#181714}
+body.view-deutan .scope-night .r-bg_elevated{color:#201f1b}
+body.view-deutan .scope-night .surface-bg_elevated{background-color:#201f1b}
+body.view-deutan .scope-night .r-bg_overlay{color:#272521}
+body.view-deutan .scope-night .surface-bg_overlay{background-color:#272521}
+body.view-deutan .scope-night .r-fg{color:#c3c1bd}
+body.view-deutan .scope-night .surface-fg{background-color:#c3c1bd}
+body.view-deutan .scope-night .r-fg_secondary{color:#989794}
+body.view-deutan .scope-night .surface-fg_secondary{background-color:#989794}
+body.view-deutan .scope-night .r-fg_muted{color:#6c6b68}
+body.view-deutan .scope-night .surface-fg_muted{background-color:#6c6b68}
+body.view-deutan .scope-night .r-comment{color:#9c988a}
+body.view-deutan .scope-night .surface-comment{background-color:#9c988a}
+body.view-deutan .scope-night .r-docstring{color:#c6c1b3}
+body.view-deutan .scope-night .surface-docstring{background-color:#c6c1b3}
+body.view-deutan .scope-night .r-punctuation{color:#979797}
+body.view-deutan .scope-night .surface-punctuation{background-color:#979797}
+body.view-deutan .scope-night .r-operator{color:#c1c1c1}
+body.view-deutan .scope-night .surface-operator{background-color:#c1c1c1}
+body.view-deutan .scope-night .r-line_number{color:#6b6b6b}
+body.view-deutan .scope-night .surface-line_number{background-color:#6b6b6b}
+body.view-deutan .scope-night .r-line_number_active{color:#c1c1c1}
+body.view-deutan .scope-night .surface-line_number_active{background-color:#c1c1c1}
+body.view-deutan .scope-night .r-ui_inactive{color:#6b6b6b}
+body.view-deutan .scope-night .surface-ui_inactive{background-color:#6b6b6b}
+body.view-deutan .scope-night .r-active_line{color:#1f1e1d}
+body.view-deutan .scope-night .surface-active_line{background-color:#1f1e1d}
+body.view-deutan .scope-night .r-selection{color:#222429}
+body.view-deutan .scope-night .surface-selection{background-color:#222429}
+body.view-deutan .scope-night .r-focus{color:#d1d9ea}
+body.view-deutan .scope-night .surface-focus{background-color:#d1d9ea}
+body.view-deutan .scope-night .r-keyword{color:#b8c3d9}
+body.view-deutan .scope-night .surface-keyword{background-color:#b8c3d9}
+body.view-deutan .scope-night .r-string{color:#cbbf94}
+body.view-deutan .scope-night .surface-string{background-color:#cbbf94}
+body.view-deutan .scope-night .r-number{color:#cfc295}
+body.view-deutan .scope-night .surface-number{background-color:#cfc295}
+body.view-deutan .scope-night .r-constant{color:#cfc295}
+body.view-deutan .scope-night .surface-constant{background-color:#cfc295}
+body.view-deutan .scope-night .r-type{color:#bcbfc6}
+body.view-deutan .scope-night .surface-type{background-color:#bcbfc6}
+body.view-deutan .scope-night .r-function{color:#d1d8e7}
+body.view-deutan .scope-night .surface-function{background-color:#d1d8e7}
+body.view-deutan .scope-night .r-parameter{color:#c3c1bd}
+body.view-deutan .scope-night .surface-parameter{background-color:#c3c1bd}
+body.view-deutan .scope-night .r-property{color:#c1c1c3}
+body.view-deutan .scope-night .surface-property{background-color:#c1c1c3}
+body.view-deutan .scope-night .r-builtin{color:#c3c2bd}
+body.view-deutan .scope-night .surface-builtin{background-color:#c3c2bd}
+body.view-deutan .scope-night .r-decorator{color:#c8c1af}
+body.view-deutan .scope-night .surface-decorator{background-color:#c8c1af}
+body.view-deutan .scope-night .r-namespace{color:#bfc0c2}
+body.view-deutan .scope-night .surface-namespace{background-color:#bfc0c2}
+body.view-deutan .scope-night .r-tag{color:#bcc1cb}
+body.view-deutan .scope-night .surface-tag{background-color:#bcc1cb}
+body.view-deutan .scope-night .r-error{color:#dbd8cc}
+body.view-deutan .scope-night .surface-error{background-color:#dbd8cc}
+body.view-deutan .scope-night .r-warning{color:#e6d8a7}
+body.view-deutan .scope-night .surface-warning{background-color:#e6d8a7}
+body.view-deutan .scope-night .r-info{color:#b4c0db}
+body.view-deutan .scope-night .surface-info{background-color:#b4c0db}
+body.view-deutan .scope-night .r-success{color:#ccbe8d}
+body.view-deutan .scope-night .surface-success{background-color:#ccbe8d}
+body.view-deutan .scope-night .r-diff_added{color:#1f1e1a}
+body.view-deutan .scope-night .surface-diff_added{background-color:#1f1e1a}
+body.view-deutan .scope-night .r-diff_removed{color:#1f1e1b}
+body.view-deutan .scope-night .surface-diff_removed{background-color:#1f1e1b}
+body.view-deutan .scope-night .r-diff_changed{color:#201e19}
+body.view-deutan .scope-night .surface-diff_changed{background-color:#201e19}
+body.view-deutan .scope-night .r-search_match{color:#282417}
+body.view-deutan .scope-night .surface-search_match{background-color:#282417}
+body.view-deutan .scope-night .r-search_match_current{color:#302a15}
+body.view-deutan .scope-night .surface-search_match_current{background-color:#302a15}
+body.view-deutan .scope-night .r-breakpoint{color:#dedacf}
+body.view-deutan .scope-night .surface-breakpoint{background-color:#dedacf}
+body.view-deutan .scope-night .r-debug_current{color:#282416}
+body.view-deutan .scope-night .surface-debug_current{background-color:#282416}
+body.view-deutan .scope-night .r-deprecated{color:#979797}
+body.view-deutan .scope-night .surface-deprecated{background-color:#979797}
+body.view-tritan .scope-night{--vbg:#191717;--vfg:#c5c0c1;}
+body.view-tritan .scope-night .r-bg{color:#191717}
+body.view-tritan .scope-night .surface-bg{background-color:#191717}
+body.view-tritan .scope-night .r-bg_elevated{color:#211e1e}
+body.view-tritan .scope-night .surface-bg_elevated{background-color:#211e1e}
+body.view-tritan .scope-night .r-bg_overlay{color:#292425}
+body.view-tritan .scope-night .surface-bg_overlay{background-color:#292425}
+body.view-tritan .scope-night .r-fg{color:#c5c0c1}
+body.view-tritan .scope-night .surface-fg{background-color:#c5c0c1}
+body.view-tritan .scope-night .r-fg_secondary{color:#999797}
+body.view-tritan .scope-night .surface-fg_secondary{background-color:#999797}
+body.view-tritan .scope-night .r-fg_muted{color:#6d6b6b}
+body.view-tritan .scope-night .surface-fg_muted{background-color:#6d6b6b}
+body.view-tritan .scope-night .r-comment{color:#a29495}
+body.view-tritan .scope-night .surface-comment{background-color:#a29495}
+body.view-tritan .scope-night .r-docstring{color:#cdbdbf}
+body.view-tritan .scope-night .surface-docstring{background-color:#cdbdbf}
+body.view-tritan .scope-night .r-punctuation{color:#979797}
+body.view-tritan .scope-night .surface-punctuation{background-color:#979797}
+body.view-tritan .scope-night .r-operator{color:#c1c1c1}
+body.view-tritan .scope-night .surface-operator{background-color:#c1c1c1}
+body.view-tritan .scope-night .r-line_number{color:#6b6b6b}
+body.view-tritan .scope-night .surface-line_number{background-color:#6b6b6b}
+body.view-tritan .scope-night .r-line_number_active{color:#c1c1c1}
+body.view-tritan .scope-night .surface-line_number_active{background-color:#c1c1c1}
+body.view-tritan .scope-night .r-ui_inactive{color:#6b6b6b}
+body.view-tritan .scope-night .surface-ui_inactive{background-color:#6b6b6b}
+body.view-tritan .scope-night .r-active_line{color:#1f1e1e}
+body.view-tritan .scope-night .surface-active_line{background-color:#1f1e1e}
+body.view-tritan .scope-night .r-selection{color:#202528}
+body.view-tritan .scope-night .surface-selection{background-color:#202528}
+body.view-tritan .scope-night .r-focus{color:#cadce4}
+body.view-tritan .scope-night .surface-focus{background-color:#cadce4}
+body.view-tritan .scope-night .r-keyword{color:#c9bfc0}
+body.view-tritan .scope-night .surface-keyword{background-color:#c9bfc0}
+body.view-tritan .scope-night .r-string{color:#b7c3c8}
+body.view-tritan .scope-night .surface-string{background-color:#b7c3c8}
+body.view-tritan .scope-night .r-number{color:#deb8bb}
+body.view-tritan .scope-night .surface-number{background-color:#deb8bb}
+body.view-tritan .scope-night .r-constant{color:#deb8bb}
+body.view-tritan .scope-night .surface-constant{background-color:#deb8bb}
+body.view-tritan .scope-night .r-type{color:#9ec8d9}
+body.view-tritan .scope-night .surface-type{background-color:#9ec8d9}
+body.view-tritan .scope-night .r-function{color:#cadbe3}
+body.view-tritan .scope-night .surface-function{background-color:#cadbe3}
+body.view-tritan .scope-night .r-parameter{color:#c5c0c1}
+body.view-tritan .scope-night .surface-parameter{background-color:#c5c0c1}
+body.view-tritan .scope-night .r-property{color:#bfc2c3}
+body.view-tritan .scope-night .surface-property{background-color:#bfc2c3}
+body.view-tritan .scope-night .r-builtin{color:#ccbebf}
+body.view-tritan .scope-night .surface-builtin{background-color:#ccbebf}
+body.view-tritan .scope-night .r-decorator{color:#cdbebf}
+body.view-tritan .scope-night .surface-decorator{background-color:#cdbebf}
+body.view-tritan .scope-night .r-namespace{color:#b3c3cb}
+body.view-tritan .scope-night .surface-namespace{background-color:#b3c3cb}
+body.view-tritan .scope-night .r-tag{color:#b8c3c7}
+body.view-tritan .scope-night .surface-tag{background-color:#b8c3c7}
+body.view-tritan .scope-night .r-error{color:#f2ccd0}
+body.view-tritan .scope-night .surface-error{background-color:#f2ccd0}
+body.view-tritan .scope-night .r-warning{color:#f5cdd1}
+body.view-tritan .scope-night .surface-warning{background-color:#f5cdd1}
+body.view-tritan .scope-night .r-info{color:#a8c6d2}
+body.view-tritan .scope-night .surface-info{background-color:#a8c6d2}
+body.view-tritan .scope-night .r-success{color:#b3c3cb}
+body.view-tritan .scope-night .surface-success{background-color:#b3c3cb}
+body.view-tritan .scope-night .r-diff_added{color:#1d1e1f}
+body.view-tritan .scope-night .surface-diff_added{background-color:#1d1e1f}
+body.view-tritan .scope-night .r-diff_removed{color:#261b1c}
+body.view-tritan .scope-night .surface-diff_removed{background-color:#261b1c}
+body.view-tritan .scope-night .r-diff_changed{color:#211d1e}
+body.view-tritan .scope-night .surface-diff_changed{background-color:#211d1e}
+body.view-tritan .scope-night .r-search_match{color:#2c2122}
+body.view-tritan .scope-night .surface-search_match{background-color:#2c2122}
+body.view-tritan .scope-night .r-search_match_current{color:#362627}
+body.view-tritan .scope-night .surface-search_match_current{background-color:#362627}
+body.view-tritan .scope-night .r-breakpoint{color:#f3d0d4}
+body.view-tritan .scope-night .surface-breakpoint{background-color:#f3d0d4}
+body.view-tritan .scope-night .r-debug_current{color:#2c2122}
+body.view-tritan .scope-night .surface-debug_current{background-color:#2c2122}
+body.view-tritan .scope-night .r-deprecated{color:#979797}
+body.view-tritan .scope-night .surface-deprecated{background-color:#979797}</style></head><body class='view-normal'><h1>candidate-b-balanced &mdash; family specimens</h1><div class="meta">strategy <b>balanced</b> &middot; input_hash <b>18521825cc8cc25f</b> &middot; ok <b>True</b></div><div class="banner warn">CANDIDATE comparison (Phase 6). No aggregate score, ranking, winner, or recommendation is produced. Phase 7 (human evaluation) decides. WCAG floors are hard; APCA is experimental; CVD models are population-average; spectral numbers are nominal within-model only (DESIGN.md section 1, RESEARCH.md).</div><div class="controls"><label for="cvd">CVD view: </label><select id="cvd"><option value="normal">Normal</option><option value="protan">Protan</option><option value="deutan">Deutan</option><option value="tritan">Tritan</option></select> <span class="meta">(specimens + diagnostic chips re-render under Brettel dichromacy @1.0; population-average collapse detection, not individual experience)</span></div><h2>Critical-state diagnostics (redundant markers)</h2><div class="grid3"><div class="scope-day"><div class="vhead">day</div><div class="diag"><span class="chip surface-error" style="color:#fff">error<span class="mark" title="underline_wavy">~</span><span class="mark" title="gutter_icon">⚑</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-warning" style="color:#fff">warning<span class="mark" title="underline_wavy">~</span><span class="mark" title="gutter_icon">⚑</span></span><span class="chip surface-info" style="color:#fff">info<span class="mark" title="underline_dotted">.</span><span class="mark" title="gutter_icon">⚑</span></span><span class="chip surface-success" style="color:#fff">success<span class="mark" title="gutter_icon">⚑</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-diff_added" style="color:#000">diff_added<span class="mark" title="gutter_sign">±</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-diff_removed" style="color:#000">diff_removed<span class="mark" title="gutter_sign">±</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-diff_changed" style="color:#000">diff_changed</span><span class="chip surface-selection" style="color:#000">selection<span class="mark" title="lightness_offset">L</span><span class="mark" title="border">▤</span></span><span class="chip surface-search_match_current" style="color:#000">search_match_current<span class="mark" title="border">▤</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-focus" style="color:#fff">focus<span class="mark" title="border">▤</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-debug_current" style="color:#000">debug_current<span class="mark" title="gutter_arrow">▶</span><span class="mark" title="border">▤</span></span><span class="chip surface-breakpoint" style="color:#fff">breakpoint<span class="mark" title="gutter_shape">◆</span></span></div></div><div class="scope-evening"><div class="vhead">evening</div><div class="diag"><span class="chip surface-error" style="color:#000">error<span class="mark" title="underline_wavy">~</span><span class="mark" title="gutter_icon">⚑</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-warning" style="color:#000">warning<span class="mark" title="underline_wavy">~</span><span class="mark" title="gutter_icon">⚑</span></span><span class="chip surface-info" style="color:#000">info<span class="mark" title="underline_dotted">.</span><span class="mark" title="gutter_icon">⚑</span></span><span class="chip surface-success" style="color:#000">success<span class="mark" title="gutter_icon">⚑</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-diff_added" style="color:#fff">diff_added<span class="mark" title="gutter_sign">±</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-diff_removed" style="color:#fff">diff_removed<span class="mark" title="gutter_sign">±</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-diff_changed" style="color:#fff">diff_changed</span><span class="chip surface-selection" style="color:#fff">selection<span class="mark" title="lightness_offset">L</span><span class="mark" title="border">▤</span></span><span class="chip surface-search_match_current" style="color:#fff">search_match_current<span class="mark" title="border">▤</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-focus" style="color:#000">focus<span class="mark" title="border">▤</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-debug_current" style="color:#fff">debug_current<span class="mark" title="gutter_arrow">▶</span><span class="mark" title="border">▤</span></span><span class="chip surface-breakpoint" style="color:#000">breakpoint<span class="mark" title="gutter_shape">◆</span></span></div></div><div class="scope-night"><div class="vhead">night</div><div class="diag"><span class="chip surface-error" style="color:#000">error<span class="mark" title="underline_wavy">~</span><span class="mark" title="gutter_icon">⚑</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-warning" style="color:#000">warning<span class="mark" title="underline_wavy">~</span><span class="mark" title="gutter_icon">⚑</span></span><span class="chip surface-info" style="color:#000">info<span class="mark" title="underline_dotted">.</span><span class="mark" title="gutter_icon">⚑</span></span><span class="chip surface-success" style="color:#000">success<span class="mark" title="gutter_icon">⚑</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-diff_added" style="color:#fff">diff_added<span class="mark" title="gutter_sign">±</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-diff_removed" style="color:#fff">diff_removed<span class="mark" title="gutter_sign">±</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-diff_changed" style="color:#fff">diff_changed</span><span class="chip surface-selection" style="color:#fff">selection<span class="mark" title="lightness_offset">L</span><span class="mark" title="border">▤</span></span><span class="chip surface-search_match_current" style="color:#fff">search_match_current<span class="mark" title="border">▤</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-focus" style="color:#000">focus<span class="mark" title="border">▤</span><span class="mark" title="lightness_offset">L</span></span><span class="chip surface-debug_current" style="color:#fff">debug_current<span class="mark" title="gutter_arrow">▶</span><span class="mark" title="border">▤</span></span><span class="chip surface-breakpoint" style="color:#000">breakpoint<span class="mark" title="gutter_shape">◆</span></span></div></div></div><p class='meta'>Each chip uses the role colour as its background and re-renders under the selected CVD view. Glyphs mark the DECLARED redundant channel(s) so a critical state never relies on hue alone (D-3).</p><h2>Specimens (day | evening | night)</h2><h3>Python &middot; rolling.py</h3><div class="grid3"><div class="scope-day"><div class="cap">day</div><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div></div><div class="scope-evening"><div class="cap">evening</div><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div></div><div class="scope-night"><div class="cap">night</div><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div></div></div><h3>Rust &middot; rolling.rs</h3><div class="grid3"><div class="scope-day"><div class="cap">day</div><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.rs -- exponential moving average</span>
+<span class="r-keyword">use </span><span class="r-namespace">std</span><span class="r-punctuation">::</span><span class="r-namespace">collections</span><span class="r-punctuation">::</span><span class="r-type">VecDeque</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">: </span><span class="r-type">f64</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-decorator">#[inline]</span>
+<span class="r-docstring">/// Exponentially-smoothed mean of a slice.</span>
+<span class="r-keyword">pub </span><span class="r-keyword">fn </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: &amp;[</span><span class="r-type">f64</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">f64</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">f64</span><span class="r-fg"> {</span>
+<span class="r-fg">    </span><span class="r-keyword">let </span><span class="r-keyword">mut</span><span class="r-fg"> </span><span class="r-fg">acc</span><span class="r-punctuation">: </span><span class="r-type">f64</span><span class="r-fg"> = </span><span class="r-number">0.0</span><span class="r-punctuation">;</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-operator">&amp;</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-fg"> {</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1.0</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">    </span><span class="r-punctuation">}</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span>
+<span class="r-punctuation">}</span></pre></div></div><div class="scope-evening"><div class="cap">evening</div><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.rs -- exponential moving average</span>
+<span class="r-keyword">use </span><span class="r-namespace">std</span><span class="r-punctuation">::</span><span class="r-namespace">collections</span><span class="r-punctuation">::</span><span class="r-type">VecDeque</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">: </span><span class="r-type">f64</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-decorator">#[inline]</span>
+<span class="r-docstring">/// Exponentially-smoothed mean of a slice.</span>
+<span class="r-keyword">pub </span><span class="r-keyword">fn </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: &amp;[</span><span class="r-type">f64</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">f64</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">f64</span><span class="r-fg"> {</span>
+<span class="r-fg">    </span><span class="r-keyword">let </span><span class="r-keyword">mut</span><span class="r-fg"> </span><span class="r-fg">acc</span><span class="r-punctuation">: </span><span class="r-type">f64</span><span class="r-fg"> = </span><span class="r-number">0.0</span><span class="r-punctuation">;</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-operator">&amp;</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-fg"> {</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1.0</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">    </span><span class="r-punctuation">}</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span>
+<span class="r-punctuation">}</span></pre></div></div><div class="scope-night"><div class="cap">night</div><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.rs -- exponential moving average</span>
+<span class="r-keyword">use </span><span class="r-namespace">std</span><span class="r-punctuation">::</span><span class="r-namespace">collections</span><span class="r-punctuation">::</span><span class="r-type">VecDeque</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">: </span><span class="r-type">f64</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-decorator">#[inline]</span>
+<span class="r-docstring">/// Exponentially-smoothed mean of a slice.</span>
+<span class="r-keyword">pub </span><span class="r-keyword">fn </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: &amp;[</span><span class="r-type">f64</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">f64</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">f64</span><span class="r-fg"> {</span>
+<span class="r-fg">    </span><span class="r-keyword">let </span><span class="r-keyword">mut</span><span class="r-fg"> </span><span class="r-fg">acc</span><span class="r-punctuation">: </span><span class="r-type">f64</span><span class="r-fg"> = </span><span class="r-number">0.0</span><span class="r-punctuation">;</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-operator">&amp;</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-fg"> {</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1.0</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">    </span><span class="r-punctuation">}</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span>
+<span class="r-punctuation">}</span></pre></div></div></div><h3>TypeScript &middot; rolling.ts</h3><div class="grid3"><div class="scope-day"><div class="cap">day</div><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div></div><div class="scope-evening"><div class="cap">evening</div><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div></div><div class="scope-night"><div class="cap">night</div><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div></div></div><h3>Shell &middot; rolling.sh</h3><div class="grid3"><div class="scope-day"><div class="cap">day</div><div class="specwrap"><pre class="specimen"><span class="r-comment">#!/usr/bin/env bash</span>
+<span class="r-comment"># rolling.sh -- stream an exponential moving average</span>
+<span class="r-builtin">set</span><span class="r-fg"> -euo pipefail</span>
+
+<span class="r-constant">DECAY</span><span class="r-operator">=&quot;${</span><span class="r-constant">DECAY</span><span class="r-operator">:-</span><span class="r-number">0.92</span><span class="r-operator">}&quot;</span>
+
+<span class="r-function">rolling_mean</span><span class="r-punctuation">() {</span>
+<span class="r-fg">  </span><span class="r-builtin">local</span><span class="r-fg"> acc=</span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">while </span><span class="r-builtin">read</span><span class="r-fg"> -r </span><span class="r-parameter">x</span><span class="r-punctuation">; </span><span class="r-keyword">do</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator">=$(</span><span class="r-builtin">awk</span><span class="r-fg"> -v d=&quot;</span><span class="r-parameter">$DECAY</span><span class="r-fg">&quot; -v a=&quot;</span><span class="r-parameter">$acc</span><span class="r-fg">&quot; -v x=&quot;</span><span class="r-parameter">$x</span><span class="r-fg">&quot; &#x27;BEGIN{print d*a+(1-d)*x}&#x27;</span><span class="r-operator">)</span>
+<span class="r-fg">  </span><span class="r-keyword">done</span>
+<span class="r-fg">  </span><span class="r-builtin">printf</span><span class="r-fg"> </span><span class="r-string">&#x27;%.4f\n&#x27;</span><span class="r-fg"> &quot;</span><span class="r-fg">$acc</span><span class="r-fg">&quot;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-function">rolling_mean</span><span class="r-fg"> &lt; samples.txt</span></pre></div></div><div class="scope-evening"><div class="cap">evening</div><div class="specwrap"><pre class="specimen"><span class="r-comment">#!/usr/bin/env bash</span>
+<span class="r-comment"># rolling.sh -- stream an exponential moving average</span>
+<span class="r-builtin">set</span><span class="r-fg"> -euo pipefail</span>
+
+<span class="r-constant">DECAY</span><span class="r-operator">=&quot;${</span><span class="r-constant">DECAY</span><span class="r-operator">:-</span><span class="r-number">0.92</span><span class="r-operator">}&quot;</span>
+
+<span class="r-function">rolling_mean</span><span class="r-punctuation">() {</span>
+<span class="r-fg">  </span><span class="r-builtin">local</span><span class="r-fg"> acc=</span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">while </span><span class="r-builtin">read</span><span class="r-fg"> -r </span><span class="r-parameter">x</span><span class="r-punctuation">; </span><span class="r-keyword">do</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator">=$(</span><span class="r-builtin">awk</span><span class="r-fg"> -v d=&quot;</span><span class="r-parameter">$DECAY</span><span class="r-fg">&quot; -v a=&quot;</span><span class="r-parameter">$acc</span><span class="r-fg">&quot; -v x=&quot;</span><span class="r-parameter">$x</span><span class="r-fg">&quot; &#x27;BEGIN{print d*a+(1-d)*x}&#x27;</span><span class="r-operator">)</span>
+<span class="r-fg">  </span><span class="r-keyword">done</span>
+<span class="r-fg">  </span><span class="r-builtin">printf</span><span class="r-fg"> </span><span class="r-string">&#x27;%.4f\n&#x27;</span><span class="r-fg"> &quot;</span><span class="r-fg">$acc</span><span class="r-fg">&quot;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-function">rolling_mean</span><span class="r-fg"> &lt; samples.txt</span></pre></div></div><div class="scope-night"><div class="cap">night</div><div class="specwrap"><pre class="specimen"><span class="r-comment">#!/usr/bin/env bash</span>
+<span class="r-comment"># rolling.sh -- stream an exponential moving average</span>
+<span class="r-builtin">set</span><span class="r-fg"> -euo pipefail</span>
+
+<span class="r-constant">DECAY</span><span class="r-operator">=&quot;${</span><span class="r-constant">DECAY</span><span class="r-operator">:-</span><span class="r-number">0.92</span><span class="r-operator">}&quot;</span>
+
+<span class="r-function">rolling_mean</span><span class="r-punctuation">() {</span>
+<span class="r-fg">  </span><span class="r-builtin">local</span><span class="r-fg"> acc=</span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">while </span><span class="r-builtin">read</span><span class="r-fg"> -r </span><span class="r-parameter">x</span><span class="r-punctuation">; </span><span class="r-keyword">do</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator">=$(</span><span class="r-builtin">awk</span><span class="r-fg"> -v d=&quot;</span><span class="r-parameter">$DECAY</span><span class="r-fg">&quot; -v a=&quot;</span><span class="r-parameter">$acc</span><span class="r-fg">&quot; -v x=&quot;</span><span class="r-parameter">$x</span><span class="r-fg">&quot; &#x27;BEGIN{print d*a+(1-d)*x}&#x27;</span><span class="r-operator">)</span>
+<span class="r-fg">  </span><span class="r-keyword">done</span>
+<span class="r-fg">  </span><span class="r-builtin">printf</span><span class="r-fg"> </span><span class="r-string">&#x27;%.4f\n&#x27;</span><span class="r-fg"> &quot;</span><span class="r-fg">$acc</span><span class="r-fg">&quot;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-function">rolling_mean</span><span class="r-fg"> &lt; samples.txt</span></pre></div></div></div><h3>JSON &middot; rolling.json</h3><div class="grid3"><div class="scope-day"><div class="cap">day</div><div class="specwrap"><pre class="specimen"><span class="r-punctuation">{</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">service</span><span class="r-fg">&quot;: </span><span class="r-string">&quot;rolling&quot;</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">version</span><span class="r-fg">&quot;: </span><span class="r-number">3</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">decay</span><span class="r-fg">&quot;: </span><span class="r-number">0.92</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">enabled</span><span class="r-fg">&quot;: </span><span class="r-constant">true</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">samples</span><span class="r-fg">&quot;: [</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-fg">],</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">notes</span><span class="r-fg">&quot;: </span><span class="r-string">&quot;Exponentially-smoothed mean.&quot;</span>
+<span class="r-punctuation">}</span></pre></div></div><div class="scope-evening"><div class="cap">evening</div><div class="specwrap"><pre class="specimen"><span class="r-punctuation">{</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">service</span><span class="r-fg">&quot;: </span><span class="r-string">&quot;rolling&quot;</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">version</span><span class="r-fg">&quot;: </span><span class="r-number">3</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">decay</span><span class="r-fg">&quot;: </span><span class="r-number">0.92</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">enabled</span><span class="r-fg">&quot;: </span><span class="r-constant">true</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">samples</span><span class="r-fg">&quot;: [</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-fg">],</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">notes</span><span class="r-fg">&quot;: </span><span class="r-string">&quot;Exponentially-smoothed mean.&quot;</span>
+<span class="r-punctuation">}</span></pre></div></div><div class="scope-night"><div class="cap">night</div><div class="specwrap"><pre class="specimen"><span class="r-punctuation">{</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">service</span><span class="r-fg">&quot;: </span><span class="r-string">&quot;rolling&quot;</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">version</span><span class="r-fg">&quot;: </span><span class="r-number">3</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">decay</span><span class="r-fg">&quot;: </span><span class="r-number">0.92</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">enabled</span><span class="r-fg">&quot;: </span><span class="r-constant">true</span><span class="r-punctuation">,</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">samples</span><span class="r-fg">&quot;: [</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-fg">],</span>
+<span class="r-fg">  &quot;</span><span class="r-tag">notes</span><span class="r-fg">&quot;: </span><span class="r-string">&quot;Exponentially-smoothed mean.&quot;</span>
+<span class="r-punctuation">}</span></pre></div></div></div><h3>YAML &middot; rolling.yaml</h3><div class="grid3"><div class="scope-day"><div class="cap">day</div><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling service configuration</span>
+<span class="r-tag">service</span><span class="r-punctuation">: </span><span class="r-string">rolling</span>
+<span class="r-tag">version</span><span class="r-punctuation">: </span><span class="r-number">3</span>
+<span class="r-tag">decay</span><span class="r-punctuation">: </span><span class="r-number">0.92</span>
+<span class="r-tag">enabled</span><span class="r-punctuation">: </span><span class="r-constant">true</span>
+<span class="r-tag">samples</span><span class="r-punctuation">: [</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]</span>
+<span class="r-tag">notes</span><span class="r-punctuation">: </span><span class="r-operator">&gt;</span>
+<span class="r-fg">  Exponentially-smoothed mean of the samples.</span></pre></div></div><div class="scope-evening"><div class="cap">evening</div><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling service configuration</span>
+<span class="r-tag">service</span><span class="r-punctuation">: </span><span class="r-string">rolling</span>
+<span class="r-tag">version</span><span class="r-punctuation">: </span><span class="r-number">3</span>
+<span class="r-tag">decay</span><span class="r-punctuation">: </span><span class="r-number">0.92</span>
+<span class="r-tag">enabled</span><span class="r-punctuation">: </span><span class="r-constant">true</span>
+<span class="r-tag">samples</span><span class="r-punctuation">: [</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]</span>
+<span class="r-tag">notes</span><span class="r-punctuation">: </span><span class="r-operator">&gt;</span>
+<span class="r-fg">  Exponentially-smoothed mean of the samples.</span></pre></div></div><div class="scope-night"><div class="cap">night</div><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling service configuration</span>
+<span class="r-tag">service</span><span class="r-punctuation">: </span><span class="r-string">rolling</span>
+<span class="r-tag">version</span><span class="r-punctuation">: </span><span class="r-number">3</span>
+<span class="r-tag">decay</span><span class="r-punctuation">: </span><span class="r-number">0.92</span>
+<span class="r-tag">enabled</span><span class="r-punctuation">: </span><span class="r-constant">true</span>
+<span class="r-tag">samples</span><span class="r-punctuation">: [</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]</span>
+<span class="r-tag">notes</span><span class="r-punctuation">: </span><span class="r-operator">&gt;</span>
+<span class="r-fg">  Exponentially-smoothed mean of the samples.</span></pre></div></div></div><h3>Markdown &middot; rolling.md</h3><div class="grid3"><div class="scope-day"><div class="cap">day</div><div class="specwrap"><pre class="specimen"><span class="r-tag"># Rolling mean</span>
+
+<span class="r-fg">The </span><span class="r-keyword">**</span><span class="r-fg">exponential</span><span class="r-keyword">**</span><span class="r-fg"> moving average smooths a </span><span class="r-function">`signal`</span><span class="r-fg"> over time.</span>
+
+<span class="r-tag">## Usage</span>
+
+<span class="r-punctuation">- </span><span class="r-fg">Set </span><span class="r-function">`decay`</span><span class="r-fg"> between </span><span class="r-function">`0`</span><span class="r-fg"> and </span><span class="r-function">`1`</span><span class="r-fg">.</span>
+<span class="r-punctuation">- </span><span class="r-fg">See </span><span class="r-punctuation">[</span><span class="r-fg">the docs</span><span class="r-punctuation">](</span><span class="r-string">https://example.com</span><span class="r-punctuation">)</span><span class="r-fg"> for details.</span>
+
+<span class="r-punctuation">```python</span>
+<span class="r-fg">acc = </span><span class="r-parameter">decay</span><span class="r-fg"> * acc + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * x</span>
+<span class="r-punctuation">```</span></pre></div></div><div class="scope-evening"><div class="cap">evening</div><div class="specwrap"><pre class="specimen"><span class="r-tag"># Rolling mean</span>
+
+<span class="r-fg">The </span><span class="r-keyword">**</span><span class="r-fg">exponential</span><span class="r-keyword">**</span><span class="r-fg"> moving average smooths a </span><span class="r-function">`signal`</span><span class="r-fg"> over time.</span>
+
+<span class="r-tag">## Usage</span>
+
+<span class="r-punctuation">- </span><span class="r-fg">Set </span><span class="r-function">`decay`</span><span class="r-fg"> between </span><span class="r-function">`0`</span><span class="r-fg"> and </span><span class="r-function">`1`</span><span class="r-fg">.</span>
+<span class="r-punctuation">- </span><span class="r-fg">See </span><span class="r-punctuation">[</span><span class="r-fg">the docs</span><span class="r-punctuation">](</span><span class="r-string">https://example.com</span><span class="r-punctuation">)</span><span class="r-fg"> for details.</span>
+
+<span class="r-punctuation">```python</span>
+<span class="r-fg">acc = </span><span class="r-parameter">decay</span><span class="r-fg"> * acc + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * x</span>
+<span class="r-punctuation">```</span></pre></div></div><div class="scope-night"><div class="cap">night</div><div class="specwrap"><pre class="specimen"><span class="r-tag"># Rolling mean</span>
+
+<span class="r-fg">The </span><span class="r-keyword">**</span><span class="r-fg">exponential</span><span class="r-keyword">**</span><span class="r-fg"> moving average smooths a </span><span class="r-function">`signal`</span><span class="r-fg"> over time.</span>
+
+<span class="r-tag">## Usage</span>
+
+<span class="r-punctuation">- </span><span class="r-fg">Set </span><span class="r-function">`decay`</span><span class="r-fg"> between </span><span class="r-function">`0`</span><span class="r-fg"> and </span><span class="r-function">`1`</span><span class="r-fg">.</span>
+<span class="r-punctuation">- </span><span class="r-fg">See </span><span class="r-punctuation">[</span><span class="r-fg">the docs</span><span class="r-punctuation">](</span><span class="r-string">https://example.com</span><span class="r-punctuation">)</span><span class="r-fg"> for details.</span>
+
+<span class="r-punctuation">```python</span>
+<span class="r-fg">acc = </span><span class="r-parameter">decay</span><span class="r-fg"> * acc + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * x</span>
+<span class="r-punctuation">```</span></pre></div></div></div><h3>R &middot; rolling.R</h3><div class="grid3"><div class="scope-day"><div class="cap">day</div><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div></div><div class="scope-evening"><div class="cap">evening</div><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div></div><div class="scope-night"><div class="cap">night</div><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div></div></div><div class="foot">Generated by grotto Phase 6. Reproducible: identical inputs produce byte-identical output. Identical specimens across variants; only the palette differs.</div><script>document.body.className='view-normal';function setview(v){document.body.className='view-'+v;}document.addEventListener('DOMContentLoaded',function(){var s=document.getElementById('cvd'); if(s) s.addEventListener('change',function(e){setview(e.target.value);});});</script></body></html>

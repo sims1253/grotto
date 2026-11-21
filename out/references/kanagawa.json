@@ -1,0 +1,955 @@
+{
+  "schema": "grotto.reference-analysis",
+  "schema_version": "phase3",
+  "reference": {
+    "name": "kanagawa-wave",
+    "label": "dark",
+    "file_stem": "kanagawa",
+    "source_url": "https://raw.githubusercontent.com/rebelot/kanagawa.nvim/master/lua/kanagawa/colors.lua",
+    "source_note": "Palette table in lua/kanagawa/colors.lua (all named colors defined there, reproduced verbatim below). Semantic roles mapped from the `wave` theme function in lua/kanagawa/themes.lua, which assigns palette colors to the ui/syn/diag/vcs/diff element tables. NOTE: colors.lua defines colors for all three variants in one table: sumi*/wave*/fuji*/oni*/crystal*/spring*/sakura*/ boat*/carp*/katana* are used by `wave` (dark), dragon* by `dragon` (darker), and lotus* by `lotus` (light).",
+    "is_primary": true,
+    "source_ambiguous": false,
+    "extra_variant_labels": [],
+    "normalized_alpha_roles": [],
+    "roles_present_count": 19,
+    "roles_missing_count": 21,
+    "roles_missing": [
+      "active_line",
+      "bg_overlay",
+      "breakpoint",
+      "builtin",
+      "debug_current",
+      "decorator",
+      "deprecated",
+      "diff_changed",
+      "docstring",
+      "fg_muted",
+      "focus",
+      "line_number",
+      "line_number_active",
+      "namespace",
+      "operator",
+      "parameter",
+      "property",
+      "search_match",
+      "search_match_current",
+      "tag",
+      "ui_inactive"
+    ],
+    "roles_not_in_spec": [],
+    "mapping_completeness": {
+      "present": 19,
+      "total_spec_roles": 40,
+      "fraction": 0.475
+    }
+  },
+  "background": {
+    "bg": {
+      "role": "bg",
+      "hex": "#1f1f28",
+      "L": 0.243319,
+      "C": 0.017046,
+      "h": null,
+      "h_meaningful": false,
+      "classification": "achromatic",
+      "achromatic_floor": 0.02
+    },
+    "bg_elevated": {
+      "role": "bg_elevated",
+      "hex": "#2a2a37",
+      "L": 0.290684,
+      "C": 0.023569,
+      "h": 284.840017,
+      "h_meaningful": true,
+      "classification": "cool",
+      "achromatic_floor": 0.02
+    },
+    "bg_overlay": null,
+    "note": "Hue is suppressed (reported null, classification 'achromatic') when OKLCH chroma C < 0.02, because hue angle is noise near the achromatic axis (color.oklab_to_oklch). The warm/cool classification uses the same warm/cool convention documented under warm_cool_balance."
+  },
+  "reading_contrast": {
+    "pair": [
+      "fg",
+      "bg"
+    ],
+    "fg_hex": "#dcd7ba",
+    "bg_hex": "#1f1f28",
+    "wcag_ratio": 11.263431,
+    "wcag_aa_body": true,
+    "wcag_aa_large": true,
+    "apca_lc": -79.730296,
+    "oklab_dl": 0.632202,
+    "apca_measured_band": "high",
+    "apca_note": "APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion (DESIGN.md section 7, RESEARCH.md R-11)."
+  },
+  "distributions": {
+    "all_roles": {
+      "lightness": {
+        "n": 19,
+        "min": 0.243319,
+        "median": 0.690228,
+        "mean": 0.630927,
+        "max": 0.875521,
+        "spread": 0.632202,
+        "min_role": "bg",
+        "max_role": "fg"
+      },
+      "chroma": {
+        "n": 19,
+        "min": 0.012207,
+        "median": 0.069849,
+        "mean": 0.084934,
+        "max": 0.226877,
+        "spread": 0.214671,
+        "min_role": "comment",
+        "max_role": "error"
+      }
+    },
+    "excluding_backgrounds": {
+      "lightness": {
+        "n": 17,
+        "min": 0.314343,
+        "median": 0.693714,
+        "mean": 0.673742,
+        "max": 0.875521,
+        "spread": 0.561178,
+        "min_role": "selection",
+        "max_role": "fg"
+      },
+      "chroma": {
+        "n": 17,
+        "min": 0.012207,
+        "median": 0.086991,
+        "mean": 0.092537,
+        "max": 0.226877,
+        "spread": 0.214671,
+        "min_role": "comment",
+        "max_role": "error"
+      }
+    },
+    "sample_note": "Descriptive statistics over n=19 mapped roles (small sample; use the spread, not the mean, as the signal). 'excluding_backgrounds' omits bg/bg_elevated/bg_overlay so the syntax+foreground distribution is visible on its own."
+  },
+  "constraints": {
+    "must_distinguish": {
+      "declared_pairs": 26,
+      "present_pairs": 14,
+      "coverage_fraction": 0.538462,
+      "pairs": [
+        {
+          "a": "error",
+          "b": "string",
+          "a_hex": "#e82424",
+          "b_hex": "#98bb6c",
+          "de": 0.310039,
+          "d_lightness": 0.15005,
+          "d_chroma": 0.114409,
+          "d_hue": 0.298248,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "error",
+          "b": "keyword",
+          "a_hex": "#e82424",
+          "b_hex": "#957fb8",
+          "de": 0.240597,
+          "d_lightness": 0.040409,
+          "d_chroma": 0.139887,
+          "d_hue": 0.235423,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "error",
+          "b": "warning",
+          "a_hex": "#e82424",
+          "b_hex": "#ff9e3b",
+          "de": 0.226463,
+          "d_lightness": 0.185087,
+          "d_chroma": 0.068929,
+          "d_hue": 0.114296,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "error",
+          "b": "fg",
+          "a_hex": "#e82424",
+          "b_hex": "#dcd7ba",
+          "de": 0.35295,
+          "d_lightness": 0.277885,
+          "d_chroma": 0.18777,
+          "d_hue": 0.165816,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "warning",
+          "b": "string",
+          "a_hex": "#ff9e3b",
+          "b_hex": "#98bb6c",
+          "de": 0.157351,
+          "d_lightness": 0.035037,
+          "d_chroma": 0.045479,
+          "d_hue": 0.157351,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "warning",
+          "b": "number",
+          "a_hex": "#ff9e3b",
+          "b_hex": "#d27e99",
+          "de": 0.17089,
+          "d_lightness": 0.092495,
+          "d_chroma": 0.04947,
+          "d_hue": 0.144241,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "warning",
+          "b": "constant",
+          "a_hex": "#ff9e3b",
+          "b_hex": "#ffa066",
+          "de": 0.036107,
+          "d_lightness": 0.007935,
+          "d_chroma": 0.0228,
+          "d_hue": 0.02697,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "error",
+          "b": "success",
+          "a_hex": "#e82424",
+          "b_hex": "#98bb6c",
+          "de": 0.310039,
+          "d_lightness": 0.15005,
+          "d_chroma": 0.114409,
+          "d_hue": 0.298248,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "diff_added",
+          "b": "diff_removed",
+          "a_hex": "#76946a",
+          "b_hex": "#c34043",
+          "de": 0.217969,
+          "d_lightness": 0.072788,
+          "d_chroma": 0.097197,
+          "d_hue": 0.235324,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "selection",
+          "b": "diff_added",
+          "a_hex": "#223249",
+          "b_hex": "#76946a",
+          "de": 0.333746,
+          "d_lightness": 0.317823,
+          "d_chroma": 0.023136,
+          "d_hue": 0.12259,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "selection",
+          "b": "diff_removed",
+          "a_hex": "#223249",
+          "b_hex": "#c34043",
+          "de": 0.315,
+          "d_lightness": 0.245035,
+          "d_chroma": 0.120332,
+          "d_hue": 0.234392,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "fg",
+          "b": "bg",
+          "a_hex": "#dcd7ba",
+          "b_hex": "#1f1f28",
+          "de": 0.634685,
+          "d_lightness": 0.632202,
+          "d_chroma": 0.022062,
+          "d_hue": 0.085277,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "comment",
+          "b": "bg",
+          "a_hex": "#727169",
+          "b_hex": "#1f1f28",
+          "de": 0.30512,
+          "d_lightness": 0.303717,
+          "d_chroma": 0.004839,
+          "d_hue": 0.04491,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "error",
+          "b": "bg",
+          "a_hex": "#e82424",
+          "b_hex": "#1f1f28",
+          "de": 0.423072,
+          "d_lightness": 0.354317,
+          "d_chroma": 0.209831,
+          "d_hue": 0.218367,
+          "dominant_channel": "lightness",
+          "channel": null
+        }
+      ]
+    },
+    "should_distinguish": {
+      "declared_pairs": 20,
+      "present_pairs": 15,
+      "coverage_fraction": 0.75,
+      "pairs": [
+        {
+          "a": "keyword",
+          "b": "string",
+          "a_hex": "#957fb8",
+          "b_hex": "#98bb6c",
+          "de": 0.227317,
+          "d_lightness": 0.10964,
+          "d_chroma": 0.025478,
+          "d_hue": 0.30171,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "keyword",
+          "b": "function",
+          "a_hex": "#957fb8",
+          "b_hex": "#7e9cd8",
+          "de": 0.081714,
+          "d_lightness": 0.055668,
+          "d_chroma": 0.008069,
+          "d_hue": 0.060435,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "keyword",
+          "b": "type",
+          "a_hex": "#957fb8",
+          "b_hex": "#7aa89f",
+          "de": 0.134278,
+          "d_lightness": 0.057854,
+          "d_chroma": 0.035855,
+          "d_hue": 0.14512,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "keyword",
+          "b": "fg",
+          "a_hex": "#957fb8",
+          "b_hex": "#dcd7ba",
+          "de": 0.267904,
+          "d_lightness": 0.237475,
+          "d_chroma": 0.047883,
+          "d_hue": 0.173193,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "string",
+          "b": "function",
+          "a_hex": "#98bb6c",
+          "b_hex": "#7e9cd8",
+          "de": 0.199489,
+          "d_lightness": 0.053973,
+          "d_chroma": 0.017409,
+          "d_hue": 0.245023,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "string",
+          "b": "type",
+          "a_hex": "#98bb6c",
+          "b_hex": "#7aa89f",
+          "de": 0.104949,
+          "d_lightness": 0.051787,
+          "d_chroma": 0.061333,
+          "d_hue": 0.075587,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "string",
+          "b": "number",
+          "a_hex": "#98bb6c",
+          "b_hex": "#d27e99",
+          "de": 0.207318,
+          "d_lightness": 0.057458,
+          "d_chroma": 0.00399,
+          "d_hue": 0.248184,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "string",
+          "b": "comment",
+          "a_hex": "#98bb6c",
+          "b_hex": "#727169",
+          "de": 0.22499,
+          "d_lightness": 0.20065,
+          "d_chroma": 0.100262,
+          "d_hue": 0.02978,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "function",
+          "b": "type",
+          "a_hex": "#7e9cd8",
+          "b_hex": "#7aa89f",
+          "de": 0.101795,
+          "d_lightness": 0.002186,
+          "d_chroma": 0.043924,
+          "d_hue": 0.105066,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "function",
+          "b": "fg",
+          "a_hex": "#7e9cd8",
+          "b_hex": "#dcd7ba",
+          "de": 0.225359,
+          "d_lightness": 0.181807,
+          "d_chroma": 0.055952,
+          "d_hue": 0.192685,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "type",
+          "b": "fg",
+          "a_hex": "#7aa89f",
+          "b_hex": "#dcd7ba",
+          "de": 0.189385,
+          "d_lightness": 0.179621,
+          "d_chroma": 0.012029,
+          "d_hue": 0.064749,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "number",
+          "b": "fg",
+          "a_hex": "#d27e99",
+          "b_hex": "#dcd7ba",
+          "de": 0.22141,
+          "d_lightness": 0.185293,
+          "d_chroma": 0.069371,
+          "d_hue": 0.128074,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "comment",
+          "b": "fg",
+          "a_hex": "#727169",
+          "b_hex": "#dcd7ba",
+          "de": 0.329586,
+          "d_lightness": 0.328485,
+          "d_chroma": 0.026901,
+          "d_hue": 0.000853,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "punctuation",
+          "b": "fg",
+          "a_hex": "#9cabca",
+          "b_hex": "#dcd7ba",
+          "de": 0.160703,
+          "d_lightness": 0.135479,
+          "d_chroma": 0.008887,
+          "d_hue": 0.125978,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "bg",
+          "b": "bg_elevated",
+          "a_hex": "#1f1f28",
+          "b_hex": "#2a2a37",
+          "de": 0.047812,
+          "d_lightness": 0.047365,
+          "d_chroma": 0.006523,
+          "d_hue": 7.9e-05,
+          "dominant_channel": "lightness",
+          "channel": null
+        }
+      ]
+    },
+    "same_family": {
+      "declared_pairs": 7,
+      "present_pairs": 3,
+      "coverage_fraction": 0.428571,
+      "pairs": [
+        {
+          "a": "number",
+          "b": "constant",
+          "a_hex": "#d27e99",
+          "b_hex": "#ffa066",
+          "de": 0.147864,
+          "d_lightness": 0.100431,
+          "d_chroma": 0.02667,
+          "d_hue": 0.10948,
+          "dominant_channel": "hue",
+          "channel": null
+        },
+        {
+          "a": "diff_added",
+          "b": "success",
+          "a_hex": "#76946a",
+          "b_hex": "#98bb6c",
+          "de": 0.123839,
+          "d_lightness": 0.11552,
+          "d_chroma": 0.042619,
+          "d_hue": 0.013613,
+          "dominant_channel": "lightness",
+          "channel": null
+        },
+        {
+          "a": "diff_removed",
+          "b": "error",
+          "a_hex": "#c34043",
+          "b_hex": "#e82424",
+          "de": 0.072689,
+          "d_lightness": 0.038258,
+          "d_chroma": 0.059831,
+          "d_hue": 0.015683,
+          "dominant_channel": "chroma",
+          "channel": null
+        }
+      ]
+    },
+    "differentiated_by": {
+      "declared_pairs": 5,
+      "present_pairs": 0,
+      "coverage_fraction": 0.0,
+      "pairs": []
+    },
+    "redundant_encoding": {
+      "declared_pairs": 2,
+      "present_pairs": 2,
+      "coverage_fraction": 1.0,
+      "pairs": [
+        {
+          "a": "error",
+          "b": "warning",
+          "a_hex": "#e82424",
+          "b_hex": "#ff9e3b",
+          "de": 0.226463,
+          "d_lightness": 0.185087,
+          "d_chroma": 0.068929,
+          "d_hue": 0.114296,
+          "dominant_channel": "lightness",
+          "channel": "lightness_and_icon"
+        },
+        {
+          "a": "diff_added",
+          "b": "diff_removed",
+          "a_hex": "#76946a",
+          "b_hex": "#c34043",
+          "de": 0.217969,
+          "d_lightness": 0.072788,
+          "d_chroma": 0.097197,
+          "d_hue": 0.235324,
+          "dominant_channel": "hue",
+          "channel": "lightness_and_gutter_sign"
+        }
+      ]
+    },
+    "note": "Coverage = fraction of declared constraints whose two roles are both mapped in this reference. References are NOT candidate palettes and are not bound by the distance thresholds; the dE values are descriptive. Low coverage reflects mapping incompleteness, not a theme defect."
+  },
+  "warm_cool_balance": {
+    "definition": "Palette score = sum(C_i * cos(h_i - 60deg)) / sum(C_i) over chromatic roles (C >= 0.02). +1 warm (amber), -1 cool (azure), 0 at 150/330 deg. A convention on OKLCH hue, not a perceptual law.",
+    "warm_hue_center_deg": 60.0,
+    "achromatic_floor": 0.02,
+    "chroma_weighted_score": 0.343898,
+    "n_chromatic_roles": 17,
+    "n_warm_roles": 10,
+    "n_cool_roles": 7,
+    "n_neutral_roles": 0,
+    "warm_roles": [
+      "constant",
+      "diff_added",
+      "diff_removed",
+      "error",
+      "fg",
+      "fg_secondary",
+      "number",
+      "string",
+      "success",
+      "warning"
+    ],
+    "cool_roles": [
+      "bg_elevated",
+      "function",
+      "info",
+      "keyword",
+      "punctuation",
+      "selection",
+      "type"
+    ],
+    "neutral_roles": [],
+    "per_role": {
+      "bg_elevated": {
+        "hex": "#2a2a37",
+        "C": 0.023569,
+        "h": 284.840017,
+        "score": -0.709078
+      },
+      "constant": {
+        "hex": "#ffa066",
+        "C": 0.135149,
+        "h": 51.138945,
+        "score": 0.988065
+      },
+      "diff_added": {
+        "hex": "#76946a",
+        "C": 0.069849,
+        "h": 136.918144,
+        "score": 0.226343
+      },
+      "diff_removed": {
+        "hex": "#c34043",
+        "C": 0.167046,
+        "h": 23.086685,
+        "score": 0.799545
+      },
+      "error": {
+        "hex": "#e82424",
+        "C": 0.226877,
+        "h": 27.648879,
+        "score": 0.844785
+      },
+      "fg": {
+        "hex": "#dcd7ba",
+        "C": 0.039108,
+        "h": 99.085675,
+        "score": 0.776204
+      },
+      "fg_secondary": {
+        "hex": "#c8c093",
+        "C": 0.060817,
+        "h": 99.152714,
+        "score": 0.775466
+      },
+      "function": {
+        "hex": "#7e9cd8",
+        "C": 0.09506,
+        "h": 263.656865,
+        "score": -0.915965
+      },
+      "info": {
+        "hex": "#658594",
+        "C": 0.042819,
+        "h": 228.334383,
+        "score": -0.979344
+      },
+      "keyword": {
+        "hex": "#957fb8",
+        "C": 0.086991,
+        "h": 301.697354,
+        "score": -0.474129
+      },
+      "number": {
+        "hex": "#d27e99",
+        "C": 0.108479,
+        "h": 359.644593,
+        "score": 0.494618
+      },
+      "punctuation": {
+        "hex": "#9cabca",
+        "C": 0.047995,
+        "h": 264.822258,
+        "score": -0.907614
+      },
+      "selection": {
+        "hex": "#223249",
+        "C": 0.046714,
+        "h": 257.434543,
+        "score": -0.95406
+      },
+      "string": {
+        "hex": "#98bb6c",
+        "C": 0.112469,
+        "h": 128.36214,
+        "score": 0.368739
+      },
+      "success": {
+        "hex": "#98bb6c",
+        "C": 0.112469,
+        "h": 128.36214,
+        "score": 0.368739
+      },
+      "type": {
+        "hex": "#7aa89f",
+        "C": 0.051136,
+        "h": 181.304163,
+        "score": -0.519581
+      },
+      "warning": {
+        "hex": "#ff9e3b",
+        "C": 0.157948,
+        "h": 61.683259,
+        "score": 0.999568
+      }
+    },
+    "note": "Sign/magnitude are a coarse summary. Boundaries at 150/330 deg are genuinely intermediate. Roles below the chroma floor (most backgrounds and near-neutral foregrounds) are excluded; a barely-chromatic surface contributes negligibly because the score is chroma-weighted."
+  },
+  "spectral": {
+    "display": "led-lcd",
+    "coverage_kind": "code",
+    "photopic_relative": 0.092921,
+    "melanopic_relative": 0.092189,
+    "melanopic_ratio": 0.992125,
+    "background_share": 0.178196,
+    "foreground_share": 0.422333,
+    "token_share": 0.399471,
+    "top_melanopic_contributors": [
+      {
+        "hex": "#dcd7ba",
+        "share": 0.422333
+      },
+      {
+        "hex": "#1f1f28",
+        "share": 0.149541
+      },
+      {
+        "hex": "#9cabca",
+        "share": 0.142896
+      },
+      {
+        "hex": "#7e9cd8",
+        "share": 0.061158
+      },
+      {
+        "hex": "#727169",
+        "share": 0.056761
+      },
+      {
+        "hex": "#98bb6c",
+        "share": 0.052368
+      },
+      {
+        "hex": "#957fb8",
+        "share": 0.050496
+      },
+      {
+        "hex": "#2a2a37",
+        "share": 0.028654
+      }
+    ],
+    "caveat": "Exploratory nominal-display model; within-model ranking only. An sRGB triple does not determine a spectral power distribution; emitted contribution depends on linear channel drive and assumed primary spectra, not area alone. This never claims actual retinal exposure (RESEARCH.md R-4, R-5, R-13, M-1)."
+  },
+  "cvd": {
+    "n_must_distinguish_pairs_present": 14,
+    "n_pairs_collapsing_below_floor": 3,
+    "cvd_floor": 0.09,
+    "pairs": [
+      {
+        "a": "error",
+        "b": "string",
+        "normal_de": 0.310039,
+        "cvd_dichromat_de": {
+          "protan": 0.30636,
+          "deutan": 0.143783,
+          "tritan": 0.29223
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "error",
+        "b": "keyword",
+        "normal_de": 0.240597,
+        "cvd_dichromat_de": {
+          "protan": 0.213621,
+          "deutan": 0.19539,
+          "tritan": 0.230559
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "error",
+        "b": "warning",
+        "normal_de": 0.226463,
+        "cvd_dichromat_de": {
+          "protan": 0.275387,
+          "deutan": 0.178299,
+          "tritan": 0.216892
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "error",
+        "b": "fg",
+        "normal_de": 0.35295,
+        "cvd_dichromat_de": {
+          "protan": 0.412251,
+          "deutan": 0.280689,
+          "tritan": 0.353367
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "warning",
+        "b": "string",
+        "normal_de": 0.157351,
+        "cvd_dichromat_de": {
+          "protan": 0.049549,
+          "deutan": 0.073924,
+          "tritan": 0.144423
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": true,
+        "redundant_channel": false
+      },
+      {
+        "a": "warning",
+        "b": "number",
+        "normal_de": 0.17089,
+        "cvd_dichromat_de": {
+          "protan": 0.179275,
+          "deutan": 0.16773,
+          "tritan": 0.102725
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "warning",
+        "b": "constant",
+        "normal_de": 0.036107,
+        "cvd_dichromat_de": {
+          "protan": 0.038839,
+          "deutan": 0.035062,
+          "tritan": 0.008867
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": true,
+        "redundant_channel": false
+      },
+      {
+        "a": "error",
+        "b": "success",
+        "normal_de": 0.310039,
+        "cvd_dichromat_de": {
+          "protan": 0.30636,
+          "deutan": 0.143783,
+          "tritan": 0.29223
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "diff_added",
+        "b": "diff_removed",
+        "normal_de": 0.217969,
+        "cvd_dichromat_de": {
+          "protan": 0.182838,
+          "deutan": 0.072917,
+          "tritan": 0.204917
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": true,
+        "redundant_channel": false
+      },
+      {
+        "a": "selection",
+        "b": "diff_added",
+        "normal_de": 0.333746,
+        "cvd_dichromat_de": {
+          "protan": 0.351807,
+          "deutan": 0.327376,
+          "tritan": 0.323485
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "selection",
+        "b": "diff_removed",
+        "normal_de": 0.315,
+        "cvd_dichromat_de": {
+          "protan": 0.175483,
+          "deutan": 0.279609,
+          "tritan": 0.319095
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "fg",
+        "b": "bg",
+        "normal_de": 0.634685,
+        "cvd_dichromat_de": {
+          "protan": 0.642121,
+          "deutan": 0.635315,
+          "tritan": 0.636027
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "comment",
+        "b": "bg",
+        "normal_de": 0.30512,
+        "cvd_dichromat_de": {
+          "protan": 0.31014,
+          "deutan": 0.30625,
+          "tritan": 0.306089
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      },
+      {
+        "a": "error",
+        "b": "bg",
+        "normal_de": 0.423072,
+        "cvd_dichromat_de": {
+          "protan": 0.245501,
+          "deutan": 0.391985,
+          "tritan": 0.427269
+        },
+        "cvd_floor": 0.09,
+        "collapses_below_floor": false,
+        "redundant_channel": false
+      }
+    ],
+    "note": "Dichromacy via Brettel 1997 (population-average models); they detect collapse, they do not reproduce an individual's experience (R-9). References are NOT bound by D-3 and declare no redundant channels; a collapse here is informational, not a compliance failure."
+  },
+  "caveats": [
+    "Descriptive only. No ranking, scoring, or winner is declared (DESIGN.md section 1: no evidence selects one syntax palette over another).",
+    "APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion (R-11).",
+    "CVD figures use population-average dichromat models (R-9).",
+    "Spectral figures are nominal-display, within-model, exploratory; they never claim retinal exposure (R-4, R-5, R-13)."
+  ]
+}

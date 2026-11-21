@@ -1,0 +1,180 @@
+# grotto-eval-fixture-night-full  (night, source=oklch, NON-candidate)
+  note: EVALUATION FIXTURE ONLY. NOT A CANDIDATE PALETTE. Round-number OKLCH placeholders covering the full role set; chosen to exercise every metric, not to look good or satisfy the distance matrix.
+  roles: 40 defined, 0 spec roles missing
+  input_hash: c3a43954b25f3d35
+
+## colors (role: hex  oklch L C h  gamut)
+  bg                 #191714  L0.205 C0.007 h70  sRGB=Y P3=Y
+  bg_elevated        #211e1b  L0.238 C0.008 h70  sRGB=Y P3=Y
+  bg_overlay         #282521  L0.265 C0.009 h70  sRGB=Y P3=Y
+  fg                 #d3d1ca  L0.860 C0.010 h90  sRGB=Y P3=Y
+  fg_secondary       #a19e98  L0.700 C0.010 h90  sRGB=Y P3=Y
+  fg_muted           #65635d  L0.500 C0.010 h90  sRGB=Y P3=Y
+  comment            #887e74  L0.600 C0.020 h70  sRGB=Y P3=Y
+  docstring          #ab9c8b  L0.700 C0.030 h70  sRGB=Y P3=Y
+  punctuation        #a4a4a4  L0.720 C0.000 h0  sRGB=Y P3=Y
+  operator           #c4c4c4  L0.820 C0.000 h0  sRGB=Y P3=Y
+  line_number        #555555  L0.450 C0.000 h0  sRGB=Y P3=Y
+  line_number_active #aeaeae  L0.750 C0.000 h0  sRGB=Y P3=Y
+  ui_inactive        #3a3a3a  L0.350 C0.000 h0  sRGB=Y P3=Y
+  active_line        #211d19  L0.235 C0.010 h70  sRGB=Y P3=Y
+  selection          #2a4b66  L0.400 C0.060 h245  sRGB=Y P3=Y
+  focus              #3bacff  L0.720 C0.190 h245  sRGB=N P3=N  <-- OUT of sRGB  (chroma_lost 0.034)
+  keyword            #aa8dde  L0.700 C0.120 h300  sRGB=Y P3=Y
+  string             #93c794  L0.780 C0.090 h145  sRGB=Y P3=Y
+  number             #d6b174  L0.780 C0.090 h80  sRGB=Y P3=Y
+  constant           #ceab72  L0.760 C0.085 h80  sRGB=Y P3=Y
+  type               #76c8c7  L0.780 C0.080 h195  sRGB=Y P3=Y
+  function           #8cc4f4  L0.800 C0.090 h245  sRGB=Y P3=Y
+  parameter          #cdcac3  L0.840 C0.010 h90  sRGB=Y P3=Y
+  property           #bcc5cd  L0.820 C0.015 h245  sRGB=Y P3=Y
+  builtin            #ce9d98  L0.740 C0.060 h25  sRGB=Y P3=Y
+  decorator          #c9ad7e  L0.760 C0.070 h80  sRGB=Y P3=Y
+  namespace          #83bdbd  L0.760 C0.060 h195  sRGB=Y P3=Y
+  tag                #98bcdc  L0.780 C0.060 h245  sRGB=Y P3=Y
+  error              #e3645e  L0.660 C0.160 h25  sRGB=Y P3=Y
+  warning            #f0b135  L0.800 C0.150 h80  sRGB=Y P3=Y
+  info               #86beee  L0.780 C0.090 h245  sRGB=Y P3=Y
+  success            #84c485  L0.760 C0.110 h145  sRGB=Y P3=Y
+  diff_added         #213321  L0.300 C0.040 h145  sRGB=Y P3=Y
+  diff_removed       #402624  L0.300 C0.040 h25  sRGB=Y P3=Y
+  diff_changed       #382c15  L0.300 C0.040 h80  sRGB=Y P3=Y
+  search_match       #75603b  L0.500 C0.060 h80  sRGB=Y P3=Y
+  search_match_current #c5953b  L0.700 C0.120 h80  sRGB=Y P3=Y
+  breakpoint         #e3645e  L0.660 C0.160 h25  sRGB=Y P3=Y
+  debug_current      #6c5019  L0.450 C0.080 h80  sRGB=Y P3=Y
+  deprecated         #808080  L0.600 C0.000 h0  sRGB=Y P3=Y
+
+## contrast vs bg (role: |Lc| WCAG DL band)
+  bg_elevated        |Lc|=    0  WCAG= 1.08  DL=+0.031  band=None (target minimal)  BELOW-AA  <-- band MISMATCH
+  bg_overlay         |Lc|=    0  WCAG= 1.17  DL=+0.061  band=None (target low)  BELOW-AA  <-- band MISMATCH
+  fg                 |Lc|=   78  WCAG=11.71  DL=+0.655  band=high (target comfortable)  AA-ok
+  fg_secondary       |Lc|=   49  WCAG= 6.69  DL=+0.494  band=low (target low)  AA-ok
+  fg_muted           |Lc|=   21  WCAG= 2.98  DL=+0.294  band=minimal (target minimal)  BELOW-AA
+  comment            |Lc|=   34  WCAG= 4.50  DL=+0.393  band=None (target low)  AA-ok  <-- band MISMATCH
+  docstring          |Lc|=   49  WCAG= 6.69  DL=+0.495  band=low (target comfortable)  AA-ok  <-- band MISMATCH
+  punctuation        |Lc|=   52  WCAG= 7.18  DL=+0.513  band=low (target low)  AA-ok
+  operator           |Lc|=   70  WCAG=10.26  DL=+0.615  band=comfortable (target comfortable)  AA-ok
+  line_number        |Lc|=   15  WCAG= 2.40  DL=+0.244  band=None (target minimal)  BELOW-AA  <-- band MISMATCH
+  line_number_active |Lc|=   57  WCAG= 8.06  DL=+0.545  band=None (target comfortable)  AA-ok  <-- band MISMATCH
+  ui_inactive        |Lc|=    0  WCAG= 1.57  DL=+0.143  band=None (target minimal)  BELOW-AA  <-- band MISMATCH
+  active_line        |Lc|=    0  WCAG= 1.07  DL=+0.028  band=None (target minimal)  BELOW-AA  <-- band MISMATCH
+  parameter          |Lc|=   74  WCAG=10.93  DL=+0.634  band=comfortable (target comfortable)  AA-ok
+  property           |Lc|=   70  WCAG=10.23  DL=+0.613  band=comfortable (target comfortable)  AA-ok
+  deprecated         |Lc|=   34  WCAG= 4.53  DL=+0.394  band=None (target low)  AA-ok  <-- band MISMATCH
+  keyword            |Lc|=   47  WCAG= 6.45  DL=+0.495  band=low (target comfortable)  AA-ok  <-- band MISMATCH
+  string             |Lc|=   64  WCAG= 9.23  DL=+0.574  band=comfortable (target comfortable)  AA-ok
+  number             |Lc|=   62  WCAG= 8.86  DL=+0.574  band=comfortable (target comfortable)  AA-ok
+  constant           |Lc|=   59  WCAG= 8.26  DL=+0.554  band=None (target comfortable)  AA-ok  <-- band MISMATCH
+  type               |Lc|=   64  WCAG= 9.25  DL=+0.575  band=comfortable (target comfortable)  AA-ok
+  function           |Lc|=   67  WCAG= 9.64  DL=+0.594  band=comfortable (target high)  AA-ok  <-- band MISMATCH
+  builtin            |Lc|=   55  WCAG= 7.58  DL=+0.535  band=low (target comfortable)  AA-ok  <-- band MISMATCH
+  decorator          |Lc|=   59  WCAG= 8.32  DL=+0.555  band=None (target comfortable)  AA-ok  <-- band MISMATCH
+  namespace          |Lc|=   60  WCAG= 8.50  DL=+0.553  band=comfortable (target comfortable)  AA-ok
+  tag                |Lc|=   63  WCAG= 9.00  DL=+0.574  band=comfortable (target comfortable)  AA-ok
+  error              |Lc|=   40  WCAG= 5.32  DL=+0.453  band=low (target high)  AA-ok  <-- band MISMATCH
+  warning            |Lc|=   65  WCAG= 9.41  DL=+0.594  band=comfortable (target high)  AA-ok  <-- band MISMATCH
+  info               |Lc|=   63  WCAG= 9.04  DL=+0.575  band=comfortable (target comfortable)  AA-ok
+  success            |Lc|=   61  WCAG= 8.70  DL=+0.555  band=comfortable (target comfortable)  AA-ok
+  diff_added         |Lc|=    0  WCAG= 1.33  DL=+0.094  band=None (target minimal)  BELOW-AA  <-- band MISMATCH
+  diff_removed       |Lc|=    0  WCAG= 1.30  DL=+0.095  band=None (target minimal)  BELOW-AA  <-- band MISMATCH
+  diff_changed       |Lc|=    0  WCAG= 1.31  DL=+0.095  band=None (target minimal)  BELOW-AA  <-- band MISMATCH
+  search_match       |Lc|=   21  WCAG= 2.98  DL=+0.295  band=minimal (target low)  BELOW-AA  <-- band MISMATCH
+  search_match_current |Lc|=   48  WCAG= 6.59  DL=+0.493  band=low (target comfortable)  AA-ok  <-- band MISMATCH
+  selection          |Lc|=   10  WCAG= 1.96  DL=+0.194  band=None (target low)  BELOW-AA  <-- band MISMATCH
+  focus              |Lc|=   53  WCAG= 7.27  DL=+0.513  band=low (target high)  AA-ok  <-- band MISMATCH
+  breakpoint         |Lc|=   40  WCAG= 5.32  DL=+0.453  band=low (target high)  AA-ok  <-- band MISMATCH
+  debug_current      |Lc|=   15  WCAG= 2.38  DL=+0.244  band=None (target low)  BELOW-AA  <-- band MISMATCH
+
+## distance matrix: 10 error(s), 37 warning(s)
+  [error] must_distinguish(error, builtin) under normal: dE 0.129 vs 0.130
+  [warning] must_distinguish(warning, string) under protan@1.0: dE 0.089 vs 0.090
+  [error] must_distinguish(warning, number) under normal: dE 0.063 vs 0.130
+  [warning] must_distinguish(warning, number) under protan@1.0: dE 0.058 vs 0.090
+  [warning] must_distinguish(warning, number) under deutan@1.0: dE 0.066 vs 0.090
+  [warning] must_distinguish(warning, number) under tritan@1.0: dE 0.045 vs 0.090
+  [error] must_distinguish(warning, constant) under normal: dE 0.076 vs 0.130
+  [warning] must_distinguish(warning, constant) under protan@1.0: dE 0.068 vs 0.090
+  [warning] must_distinguish(warning, constant) under deutan@1.0: dE 0.078 vs 0.090
+  [warning] must_distinguish(warning, constant) under tritan@1.0: dE 0.059 vs 0.090
+  [error] must_distinguish(warning, decorator) under normal: dE 0.088 vs 0.130
+  [warning] must_distinguish(warning, decorator) under protan@1.0: dE 0.079 vs 0.090
+  [warning] must_distinguish(warning, decorator) under tritan@1.0: dE 0.067 vs 0.090
+  [error] must_distinguish(diff_added, diff_removed) under normal: dE 0.069 vs 0.130
+  [warning] must_distinguish(diff_added, diff_removed) under protan@1.0: dE 0.033 vs 0.090
+  [warning] must_distinguish(diff_added, diff_removed) under deutan@1.0: dE 0.004 vs 0.090
+  [warning] must_distinguish(diff_added, diff_removed) under tritan@1.0: dE 0.057 vs 0.090
+  [error] must_distinguish(diff_added, diff_changed) under normal: dE 0.041 vs 0.130
+  [warning] must_distinguish(diff_added, diff_changed) under protan@1.0: dE 0.019 vs 0.090
+  [warning] must_distinguish(diff_added, diff_changed) under deutan@1.0: dE 0.021 vs 0.090
+  [warning] must_distinguish(diff_added, diff_changed) under tritan@1.0: dE 0.041 vs 0.090
+  [error] must_distinguish(diff_removed, diff_changed) under normal: dE 0.039 vs 0.130
+  [warning] must_distinguish(diff_removed, diff_changed) under protan@1.0: dE 0.032 vs 0.090
+  [warning] must_distinguish(diff_removed, diff_changed) under deutan@1.0: dE 0.021 vs 0.090
+  [warning] must_distinguish(diff_removed, diff_changed) under tritan@1.0: dE 0.016 vs 0.090
+  [error] must_distinguish(selection, diff_added) under normal: dE 0.127 vs 0.130
+  [error] must_distinguish(active_line, diff_added) under normal: dE 0.076 vs 0.130
+  [warning] must_distinguish(active_line, diff_added) under protan@1.0: dE 0.083 vs 0.090
+  [warning] must_distinguish(active_line, diff_added) under deutan@1.0: dE 0.064 vs 0.090
+  [warning] must_distinguish(active_line, diff_added) under tritan@1.0: dE 0.072 vs 0.090
+  [error] must_distinguish(active_line, diff_removed) under normal: dE 0.075 vs 0.130
+  [warning] must_distinguish(active_line, diff_removed) under protan@1.0: dE 0.053 vs 0.090
+  [warning] must_distinguish(active_line, diff_removed) under deutan@1.0: dE 0.068 vs 0.090
+  [warning] must_distinguish(active_line, diff_removed) under tritan@1.0: dE 0.073 vs 0.090
+  [warning] should_distinguish(string, type) under normal: dE 0.072 vs 0.080
+  [warning] should_distinguish(function, type) under normal: dE 0.076 vs 0.080
+  [warning] should_distinguish(bg, bg_elevated) under normal: dE 0.032 vs 0.080
+  [warning] should_distinguish(bg_elevated, bg_overlay) under normal: dE 0.029 vs 0.080
+  [warning] same_family(number, constant) under lower: dE 0.021 vs 0.030
+  [warning] same_family(number, decorator) under lower: dE 0.027 vs 0.030
+  [warning] same_family(type, namespace) under lower: dE 0.030 vs 0.030
+  [warning] same_family(diff_added, success) under upper: dE 0.467 vs 0.140
+  [warning] same_family(diff_removed, error) under upper: dE 0.378 vs 0.140
+  [warning] same_family(warning, search_match) under upper: dE 0.312 vs 0.140
+  [warning] differentiated_by(comment, docstring) via lightness under upper: dE 0.103 vs 0.050
+  [warning] differentiated_by(line_number, line_number_active) via lightness under upper: dE 0.301 vs 0.050
+  [warning] differentiated_by(deprecated, fg) via strikethrough under upper: dE 0.261 vs 0.050
+
+## CVD must_distinguish pairs (normal dE | protan deutan tritan @1.0)
+  error/string: 0.250 | 0.231 0.118 0.236
+  error/builtin: 0.129 | 0.138 0.091 0.132
+  error/keyword: 0.196 | 0.183 0.182 0.167
+  error/warning: 0.200 | 0.221 0.153 0.160
+  error/fg: 0.255 | 0.282 0.207 0.257
+  warning/string: 0.141 | 0.089 0.109 0.136
+  warning/number: 0.063 | 0.058 0.066 0.045
+  warning/constant: 0.076 | 0.068 0.078 0.059
+  warning/decorator: 0.088 | 0.079 0.091 0.067
+  error/success: 0.256 | 0.218 0.096 0.233
+  diff_added/diff_removed: 0.069 | 0.033 0.004 0.057
+  diff_added/diff_changed: 0.041 | 0.019 0.021 0.041
+  diff_removed/diff_changed: 0.039 | 0.032 0.021 0.016
+  selection/search_match: 0.155 | 0.137 0.152 0.137
+  selection/search_match_current: 0.348 | 0.321 0.347 0.331
+  search_match/search_match_current: 0.207 | 0.199 0.208 0.205
+  selection/diff_added: 0.127 | 0.123 0.127 0.102
+  selection/diff_removed: 0.137 | 0.138 0.124 0.132
+  selection/active_line: 0.180 | 0.186 0.178 0.174
+  active_line/diff_added: 0.076 | 0.083 0.064 0.072
+  active_line/diff_removed: 0.075 | 0.053 0.068 0.073
+  fg/bg: 0.655 | 0.656 0.656 0.654
+  comment/bg: 0.394 | 0.391 0.395 0.392
+  fg_muted/bg: 0.294 | 0.295 0.295 0.293
+  error/bg: 0.479 | 0.377 0.468 0.481
+  focus/bg: 0.539 | 0.547 0.538 0.524
+
+## salience budget (code coverage, declared estimate)
+  at_or_above_3:  19.2% of non-bg pixels (budget <= 22%)
+  at_or_above_5:   0.0% of non-bg pixels (budget <= 1%)
+  within budget
+
+## spectral (nominal led-lcd, code coverage) -- exploratory
+  melanopic/photopic ratio: 0.992 (display white = 1.0)
+    #d3d1ca: 46.7% of melanopic output
+    #a4a4a4: 10.2% of melanopic output
+    #8cc4f4: 8.6% of melanopic output
+    #93c794: 7.7% of melanopic output
+    #aa8dde: 7.5% of melanopic output
+  Exploratory nominal-display model; within-model ranking only. An sRGB triple does not determine a spectral power distribution; this never claims actual retinal exposure (RESEARCH.md R-4, R-5).
+
+APCA is independent work in progress, not a W3C Recommendation or current WCAG criterion. CVD models are population-average dichromat models (RESEARCH.md R-9).

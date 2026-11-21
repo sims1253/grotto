@@ -1,0 +1,54 @@
+# Reference theme comparison (descriptive; NOT a ranking)
+
+References are listed in a fixed alphabetical-by-file-stem order. This is NOT a ranking; no winner or 'best' theme is declared (DESIGN.md section 1).
+
+All metrics are computed on the dark (primary) variant of each reference, which is the only block all six share. Light/dawn variants present in some files are recorded under 'variant_ambiguity' but are NOT part of this comparison (mixing polarities would be a category error).
+
+  metric                                  kanagawa    monokai       nord  palenight  rose-pine  solarized
+  -------------------------------------------------------------------------------------------------------
+  background L                               0.243      0.274      0.324      0.301      0.213      0.267
+  background C                               0.017      0.011      0.023      0.031      0.025      0.049
+  background hue (deg, or achromatic)   achromatic achromatic    264.182    274.114    291.131    219.817
+  background classification             achromatic achromatic       cool       cool       cool       cool
+  fg/bg WCAG ratio                          11.263     13.943      9.245      8.021     13.389      4.748
+  fg/bg |APCA Lc|                            79.73     99.639     80.293     67.744     86.766     39.532
+  lightness min (all roles)                  0.243      0.274      0.324      0.301      0.213      0.267
+  lightness median (all roles)                0.69      0.701      0.763      0.744      0.698      0.644
+  lightness max (all roles)                  0.876      0.977      0.951      0.884      0.909      0.698
+  chroma min (all roles)                     0.012      0.008      0.007      0.021      0.025      0.016
+  chroma median (all roles)                   0.07       0.13      0.059      0.128      0.054      0.102
+  chroma max (all roles)                     0.227       0.24      0.121      0.193      0.156      0.206
+  must_distinguish coverage                  0.538      0.538      0.538        0.5      0.462        0.5
+  should_distinguish coverage                 0.75       0.75       0.75       0.65        0.4       0.65
+  warm/cool score (chroma-wtd)               0.344      0.171      0.078      0.129      0.157      0.217
+  warm role count                               10          8          7          7          6          6
+  cool role count                                7          5          7          8         10          7
+  melanopic ratio (nominal)                  0.992      0.882      1.135      1.195      1.129       1.24
+  bg melanopic share                         0.178      0.146      0.275      0.301      0.134      0.399
+  fg melanopic share                         0.422      0.614      0.383      0.388      0.616      0.308
+  token melanopic share                      0.399      0.241      0.341      0.311       0.25      0.293
+  CVD must-pairs collapsing                      3          3          2          2          3          3
+  roles mapped / spec                        19/40      16/40      17/40      15/40      16/40      15/40
+
+## mapping completeness (roles mapped vs spec)
+  spec declares 40 roles
+  kanagawa   19/40 mapped; missing: active_line, bg_overlay, breakpoint, builtin, debug_current, decorator, deprecated, diff_changed, +13 more
+  monokai    16/40 mapped; missing: active_line, bg_elevated, bg_overlay, breakpoint, debug_current, decorator, deprecated, diff_changed, +16 more
+  nord       17/40 mapped; missing: active_line, bg_overlay, breakpoint, builtin, debug_current, decorator, deprecated, diff_changed, +15 more
+  palenight  15/40 mapped; missing: active_line, bg_elevated, bg_overlay, breakpoint, builtin, debug_current, decorator, deprecated, +17 more
+  rose-pine  16/40 mapped; missing: active_line, bg_overlay, breakpoint, debug_current, decorator, deprecated, diff_changed, docstring, +16 more
+  solarized  15/40 mapped; missing: active_line, bg_elevated, bg_overlay, breakpoint, builtin, debug_current, decorator, deprecated, +17 more
+
+## variant / source ambiguity
+  kanagawa   extra variants: none; alpha-normalised roles: none
+  monokai    extra variants: none; alpha-normalised roles: selection
+  nord       extra variants: none; alpha-normalised roles: none
+  palenight  extra variants: none; alpha-normalised roles: selection
+  rose-pine  extra variants: light; alpha-normalised roles: none
+  solarized  extra variants: light; alpha-normalised roles: none
+
+## caveats
+  - Descriptive only; no ranking or winner (DESIGN.md section 1).
+  - Coverage fractions reflect mapping incompleteness, not theme quality.
+  - Spectral columns are nominal-display, within-model, exploratory (R-4, R-5, R-13).
+  - APCA is experimental (R-11); CVD uses population-average dichromat models (R-9).

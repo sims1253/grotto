@@ -1,0 +1,1749 @@
+schema: grotto.permute-search
+base: candidate-b-balanced
+seed: 20260815
+combos_built: 264
+refined: 6
+weights:
+  min_hue: 0.5
+  night_chroma: 0.2
+  cvd_safe: 0.3
+pinned: rose->diagnostics, sand->literals+warning, comments warm-neutral, variables neutral; namespace
+  follows type, tag/info follow azure
+conventions_flagged:
+  string_green:
+  - string
+  - 95
+  - 165
+  function_blue_cyan:
+  - function
+  - 180
+  - 265
+  keyword_purple:
+  - keyword
+  - 275
+  - 335
+note: NON-CANDIDATE exploration. Objective score says nothing about learned-convention cost; read the
+  conventions flags beside it.
+results:
+- id: p054
+  perm:
+    keyword: azure
+    string: violet
+    function: sage
+    type: teal
+  angles:
+    violet: 239.8
+    sage: 157.0
+    teal: 341.9
+    azure: 81.9
+  seed: even+252+refined
+  min_hue: 0.08718729151312715
+  mean_hue: 0.14881412080069617
+  night_chroma: 0.061095907472776406
+  cvd_safe: 0.02561126380494135
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 1.0
+  night_chroma_n: 1.0
+  cvd_safe_n: 0.6016437441033107
+  score: 0.8805
+  refined: true
+- id: p003
+  perm:
+    keyword: violet
+    string: teal
+    function: sage
+    type: azure
+  angles:
+    violet: 315.1
+    sage: 130.3
+    teal: 177.3
+    azure: 246.7
+  seed: base-angles+refined
+  min_hue: 0.05577975481495363
+  mean_hue: 0.14105016436345885
+  night_chroma: 0.06042087403142629
+  cvd_safe: 0.03982700037718504
+  errors: 50
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.6159222427081431
+  night_chroma_n: 0.9484644270120048
+  cvd_safe_n: 0.9962642467488447
+  score: 0.7965
+  refined: true
+- id: p018
+  perm:
+    keyword: azure
+    string: teal
+    function: sage
+    type: violet
+  angles:
+    violet: 320.0
+    sage: 124.9
+    teal: 177.0
+    azure: 248.3
+  seed: base-angles+refined
+  min_hue: 0.05562248617511868
+  mean_hue: 0.13691497089038465
+  night_chroma: 0.06026987824414121
+  cvd_safe: 0.03996157646677314
+  errors: 50
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.6139990295933858
+  night_chroma_n: 0.9369366212177525
+  cvd_safe_n: 1.0
+  score: 0.7944
+  refined: true
+- id: p052
+  perm:
+    keyword: teal
+    string: azure
+    function: sage
+    type: violet
+  angles:
+    violet: 337.3
+    sage: 228.6
+    teal: 61.1
+    azure: 144.0
+  seed: even+324+refined
+  min_hue: 0.08518892227234193
+  mean_hue: 0.14804342901515397
+  night_chroma: 0.05832810354409465
+  cvd_safe: 0.01665443343482574
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=yes
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.9755622612617546
+  night_chroma_n: 0.7886914149056858
+  cvd_safe_n: 0.35300739066475345
+  score: 0.7514
+  refined: true
+- id: p025
+  perm:
+    keyword: violet
+    string: azure
+    function: sage
+    type: teal
+  angles:
+    violet: 219.7
+    sage: 127.7
+    teal: 315.8
+    azure: 19.5
+  seed: even+216+refined
+  min_hue: 0.050016631525284155
+  mean_hue: 0.1417035819790267
+  night_chroma: 0.05904961462746895
+  cvd_safe: 0.03840565276598943
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.5454459271229911
+  night_chroma_n: 0.8437753334512829
+  cvd_safe_n: 0.9568084713893612
+  score: 0.7285
+  refined: true
+- id: p050
+  perm:
+    keyword: teal
+    string: azure
+    function: violet
+    type: sage
+  angles:
+    violet: 329.6
+    sage: 232.6
+    teal: 64.0
+    azure: 154.9
+  seed: even+324+refined
+  min_hue: 0.0741815684311638
+  mean_hue: 0.13642905822963663
+  night_chroma: 0.056508516019877275
+  cvd_safe: 0.019271361333036606
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.8409550866314864
+  night_chroma_n: 0.6497746147619827
+  cvd_safe_n: 0.4256517729892988
+  score: 0.6781
+  refined: true
+- id: p057
+  perm:
+    keyword: azure
+    string: violet
+    function: teal
+    type: sage
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.0475827228337624
+  mean_hue: 0.14426281319836592
+  night_chroma: 0.0516292788799634
+  cvd_safe: 0.032684476395074394
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.515682045903131
+  night_chroma_n: 0.2772682078988768
+  cvd_safe_n: 0.7979919736482309
+  score: 0.5527
+- id: p063
+  perm:
+    keyword: azure
+    string: sage
+    function: teal
+    type: violet
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.04919097658054804
+  mean_hue: 0.13306533379466112
+  night_chroma: 0.05183141682281455
+  cvd_safe: 0.03108678656848098
+  errors: 49
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.5353491244823172
+  night_chroma_n: 0.29270047253840825
+  cvd_safe_n: 0.7536410419017208
+  score: 0.5523
+- id: p053
+  perm:
+    keyword: azure
+    string: violet
+    function: sage
+    type: teal
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.05707019394914897
+  mean_hue: 0.15156767199266827
+  night_chroma: 0.056806962346702725
+  cvd_safe: 0.012908945894506488
+  errors: 49
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.6317028170762123
+  night_chroma_n: 0.6725595636503662
+  cvd_safe_n: 0.24903485513681867
+  score: 0.5251
+- id: p035
+  perm:
+    keyword: sage
+    string: azure
+    function: violet
+    type: teal
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.03409520348326512
+  mean_hue: 0.1241713155200017
+  night_chroma: 0.052680908499073816
+  cvd_safe: 0.033681515168712636
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=yes
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.35074532280536674
+  night_chroma_n: 0.35755509692115367
+  cvd_safe_n: 0.8256691847452927
+  score: 0.4946
+- id: p029
+  perm:
+    keyword: sage
+    string: violet
+    function: teal
+    type: azure
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.034964725283013254
+  mean_hue: 0.1421107447755888
+  night_chroma: 0.05184784727048292
+  cvd_safe: 0.03362104433299603
+  errors: 48
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.36137856621993425
+  night_chroma_n: 0.2939548585927425
+  cvd_safe_n: 0.823990549842021
+  score: 0.4867
+- id: p037
+  perm:
+    keyword: sage
+    string: azure
+    function: teal
+    type: violet
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.03409520348326512
+  mean_hue: 0.14313872867231514
+  night_chroma: 0.051878955834796875
+  cvd_safe: 0.033681515168712636
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.35074532280536674
+  night_chroma_n: 0.29632984861330636
+  cvd_safe_n: 0.8256691847452927
+  score: 0.4823
+- id: p009
+  perm:
+    keyword: sage
+    string: azure
+    function: violet
+    type: teal
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04117379834631202
+  mean_hue: 0.14473429542940539
+  night_chroma: 0.0534062272213581
+  cvd_safe: 0.02548637896697855
+  errors: 49
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4373083304650797
+  night_chroma_n: 0.41292971047671184
+  cvd_safe_n: 0.5981770143085345
+  score: 0.4807
+- id: p060
+  perm:
+    keyword: azure
+    string: sage
+    function: violet
+    type: teal
+  angles:
+    violet: 288.0
+    sage: 198.0
+    teal: 18.0
+    azure: 108.0
+  seed: even+288
+  min_hue: 0.04959167193077076
+  mean_hue: 0.14253847961125898
+  night_chroma: 0.04830966198505143
+  cvd_safe: 0.027372970251909417
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.5402491640158146
+  night_chroma_n: 0.023831343441096893
+  cvd_safe_n: 0.6505476809540969
+  score: 0.4701
+- id: p007
+  perm:
+    keyword: sage
+    string: teal
+    function: violet
+    type: azure
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04117379834631202
+  mean_hue: 0.13467200884090308
+  night_chroma: 0.05298493423853281
+  cvd_safe: 0.024711068524226075
+  errors: 48
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4373083304650797
+  night_chroma_n: 0.38076600726476684
+  cvd_safe_n: 0.576654851522915
+  score: 0.4678
+- id: p008
+  perm:
+    keyword: sage
+    string: teal
+    function: azure
+    type: violet
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.03654267578846324
+  mean_hue: 0.11991809222245221
+  night_chroma: 0.053623780174326625
+  cvd_safe: 0.025826041407800062
+  errors: 48
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=yes
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.3806750712936998
+  night_chroma_n: 0.42953883737276477
+  cvd_safe_n: 0.607605844284781
+  score: 0.4585
+- id: p001
+  perm:
+    keyword: violet
+    string: sage
+    function: teal
+    type: azure
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04566425177266514
+  mean_hue: 0.1415000102069075
+  night_chroma: 0.05771398809861318
+  cvd_safe: 0.01016071901587204
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=yes
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.4922213692618326
+  night_chroma_n: 0.7418066393894305
+  cvd_safe_n: 0.17274569018787056
+  score: 0.4463
+- id: p016
+  perm:
+    keyword: azure
+    string: sage
+    function: teal
+    type: violet
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04566425177266514
+  mean_hue: 0.13847390453178837
+  night_chroma: 0.05771398809861318
+  cvd_safe: 0.01016071901587204
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=yes
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4922213692618326
+  night_chroma_n: 0.7418066393894305
+  cvd_safe_n: 0.17274569018787056
+  score: 0.4463
+- id: p005
+  perm:
+    keyword: violet
+    string: azure
+    function: sage
+    type: teal
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04490897964981333
+  mean_hue: 0.13265078906387626
+  night_chroma: 0.05883303240596367
+  cvd_safe: 0.008524587128057622
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.4829852669250691
+  night_chroma_n: 0.8272403172571766
+  cvd_safe_n: 0.127327629387254
+  score: 0.4451
+- id: p014
+  perm:
+    keyword: teal
+    string: azure
+    function: sage
+    type: violet
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04490897964981333
+  mean_hue: 0.13813951901963945
+  night_chroma: 0.05883303240596367
+  cvd_safe: 0.008524587128057622
+  errors: 50
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4829852669250691
+  night_chroma_n: 0.8272403172571766
+  cvd_safe_n: 0.127327629387254
+  score: 0.4451
+- id: p006
+  perm:
+    keyword: violet
+    string: azure
+    function: teal
+    type: sage
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04566425177266514
+  mean_hue: 0.11684782721353013
+  night_chroma: 0.05804506342340264
+  cvd_safe: 0.008524587128057622
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=yes
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.4922213692618326
+  night_chroma_n: 0.7670826561317801
+  cvd_safe_n: 0.127327629387254
+  score: 0.4377
+- id: p010
+  perm:
+    keyword: sage
+    string: azure
+    function: teal
+    type: violet
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04566425177266514
+  mean_hue: 0.12863285078030615
+  night_chroma: 0.05804506342340264
+  cvd_safe: 0.008524587128057622
+  errors: 49
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=yes
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4922213692618326
+  night_chroma_n: 0.7670826561317801
+  cvd_safe_n: 0.127327629387254
+  score: 0.4377
+- id: p059
+  perm:
+    keyword: azure
+    string: sage
+    function: violet
+    type: teal
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.054361519596366425
+  mean_hue: 0.14353910249006382
+  night_chroma: 0.052653795373881596
+  cvd_safe: 0.009494046131725175
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=yes
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.5985788704054379
+  night_chroma_n: 0.3554851395580316
+  cvd_safe_n: 0.1542392422591818
+  score: 0.4167
+- id: p055
+  perm:
+    keyword: azure
+    string: violet
+    function: sage
+    type: teal
+  angles:
+    violet: 324.0
+    sage: 234.0
+    teal: 54.0
+    azure: 144.0
+  seed: even+324
+  min_hue: 0.01923801886425245
+  mean_hue: 0.1477254294978973
+  night_chroma: 0.05981994318198073
+  cvd_safe: 0.021064049087244578
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=yes
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.16905918157821018
+  night_chroma_n: 0.9025862323104225
+  cvd_safe_n: 0.47541573274311894
+  score: 0.4077
+- id: p062
+  perm:
+    keyword: azure
+    string: sage
+    function: teal
+    type: violet
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.05427284755469771
+  mean_hue: 0.13352175031269858
+  night_chroma: 0.051851842709604655
+  cvd_safe: 0.009494046131725175
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.5974945141496163
+  night_chroma_n: 0.29425989125018426
+  cvd_safe_n: 0.1542392422591818
+  score: 0.4039
+- id: p056
+  perm:
+    keyword: azure
+    string: violet
+    function: teal
+    type: sage
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.05427284755469771
+  mean_hue: 0.14391443133617024
+  night_chroma: 0.05184784727048292
+  cvd_safe: 0.009276397666692436
+  errors: 49
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.5974945141496163
+  night_chroma_n: 0.2939548585927425
+  cvd_safe_n: 0.1481974486289491
+  score: 0.402
+- id: p064
+  perm:
+    keyword: azure
+    string: sage
+    function: teal
+    type: violet
+  angles:
+    violet: 288.0
+    sage: 198.0
+    teal: 18.0
+    azure: 108.0
+  seed: even+288
+  min_hue: 0.04457064547878653
+  mean_hue: 0.1225077576760575
+  night_chroma: 0.048019854772107594
+  cvd_safe: 0.022982384945433393
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.47884783230636724
+  night_chroma_n: 0.0017059495565467124
+  cvd_safe_n: 0.5286676101083408
+  score: 0.3984
+- id: p024
+  perm:
+    keyword: violet
+    string: sage
+    function: azure
+    type: teal
+  angles:
+    violet: 288.0
+    sage: 198.0
+    teal: 18.0
+    azure: 108.0
+  seed: even+288
+  min_hue: 0.03277832722184944
+  mean_hue: 0.12804832470495012
+  night_chroma: 0.052730421520120134
+  cvd_safe: 0.022982384945433393
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.33464145302481074
+  night_chroma_n: 0.36133517914179913
+  cvd_safe_n: 0.5286676101083408
+  score: 0.3982
+- id: p048
+  perm:
+    keyword: teal
+    string: sage
+    function: azure
+    type: violet
+  angles:
+    violet: 288.0
+    sage: 198.0
+    teal: 18.0
+    azure: 108.0
+  seed: even+288
+  min_hue: 0.03277832722184944
+  mean_hue: 0.14256497802100154
+  night_chroma: 0.052730421520120134
+  cvd_safe: 0.022982384945433393
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.33464145302481074
+  night_chroma_n: 0.36133517914179913
+  cvd_safe_n: 0.5286676101083408
+  score: 0.3982
+- id: p061
+  perm:
+    keyword: azure
+    string: sage
+    function: violet
+    type: teal
+  angles:
+    violet: 324.0
+    sage: 234.0
+    teal: 54.0
+    azure: 144.0
+  seed: even+324
+  min_hue: 0.01923801886425245
+  mean_hue: 0.14544289435539715
+  night_chroma: 0.058992173333569944
+  cvd_safe: 0.021064049087244578
+  errors: 50
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.16905918157821018
+  night_chroma_n: 0.8393899655377519
+  cvd_safe_n: 0.47541573274311894
+  score: 0.395
+- id: p040
+  perm:
+    keyword: teal
+    string: violet
+    function: sage
+    type: azure
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.034964725283013254
+  mean_hue: 0.135804042154679
+  night_chroma: 0.056806962346702725
+  cvd_safe: 0.012908945894506488
+  errors: 49
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.36137856621993425
+  night_chroma_n: 0.6725595636503662
+  cvd_safe_n: 0.24903485513681867
+  score: 0.3899
+- id: p034
+  perm:
+    keyword: sage
+    string: violet
+    function: azure
+    type: teal
+  angles:
+    violet: 288.0
+    sage: 198.0
+    teal: 18.0
+    azure: 108.0
+  seed: even+288
+  min_hue: 0.03277832722184944
+  mean_hue: 0.12374761714604092
+  night_chroma: 0.05270807631401961
+  cvd_safe: 0.021521034938920266
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.33464145302481074
+  night_chroma_n: 0.35962922958525245
+  cvd_safe_n: 0.4881013917361439
+  score: 0.3857
+- id: p013
+  perm:
+    keyword: teal
+    string: azure
+    function: violet
+    type: sage
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04117379834631202
+  mean_hue: 0.13843800181839258
+  night_chroma: 0.0534062272213581
+  cvd_safe: 0.012317437510037391
+  errors: 50
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4373083304650797
+  night_chroma_n: 0.41292971047671184
+  cvd_safe_n: 0.23261492959782132
+  score: 0.371
+- id: p017
+  perm:
+    keyword: azure
+    string: teal
+    function: violet
+    type: sage
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04117379834631202
+  mean_hue: 0.11986087959900792
+  night_chroma: 0.05298493423853281
+  cvd_safe: 0.012317437510037391
+  errors: 50
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4373083304650797
+  night_chroma_n: 0.38076600726476684
+  cvd_safe_n: 0.23261492959782132
+  score: 0.3646
+- id: p026
+  perm:
+    keyword: violet
+    string: azure
+    function: sage
+    type: teal
+  angles:
+    violet: 324.0
+    sage: 234.0
+    teal: 54.0
+    azure: 144.0
+  seed: even+324
+  min_hue: 0.01923801886425245
+  mean_hue: 0.14056855223533118
+  night_chroma: 0.05924495195230297
+  cvd_safe: 0.01665443343482574
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=yes
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.16905918157821018
+  night_chroma_n: 0.8586884034484209
+  cvd_safe_n: 0.35300739066475345
+  score: 0.3622
+- id: p028
+  perm:
+    keyword: violet
+    string: azure
+    function: teal
+    type: sage
+  angles:
+    violet: 324.0
+    sage: 234.0
+    teal: 54.0
+    azure: 144.0
+  seed: even+324
+  min_hue: 0.016781160757132638
+  mean_hue: 0.14296249608839187
+  night_chroma: 0.059397134303439576
+  cvd_safe: 0.01665443343482574
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.13901465561505913
+  night_chroma_n: 0.8703067977146356
+  cvd_safe_n: 0.35300739066475345
+  score: 0.3495
+- id: p039
+  perm:
+    keyword: sage
+    string: azure
+    function: teal
+    type: violet
+  angles:
+    violet: 324.0
+    sage: 234.0
+    teal: 54.0
+    azure: 144.0
+  seed: even+324
+  min_hue: 0.016781160757132638
+  mean_hue: 0.14170461761743453
+  night_chroma: 0.059397134303439576
+  cvd_safe: 0.01665443343482574
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.13901465561505913
+  night_chroma_n: 0.8703067977146356
+  cvd_safe_n: 0.35300739066475345
+  score: 0.3495
+- id: p036
+  perm:
+    keyword: sage
+    string: azure
+    function: violet
+    type: teal
+  angles:
+    violet: 324.0
+    sage: 234.0
+    teal: 54.0
+    azure: 144.0
+  seed: even+324
+  min_hue: 0.01923801886425245
+  mean_hue: 0.12947214694685508
+  night_chroma: 0.05835769243094374
+  cvd_safe: 0.01665443343482574
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.16905918157821018
+  night_chroma_n: 0.7909503848239686
+  cvd_safe_n: 0.35300739066475345
+  score: 0.3486
+- id: p011
+  perm:
+    keyword: teal
+    string: sage
+    function: violet
+    type: azure
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04117379834631202
+  mean_hue: 0.14074352086208378
+  night_chroma: 0.05307515189656864
+  cvd_safe: 0.01016071901587204
+  errors: 50
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4373083304650797
+  night_chroma_n: 0.38765369373436215
+  cvd_safe_n: 0.17274569018787056
+  score: 0.348
+- id: p015
+  perm:
+    keyword: azure
+    string: sage
+    function: violet
+    type: teal
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.04117379834631202
+  mean_hue: 0.13222868523120143
+  night_chroma: 0.05307515189656864
+  cvd_safe: 0.01016071901587204
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4373083304650797
+  night_chroma_n: 0.38765369373436215
+  cvd_safe_n: 0.17274569018787056
+  score: 0.348
+- id: p004
+  perm:
+    keyword: violet
+    string: teal
+    function: azure
+    type: sage
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.03654267578846324
+  mean_hue: 0.10813306865567618
+  night_chroma: 0.053623780174326625
+  cvd_safe: 0.012317437510037391
+  errors: 50
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=yes
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.3806750712936998
+  night_chroma_n: 0.42953883737276477
+  cvd_safe_n: 0.23261492959782132
+  score: 0.346
+- id: base
+  perm:
+    keyword: keyword
+    string: string
+    function: function
+    type: type
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: committed
+  min_hue: 0.038405371776658336
+  mean_hue: 0.12439177126209693
+  night_chroma: 0.053713997832362456
+  cvd_safe: 0.01016071901587204
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=yes
+  - keyword_purple=yes
+  is_base: true
+  min_hue_n: 0.4034536834636926
+  night_chroma_n: 0.4364265238423601
+  cvd_safe_n: 0.17274569018787056
+  score: 0.3408
+- id: p002
+  perm:
+    keyword: violet
+    string: sage
+    function: azure
+    type: teal
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.038405371776658336
+  mean_hue: 0.12439177126209693
+  night_chroma: 0.053713997832362456
+  cvd_safe: 0.01016071901587204
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=yes
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.4034536834636926
+  night_chroma_n: 0.4364265238423601
+  cvd_safe_n: 0.17274569018787056
+  score: 0.3408
+- id: p012
+  perm:
+    keyword: teal
+    string: sage
+    function: azure
+    type: violet
+  angles:
+    violet: 308.0
+    sage: 134.0
+    teal: 194.0
+    azure: 250.0
+  seed: base-angles
+  min_hue: 0.038405371776658336
+  mean_hue: 0.12988050121786013
+  night_chroma: 0.053713997832362456
+  cvd_safe: 0.01016071901587204
+  errors: 50
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=yes
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.4034536834636926
+  night_chroma_n: 0.4364265238423601
+  cvd_safe_n: 0.17274569018787056
+  score: 0.3408
+- id: p058
+  perm:
+    keyword: azure
+    string: violet
+    function: teal
+    type: sage
+  angles:
+    violet: 324.0
+    sage: 234.0
+    teal: 54.0
+    azure: 144.0
+  seed: even+324
+  min_hue: 0.016781160757132638
+  mean_hue: 0.15048109561492248
+  night_chroma: 0.059972125533117336
+  cvd_safe: 0.014107843216972744
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.13901465561505913
+  night_chroma_n: 0.9142046265766371
+  cvd_safe_n: 0.2823155410589092
+  score: 0.337
+- id: p065
+  perm:
+    keyword: azure
+    string: sage
+    function: teal
+    type: violet
+  angles:
+    violet: 324.0
+    sage: 234.0
+    teal: 54.0
+    azure: 144.0
+  seed: even+324
+  min_hue: 0.016781160757132638
+  mean_hue: 0.12614737741016704
+  night_chroma: 0.06003161520606578
+  cvd_safe: 0.012978601350974943
+  errors: 50
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.13901465561505913
+  night_chroma_n: 0.9187463784284188
+  cvd_safe_n: 0.25096844972081334
+  score: 0.3285
+- id: p044
+  perm:
+    keyword: teal
+    string: sage
+    function: violet
+    type: azure
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.034964725283013254
+  mean_hue: 0.12777547265207456
+  night_chroma: 0.052653795373881596
+  cvd_safe: 0.009494046131725175
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=yes
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.36137856621993425
+  night_chroma_n: 0.3554851395580316
+  cvd_safe_n: 0.1542392422591818
+  score: 0.2981
+- id: p019
+  perm:
+    keyword: violet
+    string: sage
+    function: teal
+    type: azure
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.034964725283013254
+  mean_hue: 0.12009927975498365
+  night_chroma: 0.051851842709604655
+  cvd_safe: 0.009494046131725175
+  errors: 50
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.36137856621993425
+  night_chroma_n: 0.29425989125018426
+  cvd_safe_n: 0.1542392422591818
+  score: 0.2858
+- id: p032
+  perm:
+    keyword: sage
+    string: violet
+    function: azure
+    type: teal
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.030398360414895055
+  mean_hue: 0.1227019382234305
+  night_chroma: 0.05178870280168802
+  cvd_safe: 0.012908945894506488
+  errors: 48
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.30553721850847376
+  night_chroma_n: 0.28943946142616717
+  cvd_safe_n: 0.24903485513681867
+  score: 0.2854
+- id: p023
+  perm:
+    keyword: violet
+    string: sage
+    function: azure
+    type: teal
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.0054133899999831625
+  mean_hue: 0.1220799445870936
+  night_chroma: 0.050886203984155116
+  cvd_safe: 0.032684476395074394
+  errors: 49
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.0
+  night_chroma_n: 0.2205379954639454
+  cvd_safe_n: 0.7979919736482309
+  score: 0.2835
+- id: p047
+  perm:
+    keyword: teal
+    string: sage
+    function: azure
+    type: violet
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.0054133899999831625
+  mean_hue: 0.13152132320928578
+  night_chroma: 0.050886203984155116
+  cvd_safe: 0.032684476395074394
+  errors: 49
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.0
+  night_chroma_n: 0.2205379954639454
+  cvd_safe_n: 0.7979919736482309
+  score: 0.2835
+- id: p027
+  perm:
+    keyword: violet
+    string: azure
+    function: teal
+    type: sage
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.03409520348326512
+  mean_hue: 0.13151994467518163
+  night_chroma: 0.051878955834796875
+  cvd_safe: 0.009276397666692436
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.35074532280536674
+  night_chroma_n: 0.29632984861330636
+  cvd_safe_n: 0.1481974486289491
+  score: 0.2791
+- id: p022
+  perm:
+    keyword: violet
+    string: sage
+    function: azure
+    type: teal
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.030398360414895055
+  mean_hue: 0.12914821315234248
+  night_chroma: 0.05179269824080975
+  cvd_safe: 0.009494046131725175
+  errors: 50
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.30553721850847376
+  night_chroma_n: 0.2897444940836089
+  cvd_safe_n: 0.1542392422591818
+  score: 0.257
+- id: p046
+  perm:
+    keyword: teal
+    string: sage
+    function: azure
+    type: violet
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.030398360414895055
+  mean_hue: 0.12680705387206817
+  night_chroma: 0.05179269824080975
+  cvd_safe: 0.009494046131725175
+  errors: 51
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.30553721850847376
+  night_chroma_n: 0.2897444940836089
+  cvd_safe_n: 0.1542392422591818
+  score: 0.257
+- id: p042
+  perm:
+    keyword: teal
+    string: violet
+    function: azure
+    type: sage
+  angles:
+    violet: 216.0
+    sage: 126.0
+    teal: 306.0
+    azure: 36.0
+  seed: even+216
+  min_hue: 0.030398360414895055
+  mean_hue: 0.10874199494602264
+  night_chroma: 0.05178870280168802
+  cvd_safe: 0.009276397666692436
+  errors: 49
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.30553721850847376
+  night_chroma_n: 0.28943946142616717
+  cvd_safe_n: 0.1481974486289491
+  score: 0.2551
+- id: p045
+  perm:
+    keyword: teal
+    string: sage
+    function: violet
+    type: azure
+  angles:
+    violet: 288.0
+    sage: 198.0
+    teal: 18.0
+    azure: 108.0
+  seed: even+288
+  min_hue: 0.03114892069249122
+  mean_hue: 0.1375403423504822
+  night_chroma: 0.04830966198505143
+  cvd_safe: 0.006246178296287113
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.31471570044106845
+  night_chroma_n: 0.023831343441096893
+  cvd_safe_n: 0.06408033763729193
+  score: 0.1813
+- id: p033
+  perm:
+    keyword: sage
+    string: violet
+    function: azure
+    type: teal
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.0054133899999831625
+  mean_hue: 0.11681836863337028
+  night_chroma: 0.050684066041303974
+  cvd_safe: 0.02070427593132834
+  errors: 49
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.0
+  night_chroma_n: 0.20510573082441447
+  cvd_safe_n: 0.4654286411207797
+  score: 0.1806
+- id: p043
+  perm:
+    keyword: teal
+    string: violet
+    function: azure
+    type: sage
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.0054133899999831625
+  mean_hue: 0.11401893353851
+  night_chroma: 0.050684066041303974
+  cvd_safe: 0.02070427593132834
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.0
+  night_chroma_n: 0.20510573082441447
+  cvd_safe_n: 0.4654286411207797
+  score: 0.1806
+- id: p049
+  perm:
+    keyword: teal
+    string: azure
+    function: violet
+    type: sage
+  angles:
+    violet: 72.0
+    sage: 342.0
+    teal: 162.0
+    azure: 252.0
+  seed: even+072
+  min_hue: 0.0054133899999831625
+  mean_hue: 0.11681836863337028
+  night_chroma: 0.050684066041303974
+  cvd_safe: 0.02070427593132834
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.0
+  night_chroma_n: 0.20510573082441447
+  cvd_safe_n: 0.4654286411207797
+  score: 0.1806
+- id: p021
+  perm:
+    keyword: violet
+    string: sage
+    function: teal
+    type: azure
+  angles:
+    violet: 288.0
+    sage: 198.0
+    teal: 18.0
+    azure: 108.0
+  seed: even+288
+  min_hue: 0.03114892069249122
+  mean_hue: 0.10299296709922931
+  night_chroma: 0.048019854772107594
+  cvd_safe: 0.006246178296287113
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=yes
+  is_base: false
+  min_hue_n: 0.31471570044106845
+  night_chroma_n: 0.0017059495565467124
+  cvd_safe_n: 0.06408033763729193
+  score: 0.1769
+- id: p031
+  perm:
+    keyword: sage
+    string: violet
+    function: teal
+    type: azure
+  angles:
+    violet: 288.0
+    sage: 198.0
+    teal: 18.0
+    azure: 108.0
+  seed: even+288
+  min_hue: 0.03114892069249122
+  mean_hue: 0.12649413663850506
+  night_chroma: 0.04799750956600707
+  cvd_safe: 0.006246178296287113
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.31471570044106845
+  night_chroma_n: 0.0
+  cvd_safe_n: 0.06408033763729193
+  score: 0.1766
+- id: p041
+  perm:
+    keyword: teal
+    string: violet
+    function: sage
+    type: azure
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.00559985934304929
+  mean_hue: 0.1397732205902995
+  night_chroma: 0.05676086607776061
+  cvd_safe: 0.0039377599723399905
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.0022803038575352204
+  night_chroma_n: 0.6690403341025838
+  cvd_safe_n: 0.0
+  score: 0.1349
+- id: p038
+  perm:
+    keyword: sage
+    string: azure
+    function: teal
+    type: violet
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.007866728440521959
+  mean_hue: 0.13136703117682788
+  night_chroma: 0.05137511111469752
+  cvd_safe: 0.007717407776986347
+  errors: 50
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.03000148452186126
+  night_chroma_n: 0.2578637152979517
+  cvd_safe_n: 0.10492080441366991
+  score: 0.098
+- id: p020
+  perm:
+    keyword: violet
+    string: sage
+    function: teal
+    type: azure
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.00559985934304929
+  mean_hue: 0.1080999065708542
+  night_chroma: 0.05183141682281455
+  cvd_safe: 0.0039377599723399905
+  errors: 49
+  conventions:
+  - string_green=yes
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.0022803038575352204
+  night_chroma_n: 0.29270047253840825
+  cvd_safe_n: 0.0
+  score: 0.0597
+- id: p030
+  perm:
+    keyword: sage
+    string: violet
+    function: teal
+    type: azure
+  angles:
+    violet: 252.0
+    sage: 162.0
+    teal: 342.0
+    azure: 72.0
+  seed: even+252
+  min_hue: 0.00559985934304929
+  mean_hue: 0.13153819969161143
+  night_chroma: 0.0516292788799634
+  cvd_safe: 0.0039377599723399905
+  errors: 49
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.0022803038575352204
+  night_chroma_n: 0.2772682078988768
+  cvd_safe_n: 0.0
+  score: 0.0566
+- id: p051
+  perm:
+    keyword: teal
+    string: azure
+    function: sage
+    type: violet
+  angles:
+    violet: 72.0
+    sage: 342.0
+    teal: 162.0
+    azure: 252.0
+  seed: even+072
+  min_hue: 0.00559985934304929
+  mean_hue: 0.13153819969161143
+  night_chroma: 0.0516292788799634
+  cvd_safe: 0.0039377599723399905
+  errors: 51
+  conventions:
+  - string_green=NO
+  - function_blue_cyan=NO
+  - keyword_purple=NO
+  is_base: false
+  min_hue_n: 0.0022803038575352204
+  night_chroma_n: 0.2772682078988768
+  cvd_safe_n: 0.0
+  score: 0.0566

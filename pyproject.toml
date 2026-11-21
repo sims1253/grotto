@@ -1,0 +1,27 @@
+[project]
+name = "grotto"
+version = "0.1.0"
+description = "Research and evaluation toolkit for adaptive coding colour systems"
+readme = "README.md"
+authors = [
+    { name = "Maximilian Scholz", email = "dev.scholz@mailbox.org" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "coloraide>=8.11.1",
+    "numpy>=2.5.2",
+    "pillow>=11",
+    "pyyaml>=6.0.3",
+]
+
+[project.scripts]
+grotto = "grotto.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.23,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

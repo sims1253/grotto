@@ -1,0 +1,23 @@
+# Copy per screenshot. Manual capture only -- no automation (Phase 8c).
+screenshot: shot.png                 # file name of the PNG this describes
+date_local: ""                       # e.g. 2026-08-14 21:40
+theme_label: ""                      # exact VS Code theme label, e.g. "Grotto Restrained Evening"
+palette_file: themes/candidates/candidate-a-restrained.evening.yaml
+variant_context: ""                  # day | evening | night, and actual room light
+vscode:
+  version: ""                        # Help > About
+  r_extension: ""                    # REditorSupport.r version, or "none"
+  semantic_highlighting: ""          # setting value observed in the session
+  zoom: ""                           # window.zoomLevel
+  font: ""                           # family, size, ligatures on/off
+  scaling: ""                        # OS display scale, e.g. 2x
+display:
+  model: ""
+  brightness_setting: ""             # as set, not measured
+  hdr_or_adaptive_colour: ""         # state of HDR / True Tone / auto-brightness
+  os_colour_temperature_filter: ""   # Night Shift/f.lux/night light: off, or on + strength
+  profile: ""
+content:
+  file_shown: ""                     # e.g. evaluation/r-corpus item or specimen
+  viewport: ""                       # editor-only / full window / cropped how
+  notes: ""                          # terminals, images, decorations visible?

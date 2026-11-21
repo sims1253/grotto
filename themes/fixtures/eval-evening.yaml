@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# EVALUATION FIXTURE -- NOT A CANDIDATE PALETTE.
+# ---------------------------------------------------------------------------
+# Member of the day/evening/night PLACEHOLDER trio used to exercise the
+# cross-variant stability reporting in Phase 2. Same role set as its day and
+# night companions. Round-number OKLCH stubs; NOT optimised, NOT a candidate.
+# ---------------------------------------------------------------------------
+
+name: grotto-eval-fixture-evening
+variant: evening
+format: oklch
+candidate: false
+kind: fixture
+trio: eval-fixture
+note: >
+  EVALUATION FIXTURE ONLY. NOT A CANDIDATE PALETTE. Evening member of the
+  placeholder trio; negative polarity, least transformed. Round-number stubs.
+
+colors:
+  bg:               {L: 0.235, C: 0.010, h: 265}
+  bg_elevated:      {L: 0.275, C: 0.011, h: 265}
+  fg:               {L: 0.870, C: 0.012, h: 90}
+  fg_secondary:     {L: 0.720, C: 0.012, h: 90}
+  comment:          {L: 0.620, C: 0.022, h: 70}
+  punctuation:      {L: 0.740, C: 0.000, h: 0}
+  operator:         {L: 0.830, C: 0.000, h: 0}
+  keyword:          {L: 0.710, C: 0.125, h: 297}
+  string:           {L: 0.790, C: 0.095, h: 142}
+  number:           {L: 0.790, C: 0.095, h: 77}
+  constant:         {L: 0.770, C: 0.090, h: 77}
+  type:             {L: 0.790, C: 0.085, h: 192}
+  function:         {L: 0.810, C: 0.095, h: 242}
+  builtin:          {L: 0.750, C: 0.065, h: 25}
+  decorator:        {L: 0.770, C: 0.075, h: 77}
+  tag:              {L: 0.790, C: 0.065, h: 242}
+  error:            {L: 0.660, C: 0.162, h: 25}
+  warning:          {L: 0.800, C: 0.152, h: 80}
+  success:          {L: 0.760, C: 0.112, h: 145}
+  diff_added:       {L: 0.330, C: 0.042, h: 145}
+  diff_removed:     {L: 0.330, C: 0.042, h: 25}
+  selection:        {L: 0.420, C: 0.062, h: 245}
+  focus:            {L: 0.730, C: 0.188, h: 245}

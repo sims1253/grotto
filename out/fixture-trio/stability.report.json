@@ -1,0 +1,1320 @@
+{
+  "variants": [
+    "day",
+    "evening",
+    "night"
+  ],
+  "max_hue_drift_threshold_deg": 12.0,
+  "salience_rank_preserved": true,
+  "drift_violations": [],
+  "hue_order_inversions": [],
+  "chroma_rank_inversions": [
+    {
+      "kind": "chroma_rank",
+      "roles": [
+        "focus",
+        "warning"
+      ],
+      "variants": [
+        "day",
+        "night"
+      ],
+      "detail": "chroma rank of focus/warning inverts between day and night"
+    }
+  ],
+  "roles": {
+    "bg": {
+      "role": "bg",
+      "family": "neutral",
+      "salience": 0,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.964807,
+        "evening": 0.23508,
+        "night": 0.205783
+      },
+      "chroma": {
+        "day": 0.008595,
+        "evening": 0.010064,
+        "night": 0.006622
+      },
+      "hue": {
+        "day": 84.57277,
+        "evening": 268.25177,
+        "night": 78.170263
+      },
+      "hue_meaningful": false,
+      "max_hue_drift_deg": null,
+      "hue_drift_pairs": [],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.729965
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.759027
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.033685
+        }
+      ]
+    },
+    "bg_elevated": {
+      "role": "bg_elevated",
+      "family": "neutral",
+      "salience": 0,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.98851,
+        "evening": 0.275871,
+        "night": 0.237281
+      },
+      "chroma": {
+        "day": 0.005701,
+        "evening": 0.010201,
+        "night": 0.007287
+      },
+      "hue": {
+        "day": 84.565867,
+        "evening": 260.70362,
+        "night": 67.465183
+      },
+      "hue_meaningful": false,
+      "max_hue_drift_deg": null,
+      "hue_drift_pairs": [],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.712816
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.751233
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.042322
+        }
+      ]
+    },
+    "builtin": {
+      "role": "builtin",
+      "family": "rose",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.520138,
+        "evening": 0.748755,
+        "night": 0.740392
+      },
+      "chroma": {
+        "day": 0.065533,
+        "evening": 0.065259,
+        "night": 0.059303
+      },
+      "hue": {
+        "day": 24.679134,
+        "evening": 24.754057,
+        "night": 25.261374
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 0.5822,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 0.0749
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.5822
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 0.5073
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.228617
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.220343
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.010281
+        }
+      ]
+    },
+    "comment": {
+      "role": "comment",
+      "family": "neutral",
+      "salience": 1,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.579394,
+        "evening": 0.619619,
+        "night": 0.599075
+      },
+      "chroma": {
+        "day": 0.021356,
+        "evening": 0.022136,
+        "night": 0.019266
+      },
+      "hue": {
+        "day": 67.385503,
+        "evening": 69.82498,
+        "night": 67.446717
+      },
+      "hue_meaningful": false,
+      "max_hue_drift_deg": null,
+      "hue_drift_pairs": [],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.040243
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.019792
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.020761
+        }
+      ]
+    },
+    "constant": {
+      "role": "constant",
+      "family": "sand",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.549473,
+        "evening": 0.77021,
+        "night": 0.759481
+      },
+      "chroma": {
+        "day": 0.090095,
+        "evening": 0.090439,
+        "night": 0.084811
+      },
+      "hue": {
+        "day": 79.871141,
+        "evening": 76.907985,
+        "night": 79.143436
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 2.9632,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 2.9632
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.7277
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 2.2355
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.220786
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.210078
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.012588
+        }
+      ]
+    },
+    "decorator": {
+      "role": "decorator",
+      "family": "sand",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.551192,
+        "evening": 0.768601,
+        "night": 0.760852
+      },
+      "chroma": {
+        "day": 0.075393,
+        "evening": 0.074308,
+        "night": 0.070551
+      },
+      "hue": {
+        "day": 80.17686,
+        "evening": 76.60831,
+        "night": 80.258815
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 3.6505,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 3.5685
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.082
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 3.6505
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.217462
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.209717
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.009769
+        }
+      ]
+    },
+    "diff_added": {
+      "role": "diff_added",
+      "family": "sage",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.900684,
+        "evening": 0.329839,
+        "night": 0.299496
+      },
+      "chroma": {
+        "day": 0.041146,
+        "evening": 0.041099,
+        "night": 0.03977
+      },
+      "hue": {
+        "day": 145.22344,
+        "evening": 144.573198,
+        "night": 144.502619
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 0.7208,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 0.6502
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.7208
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 0.0706
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.570846
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.60119
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.030372
+        }
+      ]
+    },
+    "diff_removed": {
+      "role": "diff_removed",
+      "family": "rose",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.899404,
+        "evening": 0.330615,
+        "night": 0.300958
+      },
+      "chroma": {
+        "day": 0.040692,
+        "evening": 0.042113,
+        "night": 0.039902
+      },
+      "hue": {
+        "day": 23.571529,
+        "evening": 26.275403,
+        "night": 24.502502
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 2.7039,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 2.7039
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.931
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 1.7729
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.568794
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.598446
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.029766
+        }
+      ]
+    },
+    "error": {
+      "role": "error",
+      "family": "rose",
+      "salience": 6,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.500041,
+        "evening": 0.659217,
+        "night": 0.659112
+      },
+      "chroma": {
+        "day": 0.160586,
+        "evening": 0.162006,
+        "night": 0.159776
+      },
+      "hue": {
+        "day": 24.733336,
+        "evening": 24.748309,
+        "night": 25.129022
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 0.3957,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 0.015
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.3957
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 0.3807
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.159182
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.159077
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.002475
+        }
+      ]
+    },
+    "fg": {
+      "role": "fg",
+      "family": "neutral",
+      "salience": 2,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.420831,
+        "evening": 0.87007,
+        "night": 0.860299
+      },
+      "chroma": {
+        "day": 0.012006,
+        "evening": 0.011364,
+        "night": 0.009792
+      },
+      "hue": {
+        "day": 87.539222,
+        "evening": 89.732574,
+        "night": 93.583983
+      },
+      "hue_meaningful": false,
+      "max_hue_drift_deg": null,
+      "hue_drift_pairs": [],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.449239
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.439475
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.009922
+        }
+      ]
+    },
+    "fg_secondary": {
+      "role": "fg_secondary",
+      "family": "neutral",
+      "salience": 1,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.500229,
+        "evening": 0.718859,
+        "night": 0.699993
+      },
+      "chroma": {
+        "day": 0.011525,
+        "evening": 0.011903,
+        "night": 0.009299
+      },
+      "hue": {
+        "day": 87.522466,
+        "evening": 89.754445,
+        "night": 84.580814
+      },
+      "hue_meaningful": false,
+      "max_hue_drift_deg": null,
+      "hue_drift_pairs": [],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.218631
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.199777
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.019069
+        }
+      ]
+    },
+    "focus": {
+      "role": "focus",
+      "family": "azure",
+      "salience": 5,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.549999,
+        "evening": 0.731043,
+        "night": 0.719233
+      },
+      "chroma": {
+        "day": 0.138338,
+        "evening": 0.149774,
+        "night": 0.156583
+      },
+      "hue": {
+        "day": 244.964964,
+        "evening": 244.707412,
+        "night": 245.121263
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 0.4139,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 0.2576
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.1563
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 0.4139
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.181405
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.170214
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.013677
+        }
+      ]
+    },
+    "function": {
+      "role": "function",
+      "family": "azure",
+      "salience": 4,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.500436,
+        "evening": 0.81045,
+        "night": 0.799296
+      },
+      "chroma": {
+        "day": 0.09527,
+        "evening": 0.094408,
+        "night": 0.089883
+      },
+      "hue": {
+        "day": 245.35884,
+        "evening": 241.757828,
+        "night": 245.119748
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 3.601,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 3.601
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.2391
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 3.3619
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.310072
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.298909
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.013194
+        }
+      ]
+    },
+    "keyword": {
+      "role": "keyword",
+      "family": "violet",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.500396,
+        "evening": 0.710263,
+        "night": 0.700965
+      },
+      "chroma": {
+        "day": 0.124657,
+        "evening": 0.125247,
+        "night": 0.119416
+      },
+      "hue": {
+        "day": 300.042609,
+        "evening": 297.013264,
+        "night": 299.805145
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 3.0293,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 3.0293
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.2375
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 2.7919
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.209971
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.200638
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.012488
+        }
+      ]
+    },
+    "number": {
+      "role": "number",
+      "family": "sand",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.618933,
+        "evening": 0.790291,
+        "night": 0.779606
+      },
+      "chroma": {
+        "day": 0.094627,
+        "evening": 0.095142,
+        "night": 0.089611
+      },
+      "hue": {
+        "day": 79.57995,
+        "evening": 77.229753,
+        "night": 79.367139
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 2.3502,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 2.3502
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.2128
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 2.1374
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.171403
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.160752
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.012515
+        }
+      ]
+    },
+    "operator": {
+      "role": "operator",
+      "family": "neutral",
+      "salience": 2,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.401667,
+        "evening": 0.829679,
+        "night": 0.820319
+      },
+      "chroma": {
+        "day": 0.0,
+        "evening": 0.0,
+        "night": 0.0
+      },
+      "hue": {
+        "day": 0.0,
+        "evening": 0.0,
+        "night": 0.0
+      },
+      "hue_meaningful": false,
+      "max_hue_drift_deg": null,
+      "hue_drift_pairs": [],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.428013
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.418652
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.009361
+        }
+      ]
+    },
+    "punctuation": {
+      "role": "punctuation",
+      "family": "neutral",
+      "salience": 1,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.449533,
+        "evening": 0.741225,
+        "night": 0.718705
+      },
+      "chroma": {
+        "day": 0.0,
+        "evening": 0.0,
+        "night": 0.0
+      },
+      "hue": {
+        "day": 0.0,
+        "evening": 0.0,
+        "night": 0.0
+      },
+      "hue_meaningful": false,
+      "max_hue_drift_deg": null,
+      "hue_drift_pairs": [],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.291692
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.269172
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.02252
+        }
+      ]
+    },
+    "selection": {
+      "role": "selection",
+      "family": "azure",
+      "salience": 4,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.850841,
+        "evening": 0.418714,
+        "night": 0.400123
+      },
+      "chroma": {
+        "day": 0.059588,
+        "evening": 0.062881,
+        "night": 0.060087
+      },
+      "hue": {
+        "day": 244.672378,
+        "evening": 245.788865,
+        "night": 244.788513
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 1.1165,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 1.1165
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.1161
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 1.0004
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.432142
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.450719
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.01883
+        }
+      ]
+    },
+    "string": {
+      "role": "string",
+      "family": "sage",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.579674,
+        "evening": 0.789298,
+        "night": 0.779772
+      },
+      "chroma": {
+        "day": 0.094944,
+        "evening": 0.093797,
+        "night": 0.08989
+      },
+      "hue": {
+        "day": 144.652749,
+        "evening": 141.953373,
+        "night": 145.120111
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 3.1667,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 2.6994
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.4674
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 3.1667
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.209674
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.200163
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.011478
+        }
+      ]
+    },
+    "success": {
+      "role": "success",
+      "family": "sage",
+      "salience": 4,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.54955,
+        "evening": 0.760008,
+        "night": 0.76077
+      },
+      "chroma": {
+        "day": 0.11016,
+        "evening": 0.112023,
+        "night": 0.110363
+      },
+      "hue": {
+        "day": 144.876596,
+        "evening": 144.725368,
+        "night": 144.753107
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 0.1512,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 0.1512
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.1235
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 0.0277
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.210466
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.21122
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.001828
+        }
+      ]
+    },
+    "tag": {
+      "role": "tag",
+      "family": "azure",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.49919,
+        "evening": 0.789102,
+        "night": 0.779944
+      },
+      "chroma": {
+        "day": 0.06535,
+        "evening": 0.065012,
+        "night": 0.060116
+      },
+      "hue": {
+        "day": 244.91142,
+        "evening": 242.283911,
+        "night": 245.505978
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 3.2221,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 2.6275
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.5946
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 3.2221
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.289927
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.280803
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.010963
+        }
+      ]
+    },
+    "type": {
+      "role": "type",
+      "family": "teal",
+      "salience": 3,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.580388,
+        "evening": 0.789506,
+        "night": 0.780412
+      },
+      "chroma": {
+        "day": 0.084948,
+        "evening": 0.084594,
+        "night": 0.080382
+      },
+      "hue": {
+        "day": 195.067277,
+        "evening": 191.748544,
+        "night": 194.620147
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 3.3187,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 3.3187
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.4471
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 2.8716
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.209176
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.200077
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.010841
+        }
+      ]
+    },
+    "warning": {
+      "role": "warning",
+      "family": "sand",
+      "salience": 5,
+      "present_in": [
+        "day",
+        "evening",
+        "night"
+      ],
+      "lightness": {
+        "day": 0.779888,
+        "evening": 0.799188,
+        "night": 0.799426
+      },
+      "chroma": {
+        "day": 0.150087,
+        "evening": 0.151738,
+        "night": 0.149871
+      },
+      "hue": {
+        "day": 80.046864,
+        "evening": 80.056762,
+        "night": 79.616774
+      },
+      "hue_meaningful": true,
+      "max_hue_drift_deg": 0.44,
+      "hue_drift_pairs": [
+        {
+          "a": "day",
+          "b": "evening",
+          "drift_deg": 0.0099
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "drift_deg": 0.4301
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "drift_deg": 0.44
+        }
+      ],
+      "cross_variant_de_informational": [
+        {
+          "a": "day",
+          "b": "evening",
+          "de": 0.019371
+        },
+        {
+          "a": "day",
+          "b": "night",
+          "de": 0.019572
+        },
+        {
+          "a": "evening",
+          "b": "night",
+          "de": 0.00221
+        }
+      ]
+    }
+  },
+  "caveat": "Cross-variant dE is reported INFORMATIONALLY ONLY and is NOT a stability gate: Day<->Night necessarily inverts lightness, so a large cross-variant dE is expected and correct. Stability lives in hue drift, family ordering, salience rank and chroma rank (DESIGN.md D-5).",
+  "ok": false
+}

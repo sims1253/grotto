@@ -1,0 +1,208 @@
+# Semantic distance constraints.
+#
+# This file states which distinctions the theme is *obliged* to make, and --
+# just as importantly -- which it is obliged NOT to make.  Maximising every
+# pairwise distance produces a rainbow; the interesting design work is deciding
+# where distance should be spent.
+#
+# Relationship classes
+# --------------------
+#   must_distinguish   Confusing these two is a correctness or safety failure.
+#                      Enforced under normal vision AND under simulated CVD.
+#   should_distinguish Confusing them costs comprehension speed but not
+#                      correctness.  Enforced under normal vision; CVD
+#                      degradation is tolerated if a redundant channel exists.
+#   same_family        Deliberately close.  Enforced as an *upper* bound: if
+#                      these drift too far apart the theme has become noisier
+#                      than intended.
+#   differentiated_by  Distinguished by a non-colour channel.  Colour distance
+#                      is expected to be near zero; the constraint is that the
+#                      named channel is actually present.
+#   redundant_encoding Important colour distinction that must ALSO carry the
+#                      named non-colour channel. No colour-distance upper bound.
+#
+# Thresholds are Euclidean OKLab distance (dE_OK) unless noted.  They are
+# design targets calibrated against reference themes, not perceptual constants.
+# Rough anchors: 0.02 ~ JND for large patches; 0.05 ~ comfortably different
+# side by side; small non-adjacent glyphs need considerably more.
+
+version: 1
+
+thresholds:
+  must_distinguish:
+    normal_vision: 0.13
+    cvd_dichromat: 0.09      # at severity 1.0, all three types
+    note: >
+      The CVD floor is lower than the normal-vision floor because we accept
+      that a dichromat sees a *reduced* difference; we only require that the
+      difference does not vanish.  Pairs that cannot meet this must carry a
+      redundant channel, declared in roles.yaml.
+  should_distinguish:
+    normal_vision: 0.08
+    cvd_dichromat: null      # not enforced
+  same_family:
+    max_distance: 0.14
+    min_distance: 0.03       # still not identical
+  differentiated_by:
+    max_distance: 0.05
+    requires_channel: true
+
+# ---------------------------------------------------------------------------
+# MUST DISTINGUISH
+# ---------------------------------------------------------------------------
+must_distinguish:
+  # --- Safety: a diagnostic must never be mistaken for ordinary syntax ------
+  - [error, string]
+  - [error, builtin]
+  - [error, keyword]
+  - [error, warning]
+  - [error, fg]
+  - [warning, string]
+  - [warning, number]
+  - [warning, constant]
+  - [warning, decorator]
+
+  # --- Safety: opposite-meaning state pairs --------------------------------
+  - [error, success]
+  - [diff_added, diff_removed]
+  - [diff_added, diff_changed]
+  - [diff_removed, diff_changed]
+
+  # --- Co-occurring background highlights ----------------------------------
+  # These can appear on screen simultaneously and even overlap.  Note the
+  # thresholds still apply even though all four are low-chroma backgrounds,
+  # which is what makes this set hard.
+  - [selection, search_match]
+  - [selection, search_match_current]
+  - [search_match, search_match_current]
+  - [selection, diff_added]
+  - [selection, diff_removed]
+  - [selection, active_line]
+  - [active_line, diff_added]
+  - [active_line, diff_removed]
+
+  # --- Legibility floors ---------------------------------------------------
+  - [fg, bg]
+  - [comment, bg]
+  - [fg_muted, bg]
+  - [error, bg]
+  - [focus, bg]
+
+# ---------------------------------------------------------------------------
+# SHOULD DISTINGUISH
+# ---------------------------------------------------------------------------
+should_distinguish:
+  # The primary syntax categories.  These carry comprehension speed, not
+  # correctness, so CVD collapse here is survivable.
+  - [keyword, string]
+  - [keyword, function]
+  - [keyword, type]
+  - [keyword, fg]
+  - [string, function]
+  - [string, type]
+  - [string, number]
+  - [string, comment]        # both can be long prose-like runs
+  - [function, type]
+  - [function, fg]
+  - [type, fg]
+  - [number, fg]
+
+  # Structural de-emphasis must actually be visible as de-emphasis.
+  - [comment, fg]
+  - [punctuation, fg]
+  - [line_number, fg]
+  - [operator, punctuation]  # meaning-bearing vs. not
+
+  # builtin must not read as an error -- a warm, higher-salience token sitting
+  # in ordinary code is exactly what an error looks like.
+  - [builtin, error]
+  - [builtin, fg]
+
+  # Surface hierarchy must be perceptible.
+  - [bg, bg_elevated]
+  - [bg_elevated, bg_overlay]
+
+# ---------------------------------------------------------------------------
+# SAME FAMILY  (upper-bounded: these should stay close)
+# ---------------------------------------------------------------------------
+same_family:
+  - pair: [number, constant]
+    rationale: Both are literal values. One concept, one hue.
+  - pair: [number, decorator]
+    rationale: >
+      Decorators are metadata; they borrow the literal family at lower chroma
+      rather than claiming a fifth hue.
+  - pair: [type, namespace]
+    rationale: Both name kinds of things rather than actions or values.
+  - pair: [diff_added, success]
+    rationale: Same semantic polarity; sharing reinforces the association.
+  - pair: [diff_removed, error]
+    rationale: >
+      Same polarity. Note the tension with must_distinguish[error, ...]:
+      diff_removed is a low-chroma background wash and error is a
+      high-chroma foreground mark, so they are separated by chroma and
+      salience while staying in one hue family.
+  - pair: [warning, search_match]
+    rationale: Both are "attend to this" markers in the sand family.
+  - pair: [comment, docstring]
+    rationale: >
+      Same hue family, separated by lightness/contrast target only. A reader
+      should recognise both as "prose" at a glance.
+
+# ---------------------------------------------------------------------------
+# DIFFERENTIATED BY NON-COLOUR CHANNEL
+# ---------------------------------------------------------------------------
+differentiated_by:
+  - pair: [parameter, fg]
+    channel: italic
+    rationale: >
+      Parameters are ordinary identifiers with a scope property. Style is the
+      right channel for a property that is orthogonal to what the token *is*.
+  - pair: [property, fg]
+    channel: chroma_trace
+    rationale: >
+      A trace of the function family, well below the hue-categorisation
+      threshold. Reads as "slightly different kind of thing" without adding
+      a colour to the palette's inventory.
+  - pair: [comment, docstring]
+    channel: lightness
+  - pair: [line_number, line_number_active]
+    channel: lightness
+  - pair: [deprecated, fg]
+    channel: strikethrough
+redundant_encoding:
+  - pair: [error, warning]
+    channel: lightness_and_icon
+    rationale: >
+      Listed here IN ADDITION to must_distinguish. Red/amber is the second
+      worst pair under protan and deutan after red/green; hue distance alone
+      will not survive simulation, so the redundant channel is mandatory
+      rather than decorative.
+  - pair: [diff_added, diff_removed]
+    channel: lightness_and_gutter_sign
+    rationale: >
+      As above, and worse: red/green as large adjacent background washes is
+      the single most CVD-hostile construct in common developer tooling.
+
+# ---------------------------------------------------------------------------
+# EXPLICIT NON-GOALS
+# ---------------------------------------------------------------------------
+# Recorded so that a future reader does not "fix" these as omissions.
+non_goals:
+  - claim: Every syntax role gets a unique hue.
+    reason: >
+      Produces rainbow highlighting, exhausts the perceptual budget, and
+      degrades badly under CVD. We use ~5 hue families for ~14 syntax roles
+      and spend the remainder on salience.
+  - claim: Local variables should be coloured.
+    reason: >
+      Most frequent token class, least informative distinction. Colouring
+      them means the majority of chromatic pixels carry no information.
+  - claim: All pairwise distances should be maximised.
+    reason: >
+      Distance is zero-sum inside a bounded gamut. Maximising everything
+      flattens the semantic structure that the grouping above encodes.
+  - claim: Punctuation should match its enclosing construct.
+    reason: >
+      Rainbow-bracket-style coding raises the noise floor across a major area
+      class to disambiguate a structure that indentation already conveys.

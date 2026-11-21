@@ -1,0 +1,85 @@
+# ---------------------------------------------------------------------------
+# Phase 5 CANDIDATE B -- Balanced.
+# ---------------------------------------------------------------------------
+#
+# CANDIDATE binding (meta.candidate: true).  One semantic binding -> day /
+# evening / night via the shared transform.  See candidate-a-restrained.yaml for
+# the shared framing; this file documents only what is specific to B.
+#
+# Hypothesis under test (baseline)
+#   Semantic colouration on top of a strong neutral foundation is the
+#   comfortable middle: enough chroma that syntax categories are categorically
+#   scannable, not so much that attention cost dominates.  B is the hypothesis
+#   against which A (restraint) and C (expressiveness) are stress-tested.
+#
+# How it is encoded
+#   * chroma_classes: mid fractions (none 0, trace .06, low .23, medium .55,
+#     high .74).
+#   * category_caps: ordinary .145; diagnostics .160; neutral .014;
+#     warm-neutral .028.
+#   * role_overrides: comments/docstrings -> warm-neutral low (a low-chroma warm
+#     tint so prose is recognisable without competing with code); property ->
+#     azure trace (weakly associates it with function); tag stays azure low.
+#     Ordinary variables and parameters stay neutral.
+#   * No role_scales -- nothing is selectively boosted.
+#
+# Tradeoffs
+#   + Categorical scanning should be comfortable without being loud.
+#   - warm-tinted comments are a judgement (D-4); if they read as "coloured
+#     noise" the restraint in A is vindicated.  Visible in the reports.
+# ---------------------------------------------------------------------------
+
+name: candidate-b-balanced
+candidate: true
+candidate_scale: 1.0
+warm_anchor: 70
+
+anchors:
+  neutral:      {h: 70,  family_scale: 1.0}
+  warm-neutral: {h: 68,  family_scale: 1.0}
+  rose:         {h: 18,  family_scale: 1.0}
+  sand:         {h: 78,  family_scale: 1.0}
+  sage:         {h: 134, family_scale: 1.0}
+  teal:         {h: 194, family_scale: 1.0}
+  azure:        {h: 250, family_scale: 1.0}
+  violet:       {h: 308, family_scale: 1.0}
+
+chroma_classes:
+  none:   0.0
+  trace:  0.06
+  low:    0.23
+  medium: 0.55
+  high:   0.74
+
+category_caps:
+  neutral:      0.014
+  warm-neutral: 0.028
+  ordinary:     0.145
+  diagnostics:  0.160
+
+role_overrides:
+  comment:
+    family: warm-neutral
+    chroma_class: low
+  docstring:
+    family: warm-neutral
+    chroma_class: low
+  property:
+    family: azure
+    chroma_class: trace
+  tag:
+    family: azure
+    chroma_class: low
+
+meta:
+  candidate: true
+  phase: 5
+  strategy: balanced
+  purpose: >
+    Baseline hypothesis: semantic colouration with a strong neutral foundation.
+  tradeoffs: >
+    Categorical scanning should be comfortable; warm-tinted comments and
+    azure-traced property are design judgements to be confirmed in Phase 7.
+  note: >
+    CANDIDATE.  Not a finished/selected theme; no winner is ranked here
+    (DESIGN.md section 1).

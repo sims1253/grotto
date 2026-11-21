@@ -1,0 +1,68 @@
+name: material-palenight
+variant: dark
+source_url: https://raw.githubusercontent.com/whizkydee/vscode-material-palenight-theme/master/themes/palenight.json
+fetched_note: >
+  vscode-material-palenight-theme `themes/palenight.json`. This is a VS Code
+  TextMate theme (no separate named-palette file), so the palette below is the
+  set of distinct colors actually used by the theme, reconstructed verbatim from
+  the JSON's `colors` (UI) and `tokenColors` (syntax) maps. Roles are mapped from
+  tokenColors scopes (e.g. `string` -> #C3E88D, `keyword`/`storage` -> #C792EA,
+  `entity.name.function` -> #82AAFF) and from UI `colors` keys
+  (editor.background, editorError.foreground, etc.).
+
+# palette reconstructed from the theme JSON (colors + tokenColors)
+palette:
+    # UI core
+    editor_background: '#292d3e'
+    editor_foreground: '#bfc7d5'
+    accent: '#7e57c2'             # badge / activityBarBadge / list.activeSelection / button hover
+    status_bar_background: '#282c3d'
+    activity_bar_background: '#282c3d'
+    sidebar_background: '#292d3e'
+    contrast_border: '#282b3c'
+    line_number_foreground: '#4c5374'
+    # syntax (distinct colors from tokenColors)
+    comment: '#697098'
+    string: '#c3e88d'
+    number: '#f78c6c'             # constant.numeric
+    constant: '#82aaff'           # constant.language / constant.character / support.constant
+    keyword: '#c792ea'            # keyword / punctuation.accessor / storage
+    variable: '#ffcb6b'           # variable / support.type / entity.name.class / attribute-name
+    type: '#ffcb6b'               # support.type / support.class / entity.name.class
+    function: '#82aaff'           # entity.name.function / variable.function / support.function
+    operator: '#89ddff'           # keyword.operator
+    tag: '#ff5572'                # entity.name.tag / variable.language / variable.instance
+    parameter: '#7986e7'          # variable.parameter
+    property_name: '#80cbc4'      # support.type.property-name
+    markup_heading: '#82b1ff'
+    # diagnostics
+    error: '#ef5350'             # editorError.foreground / inputValidation.errorBorder
+    warning: '#ffca28'           # editorWarning.foreground / editorCodeLens
+    info: '#64b5f6'              # inputValidation.infoBorder
+    # diff (alpha stripped to base color)
+    diff_inserted: '#99b76d'     # diffEditor.insertedTextBackground (#99b76d23)
+    diff_removed: '#ef5350'      # diffEditor.removedTextBackground (#ef535033)
+
+# roles mapped from tokenColors + UI colors. null where the theme has no single
+# documented value for that role.
+roles:
+    bg: '#292d3e'           # editor.background
+    bg_elevated: null       # several surfaces exist (#32374c group, #31364a widget); none designated as the elevated bg
+    fg: '#bfc7d5'           # editor.foreground
+    fg_secondary: null      # sidebar/breadcrumb #6c739a and statusBar #676e95 differ; no single secondary fg
+    comment: '#697098'      # comment
+    punctuation: null       # split across #bfc7d5 (braces), #c792ea (accessor), #d9f5dd (string delim); no single color
+    selection: '#7580b850'  # editor.selectionBackground (alpha kept as defined)
+    keyword: '#c792ea'      # keyword / storage / punctuation.accessor
+    string: '#c3e88d'       # string
+    number: '#f78c6c'       # constant.numeric
+    constant: '#82aaff'     # constant.language / constant.character
+    type: '#ffcb6b'         # support.type / support.class / entity.name.class
+    function: '#82aaff'     # entity.name.function / variable.function / support.function
+    builtin: null           # support.function #82aaff equals function; no distinct builtin
+    error: '#ef5350'        # editorError.foreground
+    warning: '#ffca28'      # editorWarning.foreground
+    info: '#64b5f6'         # inputValidation.infoBorder / infoBackground
+    success: null           # no success semantic (gitDecoration.untracked #a9c77d is the nearest green)
+    diff_added: '#99b76d'   # diffEditor.insertedTextBackground (base color)
+    diff_removed: '#ef5350' # diffEditor.removedTextBackground (base color)

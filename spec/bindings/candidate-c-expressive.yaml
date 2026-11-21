@@ -1,0 +1,115 @@
+# ---------------------------------------------------------------------------
+# Phase 5 CANDIDATE C -- Expressive.
+# ---------------------------------------------------------------------------
+#
+# CANDIDATE binding (meta.candidate: true).  One semantic binding -> day /
+# evening / night via the shared transform.  See candidate-a-restrained.yaml for
+# the shared framing; this file documents only what is specific to C.
+#
+# Hypothesis under test
+#   Do stronger, unmistakable accents improve scanning enough to justify the
+#   greater attention cost?  C pushes chroma to the highest class fractions and
+#   the widest ordinary cap, and selectively boosts the roles that drive
+#   navigation (function, keyword) while restraining the large-area literal
+#   channels (string, builtin) so the busyness budget is not blown.
+#
+# How it is encoded
+#   * chroma_classes: the widest budget of the three (none 0, trace .07, low
+#     .28, medium .68, high .88) -- widened after the first Phase-5 cut
+#     (.66/.80) proved perceptually indistinguishable from B (pairwise dE
+#     ~0.01 at night, below JND).
+#   * category_caps: ordinary .190 (above the old .16 global ceiling, the
+#     point of an expressive candidate); diagnostics .200; neutral .016;
+#     warm-neutral .034.
+#   * anchors: MODEST HUE DIVERSIFICATION vs A/B (their teal 190 / azure
+#     244-250 / violet 304-308): teal -> 182, azure -> 218, violet -> 321.
+#     The azure move is load-bearing: at night ink lightness (L ~ .88) sRGB
+#     offers only C_max .061 at hue 246 but .086 at hue 218 (+40% headroom),
+#     so C's function/selection/focus can actually BE chromatic after dark.
+#     Family separations stay wide (teal-azure 36 deg, azure-violet 103 deg).
+#   * role_overrides: comment/docstring -> warm-neutral low; property -> azure
+#     trace; tag -> violet low (a deliberate categorical shift vs A/B's azure).
+#   * role_scales: function 1.20 (boost the navigation driver); keyword 1.0
+#     and string 1.0 -- the previous keyword 1.10 / string 0.90 combo pushed
+#     keyword above string in the dark variants while Day gamut kept it below,
+#     inverting the chroma hierarchy across variants (13 material D-5
+#     inversions); at parity the ordering holds as a near-tie.  string is NOT
+#     restrained despite being a large-area class: sage (h~126) is where the
+#     night gamut actually has headroom (C_max .237 at L .88 vs .06-.10 for
+#     violet/azure), so an expressive candidate that wants to be visible after
+#     dark must spend chroma there.  builtin .90 (error-adjacent).  Ordinary
+#     variables and parameters stay neutral.
+#
+# Tradeoffs (flagged, not resolved)
+#   + Strongest categorical / navigation cue of the three.
+#   - Highest chromatic attention hypothesis; most likely to read as "busy".
+#     Nominal spectral output is measured separately rather than inferred.
+#     in call-dense or config-heavy files (tag is a major area class).  The
+#     violet tag shift also spends a hue A/B keep on azure.  All visible in the
+#     reports; thresholds are not massaged.
+# ---------------------------------------------------------------------------
+
+name: candidate-c-expressive
+candidate: true
+candidate_scale: 1.0
+warm_anchor: 70
+
+anchors:
+  neutral:      {h: 68,  family_scale: 1.0}
+  warm-neutral: {h: 64,  family_scale: 1.0}
+  rose:         {h: 10,  family_scale: 1.0}
+  sand:         {h: 86,  family_scale: 1.0}
+  sage:         {h: 126, family_scale: 1.0}
+  teal:         {h: 182, family_scale: 1.0}
+  azure:        {h: 218, family_scale: 1.0}   # gamut headroom: see header
+  violet:       {h: 321, family_scale: 1.0}
+
+chroma_classes:
+  none:   0.0
+  trace:  0.07
+  low:    0.28
+  medium: 0.75
+  high:   0.92
+
+category_caps:
+  neutral:      0.016
+  warm-neutral: 0.034
+  ordinary:     0.200
+  diagnostics:  0.200
+
+role_scales:
+  function: 1.20
+  keyword: 1.0
+  string: 1.0
+  builtin: 0.90
+
+role_overrides:
+  comment:
+    family: warm-neutral
+    chroma_class: low
+  docstring:
+    family: warm-neutral
+    chroma_class: low
+  property:
+    family: azure
+    chroma_class: trace
+  tag:
+    family: violet
+    chroma_class: low
+
+meta:
+  candidate: true
+  phase: 5
+  strategy: expressive
+  purpose: >
+    Test whether stronger unmistakable accents improve scanning enough to
+    justify greater attention cost.
+  tradeoffs: >
+    Strongest categorical/navigation cue; highest chromatic attention
+    hypothesis, and the most likely to read as busy in call-dense or
+    config-heavy files. Nominal area-weighted spectral output is evaluated
+    separately and is not inferred from chroma. The violet tag shift spends a
+    hue A/B keep on azure.
+  note: >
+    CANDIDATE.  Not a finished/selected theme; no winner is ranked here
+    (DESIGN.md section 1).

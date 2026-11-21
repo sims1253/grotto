@@ -1,0 +1,73 @@
+# ---------------------------------------------------------------------------
+# Phase 4 CALIBRATION EXPERIMENT binding -- NOT A CANDIDATE PALETTE.
+# ---------------------------------------------------------------------------
+#
+# This is a semantic-anchor binding for the environmental transform
+# (src/grotto/model.py::build_family), used ONLY to test whether a systematic
+# transform can reproduce a designer's intent across day/evening/night, and
+# where it needs hand correction.  It is explicitly NON-CANDIDATE: no palette
+# derived from this file is a finished theme (DESIGN.md section 1 -- no palette
+# is finalised before Phase 5/7).
+#
+# What a binding IS:  family hue anchors + scales + bounded, rationale-bearing
+# per-role adjustments.  It is the SAME object across all three variants; the
+# environment transform does the rest.  Per-variant hex palettes are the OUTPUT
+# of build_family, never the input.
+#
+# The hue anchors below are calibrated against the reference analysis
+# (out/references) and the Phase 2 fixtures, not invented.  family_scale lets a
+# family claim more or less of its chroma budget; the adjustments are bounded
+# nudges (see model.py ADJUSTMENT_LIMITS) that test the "minimal adjustment"
+# priority and the systematic-vs-hand comparison.
+# ---------------------------------------------------------------------------
+
+name: calibration-experiment
+candidate: false            # NON-CANDIDATE Phase 4 experiment
+candidate_scale: 1.0
+
+# Warm anchor for the Night hue attraction (model.py).  Default 70 (amber,
+# matching the Night background's warm-neutral bias); left explicit here so the
+# experiment is self-describing.
+warm_anchor: 70
+
+anchors:
+  neutral:      {h: 0,    family_scale: 1.0}   # hue meaningless at trace chroma
+  warm-neutral: {h: 70,   family_scale: 1.0}
+  sand:         {h: 80,   family_scale: 1.0}   # amber/sand literals
+  rose:         {h: 25,   family_scale: 1.0}   # errors, builtins
+  violet:       {h: 300,  family_scale: 0.9}   # keywords; slightly restrained
+  azure:        {h: 245,  family_scale: 1.0}   # functions, selection, focus
+  sage:         {h: 145,  family_scale: 1.0}   # strings, success, diff+
+  teal:         {h: 195,  family_scale: 1.0}   # types, namespaces
+
+role_scales:
+  error: 1.15              # safety signals earn a little more chroma
+  warning: 1.10
+  focus: 1.20              # focus ring must clear the non-text floor with margin
+
+# Bounded, rationale-bearing per-role adjustments.  Each is within
+# ADJUSTMENT_LIMITS (L +/-0.06, C +/-0.03, h +/-8deg).  These probe whether the
+# systematic solve needs human correction at the places DESIGN.md section 9
+# predicts: backgrounds/near-background surfaces and the blue/violet region.
+adjustments:
+  bg:
+    L: 0.0
+    rationale: "canvas is authored; no adjustment (kept for documentation)."
+  keyword:
+    h: -4.0
+    rationale: "violet curvature (R-8): nudge toward a cleaner violet reading."
+  comment:
+    L: -0.02
+    rationale: "drop comments slightly below the reading baseline."
+  string:
+    C: -0.01
+    rationale: "long strings are bars of colour; restrain chroma a touch."
+
+meta:
+  experiment: true
+  phase: 4
+  note: >
+    NON-CANDIDATE. Systematic-transform calibration only. Comparison target is
+    themes/experiments/handtuned-*.yaml (also NON-CANDIDATE). No palette here is
+    final; see DESIGN.md section 1 and section 9 ("Phase 4 will test whether
+    this works").

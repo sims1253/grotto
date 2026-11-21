@@ -1,0 +1,64 @@
+{
+  "name": "grotto-evaluation-preview",
+  "displayName": "Grotto Theme Evaluation Preview",
+  "description": "Nine evaluation-preview themes (Restrained/Balanced/Expressive x Day/Evening/Night), generated from Grotto Phase 5 candidate palettes. No theme is selected or final.",
+  "version": "0.1.0",
+  "publisher": "grotto-local",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto Restrained Day",
+        "uiTheme": "vs",
+        "path": "./themes/restrained-day.json"
+      },
+      {
+        "label": "Grotto Restrained Evening",
+        "uiTheme": "vs-dark",
+        "path": "./themes/restrained-evening.json"
+      },
+      {
+        "label": "Grotto Restrained Night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/restrained-night.json"
+      },
+      {
+        "label": "Grotto Balanced Day",
+        "uiTheme": "vs",
+        "path": "./themes/balanced-day.json"
+      },
+      {
+        "label": "Grotto Balanced Evening",
+        "uiTheme": "vs-dark",
+        "path": "./themes/balanced-evening.json"
+      },
+      {
+        "label": "Grotto Balanced Night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/balanced-night.json"
+      },
+      {
+        "label": "Grotto Expressive Day",
+        "uiTheme": "vs",
+        "path": "./themes/expressive-day.json"
+      },
+      {
+        "label": "Grotto Expressive Evening",
+        "uiTheme": "vs-dark",
+        "path": "./themes/expressive-evening.json"
+      },
+      {
+        "label": "Grotto Expressive Night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/expressive-night.json"
+      }
+    ]
+  }
+}

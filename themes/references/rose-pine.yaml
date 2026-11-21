@@ -1,0 +1,111 @@
+name: rose-pine
+variant: dark
+source_url: https://raw.githubusercontent.com/rose-pine/palette/main/palette.json
+source_url_usage: https://raw.githubusercontent.com/rose-pine/palette/main/README.md
+source_url_highlights: https://raw.githubusercontent.com/rose-pine/palette/main/source/index.ts
+fetched_note: >
+  Palette roles (`base surface overlay muted subtle text love gold rose pine foam
+  iris`) from rose-pine/palette `palette.json` (the built artifact), cross-checked
+  against the official site rosepinetheme.com/palette. The `highlightLow/Med/High`
+  values (alpha-overlay backgrounds used for selection/cursor) are NOT in
+  palette.json; they come from `source/index.ts`, also cross-checked on the site.
+  Role->color mapping is taken from the palette README "Roles" tables, which
+  document each color's usage. NOTE: the README accent table documents strings,
+  functions, builtins, booleans, object keys, parameters, punctuation/operators,
+  errors/warnings/info and git states, but does NOT assign keyword/type/number at
+  the palette level (those are left to individual editor ports), so they are null
+  below. NOTE: palette.json (and the website) give dawn `text` as #464261; the
+  stale `source/index.ts` still shows the older #575279 -- #464261 is used here.
+
+# rose-pine "main" (dark) variant -- raw named palette (verbatim from palette.json)
+palette:
+    base: '#191724'
+    surface: '#1f1d2e'
+    overlay: '#26233a'
+    muted: '#6e6a86'
+    subtle: '#908caa'
+    text: '#e0def4'
+    love: '#eb6f92'
+    gold: '#f6c177'
+    rose: '#ebbcba'
+    pine: '#31748f'
+    foam: '#9ccfd8'
+    iris: '#c4a7e7'
+    highlightLow: '#21202e'   # alpha form: muted @ 10%
+    highlightMed: '#403d52'   # alpha form: muted @ 20%  (selection background)
+    highlightHigh: '#524f67'  # alpha form: muted @ 40%  (cursor background/borders)
+
+# roles mapped from the palette README documented usage:
+#   base->bg, surface->bg_elevated, muted->comments, subtle->punctuation/operators,
+#   text->fg/variables, highlightMed->selection,
+#   love->builtins/errors/git-delete, gold->strings/warnings,
+#   rose->booleans/git-change, pine->functions, foam->object-keys/info/git-add,
+#   iris->parameters/links/hints
+roles:
+    bg: '#191724'           # base
+    bg_elevated: '#1f1d2e'  # surface (low-contrast background atop base)
+    fg: '#e0def4'           # text (high-contrast foreground; variables)
+    fg_secondary: '#908caa' # subtle (medium-contrast foreground)
+    comment: '#6e6a86'      # muted (comments, git ignored)
+    punctuation: '#908caa'  # subtle (punctuation, operators)
+    selection: '#403d52'    # highlightMed (selection background, paired with text fg)
+    keyword: null           # not assigned in the palette spec
+    string: '#f6c177'       # gold (strings)
+    number: null            # not assigned in the palette spec
+    constant: '#ebbcba'     # rose (booleans are constants)
+    type: null              # not assigned in the palette spec
+    function: '#31748f'     # pine (functions)
+    builtin: '#eb6f92'      # love (builtins)
+    error: '#eb6f92'        # love (errors)
+    warning: '#f6c177'      # gold (warnings)
+    info: '#9ccfd8'         # foam (info)
+    success: null           # not assigned in the palette spec (git add uses foam)
+    diff_added: '#9ccfd8'   # foam (git add)
+    diff_removed: '#eb6f92' # love (git delete)
+
+# --- light variant (collected per task requirement) ---
+dawn:
+    name: rose-pine-dawn
+    variant: light
+    source_url: https://raw.githubusercontent.com/rose-pine/palette/main/palette.json
+    fetched_note: >
+      Dawn (light) variant from the same palette.json / source/index.ts. dawn
+      `text` is #464261 per palette.json + website (index.ts is stale). Role
+      mapping uses the same accent->meaning table as main, with dawn hexes.
+    palette:
+        base: '#faf4ed'
+        surface: '#fffaf3'
+        overlay: '#f2e9e1'
+        muted: '#9893a5'
+        subtle: '#797593'
+        text: '#464261'
+        love: '#b4637a'
+        gold: '#ea9d34'
+        rose: '#d7827e'
+        pine: '#286983'
+        foam: '#56949f'
+        iris: '#907aa9'
+        highlightLow: '#f4ede8'   # muted @ 5%
+        highlightMed: '#dfdad9'   # muted @ 8%  (selection background)
+        highlightHigh: '#cecacd'  # muted @ 15% (cursor background/borders)
+    roles:
+        bg: '#faf4ed'
+        bg_elevated: '#fffaf3'
+        fg: '#464261'
+        fg_secondary: '#797593'
+        comment: '#9893a5'
+        punctuation: '#797593'
+        selection: '#dfdad9'
+        keyword: null
+        string: '#ea9d34'
+        number: null
+        constant: '#d7827e'
+        type: null
+        function: '#286983'
+        builtin: '#b4637a'
+        error: '#b4637a'
+        warning: '#ea9d34'
+        info: '#56949f'
+        success: null
+        diff_added: '#56949f'
+        diff_removed: '#b4637a'

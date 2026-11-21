@@ -1,0 +1,501 @@
+{
+  "schema": "grotto.reference-comparison",
+  "schema_version": "phase3",
+  "references": [
+    "kanagawa",
+    "monokai",
+    "nord",
+    "palenight",
+    "rose-pine",
+    "solarized"
+  ],
+  "ordering_note": "References are listed in a fixed alphabetical-by-file-stem order. This is NOT a ranking; no winner or 'best' theme is declared (DESIGN.md section 1).",
+  "comparison_basis": "All metrics are computed on the dark (primary) variant of each reference, which is the only block all six share. Light/dawn variants present in some files are recorded under 'variant_ambiguity' but are NOT part of this comparison (mixing polarities would be a category error).",
+  "table": [
+    {
+      "key": "bg_L",
+      "label": "background L",
+      "kanagawa": 0.243319,
+      "monokai": 0.27366,
+      "nord": 0.324374,
+      "palenight": 0.300937,
+      "rose-pine": 0.213355,
+      "solarized": 0.267337
+    },
+    {
+      "key": "bg_C",
+      "label": "background C",
+      "kanagawa": 0.017046,
+      "monokai": 0.010867,
+      "nord": 0.022945,
+      "palenight": 0.03136,
+      "rose-pine": 0.025466,
+      "solarized": 0.048612
+    },
+    {
+      "key": "bg_h",
+      "label": "background hue (deg, or achromatic)",
+      "kanagawa": "achromatic",
+      "monokai": "achromatic",
+      "nord": 264.182039,
+      "palenight": 274.114312,
+      "rose-pine": 291.131011,
+      "solarized": 219.816892
+    },
+    {
+      "key": "bg_class",
+      "label": "background classification",
+      "kanagawa": "achromatic",
+      "monokai": "achromatic",
+      "nord": "cool",
+      "palenight": "cool",
+      "rose-pine": "cool",
+      "solarized": "cool"
+    },
+    {
+      "key": "wcag_fg_bg",
+      "label": "fg/bg WCAG ratio",
+      "kanagawa": 11.263431,
+      "monokai": 13.943421,
+      "nord": 9.245243,
+      "palenight": 8.020711,
+      "rose-pine": 13.388875,
+      "solarized": 4.747878
+    },
+    {
+      "key": "apca_fg_bg",
+      "label": "fg/bg |APCA Lc|",
+      "kanagawa": 79.730296,
+      "monokai": 99.639077,
+      "nord": 80.292513,
+      "palenight": 67.743849,
+      "rose-pine": 86.765996,
+      "solarized": 39.531795
+    },
+    {
+      "key": "L_min",
+      "label": "lightness min (all roles)",
+      "kanagawa": 0.243319,
+      "monokai": 0.27366,
+      "nord": 0.324374,
+      "palenight": 0.300937,
+      "rose-pine": 0.213355,
+      "solarized": 0.267337
+    },
+    {
+      "key": "L_median",
+      "label": "lightness median (all roles)",
+      "kanagawa": 0.690228,
+      "monokai": 0.701174,
+      "nord": 0.762873,
+      "palenight": 0.744093,
+      "rose-pine": 0.697701,
+      "solarized": 0.643664
+    },
+    {
+      "key": "L_max",
+      "label": "lightness max (all roles)",
+      "kanagawa": 0.875521,
+      "monokai": 0.977477,
+      "nord": 0.951276,
+      "palenight": 0.883665,
+      "rose-pine": 0.908787,
+      "solarized": 0.697899
+    },
+    {
+      "key": "C_min",
+      "label": "chroma min (all roles)",
+      "kanagawa": 0.012207,
+      "monokai": 0.007913,
+      "nord": 0.007445,
+      "palenight": 0.021476,
+      "rose-pine": 0.025466,
+      "solarized": 0.015902
+    },
+    {
+      "key": "C_median",
+      "label": "chroma median (all roles)",
+      "kanagawa": 0.069849,
+      "monokai": 0.130108,
+      "nord": 0.059108,
+      "palenight": 0.128072,
+      "rose-pine": 0.05433,
+      "solarized": 0.101908
+    },
+    {
+      "key": "C_max",
+      "label": "chroma max (all roles)",
+      "kanagawa": 0.226877,
+      "monokai": 0.240006,
+      "nord": 0.120594,
+      "palenight": 0.192572,
+      "rose-pine": 0.15646,
+      "solarized": 0.206442
+    },
+    {
+      "key": "must_cov",
+      "label": "must_distinguish coverage",
+      "kanagawa": 0.538462,
+      "monokai": 0.538462,
+      "nord": 0.538462,
+      "palenight": 0.5,
+      "rose-pine": 0.461538,
+      "solarized": 0.5
+    },
+    {
+      "key": "should_cov",
+      "label": "should_distinguish coverage",
+      "kanagawa": 0.75,
+      "monokai": 0.75,
+      "nord": 0.75,
+      "palenight": 0.65,
+      "rose-pine": 0.4,
+      "solarized": 0.65
+    },
+    {
+      "key": "warm_cool",
+      "label": "warm/cool score (chroma-wtd)",
+      "kanagawa": 0.343898,
+      "monokai": 0.170612,
+      "nord": 0.078296,
+      "palenight": 0.129069,
+      "rose-pine": 0.15719,
+      "solarized": 0.216684
+    },
+    {
+      "key": "warm_n",
+      "label": "warm role count",
+      "kanagawa": 10,
+      "monokai": 8,
+      "nord": 7,
+      "palenight": 7,
+      "rose-pine": 6,
+      "solarized": 6
+    },
+    {
+      "key": "cool_n",
+      "label": "cool role count",
+      "kanagawa": 7,
+      "monokai": 5,
+      "nord": 7,
+      "palenight": 8,
+      "rose-pine": 10,
+      "solarized": 7
+    },
+    {
+      "key": "mel_ratio",
+      "label": "melanopic ratio (nominal)",
+      "kanagawa": 0.992125,
+      "monokai": 0.882293,
+      "nord": 1.134896,
+      "palenight": 1.195478,
+      "rose-pine": 1.129488,
+      "solarized": 1.239851
+    },
+    {
+      "key": "bg_share",
+      "label": "bg melanopic share",
+      "kanagawa": 0.178196,
+      "monokai": 0.14552,
+      "nord": 0.275349,
+      "palenight": 0.300707,
+      "rose-pine": 0.133809,
+      "solarized": 0.398983
+    },
+    {
+      "key": "fg_share",
+      "label": "fg melanopic share",
+      "kanagawa": 0.422333,
+      "monokai": 0.613566,
+      "nord": 0.383199,
+      "palenight": 0.388221,
+      "rose-pine": 0.616252,
+      "solarized": 0.308127
+    },
+    {
+      "key": "token_share",
+      "label": "token melanopic share",
+      "kanagawa": 0.399471,
+      "monokai": 0.240914,
+      "nord": 0.341452,
+      "palenight": 0.311072,
+      "rose-pine": 0.249939,
+      "solarized": 0.29289
+    },
+    {
+      "key": "cvd_collapse",
+      "label": "CVD must-pairs collapsing",
+      "kanagawa": 3,
+      "monokai": 3,
+      "nord": 2,
+      "palenight": 2,
+      "rose-pine": 3,
+      "solarized": 3
+    },
+    {
+      "key": "roles_present",
+      "label": "roles mapped / spec",
+      "kanagawa": "19/40",
+      "monokai": "16/40",
+      "nord": "17/40",
+      "palenight": "15/40",
+      "rose-pine": "16/40",
+      "solarized": "15/40"
+    }
+  ],
+  "mapping_completeness": {
+    "kanagawa": {
+      "present": 19,
+      "total_spec_roles": 40,
+      "fraction": 0.475,
+      "roles_missing": [
+        "active_line",
+        "bg_overlay",
+        "breakpoint",
+        "builtin",
+        "debug_current",
+        "decorator",
+        "deprecated",
+        "diff_changed",
+        "docstring",
+        "fg_muted",
+        "focus",
+        "line_number",
+        "line_number_active",
+        "namespace",
+        "operator",
+        "parameter",
+        "property",
+        "search_match",
+        "search_match_current",
+        "tag",
+        "ui_inactive"
+      ],
+      "roles_not_in_spec": [],
+      "normalized_alpha_roles": []
+    },
+    "monokai": {
+      "present": 16,
+      "total_spec_roles": 40,
+      "fraction": 0.4,
+      "roles_missing": [
+        "active_line",
+        "bg_elevated",
+        "bg_overlay",
+        "breakpoint",
+        "debug_current",
+        "decorator",
+        "deprecated",
+        "diff_changed",
+        "docstring",
+        "fg_muted",
+        "fg_secondary",
+        "focus",
+        "line_number",
+        "line_number_active",
+        "namespace",
+        "operator",
+        "parameter",
+        "property",
+        "punctuation",
+        "search_match",
+        "search_match_current",
+        "success",
+        "tag",
+        "ui_inactive"
+      ],
+      "roles_not_in_spec": [],
+      "normalized_alpha_roles": [
+        "selection"
+      ]
+    },
+    "nord": {
+      "present": 17,
+      "total_spec_roles": 40,
+      "fraction": 0.425,
+      "roles_missing": [
+        "active_line",
+        "bg_overlay",
+        "breakpoint",
+        "builtin",
+        "debug_current",
+        "decorator",
+        "deprecated",
+        "diff_changed",
+        "docstring",
+        "fg_muted",
+        "fg_secondary",
+        "focus",
+        "info",
+        "line_number",
+        "line_number_active",
+        "namespace",
+        "operator",
+        "parameter",
+        "property",
+        "search_match",
+        "search_match_current",
+        "tag",
+        "ui_inactive"
+      ],
+      "roles_not_in_spec": [],
+      "normalized_alpha_roles": []
+    },
+    "palenight": {
+      "present": 15,
+      "total_spec_roles": 40,
+      "fraction": 0.375,
+      "roles_missing": [
+        "active_line",
+        "bg_elevated",
+        "bg_overlay",
+        "breakpoint",
+        "builtin",
+        "debug_current",
+        "decorator",
+        "deprecated",
+        "diff_changed",
+        "docstring",
+        "fg_muted",
+        "fg_secondary",
+        "focus",
+        "line_number",
+        "line_number_active",
+        "namespace",
+        "operator",
+        "parameter",
+        "property",
+        "punctuation",
+        "search_match",
+        "search_match_current",
+        "success",
+        "tag",
+        "ui_inactive"
+      ],
+      "roles_not_in_spec": [],
+      "normalized_alpha_roles": [
+        "selection"
+      ]
+    },
+    "rose-pine": {
+      "present": 16,
+      "total_spec_roles": 40,
+      "fraction": 0.4,
+      "roles_missing": [
+        "active_line",
+        "bg_overlay",
+        "breakpoint",
+        "debug_current",
+        "decorator",
+        "deprecated",
+        "diff_changed",
+        "docstring",
+        "fg_muted",
+        "focus",
+        "keyword",
+        "line_number",
+        "line_number_active",
+        "namespace",
+        "number",
+        "operator",
+        "parameter",
+        "property",
+        "search_match",
+        "search_match_current",
+        "success",
+        "tag",
+        "type",
+        "ui_inactive"
+      ],
+      "roles_not_in_spec": [],
+      "normalized_alpha_roles": []
+    },
+    "solarized": {
+      "present": 15,
+      "total_spec_roles": 40,
+      "fraction": 0.375,
+      "roles_missing": [
+        "active_line",
+        "bg_elevated",
+        "bg_overlay",
+        "breakpoint",
+        "builtin",
+        "debug_current",
+        "decorator",
+        "deprecated",
+        "diff_changed",
+        "docstring",
+        "fg_muted",
+        "focus",
+        "info",
+        "line_number",
+        "line_number_active",
+        "namespace",
+        "operator",
+        "parameter",
+        "property",
+        "punctuation",
+        "search_match",
+        "search_match_current",
+        "success",
+        "tag",
+        "ui_inactive"
+      ],
+      "roles_not_in_spec": [],
+      "normalized_alpha_roles": []
+    }
+  },
+  "variant_ambiguity": {
+    "kanagawa": {
+      "source_ambiguous": false,
+      "extra_variant_labels": [],
+      "normalized_alpha_roles": [],
+      "source_url": "https://raw.githubusercontent.com/rebelot/kanagawa.nvim/master/lua/kanagawa/colors.lua"
+    },
+    "monokai": {
+      "source_ambiguous": false,
+      "extra_variant_labels": [],
+      "normalized_alpha_roles": [
+        "selection"
+      ],
+      "source_url": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-monokai/themes/monokai-color-theme.json"
+    },
+    "nord": {
+      "source_ambiguous": false,
+      "extra_variant_labels": [],
+      "normalized_alpha_roles": [],
+      "source_url": "https://raw.githubusercontent.com/nordtheme/nord/develop/src/nord.css"
+    },
+    "palenight": {
+      "source_ambiguous": false,
+      "extra_variant_labels": [],
+      "normalized_alpha_roles": [
+        "selection"
+      ],
+      "source_url": "https://raw.githubusercontent.com/whizkydee/vscode-material-palenight-theme/master/themes/palenight.json"
+    },
+    "rose-pine": {
+      "source_ambiguous": true,
+      "extra_variant_labels": [
+        "light"
+      ],
+      "normalized_alpha_roles": [],
+      "source_url": "https://raw.githubusercontent.com/rose-pine/palette/main/palette.json"
+    },
+    "solarized": {
+      "source_ambiguous": true,
+      "extra_variant_labels": [
+        "light"
+      ],
+      "normalized_alpha_roles": [],
+      "source_url": "https://ethanschoonover.com/solarized/"
+    }
+  },
+  "n_spec_roles": 40,
+  "caveats": [
+    "Descriptive only; no ranking or winner (DESIGN.md section 1).",
+    "Coverage fractions reflect mapping incompleteness, not theme quality.",
+    "Spectral columns are nominal-display, within-model, exploratory (R-4, R-5, R-13).",
+    "APCA is experimental (R-11); CVD uses population-average dichromat models (R-9)."
+  ]
+}

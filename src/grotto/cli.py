@@ -1,0 +1,483 @@
+"""Command-line interface for grotto Phase 2 evaluation tooling.
+
+Examples
+--------
+  # Full audit of one palette as JSON/YAML/text + self-contained HTML/SVG
+  grotto palette themes/fixtures/eval-night-full.yaml --out out/
+
+  # Cross-variant stability report for a day/evening/night trio
+  grotto stability themes/fixtures/eval-day.yaml \
+      themes/fixtures/eval-evening.yaml themes/fixtures/eval-night.yaml --out out/
+
+The CLI loads spec/roles.yaml, spec/distance-matrix.yaml and
+spec/environments.yaml from the repo root (override with --roles / --distances
+/ --environments).  All inputs may be evaluation fixtures or reference themes;
+none are treated as candidate palettes.
+"""
+
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+from .environments import Environments
+from .reference_analysis import (
+    VERSION as REFERENCE_VERSION,
+    analyze_reference,
+    compare_references,
+    comparison_text,
+    load_reference_dir,
+    load_reference_file,
+    primary_variant,
+    reference_text,
+)
+from .report import palette_report_dict, write_report, to_json, to_yaml
+from .render import (
+    palette_html_report,
+    palette_svg_strip,
+    reference_comparison_svg,
+    stability_html_report,
+    reference_analysis_html,
+    reference_comparison_html,
+)
+from .spec import DistanceSpec, Palette, RoleSpec, load
+from .spectral import DISPLAYS
+from .raster import DEFAULT_CHUNK_ROWS as DEFAULT_RASTER_CHUNK_ROWS
+from .raster import DEFAULT_THRESHOLD as DEFAULT_RASTER_THRESHOLD
+from .stability import DEFAULT_MAX_HUE_DRIFT, cross_variant_report
+from .vscode import write_extension
+
+
+def _load_specs(args) -> tuple[RoleSpec, DistanceSpec, Environments]:
+    roles = RoleSpec.load(args.roles)
+    dists = DistanceSpec.load(args.distances, roles)
+    env = Environments.load(args.environments)
+    return roles, dists, env
+
+
+def _stem(path: str) -> str:
+    return Path(path).stem
+
+
+def cmd_palette(args) -> int:
+    roles, dists, env = _load_specs(args)
+    palette = load(args.palette)
+    report = palette_report_dict(palette, roles, dists, env, display=args.display)
+    out = Path(args.out)
+    stem = _stem(args.palette)
+    paths = write_report(report, out, f"{stem}.report")
+    # visual
+    html = palette_html_report(palette, roles, dists, env)
+    svg = palette_svg_strip(palette, roles)
+    html_path = out / f"{stem}.html"
+    svg_path = out / f"{stem}.svg"
+    out.mkdir(parents=True, exist_ok=True)
+    html_path.write_text(html, encoding="utf-8")
+    svg_path.write_text(svg, encoding="utf-8")
+    print(f"[palette] {palette.name} ({palette.variant})")
+    print(f"  colors audited : {len(palette)}")
+    print(f"  distance check : {report['distance_matrix']['n_errors']} error(s), "
+          f"{report['distance_matrix']['n_warnings']} warning(s)")
+    if report.get("spectral") and "melanopic_ratio" in report.get("spectral", {}):
+        print(f"  mel ratio      : {report['spectral']['melanopic_ratio']:.3f} "
+              f"({args.display}, nominal, exploratory)")
+    for kind, p in paths.items():
+        print(f"  report {kind:5s}: {p}")
+    print(f"  html           : {html_path}")
+    print(f"  svg            : {svg_path}")
+    return 0
+
+
+def cmd_stability(args) -> int:
+    roles, dists, env = _load_specs(args)
+    variants: dict[str, Palette] = {}
+    for vp in args.variants:
+        pal = load(vp)
+        if pal.variant not in variants:
+            variants[pal.variant] = pal
+        else:
+            # allow explicit ordering by filename if variant names collide
+            variants[_stem(vp)] = pal
+    report = cross_variant_report(
+        variants, roles, max_hue_drift_deg=args.max_hue_drift
+    )
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    json_path = out / "stability.report.json"
+    html_path = out / "stability.html"
+    json_path.write_text(to_json(report.to_dict()), encoding="utf-8")
+    html_path.write_text(stability_html_report(report, roles), encoding="utf-8")
+    print(f"[stability] variants: {', '.join(report.variants)}")
+    print(f"  status               : {'PASS' if report.ok else 'ATTENTION'}")
+    print(f"  drift violations     : {len(report.drift_violations)} "
+          f"(threshold {report.max_hue_drift_threshold:.0f} deg)")
+    print(f"  hue-order inversions : {len(report.hue_order_inversions)}")
+    print(f"  chroma-rank inversions: {len(report.chroma_rank_inversions)}")
+    print(f"  report json          : {json_path}")
+    print(f"  html                 : {html_path}")
+    return 0
+
+
+def cmd_specimens(args) -> int:
+    from . import specimens as S
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    for lang in S.REQUIRED_LANGUAGES:
+        sp = S.specimen(lang)
+        (out / sp.filename).write_text(sp.plaintext(), encoding="utf-8")
+        print(f"[specimen] {sp.filename} ({sp.label}, {sp.line_count()} lines)")
+    # an explanatory README (distinct from the rolling.md Markdown specimen,
+    # which used to collide with this filename).
+    (out / "README.md").write_text(_SPECIMENS_README, encoding="utf-8")
+    print(f"[specimen] README.md ({len(S.REQUIRED_LANGUAGES)} language specimens)")
+    return 0
+
+
+_SPECIMENS_README = """# Code specimens
+
+Realistic, diff-stable snippets (one per required language) used by the
+visual evaluation reports. Each file is the **plaintext** of a specimen; the
+renderers colour it span-by-span with a palette.
+
+| file | language |
+|---|---|
+| `rolling.py`  | Python |
+| `rolling.rs`  | Rust |
+| `rolling.ts`  | TypeScript |
+| `rolling.sh`  | shell |
+| `rolling.json` | JSON |
+| `rolling.yaml` | YAML |
+| `rolling.md`  | Markdown |
+| `rolling.R`   | R |
+
+Regenerate with `uv run grotto specimens --out out/specimens`.
+"""
+
+
+def cmd_references(args) -> int:
+    """Phase 3: consistent quantitative analysis of all reference themes.
+
+    Produces per-reference JSON/YAML/text reports and a side-by-side
+    comparison (JSON/YAML/text + HTML/SVG) under ``out/references/``.
+    Descriptive only; no ranking or winner is declared.
+    """
+    roles, dists, env = _load_specs(args)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+
+    # load every reference file; key by stem for stable ordering
+    if args.references:
+        loaded: dict[str, list] = {}
+        for p in args.references:
+            vs = load_reference_file(p)
+            loaded[Path(p).stem] = vs
+    else:
+        loaded = load_reference_dir(args.references_dir)
+    if not loaded:
+        print("[references] no reference files found", file=sys.stderr)
+        return 1
+
+    analyses: dict[str, dict] = {}
+    for stem in sorted(loaded):
+        pv = primary_variant(loaded[stem])
+        analyses[stem] = analyze_reference(pv, roles, dists, env, display=args.display)
+
+    # --- per-reference machine + text reports ---
+    for stem, a in analyses.items():
+        (out / f"{stem}.json").write_text(to_json(a), encoding="utf-8")
+        (out / f"{stem}.yaml").write_text(to_yaml(a), encoding="utf-8")
+        (out / f"{stem}.txt").write_text(reference_text(a), encoding="utf-8")
+        (out / f"{stem}.html").write_text(reference_analysis_html(a), encoding="utf-8")
+
+    # --- side-by-side comparison ---
+    comparison = compare_references(analyses, roles, dists, env)
+    order = comparison["references"]
+    (out / "comparison.json").write_text(to_json(comparison), encoding="utf-8")
+    (out / "comparison.yaml").write_text(to_yaml(comparison), encoding="utf-8")
+    (out / "comparison.txt").write_text(comparison_text(comparison), encoding="utf-8")
+    (out / "comparison.html").write_text(
+        reference_comparison_html(comparison, analyses), encoding="utf-8"
+    )
+    (out / "comparison.svg").write_text(
+        reference_comparison_svg(analyses, order), encoding="utf-8"
+    )
+
+    # --- console summary (descriptive, not a ranking) ---
+    print(f"[references] {len(analyses)} theme(s): {', '.join(order)}")
+    print(f"  schema           : grotto.reference-analysis v{REFERENCE_VERSION}")
+    for stem in order:
+        a = analyses[stem]
+        mc = a["reference"]["mapping_completeness"]
+        bg = a["background"].get("bg") or {}
+        bh = f"h{bg.get('h'):.0f}" if bg.get("h_meaningful") else "achromatic"
+        wc = a["warm_cool_balance"]["chroma_weighted_score"]
+        print(
+            f"  {stem:11s} bg {bh} ({bg.get('classification')})  "
+            f"mapped {mc['present']}/{mc['total_spec_roles']}  "
+            f"warm/cool {wc:+.2f}"
+        )
+    print(f"  comparison (descriptive; NOT a ranking): {out / 'comparison.html'}")
+    print("  outputs        : per-reference .json/.yaml/.txt/.html + "
+          "comparison.{json,yaml,txt,html,svg}")
+    print("  caveats        : APCA experimental; CVD population-average; "
+          "spectral nominal-only (see reports).")
+    return 0
+
+
+def cmd_family(args) -> int:
+    """Phase 4: build the environmental-transform family + derivation report.
+
+    Builds day/evening/night from a candidate binding and writes a deterministic
+    JSON/YAML/text derivation report plus a self-contained HTML page under
+    out/.  Explicitly NON-CANDIDATE: a binding is a calibration experiment,
+    not a finished palette.
+    """
+    from .model import CandidateBinding, ModelSpec, build_family
+    from .family_report import family_build_html, family_build_text
+    from .report import to_json, to_yaml
+
+    roles, dists, env = _load_specs(args)
+    spec = ModelSpec(roles, env, dists)
+    binding = CandidateBinding.load(args.binding)
+    fb = build_family(binding, spec)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    stem = Path(args.binding).stem
+    d = fb.to_dict()
+    (out / f"{stem}.build.json").write_text(to_json(d), encoding="utf-8")
+    (out / f"{stem}.build.yaml").write_text(to_yaml(d), encoding="utf-8")
+    (out / f"{stem}.build.txt").write_text(family_build_text(fb), encoding="utf-8")
+    (out / f"{stem}.build.html").write_text(family_build_html(fb), encoding="utf-8")
+    print(f"[family] {fb.name}  ok={fb.ok}  hash={fb.input_hash}")
+    st = fb.stability or {}
+    print(f"  stability   : ok={st.get('ok')} drift={st.get('max_hue_drift_deg')}deg "
+          f"cyclic_preserved={st.get('cyclic_family_sequence_preserved')}")
+    print(f"  issues      : {len(fb.issues)} (informational)")
+    print(f"  reports     : {out}/{stem}.build.{{json,yaml,txt,html}}")
+    return 0
+
+
+def cmd_compare_families(args) -> int:
+    """Phase 4: systematic-vs-hand-tuned comparison report."""
+    from .model import (
+        CandidateBinding, ModelSpec, build_family, compare_families, hand_tuned_build,
+    )
+    from .family_report import comparison_html, comparison_text
+    from .report import to_json, to_yaml
+    from .spec import load
+
+    roles, dists, env = _load_specs(args)
+    spec = ModelSpec(roles, env, dists)
+    binding = CandidateBinding.load(args.binding)
+    systematic = build_family(binding, spec)
+    hand = {
+        Path(p).stem.replace("handtuned-", ""): load(p)
+        for p in args.handtuned
+    }
+    ht = hand_tuned_build(hand, spec, "hand-tuned")
+    cmp = compare_families(systematic, ht, spec)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    stem = Path(args.binding).stem
+    (out / f"{stem}.compare.json").write_text(to_json(cmp), encoding="utf-8")
+    (out / f"{stem}.compare.yaml").write_text(to_yaml(cmp), encoding="utf-8")
+    (out / f"{stem}.compare.txt").write_text(comparison_text(cmp), encoding="utf-8")
+    (out / f"{stem}.compare.html").write_text(
+        comparison_html(systematic, cmp), encoding="utf-8")
+    s = cmp["summary"]
+    print(f"[compare-families] systematic '{cmp['systematic']}' vs '{cmp['hand_tuned']}'")
+    print(f"  dE mean/med/max : {s['de_mean']} / {s['de_median']} / {s['de_max']}")
+    print(f"  needing adjust  : {s['n_needing_adjustment']} role(s)")
+    print(f"  >> systematic needed hand adjustment: {s['systematic_needed_hand_adjustment']}")
+    print(f"  reports         : {out}/{stem}.compare.{{json,yaml,txt,html}}")
+    return 0
+
+
+def cmd_candidates(args) -> int:
+    """Phase 5/6: rebuild all canonical candidates + reports in one pass.
+
+    Generates the 9 concrete palettes (themes/candidates/), the per-candidate
+    family reports + family specimen pages, and the cross-candidate comparison
+    (matrix, drift, specimens/CVD/spectral visuals) under out/candidates/.
+    No aggregate score, ranking, or recommendation is produced.
+    """
+    from .candidates import write_all_candidate_artifacts
+    from .model import ModelSpec
+
+    roles, dists, env = _load_specs(args)
+    spec = ModelSpec(roles, env, dists)
+    result = write_all_candidate_artifacts(spec, out_dir=args.out)
+    families = result["families"]
+    print(f"[candidates] {len(families)} candidate families rebuilt")
+    for f in families:
+        st = f.stability or {}
+        print(f"  {f.name:26s} ok={f.ok} hash={f.input_hash} "
+              f"drift={st.get('max_hue_drift_deg')}deg issues={len(f.issues)}")
+    print(f"  palettes : themes/candidates/ (9 = 3 candidates x 3 variants)")
+    print(f"  reports  : out/candidates/<candidate>/ + comparison.{{json,yaml,txt,html,svg}}")
+    print("  framing  : CANDIDATE comparison; no score/rank/winner. WCAG hard; "
+          "APCA experimental; CVD population-average; spectral nominal-only.")
+    return 0
+
+
+def cmd_vscode(args) -> int:
+    """Phase 8a: regenerate the nine-theme VS Code evaluation preview.
+
+    Writes editors/vscode/themes/*.json deterministically from
+    themes/candidates/*.yaml + spec/mappings/vscode.yaml.  No winner is
+    selected; the themes exist only so human evaluation can see the
+    candidates in a real editor.
+    """
+    roles = RoleSpec.load(args.roles)
+    written = write_extension(
+        args.out, candidates_dir=args.candidates, mapping_path=args.mapping, roles=roles
+    )
+    print(f"[vscode] {len(written)} evaluation-preview theme(s) generated -> {args.out}/themes")
+    for rel, path in written.items():
+        print(f"  {rel}")
+    print("  static adapter only: no runtime, no switching, no winner (Phase 8a preview)")
+    return 0
+
+
+def cmd_raster(args) -> int:
+    """Phase 8c: bounded raster analysis of one manual screenshot vs a palette.
+
+    No capture automation: the PNG comes from the user's installed VS Code
+    (see evaluation/raster/README.md). Pixel counts are coverage estimates,
+    NOT semantic ground truth.
+    """
+    from .raster import analyze_screenshot, write_report
+
+    report = analyze_screenshot(
+        args.png, args.palette,
+        threshold=args.threshold, chunk_rows=args.chunk_rows,
+    )
+    path = write_report(report, args.out)
+    c = report["classification"]
+    print(f"[raster] {report['image']['width']}x{report['image']['height']} "
+          f"({report['image']['pixels']} px, chunk {report['image']['chunk']['rows']} rows)")
+    print(f"  palette : {report['palette']['name']} ({report['palette']['variant']})")
+    print(f"  exact   : {c['exact_fraction']*100:.2f}% of pixels are exact palette colours")
+    print(f"  nearest : {c['classified_fraction']*100:.2f}% within dE {c['threshold_de_ok']} "
+          f"(unclassified {c['unclassified_fraction']*100:.2f}%)")
+    top = sorted(c["nearest_by_category"].items(),
+                 key=lambda kv: -kv[1]["fraction"])[:3]
+    print("  top cat : " + ", ".join(f"{k} {v['fraction']*100:.2f}%" for k, v in top))
+    for name, s in report["spectral"]["displays"].items():
+        print(f"  {name:8s}: photopic {s['photopic']:.4f}  melanopic {s['melanopic']:.4f} "
+              f"(nominal, area-weighted)")
+    print(f"  report  : {path}")
+    print("  caveats : pixel measurement is NOT semantic ground truth "
+          "(antialiasing, transparency, images, terminals, scaling)")
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    ap = argparse.ArgumentParser(prog="grotto", description="grotto evaluation tooling (Phases 2-4)")
+    ap.add_argument("--roles", default="spec/roles.yaml")
+    ap.add_argument("--distances", default="spec/distance-matrix.yaml")
+    ap.add_argument("--environments", default="spec/environments.yaml")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+
+    p_pal = sub.add_parser("palette", help="audit one palette (JSON/YAML/text + HTML/SVG)")
+    p_pal.add_argument("palette")
+    p_pal.add_argument("--out", default="out")
+    p_pal.add_argument("--display", default="led-lcd", choices=sorted(DISPLAYS))
+    p_pal.set_defaults(func=cmd_palette)
+
+    p_stab = sub.add_parser("stability", help="cross-variant stability for a variant trio")
+    p_stab.add_argument("variants", nargs="+", help="day/evening/night palette files")
+    p_stab.add_argument("--out", default="out")
+    p_stab.add_argument("--max-hue-drift", type=float, default=DEFAULT_MAX_HUE_DRIFT)
+    p_stab.set_defaults(func=cmd_stability)
+
+    p_sp = sub.add_parser("specimens", help="write plaintext code specimens")
+    p_sp.add_argument("--out", default="out/specimens")
+    p_sp.set_defaults(func=cmd_specimens)
+
+    p_ref = sub.add_parser(
+        "references",
+        help="consistent reference-theme analysis + comparison (Phase 3)",
+    )
+    p_ref.add_argument(
+        "references",
+        nargs="*",
+        help="reference YAML files (default: all of themes/references/*.yaml)",
+    )
+    p_ref.add_argument("--references-dir", default="themes/references")
+    p_ref.add_argument("--out", default="out/references")
+    p_ref.add_argument("--display", default="led-lcd", choices=sorted(DISPLAYS))
+    p_ref.set_defaults(func=cmd_references)
+
+    p_fam = sub.add_parser(
+        "family",
+        help="Phase 4: build the environmental-transform family + derivation report",
+    )
+    p_fam.add_argument("binding", help="candidate binding YAML (e.g. spec/bindings/calibration.yaml)")
+    p_fam.add_argument("--out", default="out/model-calibration")
+    p_fam.set_defaults(func=cmd_family)
+
+    p_cmp = sub.add_parser(
+        "compare-families",
+        help="Phase 4: systematic-vs-hand-tuned comparison report",
+    )
+    p_cmp.add_argument("binding", help="candidate binding YAML")
+    p_cmp.add_argument("handtuned", nargs="+",
+                       help="hand-tuned day/evening/night palette YAMLs")
+    p_cmp.add_argument("--out", default="out/model-calibration")
+    p_cmp.set_defaults(func=cmd_compare_families)
+
+    p_cand = sub.add_parser(
+        "candidates",
+        help="Phase 5/6: rebuild all candidates + reports (palettes, family "
+             "reports, cross-candidate comparison, specimens/CVD/spectral visuals)",
+    )
+    p_cand.add_argument(
+        "--out", default="out/candidates",
+        help="report output directory (default out/candidates)",
+    )
+    p_cand.set_defaults(func=cmd_candidates)
+
+    p_vs = sub.add_parser(
+        "vscode",
+        help="Phase 8a: regenerate the 9-theme VS Code evaluation preview",
+    )
+    p_vs.add_argument("--out", default="editors/vscode")
+    p_vs.add_argument("--candidates", default="themes/candidates")
+    p_vs.add_argument("--mapping", default="spec/mappings/vscode.yaml")
+    p_vs.set_defaults(func=cmd_vscode)
+
+    p_ras = sub.add_parser(
+        "raster",
+        help="Phase 8c: bounded raster analysis of a manual PNG screenshot",
+    )
+    p_ras.add_argument("png", help="existing PNG screenshot (no capture automation)")
+    p_ras.add_argument("--palette", required=True,
+                       help="generated palette YAML (e.g. themes/candidates/candidate-a-restrained.evening.yaml)")
+    p_ras.add_argument("--out", default="raster.report.json")
+    p_ras.add_argument("--threshold", type=float, default=DEFAULT_RASTER_THRESHOLD,
+                       help="max OKLab dE for nearest-role classification (default %(default)s)")
+    p_ras.add_argument("--chunk-rows", type=int, default=DEFAULT_RASTER_CHUNK_ROWS,
+                       help="row-chunk bound for memory (default %(default)s)")
+    p_ras.set_defaults(func=cmd_raster)
+
+    return ap
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = build_parser()
+    args = ap.parse_args(argv)
+    try:
+        return args.func(args)
+    except (ValueError, OSError) as exc:
+        # User-input problems (unknown model, missing spec file, too few
+        # palettes, malformed input) must surface as a one-line error and a
+        # nonzero exit -- never as a raw traceback on the console.
+        print(f"grotto: error: {exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

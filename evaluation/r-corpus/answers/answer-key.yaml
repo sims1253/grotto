@@ -1,0 +1,166 @@
+# ANSWER KEY — form A. NOT shown to participants.
+#
+# Keep this file out of the participant's view (and out of any screenshot
+# viewport) during collection. Answers pair 1:1 with tasks/form-a-tasks.md.
+# Seeded errors are applied to a COPY of the item at presentation time
+# (exact line, original text, broken text); the corpus files stay frozen.
+
+version: 1
+form: a
+items:
+
+  r-01-read-station-log:
+    scan: >
+      Three arguments: path, keep_failed, tz. (stringsAsFactors / na.strings
+      are read.csv's own parameters named inside the call -- plausible
+      distractors, not arguments of read_station_log.) Coerced with
+      suppressWarnings: temp_c and humidity.
+    comprehension: >
+      stop() fires when required columns are missing (structural error; the
+      caller gets no data frame). warning() fires when some timestamps do not
+      parse (partial data loss; the caller still gets a frame and a count).
+    seeded_error:
+      line: 39
+      original: '  log <- log[order(log$station, log$timestamp), ]'
+      broken: '  log <- log[order(log$timestamp, log$station), ]'
+      why: >-
+        sort priority swapped: output ordered by time-then-station, so the
+        documented "station, then time" contract is silently violated.
+
+  r-02-signif-round:
+    scan: >
+      Line computing magnitude is "magnitude <- floor(log10(abs(x[nonzero])))";
+      for x == 0 the value is never selected (nonzero excludes it) and the
+      function returns 0 via the explicit zero branch near the end.
+    comprehension: >
+      old == 0 makes the percentage undefined (division by zero); returning
+      NA propagates a missing value instead of an Inf that would poison
+      later means and plots.
+    seeded_error:
+      line: 20
+      original: '  out[nonzero] <- round(x[nonzero], digits - 1 - magnitude)'
+      broken: '  out[nonzero] <- round(x[nonzero], digits - magnitude)'
+      why: >-
+        off-by-one in retained significant digits; code still runs, every
+        value carries one digit too many.
+
+  r-03-threshold-check:
+    scan: >
+      Two S3 methods: print.threshold_check, summary.threshold_check.
+      Object fields: label, values, lower, upper (class "threshold_check").
+    comprehension: >
+      A value exactly equal to lower counts as inside: `below` uses strict <,
+      `above` uses strict >, so equality falls through to inside.
+    seeded_error:
+      line: 25
+      original: '  inside <- length(x$values) - below - above'
+      broken: '  inside <- length(x$values) - below'
+      why: >-
+        'above' is never subtracted, so inside counts are inflated by the
+        number of above-threshold values.
+
+  r-04-rolling-window:
+    scan: >
+      rolling_max_window uses for, while, next; the module also uses break
+      (in first_above) and return (early return of the index).
+    comprehension: >
+      A window whose every observation is NA leaves window_max at -Inf; the
+      branch after the loop replaces that with NA_real_ so -Inf never leaks
+      into results.
+    seeded_error:
+      line: 18
+      original: '        next  # skip gaps in the sensor feed without shrinking the window'
+      broken: '        break  # skip gaps in the sensor feed without shrinking the window'
+      why: >-
+        a single NA now aborts the whole window scan instead of skipping
+        one gap; remaining values in the window are silently ignored.
+
+  r-05-normalise-results:
+    scan: >
+      Three vapply calls: the `pick` helper (numeric(1)), the names
+      extraction (character(1)), and score_stats (numeric(3)).
+    comprehension: >
+      safe_trim_mean returns NA_real_ for all-NA input so the data frame row
+      stays complete (one NA cell) instead of failing mean() and losing the
+      whole table.
+    seeded_error:
+      line: 30
+      original: '    v <- v[!is.na(v)]'
+      broken: '    v <- v[is.na(v)]'
+      why: >-
+        inverted filter keeps only the NAs; safe_trim_mean then sees only
+        missing values (or none) and returns NA for every table.
+
+  r-06-canonicalise-id:
+    scan: >
+      Separators/symbols stripped by the gsub line ("[^A-Z0-9]+"); prefix
+      from suffix split by the sub lines inside split_id (patterns
+      "^([A-Za-z]+)[0-9]+$" and "^[A-Za-z]+([0-9]+)$").
+    comprehension: >
+      canon_id("s3#a2") returns "S3A2": the string is trimmed, upper-cased,
+      and every non-alphanumeric run (the "#") is deleted before the final
+      identity sub leaves "S3A2" unchanged.
+    seeded_error:
+      line: 10
+      original: '  sub("^([A-Z]+)([0-9]+)$", "\\1\\2", upper)'
+      broken: '  sub("^([A-Z]+)([0-9]+)$", "\\1\\1", upper)'
+      why: >-
+        the replacement duplicates the letter prefix and drops the digit
+        group entirely (backreference 2 is never emitted), so every
+        well-formed id comes back wrong ("A1" -> "AA", not "A11").
+
+  r-07-month-grid:
+    scan: >
+      Endpoints swapped inside month_grid right after the NA check (tmp
+      dance); out-of-range dates counted via `inside <- key %in% labels` and
+      the `outside` element of the returned list.
+    comprehension: >
+      `outside` is the number of observation dates whose month key is not in
+      the grid's labels; each in-grid date increments counts[k] exactly once
+      in the loop keyed by month string.
+    seeded_error:
+      line: 38
+      original: '  inside <- key %in% labels'
+      broken: '  inside <- !key %in% labels'
+      why: >-
+        membership inverted: every in-grid date is reported as outside and
+        every out-of-grid date is bucketed. counts[absent] <- counts[absent] + 1
+        does not crash: character subassignment on the named vector extends it
+        with an NA-valued entry whose NAME is the absent month string (e.g.
+        an element named "2025-08" holding NA, not an NA name), so out-of-grid
+        months silently acquire NA counts and the totals are wrong.
+
+  r-08-dominant-direction:
+    scan: >
+      Indexing used: single [, matrix subsets [, k], %*% (three occurrences
+      over two lines), %o%, and t(v); deflation is the line
+      "remaining <- remaining - values[k] * (v %o% v)".
+    comprehension: >
+      Convergence: max abs component change < 1e-9 stops the loop with the
+      improved vector kept; norm < 1e-12 guards a zero (or numerically
+      annihilated) direction where division would blow up.
+    seeded_error:
+      line: 35
+      original: '    remaining <- remaining - values[k] * (v %o% v)  # deflate'
+      broken: '    remaining <- remaining + values[k] * (v %o% v)  # deflate'
+      why: >-
+        deflation adds the rank-one component back, so later vectors
+        re-find the same direction; ordering/values become meaningless.
+
+  r-09-plot-with-band:
+    scan: >
+      par saved into old_par with par(no.readonly = TRUE); restored by the
+      on.exit(par(old_par), add = TRUE) registered immediately after — the
+      guarantee is the on.exit hook (fires on any exit, including error).
+    comprehension: >
+      pos is 1 (below the point) when the peak is above the mean line, else
+      3 (above the point).
+    seeded_error:
+      line: 29
+      original: '       pos = ifelse(y[i_peak] > mean(y, na.rm = TRUE), 1, 3), cex = 0.8)'
+      broken: '       pos = ifelse(y[i_peak] > mean(y, na.rm = TRUE), 3, 1), cex = 0.8)'
+      why: >-
+        label sides swapped (pos 1 <-> 3): the annotation lands on the
+        opposite side of the point from the original rule -- above the peak
+        when it exceeds the mean, below otherwise, where the curve's arms and
+        the dashed mean line sit.

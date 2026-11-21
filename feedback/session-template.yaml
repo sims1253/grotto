@@ -1,0 +1,175 @@
+# Copy this file once per family × variant condition. Keep raw records immutable.
+# Ratings use 1–7. For positive dimensions, 1 = very poor and 7 = excellent.
+# For glare, muddy_text, annoyance, and discomfort, 1 = none and 7 = extreme.
+# Do not average these dimensions into a composite score.
+schema_version: "1.0"
+record_status: draft
+
+session:
+  session_id: null
+  participant_id: null
+  date: null
+  local_start: null
+  local_end: null
+  timezone: null
+  phase: null # scan | sustained | cross_context
+  order_position: null
+  r_corpus_list: null # L1..L9 from schedule.yaml, drawn before the study
+  r_corpus_draw: null # how the list was chosen (e.g. "slip draw 2026-08-15")
+
+condition:
+  blind_label: null
+  family: null # restrained | balanced | expressive
+  variant: null # day | evening | night
+  candidate_version: null
+  intended_context: null
+  switching:
+    mode: null # manual | automatic
+    trigger: null
+    prior_family: null
+    prior_variant: null
+
+display_context:
+  device: null
+  display: null
+  panel_technology: null
+  os: null
+  os_colour_mode: null
+  icc_profile: null
+  hdr: null
+  brightness_setting: null
+  automatic_brightness: null
+  white_luminance_cd_m2: null # only enter a measured value
+  viewing_distance_cm: null
+  display_filters: null
+
+environment:
+  ambient_lux: null # only enter a measured value
+  lux_instrument: null
+  room_description: null
+  window_light: null
+  task_lighting: null
+  reflections: null
+  minutes_in_environment: null
+  recent_bright_exposure: null
+  recent_screen_minutes: null
+
+controls:
+  editor: null
+  font: null
+  font_size: null
+  font_weight: null
+  line_height: null
+  zoom: null
+  layout: null
+  content_or_task: null
+  language_activity: null
+  task_difficulty: null # low | medium | high
+  diagnostic_fixture: null
+  differences_from_baseline: null
+
+exposure:
+  washout_theme: null
+  washout_minutes: null
+  adaptation_minutes: null
+  planned_minutes: null
+  actual_minutes: null
+  editor_fraction: null # 0.0–1.0
+  interruptions: null
+  checkpoints:
+    - minute: null
+      readability: null
+      annoyance: null
+      discomfort: null
+      notes: null
+
+ratings:
+  immediate:
+    structure_scan: null
+    ordinary_text_readability: null
+    diagnostic_clarity: null
+    selection_readability: null
+    state_separation: null
+    semantic_familiarity: null
+    environment_fit: null
+    glare: null
+    muddy_text: null
+    annoyance: null
+    discomfort: null
+    overall_preference: null
+  delayed:
+    structure_scan: null
+    ordinary_text_readability: null
+    diagnostic_clarity: null
+    selection_readability: null
+    state_separation: null
+    semantic_familiarity: null
+    environment_fit: null
+    glare: null
+    muddy_text: null
+    annoyance: null
+    discomfort: null
+    overall_preference: null
+    delay_minutes: null
+
+# prominence is DIRECTIONAL, per HUMAN_EVALUATION.md: too_faint | appropriate |
+# too_prominent -- not a 1-7 number. Record the direction; qualify in notes.
+role_observations:
+  comments: { prominence: null, notes: null }
+  variables: { prominence: null, notes: null }
+  functions: { prominence: null, notes: null }
+  punctuation: { prominence: null, notes: null }
+  strings: { prominence: null, notes: null }
+  keywords: { prominence: null, notes: null }
+  types: { prominence: null, notes: null }
+  properties: { prominence: null, notes: null }
+  other: { prominence: null, notes: null }
+
+critical_state_checks:
+  - state: error
+    view: normal
+    found: null
+    distinguishable_without_hue: null
+    text_readable: null
+    redundant_channel: null
+    notes: null
+
+# One entry per timed R trial from the assigned schedule list
+# (evaluation/r-corpus). Graded against answers/answer-key.yaml afterwards.
+timed_r_trials:
+  - item_id: null # e.g. r-01-read-station-log
+    list_id: null # e.g. L4 (should match session.r_corpus_list)
+    family: null
+    variant: null
+    block_position: null # 1st | 2nd | 3rd timed trial in the session
+    response_ms: null
+    correct: null # true | false | partial (per the answer key)
+    error_kind: null # scan | comprehension | seeded_error | none
+
+semantic_recall:
+  - token_id: null
+    expected_role: null
+    answer: null
+    result: null
+    confidence: null
+    response_ms: null
+    after_switch: null
+
+free_text:
+  easiest: null
+  missed_or_slow: null
+  attention_grabbing: null
+  annoying_after_duration: null
+  switching_impression: null
+  environment_fit: null
+  metrics_judgment_disagreement: null
+  other: null
+
+safety:
+  stopped_early: null
+  stop_reason: null
+  discomfort_notes: null
+  afterimage_or_visual_disturbance: null
+
+interpretation_limits:
+  - Single-user preference/usability observation; not medical or circadian evidence.
