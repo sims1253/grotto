@@ -1,0 +1,17 @@
+# huerd-driven night palettes (NON-CANDIDATE)
+
+huerd >= 0.6.2, optimizer sann, cvd_safe=TRUE; pins: {'bg': '#191714', 'error': '#f2cdcd', 'warning': '#f0d3a7', 'keyword': '#cdbada', 'string': '#aeca93', 'function': '#cbdae7', 'type': '#99cbc5'}
+free roles assigned within convention windows; chroma cap 0.12 for 'capped'
+
+palette           worstM  mustN  mustCVD   same  diffCVD  n/c dE  meanC   maxC  wcag
+candidate-b        0.021  0.059    0.021  0.000    0.002   0.000  0.041  0.081  3.36
+middle-m01         0.282  0.301    0.282  2.651    0.026   0.117  0.106  0.119  3.36
+numeric-n01        0.507  0.780    0.507  4.431    0.054   0.350  0.205  0.315  3.36
+h01-raw            0.021  0.059    0.021  4.431    0.002   0.246  0.104  0.211  3.36
+h01-capped         0.021  0.059    0.021  4.431    0.002   0.213  0.080  0.121  3.36
+h02-raw            0.021  0.059    0.021  3.339    0.002   0.100  0.094  0.209  3.36
+h02-capped         0.021  0.059    0.021  3.339    0.002   0.100  0.079  0.120  3.36
+h03-raw            0.021  0.059    0.021  3.691    0.002   0.290  0.116  0.256  3.36
+h03-capped         0.021  0.059    0.021  2.908    0.002   0.161  0.087  0.121  3.36
+h04-raw            0.021  0.059    0.021  4.431    0.002   0.277  0.105  0.234  3.36
+h04-capped         0.021  0.059    0.021  4.431    0.002   0.216  0.081  0.120  3.36

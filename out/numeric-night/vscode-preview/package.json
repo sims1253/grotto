@@ -1,0 +1,32 @@
+{
+  "name": "grotto-numeric-exploration",
+  "displayName": "Grotto Numeric Exploration (NON-CANDIDATE)",
+  "description": "Night themes from the numeric-first optimizer (technical constraints only); exploration material, not a candidate.",
+  "version": "0.0.1",
+  "publisher": "grotto-exploration",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto N-Explore 01 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/numeric-explore-01-night.json"
+      },
+      {
+        "label": "Grotto N-Explore 02 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/numeric-explore-02-night.json"
+      },
+      {
+        "label": "Grotto N-Explore 03 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/numeric-explore-03-night.json"
+      }
+    ]
+  }
+}

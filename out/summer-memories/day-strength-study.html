@@ -1,0 +1,1460 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Grotto Day color study</title><style>body{margin:24px;background:#e8e8e8;color:#222;font:16px/1.5 system-ui}p{max-width:95ch}section{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}article{background:var(--vbg);color:var(--vfg)}h3{background:#ddd;color:#222;padding:10px;margin:0;font-size:16px}pre{font:13px/1.65 "DejaVu Sans Mono",monospace;overflow:auto;padding:14px}.language[hidden]{display:none}@media(max-width:850px){section{grid-template-columns:minmax(0,1fr)}}body.view-normal .scope-pergola-original{--vbg:#f5f6ed;--vfg:#4c4942;}
+body.view-normal .scope-pergola-original .r-active_line{color:#eeeee5}
+body.view-normal .scope-pergola-original .surface-active_line{background-color:#eeeee5}
+body.view-normal .scope-pergola-original .r-bg{color:#f5f6ed}
+body.view-normal .scope-pergola-original .surface-bg{background-color:#f5f6ed}
+body.view-normal .scope-pergola-original .r-bg_elevated{color:#fafaf3}
+body.view-normal .scope-pergola-original .surface-bg_elevated{background-color:#fafaf3}
+body.view-normal .scope-pergola-original .r-bg_overlay{color:#fdfdf9}
+body.view-normal .scope-pergola-original .surface-bg_overlay{background-color:#fdfdf9}
+body.view-normal .scope-pergola-original .r-breakpoint{color:#8a372f}
+body.view-normal .scope-pergola-original .surface-breakpoint{background-color:#8a372f}
+body.view-normal .scope-pergola-original .r-builtin{color:#295e90}
+body.view-normal .scope-pergola-original .surface-builtin{background-color:#295e90}
+body.view-normal .scope-pergola-original .r-comment{color:#5c5f57}
+body.view-normal .scope-pergola-original .surface-comment{background-color:#5c5f57}
+body.view-normal .scope-pergola-original .r-constant{color:#804c26}
+body.view-normal .scope-pergola-original .surface-constant{background-color:#804c26}
+body.view-normal .scope-pergola-original .r-debug_current{color:#ede5d3}
+body.view-normal .scope-pergola-original .surface-debug_current{background-color:#ede5d3}
+body.view-normal .scope-pergola-original .r-decorator{color:#804c26}
+body.view-normal .scope-pergola-original .surface-decorator{background-color:#804c26}
+body.view-normal .scope-pergola-original .r-deprecated{color:#5c5f57}
+body.view-normal .scope-pergola-original .surface-deprecated{background-color:#5c5f57}
+body.view-normal .scope-pergola-original .r-diff_added{color:#e3efe5}
+body.view-normal .scope-pergola-original .surface-diff_added{background-color:#e3efe5}
+body.view-normal .scope-pergola-original .r-diff_changed{color:#efe7d8}
+body.view-normal .scope-pergola-original .surface-diff_changed{background-color:#efe7d8}
+body.view-normal .scope-pergola-original .r-diff_removed{color:#efdedb}
+body.view-normal .scope-pergola-original .surface-diff_removed{background-color:#efdedb}
+body.view-normal .scope-pergola-original .r-docstring{color:#5c5f57}
+body.view-normal .scope-pergola-original .surface-docstring{background-color:#5c5f57}
+body.view-normal .scope-pergola-original .r-error{color:#8a372f}
+body.view-normal .scope-pergola-original .surface-error{background-color:#8a372f}
+body.view-normal .scope-pergola-original .r-fg{color:#4c4942}
+body.view-normal .scope-pergola-original .surface-fg{background-color:#4c4942}
+body.view-normal .scope-pergola-original .r-fg_muted{color:#6f6f69}
+body.view-normal .scope-pergola-original .surface-fg_muted{background-color:#6f6f69}
+body.view-normal .scope-pergola-original .r-fg_secondary{color:#5c5f57}
+body.view-normal .scope-pergola-original .surface-fg_secondary{background-color:#5c5f57}
+body.view-normal .scope-pergola-original .r-focus{color:#6a5124}
+body.view-normal .scope-pergola-original .surface-focus{background-color:#6a5124}
+body.view-normal .scope-pergola-original .r-function{color:#295e90}
+body.view-normal .scope-pergola-original .surface-function{background-color:#295e90}
+body.view-normal .scope-pergola-original .r-info{color:#2d5d68}
+body.view-normal .scope-pergola-original .surface-info{background-color:#2d5d68}
+body.view-normal .scope-pergola-original .r-keyword{color:#645725}
+body.view-normal .scope-pergola-original .surface-keyword{background-color:#645725}
+body.view-normal .scope-pergola-original .r-line_number{color:#6f6f69}
+body.view-normal .scope-pergola-original .surface-line_number{background-color:#6f6f69}
+body.view-normal .scope-pergola-original .r-line_number_active{color:#4c4942}
+body.view-normal .scope-pergola-original .surface-line_number_active{background-color:#4c4942}
+body.view-normal .scope-pergola-original .r-namespace{color:#684b88}
+body.view-normal .scope-pergola-original .surface-namespace{background-color:#684b88}
+body.view-normal .scope-pergola-original .r-number{color:#804c26}
+body.view-normal .scope-pergola-original .surface-number{background-color:#804c26}
+body.view-normal .scope-pergola-original .r-operator{color:#585752}
+body.view-normal .scope-pergola-original .surface-operator{background-color:#585752}
+body.view-normal .scope-pergola-original .r-parameter{color:#4c4942}
+body.view-normal .scope-pergola-original .surface-parameter{background-color:#4c4942}
+body.view-normal .scope-pergola-original .r-property{color:#4c4942}
+body.view-normal .scope-pergola-original .surface-property{background-color:#4c4942}
+body.view-normal .scope-pergola-original .r-punctuation{color:#585752}
+body.view-normal .scope-pergola-original .surface-punctuation{background-color:#585752}
+body.view-normal .scope-pergola-original .r-search_match{color:#f1eadb}
+body.view-normal .scope-pergola-original .surface-search_match{background-color:#f1eadb}
+body.view-normal .scope-pergola-original .r-search_match_current{color:#e8dbc1}
+body.view-normal .scope-pergola-original .surface-search_match_current{background-color:#e8dbc1}
+body.view-normal .scope-pergola-original .r-selection{color:#d1ded5}
+body.view-normal .scope-pergola-original .surface-selection{background-color:#d1ded5}
+body.view-normal .scope-pergola-original .r-string{color:#2a673a}
+body.view-normal .scope-pergola-original .surface-string{background-color:#2a673a}
+body.view-normal .scope-pergola-original .r-success{color:#3a6042}
+body.view-normal .scope-pergola-original .surface-success{background-color:#3a6042}
+body.view-normal .scope-pergola-original .r-tag{color:#684b88}
+body.view-normal .scope-pergola-original .surface-tag{background-color:#684b88}
+body.view-normal .scope-pergola-original .r-type{color:#684b88}
+body.view-normal .scope-pergola-original .surface-type{background-color:#684b88}
+body.view-normal .scope-pergola-original .r-ui_inactive{color:#6f6f69}
+body.view-normal .scope-pergola-original .surface-ui_inactive{background-color:#6f6f69}
+body.view-normal .scope-pergola-original .r-warning{color:#6a5124}
+body.view-normal .scope-pergola-original .surface-warning{background-color:#6a5124}
+body.view-protan .scope-pergola-original{--vbg:#f9f6ed;--vfg:#4b4942;}
+body.view-protan .scope-pergola-original .r-active_line{color:#f1eee5}
+body.view-protan .scope-pergola-original .surface-active_line{background-color:#f1eee5}
+body.view-protan .scope-pergola-original .r-bg{color:#f9f6ed}
+body.view-protan .scope-pergola-original .surface-bg{background-color:#f9f6ed}
+body.view-protan .scope-pergola-original .r-bg_elevated{color:#fcfaf3}
+body.view-protan .scope-pergola-original .surface-bg_elevated{background-color:#fcfaf3}
+body.view-protan .scope-pergola-original .r-bg_overlay{color:#fefdf9}
+body.view-protan .scope-pergola-original .surface-bg_overlay{background-color:#fefdf9}
+body.view-protan .scope-pergola-original .r-breakpoint{color:#4c4630}
+body.view-protan .scope-pergola-original .surface-breakpoint{background-color:#4c4630}
+body.view-protan .scope-pergola-original .r-builtin{color:#395d90}
+body.view-protan .scope-pergola-original .surface-builtin{background-color:#395d90}
+body.view-protan .scope-pergola-original .r-comment{color:#615e57}
+body.view-protan .scope-pergola-original .surface-comment{background-color:#615e57}
+body.view-protan .scope-pergola-original .r-constant{color:#5d5327}
+body.view-protan .scope-pergola-original .surface-constant{background-color:#5d5327}
+body.view-protan .scope-pergola-original .r-debug_current{color:#ebe5d3}
+body.view-protan .scope-pergola-original .surface-debug_current{background-color:#ebe5d3}
+body.view-protan .scope-pergola-original .r-decorator{color:#5d5327}
+body.view-protan .scope-pergola-original .surface-decorator{background-color:#5d5327}
+body.view-protan .scope-pergola-original .r-deprecated{color:#615e57}
+body.view-protan .scope-pergola-original .surface-deprecated{background-color:#615e57}
+body.view-protan .scope-pergola-original .r-diff_added{color:#f0ede5}
+body.view-protan .scope-pergola-original .surface-diff_added{background-color:#f0ede5}
+body.view-protan .scope-pergola-original .r-diff_changed{color:#ede7d8}
+body.view-protan .scope-pergola-original .surface-diff_changed{background-color:#ede7d8}
+body.view-protan .scope-pergola-original .r-diff_removed{color:#e1e0db}
+body.view-protan .scope-pergola-original .surface-diff_removed{background-color:#e1e0db}
+body.view-protan .scope-pergola-original .r-docstring{color:#615e57}
+body.view-protan .scope-pergola-original .surface-docstring{background-color:#615e57}
+body.view-protan .scope-pergola-original .r-error{color:#4c4630}
+body.view-protan .scope-pergola-original .surface-error{background-color:#4c4630}
+body.view-protan .scope-pergola-original .r-fg{color:#4b4942}
+body.view-protan .scope-pergola-original .surface-fg{background-color:#4b4942}
+body.view-protan .scope-pergola-original .r-fg_muted{color:#716f69}
+body.view-protan .scope-pergola-original .surface-fg_muted{background-color:#716f69}
+body.view-protan .scope-pergola-original .r-fg_secondary{color:#615e57}
+body.view-protan .scope-pergola-original .surface-fg_secondary{background-color:#615e57}
+body.view-protan .scope-pergola-original .r-focus{color:#5e5324}
+body.view-protan .scope-pergola-original .surface-focus{background-color:#5e5324}
+body.view-protan .scope-pergola-original .r-function{color:#395d90}
+body.view-protan .scope-pergola-original .surface-function{background-color:#395d90}
+body.view-protan .scope-pergola-original .r-info{color:#535a68}
+body.view-protan .scope-pergola-original .surface-info{background-color:#535a68}
+body.view-protan .scope-pergola-original .r-keyword{color:#635725}
+body.view-protan .scope-pergola-original .surface-keyword{background-color:#635725}
+body.view-protan .scope-pergola-original .r-line_number{color:#716f69}
+body.view-protan .scope-pergola-original .surface-line_number{background-color:#716f69}
+body.view-protan .scope-pergola-original .r-line_number_active{color:#4b4942}
+body.view-protan .scope-pergola-original .surface-line_number_active{background-color:#4b4942}
+body.view-protan .scope-pergola-original .r-namespace{color:#275288}
+body.view-protan .scope-pergola-original .surface-namespace{background-color:#275288}
+body.view-protan .scope-pergola-original .r-number{color:#5d5327}
+body.view-protan .scope-pergola-original .surface-number{background-color:#5d5327}
+body.view-protan .scope-pergola-original .r-operator{color:#595752}
+body.view-protan .scope-pergola-original .surface-operator{background-color:#595752}
+body.view-protan .scope-pergola-original .r-parameter{color:#4b4942}
+body.view-protan .scope-pergola-original .surface-parameter{background-color:#4b4942}
+body.view-protan .scope-pergola-original .r-property{color:#4b4942}
+body.view-protan .scope-pergola-original .surface-property{background-color:#4b4942}
+body.view-protan .scope-pergola-original .r-punctuation{color:#595752}
+body.view-protan .scope-pergola-original .surface-punctuation{background-color:#595752}
+body.view-protan .scope-pergola-original .r-search_match{color:#efeadb}
+body.view-protan .scope-pergola-original .surface-search_match{background-color:#efeadb}
+body.view-protan .scope-pergola-original .r-search_match_current{color:#e4dcc1}
+body.view-protan .scope-pergola-original .surface-search_match_current{background-color:#e4dcc1}
+body.view-protan .scope-pergola-original .r-selection{color:#dfdcd5}
+body.view-protan .scope-pergola-original .surface-selection{background-color:#dfdcd5}
+body.view-protan .scope-pergola-original .r-string{color:#6b613a}
+body.view-protan .scope-pergola-original .surface-string{background-color:#6b613a}
+body.view-protan .scope-pergola-original .r-success{color:#635c42}
+body.view-protan .scope-pergola-original .surface-success{background-color:#635c42}
+body.view-protan .scope-pergola-original .r-tag{color:#275288}
+body.view-protan .scope-pergola-original .surface-tag{background-color:#275288}
+body.view-protan .scope-pergola-original .r-type{color:#275288}
+body.view-protan .scope-pergola-original .surface-type{background-color:#275288}
+body.view-protan .scope-pergola-original .r-ui_inactive{color:#716f69}
+body.view-protan .scope-pergola-original .surface-ui_inactive{background-color:#716f69}
+body.view-protan .scope-pergola-original .r-warning{color:#5e5324}
+body.view-protan .scope-pergola-original .surface-warning{background-color:#5e5324}
+body.view-deutan .scope-pergola-original{--vbg:#f8f5ed;--vfg:#4c4942;}
+body.view-deutan .scope-pergola-original .r-active_line{color:#f0ede5}
+body.view-deutan .scope-pergola-original .surface-active_line{background-color:#f0ede5}
+body.view-deutan .scope-pergola-original .r-bg{color:#f8f5ed}
+body.view-deutan .scope-pergola-original .surface-bg{background-color:#f8f5ed}
+body.view-deutan .scope-pergola-original .r-bg_elevated{color:#fcf9f3}
+body.view-deutan .scope-pergola-original .surface-bg_elevated{background-color:#fcf9f3}
+body.view-deutan .scope-pergola-original .r-bg_overlay{color:#fefdf9}
+body.view-deutan .scope-pergola-original .surface-bg_overlay{background-color:#fefdf9}
+body.view-deutan .scope-pergola-original .r-breakpoint{color:#61562b}
+body.view-deutan .scope-pergola-original .surface-breakpoint{background-color:#61562b}
+body.view-deutan .scope-pergola-original .r-builtin{color:#355c90}
+body.view-deutan .scope-pergola-original .surface-builtin{background-color:#355c90}
+body.view-deutan .scope-pergola-original .r-comment{color:#605d57}
+body.view-deutan .scope-pergola-original .surface-comment{background-color:#605d57}
+body.view-deutan .scope-pergola-original .r-constant{color:#675b23}
+body.view-deutan .scope-pergola-original .surface-constant{background-color:#675b23}
+body.view-deutan .scope-pergola-original .r-debug_current{color:#ece6d3}
+body.view-deutan .scope-pergola-original .surface-debug_current{background-color:#ece6d3}
+body.view-deutan .scope-pergola-original .r-decorator{color:#675b23}
+body.view-deutan .scope-pergola-original .surface-decorator{background-color:#675b23}
+body.view-deutan .scope-pergola-original .r-deprecated{color:#605d57}
+body.view-deutan .scope-pergola-original .surface-deprecated{background-color:#605d57}
+body.view-deutan .scope-pergola-original .r-diff_added{color:#edebe5}
+body.view-deutan .scope-pergola-original .surface-diff_added{background-color:#edebe5}
+body.view-deutan .scope-pergola-original .r-diff_changed{color:#ede8d8}
+body.view-deutan .scope-pergola-original .surface-diff_changed{background-color:#ede8d8}
+body.view-deutan .scope-pergola-original .r-diff_removed{color:#e5e2db}
+body.view-deutan .scope-pergola-original .surface-diff_removed{background-color:#e5e2db}
+body.view-deutan .scope-pergola-original .r-docstring{color:#605d57}
+body.view-deutan .scope-pergola-original .surface-docstring{background-color:#605d57}
+body.view-deutan .scope-pergola-original .r-error{color:#61562b}
+body.view-deutan .scope-pergola-original .surface-error{background-color:#61562b}
+body.view-deutan .scope-pergola-original .r-fg{color:#4c4942}
+body.view-deutan .scope-pergola-original .surface-fg{background-color:#4c4942}
+body.view-deutan .scope-pergola-original .r-fg_muted{color:#706e69}
+body.view-deutan .scope-pergola-original .surface-fg_muted{background-color:#706e69}
+body.view-deutan .scope-pergola-original .r-fg_secondary{color:#605d57}
+body.view-deutan .scope-pergola-original .surface-fg_secondary{background-color:#605d57}
+body.view-deutan .scope-pergola-original .r-focus{color:#615623}
+body.view-deutan .scope-pergola-original .surface-focus{background-color:#615623}
+body.view-deutan .scope-pergola-original .r-function{color:#355c90}
+body.view-deutan .scope-pergola-original .surface-function{background-color:#355c90}
+body.view-deutan .scope-pergola-original .r-info{color:#4b5569}
+body.view-deutan .scope-pergola-original .surface-info{background-color:#4b5569}
+body.view-deutan .scope-pergola-original .r-keyword{color:#635825}
+body.view-deutan .scope-pergola-original .surface-keyword{background-color:#635825}
+body.view-deutan .scope-pergola-original .r-line_number{color:#706e69}
+body.view-deutan .scope-pergola-original .surface-line_number{background-color:#706e69}
+body.view-deutan .scope-pergola-original .r-line_number_active{color:#4c4942}
+body.view-deutan .scope-pergola-original .surface-line_number_active{background-color:#4c4942}
+body.view-deutan .scope-pergola-original .r-namespace{color:#405c87}
+body.view-deutan .scope-pergola-original .surface-namespace{background-color:#405c87}
+body.view-deutan .scope-pergola-original .r-number{color:#675b23}
+body.view-deutan .scope-pergola-original .surface-number{background-color:#675b23}
+body.view-deutan .scope-pergola-original .r-operator{color:#585752}
+body.view-deutan .scope-pergola-original .surface-operator{background-color:#585752}
+body.view-deutan .scope-pergola-original .r-parameter{color:#4c4942}
+body.view-deutan .scope-pergola-original .surface-parameter{background-color:#4c4942}
+body.view-deutan .scope-pergola-original .r-property{color:#4c4942}
+body.view-deutan .scope-pergola-original .surface-property{background-color:#4c4942}
+body.view-deutan .scope-pergola-original .r-punctuation{color:#585752}
+body.view-deutan .scope-pergola-original .surface-punctuation{background-color:#585752}
+body.view-deutan .scope-pergola-original .r-search_match{color:#f0ebdb}
+body.view-deutan .scope-pergola-original .surface-search_match{background-color:#f0ebdb}
+body.view-deutan .scope-pergola-original .r-search_match_current{color:#e5dcc1}
+body.view-deutan .scope-pergola-original .surface-search_match_current{background-color:#e5dcc1}
+body.view-deutan .scope-pergola-original .r-selection{color:#dbdad5}
+body.view-deutan .scope-pergola-original .surface-selection{background-color:#dbdad5}
+body.view-deutan .scope-pergola-original .r-string{color:#60583c}
+body.view-deutan .scope-pergola-original .surface-string{background-color:#60583c}
+body.view-deutan .scope-pergola-original .r-success{color:#5b5543}
+body.view-deutan .scope-pergola-original .surface-success{background-color:#5b5543}
+body.view-deutan .scope-pergola-original .r-tag{color:#405c87}
+body.view-deutan .scope-pergola-original .surface-tag{background-color:#405c87}
+body.view-deutan .scope-pergola-original .r-type{color:#405c87}
+body.view-deutan .scope-pergola-original .surface-type{background-color:#405c87}
+body.view-deutan .scope-pergola-original .r-ui_inactive{color:#706e69}
+body.view-deutan .scope-pergola-original .surface-ui_inactive{background-color:#706e69}
+body.view-deutan .scope-pergola-original .r-warning{color:#615623}
+body.view-deutan .scope-pergola-original .surface-warning{background-color:#615623}
+body.view-tritan .scope-pergola-original{--vbg:#f6f5f5;--vfg:#4d4848;}
+body.view-tritan .scope-pergola-original .r-active_line{color:#efeded}
+body.view-tritan .scope-pergola-original .surface-active_line{background-color:#efeded}
+body.view-tritan .scope-pergola-original .r-bg{color:#f6f5f5}
+body.view-tritan .scope-pergola-original .surface-bg{background-color:#f6f5f5}
+body.view-tritan .scope-pergola-original .r-bg_elevated{color:#fbf9f9}
+body.view-tritan .scope-pergola-original .surface-bg_elevated{background-color:#fbf9f9}
+body.view-tritan .scope-pergola-original .r-bg_overlay{color:#fefcfd}
+body.view-tritan .scope-pergola-original .surface-bg_overlay{background-color:#fefcfd}
+body.view-tritan .scope-pergola-original .r-breakpoint{color:#8b3441}
+body.view-tritan .scope-pergola-original .surface-breakpoint{background-color:#8b3441}
+body.view-tritan .scope-pergola-original .r-builtin{color:#136478}
+body.view-tritan .scope-pergola-original .surface-builtin{background-color:#136478}
+body.view-tritan .scope-pergola-original .r-comment{color:#5d5e5e}
+body.view-tritan .scope-pergola-original .surface-comment{background-color:#5d5e5e}
+body.view-tritan .scope-pergola-original .r-constant{color:#83474e}
+body.view-tritan .scope-pergola-original .surface-constant{background-color:#83474e}
+body.view-tritan .scope-pergola-original .r-debug_current{color:#f0e2e4}
+body.view-tritan .scope-pergola-original .surface-debug_current{background-color:#f0e2e4}
+body.view-tritan .scope-pergola-original .r-decorator{color:#83474e}
+body.view-tritan .scope-pergola-original .surface-decorator{background-color:#83474e}
+body.view-tritan .scope-pergola-original .r-deprecated{color:#5d5e5e}
+body.view-tritan .scope-pergola-original .surface-deprecated{background-color:#5d5e5e}
+body.view-tritan .scope-pergola-original .r-diff_added{color:#e5edf1}
+body.view-tritan .scope-pergola-original .surface-diff_added{background-color:#e5edf1}
+body.view-tritan .scope-pergola-original .r-diff_changed{color:#f1e5e6}
+body.view-tritan .scope-pergola-original .surface-diff_changed{background-color:#f1e5e6}
+body.view-tritan .scope-pergola-original .r-diff_removed{color:#f0dddf}
+body.view-tritan .scope-pergola-original .surface-diff_removed{background-color:#f0dddf}
+body.view-tritan .scope-pergola-original .r-docstring{color:#5d5e5e}
+body.view-tritan .scope-pergola-original .surface-docstring{background-color:#5d5e5e}
+body.view-tritan .scope-pergola-original .r-error{color:#8b3441}
+body.view-tritan .scope-pergola-original .surface-error{background-color:#8b3441}
+body.view-tritan .scope-pergola-original .r-fg{color:#4d4848}
+body.view-tritan .scope-pergola-original .surface-fg{background-color:#4d4848}
+body.view-tritan .scope-pergola-original .r-fg_muted{color:#706e6e}
+body.view-tritan .scope-pergola-original .surface-fg_muted{background-color:#706e6e}
+body.view-tritan .scope-pergola-original .r-fg_secondary{color:#5d5e5e}
+body.view-tritan .scope-pergola-original .surface-fg_secondary{background-color:#5d5e5e}
+body.view-tritan .scope-pergola-original .r-focus{color:#6e4c50}
+body.view-tritan .scope-pergola-original .surface-focus{background-color:#6e4c50}
+body.view-tritan .scope-pergola-original .r-function{color:#136478}
+body.view-tritan .scope-pergola-original .surface-function{background-color:#136478}
+body.view-tritan .scope-pergola-original .r-info{color:#2e5c6b}
+body.view-tritan .scope-pergola-original .surface-info{background-color:#2e5c6b}
+body.view-tritan .scope-pergola-original .r-keyword{color:#685254}
+body.view-tritan .scope-pergola-original .surface-keyword{background-color:#685254}
+body.view-tritan .scope-pergola-original .r-line_number{color:#706e6e}
+body.view-tritan .scope-pergola-original .surface-line_number{background-color:#706e6e}
+body.view-tritan .scope-pergola-original .r-line_number_active{color:#4d4848}
+body.view-tritan .scope-pergola-original .surface-line_number_active{background-color:#4d4848}
+body.view-tritan .scope-pergola-original .r-namespace{color:#5f5758}
+body.view-tritan .scope-pergola-original .surface-namespace{background-color:#5f5758}
+body.view-tritan .scope-pergola-original .r-number{color:#83474e}
+body.view-tritan .scope-pergola-original .surface-number{background-color:#83474e}
+body.view-tritan .scope-pergola-original .r-operator{color:#595656}
+body.view-tritan .scope-pergola-original .surface-operator{background-color:#595656}
+body.view-tritan .scope-pergola-original .r-parameter{color:#4d4848}
+body.view-tritan .scope-pergola-original .surface-parameter{background-color:#4d4848}
+body.view-tritan .scope-pergola-original .r-property{color:#4d4848}
+body.view-tritan .scope-pergola-original .surface-property{background-color:#4d4848}
+body.view-tritan .scope-pergola-original .r-punctuation{color:#595656}
+body.view-tritan .scope-pergola-original .surface-punctuation{background-color:#595656}
+body.view-tritan .scope-pergola-original .r-search_match{color:#f3e8e9}
+body.view-tritan .scope-pergola-original .surface-search_match{background-color:#f3e8e9}
+body.view-tritan .scope-pergola-original .r-search_match_current{color:#ebd7d9}
+body.view-tritan .scope-pergola-original .surface-search_match_current{background-color:#ebd7d9}
+body.view-tritan .scope-pergola-original .r-selection{color:#d3dce1}
+body.view-tritan .scope-pergola-original .surface-selection{background-color:#d3dce1}
+body.view-tritan .scope-pergola-original .r-string{color:#3a606e}
+body.view-tritan .scope-pergola-original .surface-string{background-color:#3a606e}
+body.view-tritan .scope-pergola-original .r-success{color:#425b65}
+body.view-tritan .scope-pergola-original .surface-success{background-color:#425b65}
+body.view-tritan .scope-pergola-original .r-tag{color:#5f5758}
+body.view-tritan .scope-pergola-original .surface-tag{background-color:#5f5758}
+body.view-tritan .scope-pergola-original .r-type{color:#5f5758}
+body.view-tritan .scope-pergola-original .surface-type{background-color:#5f5758}
+body.view-tritan .scope-pergola-original .r-ui_inactive{color:#706e6e}
+body.view-tritan .scope-pergola-original .surface-ui_inactive{background-color:#706e6e}
+body.view-tritan .scope-pergola-original .r-warning{color:#6e4c50}
+body.view-tritan .scope-pergola-original .surface-warning{background-color:#6e4c50}
+body.view-normal .scope-pergola-revised{--vbg:#f5f6ed;--vfg:#4c4942;}
+body.view-normal .scope-pergola-revised .r-active_line{color:#eeeee5}
+body.view-normal .scope-pergola-revised .surface-active_line{background-color:#eeeee5}
+body.view-normal .scope-pergola-revised .r-bg{color:#f5f6ed}
+body.view-normal .scope-pergola-revised .surface-bg{background-color:#f5f6ed}
+body.view-normal .scope-pergola-revised .r-bg_elevated{color:#fafaf3}
+body.view-normal .scope-pergola-revised .surface-bg_elevated{background-color:#fafaf3}
+body.view-normal .scope-pergola-revised .r-bg_overlay{color:#fdfdf9}
+body.view-normal .scope-pergola-revised .surface-bg_overlay{background-color:#fdfdf9}
+body.view-normal .scope-pergola-revised .r-breakpoint{color:#8a372f}
+body.view-normal .scope-pergola-revised .surface-breakpoint{background-color:#8a372f}
+body.view-normal .scope-pergola-revised .r-builtin{color:#0661a8}
+body.view-normal .scope-pergola-revised .surface-builtin{background-color:#0661a8}
+body.view-normal .scope-pergola-revised .r-comment{color:#5c5f57}
+body.view-normal .scope-pergola-revised .surface-comment{background-color:#5c5f57}
+body.view-normal .scope-pergola-revised .r-constant{color:#924a05}
+body.view-normal .scope-pergola-revised .surface-constant{background-color:#924a05}
+body.view-normal .scope-pergola-revised .r-debug_current{color:#ede5d3}
+body.view-normal .scope-pergola-revised .surface-debug_current{background-color:#ede5d3}
+body.view-normal .scope-pergola-revised .r-decorator{color:#924a05}
+body.view-normal .scope-pergola-revised .surface-decorator{background-color:#924a05}
+body.view-normal .scope-pergola-revised .r-deprecated{color:#5c5f57}
+body.view-normal .scope-pergola-revised .surface-deprecated{background-color:#5c5f57}
+body.view-normal .scope-pergola-revised .r-diff_added{color:#e3efe5}
+body.view-normal .scope-pergola-revised .surface-diff_added{background-color:#e3efe5}
+body.view-normal .scope-pergola-revised .r-diff_changed{color:#efe7d8}
+body.view-normal .scope-pergola-revised .surface-diff_changed{background-color:#efe7d8}
+body.view-normal .scope-pergola-revised .r-diff_removed{color:#efdedb}
+body.view-normal .scope-pergola-revised .surface-diff_removed{background-color:#efdedb}
+body.view-normal .scope-pergola-revised .r-docstring{color:#5c5f57}
+body.view-normal .scope-pergola-revised .surface-docstring{background-color:#5c5f57}
+body.view-normal .scope-pergola-revised .r-error{color:#8a372f}
+body.view-normal .scope-pergola-revised .surface-error{background-color:#8a372f}
+body.view-normal .scope-pergola-revised .r-fg{color:#4c4942}
+body.view-normal .scope-pergola-revised .surface-fg{background-color:#4c4942}
+body.view-normal .scope-pergola-revised .r-fg_muted{color:#6f6f69}
+body.view-normal .scope-pergola-revised .surface-fg_muted{background-color:#6f6f69}
+body.view-normal .scope-pergola-revised .r-fg_secondary{color:#5c5f57}
+body.view-normal .scope-pergola-revised .surface-fg_secondary{background-color:#5c5f57}
+body.view-normal .scope-pergola-revised .r-focus{color:#6a5124}
+body.view-normal .scope-pergola-revised .surface-focus{background-color:#6a5124}
+body.view-normal .scope-pergola-revised .r-function{color:#0661a8}
+body.view-normal .scope-pergola-revised .surface-function{background-color:#0661a8}
+body.view-normal .scope-pergola-revised .r-info{color:#2d5d68}
+body.view-normal .scope-pergola-revised .surface-info{background-color:#2d5d68}
+body.view-normal .scope-pergola-revised .r-keyword{color:#6c5a05}
+body.view-normal .scope-pergola-revised .surface-keyword{background-color:#6c5a05}
+body.view-normal .scope-pergola-revised .r-line_number{color:#6f6f69}
+body.view-normal .scope-pergola-revised .surface-line_number{background-color:#6f6f69}
+body.view-normal .scope-pergola-revised .r-line_number_active{color:#4c4942}
+body.view-normal .scope-pergola-revised .surface-line_number_active{background-color:#4c4942}
+body.view-normal .scope-pergola-revised .r-namespace{color:#793bb0}
+body.view-normal .scope-pergola-revised .surface-namespace{background-color:#793bb0}
+body.view-normal .scope-pergola-revised .r-number{color:#924a05}
+body.view-normal .scope-pergola-revised .surface-number{background-color:#924a05}
+body.view-normal .scope-pergola-revised .r-operator{color:#585752}
+body.view-normal .scope-pergola-revised .surface-operator{background-color:#585752}
+body.view-normal .scope-pergola-revised .r-parameter{color:#4c4942}
+body.view-normal .scope-pergola-revised .surface-parameter{background-color:#4c4942}
+body.view-normal .scope-pergola-revised .r-property{color:#4c4942}
+body.view-normal .scope-pergola-revised .surface-property{background-color:#4c4942}
+body.view-normal .scope-pergola-revised .r-punctuation{color:#585752}
+body.view-normal .scope-pergola-revised .surface-punctuation{background-color:#585752}
+body.view-normal .scope-pergola-revised .r-search_match{color:#f1eadb}
+body.view-normal .scope-pergola-revised .surface-search_match{background-color:#f1eadb}
+body.view-normal .scope-pergola-revised .r-search_match_current{color:#e8dbc1}
+body.view-normal .scope-pergola-revised .surface-search_match_current{background-color:#e8dbc1}
+body.view-normal .scope-pergola-revised .r-selection{color:#d1ded5}
+body.view-normal .scope-pergola-revised .surface-selection{background-color:#d1ded5}
+body.view-normal .scope-pergola-revised .r-string{color:#066e31}
+body.view-normal .scope-pergola-revised .surface-string{background-color:#066e31}
+body.view-normal .scope-pergola-revised .r-success{color:#3a6042}
+body.view-normal .scope-pergola-revised .surface-success{background-color:#3a6042}
+body.view-normal .scope-pergola-revised .r-tag{color:#793bb0}
+body.view-normal .scope-pergola-revised .surface-tag{background-color:#793bb0}
+body.view-normal .scope-pergola-revised .r-type{color:#793bb0}
+body.view-normal .scope-pergola-revised .surface-type{background-color:#793bb0}
+body.view-normal .scope-pergola-revised .r-ui_inactive{color:#6f6f69}
+body.view-normal .scope-pergola-revised .surface-ui_inactive{background-color:#6f6f69}
+body.view-normal .scope-pergola-revised .r-warning{color:#6a5124}
+body.view-normal .scope-pergola-revised .surface-warning{background-color:#6a5124}
+body.view-protan .scope-pergola-revised{--vbg:#f9f6ed;--vfg:#4b4942;}
+body.view-protan .scope-pergola-revised .r-active_line{color:#f1eee5}
+body.view-protan .scope-pergola-revised .surface-active_line{background-color:#f1eee5}
+body.view-protan .scope-pergola-revised .r-bg{color:#f9f6ed}
+body.view-protan .scope-pergola-revised .surface-bg{background-color:#f9f6ed}
+body.view-protan .scope-pergola-revised .r-bg_elevated{color:#fcfaf3}
+body.view-protan .scope-pergola-revised .surface-bg_elevated{background-color:#fcfaf3}
+body.view-protan .scope-pergola-revised .r-bg_overlay{color:#fefdf9}
+body.view-protan .scope-pergola-revised .surface-bg_overlay{background-color:#fefdf9}
+body.view-protan .scope-pergola-revised .r-breakpoint{color:#4c4630}
+body.view-protan .scope-pergola-revised .surface-breakpoint{background-color:#4c4630}
+body.view-protan .scope-pergola-revised .r-builtin{color:#1661a8}
+body.view-protan .scope-pergola-revised .surface-builtin{background-color:#1661a8}
+body.view-protan .scope-pergola-revised .r-comment{color:#615e57}
+body.view-protan .scope-pergola-revised .surface-comment{background-color:#615e57}
+body.view-protan .scope-pergola-revised .r-constant{color:#625407}
+body.view-protan .scope-pergola-revised .surface-constant{background-color:#625407}
+body.view-protan .scope-pergola-revised .r-debug_current{color:#ebe5d3}
+body.view-protan .scope-pergola-revised .surface-debug_current{background-color:#ebe5d3}
+body.view-protan .scope-pergola-revised .r-decorator{color:#625407}
+body.view-protan .scope-pergola-revised .surface-decorator{background-color:#625407}
+body.view-protan .scope-pergola-revised .r-deprecated{color:#615e57}
+body.view-protan .scope-pergola-revised .surface-deprecated{background-color:#615e57}
+body.view-protan .scope-pergola-revised .r-diff_added{color:#f0ede5}
+body.view-protan .scope-pergola-revised .surface-diff_added{background-color:#f0ede5}
+body.view-protan .scope-pergola-revised .r-diff_changed{color:#ede7d8}
+body.view-protan .scope-pergola-revised .surface-diff_changed{background-color:#ede7d8}
+body.view-protan .scope-pergola-revised .r-diff_removed{color:#e1e0db}
+body.view-protan .scope-pergola-revised .surface-diff_removed{background-color:#e1e0db}
+body.view-protan .scope-pergola-revised .r-docstring{color:#615e57}
+body.view-protan .scope-pergola-revised .surface-docstring{background-color:#615e57}
+body.view-protan .scope-pergola-revised .r-error{color:#4c4630}
+body.view-protan .scope-pergola-revised .surface-error{background-color:#4c4630}
+body.view-protan .scope-pergola-revised .r-fg{color:#4b4942}
+body.view-protan .scope-pergola-revised .surface-fg{background-color:#4b4942}
+body.view-protan .scope-pergola-revised .r-fg_muted{color:#716f69}
+body.view-protan .scope-pergola-revised .surface-fg_muted{background-color:#716f69}
+body.view-protan .scope-pergola-revised .r-fg_secondary{color:#615e57}
+body.view-protan .scope-pergola-revised .surface-fg_secondary{background-color:#615e57}
+body.view-protan .scope-pergola-revised .r-focus{color:#5e5324}
+body.view-protan .scope-pergola-revised .surface-focus{background-color:#5e5324}
+body.view-protan .scope-pergola-revised .r-function{color:#1661a8}
+body.view-protan .scope-pergola-revised .surface-function{background-color:#1661a8}
+body.view-protan .scope-pergola-revised .r-info{color:#535a68}
+body.view-protan .scope-pergola-revised .surface-info{background-color:#535a68}
+body.view-protan .scope-pergola-revised .r-keyword{color:#695b05}
+body.view-protan .scope-pergola-revised .surface-keyword{background-color:#695b05}
+body.view-protan .scope-pergola-revised .r-line_number{color:#716f69}
+body.view-protan .scope-pergola-revised .surface-line_number{background-color:#716f69}
+body.view-protan .scope-pergola-revised .r-line_number_active{color:#4b4942}
+body.view-protan .scope-pergola-revised .surface-line_number_active{background-color:#4b4942}
+body.view-protan .scope-pergola-revised .r-namespace{color:#005276}
+body.view-protan .scope-pergola-revised .surface-namespace{background-color:#005276}
+body.view-protan .scope-pergola-revised .r-number{color:#625407}
+body.view-protan .scope-pergola-revised .surface-number{background-color:#625407}
+body.view-protan .scope-pergola-revised .r-operator{color:#595752}
+body.view-protan .scope-pergola-revised .surface-operator{background-color:#595752}
+body.view-protan .scope-pergola-revised .r-parameter{color:#4b4942}
+body.view-protan .scope-pergola-revised .surface-parameter{background-color:#4b4942}
+body.view-protan .scope-pergola-revised .r-property{color:#4b4942}
+body.view-protan .scope-pergola-revised .surface-property{background-color:#4b4942}
+body.view-protan .scope-pergola-revised .r-punctuation{color:#595752}
+body.view-protan .scope-pergola-revised .surface-punctuation{background-color:#595752}
+body.view-protan .scope-pergola-revised .r-search_match{color:#efeadb}
+body.view-protan .scope-pergola-revised .surface-search_match{background-color:#efeadb}
+body.view-protan .scope-pergola-revised .r-search_match_current{color:#e4dcc1}
+body.view-protan .scope-pergola-revised .surface-search_match_current{background-color:#e4dcc1}
+body.view-protan .scope-pergola-revised .r-selection{color:#dfdcd5}
+body.view-protan .scope-pergola-revised .surface-selection{background-color:#dfdcd5}
+body.view-protan .scope-pergola-revised .r-string{color:#736730}
+body.view-protan .scope-pergola-revised .surface-string{background-color:#736730}
+body.view-protan .scope-pergola-revised .r-success{color:#635c42}
+body.view-protan .scope-pergola-revised .surface-success{background-color:#635c42}
+body.view-protan .scope-pergola-revised .r-tag{color:#005276}
+body.view-protan .scope-pergola-revised .surface-tag{background-color:#005276}
+body.view-protan .scope-pergola-revised .r-type{color:#005276}
+body.view-protan .scope-pergola-revised .surface-type{background-color:#005276}
+body.view-protan .scope-pergola-revised .r-ui_inactive{color:#716f69}
+body.view-protan .scope-pergola-revised .surface-ui_inactive{background-color:#716f69}
+body.view-protan .scope-pergola-revised .r-warning{color:#5e5324}
+body.view-protan .scope-pergola-revised .surface-warning{background-color:#5e5324}
+body.view-deutan .scope-pergola-revised{--vbg:#f8f5ed;--vfg:#4c4942;}
+body.view-deutan .scope-pergola-revised .r-active_line{color:#f0ede5}
+body.view-deutan .scope-pergola-revised .surface-active_line{background-color:#f0ede5}
+body.view-deutan .scope-pergola-revised .r-bg{color:#f8f5ed}
+body.view-deutan .scope-pergola-revised .surface-bg{background-color:#f8f5ed}
+body.view-deutan .scope-pergola-revised .r-bg_elevated{color:#fcf9f3}
+body.view-deutan .scope-pergola-revised .surface-bg_elevated{background-color:#fcf9f3}
+body.view-deutan .scope-pergola-revised .r-bg_overlay{color:#fefdf9}
+body.view-deutan .scope-pergola-revised .surface-bg_overlay{background-color:#fefdf9}
+body.view-deutan .scope-pergola-revised .r-breakpoint{color:#61562b}
+body.view-deutan .scope-pergola-revised .surface-breakpoint{background-color:#61562b}
+body.view-deutan .scope-pergola-revised .r-builtin{color:#1360a8}
+body.view-deutan .scope-pergola-revised .surface-builtin{background-color:#1360a8}
+body.view-deutan .scope-pergola-revised .r-comment{color:#605d57}
+body.view-deutan .scope-pergola-revised .surface-comment{background-color:#605d57}
+body.view-deutan .scope-pergola-revised .r-constant{color:#706100}
+body.view-deutan .scope-pergola-revised .surface-constant{background-color:#706100}
+body.view-deutan .scope-pergola-revised .r-debug_current{color:#ece6d3}
+body.view-deutan .scope-pergola-revised .surface-debug_current{background-color:#ece6d3}
+body.view-deutan .scope-pergola-revised .r-decorator{color:#706100}
+body.view-deutan .scope-pergola-revised .surface-decorator{background-color:#706100}
+body.view-deutan .scope-pergola-revised .r-deprecated{color:#605d57}
+body.view-deutan .scope-pergola-revised .surface-deprecated{background-color:#605d57}
+body.view-deutan .scope-pergola-revised .r-diff_added{color:#edebe5}
+body.view-deutan .scope-pergola-revised .surface-diff_added{background-color:#edebe5}
+body.view-deutan .scope-pergola-revised .r-diff_changed{color:#ede8d8}
+body.view-deutan .scope-pergola-revised .surface-diff_changed{background-color:#ede8d8}
+body.view-deutan .scope-pergola-revised .r-diff_removed{color:#e5e2db}
+body.view-deutan .scope-pergola-revised .surface-diff_removed{background-color:#e5e2db}
+body.view-deutan .scope-pergola-revised .r-docstring{color:#605d57}
+body.view-deutan .scope-pergola-revised .surface-docstring{background-color:#605d57}
+body.view-deutan .scope-pergola-revised .r-error{color:#61562b}
+body.view-deutan .scope-pergola-revised .surface-error{background-color:#61562b}
+body.view-deutan .scope-pergola-revised .r-fg{color:#4c4942}
+body.view-deutan .scope-pergola-revised .surface-fg{background-color:#4c4942}
+body.view-deutan .scope-pergola-revised .r-fg_muted{color:#706e69}
+body.view-deutan .scope-pergola-revised .surface-fg_muted{background-color:#706e69}
+body.view-deutan .scope-pergola-revised .r-fg_secondary{color:#605d57}
+body.view-deutan .scope-pergola-revised .surface-fg_secondary{background-color:#605d57}
+body.view-deutan .scope-pergola-revised .r-focus{color:#615623}
+body.view-deutan .scope-pergola-revised .surface-focus{background-color:#615623}
+body.view-deutan .scope-pergola-revised .r-function{color:#1360a8}
+body.view-deutan .scope-pergola-revised .surface-function{background-color:#1360a8}
+body.view-deutan .scope-pergola-revised .r-info{color:#4b5569}
+body.view-deutan .scope-pergola-revised .surface-info{background-color:#4b5569}
+body.view-deutan .scope-pergola-revised .r-keyword{color:#695b04}
+body.view-deutan .scope-pergola-revised .surface-keyword{background-color:#695b04}
+body.view-deutan .scope-pergola-revised .r-line_number{color:#706e69}
+body.view-deutan .scope-pergola-revised .surface-line_number{background-color:#706e69}
+body.view-deutan .scope-pergola-revised .r-line_number_active{color:#4c4942}
+body.view-deutan .scope-pergola-revised .surface-line_number_active{background-color:#4c4942}
+body.view-deutan .scope-pergola-revised .r-namespace{color:#0062ae}
+body.view-deutan .scope-pergola-revised .surface-namespace{background-color:#0062ae}
+body.view-deutan .scope-pergola-revised .r-number{color:#706100}
+body.view-deutan .scope-pergola-revised .surface-number{background-color:#706100}
+body.view-deutan .scope-pergola-revised .r-operator{color:#585752}
+body.view-deutan .scope-pergola-revised .surface-operator{background-color:#585752}
+body.view-deutan .scope-pergola-revised .r-parameter{color:#4c4942}
+body.view-deutan .scope-pergola-revised .surface-parameter{background-color:#4c4942}
+body.view-deutan .scope-pergola-revised .r-property{color:#4c4942}
+body.view-deutan .scope-pergola-revised .surface-property{background-color:#4c4942}
+body.view-deutan .scope-pergola-revised .r-punctuation{color:#585752}
+body.view-deutan .scope-pergola-revised .surface-punctuation{background-color:#585752}
+body.view-deutan .scope-pergola-revised .r-search_match{color:#f0ebdb}
+body.view-deutan .scope-pergola-revised .surface-search_match{background-color:#f0ebdb}
+body.view-deutan .scope-pergola-revised .r-search_match_current{color:#e5dcc1}
+body.view-deutan .scope-pergola-revised .surface-search_match_current{background-color:#e5dcc1}
+body.view-deutan .scope-pergola-revised .r-selection{color:#dbdad5}
+body.view-deutan .scope-pergola-revised .surface-selection{background-color:#dbdad5}
+body.view-deutan .scope-pergola-revised .r-string{color:#645b34}
+body.view-deutan .scope-pergola-revised .surface-string{background-color:#645b34}
+body.view-deutan .scope-pergola-revised .r-success{color:#5b5543}
+body.view-deutan .scope-pergola-revised .surface-success{background-color:#5b5543}
+body.view-deutan .scope-pergola-revised .r-tag{color:#0062ae}
+body.view-deutan .scope-pergola-revised .surface-tag{background-color:#0062ae}
+body.view-deutan .scope-pergola-revised .r-type{color:#0062ae}
+body.view-deutan .scope-pergola-revised .surface-type{background-color:#0062ae}
+body.view-deutan .scope-pergola-revised .r-ui_inactive{color:#706e69}
+body.view-deutan .scope-pergola-revised .surface-ui_inactive{background-color:#706e69}
+body.view-deutan .scope-pergola-revised .r-warning{color:#615623}
+body.view-deutan .scope-pergola-revised .surface-warning{background-color:#615623}
+body.view-tritan .scope-pergola-revised{--vbg:#f6f5f5;--vfg:#4d4848;}
+body.view-tritan .scope-pergola-revised .r-active_line{color:#efeded}
+body.view-tritan .scope-pergola-revised .surface-active_line{background-color:#efeded}
+body.view-tritan .scope-pergola-revised .r-bg{color:#f6f5f5}
+body.view-tritan .scope-pergola-revised .surface-bg{background-color:#f6f5f5}
+body.view-tritan .scope-pergola-revised .r-bg_elevated{color:#fbf9f9}
+body.view-tritan .scope-pergola-revised .surface-bg_elevated{background-color:#fbf9f9}
+body.view-tritan .scope-pergola-revised .r-bg_overlay{color:#fefcfd}
+body.view-tritan .scope-pergola-revised .surface-bg_overlay{background-color:#fefcfd}
+body.view-tritan .scope-pergola-revised .r-breakpoint{color:#8b3441}
+body.view-tritan .scope-pergola-revised .surface-breakpoint{background-color:#8b3441}
+body.view-tritan .scope-pergola-revised .r-builtin{color:#00687c}
+body.view-tritan .scope-pergola-revised .surface-builtin{background-color:#00687c}
+body.view-tritan .scope-pergola-revised .r-comment{color:#5d5e5e}
+body.view-tritan .scope-pergola-revised .surface-comment{background-color:#5d5e5e}
+body.view-tritan .scope-pergola-revised .r-constant{color:#95434e}
+body.view-tritan .scope-pergola-revised .surface-constant{background-color:#95434e}
+body.view-tritan .scope-pergola-revised .r-debug_current{color:#f0e2e4}
+body.view-tritan .scope-pergola-revised .surface-debug_current{background-color:#f0e2e4}
+body.view-tritan .scope-pergola-revised .r-decorator{color:#95434e}
+body.view-tritan .scope-pergola-revised .surface-decorator{background-color:#95434e}
+body.view-tritan .scope-pergola-revised .r-deprecated{color:#5d5e5e}
+body.view-tritan .scope-pergola-revised .surface-deprecated{background-color:#5d5e5e}
+body.view-tritan .scope-pergola-revised .r-diff_added{color:#e5edf1}
+body.view-tritan .scope-pergola-revised .surface-diff_added{background-color:#e5edf1}
+body.view-tritan .scope-pergola-revised .r-diff_changed{color:#f1e5e6}
+body.view-tritan .scope-pergola-revised .surface-diff_changed{background-color:#f1e5e6}
+body.view-tritan .scope-pergola-revised .r-diff_removed{color:#f0dddf}
+body.view-tritan .scope-pergola-revised .surface-diff_removed{background-color:#f0dddf}
+body.view-tritan .scope-pergola-revised .r-docstring{color:#5d5e5e}
+body.view-tritan .scope-pergola-revised .surface-docstring{background-color:#5d5e5e}
+body.view-tritan .scope-pergola-revised .r-error{color:#8b3441}
+body.view-tritan .scope-pergola-revised .surface-error{background-color:#8b3441}
+body.view-tritan .scope-pergola-revised .r-fg{color:#4d4848}
+body.view-tritan .scope-pergola-revised .surface-fg{background-color:#4d4848}
+body.view-tritan .scope-pergola-revised .r-fg_muted{color:#706e6e}
+body.view-tritan .scope-pergola-revised .surface-fg_muted{background-color:#706e6e}
+body.view-tritan .scope-pergola-revised .r-fg_secondary{color:#5d5e5e}
+body.view-tritan .scope-pergola-revised .surface-fg_secondary{background-color:#5d5e5e}
+body.view-tritan .scope-pergola-revised .r-focus{color:#6e4c50}
+body.view-tritan .scope-pergola-revised .surface-focus{background-color:#6e4c50}
+body.view-tritan .scope-pergola-revised .r-function{color:#00687c}
+body.view-tritan .scope-pergola-revised .surface-function{background-color:#00687c}
+body.view-tritan .scope-pergola-revised .r-info{color:#2e5c6b}
+body.view-tritan .scope-pergola-revised .surface-info{background-color:#2e5c6b}
+body.view-tritan .scope-pergola-revised .r-keyword{color:#715356}
+body.view-tritan .scope-pergola-revised .surface-keyword{background-color:#715356}
+body.view-tritan .scope-pergola-revised .r-line_number{color:#706e6e}
+body.view-tritan .scope-pergola-revised .surface-line_number{background-color:#706e6e}
+body.view-tritan .scope-pergola-revised .r-line_number_active{color:#4d4848}
+body.view-tritan .scope-pergola-revised .surface-line_number_active{background-color:#4d4848}
+body.view-tritan .scope-pergola-revised .r-namespace{color:#67585a}
+body.view-tritan .scope-pergola-revised .surface-namespace{background-color:#67585a}
+body.view-tritan .scope-pergola-revised .r-number{color:#95434e}
+body.view-tritan .scope-pergola-revised .surface-number{background-color:#95434e}
+body.view-tritan .scope-pergola-revised .r-operator{color:#595656}
+body.view-tritan .scope-pergola-revised .surface-operator{background-color:#595656}
+body.view-tritan .scope-pergola-revised .r-parameter{color:#4d4848}
+body.view-tritan .scope-pergola-revised .surface-parameter{background-color:#4d4848}
+body.view-tritan .scope-pergola-revised .r-property{color:#4d4848}
+body.view-tritan .scope-pergola-revised .surface-property{background-color:#4d4848}
+body.view-tritan .scope-pergola-revised .r-punctuation{color:#595656}
+body.view-tritan .scope-pergola-revised .surface-punctuation{background-color:#595656}
+body.view-tritan .scope-pergola-revised .r-search_match{color:#f3e8e9}
+body.view-tritan .scope-pergola-revised .surface-search_match{background-color:#f3e8e9}
+body.view-tritan .scope-pergola-revised .r-search_match_current{color:#ebd7d9}
+body.view-tritan .scope-pergola-revised .surface-search_match_current{background-color:#ebd7d9}
+body.view-tritan .scope-pergola-revised .r-selection{color:#d3dce1}
+body.view-tritan .scope-pergola-revised .surface-selection{background-color:#d3dce1}
+body.view-tritan .scope-pergola-revised .r-string{color:#2e6576}
+body.view-tritan .scope-pergola-revised .surface-string{background-color:#2e6576}
+body.view-tritan .scope-pergola-revised .r-success{color:#425b65}
+body.view-tritan .scope-pergola-revised .surface-success{background-color:#425b65}
+body.view-tritan .scope-pergola-revised .r-tag{color:#67585a}
+body.view-tritan .scope-pergola-revised .surface-tag{background-color:#67585a}
+body.view-tritan .scope-pergola-revised .r-type{color:#67585a}
+body.view-tritan .scope-pergola-revised .surface-type{background-color:#67585a}
+body.view-tritan .scope-pergola-revised .r-ui_inactive{color:#706e6e}
+body.view-tritan .scope-pergola-revised .surface-ui_inactive{background-color:#706e6e}
+body.view-tritan .scope-pergola-revised .r-warning{color:#6e4c50}
+body.view-tritan .scope-pergola-revised .surface-warning{background-color:#6e4c50}
+body.view-normal .scope-stone-original{--vbg:#f7f5f1;--vfg:#4c4942;}
+body.view-normal .scope-stone-original .r-active_line{color:#efede9}
+body.view-normal .scope-stone-original .surface-active_line{background-color:#efede9}
+body.view-normal .scope-stone-original .r-bg{color:#f7f5f1}
+body.view-normal .scope-stone-original .surface-bg{background-color:#f7f5f1}
+body.view-normal .scope-stone-original .r-bg_elevated{color:#fbfaf6}
+body.view-normal .scope-stone-original .surface-bg_elevated{background-color:#fbfaf6}
+body.view-normal .scope-stone-original .r-bg_overlay{color:#fefdfb}
+body.view-normal .scope-stone-original .surface-bg_overlay{background-color:#fefdfb}
+body.view-normal .scope-stone-original .r-breakpoint{color:#8a372f}
+body.view-normal .scope-stone-original .surface-breakpoint{background-color:#8a372f}
+body.view-normal .scope-stone-original .r-builtin{color:#295e90}
+body.view-normal .scope-stone-original .surface-builtin{background-color:#295e90}
+body.view-normal .scope-stone-original .r-comment{color:#5c5f57}
+body.view-normal .scope-stone-original .surface-comment{background-color:#5c5f57}
+body.view-normal .scope-stone-original .r-constant{color:#804c26}
+body.view-normal .scope-stone-original .surface-constant{background-color:#804c26}
+body.view-normal .scope-stone-original .r-debug_current{color:#ede5d3}
+body.view-normal .scope-stone-original .surface-debug_current{background-color:#ede5d3}
+body.view-normal .scope-stone-original .r-decorator{color:#804c26}
+body.view-normal .scope-stone-original .surface-decorator{background-color:#804c26}
+body.view-normal .scope-stone-original .r-deprecated{color:#5c5f57}
+body.view-normal .scope-stone-original .surface-deprecated{background-color:#5c5f57}
+body.view-normal .scope-stone-original .r-diff_added{color:#e3efe5}
+body.view-normal .scope-stone-original .surface-diff_added{background-color:#e3efe5}
+body.view-normal .scope-stone-original .r-diff_changed{color:#efe7d8}
+body.view-normal .scope-stone-original .surface-diff_changed{background-color:#efe7d8}
+body.view-normal .scope-stone-original .r-diff_removed{color:#efdedb}
+body.view-normal .scope-stone-original .surface-diff_removed{background-color:#efdedb}
+body.view-normal .scope-stone-original .r-docstring{color:#5c5f57}
+body.view-normal .scope-stone-original .surface-docstring{background-color:#5c5f57}
+body.view-normal .scope-stone-original .r-error{color:#8a372f}
+body.view-normal .scope-stone-original .surface-error{background-color:#8a372f}
+body.view-normal .scope-stone-original .r-fg{color:#4c4942}
+body.view-normal .scope-stone-original .surface-fg{background-color:#4c4942}
+body.view-normal .scope-stone-original .r-fg_muted{color:#716e68}
+body.view-normal .scope-stone-original .surface-fg_muted{background-color:#716e68}
+body.view-normal .scope-stone-original .r-fg_secondary{color:#5c5f57}
+body.view-normal .scope-stone-original .surface-fg_secondary{background-color:#5c5f57}
+body.view-normal .scope-stone-original .r-focus{color:#6a5124}
+body.view-normal .scope-stone-original .surface-focus{background-color:#6a5124}
+body.view-normal .scope-stone-original .r-function{color:#295e90}
+body.view-normal .scope-stone-original .surface-function{background-color:#295e90}
+body.view-normal .scope-stone-original .r-info{color:#2d5d68}
+body.view-normal .scope-stone-original .surface-info{background-color:#2d5d68}
+body.view-normal .scope-stone-original .r-keyword{color:#645725}
+body.view-normal .scope-stone-original .surface-keyword{background-color:#645725}
+body.view-normal .scope-stone-original .r-line_number{color:#716e68}
+body.view-normal .scope-stone-original .surface-line_number{background-color:#716e68}
+body.view-normal .scope-stone-original .r-line_number_active{color:#4c4942}
+body.view-normal .scope-stone-original .surface-line_number_active{background-color:#4c4942}
+body.view-normal .scope-stone-original .r-namespace{color:#684b88}
+body.view-normal .scope-stone-original .surface-namespace{background-color:#684b88}
+body.view-normal .scope-stone-original .r-number{color:#804c26}
+body.view-normal .scope-stone-original .surface-number{background-color:#804c26}
+body.view-normal .scope-stone-original .r-operator{color:#585752}
+body.view-normal .scope-stone-original .surface-operator{background-color:#585752}
+body.view-normal .scope-stone-original .r-parameter{color:#4c4942}
+body.view-normal .scope-stone-original .surface-parameter{background-color:#4c4942}
+body.view-normal .scope-stone-original .r-property{color:#4c4942}
+body.view-normal .scope-stone-original .surface-property{background-color:#4c4942}
+body.view-normal .scope-stone-original .r-punctuation{color:#585752}
+body.view-normal .scope-stone-original .surface-punctuation{background-color:#585752}
+body.view-normal .scope-stone-original .r-search_match{color:#f1eadb}
+body.view-normal .scope-stone-original .surface-search_match{background-color:#f1eadb}
+body.view-normal .scope-stone-original .r-search_match_current{color:#e8dbc1}
+body.view-normal .scope-stone-original .surface-search_match_current{background-color:#e8dbc1}
+body.view-normal .scope-stone-original .r-selection{color:#d1ded5}
+body.view-normal .scope-stone-original .surface-selection{background-color:#d1ded5}
+body.view-normal .scope-stone-original .r-string{color:#2a673a}
+body.view-normal .scope-stone-original .surface-string{background-color:#2a673a}
+body.view-normal .scope-stone-original .r-success{color:#3a6042}
+body.view-normal .scope-stone-original .surface-success{background-color:#3a6042}
+body.view-normal .scope-stone-original .r-tag{color:#684b88}
+body.view-normal .scope-stone-original .surface-tag{background-color:#684b88}
+body.view-normal .scope-stone-original .r-type{color:#684b88}
+body.view-normal .scope-stone-original .surface-type{background-color:#684b88}
+body.view-normal .scope-stone-original .r-ui_inactive{color:#716e68}
+body.view-normal .scope-stone-original .surface-ui_inactive{background-color:#716e68}
+body.view-normal .scope-stone-original .r-warning{color:#6a5124}
+body.view-normal .scope-stone-original .surface-warning{background-color:#6a5124}
+body.view-protan .scope-stone-original{--vbg:#f7f5f1;--vfg:#4b4942;}
+body.view-protan .scope-stone-original .r-active_line{color:#efede9}
+body.view-protan .scope-stone-original .surface-active_line{background-color:#efede9}
+body.view-protan .scope-stone-original .r-bg{color:#f7f5f1}
+body.view-protan .scope-stone-original .surface-bg{background-color:#f7f5f1}
+body.view-protan .scope-stone-original .r-bg_elevated{color:#fbfaf6}
+body.view-protan .scope-stone-original .surface-bg_elevated{background-color:#fbfaf6}
+body.view-protan .scope-stone-original .r-bg_overlay{color:#fefdfb}
+body.view-protan .scope-stone-original .surface-bg_overlay{background-color:#fefdfb}
+body.view-protan .scope-stone-original .r-breakpoint{color:#4c4630}
+body.view-protan .scope-stone-original .surface-breakpoint{background-color:#4c4630}
+body.view-protan .scope-stone-original .r-builtin{color:#395d90}
+body.view-protan .scope-stone-original .surface-builtin{background-color:#395d90}
+body.view-protan .scope-stone-original .r-comment{color:#615e57}
+body.view-protan .scope-stone-original .surface-comment{background-color:#615e57}
+body.view-protan .scope-stone-original .r-constant{color:#5d5327}
+body.view-protan .scope-stone-original .surface-constant{background-color:#5d5327}
+body.view-protan .scope-stone-original .r-debug_current{color:#ebe5d3}
+body.view-protan .scope-stone-original .surface-debug_current{background-color:#ebe5d3}
+body.view-protan .scope-stone-original .r-decorator{color:#5d5327}
+body.view-protan .scope-stone-original .surface-decorator{background-color:#5d5327}
+body.view-protan .scope-stone-original .r-deprecated{color:#615e57}
+body.view-protan .scope-stone-original .surface-deprecated{background-color:#615e57}
+body.view-protan .scope-stone-original .r-diff_added{color:#f0ede5}
+body.view-protan .scope-stone-original .surface-diff_added{background-color:#f0ede5}
+body.view-protan .scope-stone-original .r-diff_changed{color:#ede7d8}
+body.view-protan .scope-stone-original .surface-diff_changed{background-color:#ede7d8}
+body.view-protan .scope-stone-original .r-diff_removed{color:#e1e0db}
+body.view-protan .scope-stone-original .surface-diff_removed{background-color:#e1e0db}
+body.view-protan .scope-stone-original .r-docstring{color:#615e57}
+body.view-protan .scope-stone-original .surface-docstring{background-color:#615e57}
+body.view-protan .scope-stone-original .r-error{color:#4c4630}
+body.view-protan .scope-stone-original .surface-error{background-color:#4c4630}
+body.view-protan .scope-stone-original .r-fg{color:#4b4942}
+body.view-protan .scope-stone-original .surface-fg{background-color:#4b4942}
+body.view-protan .scope-stone-original .r-fg_muted{color:#706e68}
+body.view-protan .scope-stone-original .surface-fg_muted{background-color:#706e68}
+body.view-protan .scope-stone-original .r-fg_secondary{color:#615e57}
+body.view-protan .scope-stone-original .surface-fg_secondary{background-color:#615e57}
+body.view-protan .scope-stone-original .r-focus{color:#5e5324}
+body.view-protan .scope-stone-original .surface-focus{background-color:#5e5324}
+body.view-protan .scope-stone-original .r-function{color:#395d90}
+body.view-protan .scope-stone-original .surface-function{background-color:#395d90}
+body.view-protan .scope-stone-original .r-info{color:#535a68}
+body.view-protan .scope-stone-original .surface-info{background-color:#535a68}
+body.view-protan .scope-stone-original .r-keyword{color:#635725}
+body.view-protan .scope-stone-original .surface-keyword{background-color:#635725}
+body.view-protan .scope-stone-original .r-line_number{color:#706e68}
+body.view-protan .scope-stone-original .surface-line_number{background-color:#706e68}
+body.view-protan .scope-stone-original .r-line_number_active{color:#4b4942}
+body.view-protan .scope-stone-original .surface-line_number_active{background-color:#4b4942}
+body.view-protan .scope-stone-original .r-namespace{color:#275288}
+body.view-protan .scope-stone-original .surface-namespace{background-color:#275288}
+body.view-protan .scope-stone-original .r-number{color:#5d5327}
+body.view-protan .scope-stone-original .surface-number{background-color:#5d5327}
+body.view-protan .scope-stone-original .r-operator{color:#595752}
+body.view-protan .scope-stone-original .surface-operator{background-color:#595752}
+body.view-protan .scope-stone-original .r-parameter{color:#4b4942}
+body.view-protan .scope-stone-original .surface-parameter{background-color:#4b4942}
+body.view-protan .scope-stone-original .r-property{color:#4b4942}
+body.view-protan .scope-stone-original .surface-property{background-color:#4b4942}
+body.view-protan .scope-stone-original .r-punctuation{color:#595752}
+body.view-protan .scope-stone-original .surface-punctuation{background-color:#595752}
+body.view-protan .scope-stone-original .r-search_match{color:#efeadb}
+body.view-protan .scope-stone-original .surface-search_match{background-color:#efeadb}
+body.view-protan .scope-stone-original .r-search_match_current{color:#e4dcc1}
+body.view-protan .scope-stone-original .surface-search_match_current{background-color:#e4dcc1}
+body.view-protan .scope-stone-original .r-selection{color:#dfdcd5}
+body.view-protan .scope-stone-original .surface-selection{background-color:#dfdcd5}
+body.view-protan .scope-stone-original .r-string{color:#6b613a}
+body.view-protan .scope-stone-original .surface-string{background-color:#6b613a}
+body.view-protan .scope-stone-original .r-success{color:#635c42}
+body.view-protan .scope-stone-original .surface-success{background-color:#635c42}
+body.view-protan .scope-stone-original .r-tag{color:#275288}
+body.view-protan .scope-stone-original .surface-tag{background-color:#275288}
+body.view-protan .scope-stone-original .r-type{color:#275288}
+body.view-protan .scope-stone-original .surface-type{background-color:#275288}
+body.view-protan .scope-stone-original .r-ui_inactive{color:#706e68}
+body.view-protan .scope-stone-original .surface-ui_inactive{background-color:#706e68}
+body.view-protan .scope-stone-original .r-warning{color:#5e5324}
+body.view-protan .scope-stone-original .surface-warning{background-color:#5e5324}
+body.view-deutan .scope-stone-original{--vbg:#f7f5f1;--vfg:#4c4942;}
+body.view-deutan .scope-stone-original .r-active_line{color:#efede9}
+body.view-deutan .scope-stone-original .surface-active_line{background-color:#efede9}
+body.view-deutan .scope-stone-original .r-bg{color:#f7f5f1}
+body.view-deutan .scope-stone-original .surface-bg{background-color:#f7f5f1}
+body.view-deutan .scope-stone-original .r-bg_elevated{color:#fbfaf6}
+body.view-deutan .scope-stone-original .surface-bg_elevated{background-color:#fbfaf6}
+body.view-deutan .scope-stone-original .r-bg_overlay{color:#fefdfb}
+body.view-deutan .scope-stone-original .surface-bg_overlay{background-color:#fefdfb}
+body.view-deutan .scope-stone-original .r-breakpoint{color:#61562b}
+body.view-deutan .scope-stone-original .surface-breakpoint{background-color:#61562b}
+body.view-deutan .scope-stone-original .r-builtin{color:#355c90}
+body.view-deutan .scope-stone-original .surface-builtin{background-color:#355c90}
+body.view-deutan .scope-stone-original .r-comment{color:#605d57}
+body.view-deutan .scope-stone-original .surface-comment{background-color:#605d57}
+body.view-deutan .scope-stone-original .r-constant{color:#675b23}
+body.view-deutan .scope-stone-original .surface-constant{background-color:#675b23}
+body.view-deutan .scope-stone-original .r-debug_current{color:#ece6d3}
+body.view-deutan .scope-stone-original .surface-debug_current{background-color:#ece6d3}
+body.view-deutan .scope-stone-original .r-decorator{color:#675b23}
+body.view-deutan .scope-stone-original .surface-decorator{background-color:#675b23}
+body.view-deutan .scope-stone-original .r-deprecated{color:#605d57}
+body.view-deutan .scope-stone-original .surface-deprecated{background-color:#605d57}
+body.view-deutan .scope-stone-original .r-diff_added{color:#edebe5}
+body.view-deutan .scope-stone-original .surface-diff_added{background-color:#edebe5}
+body.view-deutan .scope-stone-original .r-diff_changed{color:#ede8d8}
+body.view-deutan .scope-stone-original .surface-diff_changed{background-color:#ede8d8}
+body.view-deutan .scope-stone-original .r-diff_removed{color:#e5e2db}
+body.view-deutan .scope-stone-original .surface-diff_removed{background-color:#e5e2db}
+body.view-deutan .scope-stone-original .r-docstring{color:#605d57}
+body.view-deutan .scope-stone-original .surface-docstring{background-color:#605d57}
+body.view-deutan .scope-stone-original .r-error{color:#61562b}
+body.view-deutan .scope-stone-original .surface-error{background-color:#61562b}
+body.view-deutan .scope-stone-original .r-fg{color:#4c4942}
+body.view-deutan .scope-stone-original .surface-fg{background-color:#4c4942}
+body.view-deutan .scope-stone-original .r-fg_muted{color:#706e68}
+body.view-deutan .scope-stone-original .surface-fg_muted{background-color:#706e68}
+body.view-deutan .scope-stone-original .r-fg_secondary{color:#605d57}
+body.view-deutan .scope-stone-original .surface-fg_secondary{background-color:#605d57}
+body.view-deutan .scope-stone-original .r-focus{color:#615623}
+body.view-deutan .scope-stone-original .surface-focus{background-color:#615623}
+body.view-deutan .scope-stone-original .r-function{color:#355c90}
+body.view-deutan .scope-stone-original .surface-function{background-color:#355c90}
+body.view-deutan .scope-stone-original .r-info{color:#4b5569}
+body.view-deutan .scope-stone-original .surface-info{background-color:#4b5569}
+body.view-deutan .scope-stone-original .r-keyword{color:#635825}
+body.view-deutan .scope-stone-original .surface-keyword{background-color:#635825}
+body.view-deutan .scope-stone-original .r-line_number{color:#706e68}
+body.view-deutan .scope-stone-original .surface-line_number{background-color:#706e68}
+body.view-deutan .scope-stone-original .r-line_number_active{color:#4c4942}
+body.view-deutan .scope-stone-original .surface-line_number_active{background-color:#4c4942}
+body.view-deutan .scope-stone-original .r-namespace{color:#405c87}
+body.view-deutan .scope-stone-original .surface-namespace{background-color:#405c87}
+body.view-deutan .scope-stone-original .r-number{color:#675b23}
+body.view-deutan .scope-stone-original .surface-number{background-color:#675b23}
+body.view-deutan .scope-stone-original .r-operator{color:#585752}
+body.view-deutan .scope-stone-original .surface-operator{background-color:#585752}
+body.view-deutan .scope-stone-original .r-parameter{color:#4c4942}
+body.view-deutan .scope-stone-original .surface-parameter{background-color:#4c4942}
+body.view-deutan .scope-stone-original .r-property{color:#4c4942}
+body.view-deutan .scope-stone-original .surface-property{background-color:#4c4942}
+body.view-deutan .scope-stone-original .r-punctuation{color:#585752}
+body.view-deutan .scope-stone-original .surface-punctuation{background-color:#585752}
+body.view-deutan .scope-stone-original .r-search_match{color:#f0ebdb}
+body.view-deutan .scope-stone-original .surface-search_match{background-color:#f0ebdb}
+body.view-deutan .scope-stone-original .r-search_match_current{color:#e5dcc1}
+body.view-deutan .scope-stone-original .surface-search_match_current{background-color:#e5dcc1}
+body.view-deutan .scope-stone-original .r-selection{color:#dbdad5}
+body.view-deutan .scope-stone-original .surface-selection{background-color:#dbdad5}
+body.view-deutan .scope-stone-original .r-string{color:#60583c}
+body.view-deutan .scope-stone-original .surface-string{background-color:#60583c}
+body.view-deutan .scope-stone-original .r-success{color:#5b5543}
+body.view-deutan .scope-stone-original .surface-success{background-color:#5b5543}
+body.view-deutan .scope-stone-original .r-tag{color:#405c87}
+body.view-deutan .scope-stone-original .surface-tag{background-color:#405c87}
+body.view-deutan .scope-stone-original .r-type{color:#405c87}
+body.view-deutan .scope-stone-original .surface-type{background-color:#405c87}
+body.view-deutan .scope-stone-original .r-ui_inactive{color:#706e68}
+body.view-deutan .scope-stone-original .surface-ui_inactive{background-color:#706e68}
+body.view-deutan .scope-stone-original .r-warning{color:#615623}
+body.view-deutan .scope-stone-original .surface-warning{background-color:#615623}
+body.view-tritan .scope-stone-original{--vbg:#f8f4f5;--vfg:#4d4848;}
+body.view-tritan .scope-stone-original .r-active_line{color:#f0eced}
+body.view-tritan .scope-stone-original .surface-active_line{background-color:#f0eced}
+body.view-tritan .scope-stone-original .r-bg{color:#f8f4f5}
+body.view-tritan .scope-stone-original .surface-bg{background-color:#f8f4f5}
+body.view-tritan .scope-stone-original .r-bg_elevated{color:#fcf9fa}
+body.view-tritan .scope-stone-original .surface-bg_elevated{background-color:#fcf9fa}
+body.view-tritan .scope-stone-original .r-bg_overlay{color:#fefdfd}
+body.view-tritan .scope-stone-original .surface-bg_overlay{background-color:#fefdfd}
+body.view-tritan .scope-stone-original .r-breakpoint{color:#8b3441}
+body.view-tritan .scope-stone-original .surface-breakpoint{background-color:#8b3441}
+body.view-tritan .scope-stone-original .r-builtin{color:#136478}
+body.view-tritan .scope-stone-original .surface-builtin{background-color:#136478}
+body.view-tritan .scope-stone-original .r-comment{color:#5d5e5e}
+body.view-tritan .scope-stone-original .surface-comment{background-color:#5d5e5e}
+body.view-tritan .scope-stone-original .r-constant{color:#83474e}
+body.view-tritan .scope-stone-original .surface-constant{background-color:#83474e}
+body.view-tritan .scope-stone-original .r-debug_current{color:#f0e2e4}
+body.view-tritan .scope-stone-original .surface-debug_current{background-color:#f0e2e4}
+body.view-tritan .scope-stone-original .r-decorator{color:#83474e}
+body.view-tritan .scope-stone-original .surface-decorator{background-color:#83474e}
+body.view-tritan .scope-stone-original .r-deprecated{color:#5d5e5e}
+body.view-tritan .scope-stone-original .surface-deprecated{background-color:#5d5e5e}
+body.view-tritan .scope-stone-original .r-diff_added{color:#e5edf1}
+body.view-tritan .scope-stone-original .surface-diff_added{background-color:#e5edf1}
+body.view-tritan .scope-stone-original .r-diff_changed{color:#f1e5e6}
+body.view-tritan .scope-stone-original .surface-diff_changed{background-color:#f1e5e6}
+body.view-tritan .scope-stone-original .r-diff_removed{color:#f0dddf}
+body.view-tritan .scope-stone-original .surface-diff_removed{background-color:#f0dddf}
+body.view-tritan .scope-stone-original .r-docstring{color:#5d5e5e}
+body.view-tritan .scope-stone-original .surface-docstring{background-color:#5d5e5e}
+body.view-tritan .scope-stone-original .r-error{color:#8b3441}
+body.view-tritan .scope-stone-original .surface-error{background-color:#8b3441}
+body.view-tritan .scope-stone-original .r-fg{color:#4d4848}
+body.view-tritan .scope-stone-original .surface-fg{background-color:#4d4848}
+body.view-tritan .scope-stone-original .r-fg_muted{color:#726d6e}
+body.view-tritan .scope-stone-original .surface-fg_muted{background-color:#726d6e}
+body.view-tritan .scope-stone-original .r-fg_secondary{color:#5d5e5e}
+body.view-tritan .scope-stone-original .surface-fg_secondary{background-color:#5d5e5e}
+body.view-tritan .scope-stone-original .r-focus{color:#6e4c50}
+body.view-tritan .scope-stone-original .surface-focus{background-color:#6e4c50}
+body.view-tritan .scope-stone-original .r-function{color:#136478}
+body.view-tritan .scope-stone-original .surface-function{background-color:#136478}
+body.view-tritan .scope-stone-original .r-info{color:#2e5c6b}
+body.view-tritan .scope-stone-original .surface-info{background-color:#2e5c6b}
+body.view-tritan .scope-stone-original .r-keyword{color:#685254}
+body.view-tritan .scope-stone-original .surface-keyword{background-color:#685254}
+body.view-tritan .scope-stone-original .r-line_number{color:#726d6e}
+body.view-tritan .scope-stone-original .surface-line_number{background-color:#726d6e}
+body.view-tritan .scope-stone-original .r-line_number_active{color:#4d4848}
+body.view-tritan .scope-stone-original .surface-line_number_active{background-color:#4d4848}
+body.view-tritan .scope-stone-original .r-namespace{color:#5f5758}
+body.view-tritan .scope-stone-original .surface-namespace{background-color:#5f5758}
+body.view-tritan .scope-stone-original .r-number{color:#83474e}
+body.view-tritan .scope-stone-original .surface-number{background-color:#83474e}
+body.view-tritan .scope-stone-original .r-operator{color:#595656}
+body.view-tritan .scope-stone-original .surface-operator{background-color:#595656}
+body.view-tritan .scope-stone-original .r-parameter{color:#4d4848}
+body.view-tritan .scope-stone-original .surface-parameter{background-color:#4d4848}
+body.view-tritan .scope-stone-original .r-property{color:#4d4848}
+body.view-tritan .scope-stone-original .surface-property{background-color:#4d4848}
+body.view-tritan .scope-stone-original .r-punctuation{color:#595656}
+body.view-tritan .scope-stone-original .surface-punctuation{background-color:#595656}
+body.view-tritan .scope-stone-original .r-search_match{color:#f3e8e9}
+body.view-tritan .scope-stone-original .surface-search_match{background-color:#f3e8e9}
+body.view-tritan .scope-stone-original .r-search_match_current{color:#ebd7d9}
+body.view-tritan .scope-stone-original .surface-search_match_current{background-color:#ebd7d9}
+body.view-tritan .scope-stone-original .r-selection{color:#d3dce1}
+body.view-tritan .scope-stone-original .surface-selection{background-color:#d3dce1}
+body.view-tritan .scope-stone-original .r-string{color:#3a606e}
+body.view-tritan .scope-stone-original .surface-string{background-color:#3a606e}
+body.view-tritan .scope-stone-original .r-success{color:#425b65}
+body.view-tritan .scope-stone-original .surface-success{background-color:#425b65}
+body.view-tritan .scope-stone-original .r-tag{color:#5f5758}
+body.view-tritan .scope-stone-original .surface-tag{background-color:#5f5758}
+body.view-tritan .scope-stone-original .r-type{color:#5f5758}
+body.view-tritan .scope-stone-original .surface-type{background-color:#5f5758}
+body.view-tritan .scope-stone-original .r-ui_inactive{color:#726d6e}
+body.view-tritan .scope-stone-original .surface-ui_inactive{background-color:#726d6e}
+body.view-tritan .scope-stone-original .r-warning{color:#6e4c50}
+body.view-tritan .scope-stone-original .surface-warning{background-color:#6e4c50}
+body.view-normal .scope-stone-revised{--vbg:#f7f5f1;--vfg:#4c4942;}
+body.view-normal .scope-stone-revised .r-active_line{color:#efede9}
+body.view-normal .scope-stone-revised .surface-active_line{background-color:#efede9}
+body.view-normal .scope-stone-revised .r-bg{color:#f7f5f1}
+body.view-normal .scope-stone-revised .surface-bg{background-color:#f7f5f1}
+body.view-normal .scope-stone-revised .r-bg_elevated{color:#fbfaf6}
+body.view-normal .scope-stone-revised .surface-bg_elevated{background-color:#fbfaf6}
+body.view-normal .scope-stone-revised .r-bg_overlay{color:#fefdfb}
+body.view-normal .scope-stone-revised .surface-bg_overlay{background-color:#fefdfb}
+body.view-normal .scope-stone-revised .r-breakpoint{color:#8a372f}
+body.view-normal .scope-stone-revised .surface-breakpoint{background-color:#8a372f}
+body.view-normal .scope-stone-revised .r-builtin{color:#0661a8}
+body.view-normal .scope-stone-revised .surface-builtin{background-color:#0661a8}
+body.view-normal .scope-stone-revised .r-comment{color:#5c5f57}
+body.view-normal .scope-stone-revised .surface-comment{background-color:#5c5f57}
+body.view-normal .scope-stone-revised .r-constant{color:#924a05}
+body.view-normal .scope-stone-revised .surface-constant{background-color:#924a05}
+body.view-normal .scope-stone-revised .r-debug_current{color:#ede5d3}
+body.view-normal .scope-stone-revised .surface-debug_current{background-color:#ede5d3}
+body.view-normal .scope-stone-revised .r-decorator{color:#924a05}
+body.view-normal .scope-stone-revised .surface-decorator{background-color:#924a05}
+body.view-normal .scope-stone-revised .r-deprecated{color:#5c5f57}
+body.view-normal .scope-stone-revised .surface-deprecated{background-color:#5c5f57}
+body.view-normal .scope-stone-revised .r-diff_added{color:#e3efe5}
+body.view-normal .scope-stone-revised .surface-diff_added{background-color:#e3efe5}
+body.view-normal .scope-stone-revised .r-diff_changed{color:#efe7d8}
+body.view-normal .scope-stone-revised .surface-diff_changed{background-color:#efe7d8}
+body.view-normal .scope-stone-revised .r-diff_removed{color:#efdedb}
+body.view-normal .scope-stone-revised .surface-diff_removed{background-color:#efdedb}
+body.view-normal .scope-stone-revised .r-docstring{color:#5c5f57}
+body.view-normal .scope-stone-revised .surface-docstring{background-color:#5c5f57}
+body.view-normal .scope-stone-revised .r-error{color:#8a372f}
+body.view-normal .scope-stone-revised .surface-error{background-color:#8a372f}
+body.view-normal .scope-stone-revised .r-fg{color:#4c4942}
+body.view-normal .scope-stone-revised .surface-fg{background-color:#4c4942}
+body.view-normal .scope-stone-revised .r-fg_muted{color:#716e68}
+body.view-normal .scope-stone-revised .surface-fg_muted{background-color:#716e68}
+body.view-normal .scope-stone-revised .r-fg_secondary{color:#5c5f57}
+body.view-normal .scope-stone-revised .surface-fg_secondary{background-color:#5c5f57}
+body.view-normal .scope-stone-revised .r-focus{color:#6a5124}
+body.view-normal .scope-stone-revised .surface-focus{background-color:#6a5124}
+body.view-normal .scope-stone-revised .r-function{color:#0661a8}
+body.view-normal .scope-stone-revised .surface-function{background-color:#0661a8}
+body.view-normal .scope-stone-revised .r-info{color:#2d5d68}
+body.view-normal .scope-stone-revised .surface-info{background-color:#2d5d68}
+body.view-normal .scope-stone-revised .r-keyword{color:#6c5a05}
+body.view-normal .scope-stone-revised .surface-keyword{background-color:#6c5a05}
+body.view-normal .scope-stone-revised .r-line_number{color:#716e68}
+body.view-normal .scope-stone-revised .surface-line_number{background-color:#716e68}
+body.view-normal .scope-stone-revised .r-line_number_active{color:#4c4942}
+body.view-normal .scope-stone-revised .surface-line_number_active{background-color:#4c4942}
+body.view-normal .scope-stone-revised .r-namespace{color:#793bb0}
+body.view-normal .scope-stone-revised .surface-namespace{background-color:#793bb0}
+body.view-normal .scope-stone-revised .r-number{color:#924a05}
+body.view-normal .scope-stone-revised .surface-number{background-color:#924a05}
+body.view-normal .scope-stone-revised .r-operator{color:#585752}
+body.view-normal .scope-stone-revised .surface-operator{background-color:#585752}
+body.view-normal .scope-stone-revised .r-parameter{color:#4c4942}
+body.view-normal .scope-stone-revised .surface-parameter{background-color:#4c4942}
+body.view-normal .scope-stone-revised .r-property{color:#4c4942}
+body.view-normal .scope-stone-revised .surface-property{background-color:#4c4942}
+body.view-normal .scope-stone-revised .r-punctuation{color:#585752}
+body.view-normal .scope-stone-revised .surface-punctuation{background-color:#585752}
+body.view-normal .scope-stone-revised .r-search_match{color:#f1eadb}
+body.view-normal .scope-stone-revised .surface-search_match{background-color:#f1eadb}
+body.view-normal .scope-stone-revised .r-search_match_current{color:#e8dbc1}
+body.view-normal .scope-stone-revised .surface-search_match_current{background-color:#e8dbc1}
+body.view-normal .scope-stone-revised .r-selection{color:#d1ded5}
+body.view-normal .scope-stone-revised .surface-selection{background-color:#d1ded5}
+body.view-normal .scope-stone-revised .r-string{color:#066e31}
+body.view-normal .scope-stone-revised .surface-string{background-color:#066e31}
+body.view-normal .scope-stone-revised .r-success{color:#3a6042}
+body.view-normal .scope-stone-revised .surface-success{background-color:#3a6042}
+body.view-normal .scope-stone-revised .r-tag{color:#793bb0}
+body.view-normal .scope-stone-revised .surface-tag{background-color:#793bb0}
+body.view-normal .scope-stone-revised .r-type{color:#793bb0}
+body.view-normal .scope-stone-revised .surface-type{background-color:#793bb0}
+body.view-normal .scope-stone-revised .r-ui_inactive{color:#716e68}
+body.view-normal .scope-stone-revised .surface-ui_inactive{background-color:#716e68}
+body.view-normal .scope-stone-revised .r-warning{color:#6a5124}
+body.view-normal .scope-stone-revised .surface-warning{background-color:#6a5124}
+body.view-protan .scope-stone-revised{--vbg:#f7f5f1;--vfg:#4b4942;}
+body.view-protan .scope-stone-revised .r-active_line{color:#efede9}
+body.view-protan .scope-stone-revised .surface-active_line{background-color:#efede9}
+body.view-protan .scope-stone-revised .r-bg{color:#f7f5f1}
+body.view-protan .scope-stone-revised .surface-bg{background-color:#f7f5f1}
+body.view-protan .scope-stone-revised .r-bg_elevated{color:#fbfaf6}
+body.view-protan .scope-stone-revised .surface-bg_elevated{background-color:#fbfaf6}
+body.view-protan .scope-stone-revised .r-bg_overlay{color:#fefdfb}
+body.view-protan .scope-stone-revised .surface-bg_overlay{background-color:#fefdfb}
+body.view-protan .scope-stone-revised .r-breakpoint{color:#4c4630}
+body.view-protan .scope-stone-revised .surface-breakpoint{background-color:#4c4630}
+body.view-protan .scope-stone-revised .r-builtin{color:#1661a8}
+body.view-protan .scope-stone-revised .surface-builtin{background-color:#1661a8}
+body.view-protan .scope-stone-revised .r-comment{color:#615e57}
+body.view-protan .scope-stone-revised .surface-comment{background-color:#615e57}
+body.view-protan .scope-stone-revised .r-constant{color:#625407}
+body.view-protan .scope-stone-revised .surface-constant{background-color:#625407}
+body.view-protan .scope-stone-revised .r-debug_current{color:#ebe5d3}
+body.view-protan .scope-stone-revised .surface-debug_current{background-color:#ebe5d3}
+body.view-protan .scope-stone-revised .r-decorator{color:#625407}
+body.view-protan .scope-stone-revised .surface-decorator{background-color:#625407}
+body.view-protan .scope-stone-revised .r-deprecated{color:#615e57}
+body.view-protan .scope-stone-revised .surface-deprecated{background-color:#615e57}
+body.view-protan .scope-stone-revised .r-diff_added{color:#f0ede5}
+body.view-protan .scope-stone-revised .surface-diff_added{background-color:#f0ede5}
+body.view-protan .scope-stone-revised .r-diff_changed{color:#ede7d8}
+body.view-protan .scope-stone-revised .surface-diff_changed{background-color:#ede7d8}
+body.view-protan .scope-stone-revised .r-diff_removed{color:#e1e0db}
+body.view-protan .scope-stone-revised .surface-diff_removed{background-color:#e1e0db}
+body.view-protan .scope-stone-revised .r-docstring{color:#615e57}
+body.view-protan .scope-stone-revised .surface-docstring{background-color:#615e57}
+body.view-protan .scope-stone-revised .r-error{color:#4c4630}
+body.view-protan .scope-stone-revised .surface-error{background-color:#4c4630}
+body.view-protan .scope-stone-revised .r-fg{color:#4b4942}
+body.view-protan .scope-stone-revised .surface-fg{background-color:#4b4942}
+body.view-protan .scope-stone-revised .r-fg_muted{color:#706e68}
+body.view-protan .scope-stone-revised .surface-fg_muted{background-color:#706e68}
+body.view-protan .scope-stone-revised .r-fg_secondary{color:#615e57}
+body.view-protan .scope-stone-revised .surface-fg_secondary{background-color:#615e57}
+body.view-protan .scope-stone-revised .r-focus{color:#5e5324}
+body.view-protan .scope-stone-revised .surface-focus{background-color:#5e5324}
+body.view-protan .scope-stone-revised .r-function{color:#1661a8}
+body.view-protan .scope-stone-revised .surface-function{background-color:#1661a8}
+body.view-protan .scope-stone-revised .r-info{color:#535a68}
+body.view-protan .scope-stone-revised .surface-info{background-color:#535a68}
+body.view-protan .scope-stone-revised .r-keyword{color:#695b05}
+body.view-protan .scope-stone-revised .surface-keyword{background-color:#695b05}
+body.view-protan .scope-stone-revised .r-line_number{color:#706e68}
+body.view-protan .scope-stone-revised .surface-line_number{background-color:#706e68}
+body.view-protan .scope-stone-revised .r-line_number_active{color:#4b4942}
+body.view-protan .scope-stone-revised .surface-line_number_active{background-color:#4b4942}
+body.view-protan .scope-stone-revised .r-namespace{color:#005276}
+body.view-protan .scope-stone-revised .surface-namespace{background-color:#005276}
+body.view-protan .scope-stone-revised .r-number{color:#625407}
+body.view-protan .scope-stone-revised .surface-number{background-color:#625407}
+body.view-protan .scope-stone-revised .r-operator{color:#595752}
+body.view-protan .scope-stone-revised .surface-operator{background-color:#595752}
+body.view-protan .scope-stone-revised .r-parameter{color:#4b4942}
+body.view-protan .scope-stone-revised .surface-parameter{background-color:#4b4942}
+body.view-protan .scope-stone-revised .r-property{color:#4b4942}
+body.view-protan .scope-stone-revised .surface-property{background-color:#4b4942}
+body.view-protan .scope-stone-revised .r-punctuation{color:#595752}
+body.view-protan .scope-stone-revised .surface-punctuation{background-color:#595752}
+body.view-protan .scope-stone-revised .r-search_match{color:#efeadb}
+body.view-protan .scope-stone-revised .surface-search_match{background-color:#efeadb}
+body.view-protan .scope-stone-revised .r-search_match_current{color:#e4dcc1}
+body.view-protan .scope-stone-revised .surface-search_match_current{background-color:#e4dcc1}
+body.view-protan .scope-stone-revised .r-selection{color:#dfdcd5}
+body.view-protan .scope-stone-revised .surface-selection{background-color:#dfdcd5}
+body.view-protan .scope-stone-revised .r-string{color:#736730}
+body.view-protan .scope-stone-revised .surface-string{background-color:#736730}
+body.view-protan .scope-stone-revised .r-success{color:#635c42}
+body.view-protan .scope-stone-revised .surface-success{background-color:#635c42}
+body.view-protan .scope-stone-revised .r-tag{color:#005276}
+body.view-protan .scope-stone-revised .surface-tag{background-color:#005276}
+body.view-protan .scope-stone-revised .r-type{color:#005276}
+body.view-protan .scope-stone-revised .surface-type{background-color:#005276}
+body.view-protan .scope-stone-revised .r-ui_inactive{color:#706e68}
+body.view-protan .scope-stone-revised .surface-ui_inactive{background-color:#706e68}
+body.view-protan .scope-stone-revised .r-warning{color:#5e5324}
+body.view-protan .scope-stone-revised .surface-warning{background-color:#5e5324}
+body.view-deutan .scope-stone-revised{--vbg:#f7f5f1;--vfg:#4c4942;}
+body.view-deutan .scope-stone-revised .r-active_line{color:#efede9}
+body.view-deutan .scope-stone-revised .surface-active_line{background-color:#efede9}
+body.view-deutan .scope-stone-revised .r-bg{color:#f7f5f1}
+body.view-deutan .scope-stone-revised .surface-bg{background-color:#f7f5f1}
+body.view-deutan .scope-stone-revised .r-bg_elevated{color:#fbfaf6}
+body.view-deutan .scope-stone-revised .surface-bg_elevated{background-color:#fbfaf6}
+body.view-deutan .scope-stone-revised .r-bg_overlay{color:#fefdfb}
+body.view-deutan .scope-stone-revised .surface-bg_overlay{background-color:#fefdfb}
+body.view-deutan .scope-stone-revised .r-breakpoint{color:#61562b}
+body.view-deutan .scope-stone-revised .surface-breakpoint{background-color:#61562b}
+body.view-deutan .scope-stone-revised .r-builtin{color:#1360a8}
+body.view-deutan .scope-stone-revised .surface-builtin{background-color:#1360a8}
+body.view-deutan .scope-stone-revised .r-comment{color:#605d57}
+body.view-deutan .scope-stone-revised .surface-comment{background-color:#605d57}
+body.view-deutan .scope-stone-revised .r-constant{color:#706100}
+body.view-deutan .scope-stone-revised .surface-constant{background-color:#706100}
+body.view-deutan .scope-stone-revised .r-debug_current{color:#ece6d3}
+body.view-deutan .scope-stone-revised .surface-debug_current{background-color:#ece6d3}
+body.view-deutan .scope-stone-revised .r-decorator{color:#706100}
+body.view-deutan .scope-stone-revised .surface-decorator{background-color:#706100}
+body.view-deutan .scope-stone-revised .r-deprecated{color:#605d57}
+body.view-deutan .scope-stone-revised .surface-deprecated{background-color:#605d57}
+body.view-deutan .scope-stone-revised .r-diff_added{color:#edebe5}
+body.view-deutan .scope-stone-revised .surface-diff_added{background-color:#edebe5}
+body.view-deutan .scope-stone-revised .r-diff_changed{color:#ede8d8}
+body.view-deutan .scope-stone-revised .surface-diff_changed{background-color:#ede8d8}
+body.view-deutan .scope-stone-revised .r-diff_removed{color:#e5e2db}
+body.view-deutan .scope-stone-revised .surface-diff_removed{background-color:#e5e2db}
+body.view-deutan .scope-stone-revised .r-docstring{color:#605d57}
+body.view-deutan .scope-stone-revised .surface-docstring{background-color:#605d57}
+body.view-deutan .scope-stone-revised .r-error{color:#61562b}
+body.view-deutan .scope-stone-revised .surface-error{background-color:#61562b}
+body.view-deutan .scope-stone-revised .r-fg{color:#4c4942}
+body.view-deutan .scope-stone-revised .surface-fg{background-color:#4c4942}
+body.view-deutan .scope-stone-revised .r-fg_muted{color:#706e68}
+body.view-deutan .scope-stone-revised .surface-fg_muted{background-color:#706e68}
+body.view-deutan .scope-stone-revised .r-fg_secondary{color:#605d57}
+body.view-deutan .scope-stone-revised .surface-fg_secondary{background-color:#605d57}
+body.view-deutan .scope-stone-revised .r-focus{color:#615623}
+body.view-deutan .scope-stone-revised .surface-focus{background-color:#615623}
+body.view-deutan .scope-stone-revised .r-function{color:#1360a8}
+body.view-deutan .scope-stone-revised .surface-function{background-color:#1360a8}
+body.view-deutan .scope-stone-revised .r-info{color:#4b5569}
+body.view-deutan .scope-stone-revised .surface-info{background-color:#4b5569}
+body.view-deutan .scope-stone-revised .r-keyword{color:#695b04}
+body.view-deutan .scope-stone-revised .surface-keyword{background-color:#695b04}
+body.view-deutan .scope-stone-revised .r-line_number{color:#706e68}
+body.view-deutan .scope-stone-revised .surface-line_number{background-color:#706e68}
+body.view-deutan .scope-stone-revised .r-line_number_active{color:#4c4942}
+body.view-deutan .scope-stone-revised .surface-line_number_active{background-color:#4c4942}
+body.view-deutan .scope-stone-revised .r-namespace{color:#0062ae}
+body.view-deutan .scope-stone-revised .surface-namespace{background-color:#0062ae}
+body.view-deutan .scope-stone-revised .r-number{color:#706100}
+body.view-deutan .scope-stone-revised .surface-number{background-color:#706100}
+body.view-deutan .scope-stone-revised .r-operator{color:#585752}
+body.view-deutan .scope-stone-revised .surface-operator{background-color:#585752}
+body.view-deutan .scope-stone-revised .r-parameter{color:#4c4942}
+body.view-deutan .scope-stone-revised .surface-parameter{background-color:#4c4942}
+body.view-deutan .scope-stone-revised .r-property{color:#4c4942}
+body.view-deutan .scope-stone-revised .surface-property{background-color:#4c4942}
+body.view-deutan .scope-stone-revised .r-punctuation{color:#585752}
+body.view-deutan .scope-stone-revised .surface-punctuation{background-color:#585752}
+body.view-deutan .scope-stone-revised .r-search_match{color:#f0ebdb}
+body.view-deutan .scope-stone-revised .surface-search_match{background-color:#f0ebdb}
+body.view-deutan .scope-stone-revised .r-search_match_current{color:#e5dcc1}
+body.view-deutan .scope-stone-revised .surface-search_match_current{background-color:#e5dcc1}
+body.view-deutan .scope-stone-revised .r-selection{color:#dbdad5}
+body.view-deutan .scope-stone-revised .surface-selection{background-color:#dbdad5}
+body.view-deutan .scope-stone-revised .r-string{color:#645b34}
+body.view-deutan .scope-stone-revised .surface-string{background-color:#645b34}
+body.view-deutan .scope-stone-revised .r-success{color:#5b5543}
+body.view-deutan .scope-stone-revised .surface-success{background-color:#5b5543}
+body.view-deutan .scope-stone-revised .r-tag{color:#0062ae}
+body.view-deutan .scope-stone-revised .surface-tag{background-color:#0062ae}
+body.view-deutan .scope-stone-revised .r-type{color:#0062ae}
+body.view-deutan .scope-stone-revised .surface-type{background-color:#0062ae}
+body.view-deutan .scope-stone-revised .r-ui_inactive{color:#706e68}
+body.view-deutan .scope-stone-revised .surface-ui_inactive{background-color:#706e68}
+body.view-deutan .scope-stone-revised .r-warning{color:#615623}
+body.view-deutan .scope-stone-revised .surface-warning{background-color:#615623}
+body.view-tritan .scope-stone-revised{--vbg:#f8f4f5;--vfg:#4d4848;}
+body.view-tritan .scope-stone-revised .r-active_line{color:#f0eced}
+body.view-tritan .scope-stone-revised .surface-active_line{background-color:#f0eced}
+body.view-tritan .scope-stone-revised .r-bg{color:#f8f4f5}
+body.view-tritan .scope-stone-revised .surface-bg{background-color:#f8f4f5}
+body.view-tritan .scope-stone-revised .r-bg_elevated{color:#fcf9fa}
+body.view-tritan .scope-stone-revised .surface-bg_elevated{background-color:#fcf9fa}
+body.view-tritan .scope-stone-revised .r-bg_overlay{color:#fefdfd}
+body.view-tritan .scope-stone-revised .surface-bg_overlay{background-color:#fefdfd}
+body.view-tritan .scope-stone-revised .r-breakpoint{color:#8b3441}
+body.view-tritan .scope-stone-revised .surface-breakpoint{background-color:#8b3441}
+body.view-tritan .scope-stone-revised .r-builtin{color:#00687c}
+body.view-tritan .scope-stone-revised .surface-builtin{background-color:#00687c}
+body.view-tritan .scope-stone-revised .r-comment{color:#5d5e5e}
+body.view-tritan .scope-stone-revised .surface-comment{background-color:#5d5e5e}
+body.view-tritan .scope-stone-revised .r-constant{color:#95434e}
+body.view-tritan .scope-stone-revised .surface-constant{background-color:#95434e}
+body.view-tritan .scope-stone-revised .r-debug_current{color:#f0e2e4}
+body.view-tritan .scope-stone-revised .surface-debug_current{background-color:#f0e2e4}
+body.view-tritan .scope-stone-revised .r-decorator{color:#95434e}
+body.view-tritan .scope-stone-revised .surface-decorator{background-color:#95434e}
+body.view-tritan .scope-stone-revised .r-deprecated{color:#5d5e5e}
+body.view-tritan .scope-stone-revised .surface-deprecated{background-color:#5d5e5e}
+body.view-tritan .scope-stone-revised .r-diff_added{color:#e5edf1}
+body.view-tritan .scope-stone-revised .surface-diff_added{background-color:#e5edf1}
+body.view-tritan .scope-stone-revised .r-diff_changed{color:#f1e5e6}
+body.view-tritan .scope-stone-revised .surface-diff_changed{background-color:#f1e5e6}
+body.view-tritan .scope-stone-revised .r-diff_removed{color:#f0dddf}
+body.view-tritan .scope-stone-revised .surface-diff_removed{background-color:#f0dddf}
+body.view-tritan .scope-stone-revised .r-docstring{color:#5d5e5e}
+body.view-tritan .scope-stone-revised .surface-docstring{background-color:#5d5e5e}
+body.view-tritan .scope-stone-revised .r-error{color:#8b3441}
+body.view-tritan .scope-stone-revised .surface-error{background-color:#8b3441}
+body.view-tritan .scope-stone-revised .r-fg{color:#4d4848}
+body.view-tritan .scope-stone-revised .surface-fg{background-color:#4d4848}
+body.view-tritan .scope-stone-revised .r-fg_muted{color:#726d6e}
+body.view-tritan .scope-stone-revised .surface-fg_muted{background-color:#726d6e}
+body.view-tritan .scope-stone-revised .r-fg_secondary{color:#5d5e5e}
+body.view-tritan .scope-stone-revised .surface-fg_secondary{background-color:#5d5e5e}
+body.view-tritan .scope-stone-revised .r-focus{color:#6e4c50}
+body.view-tritan .scope-stone-revised .surface-focus{background-color:#6e4c50}
+body.view-tritan .scope-stone-revised .r-function{color:#00687c}
+body.view-tritan .scope-stone-revised .surface-function{background-color:#00687c}
+body.view-tritan .scope-stone-revised .r-info{color:#2e5c6b}
+body.view-tritan .scope-stone-revised .surface-info{background-color:#2e5c6b}
+body.view-tritan .scope-stone-revised .r-keyword{color:#715356}
+body.view-tritan .scope-stone-revised .surface-keyword{background-color:#715356}
+body.view-tritan .scope-stone-revised .r-line_number{color:#726d6e}
+body.view-tritan .scope-stone-revised .surface-line_number{background-color:#726d6e}
+body.view-tritan .scope-stone-revised .r-line_number_active{color:#4d4848}
+body.view-tritan .scope-stone-revised .surface-line_number_active{background-color:#4d4848}
+body.view-tritan .scope-stone-revised .r-namespace{color:#67585a}
+body.view-tritan .scope-stone-revised .surface-namespace{background-color:#67585a}
+body.view-tritan .scope-stone-revised .r-number{color:#95434e}
+body.view-tritan .scope-stone-revised .surface-number{background-color:#95434e}
+body.view-tritan .scope-stone-revised .r-operator{color:#595656}
+body.view-tritan .scope-stone-revised .surface-operator{background-color:#595656}
+body.view-tritan .scope-stone-revised .r-parameter{color:#4d4848}
+body.view-tritan .scope-stone-revised .surface-parameter{background-color:#4d4848}
+body.view-tritan .scope-stone-revised .r-property{color:#4d4848}
+body.view-tritan .scope-stone-revised .surface-property{background-color:#4d4848}
+body.view-tritan .scope-stone-revised .r-punctuation{color:#595656}
+body.view-tritan .scope-stone-revised .surface-punctuation{background-color:#595656}
+body.view-tritan .scope-stone-revised .r-search_match{color:#f3e8e9}
+body.view-tritan .scope-stone-revised .surface-search_match{background-color:#f3e8e9}
+body.view-tritan .scope-stone-revised .r-search_match_current{color:#ebd7d9}
+body.view-tritan .scope-stone-revised .surface-search_match_current{background-color:#ebd7d9}
+body.view-tritan .scope-stone-revised .r-selection{color:#d3dce1}
+body.view-tritan .scope-stone-revised .surface-selection{background-color:#d3dce1}
+body.view-tritan .scope-stone-revised .r-string{color:#2e6576}
+body.view-tritan .scope-stone-revised .surface-string{background-color:#2e6576}
+body.view-tritan .scope-stone-revised .r-success{color:#425b65}
+body.view-tritan .scope-stone-revised .surface-success{background-color:#425b65}
+body.view-tritan .scope-stone-revised .r-tag{color:#67585a}
+body.view-tritan .scope-stone-revised .surface-tag{background-color:#67585a}
+body.view-tritan .scope-stone-revised .r-type{color:#67585a}
+body.view-tritan .scope-stone-revised .surface-type{background-color:#67585a}
+body.view-tritan .scope-stone-revised .r-ui_inactive{color:#726d6e}
+body.view-tritan .scope-stone-revised .surface-ui_inactive{background-color:#726d6e}
+body.view-tritan .scope-stone-revised .r-warning{color:#6e4c50}
+body.view-tritan .scope-stone-revised .surface-warning{background-color:#6e4c50}</style><body class="view-normal"><h1>Day: stronger color</h1><p>Left: the hue-adjusted version you preferred. Right: stronger colors at those same hues, with slightly adjusted lightness and more of the available sRGB gamut. Backgrounds and neutral text are unchanged.</p><p>Browser code specimens, not editor screenshots. The new palettes retain the configured text contrast floors. The earlier three-way study remains available in <a href="day-color-study.html">the original comparison</a>.</p><label>Language <select id="language"><option>r</option><option>typescript</option><option>python</option></select></label><div class="language" data-language="r" hidden><h2>Pergola Day</h2><section><article class="scope-pergola-original"><h3>Previously preferred</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div></article><article class="scope-pergola-revised"><h3>Stronger Day colors</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div></article></section><h2>Stone Day</h2><section><article class="scope-stone-original"><h3>Previously preferred</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div></article><article class="scope-stone-revised"><h3>Stronger Day colors</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div></article></section></div><div class="language" data-language="typescript"><h2>Pergola Day</h2><section><article class="scope-pergola-original"><h3>Previously preferred</h3><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div></article><article class="scope-pergola-revised"><h3>Stronger Day colors</h3><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div></article></section><h2>Stone Day</h2><section><article class="scope-stone-original"><h3>Previously preferred</h3><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div></article><article class="scope-stone-revised"><h3>Stronger Day colors</h3><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div></article></section></div><div class="language" data-language="python" hidden><h2>Pergola Day</h2><section><article class="scope-pergola-original"><h3>Previously preferred</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div></article><article class="scope-pergola-revised"><h3>Stronger Day colors</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div></article></section><h2>Stone Day</h2><section><article class="scope-stone-original"><h3>Previously preferred</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div></article><article class="scope-stone-revised"><h3>Stronger Day colors</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div></article></section></div><script>const s=document.querySelector('select');s.value='typescript';s.onchange=()=>document.querySelectorAll('.language').forEach(x=>x.hidden=x.dataset.language!==s.value);</script></body></html>

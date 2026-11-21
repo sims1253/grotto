@@ -1,0 +1,252 @@
+# LAYER 3 -- Zed editor binding.
+#
+# This file maps the editor-independent roles in spec/roles.yaml to the
+# hosted Zed theme schema v0.2.0. It is an evaluation adapter for the same
+# nine candidate palettes used by the VS Code preview; it does not select a
+# winner or define new colours.
+
+version: 1
+target: zed-theme-family-v0.2.0
+generator: grotto-zed/1
+
+extension:
+  theme_count: 9
+  family_name: Grotto Evaluation Preview
+  author: Maximilian Scholz
+  output: themes/grotto.json
+  provenance: provenance.json
+  themes:
+    - {family: restrained, variant: day,     label: "Grotto Restrained Day"}
+    - {family: restrained, variant: evening, label: "Grotto Restrained Evening"}
+    - {family: restrained, variant: night,   label: "Grotto Restrained Night"}
+    - {family: balanced,   variant: day,     label: "Grotto Balanced Day"}
+    - {family: balanced,   variant: evening, label: "Grotto Balanced Evening"}
+    - {family: balanced,   variant: night,   label: "Grotto Balanced Night"}
+    - {family: expressive, variant: day,     label: "Grotto Expressive Day"}
+    - {family: expressive, variant: evening, label: "Grotto Expressive Evening"}
+    - {family: expressive, variant: night,   label: "Grotto Expressive Night"}
+
+variants:
+  day: {appearance: light}
+  evening: {appearance: dark}
+  night: {appearance: dark}
+
+families:
+  restrained: {candidate: candidate-a-restrained}
+  balanced: {candidate: candidate-b-balanced}
+  expressive: {candidate: candidate-c-expressive}
+
+# A value is either a role or {role, alpha}. Zed accepts #RRGGBBAA; the
+# generator appends "ff" to opaque colours. Alpha is reserved for surfaces
+# that Zed paints over content.
+style:
+  background: bg_elevated
+  elevated_surface.background: bg_overlay
+  surface.background: bg_elevated
+  border: ui_inactive
+  border.disabled: ui_inactive
+  border.focused: focus
+  border.selected: focus
+  border.variant: ui_inactive
+  element.background: bg_elevated
+  element.hover: active_line
+  element.active: selection
+  element.selected: selection
+  element.disabled: bg_elevated
+  ghost_element.background: {role: bg, alpha: "00"}
+  ghost_element.hover: active_line
+  ghost_element.active: selection
+  ghost_element.selected: selection
+  ghost_element.disabled: bg_elevated
+  text: fg
+  text.muted: fg_secondary
+  text.placeholder: fg_muted
+  text.disabled: fg_muted
+  text.accent: function
+  icon: fg_secondary
+  icon.muted: fg_muted
+  icon.placeholder: fg_muted
+  icon.disabled: ui_inactive
+  icon.accent: function
+  status_bar.background: bg_elevated
+  title_bar.background: bg_elevated
+  title_bar.inactive_background: bg_overlay
+  toolbar.background: bg_elevated
+  tab_bar.background: bg_elevated
+  tab.active_background: bg
+  tab.inactive_background: bg_elevated
+  panel.background: bg_elevated
+  panel.focused_border: focus
+  pane.focused_border: focus
+  pane_group.border: ui_inactive
+  scrollbar.thumb.background: {role: fg_muted, alpha: "66"}
+  scrollbar.thumb.hover_background: {role: fg_secondary, alpha: "99"}
+  scrollbar.thumb.border: {role: bg, alpha: "00"}
+  scrollbar.track.background: {role: bg, alpha: "00"}
+  scrollbar.track.border: ui_inactive
+  search.match_background: {role: search_match, alpha: "80"}
+  drop_target.background: {role: focus, alpha: "66"}
+  link_text.hover: focus
+
+  editor.background: bg
+  editor.foreground: fg
+  editor.gutter.background: bg
+  editor.subheader.background: bg_elevated
+  editor.active_line.background: active_line
+  editor.highlighted_line.background: selection
+  editor.line_number: line_number
+  editor.active_line_number: line_number_active
+  editor.invisible: ui_inactive
+  editor.indent_guide: ui_inactive
+  editor.indent_guide_active: fg_muted
+  editor.wrap_guide: ui_inactive
+  editor.active_wrap_guide: fg_muted
+  editor.document_highlight.bracket_background: {role: selection, alpha: "80"}
+  editor.document_highlight.read_background: {role: selection, alpha: "4d"}
+  editor.document_highlight.write_background: {role: focus, alpha: "4d"}
+
+  terminal.background: bg
+  terminal.ansi.background: bg
+  terminal.foreground: fg
+  terminal.bright_foreground: fg
+  terminal.dim_foreground: fg_muted
+  terminal.ansi.black: bg_elevated
+  terminal.ansi.red: error
+  terminal.ansi.green: success
+  terminal.ansi.yellow: warning
+  terminal.ansi.blue: function
+  terminal.ansi.magenta: keyword
+  terminal.ansi.cyan: type
+  terminal.ansi.white: fg_secondary
+  terminal.ansi.bright_black: fg_muted
+  terminal.ansi.bright_red: error
+  terminal.ansi.bright_green: success
+  terminal.ansi.bright_yellow: warning
+  terminal.ansi.bright_blue: function
+  terminal.ansi.bright_magenta: decorator
+  terminal.ansi.bright_cyan: type
+  terminal.ansi.bright_white: fg
+
+  error: error
+  error.background: {role: error, alpha: "26"}
+  error.border: error
+  warning: warning
+  warning.background: {role: warning, alpha: "26"}
+  warning.border: warning
+  info: info
+  info.background: {role: info, alpha: "26"}
+  info.border: info
+  hint: info
+  hint.background: {role: info, alpha: "1a"}
+  hint.border: info
+  success: success
+  success.background: {role: success, alpha: "26"}
+  success.border: success
+  created: diff_added
+  created.background: {role: diff_added, alpha: "26"}
+  created.border: diff_added
+  deleted: diff_removed
+  deleted.background: {role: diff_removed, alpha: "26"}
+  deleted.border: diff_removed
+  modified: diff_changed
+  modified.background: {role: diff_changed, alpha: "26"}
+  modified.border: diff_changed
+  conflict: warning
+  conflict.background: {role: warning, alpha: "26"}
+  conflict.border: warning
+  unreachable: deprecated
+  unreachable.background: {role: deprecated, alpha: "1a"}
+  unreachable.border: deprecated
+  hidden: fg_muted
+  hidden.background: {role: fg_muted, alpha: "1a"}
+  hidden.border: ui_inactive
+  ignored: fg_muted
+  ignored.background: {role: fg_muted, alpha: "1a"}
+  ignored.border: ui_inactive
+  predictive: fg_muted
+  predictive.background: {role: fg_muted, alpha: "1a"}
+  predictive.border: ui_inactive
+  renamed: info
+  renamed.background: {role: info, alpha: "1a"}
+  renamed.border: info
+
+# Zed carries the cursor/selection relationship in the players array. The
+# first entry is the local user; the extra entries keep collaboration cursors
+# distinct without inventing editor-specific colours.
+players:
+  - {cursor: focus, background: focus, selection: {role: selection, alpha: "66"}}
+  - {cursor: error, background: error, selection: {role: error, alpha: "4d"}}
+  - {cursor: warning, background: warning, selection: {role: warning, alpha: "4d"}}
+  - {cursor: success, background: success, selection: {role: success, alpha: "4d"}}
+
+required_style:
+  - background
+  - surface.background
+  - text
+  - text.muted
+  - border.focused
+  - editor.background
+  - editor.foreground
+  - editor.gutter.background
+  - editor.active_line.background
+  - editor.line_number
+  - editor.active_line_number
+  - search.match_background
+  - error
+  - warning
+  - info
+  - success
+  - created
+  - deleted
+  - modified
+
+# Zed maps LSP semantic tokens onto these same highlight names. For example,
+# class/interface/struct/typeParameter -> type, method -> function,
+# parameter -> variable.parameter, enumMember -> variant, and macro -> preproc.
+syntax:
+  attribute: {role: property}
+  boolean: {role: constant}
+  comment: {role: comment}
+  comment.doc: {role: docstring}
+  constant: {role: constant}
+  constructor: {role: type}
+  diff.minus: {role: diff_removed}
+  diff.plus: {role: diff_added}
+  embedded: {role: fg}
+  emphasis: {role: fg, font_style: italic}
+  emphasis.strong: {role: fg, font_weight: 700}
+  enum: {role: type}
+  function: {role: function}
+  hint: {role: info}
+  keyword: {role: keyword}
+  label: {role: tag}
+  link_text: {role: function}
+  link_uri: {role: fg_secondary}
+  namespace: {role: namespace}
+  number: {role: number}
+  operator: {role: operator}
+  predictive: {role: fg_muted}
+  preproc: {role: decorator}
+  primary: {role: fg}
+  property: {role: property}
+  punctuation: {role: punctuation}
+  punctuation.bracket: {role: punctuation}
+  punctuation.delimiter: {role: punctuation}
+  punctuation.list_marker: {role: punctuation}
+  punctuation.markup: {role: punctuation}
+  punctuation.special: {role: operator}
+  selector: {role: tag}
+  selector.pseudo: {role: decorator}
+  string: {role: string}
+  string.escape: {role: constant}
+  string.regex: {role: string}
+  string.special: {role: string}
+  string.special.symbol: {role: constant}
+  tag: {role: tag}
+  text.literal: {role: string}
+  title: {role: tag, font_weight: 700}
+  type: {role: type}
+  variable: {role: fg}
+  variable.parameter: {role: parameter, font_style: italic}
+  variable.special: {role: builtin}
+  variant: {role: constant}

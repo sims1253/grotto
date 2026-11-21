@@ -46,7 +46,8 @@ from .spectral import DISPLAYS
 from .raster import DEFAULT_CHUNK_ROWS as DEFAULT_RASTER_CHUNK_ROWS
 from .raster import DEFAULT_THRESHOLD as DEFAULT_RASTER_THRESHOLD
 from .stability import DEFAULT_MAX_HUE_DRIFT, cross_variant_report
-from .vscode import write_extension
+from .vscode import write_extension as write_vscode_extension
+from .zed import write_extension as write_zed_extension
 
 
 def _load_specs(args) -> tuple[RoleSpec, DistanceSpec, Environments]:
@@ -331,13 +332,26 @@ def cmd_vscode(args) -> int:
     candidates in a real editor.
     """
     roles = RoleSpec.load(args.roles)
-    written = write_extension(
+    written = write_vscode_extension(
         args.out, candidates_dir=args.candidates, mapping_path=args.mapping, roles=roles
     )
     print(f"[vscode] {len(written)} evaluation-preview theme(s) generated -> {args.out}/themes")
     for rel, path in written.items():
         print(f"  {rel}")
     print("  static adapter only: no runtime, no switching, no winner (Phase 8a preview)")
+    return 0
+
+
+def cmd_zed(args) -> int:
+    """Regenerate the nine-theme Zed evaluation preview."""
+    roles = RoleSpec.load(args.roles)
+    written = write_zed_extension(
+        args.out, candidates_dir=args.candidates, mapping_path=args.mapping, roles=roles
+    )
+    print(f"[zed] 9 evaluation-preview themes generated -> {args.out}/themes/grotto.json")
+    for relative in written:
+        print(f"  {relative}")
+    print("  static adapter only: no runtime, no switching, no winner")
     return 0
 
 
@@ -448,6 +462,15 @@ def build_parser() -> argparse.ArgumentParser:
     p_vs.add_argument("--candidates", default="themes/candidates")
     p_vs.add_argument("--mapping", default="spec/mappings/vscode.yaml")
     p_vs.set_defaults(func=cmd_vscode)
+
+    p_zed = sub.add_parser(
+        "zed",
+        help="regenerate the 9-theme Zed evaluation preview",
+    )
+    p_zed.add_argument("--out", default="editors/zed")
+    p_zed.add_argument("--candidates", default="themes/candidates")
+    p_zed.add_argument("--mapping", default="spec/mappings/zed.yaml")
+    p_zed.set_defaults(func=cmd_zed)
 
     p_ras = sub.add_parser(
         "raster",

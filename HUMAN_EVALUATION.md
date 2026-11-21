@@ -53,6 +53,10 @@ family, size, and weight for every condition, and keep them fixed across the
 conditions you compare. This protocol prescribes no font; no font choice is
 assumed to be optimal for this evaluation.
 
+Keep the editor fixed within a comparison set. VS Code and Zed can assign
+different scopes to the same source text, so an editor change is not a clean
+test of the palette alone.
+
 Record display make/model, panel technology when known, brightness setting and
 whether it is automatic. Measured white/background luminance in cd/m² is useful
 if a meter is available, but do not estimate it from the brightness slider.

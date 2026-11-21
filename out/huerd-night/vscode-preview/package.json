@@ -1,0 +1,32 @@
+{
+  "name": "grotto-huerd-exploration",
+  "displayName": "Grotto huerd Exploration (NON-CANDIDATE)",
+  "description": "Night themes from huerd 0.6.2 CVD-safe generation with pinned anchors.",
+  "version": "0.0.1",
+  "publisher": "grotto-exploration",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto H-Explore 01 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/huerd-01-night.json"
+      },
+      {
+        "label": "Grotto H-Explore 02 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/huerd-02-night.json"
+      },
+      {
+        "label": "Grotto H-Explore 03 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/huerd-03-night.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "fig-vivid-day": {
+    "source_sha256": "0bc6903e62861b6a5c7553a5f82bf488013faf33f0b212c5fca0a9cfbc09a3c8",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6088,
+    "fg_on_selection": 7.419,
+    "max_syntax_chroma": 0.24021,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "type",
+        "surface": "diff_removed",
+        "ratio": 4.6088,
+        "floor": 4.5
+      },
+      {
+        "ink": "namespace",
+        "surface": "diff_removed",
+        "ratio": 4.6088,
+        "floor": 4.5
+      },
+      {
+        "ink": "tag",
+        "surface": "diff_removed",
+        "ratio": 4.6088,
+        "floor": 4.5
+      },
+      {
+        "ink": "number",
+        "surface": "diff_removed",
+        "ratio": 4.6111,
+        "floor": 4.5
+      },
+      {
+        "ink": "constant",
+        "surface": "diff_removed",
+        "ratio": 4.6111,
+        "floor": 4.5
+      }
+    ],
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6335,
+      "failures": []
+    }
+  },
+  "fig-vivid-night": {
+    "source_sha256": "7f454dbf0d867dba3a0aa38444bb76c0ba1324e907eb9b71512666b303c833c9",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.4021,
+    "max_syntax_chroma": 0.17977,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "debug_current",
+        "ratio": 4.9121,
+        "floor": 4.5
+      }
+    ],
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  },
+  "rainstone-vivid-day": {
+    "source_sha256": "4226bfa843776f4cdd94184947151796bc6392d6a78ed29fd8bfb81230444c5d",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6053,
+    "fg_on_selection": 7.3616,
+    "max_syntax_chroma": 0.24005,
+    "diagnostic_distances": {
+      "protan": 0.0579,
+      "deutan": 0.0089,
+      "tritan": 0.0723
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "function",
+        "surface": "diff_removed",
+        "ratio": 4.6053,
+        "floor": 4.5
+      },
+      {
+        "ink": "builtin",
+        "surface": "diff_removed",
+        "ratio": 4.6053,
+        "floor": 4.5
+      },
+      {
+        "ink": "keyword",
+        "surface": "diff_removed",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "number",
+        "surface": "diff_removed",
+        "ratio": 4.6131,
+        "floor": 4.5
+      },
+      {
+        "ink": "constant",
+        "surface": "diff_removed",
+        "ratio": 4.6131,
+        "floor": 4.5
+      }
+    ],
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.63,
+      "failures": []
+    }
+  },
+  "rainstone-vivid-night": {
+    "source_sha256": "ff09d9cc35c7c6b4a862c50ca7cbfd2acfd9d7ffa64aaa824cbea05f6d0db5ca",
+    "contrast_failures": [],
+    "contrast_pairs_checked": 289,
+    "minimum_body_text_contrast": 4.6123,
+    "fg_on_selection": 7.4242,
+    "max_syntax_chroma": 0.16255,
+    "diagnostic_distances": {
+      "protan": 0.061,
+      "deutan": 0.0385,
+      "tritan": 0.0406
+    },
+    "lowest_body_text_pairs": [
+      {
+        "ink": "fg_secondary",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "search_match_current",
+        "ratio": 4.6123,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      },
+      {
+        "ink": "deprecated",
+        "surface": "selection",
+        "ratio": 4.7359,
+        "floor": 4.5
+      },
+      {
+        "ink": "fg_secondary",
+        "surface": "debug_current",
+        "ratio": 4.9121,
+        "floor": 4.5
+      }
+    ],
+    "editor_composites": {
+      "backgrounds_checked": 29,
+      "minimum_body_text_contrast": 4.6123,
+      "failures": []
+    }
+  }
+}

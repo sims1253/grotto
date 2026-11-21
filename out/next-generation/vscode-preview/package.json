@@ -1,0 +1,57 @@
+{
+  "name": "grotto-next-generation",
+  "displayName": "Grotto Next Generation Preview",
+  "description": "Cove, Grove, and Dusk in Day and Night. Experimental review themes.",
+  "version": "0.1.0",
+  "publisher": "grotto-local",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sims1253/grotto.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "files": [
+    "themes/*.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto Cove Day",
+        "uiTheme": "vs",
+        "path": "themes/cove-day.json"
+      },
+      {
+        "label": "Grotto Cove Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/cove-night.json"
+      },
+      {
+        "label": "Grotto Grove Day",
+        "uiTheme": "vs",
+        "path": "themes/grove-day.json"
+      },
+      {
+        "label": "Grotto Grove Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/grove-night.json"
+      },
+      {
+        "label": "Grotto Dusk Day",
+        "uiTheme": "vs",
+        "path": "themes/dusk-day.json"
+      },
+      {
+        "label": "Grotto Dusk Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/dusk-night.json"
+      }
+    ]
+  }
+}

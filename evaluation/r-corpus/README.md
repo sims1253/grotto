@@ -31,7 +31,8 @@ schedule.yaml             nine deterministic counterbalancing lists (form A)
 ## What the corpus is for (and not for)
 
 - **For:** short scan/comprehension/seeded-error trials (60–180 s each)
-  comparing the nine candidate themes from `editors/vscode/`.
+  comparing the nine candidate themes from one fixed editor adapter:
+  `editors/vscode/` or `editors/zed/`.
 - **Not for:** evidence about 1–2 hour comfort — that is Part B (sustained
   coding on real work), which this corpus cannot speak to.
 

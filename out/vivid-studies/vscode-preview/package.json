@@ -1,0 +1,47 @@
+{
+  "name": "grotto-vivid-studies",
+  "displayName": "Grotto Vivid Studies Preview",
+  "description": "Bolder Fig and Rainstone: colored variables, green comments and stronger accents.",
+  "version": "0.1.0",
+  "publisher": "grotto-local",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sims1253/grotto.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "files": [
+    "themes/*.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto Fig Vivid Day",
+        "uiTheme": "vs",
+        "path": "themes/fig-vivid-day.json"
+      },
+      {
+        "label": "Grotto Fig Vivid Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/fig-vivid-night.json"
+      },
+      {
+        "label": "Grotto Rainstone Vivid Day",
+        "uiTheme": "vs",
+        "path": "themes/rainstone-vivid-day.json"
+      },
+      {
+        "label": "Grotto Rainstone Vivid Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/rainstone-vivid-night.json"
+      }
+    ]
+  }
+}

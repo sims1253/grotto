@@ -1,0 +1,1464 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Grotto Vivid Studies Preview</title><style>body{margin:24px;background:#e8e8e8;color:#222;font:16px/1.5 system-ui,sans-serif}p{max-width:85ch}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}h1{font-size:28px}h3{margin:0;padding:10px 14px;background:#ddd;color:#222;font-size:17px}
+    article{background:var(--vbg);color:var(--vfg)}pre{font:13px/1.65 'DejaVu Sans Mono',monospace;margin:0;padding:14px;overflow:auto}
+    .states{padding:0 14px 14px;font:13px/1.65 'DejaVu Sans Mono',monospace}.state{padding:6px 8px}.r-parameter{font-style:italic}select{font:inherit;padding:6px}
+    .language[hidden]{display:none}@media(max-width:850px){.grid{grid-template-columns:minmax(0,1fr)}}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:850px){.grid{grid-template-columns:minmax(0,1fr)}}body.view-normal .scope-fig-vivid-day{--vbg:#f8f6fa;--vfg:#4c4750;}
+body.view-normal .scope-fig-vivid-day .r-active_line{color:#efedf1}
+body.view-normal .scope-fig-vivid-day .surface-active_line{background-color:#efedf1}
+body.view-normal .scope-fig-vivid-day .r-bg{color:#f8f6fa}
+body.view-normal .scope-fig-vivid-day .surface-bg{background-color:#f8f6fa}
+body.view-normal .scope-fig-vivid-day .r-bg_elevated{color:#fcfafe}
+body.view-normal .scope-fig-vivid-day .surface-bg_elevated{background-color:#fcfafe}
+body.view-normal .scope-fig-vivid-day .r-bg_overlay{color:#fefdff}
+body.view-normal .scope-fig-vivid-day .surface-bg_overlay{background-color:#fefdff}
+body.view-normal .scope-fig-vivid-day .r-breakpoint{color:#8a372f}
+body.view-normal .scope-fig-vivid-day .surface-breakpoint{background-color:#8a372f}
+body.view-normal .scope-fig-vivid-day .r-builtin{color:#047735}
+body.view-normal .scope-fig-vivid-day .surface-builtin{background-color:#047735}
+body.view-normal .scope-fig-vivid-day .r-comment{color:#376f44}
+body.view-normal .scope-fig-vivid-day .surface-comment{background-color:#376f44}
+body.view-normal .scope-fig-vivid-day .r-constant{color:#0469b6}
+body.view-normal .scope-fig-vivid-day .surface-constant{background-color:#0469b6}
+body.view-normal .scope-fig-vivid-day .r-debug_current{color:#f0e8d6}
+body.view-normal .scope-fig-vivid-day .surface-debug_current{background-color:#f0e8d6}
+body.view-normal .scope-fig-vivid-day .r-decorator{color:#0469b6}
+body.view-normal .scope-fig-vivid-day .surface-decorator{background-color:#0469b6}
+body.view-normal .scope-fig-vivid-day .r-deprecated{color:#5c5f57}
+body.view-normal .scope-fig-vivid-day .surface-deprecated{background-color:#5c5f57}
+body.view-normal .scope-fig-vivid-day .r-diff_added{color:#e3efe5}
+body.view-normal .scope-fig-vivid-day .surface-diff_added{background-color:#e3efe5}
+body.view-normal .scope-fig-vivid-day .r-diff_changed{color:#f0e8d9}
+body.view-normal .scope-fig-vivid-day .surface-diff_changed{background-color:#f0e8d9}
+body.view-normal .scope-fig-vivid-day .r-diff_removed{color:#f5e4e1}
+body.view-normal .scope-fig-vivid-day .surface-diff_removed{background-color:#f5e4e1}
+body.view-normal .scope-fig-vivid-day .r-docstring{color:#376f44}
+body.view-normal .scope-fig-vivid-day .surface-docstring{background-color:#376f44}
+body.view-normal .scope-fig-vivid-day .r-error{color:#8a372f}
+body.view-normal .scope-fig-vivid-day .surface-error{background-color:#8a372f}
+body.view-normal .scope-fig-vivid-day .r-fg{color:#4c4750}
+body.view-normal .scope-fig-vivid-day .surface-fg{background-color:#4c4750}
+body.view-normal .scope-fig-vivid-day .r-fg_muted{color:#716e68}
+body.view-normal .scope-fig-vivid-day .surface-fg_muted{background-color:#716e68}
+body.view-normal .scope-fig-vivid-day .r-fg_secondary{color:#5c5f57}
+body.view-normal .scope-fig-vivid-day .surface-fg_secondary{background-color:#5c5f57}
+body.view-normal .scope-fig-vivid-day .r-focus{color:#6a5124}
+body.view-normal .scope-fig-vivid-day .surface-focus{background-color:#6a5124}
+body.view-normal .scope-fig-vivid-day .r-function{color:#047735}
+body.view-normal .scope-fig-vivid-day .surface-function{background-color:#047735}
+body.view-normal .scope-fig-vivid-day .r-info{color:#2d5d68}
+body.view-normal .scope-fig-vivid-day .surface-info{background-color:#2d5d68}
+body.view-normal .scope-fig-vivid-day .r-keyword{color:#af1aba}
+body.view-normal .scope-fig-vivid-day .surface-keyword{background-color:#af1aba}
+body.view-normal .scope-fig-vivid-day .r-line_number{color:#716e68}
+body.view-normal .scope-fig-vivid-day .surface-line_number{background-color:#716e68}
+body.view-normal .scope-fig-vivid-day .r-line_number_active{color:#4c4750}
+body.view-normal .scope-fig-vivid-day .surface-line_number_active{background-color:#4c4750}
+body.view-normal .scope-fig-vivid-day .r-namespace{color:#04727c}
+body.view-normal .scope-fig-vivid-day .surface-namespace{background-color:#04727c}
+body.view-normal .scope-fig-vivid-day .r-number{color:#0469b6}
+body.view-normal .scope-fig-vivid-day .surface-number{background-color:#0469b6}
+body.view-normal .scope-fig-vivid-day .r-operator{color:#804e82}
+body.view-normal .scope-fig-vivid-day .surface-operator{background-color:#804e82}
+body.view-normal .scope-fig-vivid-day .r-parameter{color:#a04a03}
+body.view-normal .scope-fig-vivid-day .surface-parameter{background-color:#a04a03}
+body.view-normal .scope-fig-vivid-day .r-property{color:#1a609e}
+body.view-normal .scope-fig-vivid-day .surface-property{background-color:#1a609e}
+body.view-normal .scope-fig-vivid-day .r-punctuation{color:#585752}
+body.view-normal .scope-fig-vivid-day .surface-punctuation{background-color:#585752}
+body.view-normal .scope-fig-vivid-day .r-search_match{color:#f1eadb}
+body.view-normal .scope-fig-vivid-day .surface-search_match{background-color:#f1eadb}
+body.view-normal .scope-fig-vivid-day .r-search_match_current{color:#f4e7cd}
+body.view-normal .scope-fig-vivid-day .surface-search_match_current{background-color:#f4e7cd}
+body.view-normal .scope-fig-vivid-day .r-selection{color:#dfece3}
+body.view-normal .scope-fig-vivid-day .surface-selection{background-color:#dfece3}
+body.view-normal .scope-fig-vivid-day .r-string{color:#826103}
+body.view-normal .scope-fig-vivid-day .surface-string{background-color:#826103}
+body.view-normal .scope-fig-vivid-day .r-success{color:#3a6042}
+body.view-normal .scope-fig-vivid-day .surface-success{background-color:#3a6042}
+body.view-normal .scope-fig-vivid-day .r-tag{color:#04727c}
+body.view-normal .scope-fig-vivid-day .surface-tag{background-color:#04727c}
+body.view-normal .scope-fig-vivid-day .r-type{color:#04727c}
+body.view-normal .scope-fig-vivid-day .surface-type{background-color:#04727c}
+body.view-normal .scope-fig-vivid-day .r-ui_inactive{color:#716e68}
+body.view-normal .scope-fig-vivid-day .surface-ui_inactive{background-color:#716e68}
+body.view-normal .scope-fig-vivid-day .r-warning{color:#6a5124}
+body.view-normal .scope-fig-vivid-day .surface-warning{background-color:#6a5124}
+body.view-protan .scope-fig-vivid-day{--vbg:#f5f6fa;--vfg:#444850;}
+body.view-protan .scope-fig-vivid-day .r-active_line{color:#ecedf1}
+body.view-protan .scope-fig-vivid-day .surface-active_line{background-color:#ecedf1}
+body.view-protan .scope-fig-vivid-day .r-bg{color:#f5f6fa}
+body.view-protan .scope-fig-vivid-day .surface-bg{background-color:#f5f6fa}
+body.view-protan .scope-fig-vivid-day .r-bg_elevated{color:#f9fafe}
+body.view-protan .scope-fig-vivid-day .surface-bg_elevated{background-color:#f9fafe}
+body.view-protan .scope-fig-vivid-day .r-bg_overlay{color:#fcfdff}
+body.view-protan .scope-fig-vivid-day .surface-bg_overlay{background-color:#fcfdff}
+body.view-protan .scope-fig-vivid-day .r-breakpoint{color:#4c4630}
+body.view-protan .scope-fig-vivid-day .surface-breakpoint{background-color:#4c4630}
+body.view-protan .scope-fig-vivid-day .r-builtin{color:#7d6f34}
+body.view-protan .scope-fig-vivid-day .surface-builtin{background-color:#7d6f34}
+body.view-protan .scope-fig-vivid-day .r-comment{color:#736944}
+body.view-protan .scope-fig-vivid-day .surface-comment{background-color:#736944}
+body.view-protan .scope-fig-vivid-day .r-constant{color:#1569b6}
+body.view-protan .scope-fig-vivid-day .surface-constant{background-color:#1569b6}
+body.view-protan .scope-fig-vivid-day .r-debug_current{color:#eee8d6}
+body.view-protan .scope-fig-vivid-day .surface-debug_current{background-color:#eee8d6}
+body.view-protan .scope-fig-vivid-day .r-decorator{color:#1569b6}
+body.view-protan .scope-fig-vivid-day .surface-decorator{background-color:#1569b6}
+body.view-protan .scope-fig-vivid-day .r-deprecated{color:#615e57}
+body.view-protan .scope-fig-vivid-day .surface-deprecated{background-color:#615e57}
+body.view-protan .scope-fig-vivid-day .r-diff_added{color:#f0ede5}
+body.view-protan .scope-fig-vivid-day .surface-diff_added{background-color:#f0ede5}
+body.view-protan .scope-fig-vivid-day .r-diff_changed{color:#eee8d9}
+body.view-protan .scope-fig-vivid-day .surface-diff_changed{background-color:#eee8d9}
+body.view-protan .scope-fig-vivid-day .r-diff_removed{color:#e7e6e1}
+body.view-protan .scope-fig-vivid-day .surface-diff_removed{background-color:#e7e6e1}
+body.view-protan .scope-fig-vivid-day .r-docstring{color:#736944}
+body.view-protan .scope-fig-vivid-day .surface-docstring{background-color:#736944}
+body.view-protan .scope-fig-vivid-day .r-error{color:#4c4630}
+body.view-protan .scope-fig-vivid-day .surface-error{background-color:#4c4630}
+body.view-protan .scope-fig-vivid-day .r-fg{color:#444850}
+body.view-protan .scope-fig-vivid-day .surface-fg{background-color:#444850}
+body.view-protan .scope-fig-vivid-day .r-fg_muted{color:#706e68}
+body.view-protan .scope-fig-vivid-day .surface-fg_muted{background-color:#706e68}
+body.view-protan .scope-fig-vivid-day .r-fg_secondary{color:#615e57}
+body.view-protan .scope-fig-vivid-day .surface-fg_secondary{background-color:#615e57}
+body.view-protan .scope-fig-vivid-day .r-focus{color:#5e5324}
+body.view-protan .scope-fig-vivid-day .surface-focus{background-color:#5e5324}
+body.view-protan .scope-fig-vivid-day .r-function{color:#7d6f34}
+body.view-protan .scope-fig-vivid-day .surface-function{background-color:#7d6f34}
+body.view-protan .scope-fig-vivid-day .r-info{color:#535a68}
+body.view-protan .scope-fig-vivid-day .surface-info{background-color:#535a68}
+body.view-protan .scope-fig-vivid-day .r-keyword{color:#005270}
+body.view-protan .scope-fig-vivid-day .surface-keyword{background-color:#005270}
+body.view-protan .scope-fig-vivid-day .r-line_number{color:#706e68}
+body.view-protan .scope-fig-vivid-day .surface-line_number{background-color:#706e68}
+body.view-protan .scope-fig-vivid-day .r-line_number_active{color:#444850}
+body.view-protan .scope-fig-vivid-day .surface-line_number_active{background-color:#444850}
+body.view-protan .scope-fig-vivid-day .r-namespace{color:#666d7c}
+body.view-protan .scope-fig-vivid-day .surface-namespace{background-color:#666d7c}
+body.view-protan .scope-fig-vivid-day .r-number{color:#1569b6}
+body.view-protan .scope-fig-vivid-day .surface-number{background-color:#1569b6}
+body.view-protan .scope-fig-vivid-day .r-operator{color:#3d5882}
+body.view-protan .scope-fig-vivid-day .surface-operator{background-color:#3d5882}
+body.view-protan .scope-fig-vivid-day .r-parameter{color:#655806}
+body.view-protan .scope-fig-vivid-day .surface-parameter{background-color:#655806}
+body.view-protan .scope-fig-vivid-day .r-property{color:#2a5f9e}
+body.view-protan .scope-fig-vivid-day .surface-property{background-color:#2a5f9e}
+body.view-protan .scope-fig-vivid-day .r-punctuation{color:#595752}
+body.view-protan .scope-fig-vivid-day .surface-punctuation{background-color:#595752}
+body.view-protan .scope-fig-vivid-day .r-search_match{color:#efeadb}
+body.view-protan .scope-fig-vivid-day .surface-search_match{background-color:#efeadb}
+body.view-protan .scope-fig-vivid-day .r-search_match_current{color:#f0e8cd}
+body.view-protan .scope-fig-vivid-day .surface-search_match_current{background-color:#f0e8cd}
+body.view-protan .scope-fig-vivid-day .r-selection{color:#edeae3}
+body.view-protan .scope-fig-vivid-day .surface-selection{background-color:#edeae3}
+body.view-protan .scope-fig-vivid-day .r-string{color:#736404}
+body.view-protan .scope-fig-vivid-day .surface-string{background-color:#736404}
+body.view-protan .scope-fig-vivid-day .r-success{color:#635c42}
+body.view-protan .scope-fig-vivid-day .surface-success{background-color:#635c42}
+body.view-protan .scope-fig-vivid-day .r-tag{color:#666d7c}
+body.view-protan .scope-fig-vivid-day .surface-tag{background-color:#666d7c}
+body.view-protan .scope-fig-vivid-day .r-type{color:#666d7c}
+body.view-protan .scope-fig-vivid-day .surface-type{background-color:#666d7c}
+body.view-protan .scope-fig-vivid-day .r-ui_inactive{color:#706e68}
+body.view-protan .scope-fig-vivid-day .surface-ui_inactive{background-color:#706e68}
+body.view-protan .scope-fig-vivid-day .r-warning{color:#5e5324}
+body.view-protan .scope-fig-vivid-day .surface-warning{background-color:#5e5324}
+body.view-deutan .scope-fig-vivid-day{--vbg:#f6f7fa;--vfg:#464950;}
+body.view-deutan .scope-fig-vivid-day .r-active_line{color:#edeef1}
+body.view-deutan .scope-fig-vivid-day .surface-active_line{background-color:#edeef1}
+body.view-deutan .scope-fig-vivid-day .r-bg{color:#f6f7fa}
+body.view-deutan .scope-fig-vivid-day .surface-bg{background-color:#f6f7fa}
+body.view-deutan .scope-fig-vivid-day .r-bg_elevated{color:#fafbfe}
+body.view-deutan .scope-fig-vivid-day .surface-bg_elevated{background-color:#fafbfe}
+body.view-deutan .scope-fig-vivid-day .r-bg_overlay{color:#fdfdff}
+body.view-deutan .scope-fig-vivid-day .surface-bg_overlay{background-color:#fdfdff}
+body.view-deutan .scope-fig-vivid-day .r-breakpoint{color:#61562b}
+body.view-deutan .scope-fig-vivid-day .surface-breakpoint{background-color:#61562b}
+body.view-deutan .scope-fig-vivid-day .r-builtin{color:#6d6239}
+body.view-deutan .scope-fig-vivid-day .surface-builtin{background-color:#6d6239}
+body.view-deutan .scope-fig-vivid-day .r-comment{color:#686046}
+body.view-deutan .scope-fig-vivid-day .surface-comment{background-color:#686046}
+body.view-deutan .scope-fig-vivid-day .r-constant{color:#1268b6}
+body.view-deutan .scope-fig-vivid-day .surface-constant{background-color:#1268b6}
+body.view-deutan .scope-fig-vivid-day .r-debug_current{color:#efe9d6}
+body.view-deutan .scope-fig-vivid-day .surface-debug_current{background-color:#efe9d6}
+body.view-deutan .scope-fig-vivid-day .r-decorator{color:#1268b6}
+body.view-deutan .scope-fig-vivid-day .surface-decorator{background-color:#1268b6}
+body.view-deutan .scope-fig-vivid-day .r-deprecated{color:#605d57}
+body.view-deutan .scope-fig-vivid-day .surface-deprecated{background-color:#605d57}
+body.view-deutan .scope-fig-vivid-day .r-diff_added{color:#edebe5}
+body.view-deutan .scope-fig-vivid-day .surface-diff_added{background-color:#edebe5}
+body.view-deutan .scope-fig-vivid-day .r-diff_changed{color:#eee9d9}
+body.view-deutan .scope-fig-vivid-day .surface-diff_changed{background-color:#eee9d9}
+body.view-deutan .scope-fig-vivid-day .r-diff_removed{color:#ebe8e1}
+body.view-deutan .scope-fig-vivid-day .surface-diff_removed{background-color:#ebe8e1}
+body.view-deutan .scope-fig-vivid-day .r-docstring{color:#686046}
+body.view-deutan .scope-fig-vivid-day .surface-docstring{background-color:#686046}
+body.view-deutan .scope-fig-vivid-day .r-error{color:#61562b}
+body.view-deutan .scope-fig-vivid-day .surface-error{background-color:#61562b}
+body.view-deutan .scope-fig-vivid-day .r-fg{color:#464950}
+body.view-deutan .scope-fig-vivid-day .surface-fg{background-color:#464950}
+body.view-deutan .scope-fig-vivid-day .r-fg_muted{color:#706e68}
+body.view-deutan .scope-fig-vivid-day .surface-fg_muted{background-color:#706e68}
+body.view-deutan .scope-fig-vivid-day .r-fg_secondary{color:#605d57}
+body.view-deutan .scope-fig-vivid-day .surface-fg_secondary{background-color:#605d57}
+body.view-deutan .scope-fig-vivid-day .r-focus{color:#615623}
+body.view-deutan .scope-fig-vivid-day .surface-focus{background-color:#615623}
+body.view-deutan .scope-fig-vivid-day .r-function{color:#6d6239}
+body.view-deutan .scope-fig-vivid-day .surface-function{background-color:#6d6239}
+body.view-deutan .scope-fig-vivid-day .r-info{color:#4b5569}
+body.view-deutan .scope-fig-vivid-day .surface-info{background-color:#4b5569}
+body.view-deutan .scope-fig-vivid-day .r-keyword{color:#3b72b8}
+body.view-deutan .scope-fig-vivid-day .surface-keyword{background-color:#3b72b8}
+body.view-deutan .scope-fig-vivid-day .r-line_number{color:#706e68}
+body.view-deutan .scope-fig-vivid-day .surface-line_number{background-color:#706e68}
+body.view-deutan .scope-fig-vivid-day .r-line_number_active{color:#464950}
+body.view-deutan .scope-fig-vivid-day .surface-line_number_active{background-color:#464950}
+body.view-deutan .scope-fig-vivid-day .r-namespace{color:#58647d}
+body.view-deutan .scope-fig-vivid-day .surface-namespace{background-color:#58647d}
+body.view-deutan .scope-fig-vivid-day .r-number{color:#1268b6}
+body.view-deutan .scope-fig-vivid-day .surface-number{background-color:#1268b6}
+body.view-deutan .scope-fig-vivid-day .r-operator{color:#556481}
+body.view-deutan .scope-fig-vivid-day .surface-operator{background-color:#556481}
+body.view-deutan .scope-fig-vivid-day .r-parameter{color:#776700}
+body.view-deutan .scope-fig-vivid-day .surface-parameter{background-color:#776700}
+body.view-deutan .scope-fig-vivid-day .r-property{color:#275e9e}
+body.view-deutan .scope-fig-vivid-day .surface-property{background-color:#275e9e}
+body.view-deutan .scope-fig-vivid-day .r-punctuation{color:#585752}
+body.view-deutan .scope-fig-vivid-day .surface-punctuation{background-color:#585752}
+body.view-deutan .scope-fig-vivid-day .r-search_match{color:#f0ebdb}
+body.view-deutan .scope-fig-vivid-day .surface-search_match{background-color:#f0ebdb}
+body.view-deutan .scope-fig-vivid-day .r-search_match_current{color:#f1e8cd}
+body.view-deutan .scope-fig-vivid-day .surface-search_match_current{background-color:#f1e8cd}
+body.view-deutan .scope-fig-vivid-day .r-selection{color:#e9e8e3}
+body.view-deutan .scope-fig-vivid-day .surface-selection{background-color:#e9e8e3}
+body.view-deutan .scope-fig-vivid-day .r-string{color:#776700}
+body.view-deutan .scope-fig-vivid-day .surface-string{background-color:#776700}
+body.view-deutan .scope-fig-vivid-day .r-success{color:#5b5543}
+body.view-deutan .scope-fig-vivid-day .surface-success{background-color:#5b5543}
+body.view-deutan .scope-fig-vivid-day .r-tag{color:#58647d}
+body.view-deutan .scope-fig-vivid-day .surface-tag{background-color:#58647d}
+body.view-deutan .scope-fig-vivid-day .r-type{color:#58647d}
+body.view-deutan .scope-fig-vivid-day .surface-type{background-color:#58647d}
+body.view-deutan .scope-fig-vivid-day .r-ui_inactive{color:#706e68}
+body.view-deutan .scope-fig-vivid-day .surface-ui_inactive{background-color:#706e68}
+body.view-deutan .scope-fig-vivid-day .r-warning{color:#615623}
+body.view-deutan .scope-fig-vivid-day .surface-warning{background-color:#615623}
+body.view-tritan .scope-fig-vivid-day{--vbg:#f7f7f7;--vfg:#4b4849;}
+body.view-tritan .scope-fig-vivid-day .r-active_line{color:#eeeeee}
+body.view-tritan .scope-fig-vivid-day .surface-active_line{background-color:#eeeeee}
+body.view-tritan .scope-fig-vivid-day .r-bg{color:#f7f7f7}
+body.view-tritan .scope-fig-vivid-day .surface-bg{background-color:#f7f7f7}
+body.view-tritan .scope-fig-vivid-day .r-bg_elevated{color:#fbfbfb}
+body.view-tritan .scope-fig-vivid-day .surface-bg_elevated{background-color:#fbfbfb}
+body.view-tritan .scope-fig-vivid-day .r-bg_overlay{color:#fefdfd}
+body.view-tritan .scope-fig-vivid-day .surface-bg_overlay{background-color:#fefdfd}
+body.view-tritan .scope-fig-vivid-day .r-breakpoint{color:#8b3441}
+body.view-tritan .scope-fig-vivid-day .surface-breakpoint{background-color:#8b3441}
+body.view-tritan .scope-fig-vivid-day .r-builtin{color:#326e80}
+body.view-tritan .scope-fig-vivid-day .surface-builtin{background-color:#326e80}
+body.view-tritan .scope-fig-vivid-day .r-comment{color:#446875}
+body.view-tritan .scope-fig-vivid-day .surface-comment{background-color:#446875}
+body.view-tritan .scope-fig-vivid-day .r-constant{color:#007186}
+body.view-tritan .scope-fig-vivid-day .surface-constant{background-color:#007186}
+body.view-tritan .scope-fig-vivid-day .r-debug_current{color:#f3e5e7}
+body.view-tritan .scope-fig-vivid-day .surface-debug_current{background-color:#f3e5e7}
+body.view-tritan .scope-fig-vivid-day .r-decorator{color:#007186}
+body.view-tritan .scope-fig-vivid-day .surface-decorator{background-color:#007186}
+body.view-tritan .scope-fig-vivid-day .r-deprecated{color:#5d5e5e}
+body.view-tritan .scope-fig-vivid-day .surface-deprecated{background-color:#5d5e5e}
+body.view-tritan .scope-fig-vivid-day .r-diff_added{color:#e5edf1}
+body.view-tritan .scope-fig-vivid-day .surface-diff_added{background-color:#e5edf1}
+body.view-tritan .scope-fig-vivid-day .r-diff_changed{color:#f2e6e7}
+body.view-tritan .scope-fig-vivid-day .surface-diff_changed{background-color:#f2e6e7}
+body.view-tritan .scope-fig-vivid-day .r-diff_removed{color:#f6e3e5}
+body.view-tritan .scope-fig-vivid-day .surface-diff_removed{background-color:#f6e3e5}
+body.view-tritan .scope-fig-vivid-day .r-docstring{color:#446875}
+body.view-tritan .scope-fig-vivid-day .surface-docstring{background-color:#446875}
+body.view-tritan .scope-fig-vivid-day .r-error{color:#8b3441}
+body.view-tritan .scope-fig-vivid-day .surface-error{background-color:#8b3441}
+body.view-tritan .scope-fig-vivid-day .r-fg{color:#4b4849}
+body.view-tritan .scope-fig-vivid-day .surface-fg{background-color:#4b4849}
+body.view-tritan .scope-fig-vivid-day .r-fg_muted{color:#726d6e}
+body.view-tritan .scope-fig-vivid-day .surface-fg_muted{background-color:#726d6e}
+body.view-tritan .scope-fig-vivid-day .r-fg_secondary{color:#5d5e5e}
+body.view-tritan .scope-fig-vivid-day .surface-fg_secondary{background-color:#5d5e5e}
+body.view-tritan .scope-fig-vivid-day .r-focus{color:#6e4c50}
+body.view-tritan .scope-fig-vivid-day .surface-focus{background-color:#6e4c50}
+body.view-tritan .scope-fig-vivid-day .r-function{color:#326e80}
+body.view-tritan .scope-fig-vivid-day .surface-function{background-color:#326e80}
+body.view-tritan .scope-fig-vivid-day .r-info{color:#2e5c6b}
+body.view-tritan .scope-fig-vivid-day .surface-info{background-color:#2e5c6b}
+body.view-tritan .scope-fig-vivid-day .r-keyword{color:#a24d59}
+body.view-tritan .scope-fig-vivid-day .surface-keyword{background-color:#a24d59}
+body.view-tritan .scope-fig-vivid-day .r-line_number{color:#726d6e}
+body.view-tritan .scope-fig-vivid-day .surface-line_number{background-color:#726d6e}
+body.view-tritan .scope-fig-vivid-day .r-line_number_active{color:#4b4849}
+body.view-tritan .scope-fig-vivid-day .surface-line_number_active{background-color:#4b4849}
+body.view-tritan .scope-fig-vivid-day .r-namespace{color:#157086}
+body.view-tritan .scope-fig-vivid-day .surface-namespace{background-color:#157086}
+body.view-tritan .scope-fig-vivid-day .r-number{color:#007186}
+body.view-tritan .scope-fig-vivid-day .surface-number{background-color:#007186}
+body.view-tritan .scope-fig-vivid-day .r-operator{color:#7a575b}
+body.view-tritan .scope-fig-vivid-day .surface-operator{background-color:#7a575b}
+body.view-tritan .scope-fig-vivid-day .r-parameter{color:#a34251}
+body.view-tritan .scope-fig-vivid-day .surface-parameter{background-color:#a34251}
+body.view-tritan .scope-fig-vivid-day .r-property{color:#00677b}
+body.view-tritan .scope-fig-vivid-day .surface-property{background-color:#00677b}
+body.view-tritan .scope-fig-vivid-day .r-punctuation{color:#595656}
+body.view-tritan .scope-fig-vivid-day .surface-punctuation{background-color:#595656}
+body.view-tritan .scope-fig-vivid-day .r-search_match{color:#f3e8e9}
+body.view-tritan .scope-fig-vivid-day .surface-search_match{background-color:#f3e8e9}
+body.view-tritan .scope-fig-vivid-day .r-search_match_current{color:#f7e3e5}
+body.view-tritan .scope-fig-vivid-day .surface-search_match_current{background-color:#f7e3e5}
+body.view-tritan .scope-fig-vivid-day .r-selection{color:#e1eaef}
+body.view-tritan .scope-fig-vivid-day .surface-selection{background-color:#e1eaef}
+body.view-tritan .scope-fig-vivid-day .r-string{color:#875a5f}
+body.view-tritan .scope-fig-vivid-day .surface-string{background-color:#875a5f}
+body.view-tritan .scope-fig-vivid-day .r-success{color:#425b65}
+body.view-tritan .scope-fig-vivid-day .surface-success{background-color:#425b65}
+body.view-tritan .scope-fig-vivid-day .r-tag{color:#157086}
+body.view-tritan .scope-fig-vivid-day .surface-tag{background-color:#157086}
+body.view-tritan .scope-fig-vivid-day .r-type{color:#157086}
+body.view-tritan .scope-fig-vivid-day .surface-type{background-color:#157086}
+body.view-tritan .scope-fig-vivid-day .r-ui_inactive{color:#726d6e}
+body.view-tritan .scope-fig-vivid-day .surface-ui_inactive{background-color:#726d6e}
+body.view-tritan .scope-fig-vivid-day .r-warning{color:#6e4c50}
+body.view-tritan .scope-fig-vivid-day .surface-warning{background-color:#6e4c50}
+body.view-normal .scope-fig-vivid-night{--vbg:#232025;--vfg:#c9c3ce;}
+body.view-normal .scope-fig-vivid-night .r-active_line{color:#28252a}
+body.view-normal .scope-fig-vivid-night .surface-active_line{background-color:#28252a}
+body.view-normal .scope-fig-vivid-night .r-bg{color:#232025}
+body.view-normal .scope-fig-vivid-night .surface-bg{background-color:#232025}
+body.view-normal .scope-fig-vivid-night .r-bg_elevated{color:#29262b}
+body.view-normal .scope-fig-vivid-night .surface-bg_elevated{background-color:#29262b}
+body.view-normal .scope-fig-vivid-night .r-bg_overlay{color:#2d2a2f}
+body.view-normal .scope-fig-vivid-night .surface-bg_overlay{background-color:#2d2a2f}
+body.view-normal .scope-fig-vivid-night .r-breakpoint{color:#efa095}
+body.view-normal .scope-fig-vivid-night .surface-breakpoint{background-color:#efa095}
+body.view-normal .scope-fig-vivid-night .r-builtin{color:#6de18b}
+body.view-normal .scope-fig-vivid-night .surface-builtin{background-color:#6de18b}
+body.view-normal .scope-fig-vivid-night .r-comment{color:#85ad8c}
+body.view-normal .scope-fig-vivid-night .surface-comment{background-color:#85ad8c}
+body.view-normal .scope-fig-vivid-night .r-constant{color:#89c3fe}
+body.view-normal .scope-fig-vivid-night .surface-constant{background-color:#89c3fe}
+body.view-normal .scope-fig-vivid-night .r-debug_current{color:#362f22}
+body.view-normal .scope-fig-vivid-night .surface-debug_current{background-color:#362f22}
+body.view-normal .scope-fig-vivid-night .r-decorator{color:#89c3fe}
+body.view-normal .scope-fig-vivid-night .surface-decorator{background-color:#89c3fe}
+body.view-normal .scope-fig-vivid-night .r-deprecated{color:#9b9f96}
+body.view-normal .scope-fig-vivid-night .surface-deprecated{background-color:#9b9f96}
+body.view-normal .scope-fig-vivid-night .r-diff_added{color:#1f2821}
+body.view-normal .scope-fig-vivid-night .surface-diff_added{background-color:#1f2821}
+body.view-normal .scope-fig-vivid-night .r-diff_changed{color:#2e281c}
+body.view-normal .scope-fig-vivid-night .surface-diff_changed{background-color:#2e281c}
+body.view-normal .scope-fig-vivid-night .r-diff_removed{color:#362927}
+body.view-normal .scope-fig-vivid-night .surface-diff_removed{background-color:#362927}
+body.view-normal .scope-fig-vivid-night .r-docstring{color:#85ad8c}
+body.view-normal .scope-fig-vivid-night .surface-docstring{background-color:#85ad8c}
+body.view-normal .scope-fig-vivid-night .r-error{color:#efa095}
+body.view-normal .scope-fig-vivid-night .surface-error{background-color:#efa095}
+body.view-normal .scope-fig-vivid-night .r-fg{color:#c9c3ce}
+body.view-normal .scope-fig-vivid-night .surface-fg{background-color:#c9c3ce}
+body.view-normal .scope-fig-vivid-night .r-fg_muted{color:#7f7f86}
+body.view-normal .scope-fig-vivid-night .surface-fg_muted{background-color:#7f7f86}
+body.view-normal .scope-fig-vivid-night .r-fg_secondary{color:#9b9f96}
+body.view-normal .scope-fig-vivid-night .surface-fg_secondary{background-color:#9b9f96}
+body.view-normal .scope-fig-vivid-night .r-focus{color:#d2b27c}
+body.view-normal .scope-fig-vivid-night .surface-focus{background-color:#d2b27c}
+body.view-normal .scope-fig-vivid-night .r-function{color:#6de18b}
+body.view-normal .scope-fig-vivid-night .surface-function{background-color:#6de18b}
+body.view-normal .scope-fig-vivid-night .r-info{color:#8fc1cd}
+body.view-normal .scope-fig-vivid-night .surface-info{background-color:#8fc1cd}
+body.view-normal .scope-fig-vivid-night .r-keyword{color:#f38ef9}
+body.view-normal .scope-fig-vivid-night .surface-keyword{background-color:#f38ef9}
+body.view-normal .scope-fig-vivid-night .r-line_number{color:#7f7f86}
+body.view-normal .scope-fig-vivid-night .surface-line_number{background-color:#7f7f86}
+body.view-normal .scope-fig-vivid-night .r-line_number_active{color:#c9c3ce}
+body.view-normal .scope-fig-vivid-night .surface-line_number_active{background-color:#c9c3ce}
+body.view-normal .scope-fig-vivid-night .r-namespace{color:#0ed2e3}
+body.view-normal .scope-fig-vivid-night .surface-namespace{background-color:#0ed2e3}
+body.view-normal .scope-fig-vivid-night .r-number{color:#89c3fe}
+body.view-normal .scope-fig-vivid-night .surface-number{background-color:#89c3fe}
+body.view-normal .scope-fig-vivid-night .r-operator{color:#d59ed8}
+body.view-normal .scope-fig-vivid-night .surface-operator{background-color:#d59ed8}
+body.view-normal .scope-fig-vivid-night .r-parameter{color:#efa880}
+body.view-normal .scope-fig-vivid-night .surface-parameter{background-color:#efa880}
+body.view-normal .scope-fig-vivid-night .r-property{color:#85bcf5}
+body.view-normal .scope-fig-vivid-night .surface-property{background-color:#85bcf5}
+body.view-normal .scope-fig-vivid-night .r-punctuation{color:#a6a59f}
+body.view-normal .scope-fig-vivid-night .surface-punctuation{background-color:#a6a59f}
+body.view-normal .scope-fig-vivid-night .r-search_match{color:#2d271c}
+body.view-normal .scope-fig-vivid-night .surface-search_match{background-color:#2d271c}
+body.view-normal .scope-fig-vivid-night .r-search_match_current{color:#3d331d}
+body.view-normal .scope-fig-vivid-night .surface-search_match_current{background-color:#3d331d}
+body.view-normal .scope-fig-vivid-night .r-selection{color:#2a352d}
+body.view-normal .scope-fig-vivid-night .surface-selection{background-color:#2a352d}
+body.view-normal .scope-fig-vivid-night .r-string{color:#e9b10d}
+body.view-normal .scope-fig-vivid-night .surface-string{background-color:#e9b10d}
+body.view-normal .scope-fig-vivid-night .r-success{color:#9ac4a2}
+body.view-normal .scope-fig-vivid-night .surface-success{background-color:#9ac4a2}
+body.view-normal .scope-fig-vivid-night .r-tag{color:#0ed2e3}
+body.view-normal .scope-fig-vivid-night .surface-tag{background-color:#0ed2e3}
+body.view-normal .scope-fig-vivid-night .r-type{color:#0ed2e3}
+body.view-normal .scope-fig-vivid-night .surface-type{background-color:#0ed2e3}
+body.view-normal .scope-fig-vivid-night .r-ui_inactive{color:#7c7c83}
+body.view-normal .scope-fig-vivid-night .surface-ui_inactive{background-color:#7c7c83}
+body.view-normal .scope-fig-vivid-night .r-warning{color:#d6b174}
+body.view-normal .scope-fig-vivid-night .surface-warning{background-color:#d6b174}
+body.view-protan .scope-fig-vivid-night{--vbg:#1f2125;--vfg:#c0c4ce;}
+body.view-protan .scope-fig-vivid-night .r-active_line{color:#24262a}
+body.view-protan .scope-fig-vivid-night .surface-active_line{background-color:#24262a}
+body.view-protan .scope-fig-vivid-night .r-bg{color:#1f2125}
+body.view-protan .scope-fig-vivid-night .surface-bg{background-color:#1f2125}
+body.view-protan .scope-fig-vivid-night .r-bg_elevated{color:#25272b}
+body.view-protan .scope-fig-vivid-night .surface-bg_elevated{background-color:#25272b}
+body.view-protan .scope-fig-vivid-night .r-bg_overlay{color:#292b2f}
+body.view-protan .scope-fig-vivid-night .surface-bg_overlay{background-color:#292b2f}
+body.view-protan .scope-fig-vivid-night .r-breakpoint{color:#b1ab95}
+body.view-protan .scope-fig-vivid-night .surface-breakpoint{background-color:#b1ab95}
+body.view-protan .scope-fig-vivid-night .r-builtin{color:#e9d58a}
+body.view-protan .scope-fig-vivid-night .surface-builtin{background-color:#e9d58a}
+body.view-protan .scope-fig-vivid-night .r-comment{color:#b1a88c}
+body.view-protan .scope-fig-vivid-night .surface-comment{background-color:#b1a88c}
+body.view-protan .scope-fig-vivid-night .r-constant{color:#9fc1fe}
+body.view-protan .scope-fig-vivid-night .surface-constant{background-color:#9fc1fe}
+body.view-protan .scope-fig-vivid-night .r-debug_current{color:#332f22}
+body.view-protan .scope-fig-vivid-night .surface-debug_current{background-color:#332f22}
+body.view-protan .scope-fig-vivid-night .r-decorator{color:#9fc1fe}
+body.view-protan .scope-fig-vivid-night .surface-decorator{background-color:#9fc1fe}
+body.view-protan .scope-fig-vivid-night .r-deprecated{color:#a19e96}
+body.view-protan .scope-fig-vivid-night .surface-deprecated{background-color:#a19e96}
+body.view-protan .scope-fig-vivid-night .r-diff_added{color:#292721}
+body.view-protan .scope-fig-vivid-night .surface-diff_added{background-color:#292721}
+body.view-protan .scope-fig-vivid-night .r-diff_changed{color:#2c281c}
+body.view-protan .scope-fig-vivid-night .surface-diff_changed{background-color:#2c281c}
+body.view-protan .scope-fig-vivid-night .r-diff_removed{color:#2c2b27}
+body.view-protan .scope-fig-vivid-night .surface-diff_removed{background-color:#2c2b27}
+body.view-protan .scope-fig-vivid-night .r-docstring{color:#b1a88c}
+body.view-protan .scope-fig-vivid-night .surface-docstring{background-color:#b1a88c}
+body.view-protan .scope-fig-vivid-night .r-error{color:#b1ab95}
+body.view-protan .scope-fig-vivid-night .surface-error{background-color:#b1ab95}
+body.view-protan .scope-fig-vivid-night .r-fg{color:#c0c4ce}
+body.view-protan .scope-fig-vivid-night .surface-fg{background-color:#c0c4ce}
+body.view-protan .scope-fig-vivid-night .r-fg_muted{color:#7c7f86}
+body.view-protan .scope-fig-vivid-night .surface-fg_muted{background-color:#7c7f86}
+body.view-protan .scope-fig-vivid-night .r-fg_secondary{color:#a19e96}
+body.view-protan .scope-fig-vivid-night .surface-fg_secondary{background-color:#a19e96}
+body.view-protan .scope-fig-vivid-night .r-focus{color:#c4b47c}
+body.view-protan .scope-fig-vivid-night .surface-focus{background-color:#c4b47c}
+body.view-protan .scope-fig-vivid-night .r-function{color:#e9d58a}
+body.view-protan .scope-fig-vivid-night .surface-function{background-color:#e9d58a}
+body.view-protan .scope-fig-vivid-night .r-info{color:#b6bdcd}
+body.view-protan .scope-fig-vivid-night .surface-info{background-color:#b6bdcd}
+body.view-protan .scope-fig-vivid-night .r-keyword{color:#65a3f9}
+body.view-protan .scope-fig-vivid-night .surface-keyword{background-color:#65a3f9}
+body.view-protan .scope-fig-vivid-night .r-line_number{color:#7c7f86}
+body.view-protan .scope-fig-vivid-night .surface-line_number{background-color:#7c7f86}
+body.view-protan .scope-fig-vivid-night .r-line_number_active{color:#c0c4ce}
+body.view-protan .scope-fig-vivid-night .surface-line_number_active{background-color:#c0c4ce}
+body.view-protan .scope-fig-vivid-night .r-namespace{color:#bdc9e3}
+body.view-protan .scope-fig-vivid-night .surface-namespace{background-color:#bdc9e3}
+body.view-protan .scope-fig-vivid-night .r-number{color:#9fc1fe}
+body.view-protan .scope-fig-vivid-night .surface-number{background-color:#9fc1fe}
+body.view-protan .scope-fig-vivid-night .r-operator{color:#8ea8d8}
+body.view-protan .scope-fig-vivid-night .surface-operator{background-color:#8ea8d8}
+body.view-protan .scope-fig-vivid-night .r-parameter{color:#beb080}
+body.view-protan .scope-fig-vivid-night .surface-parameter{background-color:#beb080}
+body.view-protan .scope-fig-vivid-night .r-property{color:#9abaf5}
+body.view-protan .scope-fig-vivid-night .surface-property{background-color:#9abaf5}
+body.view-protan .scope-fig-vivid-night .r-punctuation{color:#a7a59f}
+body.view-protan .scope-fig-vivid-night .surface-punctuation{background-color:#a7a59f}
+body.view-protan .scope-fig-vivid-night .r-search_match{color:#2b271c}
+body.view-protan .scope-fig-vivid-night .surface-search_match{background-color:#2b271c}
+body.view-protan .scope-fig-vivid-night .r-search_match_current{color:#39341d}
+body.view-protan .scope-fig-vivid-night .surface-search_match_current{background-color:#39341d}
+body.view-protan .scope-fig-vivid-night .r-selection{color:#36342d}
+body.view-protan .scope-fig-vivid-night .surface-selection{background-color:#36342d}
+body.view-protan .scope-fig-vivid-night .r-string{color:#d0b50f}
+body.view-protan .scope-fig-vivid-night .surface-string{background-color:#d0b50f}
+body.view-protan .scope-fig-vivid-night .r-success{color:#c8bfa2}
+body.view-protan .scope-fig-vivid-night .surface-success{background-color:#c8bfa2}
+body.view-protan .scope-fig-vivid-night .r-tag{color:#bdc9e3}
+body.view-protan .scope-fig-vivid-night .surface-tag{background-color:#bdc9e3}
+body.view-protan .scope-fig-vivid-night .r-type{color:#bdc9e3}
+body.view-protan .scope-fig-vivid-night .surface-type{background-color:#bdc9e3}
+body.view-protan .scope-fig-vivid-night .r-ui_inactive{color:#797c83}
+body.view-protan .scope-fig-vivid-night .surface-ui_inactive{background-color:#797c83}
+body.view-protan .scope-fig-vivid-night .r-warning{color:#c4b474}
+body.view-protan .scope-fig-vivid-night .surface-warning{background-color:#c4b474}
+body.view-deutan .scope-fig-vivid-night{--vbg:#202125;--vfg:#c2c6ce;}
+body.view-deutan .scope-fig-vivid-night .r-active_line{color:#25262a}
+body.view-deutan .scope-fig-vivid-night .surface-active_line{background-color:#25262a}
+body.view-deutan .scope-fig-vivid-night .r-bg{color:#202125}
+body.view-deutan .scope-fig-vivid-night .surface-bg{background-color:#202125}
+body.view-deutan .scope-fig-vivid-night .r-bg_elevated{color:#26272b}
+body.view-deutan .scope-fig-vivid-night .surface-bg_elevated{background-color:#26272b}
+body.view-deutan .scope-fig-vivid-night .r-bg_overlay{color:#2a2b2f}
+body.view-deutan .scope-fig-vivid-night .surface-bg_overlay{background-color:#2a2b2f}
+body.view-deutan .scope-fig-vivid-night .r-breakpoint{color:#c4b893}
+body.view-deutan .scope-fig-vivid-night .surface-breakpoint{background-color:#c4b893}
+body.view-deutan .scope-fig-vivid-night .r-builtin{color:#d2c38f}
+body.view-deutan .scope-fig-vivid-night .surface-builtin{background-color:#d2c38f}
+body.view-deutan .scope-fig-vivid-night .r-comment{color:#a7a18d}
+body.view-deutan .scope-fig-vivid-night .surface-comment{background-color:#a7a18d}
+body.view-deutan .scope-fig-vivid-night .r-constant{color:#9abefe}
+body.view-deutan .scope-fig-vivid-night .surface-constant{background-color:#9abefe}
+body.view-deutan .scope-fig-vivid-night .r-debug_current{color:#343022}
+body.view-deutan .scope-fig-vivid-night .surface-debug_current{background-color:#343022}
+body.view-deutan .scope-fig-vivid-night .r-decorator{color:#9abefe}
+body.view-deutan .scope-fig-vivid-night .surface-decorator{background-color:#9abefe}
+body.view-deutan .scope-fig-vivid-night .r-deprecated{color:#a09d96}
+body.view-deutan .scope-fig-vivid-night .surface-deprecated{background-color:#a09d96}
+body.view-deutan .scope-fig-vivid-night .r-diff_added{color:#272521}
+body.view-deutan .scope-fig-vivid-night .surface-diff_added{background-color:#272521}
+body.view-deutan .scope-fig-vivid-night .r-diff_changed{color:#2c291c}
+body.view-deutan .scope-fig-vivid-night .surface-diff_changed{background-color:#2c291c}
+body.view-deutan .scope-fig-vivid-night .r-diff_removed{color:#2f2d27}
+body.view-deutan .scope-fig-vivid-night .surface-diff_removed{background-color:#2f2d27}
+body.view-deutan .scope-fig-vivid-night .r-docstring{color:#a7a18d}
+body.view-deutan .scope-fig-vivid-night .surface-docstring{background-color:#a7a18d}
+body.view-deutan .scope-fig-vivid-night .r-error{color:#c4b893}
+body.view-deutan .scope-fig-vivid-night .surface-error{background-color:#c4b893}
+body.view-deutan .scope-fig-vivid-night .r-fg{color:#c2c6ce}
+body.view-deutan .scope-fig-vivid-night .surface-fg{background-color:#c2c6ce}
+body.view-deutan .scope-fig-vivid-night .r-fg_muted{color:#7d8086}
+body.view-deutan .scope-fig-vivid-night .surface-fg_muted{background-color:#7d8086}
+body.view-deutan .scope-fig-vivid-night .r-fg_secondary{color:#a09d96}
+body.view-deutan .scope-fig-vivid-night .surface-fg_secondary{background-color:#a09d96}
+body.view-deutan .scope-fig-vivid-night .r-focus{color:#c7b77b}
+body.view-deutan .scope-fig-vivid-night .surface-focus{background-color:#c7b77b}
+body.view-deutan .scope-fig-vivid-night .r-function{color:#d2c38f}
+body.view-deutan .scope-fig-vivid-night .surface-function{background-color:#d2c38f}
+body.view-deutan .scope-fig-vivid-night .r-info{color:#adb7ce}
+body.view-deutan .scope-fig-vivid-night .surface-info{background-color:#adb7ce}
+body.view-deutan .scope-fig-vivid-night .r-keyword{color:#9cbcf7}
+body.view-deutan .scope-fig-vivid-night .surface-keyword{background-color:#9cbcf7}
+body.view-deutan .scope-fig-vivid-night .r-line_number{color:#7d8086}
+body.view-deutan .scope-fig-vivid-night .surface-line_number{background-color:#7d8086}
+body.view-deutan .scope-fig-vivid-night .r-line_number_active{color:#c2c6ce}
+body.view-deutan .scope-fig-vivid-night .surface-line_number_active{background-color:#c2c6ce}
+body.view-deutan .scope-fig-vivid-night .r-namespace{color:#a5bae5}
+body.view-deutan .scope-fig-vivid-night .surface-namespace{background-color:#a5bae5}
+body.view-deutan .scope-fig-vivid-night .r-number{color:#9abefe}
+body.view-deutan .scope-fig-vivid-night .surface-number{background-color:#9abefe}
+body.view-deutan .scope-fig-vivid-night .r-operator{color:#a5b5d7}
+body.view-deutan .scope-fig-vivid-night .surface-operator{background-color:#a5b5d7}
+body.view-deutan .scope-fig-vivid-night .r-parameter{color:#ccbb7e}
+body.view-deutan .scope-fig-vivid-night .surface-parameter{background-color:#ccbb7e}
+body.view-deutan .scope-fig-vivid-night .r-property{color:#95b8f5}
+body.view-deutan .scope-fig-vivid-night .surface-property{background-color:#95b8f5}
+body.view-deutan .scope-fig-vivid-night .r-punctuation{color:#a7a59f}
+body.view-deutan .scope-fig-vivid-night .surface-punctuation{background-color:#a7a59f}
+body.view-deutan .scope-fig-vivid-night .r-search_match{color:#2b281c}
+body.view-deutan .scope-fig-vivid-night .surface-search_match{background-color:#2b281c}
+body.view-deutan .scope-fig-vivid-night .r-search_match_current{color:#3a341d}
+body.view-deutan .scope-fig-vivid-night .surface-search_match_current{background-color:#3a341d}
+body.view-deutan .scope-fig-vivid-night .r-selection{color:#33322d}
+body.view-deutan .scope-fig-vivid-night .surface-selection{background-color:#33322d}
+body.view-deutan .scope-fig-vivid-night .r-string{color:#d6bb00}
+body.view-deutan .scope-fig-vivid-night .surface-string{background-color:#d6bb00}
+body.view-deutan .scope-fig-vivid-night .r-success{color:#beb7a3}
+body.view-deutan .scope-fig-vivid-night .surface-success{background-color:#beb7a3}
+body.view-deutan .scope-fig-vivid-night .r-tag{color:#a5bae5}
+body.view-deutan .scope-fig-vivid-night .surface-tag{background-color:#a5bae5}
+body.view-deutan .scope-fig-vivid-night .r-type{color:#a5bae5}
+body.view-deutan .scope-fig-vivid-night .surface-type{background-color:#a5bae5}
+body.view-deutan .scope-fig-vivid-night .r-ui_inactive{color:#7a7d83}
+body.view-deutan .scope-fig-vivid-night .surface-ui_inactive{background-color:#7a7d83}
+body.view-deutan .scope-fig-vivid-night .r-warning{color:#c9b773}
+body.view-deutan .scope-fig-vivid-night .surface-warning{background-color:#c9b773}
+body.view-tritan .scope-fig-vivid-night{--vbg:#222121;--vfg:#c7c5c5;}
+body.view-tritan .scope-fig-vivid-night .r-active_line{color:#272626}
+body.view-tritan .scope-fig-vivid-night .surface-active_line{background-color:#272626}
+body.view-tritan .scope-fig-vivid-night .r-bg{color:#222121}
+body.view-tritan .scope-fig-vivid-night .surface-bg{background-color:#222121}
+body.view-tritan .scope-fig-vivid-night .r-bg_elevated{color:#282727}
+body.view-tritan .scope-fig-vivid-night .surface-bg_elevated{background-color:#282727}
+body.view-tritan .scope-fig-vivid-night .r-bg_overlay{color:#2c2b2b}
+body.view-tritan .scope-fig-vivid-night .surface-bg_overlay{background-color:#2c2b2b}
+body.view-tritan .scope-fig-vivid-night .r-breakpoint{color:#f19da7}
+body.view-tritan .scope-fig-vivid-night .surface-breakpoint{background-color:#f19da7}
+body.view-tritan .scope-fig-vivid-night .r-builtin{color:#8ad4ee}
+body.view-tritan .scope-fig-vivid-night .surface-builtin{background-color:#8ad4ee}
+body.view-tritan .scope-fig-vivid-night .r-comment{color:#8da7b3}
+body.view-tritan .scope-fig-vivid-night .surface-comment{background-color:#8da7b3}
+body.view-tritan .scope-fig-vivid-night .r-constant{color:#7fc9e3}
+body.view-tritan .scope-fig-vivid-night .surface-constant{background-color:#7fc9e3}
+body.view-tritan .scope-fig-vivid-night .r-debug_current{color:#372d2e}
+body.view-tritan .scope-fig-vivid-night .surface-debug_current{background-color:#372d2e}
+body.view-tritan .scope-fig-vivid-night .r-decorator{color:#7fc9e3}
+body.view-tritan .scope-fig-vivid-night .surface-decorator{background-color:#7fc9e3}
+body.view-tritan .scope-fig-vivid-night .r-deprecated{color:#9c9e9e}
+body.view-tritan .scope-fig-vivid-night .surface-deprecated{background-color:#9c9e9e}
+body.view-tritan .scope-fig-vivid-night .r-diff_added{color:#212729}
+body.view-tritan .scope-fig-vivid-night .surface-diff_added{background-color:#212729}
+body.view-tritan .scope-fig-vivid-night .r-diff_changed{color:#2f2627}
+body.view-tritan .scope-fig-vivid-night .surface-diff_changed{background-color:#2f2627}
+body.view-tritan .scope-fig-vivid-night .r-diff_removed{color:#36292a}
+body.view-tritan .scope-fig-vivid-night .surface-diff_removed{background-color:#36292a}
+body.view-tritan .scope-fig-vivid-night .r-docstring{color:#8da7b3}
+body.view-tritan .scope-fig-vivid-night .surface-docstring{background-color:#8da7b3}
+body.view-tritan .scope-fig-vivid-night .r-error{color:#f19da7}
+body.view-tritan .scope-fig-vivid-night .surface-error{background-color:#f19da7}
+body.view-tritan .scope-fig-vivid-night .r-fg{color:#c7c5c5}
+body.view-tritan .scope-fig-vivid-night .surface-fg{background-color:#c7c5c5}
+body.view-tritan .scope-fig-vivid-night .r-fg_muted{color:#7e8081}
+body.view-tritan .scope-fig-vivid-night .surface-fg_muted{background-color:#7e8081}
+body.view-tritan .scope-fig-vivid-night .r-fg_secondary{color:#9c9e9e}
+body.view-tritan .scope-fig-vivid-night .surface-fg_secondary{background-color:#9c9e9e}
+body.view-tritan .scope-fig-vivid-night .r-focus{color:#d8abaf}
+body.view-tritan .scope-fig-vivid-night .surface-focus{background-color:#d8abaf}
+body.view-tritan .scope-fig-vivid-night .r-function{color:#8ad4ee}
+body.view-tritan .scope-fig-vivid-night .surface-function{background-color:#8ad4ee}
+body.view-tritan .scope-fig-vivid-night .r-info{color:#91c0d3}
+body.view-tritan .scope-fig-vivid-night .surface-info{background-color:#91c0d3}
+body.view-tritan .scope-fig-vivid-night .r-keyword{color:#e8a2a9}
+body.view-tritan .scope-fig-vivid-night .surface-keyword{background-color:#e8a2a9}
+body.view-tritan .scope-fig-vivid-night .r-line_number{color:#7e8081}
+body.view-tritan .scope-fig-vivid-night .surface-line_number{background-color:#7e8081}
+body.view-tritan .scope-fig-vivid-night .r-line_number_active{color:#c7c5c5}
+body.view-tritan .scope-fig-vivid-night .surface-line_number_active{background-color:#c7c5c5}
+body.view-tritan .scope-fig-vivid-night .r-namespace{color:#30cef5}
+body.view-tritan .scope-fig-vivid-night .surface-namespace{background-color:#30cef5}
+body.view-tritan .scope-fig-vivid-night .r-number{color:#7fc9e3}
+body.view-tritan .scope-fig-vivid-night .surface-number{background-color:#7fc9e3}
+body.view-tritan .scope-fig-vivid-night .r-operator{color:#cea7ab}
+body.view-tritan .scope-fig-vivid-night .surface-operator{background-color:#cea7ab}
+body.view-tritan .scope-fig-vivid-night .r-parameter{color:#f3a2ab}
+body.view-tritan .scope-fig-vivid-night .surface-parameter{background-color:#f3a2ab}
+body.view-tritan .scope-fig-vivid-night .r-property{color:#7bc2db}
+body.view-tritan .scope-fig-vivid-night .surface-property{background-color:#7bc2db}
+body.view-tritan .scope-fig-vivid-night .r-punctuation{color:#a7a4a4}
+body.view-tritan .scope-fig-vivid-night .surface-punctuation{background-color:#a7a4a4}
+body.view-tritan .scope-fig-vivid-night .r-search_match{color:#2e2626}
+body.view-tritan .scope-fig-vivid-night .surface-search_match{background-color:#2e2626}
+body.view-tritan .scope-fig-vivid-night .r-search_match_current{color:#3f3032}
+body.view-tritan .scope-fig-vivid-night .surface-search_match_current{background-color:#3f3032}
+body.view-tritan .scope-fig-vivid-night .r-selection{color:#2c3337}
+body.view-tritan .scope-fig-vivid-night .surface-selection{background-color:#2c3337}
+body.view-tritan .scope-fig-vivid-night .r-string{color:#f2a4ad}
+body.view-tritan .scope-fig-vivid-night .surface-string{background-color:#f2a4ad}
+body.view-tritan .scope-fig-vivid-night .r-success{color:#a2beca}
+body.view-tritan .scope-fig-vivid-night .surface-success{background-color:#a2beca}
+body.view-tritan .scope-fig-vivid-night .r-tag{color:#30cef5}
+body.view-tritan .scope-fig-vivid-night .surface-tag{background-color:#30cef5}
+body.view-tritan .scope-fig-vivid-night .r-type{color:#30cef5}
+body.view-tritan .scope-fig-vivid-night .surface-type{background-color:#30cef5}
+body.view-tritan .scope-fig-vivid-night .r-ui_inactive{color:#7b7d7e}
+body.view-tritan .scope-fig-vivid-night .surface-ui_inactive{background-color:#7b7d7e}
+body.view-tritan .scope-fig-vivid-night .r-warning{color:#dca9ae}
+body.view-tritan .scope-fig-vivid-night .surface-warning{background-color:#dca9ae}
+body.view-normal .scope-rainstone-vivid-day{--vbg:#f4f7fa;--vfg:#454a4e;}
+body.view-normal .scope-rainstone-vivid-day .r-active_line{color:#ebeef1}
+body.view-normal .scope-rainstone-vivid-day .surface-active_line{background-color:#ebeef1}
+body.view-normal .scope-rainstone-vivid-day .r-bg{color:#f4f7fa}
+body.view-normal .scope-rainstone-vivid-day .surface-bg{background-color:#f4f7fa}
+body.view-normal .scope-rainstone-vivid-day .r-bg_elevated{color:#f8fbfe}
+body.view-normal .scope-rainstone-vivid-day .surface-bg_elevated{background-color:#f8fbfe}
+body.view-normal .scope-rainstone-vivid-day .r-bg_overlay{color:#fcfdff}
+body.view-normal .scope-rainstone-vivid-day .surface-bg_overlay{background-color:#fcfdff}
+body.view-normal .scope-rainstone-vivid-day .r-breakpoint{color:#8a372f}
+body.view-normal .scope-rainstone-vivid-day .surface-breakpoint{background-color:#8a372f}
+body.view-normal .scope-rainstone-vivid-day .r-builtin{color:#a74d03}
+body.view-normal .scope-rainstone-vivid-day .surface-builtin{background-color:#a74d03}
+body.view-normal .scope-rainstone-vivid-day .r-comment{color:#376f44}
+body.view-normal .scope-rainstone-vivid-day .surface-comment{background-color:#376f44}
+body.view-normal .scope-rainstone-vivid-day .r-constant{color:#a629c0}
+body.view-normal .scope-rainstone-vivid-day .surface-constant{background-color:#a629c0}
+body.view-normal .scope-rainstone-vivid-day .r-debug_current{color:#f0e8d6}
+body.view-normal .scope-rainstone-vivid-day .surface-debug_current{background-color:#f0e8d6}
+body.view-normal .scope-rainstone-vivid-day .r-decorator{color:#a629c0}
+body.view-normal .scope-rainstone-vivid-day .surface-decorator{background-color:#a629c0}
+body.view-normal .scope-rainstone-vivid-day .r-deprecated{color:#5c5f57}
+body.view-normal .scope-rainstone-vivid-day .surface-deprecated{background-color:#5c5f57}
+body.view-normal .scope-rainstone-vivid-day .r-diff_added{color:#e3efe5}
+body.view-normal .scope-rainstone-vivid-day .surface-diff_added{background-color:#e3efe5}
+body.view-normal .scope-rainstone-vivid-day .r-diff_changed{color:#f0e8d9}
+body.view-normal .scope-rainstone-vivid-day .surface-diff_changed{background-color:#f0e8d9}
+body.view-normal .scope-rainstone-vivid-day .r-diff_removed{color:#f5e4e1}
+body.view-normal .scope-rainstone-vivid-day .surface-diff_removed{background-color:#f5e4e1}
+body.view-normal .scope-rainstone-vivid-day .r-docstring{color:#376f44}
+body.view-normal .scope-rainstone-vivid-day .surface-docstring{background-color:#376f44}
+body.view-normal .scope-rainstone-vivid-day .r-error{color:#8a372f}
+body.view-normal .scope-rainstone-vivid-day .surface-error{background-color:#8a372f}
+body.view-normal .scope-rainstone-vivid-day .r-fg{color:#454a4e}
+body.view-normal .scope-rainstone-vivid-day .surface-fg{background-color:#454a4e}
+body.view-normal .scope-rainstone-vivid-day .r-fg_muted{color:#716e68}
+body.view-normal .scope-rainstone-vivid-day .surface-fg_muted{background-color:#716e68}
+body.view-normal .scope-rainstone-vivid-day .r-fg_secondary{color:#5c5f57}
+body.view-normal .scope-rainstone-vivid-day .surface-fg_secondary{background-color:#5c5f57}
+body.view-normal .scope-rainstone-vivid-day .r-focus{color:#6a5124}
+body.view-normal .scope-rainstone-vivid-day .surface-focus{background-color:#6a5124}
+body.view-normal .scope-rainstone-vivid-day .r-function{color:#a74d03}
+body.view-normal .scope-rainstone-vivid-day .surface-function{background-color:#a74d03}
+body.view-normal .scope-rainstone-vivid-day .r-info{color:#2d5d68}
+body.view-normal .scope-rainstone-vivid-day .surface-info{background-color:#2d5d68}
+body.view-normal .scope-rainstone-vivid-day .r-keyword{color:#2456f3}
+body.view-normal .scope-rainstone-vivid-day .surface-keyword{background-color:#2456f3}
+body.view-normal .scope-rainstone-vivid-day .r-line_number{color:#716e68}
+body.view-normal .scope-rainstone-vivid-day .surface-line_number{background-color:#716e68}
+body.view-normal .scope-rainstone-vivid-day .r-line_number_active{color:#454a4e}
+body.view-normal .scope-rainstone-vivid-day .surface-line_number_active{background-color:#454a4e}
+body.view-normal .scope-rainstone-vivid-day .r-namespace{color:#5d6e03}
+body.view-normal .scope-rainstone-vivid-day .surface-namespace{background-color:#5d6e03}
+body.view-normal .scope-rainstone-vivid-day .r-number{color:#a629c0}
+body.view-normal .scope-rainstone-vivid-day .surface-number{background-color:#a629c0}
+body.view-normal .scope-rainstone-vivid-day .r-operator{color:#47619c}
+body.view-normal .scope-rainstone-vivid-day .surface-operator{background-color:#47619c}
+body.view-normal .scope-rainstone-vivid-day .r-parameter{color:#a04a03}
+body.view-normal .scope-rainstone-vivid-day .surface-parameter{background-color:#a04a03}
+body.view-normal .scope-rainstone-vivid-day .r-property{color:#1a609e}
+body.view-normal .scope-rainstone-vivid-day .surface-property{background-color:#1a609e}
+body.view-normal .scope-rainstone-vivid-day .r-punctuation{color:#585752}
+body.view-normal .scope-rainstone-vivid-day .surface-punctuation{background-color:#585752}
+body.view-normal .scope-rainstone-vivid-day .r-search_match{color:#f1eadb}
+body.view-normal .scope-rainstone-vivid-day .surface-search_match{background-color:#f1eadb}
+body.view-normal .scope-rainstone-vivid-day .r-search_match_current{color:#f4e7cd}
+body.view-normal .scope-rainstone-vivid-day .surface-search_match_current{background-color:#f4e7cd}
+body.view-normal .scope-rainstone-vivid-day .r-selection{color:#dfece3}
+body.view-normal .scope-rainstone-vivid-day .surface-selection{background-color:#dfece3}
+body.view-normal .scope-rainstone-vivid-day .r-string{color:#04736f}
+body.view-normal .scope-rainstone-vivid-day .surface-string{background-color:#04736f}
+body.view-normal .scope-rainstone-vivid-day .r-success{color:#3a6042}
+body.view-normal .scope-rainstone-vivid-day .surface-success{background-color:#3a6042}
+body.view-normal .scope-rainstone-vivid-day .r-tag{color:#5d6e03}
+body.view-normal .scope-rainstone-vivid-day .surface-tag{background-color:#5d6e03}
+body.view-normal .scope-rainstone-vivid-day .r-type{color:#5d6e03}
+body.view-normal .scope-rainstone-vivid-day .surface-type{background-color:#5d6e03}
+body.view-normal .scope-rainstone-vivid-day .r-ui_inactive{color:#716e68}
+body.view-normal .scope-rainstone-vivid-day .surface-ui_inactive{background-color:#716e68}
+body.view-normal .scope-rainstone-vivid-day .r-warning{color:#6a5124}
+body.view-normal .scope-rainstone-vivid-day .surface-warning{background-color:#6a5124}
+body.view-protan .scope-rainstone-vivid-day{--vbg:#f6f7fa;--vfg:#484a4e;}
+body.view-protan .scope-rainstone-vivid-day .r-active_line{color:#edeef1}
+body.view-protan .scope-rainstone-vivid-day .surface-active_line{background-color:#edeef1}
+body.view-protan .scope-rainstone-vivid-day .r-bg{color:#f6f7fa}
+body.view-protan .scope-rainstone-vivid-day .surface-bg{background-color:#f6f7fa}
+body.view-protan .scope-rainstone-vivid-day .r-bg_elevated{color:#fafbfe}
+body.view-protan .scope-rainstone-vivid-day .surface-bg_elevated{background-color:#fafbfe}
+body.view-protan .scope-rainstone-vivid-day .r-bg_overlay{color:#fcfdff}
+body.view-protan .scope-rainstone-vivid-day .surface-bg_overlay{background-color:#fcfdff}
+body.view-protan .scope-rainstone-vivid-day .r-breakpoint{color:#4c4630}
+body.view-protan .scope-rainstone-vivid-day .surface-breakpoint{background-color:#4c4630}
+body.view-protan .scope-rainstone-vivid-day .r-builtin{color:#695b07}
+body.view-protan .scope-rainstone-vivid-day .surface-builtin{background-color:#695b07}
+body.view-protan .scope-rainstone-vivid-day .r-comment{color:#736944}
+body.view-protan .scope-rainstone-vivid-day .surface-comment{background-color:#736944}
+body.view-protan .scope-rainstone-vivid-day .r-constant{color:#005575}
+body.view-protan .scope-rainstone-vivid-day .surface-constant{background-color:#005575}
+body.view-protan .scope-rainstone-vivid-day .r-debug_current{color:#eee8d6}
+body.view-protan .scope-rainstone-vivid-day .surface-debug_current{background-color:#eee8d6}
+body.view-protan .scope-rainstone-vivid-day .r-decorator{color:#005575}
+body.view-protan .scope-rainstone-vivid-day .surface-decorator{background-color:#005575}
+body.view-protan .scope-rainstone-vivid-day .r-deprecated{color:#615e57}
+body.view-protan .scope-rainstone-vivid-day .surface-deprecated{background-color:#615e57}
+body.view-protan .scope-rainstone-vivid-day .r-diff_added{color:#f0ede5}
+body.view-protan .scope-rainstone-vivid-day .surface-diff_added{background-color:#f0ede5}
+body.view-protan .scope-rainstone-vivid-day .r-diff_changed{color:#eee8d9}
+body.view-protan .scope-rainstone-vivid-day .surface-diff_changed{background-color:#eee8d9}
+body.view-protan .scope-rainstone-vivid-day .r-diff_removed{color:#e7e6e1}
+body.view-protan .scope-rainstone-vivid-day .surface-diff_removed{background-color:#e7e6e1}
+body.view-protan .scope-rainstone-vivid-day .r-docstring{color:#736944}
+body.view-protan .scope-rainstone-vivid-day .surface-docstring{background-color:#736944}
+body.view-protan .scope-rainstone-vivid-day .r-error{color:#4c4630}
+body.view-protan .scope-rainstone-vivid-day .surface-error{background-color:#4c4630}
+body.view-protan .scope-rainstone-vivid-day .r-fg{color:#484a4e}
+body.view-protan .scope-rainstone-vivid-day .surface-fg{background-color:#484a4e}
+body.view-protan .scope-rainstone-vivid-day .r-fg_muted{color:#706e68}
+body.view-protan .scope-rainstone-vivid-day .surface-fg_muted{background-color:#706e68}
+body.view-protan .scope-rainstone-vivid-day .r-fg_secondary{color:#615e57}
+body.view-protan .scope-rainstone-vivid-day .surface-fg_secondary{background-color:#615e57}
+body.view-protan .scope-rainstone-vivid-day .r-focus{color:#5e5324}
+body.view-protan .scope-rainstone-vivid-day .surface-focus{background-color:#5e5324}
+body.view-protan .scope-rainstone-vivid-day .r-function{color:#695b07}
+body.view-protan .scope-rainstone-vivid-day .surface-function{background-color:#695b07}
+body.view-protan .scope-rainstone-vivid-day .r-info{color:#535a68}
+body.view-protan .scope-rainstone-vivid-day .surface-info{background-color:#535a68}
+body.view-protan .scope-rainstone-vivid-day .r-keyword{color:#006581}
+body.view-protan .scope-rainstone-vivid-day .surface-keyword{background-color:#006581}
+body.view-protan .scope-rainstone-vivid-day .r-line_number{color:#706e68}
+body.view-protan .scope-rainstone-vivid-day .surface-line_number{background-color:#706e68}
+body.view-protan .scope-rainstone-vivid-day .r-line_number_active{color:#484a4e}
+body.view-protan .scope-rainstone-vivid-day .surface-line_number_active{background-color:#484a4e}
+body.view-protan .scope-rainstone-vivid-day .r-namespace{color:#7b6a02}
+body.view-protan .scope-rainstone-vivid-day .surface-namespace{background-color:#7b6a02}
+body.view-protan .scope-rainstone-vivid-day .r-number{color:#005575}
+body.view-protan .scope-rainstone-vivid-day .surface-number{background-color:#005575}
+body.view-protan .scope-rainstone-vivid-day .r-operator{color:#37629c}
+body.view-protan .scope-rainstone-vivid-day .surface-operator{background-color:#37629c}
+body.view-protan .scope-rainstone-vivid-day .r-parameter{color:#655806}
+body.view-protan .scope-rainstone-vivid-day .surface-parameter{background-color:#655806}
+body.view-protan .scope-rainstone-vivid-day .r-property{color:#2a5f9e}
+body.view-protan .scope-rainstone-vivid-day .surface-property{background-color:#2a5f9e}
+body.view-protan .scope-rainstone-vivid-day .r-punctuation{color:#595752}
+body.view-protan .scope-rainstone-vivid-day .surface-punctuation{background-color:#595752}
+body.view-protan .scope-rainstone-vivid-day .r-search_match{color:#efeadb}
+body.view-protan .scope-rainstone-vivid-day .surface-search_match{background-color:#efeadb}
+body.view-protan .scope-rainstone-vivid-day .r-search_match_current{color:#f0e8cd}
+body.view-protan .scope-rainstone-vivid-day .surface-search_match_current{background-color:#f0e8cd}
+body.view-protan .scope-rainstone-vivid-day .r-selection{color:#edeae3}
+body.view-protan .scope-rainstone-vivid-day .surface-selection{background-color:#edeae3}
+body.view-protan .scope-rainstone-vivid-day .r-string{color:#6c6d6f}
+body.view-protan .scope-rainstone-vivid-day .surface-string{background-color:#6c6d6f}
+body.view-protan .scope-rainstone-vivid-day .r-success{color:#635c42}
+body.view-protan .scope-rainstone-vivid-day .surface-success{background-color:#635c42}
+body.view-protan .scope-rainstone-vivid-day .r-tag{color:#7b6a02}
+body.view-protan .scope-rainstone-vivid-day .surface-tag{background-color:#7b6a02}
+body.view-protan .scope-rainstone-vivid-day .r-type{color:#7b6a02}
+body.view-protan .scope-rainstone-vivid-day .surface-type{background-color:#7b6a02}
+body.view-protan .scope-rainstone-vivid-day .r-ui_inactive{color:#706e68}
+body.view-protan .scope-rainstone-vivid-day .surface-ui_inactive{background-color:#706e68}
+body.view-protan .scope-rainstone-vivid-day .r-warning{color:#5e5324}
+body.view-protan .scope-rainstone-vivid-day .surface-warning{background-color:#5e5324}
+body.view-deutan .scope-rainstone-vivid-day{--vbg:#f5f7fa;--vfg:#47494e;}
+body.view-deutan .scope-rainstone-vivid-day .r-active_line{color:#eceef1}
+body.view-deutan .scope-rainstone-vivid-day .surface-active_line{background-color:#eceef1}
+body.view-deutan .scope-rainstone-vivid-day .r-bg{color:#f5f7fa}
+body.view-deutan .scope-rainstone-vivid-day .surface-bg{background-color:#f5f7fa}
+body.view-deutan .scope-rainstone-vivid-day .r-bg_elevated{color:#f9fbfe}
+body.view-deutan .scope-rainstone-vivid-day .surface-bg_elevated{background-color:#f9fbfe}
+body.view-deutan .scope-rainstone-vivid-day .r-bg_overlay{color:#fcfdff}
+body.view-deutan .scope-rainstone-vivid-day .surface-bg_overlay{background-color:#fcfdff}
+body.view-deutan .scope-rainstone-vivid-day .r-breakpoint{color:#61562b}
+body.view-deutan .scope-rainstone-vivid-day .surface-breakpoint{background-color:#61562b}
+body.view-deutan .scope-rainstone-vivid-day .r-builtin{color:#7c6c00}
+body.view-deutan .scope-rainstone-vivid-day .surface-builtin{background-color:#7c6c00}
+body.view-deutan .scope-rainstone-vivid-day .r-comment{color:#686046}
+body.view-deutan .scope-rainstone-vivid-day .surface-comment{background-color:#686046}
+body.view-deutan .scope-rainstone-vivid-day .r-constant{color:#2e72be}
+body.view-deutan .scope-rainstone-vivid-day .surface-constant{background-color:#2e72be}
+body.view-deutan .scope-rainstone-vivid-day .r-debug_current{color:#efe9d6}
+body.view-deutan .scope-rainstone-vivid-day .surface-debug_current{background-color:#efe9d6}
+body.view-deutan .scope-rainstone-vivid-day .r-decorator{color:#2e72be}
+body.view-deutan .scope-rainstone-vivid-day .surface-decorator{background-color:#2e72be}
+body.view-deutan .scope-rainstone-vivid-day .r-deprecated{color:#605d57}
+body.view-deutan .scope-rainstone-vivid-day .surface-deprecated{background-color:#605d57}
+body.view-deutan .scope-rainstone-vivid-day .r-diff_added{color:#edebe5}
+body.view-deutan .scope-rainstone-vivid-day .surface-diff_added{background-color:#edebe5}
+body.view-deutan .scope-rainstone-vivid-day .r-diff_changed{color:#eee9d9}
+body.view-deutan .scope-rainstone-vivid-day .surface-diff_changed{background-color:#eee9d9}
+body.view-deutan .scope-rainstone-vivid-day .r-diff_removed{color:#ebe8e1}
+body.view-deutan .scope-rainstone-vivid-day .surface-diff_removed{background-color:#ebe8e1}
+body.view-deutan .scope-rainstone-vivid-day .r-docstring{color:#686046}
+body.view-deutan .scope-rainstone-vivid-day .surface-docstring{background-color:#686046}
+body.view-deutan .scope-rainstone-vivid-day .r-error{color:#61562b}
+body.view-deutan .scope-rainstone-vivid-day .surface-error{background-color:#61562b}
+body.view-deutan .scope-rainstone-vivid-day .r-fg{color:#47494e}
+body.view-deutan .scope-rainstone-vivid-day .surface-fg{background-color:#47494e}
+body.view-deutan .scope-rainstone-vivid-day .r-fg_muted{color:#706e68}
+body.view-deutan .scope-rainstone-vivid-day .surface-fg_muted{background-color:#706e68}
+body.view-deutan .scope-rainstone-vivid-day .r-fg_secondary{color:#605d57}
+body.view-deutan .scope-rainstone-vivid-day .surface-fg_secondary{background-color:#605d57}
+body.view-deutan .scope-rainstone-vivid-day .r-focus{color:#615623}
+body.view-deutan .scope-rainstone-vivid-day .surface-focus{background-color:#615623}
+body.view-deutan .scope-rainstone-vivid-day .r-function{color:#7c6c00}
+body.view-deutan .scope-rainstone-vivid-day .surface-function{background-color:#7c6c00}
+body.view-deutan .scope-rainstone-vivid-day .r-info{color:#4b5569}
+body.view-deutan .scope-rainstone-vivid-day .surface-info{background-color:#4b5569}
+body.view-deutan .scope-rainstone-vivid-day .r-keyword{color:#0073a5}
+body.view-deutan .scope-rainstone-vivid-day .surface-keyword{background-color:#0073a5}
+body.view-deutan .scope-rainstone-vivid-day .r-line_number{color:#706e68}
+body.view-deutan .scope-rainstone-vivid-day .surface-line_number{background-color:#706e68}
+body.view-deutan .scope-rainstone-vivid-day .r-line_number_active{color:#47494e}
+body.view-deutan .scope-rainstone-vivid-day .surface-line_number_active{background-color:#47494e}
+body.view-deutan .scope-rainstone-vivid-day .r-namespace{color:#74650a}
+body.view-deutan .scope-rainstone-vivid-day .surface-namespace{background-color:#74650a}
+body.view-deutan .scope-rainstone-vivid-day .r-number{color:#2e72be}
+body.view-deutan .scope-rainstone-vivid-day .surface-number{background-color:#2e72be}
+body.view-deutan .scope-rainstone-vivid-day .r-operator{color:#3b649c}
+body.view-deutan .scope-rainstone-vivid-day .surface-operator{background-color:#3b649c}
+body.view-deutan .scope-rainstone-vivid-day .r-parameter{color:#776700}
+body.view-deutan .scope-rainstone-vivid-day .surface-parameter{background-color:#776700}
+body.view-deutan .scope-rainstone-vivid-day .r-property{color:#275e9e}
+body.view-deutan .scope-rainstone-vivid-day .surface-property{background-color:#275e9e}
+body.view-deutan .scope-rainstone-vivid-day .r-punctuation{color:#585752}
+body.view-deutan .scope-rainstone-vivid-day .surface-punctuation{background-color:#585752}
+body.view-deutan .scope-rainstone-vivid-day .r-search_match{color:#f0ebdb}
+body.view-deutan .scope-rainstone-vivid-day .surface-search_match{background-color:#f0ebdb}
+body.view-deutan .scope-rainstone-vivid-day .r-search_match_current{color:#f1e8cd}
+body.view-deutan .scope-rainstone-vivid-day .surface-search_match_current{background-color:#f1e8cd}
+body.view-deutan .scope-rainstone-vivid-day .r-selection{color:#e9e8e3}
+body.view-deutan .scope-rainstone-vivid-day .surface-selection{background-color:#e9e8e3}
+body.view-deutan .scope-rainstone-vivid-day .r-string{color:#5e6370}
+body.view-deutan .scope-rainstone-vivid-day .surface-string{background-color:#5e6370}
+body.view-deutan .scope-rainstone-vivid-day .r-success{color:#5b5543}
+body.view-deutan .scope-rainstone-vivid-day .surface-success{background-color:#5b5543}
+body.view-deutan .scope-rainstone-vivid-day .r-tag{color:#74650a}
+body.view-deutan .scope-rainstone-vivid-day .surface-tag{background-color:#74650a}
+body.view-deutan .scope-rainstone-vivid-day .r-type{color:#74650a}
+body.view-deutan .scope-rainstone-vivid-day .surface-type{background-color:#74650a}
+body.view-deutan .scope-rainstone-vivid-day .r-ui_inactive{color:#706e68}
+body.view-deutan .scope-rainstone-vivid-day .surface-ui_inactive{background-color:#706e68}
+body.view-deutan .scope-rainstone-vivid-day .r-warning{color:#615623}
+body.view-deutan .scope-rainstone-vivid-day .surface-warning{background-color:#615623}
+body.view-tritan .scope-rainstone-vivid-day{--vbg:#f4f7f9;--vfg:#454a4d;}
+body.view-tritan .scope-rainstone-vivid-day .r-active_line{color:#ebeef0}
+body.view-tritan .scope-rainstone-vivid-day .surface-active_line{background-color:#ebeef0}
+body.view-tritan .scope-rainstone-vivid-day .r-bg{color:#f4f7f9}
+body.view-tritan .scope-rainstone-vivid-day .surface-bg{background-color:#f4f7f9}
+body.view-tritan .scope-rainstone-vivid-day .r-bg_elevated{color:#f8fbfd}
+body.view-tritan .scope-rainstone-vivid-day .surface-bg_elevated{background-color:#f8fbfd}
+body.view-tritan .scope-rainstone-vivid-day .r-bg_overlay{color:#fcfdfe}
+body.view-tritan .scope-rainstone-vivid-day .surface-bg_overlay{background-color:#fcfdfe}
+body.view-tritan .scope-rainstone-vivid-day .r-breakpoint{color:#8b3441}
+body.view-tritan .scope-rainstone-vivid-day .surface-breakpoint{background-color:#8b3441}
+body.view-tritan .scope-rainstone-vivid-day .r-builtin{color:#aa4554}
+body.view-tritan .scope-rainstone-vivid-day .surface-builtin{background-color:#aa4554}
+body.view-tritan .scope-rainstone-vivid-day .r-comment{color:#446875}
+body.view-tritan .scope-rainstone-vivid-day .surface-comment{background-color:#446875}
+body.view-tritan .scope-rainstone-vivid-day .r-constant{color:#97555d}
+body.view-tritan .scope-rainstone-vivid-day .surface-constant{background-color:#97555d}
+body.view-tritan .scope-rainstone-vivid-day .r-debug_current{color:#f3e5e7}
+body.view-tritan .scope-rainstone-vivid-day .surface-debug_current{background-color:#f3e5e7}
+body.view-tritan .scope-rainstone-vivid-day .r-decorator{color:#97555d}
+body.view-tritan .scope-rainstone-vivid-day .surface-decorator{background-color:#97555d}
+body.view-tritan .scope-rainstone-vivid-day .r-deprecated{color:#5d5e5e}
+body.view-tritan .scope-rainstone-vivid-day .surface-deprecated{background-color:#5d5e5e}
+body.view-tritan .scope-rainstone-vivid-day .r-diff_added{color:#e5edf1}
+body.view-tritan .scope-rainstone-vivid-day .surface-diff_added{background-color:#e5edf1}
+body.view-tritan .scope-rainstone-vivid-day .r-diff_changed{color:#f2e6e7}
+body.view-tritan .scope-rainstone-vivid-day .surface-diff_changed{background-color:#f2e6e7}
+body.view-tritan .scope-rainstone-vivid-day .r-diff_removed{color:#f6e3e5}
+body.view-tritan .scope-rainstone-vivid-day .surface-diff_removed{background-color:#f6e3e5}
+body.view-tritan .scope-rainstone-vivid-day .r-docstring{color:#446875}
+body.view-tritan .scope-rainstone-vivid-day .surface-docstring{background-color:#446875}
+body.view-tritan .scope-rainstone-vivid-day .r-error{color:#8b3441}
+body.view-tritan .scope-rainstone-vivid-day .surface-error{background-color:#8b3441}
+body.view-tritan .scope-rainstone-vivid-day .r-fg{color:#454a4d}
+body.view-tritan .scope-rainstone-vivid-day .surface-fg{background-color:#454a4d}
+body.view-tritan .scope-rainstone-vivid-day .r-fg_muted{color:#726d6e}
+body.view-tritan .scope-rainstone-vivid-day .surface-fg_muted{background-color:#726d6e}
+body.view-tritan .scope-rainstone-vivid-day .r-fg_secondary{color:#5d5e5e}
+body.view-tritan .scope-rainstone-vivid-day .surface-fg_secondary{background-color:#5d5e5e}
+body.view-tritan .scope-rainstone-vivid-day .r-focus{color:#6e4c50}
+body.view-tritan .scope-rainstone-vivid-day .surface-focus{background-color:#6e4c50}
+body.view-tritan .scope-rainstone-vivid-day .r-function{color:#aa4554}
+body.view-tritan .scope-rainstone-vivid-day .surface-function{background-color:#aa4554}
+body.view-tritan .scope-rainstone-vivid-day .r-info{color:#2e5c6b}
+body.view-tritan .scope-rainstone-vivid-day .surface-info{background-color:#2e5c6b}
+body.view-tritan .scope-rainstone-vivid-day .r-keyword{color:#007284}
+body.view-tritan .scope-rainstone-vivid-day .surface-keyword{background-color:#007284}
+body.view-tritan .scope-rainstone-vivid-day .r-line_number{color:#726d6e}
+body.view-tritan .scope-rainstone-vivid-day .surface-line_number{background-color:#726d6e}
+body.view-tritan .scope-rainstone-vivid-day .r-line_number_active{color:#454a4d}
+body.view-tritan .scope-rainstone-vivid-day .surface-line_number_active{background-color:#454a4d}
+body.view-tritan .scope-rainstone-vivid-day .r-namespace{color:#666667}
+body.view-tritan .scope-rainstone-vivid-day .surface-namespace{background-color:#666667}
+body.view-tritan .scope-rainstone-vivid-day .r-number{color:#97555d}
+body.view-tritan .scope-rainstone-vivid-day .surface-number{background-color:#97555d}
+body.view-tritan .scope-rainstone-vivid-day .r-operator{color:#38697a}
+body.view-tritan .scope-rainstone-vivid-day .surface-operator{background-color:#38697a}
+body.view-tritan .scope-rainstone-vivid-day .r-parameter{color:#a34251}
+body.view-tritan .scope-rainstone-vivid-day .surface-parameter{background-color:#a34251}
+body.view-tritan .scope-rainstone-vivid-day .r-property{color:#00677b}
+body.view-tritan .scope-rainstone-vivid-day .surface-property{background-color:#00677b}
+body.view-tritan .scope-rainstone-vivid-day .r-punctuation{color:#595656}
+body.view-tritan .scope-rainstone-vivid-day .surface-punctuation{background-color:#595656}
+body.view-tritan .scope-rainstone-vivid-day .r-search_match{color:#f3e8e9}
+body.view-tritan .scope-rainstone-vivid-day .surface-search_match{background-color:#f3e8e9}
+body.view-tritan .scope-rainstone-vivid-day .r-search_match_current{color:#f7e3e5}
+body.view-tritan .scope-rainstone-vivid-day .surface-search_match_current{background-color:#f7e3e5}
+body.view-tritan .scope-rainstone-vivid-day .r-selection{color:#e1eaef}
+body.view-tritan .scope-rainstone-vivid-day .surface-selection{background-color:#e1eaef}
+body.view-tritan .scope-rainstone-vivid-day .r-string{color:#1f6f84}
+body.view-tritan .scope-rainstone-vivid-day .surface-string{background-color:#1f6f84}
+body.view-tritan .scope-rainstone-vivid-day .r-success{color:#425b65}
+body.view-tritan .scope-rainstone-vivid-day .surface-success{background-color:#425b65}
+body.view-tritan .scope-rainstone-vivid-day .r-tag{color:#666667}
+body.view-tritan .scope-rainstone-vivid-day .surface-tag{background-color:#666667}
+body.view-tritan .scope-rainstone-vivid-day .r-type{color:#666667}
+body.view-tritan .scope-rainstone-vivid-day .surface-type{background-color:#666667}
+body.view-tritan .scope-rainstone-vivid-day .r-ui_inactive{color:#726d6e}
+body.view-tritan .scope-rainstone-vivid-day .surface-ui_inactive{background-color:#726d6e}
+body.view-tritan .scope-rainstone-vivid-day .r-warning{color:#6e4c50}
+body.view-tritan .scope-rainstone-vivid-day .surface-warning{background-color:#6e4c50}
+body.view-normal .scope-rainstone-vivid-night{--vbg:#1f2225;--vfg:#c1c6cc;}
+body.view-normal .scope-rainstone-vivid-night .r-active_line{color:#24272a}
+body.view-normal .scope-rainstone-vivid-night .surface-active_line{background-color:#24272a}
+body.view-normal .scope-rainstone-vivid-night .r-bg{color:#1f2225}
+body.view-normal .scope-rainstone-vivid-night .surface-bg{background-color:#1f2225}
+body.view-normal .scope-rainstone-vivid-night .r-bg_elevated{color:#25282c}
+body.view-normal .scope-rainstone-vivid-night .surface-bg_elevated{background-color:#25282c}
+body.view-normal .scope-rainstone-vivid-night .r-bg_overlay{color:#282c2f}
+body.view-normal .scope-rainstone-vivid-night .surface-bg_overlay{background-color:#282c2f}
+body.view-normal .scope-rainstone-vivid-night .r-breakpoint{color:#efa095}
+body.view-normal .scope-rainstone-vivid-night .surface-breakpoint{background-color:#efa095}
+body.view-normal .scope-rainstone-vivid-night .r-builtin{color:#feaf82}
+body.view-normal .scope-rainstone-vivid-night .surface-builtin{background-color:#feaf82}
+body.view-normal .scope-rainstone-vivid-night .r-comment{color:#85ad8c}
+body.view-normal .scope-rainstone-vivid-night .surface-comment{background-color:#85ad8c}
+body.view-normal .scope-rainstone-vivid-night .r-constant{color:#ec99fe}
+body.view-normal .scope-rainstone-vivid-night .surface-constant{background-color:#ec99fe}
+body.view-normal .scope-rainstone-vivid-night .r-debug_current{color:#362f22}
+body.view-normal .scope-rainstone-vivid-night .surface-debug_current{background-color:#362f22}
+body.view-normal .scope-rainstone-vivid-night .r-decorator{color:#ec99fe}
+body.view-normal .scope-rainstone-vivid-night .surface-decorator{background-color:#ec99fe}
+body.view-normal .scope-rainstone-vivid-night .r-deprecated{color:#9b9f96}
+body.view-normal .scope-rainstone-vivid-night .surface-deprecated{background-color:#9b9f96}
+body.view-normal .scope-rainstone-vivid-night .r-diff_added{color:#1f2821}
+body.view-normal .scope-rainstone-vivid-night .surface-diff_added{background-color:#1f2821}
+body.view-normal .scope-rainstone-vivid-night .r-diff_changed{color:#2e281c}
+body.view-normal .scope-rainstone-vivid-night .surface-diff_changed{background-color:#2e281c}
+body.view-normal .scope-rainstone-vivid-night .r-diff_removed{color:#362927}
+body.view-normal .scope-rainstone-vivid-night .surface-diff_removed{background-color:#362927}
+body.view-normal .scope-rainstone-vivid-night .r-docstring{color:#85ad8c}
+body.view-normal .scope-rainstone-vivid-night .surface-docstring{background-color:#85ad8c}
+body.view-normal .scope-rainstone-vivid-night .r-error{color:#efa095}
+body.view-normal .scope-rainstone-vivid-night .surface-error{background-color:#efa095}
+body.view-normal .scope-rainstone-vivid-night .r-fg{color:#c1c6cc}
+body.view-normal .scope-rainstone-vivid-night .surface-fg{background-color:#c1c6cc}
+body.view-normal .scope-rainstone-vivid-night .r-fg_muted{color:#7f7f86}
+body.view-normal .scope-rainstone-vivid-night .surface-fg_muted{background-color:#7f7f86}
+body.view-normal .scope-rainstone-vivid-night .r-fg_secondary{color:#9b9f96}
+body.view-normal .scope-rainstone-vivid-night .surface-fg_secondary{background-color:#9b9f96}
+body.view-normal .scope-rainstone-vivid-night .r-focus{color:#d2b27c}
+body.view-normal .scope-rainstone-vivid-night .surface-focus{background-color:#d2b27c}
+body.view-normal .scope-rainstone-vivid-night .r-function{color:#feaf82}
+body.view-normal .scope-rainstone-vivid-night .surface-function{background-color:#feaf82}
+body.view-normal .scope-rainstone-vivid-night .r-info{color:#8fc1cd}
+body.view-normal .scope-rainstone-vivid-night .surface-info{background-color:#8fc1cd}
+body.view-normal .scope-rainstone-vivid-night .r-keyword{color:#9abafe}
+body.view-normal .scope-rainstone-vivid-night .surface-keyword{background-color:#9abafe}
+body.view-normal .scope-rainstone-vivid-night .r-line_number{color:#7f7f86}
+body.view-normal .scope-rainstone-vivid-night .surface-line_number{background-color:#7f7f86}
+body.view-normal .scope-rainstone-vivid-night .r-line_number_active{color:#c1c6cc}
+body.view-normal .scope-rainstone-vivid-night .surface-line_number_active{background-color:#c1c6cc}
+body.view-normal .scope-rainstone-vivid-night .r-namespace{color:#afc84e}
+body.view-normal .scope-rainstone-vivid-night .surface-namespace{background-color:#afc84e}
+body.view-normal .scope-rainstone-vivid-night .r-number{color:#ec99fe}
+body.view-normal .scope-rainstone-vivid-night .surface-number{background-color:#ec99fe}
+body.view-normal .scope-rainstone-vivid-night .r-operator{color:#95b3f5}
+body.view-normal .scope-rainstone-vivid-night .surface-operator{background-color:#95b3f5}
+body.view-normal .scope-rainstone-vivid-night .r-parameter{color:#efa880}
+body.view-normal .scope-rainstone-vivid-night .surface-parameter{background-color:#efa880}
+body.view-normal .scope-rainstone-vivid-night .r-property{color:#85bcf5}
+body.view-normal .scope-rainstone-vivid-night .surface-property{background-color:#85bcf5}
+body.view-normal .scope-rainstone-vivid-night .r-punctuation{color:#a6a59f}
+body.view-normal .scope-rainstone-vivid-night .surface-punctuation{background-color:#a6a59f}
+body.view-normal .scope-rainstone-vivid-night .r-search_match{color:#2d271c}
+body.view-normal .scope-rainstone-vivid-night .surface-search_match{background-color:#2d271c}
+body.view-normal .scope-rainstone-vivid-night .r-search_match_current{color:#3d331d}
+body.view-normal .scope-rainstone-vivid-night .surface-search_match_current{background-color:#3d331d}
+body.view-normal .scope-rainstone-vivid-night .r-selection{color:#2a352d}
+body.view-normal .scope-rainstone-vivid-night .surface-selection{background-color:#2a352d}
+body.view-normal .scope-rainstone-vivid-night .r-string{color:#0fd6ce}
+body.view-normal .scope-rainstone-vivid-night .surface-string{background-color:#0fd6ce}
+body.view-normal .scope-rainstone-vivid-night .r-success{color:#9ac4a2}
+body.view-normal .scope-rainstone-vivid-night .surface-success{background-color:#9ac4a2}
+body.view-normal .scope-rainstone-vivid-night .r-tag{color:#afc84e}
+body.view-normal .scope-rainstone-vivid-night .surface-tag{background-color:#afc84e}
+body.view-normal .scope-rainstone-vivid-night .r-type{color:#afc84e}
+body.view-normal .scope-rainstone-vivid-night .surface-type{background-color:#afc84e}
+body.view-normal .scope-rainstone-vivid-night .r-ui_inactive{color:#7c7c83}
+body.view-normal .scope-rainstone-vivid-night .surface-ui_inactive{background-color:#7c7c83}
+body.view-normal .scope-rainstone-vivid-night .r-warning{color:#d6b174}
+body.view-normal .scope-rainstone-vivid-night .surface-warning{background-color:#d6b174}
+body.view-protan .scope-rainstone-vivid-night{--vbg:#202225;--vfg:#c3c6cc;}
+body.view-protan .scope-rainstone-vivid-night .r-active_line{color:#25272a}
+body.view-protan .scope-rainstone-vivid-night .surface-active_line{background-color:#25272a}
+body.view-protan .scope-rainstone-vivid-night .r-bg{color:#202225}
+body.view-protan .scope-rainstone-vivid-night .surface-bg{background-color:#202225}
+body.view-protan .scope-rainstone-vivid-night .r-bg_elevated{color:#26282c}
+body.view-protan .scope-rainstone-vivid-night .surface-bg_elevated{background-color:#26282c}
+body.view-protan .scope-rainstone-vivid-night .r-bg_overlay{color:#2a2c2f}
+body.view-protan .scope-rainstone-vivid-night .surface-bg_overlay{background-color:#2a2c2f}
+body.view-protan .scope-rainstone-vivid-night .r-breakpoint{color:#b1ab95}
+body.view-protan .scope-rainstone-vivid-night .surface-breakpoint{background-color:#b1ab95}
+body.view-protan .scope-rainstone-vivid-night .r-builtin{color:#c7b883}
+body.view-protan .scope-rainstone-vivid-night .surface-builtin{background-color:#c7b883}
+body.view-protan .scope-rainstone-vivid-night .r-comment{color:#b1a88c}
+body.view-protan .scope-rainstone-vivid-night .surface-comment{background-color:#b1a88c}
+body.view-protan .scope-rainstone-vivid-night .r-constant{color:#71aafe}
+body.view-protan .scope-rainstone-vivid-night .surface-constant{background-color:#71aafe}
+body.view-protan .scope-rainstone-vivid-night .r-debug_current{color:#332f22}
+body.view-protan .scope-rainstone-vivid-night .surface-debug_current{background-color:#332f22}
+body.view-protan .scope-rainstone-vivid-night .r-decorator{color:#71aafe}
+body.view-protan .scope-rainstone-vivid-night .surface-decorator{background-color:#71aafe}
+body.view-protan .scope-rainstone-vivid-night .r-deprecated{color:#a19e96}
+body.view-protan .scope-rainstone-vivid-night .surface-deprecated{background-color:#a19e96}
+body.view-protan .scope-rainstone-vivid-night .r-diff_added{color:#292721}
+body.view-protan .scope-rainstone-vivid-night .surface-diff_added{background-color:#292721}
+body.view-protan .scope-rainstone-vivid-night .r-diff_changed{color:#2c281c}
+body.view-protan .scope-rainstone-vivid-night .surface-diff_changed{background-color:#2c281c}
+body.view-protan .scope-rainstone-vivid-night .r-diff_removed{color:#2c2b27}
+body.view-protan .scope-rainstone-vivid-night .surface-diff_removed{background-color:#2c2b27}
+body.view-protan .scope-rainstone-vivid-night .r-docstring{color:#b1a88c}
+body.view-protan .scope-rainstone-vivid-night .surface-docstring{background-color:#b1a88c}
+body.view-protan .scope-rainstone-vivid-night .r-error{color:#b1ab95}
+body.view-protan .scope-rainstone-vivid-night .surface-error{background-color:#b1ab95}
+body.view-protan .scope-rainstone-vivid-night .r-fg{color:#c3c6cc}
+body.view-protan .scope-rainstone-vivid-night .surface-fg{background-color:#c3c6cc}
+body.view-protan .scope-rainstone-vivid-night .r-fg_muted{color:#7c7f86}
+body.view-protan .scope-rainstone-vivid-night .surface-fg_muted{background-color:#7c7f86}
+body.view-protan .scope-rainstone-vivid-night .r-fg_secondary{color:#a19e96}
+body.view-protan .scope-rainstone-vivid-night .surface-fg_secondary{background-color:#a19e96}
+body.view-protan .scope-rainstone-vivid-night .r-focus{color:#c4b47c}
+body.view-protan .scope-rainstone-vivid-night .surface-focus{background-color:#c4b47c}
+body.view-protan .scope-rainstone-vivid-night .r-function{color:#c7b883}
+body.view-protan .scope-rainstone-vivid-night .surface-function{background-color:#c7b883}
+body.view-protan .scope-rainstone-vivid-night .r-info{color:#b6bdcd}
+body.view-protan .scope-rainstone-vivid-night .surface-info{background-color:#b6bdcd}
+body.view-protan .scope-rainstone-vivid-night .r-keyword{color:#93bbfe}
+body.view-protan .scope-rainstone-vivid-night .surface-keyword{background-color:#93bbfe}
+body.view-protan .scope-rainstone-vivid-night .r-line_number{color:#7c7f86}
+body.view-protan .scope-rainstone-vivid-night .surface-line_number{background-color:#7c7f86}
+body.view-protan .scope-rainstone-vivid-night .r-line_number_active{color:#c3c6cc}
+body.view-protan .scope-rainstone-vivid-night .surface-line_number_active{background-color:#c3c6cc}
+body.view-protan .scope-rainstone-vivid-night .r-namespace{color:#dbc24d}
+body.view-protan .scope-rainstone-vivid-night .surface-namespace{background-color:#dbc24d}
+body.view-protan .scope-rainstone-vivid-night .r-number{color:#71aafe}
+body.view-protan .scope-rainstone-vivid-night .surface-number{background-color:#71aafe}
+body.view-protan .scope-rainstone-vivid-night .r-operator{color:#8eb4f5}
+body.view-protan .scope-rainstone-vivid-night .surface-operator{background-color:#8eb4f5}
+body.view-protan .scope-rainstone-vivid-night .r-parameter{color:#beb080}
+body.view-protan .scope-rainstone-vivid-night .surface-parameter{background-color:#beb080}
+body.view-protan .scope-rainstone-vivid-night .r-property{color:#9abaf5}
+body.view-protan .scope-rainstone-vivid-night .surface-property{background-color:#9abaf5}
+body.view-protan .scope-rainstone-vivid-night .r-punctuation{color:#a7a59f}
+body.view-protan .scope-rainstone-vivid-night .surface-punctuation{background-color:#a7a59f}
+body.view-protan .scope-rainstone-vivid-night .r-search_match{color:#2b271c}
+body.view-protan .scope-rainstone-vivid-night .surface-search_match{background-color:#2b271c}
+body.view-protan .scope-rainstone-vivid-night .r-search_match_current{color:#39341d}
+body.view-protan .scope-rainstone-vivid-night .surface-search_match_current{background-color:#39341d}
+body.view-protan .scope-rainstone-vivid-night .r-selection{color:#36342d}
+body.view-protan .scope-rainstone-vivid-night .surface-selection{background-color:#36342d}
+body.view-protan .scope-rainstone-vivid-night .r-string{color:#cacbce}
+body.view-protan .scope-rainstone-vivid-night .surface-string{background-color:#cacbce}
+body.view-protan .scope-rainstone-vivid-night .r-success{color:#c8bfa2}
+body.view-protan .scope-rainstone-vivid-night .surface-success{background-color:#c8bfa2}
+body.view-protan .scope-rainstone-vivid-night .r-tag{color:#dbc24d}
+body.view-protan .scope-rainstone-vivid-night .surface-tag{background-color:#dbc24d}
+body.view-protan .scope-rainstone-vivid-night .r-type{color:#dbc24d}
+body.view-protan .scope-rainstone-vivid-night .surface-type{background-color:#dbc24d}
+body.view-protan .scope-rainstone-vivid-night .r-ui_inactive{color:#797c83}
+body.view-protan .scope-rainstone-vivid-night .surface-ui_inactive{background-color:#797c83}
+body.view-protan .scope-rainstone-vivid-night .r-warning{color:#c4b474}
+body.view-protan .scope-rainstone-vivid-night .surface-warning{background-color:#c4b474}
+body.view-deutan .scope-rainstone-vivid-night{--vbg:#202225;--vfg:#c3c5cc;}
+body.view-deutan .scope-rainstone-vivid-night .r-active_line{color:#25272a}
+body.view-deutan .scope-rainstone-vivid-night .surface-active_line{background-color:#25272a}
+body.view-deutan .scope-rainstone-vivid-night .r-bg{color:#202225}
+body.view-deutan .scope-rainstone-vivid-night .surface-bg{background-color:#202225}
+body.view-deutan .scope-rainstone-vivid-night .r-bg_elevated{color:#26282c}
+body.view-deutan .scope-rainstone-vivid-night .surface-bg_elevated{background-color:#26282c}
+body.view-deutan .scope-rainstone-vivid-night .r-bg_overlay{color:#2a2b2f}
+body.view-deutan .scope-rainstone-vivid-night .surface-bg_overlay{background-color:#2a2b2f}
+body.view-deutan .scope-rainstone-vivid-night .r-breakpoint{color:#c4b893}
+body.view-deutan .scope-rainstone-vivid-night .surface-breakpoint{background-color:#c4b893}
+body.view-deutan .scope-rainstone-vivid-night .r-builtin{color:#d7c57f}
+body.view-deutan .scope-rainstone-vivid-night .surface-builtin{background-color:#d7c57f}
+body.view-deutan .scope-rainstone-vivid-night .r-comment{color:#a7a18d}
+body.view-deutan .scope-rainstone-vivid-night .surface-comment{background-color:#a7a18d}
+body.view-deutan .scope-rainstone-vivid-night .r-constant{color:#9ec0fc}
+body.view-deutan .scope-rainstone-vivid-night .surface-constant{background-color:#9ec0fc}
+body.view-deutan .scope-rainstone-vivid-night .r-debug_current{color:#343022}
+body.view-deutan .scope-rainstone-vivid-night .surface-debug_current{background-color:#343022}
+body.view-deutan .scope-rainstone-vivid-night .r-decorator{color:#9ec0fc}
+body.view-deutan .scope-rainstone-vivid-night .surface-decorator{background-color:#9ec0fc}
+body.view-deutan .scope-rainstone-vivid-night .r-deprecated{color:#a09d96}
+body.view-deutan .scope-rainstone-vivid-night .surface-deprecated{background-color:#a09d96}
+body.view-deutan .scope-rainstone-vivid-night .r-diff_added{color:#272521}
+body.view-deutan .scope-rainstone-vivid-night .surface-diff_added{background-color:#272521}
+body.view-deutan .scope-rainstone-vivid-night .r-diff_changed{color:#2c291c}
+body.view-deutan .scope-rainstone-vivid-night .surface-diff_changed{background-color:#2c291c}
+body.view-deutan .scope-rainstone-vivid-night .r-diff_removed{color:#2f2d27}
+body.view-deutan .scope-rainstone-vivid-night .surface-diff_removed{background-color:#2f2d27}
+body.view-deutan .scope-rainstone-vivid-night .r-docstring{color:#a7a18d}
+body.view-deutan .scope-rainstone-vivid-night .surface-docstring{background-color:#a7a18d}
+body.view-deutan .scope-rainstone-vivid-night .r-error{color:#c4b893}
+body.view-deutan .scope-rainstone-vivid-night .surface-error{background-color:#c4b893}
+body.view-deutan .scope-rainstone-vivid-night .r-fg{color:#c3c5cc}
+body.view-deutan .scope-rainstone-vivid-night .surface-fg{background-color:#c3c5cc}
+body.view-deutan .scope-rainstone-vivid-night .r-fg_muted{color:#7d8086}
+body.view-deutan .scope-rainstone-vivid-night .surface-fg_muted{background-color:#7d8086}
+body.view-deutan .scope-rainstone-vivid-night .r-fg_secondary{color:#a09d96}
+body.view-deutan .scope-rainstone-vivid-night .surface-fg_secondary{background-color:#a09d96}
+body.view-deutan .scope-rainstone-vivid-night .r-focus{color:#c7b77b}
+body.view-deutan .scope-rainstone-vivid-night .surface-focus{background-color:#c7b77b}
+body.view-deutan .scope-rainstone-vivid-night .r-function{color:#d7c57f}
+body.view-deutan .scope-rainstone-vivid-night .surface-function{background-color:#d7c57f}
+body.view-deutan .scope-rainstone-vivid-night .r-info{color:#adb7ce}
+body.view-deutan .scope-rainstone-vivid-night .surface-info{background-color:#adb7ce}
+body.view-deutan .scope-rainstone-vivid-night .r-keyword{color:#95bcfe}
+body.view-deutan .scope-rainstone-vivid-night .surface-keyword{background-color:#95bcfe}
+body.view-deutan .scope-rainstone-vivid-night .r-line_number{color:#7d8086}
+body.view-deutan .scope-rainstone-vivid-night .surface-line_number{background-color:#7d8086}
+body.view-deutan .scope-rainstone-vivid-night .r-line_number_active{color:#c3c5cc}
+body.view-deutan .scope-rainstone-vivid-night .surface-line_number_active{background-color:#c3c5cc}
+body.view-deutan .scope-rainstone-vivid-night .r-namespace{color:#d1ba51}
+body.view-deutan .scope-rainstone-vivid-night .surface-namespace{background-color:#d1ba51}
+body.view-deutan .scope-rainstone-vivid-night .r-number{color:#9ec0fc}
+body.view-deutan .scope-rainstone-vivid-night .surface-number{background-color:#9ec0fc}
+body.view-deutan .scope-rainstone-vivid-night .r-operator{color:#90b5f5}
+body.view-deutan .scope-rainstone-vivid-night .surface-operator{background-color:#90b5f5}
+body.view-deutan .scope-rainstone-vivid-night .r-parameter{color:#ccbb7e}
+body.view-deutan .scope-rainstone-vivid-night .surface-parameter{background-color:#ccbb7e}
+body.view-deutan .scope-rainstone-vivid-night .r-property{color:#95b8f5}
+body.view-deutan .scope-rainstone-vivid-night .surface-property{background-color:#95b8f5}
+body.view-deutan .scope-rainstone-vivid-night .r-punctuation{color:#a7a59f}
+body.view-deutan .scope-rainstone-vivid-night .surface-punctuation{background-color:#a7a59f}
+body.view-deutan .scope-rainstone-vivid-night .r-search_match{color:#2b281c}
+body.view-deutan .scope-rainstone-vivid-night .surface-search_match{background-color:#2b281c}
+body.view-deutan .scope-rainstone-vivid-night .r-search_match_current{color:#3a341d}
+body.view-deutan .scope-rainstone-vivid-night .surface-search_match_current{background-color:#3a341d}
+body.view-deutan .scope-rainstone-vivid-night .r-selection{color:#33322d}
+body.view-deutan .scope-rainstone-vivid-night .surface-selection{background-color:#33322d}
+body.view-deutan .scope-rainstone-vivid-night .r-string{color:#b1bad0}
+body.view-deutan .scope-rainstone-vivid-night .surface-string{background-color:#b1bad0}
+body.view-deutan .scope-rainstone-vivid-night .r-success{color:#beb7a3}
+body.view-deutan .scope-rainstone-vivid-night .surface-success{background-color:#beb7a3}
+body.view-deutan .scope-rainstone-vivid-night .r-tag{color:#d1ba51}
+body.view-deutan .scope-rainstone-vivid-night .surface-tag{background-color:#d1ba51}
+body.view-deutan .scope-rainstone-vivid-night .r-type{color:#d1ba51}
+body.view-deutan .scope-rainstone-vivid-night .surface-type{background-color:#d1ba51}
+body.view-deutan .scope-rainstone-vivid-night .r-ui_inactive{color:#7a7d83}
+body.view-deutan .scope-rainstone-vivid-night .surface-ui_inactive{background-color:#7a7d83}
+body.view-deutan .scope-rainstone-vivid-night .r-warning{color:#c9b773}
+body.view-deutan .scope-rainstone-vivid-night .surface-warning{background-color:#c9b773}
+body.view-tritan .scope-rainstone-vivid-night{--vbg:#1f2224;--vfg:#c1c6c9;}
+body.view-tritan .scope-rainstone-vivid-night .r-active_line{color:#242729}
+body.view-tritan .scope-rainstone-vivid-night .surface-active_line{background-color:#242729}
+body.view-tritan .scope-rainstone-vivid-night .r-bg{color:#1f2224}
+body.view-tritan .scope-rainstone-vivid-night .surface-bg{background-color:#1f2224}
+body.view-tritan .scope-rainstone-vivid-night .r-bg_elevated{color:#25282a}
+body.view-tritan .scope-rainstone-vivid-night .surface-bg_elevated{background-color:#25282a}
+body.view-tritan .scope-rainstone-vivid-night .r-bg_overlay{color:#282c2e}
+body.view-tritan .scope-rainstone-vivid-night .surface-bg_overlay{background-color:#282c2e}
+body.view-tritan .scope-rainstone-vivid-night .r-breakpoint{color:#f19da7}
+body.view-tritan .scope-rainstone-vivid-night .surface-breakpoint{background-color:#f19da7}
+body.view-tritan .scope-rainstone-vivid-night .r-builtin{color:#ffaab3}
+body.view-tritan .scope-rainstone-vivid-night .surface-builtin{background-color:#ffaab3}
+body.view-tritan .scope-rainstone-vivid-night .r-comment{color:#8da7b3}
+body.view-tritan .scope-rainstone-vivid-night .surface-comment{background-color:#8da7b3}
+body.view-tritan .scope-rainstone-vivid-night .r-constant{color:#e0abb1}
+body.view-tritan .scope-rainstone-vivid-night .surface-constant{background-color:#e0abb1}
+body.view-tritan .scope-rainstone-vivid-night .r-debug_current{color:#372d2e}
+body.view-tritan .scope-rainstone-vivid-night .surface-debug_current{background-color:#372d2e}
+body.view-tritan .scope-rainstone-vivid-night .r-decorator{color:#e0abb1}
+body.view-tritan .scope-rainstone-vivid-night .surface-decorator{background-color:#e0abb1}
+body.view-tritan .scope-rainstone-vivid-night .r-deprecated{color:#9c9e9e}
+body.view-tritan .scope-rainstone-vivid-night .surface-deprecated{background-color:#9c9e9e}
+body.view-tritan .scope-rainstone-vivid-night .r-diff_added{color:#212729}
+body.view-tritan .scope-rainstone-vivid-night .surface-diff_added{background-color:#212729}
+body.view-tritan .scope-rainstone-vivid-night .r-diff_changed{color:#2f2627}
+body.view-tritan .scope-rainstone-vivid-night .surface-diff_changed{background-color:#2f2627}
+body.view-tritan .scope-rainstone-vivid-night .r-diff_removed{color:#36292a}
+body.view-tritan .scope-rainstone-vivid-night .surface-diff_removed{background-color:#36292a}
+body.view-tritan .scope-rainstone-vivid-night .r-docstring{color:#8da7b3}
+body.view-tritan .scope-rainstone-vivid-night .surface-docstring{background-color:#8da7b3}
+body.view-tritan .scope-rainstone-vivid-night .r-error{color:#f19da7}
+body.view-tritan .scope-rainstone-vivid-night .surface-error{background-color:#f19da7}
+body.view-tritan .scope-rainstone-vivid-night .r-fg{color:#c1c6c9}
+body.view-tritan .scope-rainstone-vivid-night .surface-fg{background-color:#c1c6c9}
+body.view-tritan .scope-rainstone-vivid-night .r-fg_muted{color:#7e8081}
+body.view-tritan .scope-rainstone-vivid-night .surface-fg_muted{background-color:#7e8081}
+body.view-tritan .scope-rainstone-vivid-night .r-fg_secondary{color:#9c9e9e}
+body.view-tritan .scope-rainstone-vivid-night .surface-fg_secondary{background-color:#9c9e9e}
+body.view-tritan .scope-rainstone-vivid-night .r-focus{color:#d8abaf}
+body.view-tritan .scope-rainstone-vivid-night .surface-focus{background-color:#d8abaf}
+body.view-tritan .scope-rainstone-vivid-night .r-function{color:#ffaab3}
+body.view-tritan .scope-rainstone-vivid-night .surface-function{background-color:#ffaab3}
+body.view-tritan .scope-rainstone-vivid-night .r-info{color:#91c0d3}
+body.view-tritan .scope-rainstone-vivid-night .surface-info{background-color:#91c0d3}
+body.view-tritan .scope-rainstone-vivid-night .r-keyword{color:#8ec2d7}
+body.view-tritan .scope-rainstone-vivid-night .surface-keyword{background-color:#8ec2d7}
+body.view-tritan .scope-rainstone-vivid-night .r-line_number{color:#7e8081}
+body.view-tritan .scope-rainstone-vivid-night .surface-line_number{background-color:#7e8081}
+body.view-tritan .scope-rainstone-vivid-night .r-line_number_active{color:#c1c6c9}
+body.view-tritan .scope-rainstone-vivid-night .surface-line_number_active{background-color:#c1c6c9}
+body.view-tritan .scope-rainstone-vivid-night .r-namespace{color:#bcbdbd}
+body.view-tritan .scope-rainstone-vivid-night .surface-namespace{background-color:#bcbdbd}
+body.view-tritan .scope-rainstone-vivid-night .r-number{color:#e0abb1}
+body.view-tritan .scope-rainstone-vivid-night .surface-number{background-color:#e0abb1}
+body.view-tritan .scope-rainstone-vivid-night .r-operator{color:#89bbcf}
+body.view-tritan .scope-rainstone-vivid-night .surface-operator{background-color:#89bbcf}
+body.view-tritan .scope-rainstone-vivid-night .r-parameter{color:#f3a2ab}
+body.view-tritan .scope-rainstone-vivid-night .surface-parameter{background-color:#f3a2ab}
+body.view-tritan .scope-rainstone-vivid-night .r-property{color:#7bc2db}
+body.view-tritan .scope-rainstone-vivid-night .surface-property{background-color:#7bc2db}
+body.view-tritan .scope-rainstone-vivid-night .r-punctuation{color:#a7a4a4}
+body.view-tritan .scope-rainstone-vivid-night .surface-punctuation{background-color:#a7a4a4}
+body.view-tritan .scope-rainstone-vivid-night .r-search_match{color:#2e2626}
+body.view-tritan .scope-rainstone-vivid-night .surface-search_match{background-color:#2e2626}
+body.view-tritan .scope-rainstone-vivid-night .r-search_match_current{color:#3f3032}
+body.view-tritan .scope-rainstone-vivid-night .surface-search_match_current{background-color:#3f3032}
+body.view-tritan .scope-rainstone-vivid-night .r-selection{color:#2c3337}
+body.view-tritan .scope-rainstone-vivid-night .surface-selection{background-color:#2c3337}
+body.view-tritan .scope-rainstone-vivid-night .r-string{color:#42cff5}
+body.view-tritan .scope-rainstone-vivid-night .surface-string{background-color:#42cff5}
+body.view-tritan .scope-rainstone-vivid-night .r-success{color:#a2beca}
+body.view-tritan .scope-rainstone-vivid-night .surface-success{background-color:#a2beca}
+body.view-tritan .scope-rainstone-vivid-night .r-tag{color:#bcbdbd}
+body.view-tritan .scope-rainstone-vivid-night .surface-tag{background-color:#bcbdbd}
+body.view-tritan .scope-rainstone-vivid-night .r-type{color:#bcbdbd}
+body.view-tritan .scope-rainstone-vivid-night .surface-type{background-color:#bcbdbd}
+body.view-tritan .scope-rainstone-vivid-night .r-ui_inactive{color:#7b7d7e}
+body.view-tritan .scope-rainstone-vivid-night .surface-ui_inactive{background-color:#7b7d7e}
+body.view-tritan .scope-rainstone-vivid-night .r-warning{color:#dca9ae}
+body.view-tritan .scope-rainstone-vivid-night .surface-warning{background-color:#dca9ae}</style><body class="view-normal"><h1>Grotto Vivid Studies Preview</h1><p>Bolder Fig and Rainstone: colored variables, green comments and stronger accents.</p><p>Browser code specimens, not editor screenshots. State rows use opaque fills; editor overlays can differ. Color-vision simulations are checks, not certification.</p><p><a href="../next-generation/comparison.html">Compare Cove, Grove and Dusk</a></p><label>Language <select id="language"><option value="r">R</option><option value="typescript">Typescript</option><option value="python">Python</option></select></label> <label>View <select id="view"><option value="normal">Normal</option><option value="protan">Protan</option><option value="deutan">Deutan</option><option value="tritan">Tritan</option></select></label><div class="language" data-language="r"><section id="night-r"><h2>Night</h2><div class="grid"><article class="scope-fig-vivid-night"><h3>Grotto Fig-Vivid Night</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article><article class="scope-rainstone-vivid-night"><h3>Grotto Rainstone-Vivid Night</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article></div></section><section id="day-r"><h2>Day</h2><div class="grid"><article class="scope-fig-vivid-day"><h3>Grotto Fig-Vivid Day</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article><article class="scope-rainstone-vivid-day"><h3>Grotto Rainstone-Vivid Day</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.R -- exponential moving average</span>
+<span class="r-builtin">library</span><span class="r-punctuation">(</span><span class="r-namespace">dplyr</span><span class="r-punctuation">)</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> &lt;- </span><span class="r-number">0.92</span>
+
+<span class="r-function">rolling_mean</span><span class="r-operator"> &lt;- </span><span class="r-keyword">function</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">, </span><span class="r-parameter">decay</span><span class="r-operator"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">) {</span>
+<span class="r-docstring">  #&#x27; Exponentially-smoothed mean of `values`.</span>
+<span class="r-fg">  </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-number">0</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in</span><span class="r-fg"> </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> &lt;- </span><span class="r-parameter">decay</span><span class="r-fg"> * </span><span class="r-fg">acc</span><span class="r-fg"> + (</span><span class="r-number">1</span><span class="r-fg"> - </span><span class="r-parameter">decay</span><span class="r-fg">) * </span><span class="r-parameter">x</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return</span><span class="r-punctuation">(</span><span class="r-fg">acc</span><span class="r-punctuation">)</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-fg">result</span><span class="r-operator"> &lt;- </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-builtin">c</span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">))</span>
+<span class="r-builtin">print</span><span class="r-punctuation">(</span><span class="r-fg">result</span><span class="r-punctuation">)</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article></div></section></div><div class="language" data-language="typescript" hidden><section id="night-typescript"><h2>Night</h2><div class="grid"><article class="scope-fig-vivid-night"><h3>Grotto Fig-Vivid Night</h3><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article><article class="scope-rainstone-vivid-night"><h3>Grotto Rainstone-Vivid Night</h3><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article></div></section><section id="day-typescript"><h2>Day</h2><div class="grid"><article class="scope-fig-vivid-day"><h3>Grotto Fig-Vivid Day</h3><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article><article class="scope-rainstone-vivid-day"><h3>Grotto Rainstone-Vivid Day</h3><div class="specwrap"><pre class="specimen"><span class="r-comment">// rolling.ts -- exponential moving average</span>
+<span class="r-keyword">import </span><span class="r-punctuation">{ </span><span class="r-function">lruCache</span><span class="r-punctuation"> } </span><span class="r-keyword">from </span><span class="r-string">&quot;./cache&quot;</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">const </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-fg"> = </span><span class="r-number">0.92</span><span class="r-punctuation">;</span>
+
+<span class="r-keyword">export </span><span class="r-keyword">function </span><span class="r-function">rollingMean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-punctuation">[], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-punctuation">: </span><span class="r-type">number</span><span class="r-fg"> {</span>
+<span class="r-docstring">  /** Exponentially-smoothed mean of `values`. */</span>
+<span class="r-fg">  </span><span class="r-keyword">let </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-number">0</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-keyword">for </span><span class="r-punctuation">(</span><span class="r-keyword">const </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">of </span><span class="r-parameter">values</span><span class="r-punctuation">) {</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-fg"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span><span class="r-punctuation">;</span>
+<span class="r-fg">  </span><span class="r-punctuation">}</span>
+<span class="r-fg">  </span><span class="r-keyword">return </span><span class="r-fg">acc</span><span class="r-punctuation">;</span>
+<span class="r-punctuation">}</span>
+
+<span class="r-namespace">console</span><span class="r-punctuation">.</span><span class="r-builtin">log</span><span class="r-punctuation">(</span><span class="r-function">rollingMean</span><span class="r-punctuation">([</span><span class="r-number">1</span><span class="r-punctuation">, </span><span class="r-number">2</span><span class="r-punctuation">, </span><span class="r-number">3</span><span class="r-punctuation">]));</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article></div></section></div><div class="language" data-language="python" hidden><section id="night-python"><h2>Night</h2><div class="grid"><article class="scope-fig-vivid-night"><h3>Grotto Fig-Vivid Night</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article><article class="scope-rainstone-vivid-night"><h3>Grotto Rainstone-Vivid Night</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article></div></section><section id="day-python"><h2>Day</h2><div class="grid"><article class="scope-fig-vivid-day"><h3>Grotto Fig-Vivid Day</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article><article class="scope-rainstone-vivid-day"><h3>Grotto Rainstone-Vivid Day</h3><div class="specwrap"><pre class="specimen"><span class="r-comment"># rolling.py -- exponential moving average with a decay knob</span>
+<span class="r-keyword">from </span><span class="r-namespace">functools</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-builtin">lru_cache</span>
+<span class="r-keyword">from </span><span class="r-namespace">numpy</span><span class="r-fg"> </span><span class="r-keyword">import </span><span class="r-namespace">linalg</span><span class="r-fg"> </span><span class="r-keyword">as </span><span class="r-namespace">la</span>
+
+<span class="r-constant">DEFAULT_DECAY</span><span class="r-operator"> = </span><span class="r-number">0.92</span>
+
+<span class="r-decorator">@lru_cache</span><span class="r-punctuation">(</span><span class="r-parameter">maxsize</span><span class="r-operator">=</span><span class="r-number">128</span><span class="r-punctuation">)</span>
+<span class="r-keyword">def </span><span class="r-function">rolling_mean</span><span class="r-punctuation">(</span><span class="r-parameter">values</span><span class="r-punctuation">: </span><span class="r-builtin">list</span><span class="r-punctuation">[</span><span class="r-type">float</span><span class="r-punctuation">], </span><span class="r-parameter">decay</span><span class="r-punctuation">: </span><span class="r-type">float</span><span class="r-fg"> = </span><span class="r-constant">DEFAULT_DECAY</span><span class="r-punctuation">)</span><span class="r-fg"> -&gt; </span><span class="r-type">float</span><span class="r-punctuation">:</span>
+<span class="r-docstring">    &quot;&quot;&quot;Return the exponentially-smoothed mean of `values`.&quot;&quot;&quot;</span>
+<span class="r-fg">    </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-number">0.0</span>
+<span class="r-fg">    </span><span class="r-keyword">for </span><span class="r-parameter">x</span><span class="r-fg"> </span><span class="r-keyword">in </span><span class="r-parameter">values</span><span class="r-punctuation">:</span>
+<span class="r-fg">        </span><span class="r-fg">acc</span><span class="r-operator"> = </span><span class="r-parameter">decay</span><span class="r-operator"> * </span><span class="r-fg">acc</span><span class="r-operator"> + </span><span class="r-punctuation">(</span><span class="r-number">1</span><span class="r-operator"> - </span><span class="r-parameter">decay</span><span class="r-punctuation">)</span><span class="r-operator"> * </span><span class="r-parameter">x</span>
+<span class="r-fg">    </span><span class="r-keyword">return </span><span class="r-fg">acc</span></pre></div><div class="states"><div class="state surface-selection"><span class="r-fg">Selected: result = rolling_mean(values)</span></div><div class="state surface-search_match_current"><span class="r-fg">Find: rolling_mean</span></div><div class="state surface-diff_added"><span class="r-fg">+ result = rolling_mean(values)</span></div><div class="state surface-diff_removed"><span class="r-fg">- result = mean(values)</span></div><div class="state"><span class="r-error">× Error: missing argument</span><br><span class="r-warning">! Warning: unused value</span></div></div></article></div></section></div><script>document.getElementById('language').onchange=e=>document.querySelectorAll('.language').forEach(x=>x.hidden=x.dataset.language!==e.target.value);document.getElementById('view').onchange=e=>document.body.className='view-'+e.target.value;</script></body></html>

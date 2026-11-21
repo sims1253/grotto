@@ -1,0 +1,47 @@
+{
+  "name": "grotto-summer-memories",
+  "displayName": "Grotto Summer Memories Preview",
+  "description": "Two interpretations of summers beneath kiwi vines and evenings at stone tables. Pergola brings foliage into the canvas. Stone keeps the canvas closer to grey. Both use related cool syntax colors and small amber accents, in Day and Night.",
+  "version": "0.1.0",
+  "publisher": "grotto-local",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sims1253/grotto.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "files": [
+    "themes/*.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto Pergola Day",
+        "uiTheme": "vs",
+        "path": "themes/pergola-day.json"
+      },
+      {
+        "label": "Grotto Pergola Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/pergola-night.json"
+      },
+      {
+        "label": "Grotto Stone Day",
+        "uiTheme": "vs",
+        "path": "themes/stone-day.json"
+      },
+      {
+        "label": "Grotto Stone Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/stone-night.json"
+      }
+    ]
+  }
+}

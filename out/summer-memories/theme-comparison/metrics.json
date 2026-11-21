@@ -1,0 +1,32 @@
+{
+  "grotto-pergola-day": {
+    "mean_ink_chroma": 0.0447,
+    "colored_share_C_at_least_004": 0.304,
+    "mean_colored_chroma": 0.1199,
+    "max_chroma": 0.1797
+  },
+  "catppuccin-latte": {
+    "mean_ink_chroma": 0.1149,
+    "colored_share_C_at_least_004": 0.744,
+    "mean_colored_chroma": 0.1439,
+    "max_chroma": 0.2503
+  },
+  "github-light-default": {
+    "mean_ink_chroma": 0.1032,
+    "colored_share_C_at_least_004": 0.574,
+    "mean_colored_chroma": 0.1685,
+    "max_chroma": 0.2069
+  },
+  "light-plus": {
+    "mean_ink_chroma": 0.1394,
+    "colored_share_C_at_least_004": 0.776,
+    "mean_colored_chroma": 0.1797,
+    "max_chroma": 0.3132
+  },
+  "solarized-light": {
+    "mean_ink_chroma": 0.0805,
+    "colored_share_C_at_least_004": 0.47,
+    "mean_colored_chroma": 0.145,
+    "max_chroma": 0.2025
+  }
+}

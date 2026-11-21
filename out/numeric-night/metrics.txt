@@ -1,0 +1,130 @@
+NON-CANDIDATE numeric-night metrics (branch dev/numeric-palettes)
+==============================================================================
+objective: J = min(must-normal dE/0.13, must-CVD dE/0.09, 2.0 * should dE/0.08, anticollapse dE/0.03)
+seed 20260815, 24 restarts
+
+palette                         J  mustN mustCVD should  antiC minCatDE  meanC minWCAG viol
+-------------------------------------------------------------------------------------------
+numeric-n01                 0.506  0.780   0.506  0.363  0.531    0.016  0.205    3.03    0
+numeric-n02                 0.477  0.769   0.477  0.363  0.560    0.017  0.242    3.09    0
+numeric-n03                 0.459  0.587   0.459  0.363  0.488    0.015  0.229    3.00    0
+numeric-n04                 0.401  0.431   0.401  0.347  0.915    0.028  0.208    3.04    0
+numeric-n05                 0.383  0.386   0.383  0.299  0.976    0.024  0.240    3.04    0
+numeric-n06                 0.379  0.379   0.386  0.363  0.472    0.014  0.192    3.08    0
+candidate-b-balanced        0.000  0.059   0.021  0.164  0.000    0.000  0.041    2.70   12
+candidate-c-expressive      0.000  0.047   0.021  0.191  0.000    0.000  0.060    2.71   12
+
+worst 10 constraint terms per palette (normalised margin ascending)
+------------------------------------------------------------------------------
+numeric-n01  argmin: ['selection', 'active_line'] [must_deutan]
+pair                              class                  dE    th  margin     dL     dC     dH
+bg_elevated/bg_overlay            should_normal       0.029  0.08   0.363  0.029  0.001  0.001
+bg/bg_elevated                    should_normal       0.032  0.08   0.394  0.032  0.001  0.001
+keyword/string                    should_normal       0.033  0.08   0.411  0.010  0.023  0.048
+selection/active_line             must_deutan         0.046  0.09   0.506  0.014  0.148  0.215
+selection/search_match_current    must_tritan         0.047  0.09   0.525  0.019  0.075  0.251
+active_line/diff_removed          must_tritan         0.048  0.09   0.530  0.025  0.123  0.121
+function/namespace                anticollapse_normal  0.016  0.03   0.531  0.002  0.009  0.013
+selection/active_line             must_tritan         0.051  0.09   0.571  0.014  0.148  0.215
+diff_added/diff_removed           must_tritan         0.054  0.09   0.599  0.011  0.023  0.138
+active_line/diff_added            must_deutan         0.054  0.09   0.606  0.014  0.100  0.036
+
+numeric-n02  argmin: ['selection', 'diff_removed'] [must_deutan]
+pair                              class                  dE    th  margin     dL     dC     dH
+bg_elevated/bg_overlay            should_normal       0.029  0.08   0.363  0.029  0.001  0.001
+bg/bg_elevated                    should_normal       0.032  0.08   0.394  0.032  0.001  0.001
+string/number                     should_normal       0.035  0.08   0.440  0.029  0.009  0.017
+selection/diff_removed            must_deutan         0.043  0.09   0.477  0.012  0.020  0.117
+diff_removed/diff_changed         must_tritan         0.043  0.09   0.479  0.002  0.140  0.113
+active_line/diff_removed          must_tritan         0.043  0.09   0.479  0.001  0.138  0.199
+selection/diff_removed            must_protan         0.043  0.09   0.482  0.012  0.020  0.117
+selection/search_match            must_tritan         0.044  0.09   0.488  0.009  0.033  0.134
+selection/active_line             must_tritan         0.044  0.09   0.490  0.013  0.117  0.116
+diff_removed/diff_changed         must_deutan         0.044  0.09   0.491  0.002  0.140  0.113
+
+numeric-n03  argmin: ['search_match', 'search_match_current'] [must_tritan]
+pair                              class                  dE    th  margin     dL     dC     dH
+bg_elevated/bg_overlay            should_normal       0.029  0.08   0.363  0.029  0.001  0.001
+bg/bg_elevated                    should_normal       0.032  0.08   0.394  0.032  0.001  0.001
+search_match/search_match_current must_tritan         0.041  0.09   0.459  0.009  0.038  0.085
+search_match/search_match_current must_protan         0.044  0.09   0.485  0.009  0.038  0.085
+function/builtin                  anticollapse_normal  0.015  0.03   0.488  0.012  0.001  0.008
+search_match/search_match_current must_deutan         0.044  0.09   0.490  0.009  0.038  0.085
+diff_added/diff_removed           must_tritan         0.045  0.09   0.502  0.026  0.083  0.024
+active_line/diff_removed          must_deutan         0.045  0.09   0.505  0.011  0.152  0.224
+active_line/diff_added            must_tritan         0.046  0.09   0.517  0.015  0.070  0.114
+active_line/diff_removed          must_tritan         0.049  0.09   0.546  0.011  0.152  0.224
+
+numeric-n04  argmin: ['active_line', 'diff_removed'] [must_deutan]
+pair                              class                  dE    th  margin     dL     dC     dH
+keyword/string                    should_normal       0.028  0.08   0.347  0.004  0.019  0.019
+bg_elevated/bg_overlay            should_normal       0.029  0.08   0.363  0.029  0.001  0.001
+bg/bg_elevated                    should_normal       0.032  0.08   0.394  0.032  0.001  0.001
+active_line/diff_removed          must_deutan         0.036  0.09   0.401  0.025  0.108  0.082
+diff_added/diff_removed           must_tritan         0.036  0.09   0.401  0.011  0.054  0.114
+selection/search_match            must_tritan         0.038  0.09   0.419  0.018  0.093  0.003
+active_line/diff_added            must_normal         0.056  0.13   0.431  0.013  0.054  0.003
+selection/active_line             must_deutan         0.044  0.09   0.491  0.006  0.155  0.228
+active_line/diff_added            must_protan         0.046  0.09   0.511  0.013  0.054  0.003
+selection/active_line             must_tritan         0.047  0.09   0.523  0.006  0.155  0.228
+
+numeric-n05  argmin: ['selection', 'diff_added'] [must_tritan]
+pair                              class                  dE    th  margin     dL     dC     dH
+string/number                     should_normal       0.024  0.08   0.299  0.001  0.007  0.023
+bg_elevated/bg_overlay            should_normal       0.029  0.08   0.363  0.029  0.001  0.001
+selection/diff_added              must_tritan         0.035  0.09   0.383  0.013  0.058  0.126
+selection/active_line             must_normal         0.050  0.13   0.386  0.005  0.050  0.001
+diff_removed/diff_changed         must_tritan         0.035  0.09   0.392  0.001  0.093  0.272
+bg/bg_elevated                    should_normal       0.032  0.08   0.394  0.032  0.001  0.001
+active_line/diff_added            must_deutan         0.037  0.09   0.410  0.017  0.107  0.086
+error/keyword                     must_normal         0.053  0.13   0.411  0.039  0.025  0.035
+error/keyword                     must_protan         0.039  0.09   0.429  0.039  0.025  0.035
+diff_added/diff_removed           must_deutan         0.040  0.09   0.439  0.013  0.048  0.164
+
+numeric-n06  argmin: ['active_line', 'diff_removed'] [must_normal]
+pair                              class                  dE    th  margin     dL     dC     dH
+bg_elevated/bg_overlay            should_normal       0.029  0.08   0.363  0.029  0.001  0.001
+active_line/diff_removed          must_normal         0.049  0.13   0.379  0.006  0.049  0.003
+search_match/search_match_current must_tritan         0.035  0.09   0.386  0.007  0.084  0.253
+bg/bg_elevated                    should_normal       0.032  0.08   0.394  0.032  0.001  0.001
+selection/diff_removed            must_tritan         0.036  0.09   0.401  0.010  0.059  0.133
+active_line/diff_removed          must_tritan         0.038  0.09   0.422  0.006  0.049  0.003
+selection/active_line             must_deutan         0.039  0.09   0.430  0.016  0.107  0.087
+diff_removed/diff_changed         must_tritan         0.042  0.09   0.469  0.008  0.054  0.120
+string/decorator                  anticollapse_normal  0.014  0.03   0.472  0.007  0.008  0.011
+active_line/diff_added            must_deutan         0.043  0.09   0.483  0.004  0.154  0.223
+
+candidate-b-balanced  argmin: ['number', 'constant'] [anticollapse_normal]
+pair                              class                  dE    th  margin     dL     dC     dH
+number/constant                   anticollapse_normal  0.000  0.03   0.000  0.000  0.000  0.000
+diff_added/diff_removed           must_deutan         0.002  0.09   0.021  0.001  0.007  0.028
+diff_added/diff_changed           must_deutan         0.003  0.09   0.028  0.001  0.001  0.008
+diff_added/diff_changed           must_protan         0.004  0.09   0.039  0.001  0.001  0.008
+active_line/diff_removed          must_deutan         0.004  0.09   0.042  0.000  0.015  0.009
+diff_removed/diff_changed         must_deutan         0.004  0.09   0.044  0.000  0.008  0.017
+active_line/diff_added            must_tritan         0.004  0.09   0.045  0.002  0.008  0.007
+diff_added/diff_changed           must_normal         0.008  0.13   0.059  0.001  0.001  0.008
+error/warning                     must_tritan         0.005  0.09   0.060  0.001  0.024  0.057
+active_line/diff_added            must_deutan         0.006  0.09   0.063  0.002  0.008  0.007
+
+candidate-c-expressive  argmin: ['number', 'constant'] [anticollapse_normal]
+pair                              class                  dE    th  margin     dL     dC     dH
+number/constant                   anticollapse_normal  0.000  0.03   0.000  0.000  0.000  0.000
+diff_added/diff_changed           must_deutan         0.002  0.09   0.021  0.000  0.000  0.006
+active_line/diff_added            must_tritan         0.002  0.09   0.021  0.001  0.009  0.007
+active_line/diff_removed          must_deutan         0.002  0.09   0.021  0.001  0.019  0.012
+diff_added/diff_changed           must_protan         0.004  0.09   0.039  0.000  0.000  0.006
+diff_added/diff_changed           must_normal         0.006  0.13   0.047  0.000  0.000  0.006
+diff_added/diff_removed           must_deutan         0.006  0.09   0.064  0.000  0.009  0.032
+diff_added/diff_changed           must_tritan         0.006  0.09   0.072  0.000  0.000  0.006
+active_line/diff_added            must_normal         0.010  0.13   0.080  0.001  0.009  0.007
+diff_removed/diff_changed         must_deutan         0.007  0.09   0.083  0.000  0.009  0.024
+
+binding constraint at the best numeric optimum
+------------------------------------------------------------------------------
+argmin class : must_deutan (pair ['selection', 'active_line'])
+roles on the sRGB gamut edge (C>=99.5% max): 17 -> breakpoint, builtin, constant, decorator, diff_added, diff_changed, diff_removed, error, function, namespace, number, search_match, search_match_current, selection, tag, type, warning
+inks on their WCAG lightness floor (worst ratio within 0.02): 0 -> -
+constraint terms within 5% of the worst margin: 4/162
+
+labels: WCAG = compliance; CVD = population-average Brettel models; APCA not used. NON-CANDIDATE exploration output.

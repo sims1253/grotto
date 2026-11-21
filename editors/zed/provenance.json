@@ -1,0 +1,52 @@
+{
+  "generator": "grotto-zed/1",
+  "candidate": true,
+  "note": "Unranked evaluation preview; no candidate is selected or final.",
+  "themes": [
+    {
+      "name": "Grotto Restrained Day",
+      "palette": "candidate-a-restrained.day.yaml",
+      "palette_sha256": "035fc0b4c2135c9764d1863b4b85c8a517125de8056ed53ad08331461ef64ca5"
+    },
+    {
+      "name": "Grotto Restrained Evening",
+      "palette": "candidate-a-restrained.evening.yaml",
+      "palette_sha256": "5f8c29abf7189f68058fbbac5ab2e6857b5330f0fb23f3f3e91e4d720caedec7"
+    },
+    {
+      "name": "Grotto Restrained Night",
+      "palette": "candidate-a-restrained.night.yaml",
+      "palette_sha256": "a04d23754ef8fb5a182d3b9a4a60d6f1ed624580a391ff486d723493d7865662"
+    },
+    {
+      "name": "Grotto Balanced Day",
+      "palette": "candidate-b-balanced.day.yaml",
+      "palette_sha256": "d683bf2b220e0b73fa199234d3bf00be52af682819a625ecb4d7be0580467872"
+    },
+    {
+      "name": "Grotto Balanced Evening",
+      "palette": "candidate-b-balanced.evening.yaml",
+      "palette_sha256": "496023ba735f0f5675043128847e7798889b10fd4470b8fd3eb0363ea662f40f"
+    },
+    {
+      "name": "Grotto Balanced Night",
+      "palette": "candidate-b-balanced.night.yaml",
+      "palette_sha256": "b75c5c7641ef64f78bbd112f8e15d2a254c1c6413a26aceaa938a57dee4fc5ff"
+    },
+    {
+      "name": "Grotto Expressive Day",
+      "palette": "candidate-c-expressive.day.yaml",
+      "palette_sha256": "efdccde153d266474dd29b782d48d5d03689e410ccc35633c3954dc6f975dd02"
+    },
+    {
+      "name": "Grotto Expressive Evening",
+      "palette": "candidate-c-expressive.evening.yaml",
+      "palette_sha256": "eba39b06ab031be7273d86c5f14fad068670fcc79435e13da8bfa47846faa5e8"
+    },
+    {
+      "name": "Grotto Expressive Night",
+      "palette": "candidate-c-expressive.night.yaml",
+      "palette_sha256": "bdc2b043d4821d3fb7434243b87f513a296e9961feb754edc6eeec2954c74d12"
+    }
+  ]
+}

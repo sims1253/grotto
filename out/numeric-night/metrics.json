@@ -1,0 +1,1363 @@
+{
+  "schema": "grotto.numeric-night",
+  "schema_version": "1",
+  "generated_by": "scripts/numeric_palette.py",
+  "seed": 20260815,
+  "restarts": 24,
+  "samples": 16,
+  "refine_passes": 30,
+  "objective": {
+    "formula": "J = min(min_must_normal, min_must_cvd, 2.0 * min_should, min_anticollapse)",
+    "must_normal_threshold": 0.13,
+    "must_cvd_threshold": 0.09,
+    "should_threshold": 0.08,
+    "should_weight": 2.0,
+    "anticollapse_threshold": 0.03,
+    "anticollapse_note": "matrix same_family.min_distance ('still not identical'), applied to categorical pairs the matrix does not otherwise constrain",
+    "cvd": "protan/deutan/tritan at severity 1.0, Brettel (population-average models)",
+    "secondary": "J2 = mean of all normalised terms (greedy plateau tie-break)"
+  },
+  "roles": {
+    "scaffold_verbatim_from": "candidate-b-balanced.night.yaml",
+    "scaffold": [
+      "active_line",
+      "bg",
+      "bg_elevated",
+      "bg_overlay",
+      "comment",
+      "deprecated",
+      "docstring",
+      "fg",
+      "fg_muted",
+      "fg_secondary",
+      "line_number",
+      "line_number_active",
+      "operator",
+      "parameter",
+      "property",
+      "punctuation",
+      "ui_inactive"
+    ],
+    "optimized": [
+      "keyword",
+      "string",
+      "number",
+      "constant",
+      "type",
+      "function",
+      "builtin",
+      "decorator",
+      "namespace",
+      "tag",
+      "error",
+      "warning",
+      "info",
+      "success",
+      "selection",
+      "search_match",
+      "search_match_current",
+      "diff_added",
+      "diff_removed",
+      "diff_changed",
+      "debug_current",
+      "focus",
+      "breakpoint"
+    ],
+    "categorical": [
+      "keyword",
+      "string",
+      "number",
+      "constant",
+      "type",
+      "function",
+      "builtin",
+      "decorator",
+      "namespace",
+      "tag"
+    ]
+  },
+  "thresholds_source": "spec/distance-matrix.yaml (READ, not edited)",
+  "floors_source": "spec/roles.yaml accessibility_floor via spec/environments.yaml",
+  "palettes": [
+    {
+      "name": "numeric-n01",
+      "kind": "numeric (free restart)",
+      "source": "numeric-n01.night.yaml",
+      "worst_margin_overall": 0.5065,
+      "worst_margin_matrix": 0.5065,
+      "argmin": {
+        "pair": [
+          "selection",
+          "active_line"
+        ],
+        "class": "must_deutan"
+      },
+      "worst_margin_must_normal": 0.7804,
+      "worst_margin_must_cvd": 0.5065,
+      "worst_margin_should": 0.3632,
+      "worst_margin_anticollapse": 0.5313,
+      "min_categorical_de": 0.0159,
+      "mean_categorical_chroma": 0.2052,
+      "total_categorical_chroma": 2.0518,
+      "min_wcag": 3.0269,
+      "wcag_violations": 0,
+      "wcag_check_count": 261,
+      "worst_pairs": [
+        {
+          "pair": [
+            "bg_elevated",
+            "bg_overlay"
+          ],
+          "class": "should_normal",
+          "de": 0.0291,
+          "threshold": 0.08,
+          "margin": 0.3632,
+          "dL": 0.029,
+          "dC": 0.0013,
+          "dH": 0.0011
+        },
+        {
+          "pair": [
+            "bg",
+            "bg_elevated"
+          ],
+          "class": "should_normal",
+          "de": 0.0315,
+          "threshold": 0.08,
+          "margin": 0.3941,
+          "dL": 0.0315,
+          "dC": 0.0007,
+          "dH": 0.0013
+        },
+        {
+          "pair": [
+            "keyword",
+            "string"
+          ],
+          "class": "should_normal",
+          "de": 0.0329,
+          "threshold": 0.08,
+          "margin": 0.4112,
+          "dL": 0.0102,
+          "dC": 0.0228,
+          "dH": 0.0482
+        },
+        {
+          "pair": [
+            "selection",
+            "active_line"
+          ],
+          "class": "must_deutan",
+          "de": 0.0456,
+          "threshold": 0.09,
+          "margin": 0.5065,
+          "dL": 0.014,
+          "dC": 0.1479,
+          "dH": 0.2152
+        },
+        {
+          "pair": [
+            "selection",
+            "search_match_current"
+          ],
+          "class": "must_tritan",
+          "de": 0.0472,
+          "threshold": 0.09,
+          "margin": 0.5247,
+          "dL": 0.0187,
+          "dC": 0.0754,
+          "dH": 0.2514
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0477,
+          "threshold": 0.09,
+          "margin": 0.53,
+          "dL": 0.0248,
+          "dC": 0.1232,
+          "dH": 0.1213
+        },
+        {
+          "pair": [
+            "function",
+            "namespace"
+          ],
+          "class": "anticollapse_normal",
+          "de": 0.0159,
+          "threshold": 0.03,
+          "margin": 0.5313,
+          "dL": 0.002,
+          "dC": 0.0087,
+          "dH": 0.0132
+        },
+        {
+          "pair": [
+            "selection",
+            "active_line"
+          ],
+          "class": "must_tritan",
+          "de": 0.0514,
+          "threshold": 0.09,
+          "margin": 0.5709,
+          "dL": 0.014,
+          "dC": 0.1479,
+          "dH": 0.2152
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_removed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0539,
+          "threshold": 0.09,
+          "margin": 0.5987,
+          "dL": 0.0105,
+          "dC": 0.0233,
+          "dH": 0.1377
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_deutan",
+          "de": 0.0545,
+          "threshold": 0.09,
+          "margin": 0.6055,
+          "dL": 0.0143,
+          "dC": 0.0999,
+          "dH": 0.036
+        }
+      ]
+    },
+    {
+      "name": "numeric-n02",
+      "kind": "numeric (free restart)",
+      "source": "numeric-n02.night.yaml",
+      "worst_margin_overall": 0.4775,
+      "worst_margin_matrix": 0.4775,
+      "argmin": {
+        "pair": [
+          "selection",
+          "diff_removed"
+        ],
+        "class": "must_deutan"
+      },
+      "worst_margin_must_normal": 0.7695,
+      "worst_margin_must_cvd": 0.4775,
+      "worst_margin_should": 0.3632,
+      "worst_margin_anticollapse": 0.5596,
+      "min_categorical_de": 0.0168,
+      "mean_categorical_chroma": 0.2424,
+      "total_categorical_chroma": 2.4245,
+      "min_wcag": 3.0929,
+      "wcag_violations": 0,
+      "wcag_check_count": 261,
+      "worst_pairs": [
+        {
+          "pair": [
+            "bg_elevated",
+            "bg_overlay"
+          ],
+          "class": "should_normal",
+          "de": 0.0291,
+          "threshold": 0.08,
+          "margin": 0.3632,
+          "dL": 0.029,
+          "dC": 0.0013,
+          "dH": 0.0011
+        },
+        {
+          "pair": [
+            "bg",
+            "bg_elevated"
+          ],
+          "class": "should_normal",
+          "de": 0.0315,
+          "threshold": 0.08,
+          "margin": 0.3941,
+          "dL": 0.0315,
+          "dC": 0.0007,
+          "dH": 0.0013
+        },
+        {
+          "pair": [
+            "string",
+            "number"
+          ],
+          "class": "should_normal",
+          "de": 0.0352,
+          "threshold": 0.08,
+          "margin": 0.4396,
+          "dL": 0.0294,
+          "dC": 0.0085,
+          "dH": 0.0173
+        },
+        {
+          "pair": [
+            "selection",
+            "diff_removed"
+          ],
+          "class": "must_deutan",
+          "de": 0.043,
+          "threshold": 0.09,
+          "margin": 0.4775,
+          "dL": 0.0118,
+          "dC": 0.0201,
+          "dH": 0.1175
+        },
+        {
+          "pair": [
+            "diff_removed",
+            "diff_changed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0431,
+          "threshold": 0.09,
+          "margin": 0.4787,
+          "dL": 0.0021,
+          "dC": 0.14,
+          "dH": 0.113
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0431,
+          "threshold": 0.09,
+          "margin": 0.4789,
+          "dL": 0.0014,
+          "dC": 0.1376,
+          "dH": 0.1992
+        },
+        {
+          "pair": [
+            "selection",
+            "diff_removed"
+          ],
+          "class": "must_protan",
+          "de": 0.0434,
+          "threshold": 0.09,
+          "margin": 0.4818,
+          "dL": 0.0118,
+          "dC": 0.0201,
+          "dH": 0.1175
+        },
+        {
+          "pair": [
+            "selection",
+            "search_match"
+          ],
+          "class": "must_tritan",
+          "de": 0.0439,
+          "threshold": 0.09,
+          "margin": 0.4879,
+          "dL": 0.0094,
+          "dC": 0.0329,
+          "dH": 0.1341
+        },
+        {
+          "pair": [
+            "selection",
+            "active_line"
+          ],
+          "class": "must_tritan",
+          "de": 0.0441,
+          "threshold": 0.09,
+          "margin": 0.4901,
+          "dL": 0.0132,
+          "dC": 0.1175,
+          "dH": 0.1157
+        },
+        {
+          "pair": [
+            "diff_removed",
+            "diff_changed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0442,
+          "threshold": 0.09,
+          "margin": 0.4909,
+          "dL": 0.0021,
+          "dC": 0.14,
+          "dH": 0.113
+        }
+      ]
+    },
+    {
+      "name": "numeric-n03",
+      "kind": "numeric (bladder restart)",
+      "source": "numeric-n03.night.yaml",
+      "worst_margin_overall": 0.4585,
+      "worst_margin_matrix": 0.4585,
+      "argmin": {
+        "pair": [
+          "search_match",
+          "search_match_current"
+        ],
+        "class": "must_tritan"
+      },
+      "worst_margin_must_normal": 0.5868,
+      "worst_margin_must_cvd": 0.4585,
+      "worst_margin_should": 0.3632,
+      "worst_margin_anticollapse": 0.488,
+      "min_categorical_de": 0.0146,
+      "mean_categorical_chroma": 0.2287,
+      "total_categorical_chroma": 2.2874,
+      "min_wcag": 3.0025,
+      "wcag_violations": 0,
+      "wcag_check_count": 261,
+      "worst_pairs": [
+        {
+          "pair": [
+            "bg_elevated",
+            "bg_overlay"
+          ],
+          "class": "should_normal",
+          "de": 0.0291,
+          "threshold": 0.08,
+          "margin": 0.3632,
+          "dL": 0.029,
+          "dC": 0.0013,
+          "dH": 0.0011
+        },
+        {
+          "pair": [
+            "bg",
+            "bg_elevated"
+          ],
+          "class": "should_normal",
+          "de": 0.0315,
+          "threshold": 0.08,
+          "margin": 0.3941,
+          "dL": 0.0315,
+          "dC": 0.0007,
+          "dH": 0.0013
+        },
+        {
+          "pair": [
+            "search_match",
+            "search_match_current"
+          ],
+          "class": "must_tritan",
+          "de": 0.0413,
+          "threshold": 0.09,
+          "margin": 0.4585,
+          "dL": 0.0093,
+          "dC": 0.0376,
+          "dH": 0.0845
+        },
+        {
+          "pair": [
+            "search_match",
+            "search_match_current"
+          ],
+          "class": "must_protan",
+          "de": 0.0437,
+          "threshold": 0.09,
+          "margin": 0.4851,
+          "dL": 0.0093,
+          "dC": 0.0376,
+          "dH": 0.0845
+        },
+        {
+          "pair": [
+            "function",
+            "builtin"
+          ],
+          "class": "anticollapse_normal",
+          "de": 0.0146,
+          "threshold": 0.03,
+          "margin": 0.488,
+          "dL": 0.0121,
+          "dC": 0.0006,
+          "dH": 0.0082
+        },
+        {
+          "pair": [
+            "search_match",
+            "search_match_current"
+          ],
+          "class": "must_deutan",
+          "de": 0.0441,
+          "threshold": 0.09,
+          "margin": 0.4896,
+          "dL": 0.0093,
+          "dC": 0.0376,
+          "dH": 0.0845
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_removed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0452,
+          "threshold": 0.09,
+          "margin": 0.5025,
+          "dL": 0.0258,
+          "dC": 0.0826,
+          "dH": 0.024
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0455,
+          "threshold": 0.09,
+          "margin": 0.505,
+          "dL": 0.0109,
+          "dC": 0.1525,
+          "dH": 0.2241
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_tritan",
+          "de": 0.0465,
+          "threshold": 0.09,
+          "margin": 0.5171,
+          "dL": 0.0149,
+          "dC": 0.07,
+          "dH": 0.1144
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0491,
+          "threshold": 0.09,
+          "margin": 0.5458,
+          "dL": 0.0109,
+          "dC": 0.1525,
+          "dH": 0.2241
+        }
+      ]
+    },
+    {
+      "name": "numeric-n04",
+      "kind": "numeric (ladder restart)",
+      "source": "numeric-n04.night.yaml",
+      "worst_margin_overall": 0.401,
+      "worst_margin_matrix": 0.401,
+      "argmin": {
+        "pair": [
+          "active_line",
+          "diff_removed"
+        ],
+        "class": "must_deutan"
+      },
+      "worst_margin_must_normal": 0.4311,
+      "worst_margin_must_cvd": 0.401,
+      "worst_margin_should": 0.3471,
+      "worst_margin_anticollapse": 0.9153,
+      "min_categorical_de": 0.0275,
+      "mean_categorical_chroma": 0.2082,
+      "total_categorical_chroma": 2.0818,
+      "min_wcag": 3.0365,
+      "wcag_violations": 0,
+      "wcag_check_count": 261,
+      "worst_pairs": [
+        {
+          "pair": [
+            "keyword",
+            "string"
+          ],
+          "class": "should_normal",
+          "de": 0.0278,
+          "threshold": 0.08,
+          "margin": 0.3471,
+          "dL": 0.0039,
+          "dC": 0.0194,
+          "dH": 0.0195
+        },
+        {
+          "pair": [
+            "bg_elevated",
+            "bg_overlay"
+          ],
+          "class": "should_normal",
+          "de": 0.0291,
+          "threshold": 0.08,
+          "margin": 0.3632,
+          "dL": 0.029,
+          "dC": 0.0013,
+          "dH": 0.0011
+        },
+        {
+          "pair": [
+            "bg",
+            "bg_elevated"
+          ],
+          "class": "should_normal",
+          "de": 0.0315,
+          "threshold": 0.08,
+          "margin": 0.3941,
+          "dL": 0.0315,
+          "dC": 0.0007,
+          "dH": 0.0013
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0361,
+          "threshold": 0.09,
+          "margin": 0.401,
+          "dL": 0.0246,
+          "dC": 0.1083,
+          "dH": 0.0818
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_removed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0361,
+          "threshold": 0.09,
+          "margin": 0.4011,
+          "dL": 0.0115,
+          "dC": 0.0538,
+          "dH": 0.1137
+        },
+        {
+          "pair": [
+            "selection",
+            "search_match"
+          ],
+          "class": "must_tritan",
+          "de": 0.0377,
+          "threshold": 0.09,
+          "margin": 0.4187,
+          "dL": 0.0184,
+          "dC": 0.0931,
+          "dH": 0.0032
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_normal",
+          "de": 0.056,
+          "threshold": 0.13,
+          "margin": 0.4311,
+          "dL": 0.013,
+          "dC": 0.0545,
+          "dH": 0.0026
+        },
+        {
+          "pair": [
+            "selection",
+            "active_line"
+          ],
+          "class": "must_deutan",
+          "de": 0.0442,
+          "threshold": 0.09,
+          "margin": 0.4911,
+          "dL": 0.0056,
+          "dC": 0.1555,
+          "dH": 0.2276
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_protan",
+          "de": 0.046,
+          "threshold": 0.09,
+          "margin": 0.5114,
+          "dL": 0.013,
+          "dC": 0.0545,
+          "dH": 0.0026
+        },
+        {
+          "pair": [
+            "selection",
+            "active_line"
+          ],
+          "class": "must_tritan",
+          "de": 0.0471,
+          "threshold": 0.09,
+          "margin": 0.5233,
+          "dL": 0.0056,
+          "dC": 0.1555,
+          "dH": 0.2276
+        }
+      ]
+    },
+    {
+      "name": "numeric-n05",
+      "kind": "numeric (free restart)",
+      "source": "numeric-n05.night.yaml",
+      "worst_margin_overall": 0.3828,
+      "worst_margin_matrix": 0.3828,
+      "argmin": {
+        "pair": [
+          "selection",
+          "diff_added"
+        ],
+        "class": "must_tritan"
+      },
+      "worst_margin_must_normal": 0.3855,
+      "worst_margin_must_cvd": 0.3828,
+      "worst_margin_should": 0.2991,
+      "worst_margin_anticollapse": 0.9761,
+      "min_categorical_de": 0.0239,
+      "mean_categorical_chroma": 0.2402,
+      "total_categorical_chroma": 2.4019,
+      "min_wcag": 3.0393,
+      "wcag_violations": 0,
+      "wcag_check_count": 261,
+      "worst_pairs": [
+        {
+          "pair": [
+            "string",
+            "number"
+          ],
+          "class": "should_normal",
+          "de": 0.0239,
+          "threshold": 0.08,
+          "margin": 0.2991,
+          "dL": 0.0007,
+          "dC": 0.0067,
+          "dH": 0.023
+        },
+        {
+          "pair": [
+            "bg_elevated",
+            "bg_overlay"
+          ],
+          "class": "should_normal",
+          "de": 0.0291,
+          "threshold": 0.08,
+          "margin": 0.3632,
+          "dL": 0.029,
+          "dC": 0.0013,
+          "dH": 0.0011
+        },
+        {
+          "pair": [
+            "selection",
+            "diff_added"
+          ],
+          "class": "must_tritan",
+          "de": 0.0345,
+          "threshold": 0.09,
+          "margin": 0.3828,
+          "dL": 0.0126,
+          "dC": 0.0575,
+          "dH": 0.1258
+        },
+        {
+          "pair": [
+            "selection",
+            "active_line"
+          ],
+          "class": "must_normal",
+          "de": 0.0501,
+          "threshold": 0.13,
+          "margin": 0.3855,
+          "dL": 0.0048,
+          "dC": 0.0499,
+          "dH": 0.0008
+        },
+        {
+          "pair": [
+            "diff_removed",
+            "diff_changed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0353,
+          "threshold": 0.09,
+          "margin": 0.392,
+          "dL": 0.0005,
+          "dC": 0.0931,
+          "dH": 0.2719
+        },
+        {
+          "pair": [
+            "bg",
+            "bg_elevated"
+          ],
+          "class": "should_normal",
+          "de": 0.0315,
+          "threshold": 0.08,
+          "margin": 0.3941,
+          "dL": 0.0315,
+          "dC": 0.0007,
+          "dH": 0.0013
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_deutan",
+          "de": 0.0369,
+          "threshold": 0.09,
+          "margin": 0.4098,
+          "dL": 0.0174,
+          "dC": 0.1073,
+          "dH": 0.0855
+        },
+        {
+          "pair": [
+            "error",
+            "keyword"
+          ],
+          "class": "must_normal",
+          "de": 0.0534,
+          "threshold": 0.13,
+          "margin": 0.4111,
+          "dL": 0.0388,
+          "dC": 0.0246,
+          "dH": 0.0347
+        },
+        {
+          "pair": [
+            "error",
+            "keyword"
+          ],
+          "class": "must_protan",
+          "de": 0.0386,
+          "threshold": 0.09,
+          "margin": 0.4289,
+          "dL": 0.0388,
+          "dC": 0.0246,
+          "dH": 0.0347
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_removed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0395,
+          "threshold": 0.09,
+          "margin": 0.4388,
+          "dL": 0.0127,
+          "dC": 0.0479,
+          "dH": 0.1644
+        }
+      ]
+    },
+    {
+      "name": "numeric-n06",
+      "kind": "numeric (free restart)",
+      "source": "numeric-n06.night.yaml",
+      "worst_margin_overall": 0.3788,
+      "worst_margin_matrix": 0.3788,
+      "argmin": {
+        "pair": [
+          "active_line",
+          "diff_removed"
+        ],
+        "class": "must_normal"
+      },
+      "worst_margin_must_normal": 0.3788,
+      "worst_margin_must_cvd": 0.3864,
+      "worst_margin_should": 0.3632,
+      "worst_margin_anticollapse": 0.4718,
+      "min_categorical_de": 0.0142,
+      "mean_categorical_chroma": 0.1922,
+      "total_categorical_chroma": 1.9219,
+      "min_wcag": 3.0845,
+      "wcag_violations": 0,
+      "wcag_check_count": 261,
+      "worst_pairs": [
+        {
+          "pair": [
+            "bg_elevated",
+            "bg_overlay"
+          ],
+          "class": "should_normal",
+          "de": 0.0291,
+          "threshold": 0.08,
+          "margin": 0.3632,
+          "dL": 0.029,
+          "dC": 0.0013,
+          "dH": 0.0011
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ],
+          "class": "must_normal",
+          "de": 0.0492,
+          "threshold": 0.13,
+          "margin": 0.3788,
+          "dL": 0.0056,
+          "dC": 0.0489,
+          "dH": 0.0026
+        },
+        {
+          "pair": [
+            "search_match",
+            "search_match_current"
+          ],
+          "class": "must_tritan",
+          "de": 0.0348,
+          "threshold": 0.09,
+          "margin": 0.3864,
+          "dL": 0.0071,
+          "dC": 0.084,
+          "dH": 0.2531
+        },
+        {
+          "pair": [
+            "bg",
+            "bg_elevated"
+          ],
+          "class": "should_normal",
+          "de": 0.0315,
+          "threshold": 0.08,
+          "margin": 0.3941,
+          "dL": 0.0315,
+          "dC": 0.0007,
+          "dH": 0.0013
+        },
+        {
+          "pair": [
+            "selection",
+            "diff_removed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0361,
+          "threshold": 0.09,
+          "margin": 0.4009,
+          "dL": 0.0103,
+          "dC": 0.0586,
+          "dH": 0.1329
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ],
+          "class": "must_tritan",
+          "de": 0.038,
+          "threshold": 0.09,
+          "margin": 0.4218,
+          "dL": 0.0056,
+          "dC": 0.0489,
+          "dH": 0.0026
+        },
+        {
+          "pair": [
+            "selection",
+            "active_line"
+          ],
+          "class": "must_deutan",
+          "de": 0.0387,
+          "threshold": 0.09,
+          "margin": 0.4298,
+          "dL": 0.0159,
+          "dC": 0.1075,
+          "dH": 0.0872
+        },
+        {
+          "pair": [
+            "diff_removed",
+            "diff_changed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0422,
+          "threshold": 0.09,
+          "margin": 0.4691,
+          "dL": 0.0083,
+          "dC": 0.0544,
+          "dH": 0.1197
+        },
+        {
+          "pair": [
+            "string",
+            "decorator"
+          ],
+          "class": "anticollapse_normal",
+          "de": 0.0142,
+          "threshold": 0.03,
+          "margin": 0.4718,
+          "dL": 0.0071,
+          "dC": 0.0084,
+          "dH": 0.0109
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_deutan",
+          "de": 0.0435,
+          "threshold": 0.09,
+          "margin": 0.4829,
+          "dL": 0.0035,
+          "dC": 0.154,
+          "dH": 0.2228
+        }
+      ]
+    },
+    {
+      "name": "candidate-b-balanced",
+      "kind": "committed candidate (comparison)",
+      "source": "candidate-b-balanced.night.yaml",
+      "worst_margin_overall": 0.0,
+      "worst_margin_matrix": 0.0209,
+      "argmin": {
+        "pair": [
+          "number",
+          "constant"
+        ],
+        "class": "anticollapse_normal"
+      },
+      "worst_margin_must_normal": 0.0589,
+      "worst_margin_must_cvd": 0.0209,
+      "worst_margin_should": 0.1639,
+      "worst_margin_anticollapse": 0.0,
+      "min_categorical_de": 0.0,
+      "mean_categorical_chroma": 0.0411,
+      "total_categorical_chroma": 0.4114,
+      "min_wcag": 2.6983,
+      "wcag_violations": 12,
+      "wcag_check_count": 261,
+      "worst_pairs": [
+        {
+          "pair": [
+            "number",
+            "constant"
+          ],
+          "class": "anticollapse_normal",
+          "de": 0.0,
+          "threshold": 0.03,
+          "margin": 0.0,
+          "dL": 0.0,
+          "dC": 0.0,
+          "dH": 0.0
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_removed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0019,
+          "threshold": 0.09,
+          "margin": 0.0209,
+          "dL": 0.0014,
+          "dC": 0.0071,
+          "dH": 0.0278
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_changed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0025,
+          "threshold": 0.09,
+          "margin": 0.0278,
+          "dL": 0.0012,
+          "dC": 0.0006,
+          "dH": 0.0077
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_changed"
+          ],
+          "class": "must_protan",
+          "de": 0.0035,
+          "threshold": 0.09,
+          "margin": 0.0387,
+          "dL": 0.0012,
+          "dC": 0.0006,
+          "dH": 0.0077
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0038,
+          "threshold": 0.09,
+          "margin": 0.0423,
+          "dL": 0.0,
+          "dC": 0.0151,
+          "dH": 0.0086
+        },
+        {
+          "pair": [
+            "diff_removed",
+            "diff_changed"
+          ],
+          "class": "must_deutan",
+          "de": 0.004,
+          "threshold": 0.09,
+          "margin": 0.0444,
+          "dL": 0.0003,
+          "dC": 0.0077,
+          "dH": 0.0167
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_tritan",
+          "de": 0.004,
+          "threshold": 0.09,
+          "margin": 0.0447,
+          "dL": 0.0015,
+          "dC": 0.008,
+          "dH": 0.0073
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_changed"
+          ],
+          "class": "must_normal",
+          "de": 0.0077,
+          "threshold": 0.13,
+          "margin": 0.0589,
+          "dL": 0.0012,
+          "dC": 0.0006,
+          "dH": 0.0077
+        },
+        {
+          "pair": [
+            "error",
+            "warning"
+          ],
+          "class": "must_tritan",
+          "de": 0.0054,
+          "threshold": 0.09,
+          "margin": 0.0597,
+          "dL": 0.0007,
+          "dC": 0.0242,
+          "dH": 0.0565
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_deutan",
+          "de": 0.0057,
+          "threshold": 0.09,
+          "margin": 0.0632,
+          "dL": 0.0015,
+          "dC": 0.008,
+          "dH": 0.0073
+        }
+      ]
+    },
+    {
+      "name": "candidate-c-expressive",
+      "kind": "committed candidate (comparison)",
+      "source": "candidate-c-expressive.night.yaml",
+      "worst_margin_overall": 0.0,
+      "worst_margin_matrix": 0.0205,
+      "argmin": {
+        "pair": [
+          "number",
+          "constant"
+        ],
+        "class": "anticollapse_normal"
+      },
+      "worst_margin_must_normal": 0.0468,
+      "worst_margin_must_cvd": 0.0205,
+      "worst_margin_should": 0.1913,
+      "worst_margin_anticollapse": 0.0,
+      "min_categorical_de": 0.0,
+      "mean_categorical_chroma": 0.0598,
+      "total_categorical_chroma": 0.5984,
+      "min_wcag": 2.7067,
+      "wcag_violations": 12,
+      "wcag_check_count": 261,
+      "worst_pairs": [
+        {
+          "pair": [
+            "number",
+            "constant"
+          ],
+          "class": "anticollapse_normal",
+          "de": 0.0,
+          "threshold": 0.03,
+          "margin": 0.0,
+          "dL": 0.0,
+          "dC": 0.0,
+          "dH": 0.0
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_changed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0018,
+          "threshold": 0.09,
+          "margin": 0.0205,
+          "dL": 0.0001,
+          "dC": 0.0001,
+          "dH": 0.0062
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_tritan",
+          "de": 0.0019,
+          "threshold": 0.09,
+          "margin": 0.0209,
+          "dL": 0.0008,
+          "dC": 0.0091,
+          "dH": 0.0067
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_removed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0019,
+          "threshold": 0.09,
+          "margin": 0.0212,
+          "dL": 0.0008,
+          "dC": 0.0186,
+          "dH": 0.0121
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_changed"
+          ],
+          "class": "must_protan",
+          "de": 0.0035,
+          "threshold": 0.09,
+          "margin": 0.0387,
+          "dL": 0.0001,
+          "dC": 0.0001,
+          "dH": 0.0062
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_changed"
+          ],
+          "class": "must_normal",
+          "de": 0.0061,
+          "threshold": 0.13,
+          "margin": 0.0468,
+          "dL": 0.0001,
+          "dC": 0.0001,
+          "dH": 0.0062
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_removed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0057,
+          "threshold": 0.09,
+          "margin": 0.0637,
+          "dL": 0.0,
+          "dC": 0.0094,
+          "dH": 0.0323
+        },
+        {
+          "pair": [
+            "diff_added",
+            "diff_changed"
+          ],
+          "class": "must_tritan",
+          "de": 0.0065,
+          "threshold": 0.09,
+          "margin": 0.0719,
+          "dL": 0.0001,
+          "dC": 0.0001,
+          "dH": 0.0062
+        },
+        {
+          "pair": [
+            "active_line",
+            "diff_added"
+          ],
+          "class": "must_normal",
+          "de": 0.0104,
+          "threshold": 0.13,
+          "margin": 0.0799,
+          "dL": 0.0008,
+          "dC": 0.0091,
+          "dH": 0.0067
+        },
+        {
+          "pair": [
+            "diff_removed",
+            "diff_changed"
+          ],
+          "class": "must_deutan",
+          "de": 0.0075,
+          "threshold": 0.09,
+          "margin": 0.0834,
+          "dL": 0.0001,
+          "dC": 0.0095,
+          "dH": 0.0236
+        }
+      ]
+    }
+  ],
+  "binding_constraint_best_numeric": {
+    "argmin_class": "must_deutan",
+    "argmin_pair": [
+      "selection",
+      "active_line"
+    ],
+    "n_gamut_edge_roles": 17,
+    "gamut_edge_roles": [
+      "breakpoint",
+      "builtin",
+      "constant",
+      "decorator",
+      "diff_added",
+      "diff_changed",
+      "diff_removed",
+      "error",
+      "function",
+      "namespace",
+      "number",
+      "search_match",
+      "search_match_current",
+      "selection",
+      "tag",
+      "type",
+      "warning"
+    ],
+    "n_wcag_edge_roles": 0,
+    "wcag_edge_roles": [],
+    "n_terms": 162,
+    "n_terms_within_5pct_of_min": 4
+  },
+  "note": "NON-CANDIDATE numeric exploration (branch dev/numeric-palettes). WCAG numbers are compliance checks; CVD simulations are population-average dichromat models; APCA is not used on this branch."
+}

@@ -1,0 +1,32 @@
+{
+  "name": "grotto-middle-exploration",
+  "displayName": "Grotto Middle Exploration (NON-CANDIDATE)",
+  "description": "Night themes from the middle-frontier optimizer (numeric objective inside taste fences); exploration material, not a candidate.",
+  "version": "0.0.1",
+  "publisher": "grotto-exploration",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Grotto M-Explore 01 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/middle-explore-01-night.json"
+      },
+      {
+        "label": "Grotto M-Explore 02 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/middle-explore-02-night.json"
+      },
+      {
+        "label": "Grotto M-Explore 03 Night",
+        "uiTheme": "vs-dark",
+        "path": "themes/middle-explore-03-night.json"
+      }
+    ]
+  }
+}

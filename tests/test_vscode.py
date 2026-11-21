@@ -311,7 +311,7 @@ def test_no_runtime_surface(package):
     assert set(package["contributes"]) == {"themes"}
     # files on disk: only static manifest + docs + the nine generated themes
     files = sorted(p.relative_to(EXT).as_posix() for p in EXT.rglob("*") if p.is_file())
-    expected = ["README.md", "package.json"] + [
+    expected = ["README.md", "LICENSE", "package.json"] + [
         t["path"].removeprefix("./") for t in package["contributes"]["themes"]
     ]
     assert files == sorted(expected), files

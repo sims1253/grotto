@@ -1,0 +1,13 @@
+{
+  "shiki": "4.4.3",
+  "sha256": {
+    "out/grotto-studies/vscode-preview/themes/fig-day.json": "6b8d2e681ff3c5b957b5c8541e612c5543efdcc8c7bf8dae7858a73eebf5b71e",
+    "out/grotto-studies/vscode-preview/themes/fig-night.json": "9d07f9e93ae9c594a96f3b4dd0b122b26e0c7f11269180e8dc0d549c56b7aceb",
+    "out/vivid-studies/vscode-preview/themes/fig-vivid-day.json": "f376b06a3bdc51f52389246dad5c300fba369db017e888eee29543de00bda7d5",
+    "out/vivid-studies/vscode-preview/themes/fig-vivid-night.json": "ec32d3f55a83355107d74b2b5dad7d8a9f4bb99ac2fb7449983e883774aebfbe",
+    "out/grotto-studies/vscode-preview/themes/rainstone-day.json": "0eb07f9653b88e4c86f886646f97c0e2bfde4c5f2125aaa8eef8dc23ed8b7860",
+    "out/grotto-studies/vscode-preview/themes/rainstone-night.json": "765b0451b7f27207b3532042f98402b4b82aa2f96cbce13de991ce86d2d4ce11",
+    "out/vivid-studies/vscode-preview/themes/rainstone-vivid-day.json": "8bf5ab091983446d95ca9376a16bef6c7b9ae7a5777153b3fceada95ca7864a1",
+    "out/vivid-studies/vscode-preview/themes/rainstone-vivid-night.json": "80bd8c0712ef405264fcacc6f91230227509a8eb7b42d22e43ee639943fdebd8"
+  }
+}
