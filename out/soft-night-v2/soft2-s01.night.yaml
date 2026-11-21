@@ -30,7 +30,7 @@ meta:
   candidate: false
   generated: soft-objective
   seed: 20260817
-  objective: '1 - mean(max(0,1-m)^2 over 187 margin terms, instrument v2) - 0.35 * max(0,(emphasis-0.045)/0.045)'
+  objective: '1 - mean(max(0,1-m)^2 over 127 margin terms, instrument v2) - 0.35 * max(0,(emphasis-0.045)/0.045)'
   scaffold: candidate-b-balanced.night.yaml
   fences: v2 = middle fences + lifted muted inks + lightness_offset fences + convention hue windows + role chroma floors + salience-rank + surface prominence (see scripts/soft_palette.py)
   at-target: 110

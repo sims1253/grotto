@@ -104,7 +104,7 @@ SOFT_PROVENANCE = {
         "  NOT a candidate; promotion is a human decision.",
     ],
     "objective": (
-        "'1 - mean(max(0,1-m)^2 over 187 margin terms, instrument v2) "
+        "'1 - mean(max(0,1-m)^2 over 127 margin terms, instrument v2) "
         "- 0.35 * max(0,(emphasis-0.045)/0.045)'"
     ),
     "fences": ("v2 = middle fences + lifted muted inks + lightness_offset fences + "
@@ -119,7 +119,7 @@ SOFT_PROVENANCE = {
         "banner": (
             "NON-CANDIDATE exploration (branch feat/palette-autoresearch-2). "
             "These palettes optimise a SHORTFALL objective "
-            "(1 - mean max(0,1-m)^2 over the 187 margin terms of instrument v2, which adds surface visibility bands) plus an "
+            "(1 - mean max(0,1-m)^2 over the 127 margin terms of instrument v2, which adds surface visibility bands) plus an "
             "area-weighted EMPHASIS budget, NOT the max-min margin J that the "
             "N-Explore and middle-frontier palettes optimise. Fences are the "
             "middle frontier's with the v2 declared changes: fg_muted, "
@@ -162,7 +162,11 @@ CVD_PROVENANCE = {
         "  EXPERIMENTAL CVD profile: CVD scored on colour alone, darker canvas,",
         "  wider ink and surface lightness fences (soft_palette.PROFILES['cvd']).",
     ],
+    # CVD scored on colour alone keeps the channel-discharged terms: 187, not 127.
+    "objective": SOFT_PROVENANCE["objective"].replace("127 margin terms", "187 margin terms"),
     "html": {**SOFT_PROVENANCE["html"],
+             "banner": SOFT_PROVENANCE["html"]["banner"].replace(
+                 "127 margin terms", "187 margin terms"),
              "title": "soft night palettes v2 -- CVD",
              "h1": "Soft-objective Night palettes v2, CVD variant &middot; EXPERIMENTAL"},
     "extension": {**SOFT_PROVENANCE["extension"],
@@ -700,7 +704,7 @@ def soft_refine(
         The shortfall is a SUM over the whole term table, but a move on one
         role can only change that role's terms -- so the sum is maintained
         incrementally (adjust the delta, add it to a running total) instead
-        of re-reduced over all 187 terms per candidate.  Same numbers, O(terms
+        of re-reduced over all terms per candidate.  Same numbers, O(terms
         for this role) instead of O(all terms).
         """
         ids = problem.term_ids_by_role.get(role, ())
