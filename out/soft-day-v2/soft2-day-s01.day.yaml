@@ -7,7 +7,7 @@
 # Fences: the middle frontier's (hue windows, L +/-0.04 ink / +/-0.06
 # surface around candidate-b night, chroma caps 0.12/0.16/0.10 and 70% of
 # max_chroma, WCAG floors vs every co-occurring surface) EXCEPT where v2
-# declares otherwise: fg_muted/line_number/ui_inactive lifted to L 0.585;
+# declares otherwise: fg_muted/line_number/ui_inactive re-solved to Night's contrast ratios;
 # roles declaring lightness_offset get L +/-0.12 (surfaces) / -0.08 (inks);
 # narrower hue windows for diff_added/success (green) and diff_removed (red);
 # chroma floors for error/warning/breakpoint. Plus the chroma floor, the

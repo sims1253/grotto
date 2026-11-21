@@ -316,10 +316,10 @@ same-family repair moved it without knowing the floor.
 
 | | utility (v2) | WCAG violations | CVD fails, uncovered by a drawn channel |
 |---|---|---|---|
-| candidate-b Day (committed) | 0.8906 | 163 | 8 (margins 0.3–0.5) |
-| **Grotto Day `out/soft-day-v2/soft2-day-s01`** | **0.9720** | 0 | 6 (margins 0.6–0.9) |
+| candidate-b Day (committed) | 0.8906 | 163 | 8 (margins 0.3–0.9) |
+| **Grotto Day `out/soft-day-v2/soft2-day-s01`** | **0.9720** | 0 | 5 (margins 0.7–1.0) |
 
-On colour alone Day misses more CVD checks than candidate-b Day (41 against
+On colour alone Day misses more CVD checks than candidate-b Day (42 against
 33). Darker inks hold less chroma, so the extra misses are syntax pairs, and
 VS Code's underline and gutter signs cover them. The README claims colour-blind
 support for Night only.

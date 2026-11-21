@@ -183,12 +183,17 @@ DAY_PROVENANCE = {
     **SOFT_PROVENANCE,
     "variant": "day",
     "header": SOFT_PROVENANCE["header"].replace(
-        "soft-objective Night palette", "soft-objective Day palette"),
+        "soft-objective Night palette", "soft-objective Day palette").replace(
+        "ui_inactive lifted to L 0.585;", "ui_inactive re-solved to Night's contrast ratios;"),
     "note_lines": SOFT_PROVENANCE["note_lines"] + [
         "  DAY profile: candidate-b day canvas, neutral inks re-solved to Grotto",
         "  Night's contrast ratios, light-polarity repairs (PROFILES['day']).",
     ],
     "html": {**SOFT_PROVENANCE["html"],
+             "banner": SOFT_PROVENANCE["html"]["banner"].replace(
+                 "lifted to L 0.585", "re-solved to Grotto Night's contrast ratios").replace(
+                 "candidate-b night is the baseline; numeric-n01 is the unconstrained "
+                 "frontier for reference.", "candidate-b day is the baseline."),
              "title": "soft day palettes v2",
              "h1": "Soft-objective Day palettes v2 &middot; NON-CANDIDATE"},
     "extension": {**SOFT_PROVENANCE["extension"],
